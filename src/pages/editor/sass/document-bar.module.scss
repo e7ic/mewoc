@@ -1,0 +1,80 @@
+@use "../../../assets/style/theme.scss" as *;
+
+.container {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  height: 80px;
+  background: $ui-surface;
+  border-bottom: 1px solid $ui-border;
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 25px;
+    border-right: 1px solid $ui-border;
+    strong { font-size: 25px; letter-spacing: -1px; }
+    strong span { color: $ui-accent; }
+  }
+  .logo {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 39px;
+    font-size: 22px;
+    color: #ffffff;
+    background: $theme-color;
+    border-radius: 10px 10px 10px 3px;
+  }
+  .document {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 170px;
+    max-width: 280px;
+    .title {
+      padding: 0;
+      width: 100%;
+      font-weight: 600;
+      font-size: 15px;
+      color: $ui-text;
+      background: transparent;
+      border: 0;
+    }
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: $ui-muted;
+    &.saved svg { color: #71a68a; }
+    &.error { color: #c64d4d; }
+  }
+  .files {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    button { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+    button:hover { color: $ui-accent; }
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+    white-space: nowrap;
+    :global(.ant-btn) { height: 35px; border-radius: 6px; }
+  }
+  .local { margin-right: 4px; font-size: 11px; color: $ui-muted; }
+}
+
+@media (max-width: 1250px) {
+  .container { gap: 15px; padding: 0 18px; }
+  .container .files { gap: 10px; }
+  .container .local { display: none; }
+  .container .brand { padding-right: 14px; }
+  .container .document { max-width: 190px; }
+}

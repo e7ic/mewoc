@@ -1,0 +1,16 @@
+$theme-color: #6657d9;
+$text-color: #252837;
+$muted-color: #8b8e9f;
+$border-color: #e9eaf0;
+
+// 界面变量独立于正文常量，导出与打印仍使用上面的固定文档颜色。
+$ui-accent: var(--mewoc-accent, #6657d9);
+$ui-text: var(--mewoc-text, #252837);
+$ui-muted: var(--mewoc-muted, #8b8e9f);
+$ui-secondary: var(--mewoc-secondary, #717487);
+$ui-border: var(--mewoc-border, #e9eaf0);
+$ui-surface: var(--mewoc-surface, #ffffff);
+$ui-panel: var(--mewoc-panel, #fafbfc);
+$ui-canvas: var(--mewoc-canvas, #f0f1f5);
+$ui-hover: var(--mewoc-hover, #f4f3fa);
+$ui-active: var(--mewoc-active, #efecff);

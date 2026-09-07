@@ -1,0 +1,301 @@
+{
+  "format": "mewoc",
+  "formatVersion": 1,
+  "document": {
+    "schemaVersion": 1,
+    "id": "m5-file-fixture",
+    "title": "M5 · 文件与打印验收",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "第一页：图文表格"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "中文与 English，核对图片、表格以及页边距。"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "attrs": {
+            "assetId": "m5-image",
+            "width": 240,
+            "height": 120,
+            "alt": "紫色验收图片",
+            "title": ""
+          }
+        },
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 1 行 / 第 1 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 1 行 / 第 2 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 1 行 / 第 3 列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 2 行 / 第 1 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 2 行 / 第 2 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 2 行 / 第 3 列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 3 行 / 第 1 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 3 行 / 第 2 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 3 行 / 第 3 列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "pageBreak"
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "第二页：手动分页"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "这一段应从第二页开始，打印中不应出现编辑工具栏或图片缩放柄。"
+            }
+          ]
+        }
+      ]
+    },
+    "page": {
+      "size": "A4",
+      "orientation": "portrait",
+      "marginsMm": {
+        "top": 20,
+        "right": 20,
+        "bottom": 20,
+        "left": 20
+      }
+    },
+    "assets": [
+      {
+        "id": "m5-image",
+        "fileName": "fixture.png",
+        "mimeType": "image/png",
+        "byteLength": 940
+      }
+    ],
+    "createdAt": "2026-09-06T14:00:00.000Z",
+    "updatedAt": "2026-09-06T14:00:00.000Z"
+  },
+  "assetData": {
+    "m5-image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAADwCAIAAABXFyDtAAADc0lEQVR4nO3UMQ2AMAAAwbrEAZ4RQYIDaoCJAT7NJSfgpx/XeQMQNH4vAOCRQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEfTHofTsA1mPQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNELXCoAF4waABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABoibc9KrOf+yFIwAAAABJRU5ErkJggg=="
+  }
+}

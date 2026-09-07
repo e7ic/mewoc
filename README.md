@@ -1,0 +1,80 @@
+# Mewoc
+
+参考 Umo Editor 核心体验独立实现的桌面文档编辑器。React 17 + Tiptap 3 + Ant Design 5 + Zustand，使用 Rsbuild 构建，全部应用源码使用 JavaScript / JSX。首期功能已接通；M5 完整验收按用户要求暂缓，继续推进 M6 功能。
+
+## 本地运行
+
+Node.js 22.12+，pnpm 11.19.0；版本以 package.json、pnpm-lock.yaml 为准。KaTeX 的 CLI 依赖 commander 15 要求 Node 22.12+，本批使用 Node 24.13.1 验证。
+
+```sh
+pnpm install --frozen-lockfile
+pnpm dev --port 4177
+```
+
+打开 http://127.0.0.1:4177 。文档按浏览器和访问源保存在 IndexedDB；更换端口、浏览器或清理站点数据不会共享原来的本地文档。跨设备或独立备份请导出 `.mewoc.json`，文件包含当前文档引用的图片。
+
+```sh
+pnpm lint
+pnpm test
+pnpm build
+pnpm preview --port 4178
+pnpm licenses:collect
+```
+
+## 已实现
+
+- 新建、打开 Mewoc 文件、最近文档、标题、自动/手动保存、刷新恢复上次打开文档、版本冲突提示。
+- 文字格式、字体、字号、颜色、背景色、H1–H3、段落行距/对齐、列表、链接、撤销/重做。
+- 格式刷：单次/连续复制文字与段落样式，保留目标链接和结构；Esc 退出，每次格式变更可独立撤销。
+- 段落缩进：首行 0–4 字符、左侧 0–8 字符，支持多段设置、混合状态、格式刷、保存与 HTML/打印输出。
+- 界面主题：视图中切换浅色、深色、跟随系统；自动保存偏好并同步其他标签页，文档纸张保持白底。
+- 公式：行内/独立 LaTeX 公式，支持预览、选中编辑、删除和撤销；源码随文档保存，HTML/打印输出内嵌 MathML。
+- 本地图片插入/粘贴/拖入、等比调整、替代文本；表格增删行列、合并/拆分、表头和列宽调整。
+- A4 横竖版、页边距、50%–150% 缩放、适应宽度、手动分页符、大纲、字符统计、查找替换、只读。
+- 带图 JSON、静态 HTML、纯文本导出，以及独立打印文档入口。
+
+图片支持 PNG/JPEG/WebP，单张 5 MiB，文档资源总量 20 MiB；外链图片不自动下载。正文是连续纸张容器；没有实时自动分页、DOCX、协作、AI、批注或修订。打印由浏览器控制，可在系统打印窗口选择另存 PDF。
+
+保存停顿为 800 ms，连续输入最长等待约 5 s；成功状态明确为“已保存到此浏览器”。写入失败保留编辑内容，仍可尝试导出文件。冲突时先导出当前副本，再刷新读取存储版本；导入导出的文件会生成新的文档 ID。浏览器关闭/崩溃前的最后一次输入不保证已经落盘。
+
+## 代码入口
+
+```text
+rsbuild.config.js                    React / Sass 插件、HTML 与开发验收入口
+src/main.jsx                         React 17 入口、AntD 5 中文与主题配置
+src/pages/editor/EditorPage.jsx       本地文档加载与会话切换
+src/pages/editor/components/          工具栏、纸张、表单和领域 Context
+src/pages/editor/hooks/               保存、图片、选区、输入生命周期
+src/pages/editor/tools/               Schema、IndexedDB、快照、文件与打印
+src/pages/editor/extensions/          图片、表格列宽、格式刷、段落行距、分页符、公式
+src/pages/editor/sass/                Sass CSS Modules 与内容样式
+tests/                               自动化与浏览器验收
+```
+
+Tiptap 是正文、选区与正文撤销的唯一所有者；Zustand 按编辑器实例创建，保存标题、纸张、界面状态和 revision。没有后端、账号或虚构保存接口。服务端适配契约保留在实施方案中，尚未实现宿主 SDK。
+
+## 验证状态
+
+2026-09-07：按用户要求，M5 暂缓，保留现有结果和未完成项，不计为通过。M6 第一批实施与验证见 [格式刷记录](docs/m6-format-painter.md)。
+
+M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主题](docs/m6-theme.md)和[公式](docs/m6-formula.md)。当前 46 项 Node 测试、lint、生产构建通过；Chrome 常规功能回归 38 项通过，另验证公式弹窗、编辑/取消/删除/撤销、只读与重开恢复。下一批为代码高亮。
+
+公式渲染器 KaTeX 0.18.7 按需加载，采用原生 MathML；导出不依赖外链字体、样式或脚本。单条源码最多 2000 字符、文档累计最多 100000 字符。不自动转换 `$` 输入；编辑已有公式时保留显示类型。公式的 Edge/Safari 和系统打印尚未专项验收。
+
+新增缩进属性默认 0，新程序可读取旧文件；旧程序的严格校验会拒绝携带新增属性或公式节点的文件，文件协议尚未发布，不宣称双向兼容。
+
+当前构建迁移见 [AntD v5 / Rsbuild 迁移记录](docs/stack-migration.md)：AntD 5.29.3、Rsbuild 2.2.3，Vite 已移除。开发服务保留 `/tests/browser.html`、`/tests/lifecycle.html`、`/tests/pointer.html`，请用 `pnpm dev --port 4179` 启动隔离验收；生产包只含应用入口。
+
+最新 M5 记录见 [稳定性验收](docs/m5-validation.md) 与 [原生及持续运行补验](docs/m5-native-soak.md)：已修复批量插图、Safari 列宽、打印取消、删图后的资源积累、图片/表格拖动取消及查找旧替换词残留。当时 17 项 Node 测试通过；Chrome / Safari / Edge 均已通过常规功能、30 轮生命周期和三组独立压力样例，Edge 补验了系统文件导入及保存恢复。Chrome 另完成 180 轮、约 15 分钟持续运行，指定资源每轮归零，堆采样已留档。Chrome / Safari 原生打印预览已补验。真实 IME、跨窗口指针完整事件复核与更长时间的完整内存诊断仍有剩余项，现随 M5 暂缓，未计为完成。
+
+以下为首期实现时的历史验收记录，最新结果以上述 M5 文档为准。
+
+2026-09-06：lint、12 项 Node 测试和生产构建通过。开发服务器的 `/tests/browser.html` 可运行 22 项真实浏览器功能检查，另记录一条 1 万字操作耗时。拖动用例是合成事件，图片指针捕获使用测试替身。请在专用浏览器/端口运行测试页；用例会创建本地测试文档，正常结束后清理本次创建的文档，运行前刷新或中断可能留下测试记录。
+
+真实拼音输入法、物理鼠标/系统选图窗口、Edge/Safari、原生打印预览与复杂压力样例尚未完成验收。构建仍有 Tiptap `use client` 指令忽略提示和 AntD 界面分包大于 500 kB 提示。详细证据、实现裁定和后续清单见 [编码与验收记录](docs/implementation-notes.md)。
+
+## 来源与许可记录
+
+本项目没有复制 Umo 源文件、商标图片或 Umo Next 商业代码。参考范围与许可调研见 [技术调研](docs/umo-react-research.md)。项目自身尚未指定发布许可证，package.json 保持 private。
+
+[运行依赖清单](docs/runtime-dependencies.json) 记录 129 个已安装运行依赖；[第三方声明](public/THIRD_PARTY_NOTICES.txt) 保留可取得的许可全文，包括本批新增 KaTeX 及其依赖的 MIT 许可。间接依赖 `toggle-selection@1.0.6` 只取得 MIT 元数据声明，发布包及此前核对的对应提交未提供许可全文。这份清单不代表分发许可审计已经完成。

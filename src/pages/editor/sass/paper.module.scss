@@ -1,0 +1,24 @@
+@use "../../../assets/style/theme.scss" as *;
+
+.container {
+  flex: 1;
+  padding: 20px 32px 36px;
+  min-width: 0;
+  overflow: auto;
+  background: $ui-canvas;
+  .label { display: flex; justify-content: space-between; margin: 0 auto 16px; max-width: 980px; font-size: 10px; color: #9a9dad; letter-spacing: 1px; }
+  .frame { position: relative; margin: 0 auto; }
+  .sheet { position: absolute; top: 0; left: 0; transform-origin: top left; }
+  .paper { color-scheme: light; color: $text-color; background: #ffffff; box-shadow: 0 3px 16px #33364b0a, 0 0 0 1px #e4e5ed; }
+  .ruler {
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+    height: 28px;
+    font-size: 8px;
+    color: #a0a3b2;
+    background: repeating-linear-gradient(90deg, #c5c7d1 0 1px, transparent 1px 5mm) bottom / 100% 5px no-repeat;
+    span { flex-shrink: 0; width: 10mm; }
+  }
+  .hint { margin: 24px 0 0; text-align: center; font-size: 11px; color: #a4a7b4; letter-spacing: 1px; }
+}

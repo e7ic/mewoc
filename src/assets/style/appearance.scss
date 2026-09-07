@@ -1,0 +1,15 @@
+:root { color-scheme: light; }
+
+:root[data-mewoc-theme="dark"] {
+  color-scheme: dark;
+  --mewoc-accent: #b5aaff;
+  --mewoc-text: #e7e8f0;
+  --mewoc-muted: #a6a9ba;
+  --mewoc-secondary: #babdcb;
+  --mewoc-border: #393c4b;
+  --mewoc-surface: #20222c;
+  --mewoc-panel: #242631;
+  --mewoc-canvas: #161820;
+  --mewoc-hover: #303340;
+  --mewoc-active: #3c355b;
+}

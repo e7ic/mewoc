@@ -1,0 +1,251 @@
+{
+  "title": "M5 · Edge 原生验收",
+  "body": "第一页：图文表格中文与 English，核对图片、表格以及页边距。第 1 行 / 第 1 列第 1 行 / 第 2 列第 1 行 / 第 3 列第 2 行 / 第 1 列第 2 行 / 第 2 列第 2 行 / 第 3 列第 3 行 / 第 1 列第 3 行 / 第 2 列第 3 行 / 第 3 列第二页：手动分页这一段应从第二页开始，打印中不应出现编辑工具栏或图片缩放柄。",
+  "pointerEvents": [
+    {
+      "type": "blur",
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "600px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "886px",
+            "columns": [
+              "190px",
+              "211px",
+              "485px"
+            ],
+            "cells": [
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mousemove",
+      "x": 651,
+      "y": 620,
+      "buttons": 0,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "600px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "886px",
+            "columns": [
+              "190px",
+              "211px",
+              "485px"
+            ],
+            "cells": [
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "pointerdown",
+      "x": 60,
+      "y": 477,
+      "buttons": 1,
+      "pointerId": 1,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "600px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "886px",
+            "columns": [
+              "190px",
+              "211px",
+              "485px"
+            ],
+            "cells": [
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mousedown",
+      "x": 60,
+      "y": 477,
+      "buttons": 1,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "600px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "886px",
+            "columns": [
+              "190px",
+              "211px",
+              "485px"
+            ],
+            "cells": [
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "pointerup",
+      "x": 60,
+      "y": 477,
+      "buttons": 0,
+      "pointerId": 1,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "600px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "886px",
+            "columns": [
+              "190px",
+              "211px",
+              "485px"
+            ],
+            "cells": [
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mouseup",
+      "x": 60,
+      "y": 477,
+      "buttons": 0,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "600px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "886px",
+            "columns": [
+              "190px",
+              "211px",
+              "485px"
+            ],
+            "cells": [
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485",
+              "190",
+              "211",
+              "485"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "inputEvents": [],
+  "sizes": {
+    "images": [
+      {
+        "width": "600px",
+        "height": "auto"
+      }
+    ],
+    "tables": [
+      {
+        "width": "886px",
+        "columns": [
+          "190px",
+          "211px",
+          "485px"
+        ],
+        "cells": [
+          "190",
+          "211",
+          "485",
+          "190",
+          "211",
+          "485",
+          "190",
+          "211",
+          "485"
+        ]
+      }
+    ]
+  }
+}

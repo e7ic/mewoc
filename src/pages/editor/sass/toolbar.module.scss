@@ -1,0 +1,87 @@
+@use "../../../assets/style/theme.scss" as *;
+
+.container {
+  flex-shrink: 0;
+  background: $ui-surface;
+  border-bottom: 1px solid $ui-border;
+  .header { display: flex; justify-content: space-between; padding: 0 26px; height: 43px; }
+  .tabs { display: flex; gap: 26px; }
+  .tab {
+    position: relative;
+    min-width: 35px;
+    height: 43px;
+    color: $ui-secondary;
+    &.active { font-weight: 600; color: $ui-accent; }
+    &.active::after { position: absolute; right: 0; bottom: 0; left: 0; height: 3px; background: $ui-accent; border-radius: 3px; content: ""; }
+  }
+  .actions {
+    display: flex;
+    gap: 22px;
+    color: $ui-secondary;
+    button { display: flex; align-items: center; gap: 6px; }
+    kbd { margin-left: 5px; font-size: 10px; color: #aaadba; }
+  }
+  .content { display: flex; align-items: center; gap: 22px; padding: 12px 24px; min-height: 91px; overflow-x: auto; }
+  .group {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding-right: 22px;
+    min-height: 65px;
+    border-right: 1px solid $ui-border;
+  }
+  .caption { text-align: center; font-size: 10px; color: $ui-muted; }
+  .row { display: flex; align-items: center; gap: 5px; }
+  .font, .fontSize, .paragraph, .spacing, .indentation {
+    flex-shrink: 0;
+    height: 28px;
+    font-size: 12px;
+  }
+  .font { width: 132px; }
+  .fontSize { width: 64px; }
+  .paragraph, .spacing { width: 100px; }
+  .indentation { width: 132px; }
+  .color {
+    padding: 0 4px;
+    width: 29px;
+    height: 28px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 17px;
+    span { width: 21px; border-bottom: 4px solid; }
+  }
+  .hint { display: flex; align-items: center; gap: 12px; margin-left: auto; color: #b8baca; }
+  .hint span { font-family: Georgia, serif; font-size: 38px; }
+  .hint p { margin: 0; font-size: 11px; line-height: 1.8; white-space: nowrap; }
+  .view { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 22px; white-space: nowrap; }
+  .view > span, .description { margin: 0; font-size: 12px; color: $ui-muted; line-height: 1.9; }
+  .theme { display: flex; align-items: center; gap: 10px; }
+  .themeSelect { width: 116px; }
+  .themeError { max-width: 220px; font-size: 11px; color: $ui-muted; white-space: normal; }
+  .insert { display: flex; align-items: center; gap: 14px; padding-right: 20px; border-right: 1px solid $ui-border; }
+  .insert > button { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 65px; font-size: 12px; }
+  .insert svg { font-size: 24px; color: $ui-secondary; }
+  .table { display: grid; grid-template-columns: repeat(4, auto); gap: 8px 16px; margin: 0; padding: 0; border: 0; }
+  .table legend { margin-bottom: 7px; font-size: 11px; color: $ui-muted; border: 0; }
+  .table button { font-size: 12px; }
+  .table .remove { color: #c45e67; }
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 27px;
+  font-size: 16px;
+  color: $ui-secondary;
+  border-radius: 4px;
+  &:hover { background: $ui-hover; }
+  &.active { color: $ui-accent; background: $ui-active; }
+}
+
+@media (max-width: 1100px) {
+  .container .hint { display: none; }
+}
