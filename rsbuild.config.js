@@ -15,6 +15,9 @@ export default defineConfig(({ command }) => ({
       })
     }
   },
+  output: {
+    overrideBrowserslist: ["chrome >= 107", "edge >= 107", "firefox >= 104", "safari >= 16"]
+  },
   html: {
     template: ({ entryName }) => `./${entryName}.html`
   },

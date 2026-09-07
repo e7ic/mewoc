@@ -11,10 +11,12 @@ import { TableColumnResize } from "../extensions/table-column-resize.js"
 import { FormatPainter } from "../extensions/format-painter.js"
 import { ParagraphIndent } from "../extensions/paragraph-indent.js"
 import { InlineMath, BlockMath } from "../extensions/formula.js"
+import { DocumentCodeBlock } from "../extensions/code-block.js"
 
 export function createExtensions(getAssetUrl = () => "") {
   return [
     StarterKit.configure({
+      codeBlock: false,
       heading: { levels: [1, 2, 3] },
       link: { openOnClick: false, HTMLAttributes: { rel: "noopener noreferrer", target: "_blank" } }
     }),
@@ -30,6 +32,7 @@ export function createExtensions(getAssetUrl = () => "") {
     PageBreak,
     InlineMath,
     BlockMath,
+    DocumentCodeBlock,
     FindAndReplace.configure({ injectCSS: false, searchDebounceMs: 150 }),
     Placeholder.configure({ placeholder: "在这里写下你的想法…" })
   ]

@@ -4,7 +4,7 @@
 
 ## 本地运行
 
-Node.js 22.12+，pnpm 11.19.0；版本以 package.json、pnpm-lock.yaml 为准。KaTeX 的 CLI 依赖 commander 15 要求 Node 22.12+，本批使用 Node 24.13.1 验证。
+支持 Node.js 18.18+（18.x）、20.9+（20.x）或 21.1+，pnpm **10.34.5**；版本以 package.json、pnpm-lock.yaml 为准。Node 18 用户需要使用 pnpm 10，pnpm 11 无法在 Node 18 上启动。已在 Node 18.18.0 全新安装目录验证测试和构建；兼容说明见 [Node 18 调整记录](docs/node18-compatibility.md)。
 
 ```sh
 pnpm install --frozen-lockfile
@@ -29,6 +29,8 @@ pnpm licenses:collect
 - 段落缩进：首行 0–4 字符、左侧 0–8 字符，支持多段设置、混合状态、格式刷、保存与 HTML/打印输出。
 - 界面主题：视图中切换浅色、深色、跟随系统；自动保存偏好并同步其他标签页，文档纸张保持白底。
 - 公式：行内/独立 LaTeX 公式，支持预览、选中编辑、删除和撤销；源码随文档保存，HTML/打印输出内嵌 MathML。
+- 代码块：纯文本及 JavaScript、HTML、CSS、JSON、Bash、Python 高亮；语言选择、整行缩进、继承缩进换行、退出正文和撤销，保存/复制/HTML 输出保留源码与语言。
+- Markdown：选择 UTF-8 文件或粘贴源码，预览转换后新建文档；导出前查看实际源码和转换说明，支持代码块、公式及普通 GFM 表格。
 - 本地图片插入/粘贴/拖入、等比调整、替代文本；表格增删行列、合并/拆分、表头和列宽调整。
 - A4 横竖版、页边距、50%–150% 缩放、适应宽度、手动分页符、大纲、字符统计、查找替换、只读。
 - 带图 JSON、静态 HTML、纯文本导出，以及独立打印文档入口。
@@ -46,7 +48,7 @@ src/pages/editor/EditorPage.jsx       本地文档加载与会话切换
 src/pages/editor/components/          工具栏、纸张、表单和领域 Context
 src/pages/editor/hooks/               保存、图片、选区、输入生命周期
 src/pages/editor/tools/               Schema、IndexedDB、快照、文件与打印
-src/pages/editor/extensions/          图片、表格列宽、格式刷、段落行距、分页符、公式
+src/pages/editor/extensions/          图片、表格列宽、格式刷、段落行距、分页符、公式、代码块
 src/pages/editor/sass/                Sass CSS Modules 与内容样式
 tests/                               自动化与浏览器验收
 ```
@@ -57,13 +59,17 @@ Tiptap 是正文、选区与正文撤销的唯一所有者；Zustand 按编辑�
 
 2026-09-07：按用户要求，M5 暂缓，保留现有结果和未完成项，不计为通过。M6 第一批实施与验证见 [格式刷记录](docs/m6-format-painter.md)。
 
-M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主题](docs/m6-theme.md)和[公式](docs/m6-formula.md)。当前 46 项 Node 测试、lint、生产构建通过；Chrome 常规功能回归 38 项通过，另验证公式弹窗、编辑/取消/删除/撤销、只读与重开恢复。下一批为代码高亮。
+M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主题](docs/m6-theme.md)、[公式](docs/m6-formula.md)、[代码块与高亮](docs/m6-code-block.md)和 [Markdown 导入/导出](docs/m6-markdown.md)。当前 Node 18.18 下 95 项测试、lint、生产构建通过；内置浏览器常规回归 48 项通过，另验证 Markdown 弹窗、取消、保存恢复、只读导出和实际下载文件。下一批为附件。
 
-公式渲染器 KaTeX 0.18.7 按需加载，采用原生 MathML；导出不依赖外链字体、样式或脚本。单条源码最多 2000 字符、文档累计最多 100000 字符。不自动转换 `$` 输入；编辑已有公式时保留显示类型。公式的 Edge/Safari 和系统打印尚未专项验收。
+使用顶部「导入 Markdown」，或「导出 → Markdown 文档」。导入源码最多 200000 字符，UTF-8 文件最多 1 MiB。图片转换为说明文字，HTML 源码按文字保留；合并表格和无法表达的排版会显示转换说明。Markdown 用于内容交换，完整样式与图片备份继续使用 Mewoc 文件。
+
+在「插入 → 代码块」将当前纯文字段落转为代码块；Tab / Shift+Tab 调整缩进，Enter 继承缩进，⌘ / Ctrl+Enter 继续正文。高亮按需加载，单块超过 20000 字符或累计超过 100000 字符时按纯文本显示；未知语言保留原属性，不截断源码。HTML/打印内嵌高亮样式，打印允许长行折行；代码块的 Edge/Safari、原生输入法与系统打印尚未专项验收。
+
+公式渲染器 KaTeX 0.18.4 按需加载，采用原生 MathML；导出不依赖外链字体、样式或脚本。单条源码最多 2000 字符、文档累计最多 100000 字符。不自动转换 `$` 输入；编辑已有公式时保留显示类型。公式的 Edge/Safari 和系统打印尚未专项验收。
 
 新增缩进属性默认 0，新程序可读取旧文件；旧程序的严格校验会拒绝携带新增属性或公式节点的文件，文件协议尚未发布，不宣称双向兼容。
 
-当前构建迁移见 [AntD v5 / Rsbuild 迁移记录](docs/stack-migration.md)：AntD 5.29.3、Rsbuild 2.2.3，Vite 已移除。开发服务保留 `/tests/browser.html`、`/tests/lifecycle.html`、`/tests/pointer.html`，请用 `pnpm dev --port 4179` 启动隔离验收；生产包只含应用入口。
+当前构建使用 AntD 5.29.3、Rsbuild 1.7.6，Vite 已移除；历史迁移见 [AntD v5 / Rsbuild 记录](docs/stack-migration.md)。2026-09-08 为支持 Node 18，调整构建及公式依赖；Node 18.18 下冻结安装、46 项测试、lint、构建和内置浏览器 38 项回归通过，Node 24.13.1 下 46 项测试也通过。开发服务保留 `/tests/browser.html`、`/tests/lifecycle.html`、`/tests/pointer.html`，请用 `pnpm dev --port 4179` 启动隔离验收；生产包只含应用入口。
 
 最新 M5 记录见 [稳定性验收](docs/m5-validation.md) 与 [原生及持续运行补验](docs/m5-native-soak.md)：已修复批量插图、Safari 列宽、打印取消、删图后的资源积累、图片/表格拖动取消及查找旧替换词残留。当时 17 项 Node 测试通过；Chrome / Safari / Edge 均已通过常规功能、30 轮生命周期和三组独立压力样例，Edge 补验了系统文件导入及保存恢复。Chrome 另完成 180 轮、约 15 分钟持续运行，指定资源每轮归零，堆采样已留档。Chrome / Safari 原生打印预览已补验。真实 IME、跨窗口指针完整事件复核与更长时间的完整内存诊断仍有剩余项，现随 M5 暂缓，未计为完成。
 
@@ -77,4 +83,4 @@ M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主
 
 本项目没有复制 Umo 源文件、商标图片或 Umo Next 商业代码。参考范围与许可调研见 [技术调研](docs/umo-react-research.md)。项目自身尚未指定发布许可证，package.json 保持 private。
 
-[运行依赖清单](docs/runtime-dependencies.json) 记录 129 个已安装运行依赖；[第三方声明](public/THIRD_PARTY_NOTICES.txt) 保留可取得的许可全文，包括本批新增 KaTeX 及其依赖的 MIT 许可。间接依赖 `toggle-selection@1.0.6` 只取得 MIT 元数据声明，发布包及此前核对的对应提交未提供许可全文。这份清单不代表分发许可审计已经完成。
+[运行依赖清单](docs/runtime-dependencies.json) 记录 206 个已安装运行依赖；[第三方声明](public/THIRD_PARTY_NOTICES.txt) 保留可取得的许可全文，包括 KaTeX、lowlight、unified / remark 的 MIT 许可及 highlight.js 的 BSD-3-Clause 许可。remark-math 发布包缺少许可全文，已从其发布版本对应提交补齐并记录来源。间接依赖 `toggle-selection@1.0.6` 只取得 MIT 元数据声明，发布包及此前核对的对应提交未提供许可全文。这份清单不代表分发许可审计已经完成。

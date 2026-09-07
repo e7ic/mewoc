@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { message } from "antd"
 import { FileAddOutlined, FolderOpenOutlined, SaveOutlined } from "@ant-design/icons"
 import { LocalDocumentsAction } from "./LocalDocumentsAction.jsx"
+import { MarkdownImportAction } from "./MarkdownImportAction.jsx"
 import { useDocumentEditor } from "./EditorProvider.jsx"
 import { createDocument } from "../tools/document-schema.js"
 import { readPortableFile } from "../tools/file-transfer.js"
@@ -32,6 +33,7 @@ export function FileActions({ onDocumentChange }) {
       nextRecord.assets.forEach(asset => { asset.url = URL.createObjectURL(asset.blob) })
       changed = true
       onDocumentChange(nextRecord)
+      return true
     } catch (error) {
       if (mountedRef.current) message.error(error.message)
     } finally {
@@ -65,6 +67,7 @@ export function FileActions({ onDocumentChange }) {
     <nav className={styles.files} aria-label="文档操作">
       <button type="button" disabled={pending || uploading} onClick={handleNewDocument}><FileAddOutlined />新建</button>
       <button type="button" disabled={pending || uploading} onClick={() => fileInputRef.current.click()}><FolderOpenOutlined />打开</button>
+      <MarkdownImportAction disabled={pending || uploading} onImport={changeDocument} />
       <button type="button" disabled={pending || uploading} onClick={saveDocument}><SaveOutlined />保存</button>
       <LocalDocumentsAction disabled={pending || uploading} onSelect={changeDocument} />
       <input

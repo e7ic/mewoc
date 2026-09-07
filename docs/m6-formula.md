@@ -1,5 +1,7 @@
 # M6 第四批：公式
 
+2026-09-08 更新：为兼容 Node 18.18+，KaTeX 已调整为 0.18.4、pnpm 10.34.5、Rsbuild 1.7.6，原公式回归继续通过；详见 [Node 18 兼容记录](node18-compatibility.md)。下文保留 2026-09-07 首次实施时的版本与验证结果。
+
 ## 实施前白盒模型
 
 行内公式和独立公式保存为 `inlineMath` / `blockMath` 原子节点，只有必需的 `latex` 字符串。参照 [Tiptap 公式模型](https://tiptap.dev/docs/editor/extensions/nodes/mathematics)，使用自有轻量节点接入现有白名单与异步渲染；KaTeX 按需加载，不引入官方扩展的同步渲染路径。

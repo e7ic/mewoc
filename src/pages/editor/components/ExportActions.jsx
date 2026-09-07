@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { Button, Dropdown, message } from "antd"
 import { DownloadOutlined, DownOutlined, PrinterOutlined } from "@ant-design/icons"
 import { useDocumentEditor } from "./EditorProvider.jsx"
+import { MarkdownExportDialog } from "./MarkdownExportDialog.jsx"
+import { createDocumentMarkdown } from "../tools/markdown-file.js"
 import { createDocumentHtml, createPortableFile, downloadDocument } from "../tools/file-transfer.js"
 import { printDocument } from "../tools/print-document.js"
 import styles from "../sass/document-bar.module.scss"
@@ -9,11 +11,13 @@ import styles from "../sass/document-bar.module.scss"
 const EXPORT_ITEMS = [
   { key: "json", label: "Mewoc 文件（含图片）" },
   { key: "html", label: "HTML 网页" },
+  { key: "markdown", label: "Markdown 文档" },
   { key: "text", label: "纯文本" }
 ]
 
 export function ExportActions() {
   const [pending, setPending] = useState(false)
+  const [markdown, setMarkdown] = useState(null)
   const mountedRef = useRef(true)
   const printCleanupRef = useRef(null)
   const printAbortRef = useRef(null)
@@ -29,6 +33,10 @@ export function ExportActions() {
         if (mountedRef.current) downloadDocument(new Blob([JSON.stringify(source)], { type: "application/json" }), snapshot.title, "mewoc.json")
       }
       if (key === "text") downloadDocument(new Blob([editor.getText()], { type: "text/plain;charset=utf-8" }), snapshot.title, "txt")
+      if (key === "markdown") {
+        const result = await createDocumentMarkdown(snapshot)
+        if (mountedRef.current) setMarkdown(result)
+      }
       if (key === "html" || key === "print") {
         const html = await createDocumentHtml(snapshot, assets)
         if (!mountedRef.current) return
@@ -77,6 +85,7 @@ export function ExportActions() {
           icon={<DownloadOutlined />}
         >导出文档 <DownOutlined /></Button>
       </Dropdown>
+      <MarkdownExportDialog result={markdown} onCancel={() => setMarkdown(null)} />
     </>
   )
 }

@@ -1,2 +1,2 @@
-minimumReleaseAgeExclude:
-  - katex@0.18.7
+overrides:
+  "@rsbuild/plugin-sass>sass-embedded": 1.99.0

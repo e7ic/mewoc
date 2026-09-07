@@ -4,12 +4,13 @@ import { isSafeLink } from "../tools/document-schema.js"
 import { FONT_FAMILIES, FONT_SIZES, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS } from "../constants/editor-constants.js"
 import { parseParagraphIndent } from "../extensions/paragraph-indent.js"
 import { getFormulaSourceError } from "../tools/formula.js"
+import { getPastedCodeLanguage } from "../tools/code-highlight.js"
 
 export function useEditorInput(editor, store, insertImages, saveDocument) {
   useEffect(() => {
     if (!editor) return
     const handlePaste = event => {
-      if (!editor.isEditable) return
+      if (!editor.isEditable || editor.isActive("codeBlock")) return
       const files = [...event.clipboardData.files].filter(file => file.type.startsWith("image/"))
       if (!files.length) return
       event.preventDefault()
@@ -48,6 +49,8 @@ export function useEditorInput(editor, store, insertImages, saveDocument) {
 
 export function cleanPastedHtml(html, hasAsset = () => false) {
   const parsed = new DOMParser().parseFromString(html, "text/html")
+  parsed.querySelectorAll("script, style, iframe, object, embed, svg, math, link, meta").forEach(node => node.remove())
+  const codes = cleanPastedCode(parsed)
   const formulas = new Set()
   parsed.querySelectorAll('span[data-type="inline-math"], div[data-type="block-math"]').forEach(element => {
     const latex = element.getAttribute("data-latex")
@@ -55,9 +58,7 @@ export function cleanPastedHtml(html, hasAsset = () => false) {
     element.textContent = latex
     formulas.add(element)
   })
-  const blocked = parsed.querySelectorAll("script, style, iframe, object, embed, svg, math, link, meta")
   let hasExternalImages = false
-  blocked.forEach(node => node.remove())
   parsed.querySelectorAll("img").forEach(image => {
     if (!hasAsset(image.getAttribute("data-mewoc-asset-id"))) {
       hasExternalImages = true
@@ -73,12 +74,27 @@ export function cleanPastedHtml(html, hasAsset = () => false) {
       const isImageText = element.tagName === "IMG" && ["alt", "title"].includes(attr.name) && attr.value.length <= 1000
       const isImageSize = element.tagName === "IMG" && ["width", "height"].includes(attr.name) && Number(attr.value) > 0 && Number(attr.value) <= 20000
       const isFormula = formulas.has(element) && ["data-type", "data-latex"].includes(attr.name)
-      if (!isLink && !isTableSpan && !isImageId && !isImageText && !isImageSize && !isFormula) element.removeAttribute(attr.name)
+      const isCode = codes.has(element) && attr.name === "data-code-language"
+      if (!isLink && !isTableSpan && !isImageId && !isImageText && !isImageSize && !isFormula && !isCode) element.removeAttribute(attr.name)
     }
     if (textStyle) element.setAttribute("style", textStyle)
   })
   if (hasExternalImages) message.info("已粘贴文字。网页图片请保存后通过「图片」插入")
   return parsed.body.innerHTML
+}
+
+function cleanPastedCode(parsed) {
+  const codes = new Set(parsed.querySelectorAll("pre"))
+  codes.forEach(pre => {
+    const language = getPastedCodeLanguage(pre)
+    pre.querySelectorAll("br").forEach(lineBreak => lineBreak.replaceWith(parsed.createTextNode("\n")))
+    const code = parsed.createElement("code")
+    code.textContent = pre.textContent
+    pre.replaceChildren(code)
+    pre.removeAttribute("data-code-language")
+    if (language !== null) pre.setAttribute("data-code-language", language)
+  })
+  return codes
 }
 
 function getPastedTextStyle(element) {

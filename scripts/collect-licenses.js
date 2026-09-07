@@ -9,6 +9,10 @@ const LICENSE_SOURCES = {
   "@ant-design/icons-svg@4.6.0": {
     file: "docs/licenses/ant-design-icons-svg.txt",
     url: "https://github.com/ant-design/ant-design-icons/blob/7f2516ac91226d2b41f93b35cb5197c8d94f7189/LICENSE"
+  },
+  "remark-math@6.0.0": {
+    file: "docs/licenses/remark-math.txt",
+    url: "https://github.com/remarkjs/remark-math/blob/d5d0660b150810a535bbb07eac6cc96a4510aa24/license"
   }
 }
 

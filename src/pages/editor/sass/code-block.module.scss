@@ -1,0 +1,12 @@
+@use "../../../assets/style/theme.scss" as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 600px;
+  .language { width: 150px; }
+  p { margin: 0; font-size: 12px; color: $ui-muted; }
+  .notice { flex-basis: 100%; color: $ui-secondary; }
+}

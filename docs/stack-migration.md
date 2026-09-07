@@ -1,5 +1,7 @@
 # Ant Design v5 / Rsbuild 迁移
 
+2026-09-08 更新：为支持 Node 18.18+，构建链现使用 Rsbuild 1.7.6、React 插件 1.4.6、Sass 插件 1.5.2，AntD 仍为 5.29.3。详见 [Node 18 兼容记录](node18-compatibility.md)。以下是先前从 Vite 迁移时的历史记录。
+
 ## 实施前白盒审计
 
 - 用户本轮指定 AntD v5、以 Rsbuild 替换 Vite；该要求优先于首期方案与 frontend-code-style 中的 AntD 4 示例。保留 React 17、JS/JSX、Tiptap 3、Zustand 与 pnpm。

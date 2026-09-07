@@ -2,13 +2,15 @@ import { generateHTML } from "@tiptap/core"
 import { createExtensions } from "./create-extensions.js"
 import { createPortableFile } from "./portable-file.js"
 import { renderFormulaHtml } from "./formula.js"
+import { renderCodeHtml } from "./code-highlight.js"
 import contentStyles from "../sass/content.scss?inline"
 
 export { createPortableFile, readPortableFile } from "./portable-file.js"
 
 export async function createDocumentHtml(document, assets) {
   const portable = await createPortableFile(document, assets)
-  const content = await renderFormulaHtml(generateHTML(document.content, createExtensions(id => portable.assetData[id])))
+  const formulaHtml = await renderFormulaHtml(generateHTML(document.content, createExtensions(id => portable.assetData[id])))
+  const content = await renderCodeHtml(formulaHtml)
   const margins = document.page.marginsMm
   const pageStyle = `@page { size: A4 ${document.page.orientation}; margin: ${margins.top}mm ${margins.right}mm ${margins.bottom}mm ${margins.left}mm; }`
   const title = document.title.replace(/[&<>"']/g, character => `&#${character.charCodeAt(0)};`)
