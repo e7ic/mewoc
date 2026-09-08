@@ -4,6 +4,7 @@ import styles from "../sass/formula.module.scss"
 
 export function FormulaPreview({ latex, type }) {
   const [preview, setPreview] = useState({ html: "", error: "", loading: true })
+  // 防抖减少连续输入的渲染次数；依赖变化后取消旧回写，但不声称已取消正在运行的渲染。
   useEffect(() => {
     let cancelled = false
     setPreview({ html: "", error: "", loading: true })

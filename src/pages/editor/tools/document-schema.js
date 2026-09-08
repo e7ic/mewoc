@@ -5,6 +5,7 @@ import { FORMULA_TYPES, getFormulaSourceError, MAX_FORMULA_TOTAL } from "./formu
 import { validateAttachmentMetadata } from "./attachment-assets.js"
 import { DEFAULT_PAGE, FONT_FAMILIES, FONT_SIZES, FONT_WEIGHTS, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS, IMAGE_TYPES, MAX_IMAGE_BYTES, MAX_ASSET_BYTES } from "../constants/editor-constants.js"
 
+// 校验与编辑使用同一组扩展，新增节点/属性需同时更新下方业务白名单。
 const SCHEMA = getSchema(createExtensions())
 const NODE_KEYS = ["type", "attrs", "content", "marks", "text"]
 const ID_PATTERN = /^[a-zA-Z0-9-]{1,100}$/
@@ -68,6 +69,11 @@ export function isSafeLink(value) {
   }
 }
 
+/**
+ * 文档进入编辑器、保存或文件交换前的统一契约校验，失败直接抛出可展示的错误。
+ * 先检查业务白名单、容量及资源引用，再由 ProseMirror 检查父子节点组合是否合法。
+ * 返回原对象，不迁移未知字段，也不静默删除不支持的内容。
+ */
 export function validateDocument(record) {
   if (!record || record.schemaVersion !== 1) throw new Error("不支持此文档版本，当前仅支持 schemaVersion 1")
   if (!ID_PATTERN.test(record.id) || typeof record.title !== "string" || record.title.length > 100) {
@@ -79,6 +85,7 @@ export function validateDocument(record) {
   validatePage(record.page)
   validateAssets(record.assets)
   const assetKinds = new Map(record.assets.map(asset => [asset.id, asset.kind || "image"]))
+  // 全树共用预算，避免深层嵌套或大量小节点绕过单节点限制。
   const budget = { nodes: 0, characters: 0, formulaCharacters: 0 }
   validateNode(record.content, "content", assetKinds, budget, 0)
   if (record.content.type !== "doc") throw new Error("content 必须是 doc 节点")
@@ -148,6 +155,8 @@ function validateAttrs(type, attrs, allowed, path) {
   })
 }
 
+// 字号按带单位的 pt 字符串、图片/列宽按未缩放 px、缩进按 em 倍数校验。
+// 属性即使存在于第三方 schema，也必须在此明确允许后才能进入持久化文档。
 function isValidAttribute(type, key, value) {
   if (key === "latex" && FORMULA_TYPES.includes(type)) return !getFormulaSourceError(value)
   // Tiptap 的 HTML 解析器以空字符串表示未设置的文字样式，命令则使用 null。
@@ -184,6 +193,7 @@ export function getReferencedAssetIds(content) {
   return [...ids]
 }
 
+// 只计算当前正文的去重引用，删除后留在会话里供撤销使用的资源不占当前文档额度。
 export function checkAssetCapacity(content, assets, incomingBytes = 0) {
   let bytes = incomingBytes
   for (const id of getReferencedAssetIds(content)) {

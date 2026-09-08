@@ -2,6 +2,7 @@ import { Extension } from "@tiptap/core"
 import { TextSelection, AllSelection } from "@tiptap/pm/state"
 import { FIRST_LINE_INDENTS, LEFT_INDENTS } from "../constants/editor-constants.js"
 
+// 用 em 表达“字符数”式缩进，随字号变化；只接纳菜单允许的整数，外部任意 CSS 不直接入库。
 export function parseParagraphIndent(value, allowed) {
   if (!/^\d+em$/.test(value)) return 0
   const indent = Number(value.slice(0, -2))
@@ -50,6 +51,7 @@ export const ParagraphIndent = Extension.create({
         if (keys.includes("leftIndent") && !LEFT_INDENTS.includes(attrs.leftIndent)) return false
         const paragraphs = getIndentParagraphs(state)
         if (!paragraphs.length) return false
+        // can() 探测命令时没有 dispatch，只判断是否适用；执行时在同一事务批量写入。
         if (dispatch) paragraphs.forEach(({ node, pos }) => {
           if (keys.some(key => (node.attrs[key] ?? 0) !== attrs[key])) {
             tr.setNodeMarkup(pos, undefined, { ...node.attrs, ...attrs })

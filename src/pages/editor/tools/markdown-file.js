@@ -1,5 +1,6 @@
 import { validateDocument } from "./document-schema.js"
 
+// 文件字节数与解析后源码长度分别限额；UTF-8 中文的字节数不等于 JS 字符串长度。
 export const MAX_MARKDOWN_BYTES = 1024 * 1024
 export const MAX_MARKDOWN_LENGTH = 200000
 
@@ -8,6 +9,7 @@ export async function readMarkdownSource(file) {
   if (file.size > MAX_MARKDOWN_BYTES) throw new Error("Markdown 文件不能超过 1 MiB")
   let source
   try {
+    // 遇到错误编码直接报错，避免以替代字符继续导入而破坏原文。
     source = new TextDecoder("utf-8", { fatal: true }).decode(await file.arrayBuffer())
   } catch {
     throw new Error("无法读取文件，请使用 UTF-8 编码的 Markdown")
@@ -16,6 +18,7 @@ export async function readMarkdownSource(file) {
   return { source, title: file.name.replace(/\.(md|markdown)$/i, "").slice(0, 100) || "Markdown 文档" }
 }
 
+// 输入检查通过后再加载转换器，普通编辑无需提前加载 remark/unified。
 export async function readMarkdownDocument(source, title = "Markdown 文档") {
   validateMarkdownSource(source)
   const converter = await import("./markdown-converter.js")

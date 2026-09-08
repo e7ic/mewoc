@@ -8,6 +8,7 @@ import styles from "../sass/toolbar.module.scss"
 export function TextStyleControls() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
+  // 从正文选区派生回显，不在组件保存第二份格式；默认标题样式和混合选区由同一读取器处理。
   const format = useEditorState({ editor, selector: ({ editor: current }) => getSelectionTextStyle(current) })
 
   return (

@@ -1,3 +1,7 @@
+/**
+ * 工具栏回显与格式刷共用的实际外观来源：显式 mark 优先，缺省值读取所在段落的 CSS。
+ * 默认标题样式并不一定存在于 JSON 中，仅读取 textStyle 会遗漏字号、颜色和字重。
+ */
 export function getTextAppearance(editor, position, marks = []) {
   const resolved = editor.state.doc.resolve(position)
   const node = resolved.parent
@@ -16,6 +20,7 @@ export function getTextAppearance(editor, position, marks = []) {
   }
 }
 
+// 空选区读取待输入格式，范围选区逐段取值；同一属性出现多值时以 mixed 交给控件展示。
 export function getSelectionTextStyle(editor) {
   const { selection, storedMarks, doc } = editor.state
   const formats = []
@@ -34,6 +39,7 @@ export function getSelectionTextStyle(editor) {
   return result
 }
 
+// 目标继承样式与来源一致时无需固化默认值；不一致时写显式属性，保持外观而不改标题结构。
 export function getPaintedMarks(editor, range, source) {
   const base = getTextAppearance(editor, range.from)
   const marks = source.marks.filter(mark => mark.type !== "textStyle")

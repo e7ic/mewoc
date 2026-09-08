@@ -5,12 +5,14 @@ import { MarkdownWarnings } from "./MarkdownWarnings.jsx"
 import { readMarkdownSource, readMarkdownDocument } from "../tools/markdown-file.js"
 import styles from "../sass/markdown.module.scss"
 
+// 草稿、预览结果与实际导入分开：只有当前草稿转换成功后，才允许交给父级切换文档。
 export function MarkdownImportAction({ disabled, onImport }) {
   const [open, setOpen] = useState(false)
   const [draft, setDraft] = useState({ title: "Markdown 文档", source: "" })
   const [result, setResult] = useState(null)
   const [pending, setPending] = useState(false)
   const [error, setError] = useState("")
+  // 修改草稿、关闭或卸载都会使旧版本失效，防止迟到的读取/转换结果重新打开旧预览。
   const versionRef = useRef(0)
 
   const handleChange = next => {
@@ -52,6 +54,7 @@ export function MarkdownImportAction({ disabled, onImport }) {
     const version = versionRef.current
     setPending(true)
     try {
+      // 父级先保存当前文档；返回失败时留在弹窗提示，成功则由会话切换卸载此组件。
       const changed = await onImport(result.record)
       if (!changed && version === versionRef.current) setError("当前文档未能保存，请处理保存错误后重试")
     } catch (failure) {

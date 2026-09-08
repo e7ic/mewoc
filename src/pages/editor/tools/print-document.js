@@ -1,16 +1,21 @@
+/**
+ * 用独立 iframe 打印已生成的静态 HTML，等待字体和图片就绪后才唤起系统打印。
+ * 返回清理函数供调用方管理；Promise 完成只表示已调用打印，不代表用户实际打印/保存。
+ * signal 可终止资源等待并移除 iframe，不等同于能关闭已打开的系统打印窗口。
+ */
 export async function printDocument(html, signal) {
   if (signal?.aborted) throw new DOMException("打印已取消", "AbortError")
   const frame = document.createElement("iframe")
   frame.title = "文档打印预览"
   frame.style.cssText = "position:fixed;width:0;height:0;border:0;visibility:hidden"
   let timeout
-  let cleanupTimer
   let disposed = false
   let handleAbort
   const cleanup = () => {
+    // afterprint、取消和下一次打印可能重复收口；不要再访问已移除 iframe 的窗口。
+    if (disposed) return
     disposed = true
     clearTimeout(timeout)
-    clearTimeout(cleanupTimer)
     signal?.removeEventListener("abort", handleAbort)
     frame.contentWindow?.removeEventListener("afterprint", cleanup)
     frame.onload = null
@@ -42,8 +47,8 @@ export async function printDocument(html, signal) {
       frame.srcdoc = html
       document.body.append(frame)
     })
-    // 部分浏览器不触发 afterprint，最终释放 iframe 与其中的解码图片。
-    if (!disposed) cleanupTimer = setTimeout(cleanup, 60000)
+    // 系统打印窗口可能停留很久，不能按固定时长销毁仍在使用的输出。
+    // 未触发 afterprint 时，调用方在下一次打印或会话卸载时释放，最多保留一个 iframe。
     return cleanup
   } catch (error) {
     cleanup()

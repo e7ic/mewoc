@@ -6,6 +6,7 @@ import { parseParagraphIndent } from "../extensions/paragraph-indent.js"
 import { getFormulaSourceError } from "../tools/formula.js"
 import { getPastedCodeLanguage } from "../tools/code-highlight.js"
 
+// 在当前编辑器 DOM 上接管文件粘贴/拖入与保存、查找快捷键，解绑也限定同一实例。
 export function useEditorInput(editor, store, insertImages, saveDocument) {
   useEffect(() => {
     if (!editor) return
@@ -36,6 +37,7 @@ export function useEditorInput(editor, store, insertImages, saveDocument) {
       }
     }
     const dom = editor.view.dom
+    // 捕获阶段先拦截图片文件，避免编辑器默认粘贴流程再插入一次；普通文字继续交给 Tiptap。
     dom.addEventListener("paste", handlePaste, true)
     dom.addEventListener("drop", handleDrop, true)
     dom.addEventListener("keydown", handleKeyDown)
@@ -47,6 +49,11 @@ export function useEditorInput(editor, store, insertImages, saveDocument) {
   }, [editor, store, insertImages, saveDocument])
 }
 
+/**
+ * 外部 HTML 先做属性白名单清理，再交给 Tiptap 解析文档结构。
+ * 自定义节点只恢复本会话可解析的资源 ID 或经过校验的源码，不信任剪贴板 URL。
+ * 样式重新从允许值生成，不能把任意 style、事件属性带入编辑内容。
+ */
 export function cleanPastedHtml(html, hasAsset = () => false) {
   const parsed = new DOMParser().parseFromString(html, "text/html")
   parsed.querySelectorAll("script, style, iframe, object, embed, svg, math, link, meta").forEach(node => node.remove())
@@ -98,6 +105,7 @@ function cleanPastedAttachments(parsed, hasAsset) {
   return attachments
 }
 
+// 去掉外部高亮标签但保留文本和显式换行，着色由本项目高亮插件重新生成。
 function cleanPastedCode(parsed) {
   const codes = new Set(parsed.querySelectorAll("pre"))
   codes.forEach(pre => {

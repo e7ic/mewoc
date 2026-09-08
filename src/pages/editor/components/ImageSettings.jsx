@@ -26,6 +26,7 @@ export function ImageSettings() {
     if (!editor.isEditable) return
     const selection = getSelection()
     const image = selection && editor.state.doc.nodeAt(selection.from)
+    // 位置仍存在不代表图片未变，必须核对 assetId，避免将旧说明写到后来替换的图片上。
     if (!image || image.type.name !== "image" || image.attrs.assetId !== record.assetId) {
       message.warning("原图片已被删除，请关闭弹窗后重新选择")
       return

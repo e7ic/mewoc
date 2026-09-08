@@ -4,6 +4,11 @@ import { TextSelection } from "@tiptap/pm/state"
 import { readImageFile } from "../tools/image-assets.js"
 import { checkAssetCapacity } from "../tools/document-schema.js"
 
+/**
+ * 顺序解码并插入一批本地图片；批次中途失败时，已经插入的图片保留。
+ * 文件读取期间正文仍可能变化，使用 bookmark 跟踪原插入位置，目标被删除则停止。
+ * 成功资源交由会话回收，异步完成后发现会话失效的资源立即释放 URL。
+ */
 export function useDocumentImages(editor, assets, store, assetTaskRef) {
   const [uploading, setUploading] = useState(false)
   const mountedRef = useRef(true)
@@ -38,6 +43,7 @@ export function useDocumentImages(editor, assets, store, assetTaskRef) {
           return
         }
         try {
+          // 读取期间正文引用可能变化，插入前按最新正文再次核对容量。
           checkAssetCapacity(editor.getJSON(), assets, asset.byteLength)
         } catch (error) {
           URL.revokeObjectURL(asset.url)

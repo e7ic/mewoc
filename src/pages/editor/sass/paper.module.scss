@@ -7,8 +7,10 @@
   overflow: auto;
   background: $ui-canvas;
   .label { display: flex; justify-content: space-between; margin: 0 auto 16px; max-width: 980px; font-size: 10px; color: #9a9dad; letter-spacing: 1px; }
+  // transform 不改变布局占位，外层 frame 的尺寸由 PaperCanvas 按缩放值单独计算。
   .frame { position: relative; margin: 0 auto; }
   .sheet { position: absolute; top: 0; left: 0; transform-origin: top left; }
+  // 深色主题只改变编辑器界面，文档纸张固定浅色，与 HTML/打印的正文颜色一致。
   .paper { color-scheme: light; color: $text-color; background: #ffffff; box-shadow: 0 3px 16px #33364b0a, 0 0 0 1px #e4e5ed; }
   .ruler {
     display: flex;

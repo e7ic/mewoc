@@ -23,6 +23,7 @@ export function ExportActions() {
   const printAbortRef = useRef(null)
   const { editor, assets, getSnapshot, uploading } = useDocumentEditor()
 
+  // 直接捕获当前内容，允许本地保存失败时仍尝试导出备份；异步转换完成后再检查会话存活。
   const handleExport = async ({ key }) => {
     if (pending) return
     setPending(true)
@@ -47,6 +48,7 @@ export function ExportActions() {
             message.warning("表格超过纸张正文宽度，请缩小列宽或切换横版后打印")
             return
           }
+          // 新打印替换旧任务；卸载时也同时中止加载和释放已创建的打印 iframe。
           printCleanupRef.current?.()
           printAbortRef.current?.abort()
           const controller = new AbortController()

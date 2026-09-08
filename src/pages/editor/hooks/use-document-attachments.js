@@ -4,6 +4,10 @@ import { readAttachmentFile, createDocumentAssetUrl } from "../tools/attachment-
 import { canInsertAttachment, insertAttachmentNode } from "../tools/attachment-commands.js"
 import { checkAssetCapacity } from "../tools/document-schema.js"
 
+/**
+ * 附件读取成功后才创建卡片，原始文件字节保存在会话资源中，正文只写 assetId。
+ * 插入失败或目标失效时撤回尚未被正文接纳的资源；成功后的资源保留以支持撤销。
+ */
 export function useDocumentAttachments(editor, assets, store, assetTaskRef) {
   const [attachmentUploading, setAttachmentUploading] = useState(false)
   const mountedRef = useRef(true)
@@ -62,6 +66,8 @@ export function useDocumentAttachments(editor, assets, store, assetTaskRef) {
   return { insertAttachment, attachmentUploading }
 }
 
+// 取消是不可逆的：读取期间进入过只读/切换态，即使随后恢复编辑也不再提交这次附件。
+// 这里只阻止迟到结果写入，不会取消底层文件读取；clear 负责解绑两种订阅。
 function trackAttachmentSelection(editor, store) {
   let selection = editor.state.selection
   let bookmark = selection.getBookmark()

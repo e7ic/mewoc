@@ -6,8 +6,10 @@ import json from "highlight.js/lib/languages/json"
 import bash from "highlight.js/lib/languages/bash"
 import python from "highlight.js/lib/languages/python"
 
+// 此模块按需加载，只注册菜单支持的语言，避免把全部语言解析器加入首屏依赖。
 const LOWLIGHT = createLowlight({ javascript, html, css, json, bash, python })
 
+// 将嵌套高亮树展平成连续文本片段，继承祖先样式类；调用方据文本长度映射正文位置。
 export function getCodeTokens(text, language) {
   const tree = LOWLIGHT.highlight(language, text)
   const tokens = []

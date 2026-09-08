@@ -15,6 +15,10 @@ import { DocumentCodeBlock } from "../extensions/code-block.js"
 import { DocumentAttachment } from "../extensions/document-attachment.js"
 import { FontWeight } from "../extensions/font-weight.js"
 
+/**
+ * 编辑、校验和静态导出共用的扩展入口，保证三者理解同一份文档节点与属性。
+ * 编辑时注入会话 URL，导出时注入内嵌数据；纯 schema 校验无需提供资源解析器。
+ */
 export function createExtensions(getAssetUrl = () => "", getAsset = () => null) {
   return [
     StarterKit.configure({
@@ -22,6 +26,7 @@ export function createExtensions(getAssetUrl = () => "", getAsset = () => null) 
       heading: { levels: [1, 2, 3] },
       link: { openOnClick: false, HTMLAttributes: { rel: "noopener noreferrer", target: "_blank" } }
     }),
+    // 行距属于段落属性；关闭文字 mark 层的行距，避免同一个功能出现两种存储方式。
     TextStyleKit.configure({ lineHeight: false }),
     FontWeight,
     TextAlign.configure({ types: ["heading", "paragraph"] }),

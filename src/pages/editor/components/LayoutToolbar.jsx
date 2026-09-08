@@ -23,6 +23,8 @@ export function LayoutToolbar() {
     setError("")
     form.resetFields()
   }
+  // 表单持有临时纸张设置，整体校验后才更新文档 revision；取消不会影响现有纸张。
+  // 纸张元信息不进入 Tiptap 的正文撤销栈。
   const savePage = values => {
     if (readOnly) return
     const nextPage = { ...values, size: "A4" }

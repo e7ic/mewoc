@@ -12,6 +12,7 @@ export const TableColumnResize = Extension.create({
   }
 })
 
+// 合并单元格的右边缘对应其覆盖的最后一列；TableMap 给出逻辑列号和相对表格的位置。
 function getResizeColumn(view, event) {
   const cell = event.target.closest?.("td, th")
   if (!cell || !view.dom.contains(cell)) return null
@@ -30,6 +31,7 @@ function getResizeColumn(view, event) {
   return { table, start, map, column, element, columns, scale }
 }
 
+// 移动时只预览 colgroup，释放时再写 colwidth；文档结构一旦改变就取消，避免沿用旧位置。
 function bindColumnResize(view) {
   let drag = null
   const win = view.dom.ownerDocument.defaultView
@@ -123,6 +125,8 @@ function getRenderedColumnWidths({ table, start, map, scale }, view) {
   return widths
 }
 
+// 同一列可能经过跨行/跨列单元格，按唯一单元格位置更新其覆盖的宽度数组。
+// 全表宽度在一个事务中提交，保持各行对齐并让一次拖动形成一次文档变更。
 function updateColumnWidths(view, drag) {
   const widths = drag.widths.map((value, index) => index === drag.column ? drag.nextWidth : value)
   const positions = new Set(drag.map.map)

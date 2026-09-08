@@ -5,6 +5,7 @@ import { ArrowDownOutlined, ArrowUpOutlined, CloseOutlined } from "@ant-design/i
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import styles from "../sass/panels.module.scss"
 
+// 本地 state 只控制输入框，匹配集合和当前索引由 FindAndReplace 维护，正文变化后由插件更新。
 export function SearchPanel() {
   const [searchTerm, setSearchTerm] = useState("")
   const [replaceTerm, setReplaceTerm] = useState("")

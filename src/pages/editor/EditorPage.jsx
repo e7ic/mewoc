@@ -9,6 +9,7 @@ import styles from "./sass/page.module.scss"
 
 const ACTIVE_DOCUMENT_KEY = "mewoc.activeDocumentId"
 
+// 页面负责加载/切换文档记录，实际编辑与资源清理由下层 Provider 按会话承担。
 export default function EditorPage() {
   const [record, setRecord] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -20,12 +21,14 @@ export default function EditorPage() {
     setError("")
     getDocuments().then(async records => {
       const activeId = getActiveDocumentId()
+      // 优先恢复上次打开的文档；偏好丢失时采用按更新时间排序后的第一条记录。
       const latest = records.find(item => item.id === activeId) || records[0]
       if (!latest) return { document: createDocument(true), storageVersion: 0, assets: new Map() }
       validateDocument(latest.document)
       return { ...latest, assets: await getDocumentAssets(latest.document) }
     }).then(nextRecord => {
       if (!mountedRef.current) return
+      // 先确认页面仍在，再创建需要显式回收的 URL，避免迟到加载产生无人持有的资源。
       nextRecord.assets.forEach(asset => { asset.url = createDocumentAssetUrl(asset) })
       setRecord(nextRecord)
     }).catch(failure => {
@@ -35,6 +38,7 @@ export default function EditorPage() {
     })
   }, [])
 
+  // 即使重开相同文档也分配新 key，确保旧选区、撤销栈和保存队列不会沿用。
   const handleDocumentChange = nextRecord => setRecord({ ...nextRecord, sessionId: createId() })
 
   useEffect(() => {

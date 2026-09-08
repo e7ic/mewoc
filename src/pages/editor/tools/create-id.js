@@ -1,6 +1,7 @@
 export function createId() {
   // 局域网 HTTP 没有 randomUUID，但仍提供安全随机字节；保持 UUID v4 格式。
   const bytes = crypto.getRandomValues(new Uint8Array(16))
+  // 第 7 字节高四位固定为版本 4，第 9 字节高两位固定为 10，其余位保留随机值。
   bytes[6] = (bytes[6] & 15) | 64
   bytes[8] = (bytes[8] & 63) | 128
   const hex = Array.from(bytes, byte => byte.toString(16).padStart(2, "0")).join("")

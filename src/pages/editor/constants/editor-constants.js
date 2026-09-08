@@ -1,3 +1,4 @@
+// 菜单与文件属性白名单共用这些值；新增选项也意味着扩展文档可接受的持久化格式。
 export const FONT_FAMILIES = [
   { label: "系统默认", value: "" },
   { label: "宋体 / 衬线", value: "SimSun, Songti SC, serif" },
@@ -21,5 +22,6 @@ export const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 export const MAX_ASSET_BYTES = 20 * 1024 * 1024
 export const MAX_FILE_BYTES = 32 * 1024 * 1024
 export const IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp"]
+// 单位为毫秒：输入停顿后保存，连续输入达到最长等待也发起保存；并非退出前落盘保证。
 export const SAVE_DELAY = 800
 export const MAX_SAVE_DELAY = 5000

@@ -17,6 +17,7 @@ export function InsertToolbar() {
   const fileInputRef = useRef(null)
   const { editor, insertImages, uploading, imageUploading } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
+  // 按当前正文选区展示对应节点工具，不另存“当前图片/表格”以免编辑后目标过期。
   const selection = useEditorState({ editor, selector: ({ editor: current }) => ({
     table: current.isActive("table"), image: current.isActive("image"), code: Boolean(getCodeBlockTarget(current.state.selection)),
     attachment: current.isActive("attachment")

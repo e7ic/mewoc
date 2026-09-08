@@ -8,6 +8,7 @@ export function getFormulaSourceError(latex) {
   return ""
 }
 
+// 入口先校验源码长度再按需加载 KaTeX，普通文档无需承担公式渲染器加载成本。
 export async function renderFormula(latex, displayMode = false) {
   const error = getFormulaSourceError(latex)
   if (error) throw new Error(error)

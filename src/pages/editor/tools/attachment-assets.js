@@ -13,6 +13,8 @@ export function validateAttachmentMetadata(asset) {
   }
 }
 
+// 附件可为零字节文件；仅验证元数据与实际读取长度，不解析或执行文件内容。
+// 返回的 Blob 保留原始 MIME，下载用 URL 的 MIME 单独由 createDocumentAssetUrl 处理。
 export async function readAttachmentFile(file) {
   const asset = {
     id: createId(), kind: "attachment", fileName: file.name,

@@ -7,6 +7,7 @@ import { getPastedCodeLanguage } from "../tools/code-highlight.js"
 import { getCodeBlockTarget, insertCodeBlock, indentCodeBlock, insertCodeNewline, exitCodeBlock } from "../tools/code-block-commands.js"
 import { createCodeHighlightPlugin } from "./code-highlight.js"
 
+// 语言属性保留原值以便文件往返，展示时再映射为支持的高亮语言；未知语言按纯文本处理。
 export const DocumentCodeBlock = CodeBlock.extend({
   addAttributes() {
     return { language: { default: null, rendered: false, parseHTML: getPastedCodeLanguage } }
@@ -63,6 +64,7 @@ function createCodePastePlugin(editor, type) {
         if (!editor.isEditable || view.composing || !event.clipboardData) return false
         const text = event.clipboardData.getData("text/plain").replace(/\r\n?/g, "\n")
         const target = getCodeBlockTarget(view.state.selection)
+        // 已在代码块中时只消费纯文本，避免富文本样式或自动链接改变源码结构。
         if (target && view.state.selection instanceof TextSelection) {
           if (!text) return false
           view.dispatch(closeHistory(view.state.tr).insertText(text).setMeta("paste", true))

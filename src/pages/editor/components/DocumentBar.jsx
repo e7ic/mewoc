@@ -6,6 +6,7 @@ import { ExportActions } from "./ExportActions.jsx"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import styles from "../sass/document-bar.module.scss"
 
+// 状态由保存协调器回报，saved 只承诺本浏览器存储成功，不表示服务器同步或文件已下载。
 const SAVE_LABELS = { dirty: "有待保存的修改", saving: "正在保存…", saved: "已保存到此浏览器", error: "保存失败" }
 const SAVE_ICONS = { dirty: ClockCircleOutlined, saving: LoadingOutlined, saved: CheckCircleOutlined, error: CloseCircleOutlined }
 

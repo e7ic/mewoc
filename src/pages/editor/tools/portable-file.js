@@ -3,6 +3,10 @@ import { readBlobDataUrl, validateImageBlob } from "./image-assets.js"
 import { MAX_FILE_BYTES } from "../constants/editor-constants.js"
 import { createId } from "./create-id.js"
 
+/**
+ * 生成可跨浏览器传递的 Mewoc 文件：正文引用保持 assetId，原始 Blob 转为内嵌 data URL。
+ * 仅导出当前正文引用；逐项核对实际类型与字节数，缺资源时拒绝生成不完整备份。
+ */
 export async function createPortableFile(document, assets) {
   validateDocument(document)
   const assetData = {}
@@ -19,6 +23,7 @@ export async function createPortableFile(document, assets) {
   return { format: "mewoc", formatVersion: 1, document: { ...document, assets: references }, assetData }
 }
 
+// 文件、文档结构和所有二进制资源全部校验成功后才返回新记录，调用方随后创建会话 URL。
 export async function readPortableFile(file) {
   if (file.size > MAX_FILE_BYTES) throw new Error("文档文件不能超过 32 MiB")
   let source

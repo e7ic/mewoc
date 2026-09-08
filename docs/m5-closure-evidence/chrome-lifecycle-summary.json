@@ -1,0 +1,18 @@
+{
+  "rounds": 720,
+  "elapsedSeconds": 3940,
+  "createdUrls": 3600,
+  "heapFirstMiB": 70.35702228546143,
+  "heapLastMiB": 72.08716201782227,
+  "heapMinMiB": 68.12926387786865,
+  "heapMaxMiB": 91.61922550201416,
+  "first60LowMiB": 70.35702228546143,
+  "last60LowMiB": 72.08716201782227,
+  "domNodes": [
+    30,
+    31
+  ],
+  "visibleRounds": 633,
+  "peakUrls": 2,
+  "peakObservers": 2
+}

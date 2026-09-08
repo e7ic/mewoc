@@ -9,10 +9,12 @@ import { createExtensions } from "./create-extensions.js"
 import { createMarkdownContent } from "./markdown-import.js"
 import { createMarkdownTree } from "./markdown-export.js"
 
+// 导入与导出共享 GFM/公式语法配置；先在 AST 层转换，再由 stringify 处理 Markdown 转义。
 const MARKDOWN = unified().use(remarkParse).use(remarkStringify, { bullet: "-", emphasis: "_", strong: "*", fences: true, incrementListMarker: false })
   .use(remarkGfm, { singleTilde: false }).use(remarkMath)
 const SCHEMA = getSchema(createExtensions())
 
+// 转换只构造待确认的新文档，不修改当前会话；warnings 与纯文本预览交给导入弹窗展示。
 export function readMarkdownDocument(source, title) {
   const tree = MARKDOWN.parse(source)
   const { content, warnings } = createMarkdownContent(tree)

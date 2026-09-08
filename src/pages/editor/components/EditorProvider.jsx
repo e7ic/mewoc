@@ -10,14 +10,21 @@ import { useEditorInput, cleanPastedHtml } from "../hooks/use-editor-input.js"
 
 export const EditorContext = createContext(null)
 
+/**
+ * 一个 Provider 对应一次文档会话，record 只作为初始化输入。
+ * 页面切换 key 时重建 editor/store，正文撤销历史和运行时资源随会话隔离。
+ * assets 保留原始 Blob 与临时 URL，子组件通过 Context 共享同一份资源集合。
+ */
 export function EditorProvider({ record, children }) {
   const [store] = useState(() => createEditorStore(record))
   const [assets] = useState(() => record.assets)
+  // 图片与附件共用同步互斥标记，避免 React 更新前重复进入异步资源插入流程。
   const assetTaskRef = useRef(false)
   const readOnly = useStore(store, state => state.readOnly || state.switching)
   const editor = useEditor({
     extensions: createExtensions(id => assets.get(id)?.url || "", id => assets.get(id)),
     content: record.document.content,
+    // 正文事务不驱动整棵 React 树刷新，各工具栏自行订阅需要的选区和格式状态。
     shouldRerenderOnTransaction: false,
     editorProps: {
       attributes: { class: "mewoc-content", role: "textbox", "aria-label": "文档正文", "aria-multiline": "true", spellcheck: "false" },
@@ -32,6 +39,7 @@ export function EditorProvider({ record, children }) {
   useEditorInput(editor, store, insertImages, saveDocument)
 
   useEffect(() => {
+    // 删除节点时仍需支持撤销，因此会话 URL 统一在会话卸载时释放。
     return () => assets.forEach(asset => { if (asset.url) URL.revokeObjectURL(asset.url) })
   }, [assets])
 

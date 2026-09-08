@@ -4,6 +4,10 @@ import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import styles from "../sass/paper.module.scss"
 import "../sass/content.scss"
 
+/**
+ * 纸张内部按实际尺寸排版，sheet 用 transform 缩放，frame 用缩放后的宽高撑开滚动空间。
+ * ResizeObserver 跟踪连续正文高度；这里没有分页排版，也不据容器高度推算页数。
+ */
 export function PaperCanvas() {
   const [height, setHeight] = useState(1123)
   const paperRef = useRef(null)
@@ -21,6 +25,7 @@ export function PaperCanvas() {
   useEffect(() => {
     const paper = paperRef.current
     let frame = 0
+    // 将测量后的 React 更新合并到下一帧，避免在同一轮 ResizeObserver 回调中反复布局。
     const observer = new ResizeObserver(() => {
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => {
@@ -42,6 +47,7 @@ export function PaperCanvas() {
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => {
         if (viewportRef.current !== viewport) return
+        // 扣除视口左右各 32px 留白，保持与纸张容器 padding 一致，并沿用 50%–150% 范围。
         const nextZoom = Math.max(0.5, Math.min(1.5, (viewport.clientWidth - 64) / width))
         store.getState().updateView({ zoom: nextZoom })
       })

@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-09-08T14:28:58.346Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15",
+  "url": "http://127.0.0.1:4182/tests/browser.html?assets=1",
+  "results": [
+    {
+      "name": "现有资源可读：M5 · 当前版本图文与输出验收",
+      "passed": true
+    },
+    {
+      "name": "现有资源可读：Mewoc · 从这里开始",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 1 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 2 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 3 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 4 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 5 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 6 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 7 轮",
+      "passed": true
+    },
+    {
+      "name": "资源重复保存与导出第 8 轮",
+      "passed": true
+    }
+  ]
+}

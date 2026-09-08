@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-09-08T13:36:50.704Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+  "url": "http://127.0.0.1:4179/tests/browser.html",
+  "results": [
+    {
+      "name": "10 万字独立样例",
+      "passed": true,
+      "metrics": {
+        "loadMs": 20.100000023841858,
+        "layoutWaitMs": 153.59999999403954,
+        "commandP95Ms": 2,
+        "twoFrameP95Ms": 44.900000005960464,
+        "snapshotMs": 5.199999988079071,
+        "saveAndReadMs": 8
+      }
+    },
+    {
+      "name": "100×10 表格独立样例",
+      "passed": true,
+      "metrics": {
+        "loadAndLayoutMs": 96.90000000596046,
+        "editColumnMs": 24.299999982118607,
+        "snapshotAndSaveMs": 37.70000001788139
+      }
+    },
+    {
+      "name": "20 张图片独立样例",
+      "passed": true,
+      "metrics": {
+        "imageSize": "1200×800",
+        "totalBytes": 438940,
+        "insertDecodeLayoutMs": 154.90000000596046,
+        "storageAndExportsMs": 175.19999998807907
+      }
+    }
+  ]
+}

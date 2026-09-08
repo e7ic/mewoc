@@ -6,6 +6,7 @@ import styles from "../sass/panels.module.scss"
 
 export function OutlinePanel() {
   const { editor, store } = useDocumentEditor()
+  // 只订阅不可变 doc 引用，移动光标无需重新扫描大纲；正文变更后重建位置，避免缓存旧 pos。
   const doc = useEditorState({ editor, selector: ({ editor: current }) => current.state.doc, equalityFn: (a, b) => a === b })
   const headings = useMemo(() => {
     const items = []
@@ -16,6 +17,7 @@ export function OutlinePanel() {
   }, [doc])
 
   const handleLocate = heading => {
+    // 标题节点位置在内容起点之前，+1 才落入可编辑文字；滚动定位仍使用节点自身位置。
     editor.chain().focus().setTextSelection(heading.pos + 1).run()
     editor.view.nodeDOM(heading.pos)?.scrollIntoView({ behavior: "smooth", block: "center" })
   }

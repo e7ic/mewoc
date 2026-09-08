@@ -1,6 +1,7 @@
 import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 import { closeHistory } from "@tiptap/pm/history"
 
+// 异步读取结束后仍需验证选区属于当前 doc，且未跨段、进入代码块或处于组合输入中。
 export function canInsertAttachment(editor, selection) {
   return Boolean(editor && !editor.isDestroyed && editor.isEditable && !editor.view.composing &&
     selection instanceof TextSelection && selection.$from.doc === editor.state.doc &&
@@ -18,6 +19,7 @@ export function insertAttachmentNode(editor, selection, assetId) {
   return inserted
 }
 
+// 只删除正文节点，不删除资源 Blob，让撤销能恢复完整附件；存储清理由保存流程处理。
 export function removeAttachment(editor) {
   if (!editor || editor.isDestroyed || !editor.isEditable || editor.view.composing) return false
   const selection = editor.state.selection

@@ -101,6 +101,7 @@ const AlignmentControls = ({ editor, align, readOnly }) => (
   </>
 )
 
+// 汇总选区涉及的段落，逐属性判断混合态；行距读取实际 CSS，包含标题未显式设置的默认值。
 function getParagraphStyle(editor) {
   const { selection, doc } = editor.state
   const blocks = []

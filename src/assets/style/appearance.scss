@@ -1,3 +1,4 @@
+// 全局主题仅覆盖 --mewoc-* 界面变量；正文样式使用固定颜色，不随此属性改变。
 :root { color-scheme: light; }
 
 :root[data-mewoc-theme="dark"] {

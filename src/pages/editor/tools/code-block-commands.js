@@ -2,6 +2,7 @@ import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 import { closeHistory } from "@tiptap/pm/history"
 import { CODE_LANGUAGES } from "../constants/code-languages.js"
 
+// 支持整块选中或同一代码块内的文本选区，跨块选区不适用代码缩进和语言修改。
 export function getCodeBlockTarget(selection) {
   if (selection instanceof NodeSelection && selection.node.type.name === "codeBlock") {
     return { node: selection.node, pos: selection.from }
@@ -34,6 +35,7 @@ export function insertCodeBlock(editor) {
   if (!["paragraph", "heading"].includes(node.type.name) || !schema.nodes.codeBlock) return false
   let hasInlineNodes = false
   node.forEach(child => { if (!child.isText) hasInlineNodes = true })
+  // 转换块类型会丢弃公式等非文本节点，遇到此类内容时拒绝转换。
   if (hasInlineNodes) return false
   const pos = selection.$from.before()
   const transaction = editor.state.tr.setBlockType(pos, pos + node.nodeSize, schema.nodes.codeBlock, { language: "plaintext" })
@@ -81,10 +83,12 @@ export function indentCodeBlock(editor, reverse = false) {
   }
   const changes = getCodeIndentChanges(target, selection, reverse)
   if (!changes.length) return true
+  // 从末行向前编辑，前面尚未处理的原始位置不会被后面的插入/删除偏移。
   for (const change of changes.reverse()) {
     if (reverse) transaction.delete(change.pos, change.pos + change.length)
     else transaction.insertText("  ", change.pos)
   }
+  // 保留正向/反向选区；边界关联方向决定新增缩进是否仍包含在选区内。
   const anchor = transaction.mapping.map(selection.anchor, selection.anchor === selection.from ? -1 : 1)
   const head = transaction.mapping.map(selection.head, selection.head === selection.from ? -1 : 1)
   transaction.setSelection(TextSelection.create(transaction.doc, anchor, head))

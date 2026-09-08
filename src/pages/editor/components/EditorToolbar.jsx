@@ -10,6 +10,7 @@ import styles from "../sass/toolbar.module.scss"
 
 const TABS = ["开始", "插入", "布局", "视图"]
 
+// 页签、面板和只读开关只更新视图状态；Provider 将只读/切换状态同步到编辑器可编辑性。
 export function EditorToolbar() {
   const { store } = useDocumentEditor()
   const activeTab = useEditorStore(state => state.activeTab)

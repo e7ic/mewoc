@@ -2,6 +2,7 @@ import { Node } from "@tiptap/core"
 import { DOMSerializer } from "@tiptap/pm/model"
 import { formatAttachmentSize, getAttachmentFileName, getAttachmentText } from "../tools/attachment-assets.js"
 
+// 卡片是不可拆分的块节点，正文仅保存 assetId，文件名、大小和下载地址从资源表派生。
 export const DocumentAttachment = Node.create({
   name: "attachment",
   group: "block",
@@ -30,6 +31,7 @@ export const DocumentAttachment = Node.create({
   }
 })
 
+// 编辑视图和静态输出共用 DOM 描述，文件名作为文本交给序列化器，不拼接进 HTML 字符串。
 function getAttachmentContent(assetId, options) {
   const asset = options.getAsset(assetId)
   const attrs = { "data-type": "attachment", "data-mewoc-asset-id": assetId }
@@ -65,6 +67,7 @@ function createAttachmentView(node, options) {
       if (current.attrs.assetId !== dom.getAttribute("data-mewoc-asset-id")) updateAttachment(current)
       return true
     },
+    // 下载保持浏览器原生行为，也允许只读文档下载；其余卡片事件仍交给编辑器选中节点。
     stopEvent: event => Boolean(event.target.closest("[data-attachment-download]")),
     ignoreMutation: mutation => mutation.type !== "selection"
   }

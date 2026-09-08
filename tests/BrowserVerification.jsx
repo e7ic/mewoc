@@ -7,6 +7,8 @@ import { TextStyleControls } from "../src/pages/editor/components/TextStyleContr
 import { createDocument } from "../src/pages/editor/tools/document-schema.js"
 import { runEditorChecks, removeVerificationDocuments } from "./browser-checks.js"
 import { runStressChecks } from "./stress-checks.js"
+import { exportVerification } from "./verification-export.js"
+import { runAssetPersistenceChecks } from "./asset-persistence-checks.js"
 import "../src/pages/editor/sass/content.scss"
 
 function BrowserVerification() {
@@ -54,6 +56,12 @@ function BrowserVerification() {
       <p>请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。</p>
       <button type="button" disabled={running || !!results.length} onClick={() => handleRun(false)}>运行浏览器验收</button>
       <button type="button" disabled={running || !!results.length} onClick={() => handleRun(true)}>运行压力验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runAssetPersistenceChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行资源重复保存验收</button>
+      <button type="button" disabled={running || !results.length} onClick={() => exportVerification("browser", results)}>导出验收结果</button>
       <p role="status">{running ? "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
       <ol>{results.map(result => (
         <li key={result.name}>

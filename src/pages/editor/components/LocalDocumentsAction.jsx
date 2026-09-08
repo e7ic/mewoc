@@ -31,6 +31,7 @@ export function LocalDocumentsAction({ disabled, onSelect }) {
     }
   }
 
+  // 每次打开重新读取本浏览器文档；关闭使本轮结果失效，不把迟到列表写入下一次弹窗。
   useEffect(() => {
     if (!open) return
     let cancelled = false

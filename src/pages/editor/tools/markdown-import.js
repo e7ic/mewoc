@@ -3,6 +3,11 @@ import { getFormulaSourceError } from "./formula.js"
 
 const MARKDOWN_MARKS = new Map([["strong", "bold"], ["emphasis", "italic"], ["delete", "strike"]])
 
+/**
+ * 将 Markdown AST 转为受支持的 Tiptap JSON，转换损失通过去重 warnings 明确返回。
+ * 先扫描整棵树收集引用链接定义并限制结构规模，再转换正文，支持定义位于引用之后。
+ * 图片保留说明与地址、HTML 保留源码文字；此流程不会请求外部资源。
+ */
 export function createMarkdownContent(tree) {
   const warnings = new Set()
   const definitions = new Map()
@@ -63,6 +68,7 @@ function getMarkdownList(node, context) {
   if (node.ordered && node.start === 0) context.warnings.add("从 0 开始的有序列表已改为从 1 开始")
   const content = node.children.map(item => {
     const blocks = getMarkdownBlocks(item.children, context)
+    // listItem 的 schema 要求首块为段落，代码/公式开头的列表项需补空段落才能载入。
     if (blocks[0]?.type !== "paragraph") blocks.unshift({ type: "paragraph", content: [] })
     if (item.checked !== null && item.checked !== undefined) {
       context.warnings.add("任务列表已保留为 [x] / [ ] 文字，不提供勾选控件")
@@ -73,6 +79,7 @@ function getMarkdownList(node, context) {
   return node.ordered ? { type: "orderedList", attrs: { start: node.start || 1 }, content } : { type: "bulletList", content }
 }
 
+// GFM 首行映射表头，各行补齐至最大列数；对齐写入单元格内段落，符合编辑器属性归属。
 function getMarkdownTable(node, context) {
   const columns = Math.max(...node.children.map(row => row.children.length))
   if (columns * node.children.length > 10000) throw new Error("Markdown 表格不能超过 10000 个单元格")
@@ -127,6 +134,7 @@ function getMarkdownLink(node, context, marks) {
   return [...getMarkdownInline(node.children, context, marks), ...getText(`（${address || "空地址"}）`, marks)]
 }
 
+// 空/超长公式无法作为公式节点入库，转成含分隔符的文字以保留用户源码。
 function getMarkdownFormula(latex, inline, context, marks = []) {
   if (getFormulaSourceError(latex)) {
     context.warnings.add("空公式或超长公式已保留为带美元分隔符的文字")

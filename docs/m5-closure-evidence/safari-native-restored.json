@@ -1,0 +1,141 @@
+{
+  "title": "M5 · 当前版本图文与输出验收",
+  "body": "第一页：图文表格中文与 English，核对图片、表格以及页边距。第 1 行 / 第 1 列第 1 行 / 第 2 列第 1 行 / 第 3 列第 2 行 / 第 1 列第 2 行 / 第 2 列第 2 行 / 第 3 列第 3 行 / 第 1 列第 3 行 / 第 2 列第 3 行 / 第 3 列第二页：手动分页这一段应从第二页开始，打印中不应出现编辑工具栏或图片缩放柄。E=mc2E = mc^2const message = \"你好 Mewoc\"\nconsole.log(message)选区第一段：中文与 English。选区第二段：格式操作后可以撤销。附件M5验收.txt36 B下载",
+  "pointerEvents": [
+    {
+      "type": "focus",
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "456px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "625px",
+            "columns": [
+              "305px",
+              "160px",
+              "160px"
+            ],
+            "cells": [
+              "305",
+              "160",
+              "160",
+              "305",
+              "160",
+              "160",
+              "305",
+              "160",
+              "160"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mousedown",
+      "x": 59,
+      "y": 468,
+      "buttons": 0,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "456px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "625px",
+            "columns": [
+              "305px",
+              "160px",
+              "160px"
+            ],
+            "cells": [
+              "305",
+              "160",
+              "160",
+              "305",
+              "160",
+              "160",
+              "305",
+              "160",
+              "160"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "mouseup",
+      "x": 59,
+      "y": 468,
+      "buttons": 0,
+      "trusted": true,
+      "sizes": {
+        "images": [
+          {
+            "width": "456px",
+            "height": "auto"
+          }
+        ],
+        "tables": [
+          {
+            "width": "625px",
+            "columns": [
+              "305px",
+              "160px",
+              "160px"
+            ],
+            "cells": [
+              "305",
+              "160",
+              "160",
+              "305",
+              "160",
+              "160",
+              "305",
+              "160",
+              "160"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "inputEvents": [],
+  "sizes": {
+    "images": [
+      {
+        "width": "456px",
+        "height": "auto"
+      }
+    ],
+    "tables": [
+      {
+        "width": "625px",
+        "columns": [
+          "305px",
+          "160px",
+          "160px"
+        ],
+        "cells": [
+          "305",
+          "160",
+          "160",
+          "305",
+          "160",
+          "160",
+          "305",
+          "160",
+          "160"
+        ]
+      }
+    ]
+  }
+}

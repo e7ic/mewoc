@@ -8,6 +8,7 @@ import styles from "../sass/toolbar.module.scss"
 export function FormatPainterControls() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
+  // 来源和连续模式属于格式刷插件，控件只读插件状态，确保 Esc/正文变化取消时同步回显。
   const { source, canCopy, canApply } = useEditorState({ editor, selector: ({ editor: current }) => ({
     source: FORMAT_PAINTER_KEY.getState(current.state),
     canCopy: current.can().copyFormat(), canApply: current.can().applyFormat()

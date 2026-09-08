@@ -14,6 +14,7 @@ export function EditorWorkspace({ onDocumentChange }) {
   const outlineOpen = useEditorStore(state => state.outlineOpen)
   const searchOpen = useEditorStore(state => state.searchOpen)
 
+  // useEditor 尚未就绪时不挂载工具栏，下面的组件依赖可用的选区和命令接口。
   if (!editor) return null
   return (
     <section className={styles.container} aria-label="Mewoc 编辑空间">

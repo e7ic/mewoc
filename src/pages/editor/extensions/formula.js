@@ -1,6 +1,7 @@
 import { Node } from "@tiptap/core"
 import { getFormulaSourceError, renderFormula } from "../tools/formula.js"
 
+// 源码是持久化依据，MathML 只是异步生成的显示结果；加载失败仍展示可恢复的 LaTeX。
 function createFormulaView(node) {
   const type = node.type.name
   const displayMode = type === "blockMath"
@@ -9,6 +10,7 @@ function createFormulaView(node) {
   dom.contentEditable = "false"
   let version = 0
   const updateFormula = current => {
+    // 更新/销毁会使旧任务失效，防止较慢的渲染覆盖新公式或回写已卸载视图。
     const request = ++version
     const latex = current.attrs.latex
     dom.setAttribute("data-latex", latex)
@@ -39,6 +41,7 @@ function createFormulaView(node) {
   }
 }
 
+// 行内与独立公式共享源码契约，但具有不同布局；atom 使公式以整体选中并通过弹窗编辑。
 function createFormulaNode(name, inline) {
   const tag = inline ? "span" : "div"
   const type = inline ? "inline-math" : "block-math"

@@ -12,6 +12,7 @@ import styles from "../sass/toolbar.module.scss"
 export function TextToolbar() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
+  // 格式刷可能留下显式字重，加粗回显优先解释它；撤销可用性直接向正文历史查询。
   const state = useEditorState({ editor, selector: ({ editor: current }) => ({
     bold: current.getAttributes("textStyle").fontWeight ? Number(current.getAttributes("textStyle").fontWeight) >= 600 : current.isActive("bold"), italic: current.isActive("italic"),
     underline: current.isActive("underline"), strike: current.isActive("strike"),

@@ -30,6 +30,7 @@ export function LinkAction() {
       message.warning("原选区已被删除，请关闭弹窗后重新选择")
       return
     }
+    // 先恢复打开弹窗时的选区；光标位于链接内时扩展到整个链接，统一更新/移除地址。
     const chain = editor.chain().focus().setTextSelection({ from: selection.from, to: selection.to }).extendMarkRange("link")
     if (values.href) chain.setLink({ href: values.href }).run()
     else chain.unsetLink().run()

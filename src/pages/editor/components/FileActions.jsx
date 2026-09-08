@@ -16,6 +16,7 @@ export function FileActions({ onDocumentChange }) {
   const mountedRef = useRef(true)
   const { editor, store, saveDocument, uploading } = useDocumentEditor()
 
+  // 切换期间冻结旧正文，等待 flush 成功才替换会话；失败恢复原编辑状态，保留当前内容。
   const changeDocument = async nextRecord => {
     const readOnly = store.getState().readOnly
     setPending(true)
@@ -24,6 +25,7 @@ export function FileActions({ onDocumentChange }) {
     let changed = false
     try {
       if (!await saveDocument() || !mountedRef.current) return
+      // 最近文档列表只是打开弹窗时的快照，保存旧文档后重新读取目标，避免重开陈旧版本。
       if (nextRecord.storageVersion) {
         const records = await getDocuments()
         const latest = records.find(item => item.id === nextRecord.document.id)
@@ -49,6 +51,7 @@ export function FileActions({ onDocumentChange }) {
   const handleNewDocument = () => changeDocument({ document: createDocument(), storageVersion: 0, assets: new Map() })
   const handleOpenFile = async event => {
     const file = event.target.files[0]
+    // 清空文件控件值，保证再次选择同一个文件也会触发 change。
     event.target.value = ""
     if (!file) return
     setPending(true)

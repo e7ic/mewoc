@@ -19,9 +19,11 @@ export function CodeBlockControls() {
     return { language: target?.node.attrs.language, message: target ? CodeHighlightKey.getState(current.state)?.messages[target.pos] : "" }
   } })
   const language = getCodeLanguage(selection.language)
+  // 未支持语言显示独立禁选项，避免控件回显时顺手把文档里的原语言覆盖成 plaintext。
   const unsupported = selection.language && language === "plaintext" && !["plaintext", "text", "txt"].includes(selection.language.toLowerCase())
   const options = unsupported ? [{ value: selection.language, label: "未支持（纯文本显示）", disabled: true }, ...CODE_LANGUAGES] : CODE_LANGUAGES
 
+  // 下拉菜单取得焦点前捕获代码块选区，选择语言时使用随正文事务映射后的书签。
   const handleOpen = value => {
     if (value) captureSelection()
     setOpen(value)

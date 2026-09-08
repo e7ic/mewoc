@@ -6,6 +6,10 @@ const MARK_TYPES = ["bold", "italic", "strike", "code", "link", "underline", "te
 const MARK_ORDER = ["link", "bold", "italic", "strike"]
 const MARK_NODES = { bold: "strong", italic: "emphasis", strike: "delete" }
 
+/**
+ * 将编辑器 JSON 转成 Markdown AST；保留可表达的内容，并逐类记录排版/资源转换说明。
+ * 未知节点直接报错，不能默默跳过；完整样式和二进制备份应使用 Mewoc 文件。
+ */
 export function createMarkdownTree(document) {
   if (document.content.type !== "doc") throw new Error("Markdown 导出要求完整文档")
   const context = { warnings: new Set(), assets: document.assets }
@@ -115,6 +119,7 @@ function getTextNodes(node, context) {
   return children
 }
 
+// 删除线分隔符边缘的空白会影响 Markdown 解析，将空白移到标记外而保留原文字顺序。
 function trimStrikeWhitespace(nodes, context) {
   return nodes.flatMap(node => {
     if (node.children) node.children = trimStrikeWhitespace(node.children, context)
@@ -152,6 +157,7 @@ function applyMarks(inline, marks, context) {
     if (/[\r\n]/.test(inline.value)) context.warnings.add("行内代码的换行会按 Markdown 规则转换为空格")
     inline = { type: "inlineCode", value: inline.value.replace(/\r\n?|\n/g, " ") }
   }
+  // 固定嵌套顺序后相邻同类标记才能合并；倒序包裹使链接最终位于最外层。
   for (const type of [...MARK_ORDER].reverse()) {
     const mark = marks.find(item => item.type === type)
     if (!mark) continue
@@ -189,6 +195,8 @@ function reportParagraphStyle(node, context, preserveAlignment = false) {
   if (attrs.lineHeight) context.warnings.add("Markdown 不保留段落行距")
 }
 
+// 只有单段、无合并且首行全表头的规则表格使用 GFM 表格，其余逐格展开以保留内容。
+// 不强行把复杂单元格压成字符串，避免公式、列表或多段内容丢失。
 function getTable(node, context) {
   const rows = node.content || []
   const columns = rows[0]?.content?.length || 0

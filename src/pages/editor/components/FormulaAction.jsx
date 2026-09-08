@@ -25,6 +25,7 @@ export function FormulaAction() {
   const handleOpen = () => {
     captureSelection()
     const node = selected ? editor.state.selection.node : null
+    // 保存原类型和源码供提交时核对，书签只跟踪位置，不能证明目标仍是同一份公式内容。
     const original = node ? { type: node.type.name, latex: node.attrs.latex } : null
     setDraft({ type: original?.type || "inlineMath", latex: original?.latex || "E = mc^2", original })
     setError("")
@@ -43,6 +44,7 @@ export function FormulaAction() {
     setPending(true)
     setError("")
     try {
+      // 先确认 LaTeX 可渲染，再解析当前书签并写正文；关闭弹窗会让本轮异步结果失效。
       await renderFormula(draft.latex, draft.type === "blockMath")
       if (version !== versionRef.current || editor.isDestroyed) return
       if (!applyFormula(editor, getSelection(), draft, draft.original)) throw new Error("原选区或公式已变化，或当前不可编辑；请关闭后重新选择")

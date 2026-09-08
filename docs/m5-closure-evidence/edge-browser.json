@@ -1,0 +1,255 @@
+{
+  "generatedAt": "2026-09-08T13:46:06.220Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 Edg/152.0.0.0",
+  "url": "http://127.0.0.1:4179/tests/browser.html",
+  "results": [
+    {
+      "name": "React 17 与双编辑器 / 双 Zustand 实例隔离",
+      "passed": true
+    },
+    {
+      "name": "加粗、撤销、重做与格式序列化",
+      "passed": true
+    },
+    {
+      "name": "跨段落行距一次应用且可撤销",
+      "passed": true
+    },
+    {
+      "name": "段落缩进进入 HTML / 打印共用输出且不丢失行距",
+      "passed": true
+    },
+    {
+      "name": "查找替换跨文字 mark，全部替换可撤销",
+      "passed": true
+    },
+    {
+      "name": "表格增删行列与 schema 保存",
+      "passed": true
+    },
+    {
+      "name": "表格列宽：50% 缩放下屏幕位移换算",
+      "passed": true
+    },
+    {
+      "name": "表格列宽：100% 缩放下屏幕位移换算",
+      "passed": true
+    },
+    {
+      "name": "表格列宽：150% 缩放下屏幕位移换算",
+      "passed": true
+    },
+    {
+      "name": "整行合并表格按既有列宽比例拖动且可撤销",
+      "passed": true
+    },
+    {
+      "name": "列宽拖动失去鼠标按键后取消预览，不提交悬停坐标",
+      "passed": true
+    },
+    {
+      "name": "真实图片解码、插入与节点视图",
+      "passed": true
+    },
+    {
+      "name": "图片宽度：50% 缩放下键盘调整",
+      "passed": true
+    },
+    {
+      "name": "图片拖动：50% 缩放坐标（模拟指针捕获）",
+      "passed": true
+    },
+    {
+      "name": "图片宽度：100% 缩放下键盘调整",
+      "passed": true
+    },
+    {
+      "name": "图片拖动：100% 缩放坐标（模拟指针捕获）",
+      "passed": true
+    },
+    {
+      "name": "图片宽度：150% 缩放下键盘调整",
+      "passed": true
+    },
+    {
+      "name": "图片拖动：150% 缩放坐标（模拟指针捕获）",
+      "passed": true
+    },
+    {
+      "name": "带图文件跨会话还原与静态 HTML 图片输出",
+      "passed": true
+    },
+    {
+      "name": "浏览器 IndexedDB 保存正文与 Blob 后可重新读取",
+      "passed": true
+    },
+    {
+      "name": "删图保存回收资源，撤销后可再次保存并恢复图片",
+      "passed": true
+    },
+    {
+      "name": "只读期间异步图片结果不写入正文",
+      "passed": true
+    },
+    {
+      "name": "同一文档内部复制图片保留稳定资源引用",
+      "passed": true
+    },
+    {
+      "name": "图片拖动边界：右键不提交临时尺寸",
+      "passed": true
+    },
+    {
+      "name": "图片拖动边界：其他指针不提交临时尺寸",
+      "passed": true
+    },
+    {
+      "name": "图片拖动边界：窗口失焦不提交临时尺寸",
+      "passed": true
+    },
+    {
+      "name": "图片拖动边界：系统取消不提交临时尺寸",
+      "passed": true
+    },
+    {
+      "name": "图片拖动边界：只读不提交临时尺寸",
+      "passed": true
+    },
+    {
+      "name": "图片拖动边界：正文变化不提交临时尺寸",
+      "passed": true
+    },
+    {
+      "name": "组合输入期间不拦截查找快捷键，结束后可正常打开查找",
+      "passed": true
+    },
+    {
+      "name": "关闭查找后清空旧替换词与大小写状态，不修改正文版本",
+      "passed": true
+    },
+    {
+      "name": "标题手动字号与加粗优先；正文反刷标题保留级别并匹配实际外观",
+      "passed": true
+    },
+    {
+      "name": "标题 1 刷到正文保持实际字号、字重、颜色；缩放下字号控件显示 22.5",
+      "passed": true
+    },
+    {
+      "name": "标题 2 刷到正文保持实际字号、字重、颜色；缩放下字号控件显示 15",
+      "passed": true
+    },
+    {
+      "name": "标题 3 刷到正文保持实际字号、字重、颜色；缩放下字号控件显示 12.75",
+      "passed": true
+    },
+    {
+      "name": "标题字号切换、混合选区及清除格式后，真实字号控件同步",
+      "passed": true
+    },
+    {
+      "name": "标题格式经过复制、Mewoc 和静态 HTML 后保留字号、字重、颜色及行距",
+      "passed": true
+    },
+    {
+      "name": "富文本粘贴清理脚本、事件、外链图片与危险 URL",
+      "passed": true
+    },
+    {
+      "name": "内部粘贴保留支持的颜色、字体、字号与段落行距",
+      "passed": true
+    },
+    {
+      "name": "公式节点显示原生 MathML，编辑源码后视图同步",
+      "passed": true
+    },
+    {
+      "name": "公式进入 HTML / 打印共用输出，不依赖脚本、外链字体或样式",
+      "passed": true
+    },
+    {
+      "name": "公式随正文保存 IndexedDB，重新读取保留源码",
+      "passed": true
+    },
+    {
+      "name": "代码块异步高亮保留源码，实际样式可见且不写入文件模型",
+      "passed": true
+    },
+    {
+      "name": "代码 Tab / Shift+Tab / Enter 与退出快捷键接通，换行可撤销",
+      "passed": true
+    },
+    {
+      "name": "代码 HTML / 打印输出内嵌高亮且源码安全，内部复制保留语言和空白",
+      "passed": true
+    },
+    {
+      "name": "代码与语言随 JSON 文件和 IndexedDB 保存，重新读取保持完整",
+      "passed": true
+    },
+    {
+      "name": "切换代码语言清除装饰，只读期间代码快捷键和语言命令不写入",
+      "passed": true
+    },
+    {
+      "name": "Markdown UTF-8 文件转换为既有模型，代码、公式和表格进入编辑器",
+      "passed": true
+    },
+    {
+      "name": "Markdown 导出与重新导入保留正文，HTML 共用输出包含表格和公式",
+      "passed": true
+    },
+    {
+      "name": "Markdown 转换后的正文可保存并从 IndexedDB 重新读取",
+      "passed": true
+    },
+    {
+      "name": "Markdown 带格式换行与连续空行往返保留正文，不显示语法标记",
+      "passed": true
+    },
+    {
+      "name": "Markdown 外链图片和 HTML 源码仅成为文字，不产生可加载元素",
+      "passed": true
+    },
+    {
+      "name": "附件原始字节进入正文卡片，下载地址按二进制提供原文件",
+      "passed": true
+    },
+    {
+      "name": "附件随 Mewoc 导出导入并从 IndexedDB 恢复，资源字节保持一致",
+      "passed": true
+    },
+    {
+      "name": "HTML 内嵌附件下载且转义文件名，打印规则隐藏下载入口",
+      "passed": true
+    },
+    {
+      "name": "附件内部复制保留唯一资源引用，外部粘贴退为文件说明",
+      "passed": true
+    },
+    {
+      "name": "删除最后一个附件引用后回收磁盘资源，撤销后重新保存恢复",
+      "passed": true
+    },
+    {
+      "name": "只读仍可下载和导出附件，插入与删除均不改变正文",
+      "passed": true
+    },
+    {
+      "name": "附件 Markdown 输出包含文件名和转换说明，不提供失效的资源链接",
+      "passed": true
+    },
+    {
+      "name": "从 IndexedDB 重建完整编辑会话，切换只读保留附件正文与下载卡片",
+      "passed": true
+    },
+    {
+      "name": "1 万字载入、编辑、序列化耗时 5 ms（本机观测）",
+      "passed": true
+    },
+    {
+      "name": "1 万字输入与快照可用",
+      "passed": true
+    }
+  ]
+}

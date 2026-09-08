@@ -6,6 +6,7 @@ import styles from "../sass/toolbar.module.scss"
 export function TableControls() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
+  // 合并/拆分能否执行由当前表格选区决定，使用 can() 探测而不是仅检查光标是否在表格内。
   const state = useEditorState({ editor, selector: ({ editor: current }) => ({
     merge: current.can().mergeCells(), split: current.can().splitCell()
   }) })

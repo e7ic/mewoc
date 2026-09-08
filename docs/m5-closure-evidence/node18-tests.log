@@ -1,0 +1,663 @@
+TAP version 13
+# (node:50396) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 附件读取期间选区随事务映射，读取完成不会跟随用户后来移动的光标
+ok 1 - 附件读取期间选区随事务映射，读取完成不会跟随用户后来移动的光标
+  ---
+  duration_ms: 56.874
+  ...
+# Subtest: 附件读取期间 readOnly 取消迟到结果，不发布资源或残留任务锁
+ok 2 - 附件读取期间 readOnly 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 13.0355
+  ...
+# Subtest: 附件读取期间 switching 取消迟到结果，不发布资源或残留任务锁
+ok 3 - 附件读取期间 switching 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 11.305042
+  ...
+# Subtest: 附件读取期间 deleted 取消迟到结果，不发布资源或残留任务锁
+ok 4 - 附件读取期间 deleted 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 6.901541
+  ...
+# Subtest: 附件读取期间 unmounted 取消迟到结果，不发布资源或残留任务锁
+ok 5 - 附件读取期间 unmounted 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 16.976
+  ...
+# Subtest: 附件读取期间 destroyed 取消迟到结果，不发布资源或残留任务锁
+ok 6 - 附件读取期间 destroyed 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 12.629458
+  ...
+# Subtest: 附件读取防重复并复用图片任务锁，错误后恢复状态且允许重试
+ok 7 - 附件读取防重复并复用图片任务锁，错误后恢复状态且允许重试
+  ---
+  duration_ms: 24.618958
+  ...
+# Subtest: 读取期间恢复其他资源后，提交前再次检查合计容量
+ok 8 - 读取期间恢复其他资源后，提交前再次检查合计容量
+  ---
+  duration_ms: 17.3595
+  ...
+# (node:50397) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 附件正文与原始 Blob 可保存读取，删除回收磁盘资源后撤销可重新写回
+ok 9 - 附件正文与原始 Blob 可保存读取，删除回收磁盘资源后撤销可重新写回
+  ---
+  duration_ms: 11.929375
+  ...
+# Subtest: 附件资源丢失或类型不符时中止保存，不产生不完整文档
+ok 10 - 附件资源丢失或类型不符时中止保存，不产生不完整文档
+  ---
+  duration_ms: 1.615875
+  ...
+# Subtest: 附件版本冲突和配额异常不会删除已保存资源，重试仍可成功
+ok 11 - 附件版本冲突和配额异常不会删除已保存资源，重试仍可成功
+  ---
+  duration_ms: 12.090083
+  ...
+# (node:50398) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 附件按不透明字节读取，缺少 MIME 时补二进制类型，空文件可以保存
+ok 12 - 附件按不透明字节读取，缺少 MIME 时补二进制类型，空文件可以保存
+  ---
+  duration_ms: 4.709417
+  ...
+# Subtest: 附件校验拒绝超限文件、路径、控制字符及非法 MIME，读取失败不伪装成功
+ok 13 - 附件校验拒绝超限文件、路径、控制字符及非法 MIME，读取失败不伪装成功
+  ---
+  duration_ms: 1.690292
+  ...
+# Subtest: 旧图片格式仍可读，附件与图片必须引用匹配种类的资源
+ok 14 - 旧图片格式仍可读，附件与图片必须引用匹配种类的资源
+  ---
+  duration_ms: 0.41225
+  ...
+# Subtest: 混合图片与附件的 Mewoc 往返保留字节、名称、类型与稳定 ID
+ok 15 - 混合图片与附件的 Mewoc 往返保留字节、名称、类型与稳定 ID
+  ---
+  duration_ms: 0.852291
+  ...
+# Subtest: 缺失内容、伪造类型、长度或 base64 均拒绝导入，缺失 Blob 拒绝导出
+ok 16 - 缺失内容、伪造类型、长度或 base64 均拒绝导入，缺失 Blob 拒绝导出
+  ---
+  duration_ms: 0.657416
+  ...
+# Subtest: 5 MiB 附件可以完整往返，未引用资源不会进入导出文件
+ok 17 - 5 MiB 附件可以完整往返，未引用资源不会进入导出文件
+  ---
+  duration_ms: 437.168792
+  ...
+# Subtest: 容量按正文唯一资源引用计算，新增附件与图片共用 20 MiB 预算
+ok 18 - 容量按正文唯一资源引用计算，新增附件与图片共用 20 MiB 预算
+  ---
+  duration_ms: 0.411209
+  ...
+# Subtest: 下载 URL 按二进制返回原字节，文件名进入 DOM 时不会执行 HTML
+ok 19 - 下载 URL 按二进制返回原字节，文件名进入 DOM 时不会执行 HTML
+  ---
+  duration_ms: 19.232291
+  ...
+# Subtest: 附件插入、后续文字和删除各自可撤销，只读与代码块拒绝修改
+ok 20 - 附件插入、后续文字和删除各自可撤销，只读与代码块拒绝修改
+  ---
+  duration_ms: 25.710167
+  ...
+# Subtest: 附件内部复制只恢复已有资源，外部引用降为文字且不接受下载链接
+ok 21 - 附件内部复制只恢复已有资源，外部引用降为文字且不接受下载链接
+  ---
+  duration_ms: 13.396
+  ...
+# Subtest: Markdown 输出保留附件名称和大小，给出内容转换说明而不生成虚假链接
+ok 22 - Markdown 输出保留附件名称和大小，给出内容转换说明而不生成虚假链接
+  ---
+  duration_ms: 46.395417
+  ...
+# Subtest: 代码目标支持单块正反选区和节点选区，排除跨块及其他节点
+ok 23 - 代码目标支持单块正反选区和节点选区，排除跨块及其他节点
+  ---
+  duration_ms: 51.526083
+  ...
+# Subtest: 转换整段保留源码并移除文字标记，拒绝含非文本节点或跨段选区
+ok 24 - 转换整段保留源码并移除文字标记，拒绝含非文本节点或跨段选区
+  ---
+  duration_ms: 12.149291
+  ...
+# Subtest: 语言修改支持节点选区，同值不更新，历史与后续输入隔开
+ok 25 - 语言修改支持节点选区，同值不更新，历史与后续输入隔开
+  ---
+  duration_ms: 8.313458
+  ...
+# Subtest: Tab 在光标插入两空格，缩进历史与前后输入独立
+ok 26 - Tab 在光标插入两空格，缩进历史与前后输入独立
+  ---
+  duration_ms: 10.593875
+  ...
+# Subtest: 多行缩进按整行处理，下一行起点不扩选，正反向选区保持
+ok 27 - 多行缩进按整行处理，下一行起点不扩选，正反向选区保持
+  ---
+  duration_ms: 25.13325
+  ...
+# Subtest: Shift-Tab 安全处理纯空白、Tab、无缩进及光标位于前导空白
+ok 28 - Shift-Tab 安全处理纯空白、Tab、无缩进及光标位于前导空白
+  ---
+  duration_ms: 16.833625
+  ...
+# Subtest: 跨块 Tab 不吞并正文，节点选区不执行缩进或换行
+ok 29 - 跨块 Tab 不吞并正文，节点选区不执行缩进或换行
+  ---
+  duration_ms: 9.341542
+  ...
+# Subtest: 换行继承已有缩进并替换选区，行首与空代码块保持安全
+ok 30 - 换行继承已有缩进并替换选区，行首与空代码块保持安全
+  ---
+  duration_ms: 6.494
+  ...
+# Subtest: 退出保留源码，进入既有正文或新建正文，并支持表格内代码块
+ok 31 - 退出保留源码，进入既有正文或新建正文，并支持表格内代码块
+  ---
+  duration_ms: 27.24325
+  ...
+# Subtest: 只读、组合输入与销毁状态拒绝所有代码写操作
+ok 32 - 只读、组合输入与销毁状态拒绝所有代码写操作
+  ---
+  duration_ms: 9.609125
+  ...
+# Subtest: 六种语法的高亮片段完整还原源码，别名使用对应语法
+ok 33 - 六种语法的高亮片段完整还原源码，别名使用对应语法
+  ---
+  duration_ms: 99.322416
+  ...
+# Subtest: 未知语言、空源码与单块超预算回退纯文本并保留全部字符
+ok 34 - 未知语言、空源码与单块超预算回退纯文本并保留全部字符
+  ---
+  duration_ms: 0.304667
+  ...
+# Subtest: HTML 高亮安全转义并保留语言与空白，内部粘贴恢复原始文档
+ok 35 - HTML 高亮安全转义并保留语言与空白，内部粘贴恢复原始文档
+  ---
+  duration_ms: 37.011084
+  ...
+# Subtest: HTML 文档总高亮预算只限制显示，后续代码块源码保持
+ok 36 - HTML 文档总高亮预算只限制显示，后续代码块源码保持
+  ---
+  duration_ms: 17.08225
+  ...
+# Subtest: 异步高亮只接收最新文档结果，不产生内容更新或撤销步骤
+ok 37 - 异步高亮只接收最新文档结果，不产生内容更新或撤销步骤
+  ---
+  duration_ms: 349.906083
+  ...
+# Subtest: 销毁后返回的异步高亮不会分发事务或修改 DOM
+ok 38 - 销毁后返回的异步高亮不会分发事务或修改 DOM
+  ---
+  duration_ms: 177.184584
+  ...
+# Subtest: 只读仍能显示高亮，超预算或渲染失败保留源码并给出状态
+ok 39 - 只读仍能显示高亮，超预算或渲染失败保留源码并给出状态
+  ---
+  duration_ms: 160.129167
+  ...
+# Subtest: 组合输入期间延后高亮，结束事件后恢复
+ok 40 - 组合输入期间延后高亮，结束事件后恢复
+  ---
+  duration_ms: 362.710917
+  ...
+# Subtest: VS Code 畸形元数据不抛错，合法粘贴保留源码、语言及独立撤销
+ok 41 - VS Code 畸形元数据不抛错，合法粘贴保留源码、语言及独立撤销
+  ---
+  duration_ms: 24.043125
+  ...
+# Subtest: 块内粘贴保持纯文本，只读及组合输入拒绝粘贴写入
+ok 42 - 块内粘贴保持纯文本，只读及组合输入拒绝粘贴写入
+  ---
+  duration_ms: 5.1605
+  ...
+# Subtest: 完整粘贴链优先处理 VS Code URL 源码，普通 URL 仍给选中文字加链接
+ok 43 - 完整粘贴链优先处理 VS Code URL 源码，普通 URL 仍给选中文字加链接
+  ---
+  duration_ms: 10.668542
+  ...
+# Subtest: 代码粘贴优先级不改变 schema 自动填充的默认正文节点
+ok 44 - 代码粘贴优先级不改变 schema 自动填充的默认正文节点
+  ---
+  duration_ms: 3.527125
+  ...
+# (node:50401) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 文档拒绝未知节点、未知属性与未来版本，保留原始内容
+ok 45 - 文档拒绝未知节点、未知属性与未来版本，保留原始内容
+  ---
+  duration_ms: 2.202042
+  ...
+# Subtest: 链接与纸张在边界拒绝非法值
+ok 46 - 链接与纸张在边界拒绝非法值
+  ---
+  duration_ms: 0.135291
+  ...
+# Subtest: 完整扩展组合：段落行距、表格和撤销后的 JSON 仍通过校验
+ok 47 - 完整扩展组合：段落行距、表格和撤销后的 JSON 仍通过校验
+  ---
+  duration_ms: 45.74425
+  ...
+# Subtest: 文字样式 HTML 往返产生的空属性可保存，非法颜色仍被拒绝
+ok 48 - 文字样式 HTML 往返产生的空属性可保存，非法颜色仍被拒绝
+  ---
+  duration_ms: 29.870583
+  ...
+# Subtest: 带图文件往返保留图片字节、尺寸与资源 ID，导入另建文档 ID
+ok 49 - 带图文件往返保留图片字节、尺寸与资源 ID，导入另建文档 ID
+  ---
+  duration_ms: 2.940708
+  ...
+# Subtest: 声明图片但实际内容不匹配时拒绝导入
+ok 50 - 声明图片但实际内容不匹配时拒绝导入
+  ---
+  duration_ms: 0.986292
+  ...
+# Subtest: 格式刷只复制文字与段落样式，保留链接、标题级别和内容，JSON 可保存
+ok 51 - 格式刷只复制文字与段落样式，保留链接、标题级别和内容，JSON 可保存
+  ---
+  duration_ms: 110.001917
+  ...
+# Subtest: 格式应用独立于前后输入历史，一次撤销恢复全部样式
+ok 52 - 格式应用独立于前后输入历史，一次撤销恢复全部样式
+  ---
+  duration_ms: 25.728583
+  ...
+# Subtest: 重复应用相同格式不制造空撤销步骤，也不触发重复保存
+ok 53 - 重复应用相同格式不制造空撤销步骤，也不触发重复保存
+  ---
+  duration_ms: 12.646667
+  ...
+# Subtest: 连续模式跨目标保留，空光标、节点和代码选区不消耗，普通输入终止
+ok 54 - 连续模式跨目标保留，空光标、节点和代码选区不消耗，普通输入终止
+  ---
+  duration_ms: 21.676166
+  ...
+# Subtest: 普通来源清除目标样式，全选跳过代码，快照不进入新会话
+ok 55 - 普通来源清除目标样式，全选跳过代码，快照不进入新会话
+  ---
+  duration_ms: 36.982375
+  ...
+# Subtest: Esc 和组合输入开始取消模式，只读拒绝复制和应用
+ok 56 - Esc 和组合输入开始取消模式，只读拒绝复制和应用
+  ---
+  duration_ms: 29.4415
+  ...
+# Subtest: 选择结束在下一帧应用，失焦、文档编辑与卸载取消待执行动作
+ok 57 - 选择结束在下一帧应用，失焦、文档编辑与卸载取消待执行动作
+  ---
+  duration_ms: 80.808083
+  ...
+# Subtest: Shift 扩选等到松键再应用，启用和取消不触发正文保存
+ok 58 - Shift 扩选等到松键再应用，启用和取消不触发正文保存
+  ---
+  duration_ms: 58.094542
+  ...
+# Subtest: 跨列表和表格刷文字，保留图片与表格尺寸并跳过行内代码
+ok 59 - 跨列表和表格刷文字，保留图片与表格尺寸并跳过行内代码
+  ---
+  duration_ms: 78.300083
+  ...
+# Subtest: 行内插入保留两侧文字，编辑、删除各自撤销，无变化不产生更新
+ok 60 - 行内插入保留两侧文字，编辑、删除各自撤销，无变化不产生更新
+  ---
+  duration_ms: 50.782958
+  ...
+# Subtest: 独立公式在段中插入分开两侧段落，后续输入单独撤销
+ok 61 - 独立公式在段中插入分开两侧段落，后续输入单独撤销
+  ---
+  duration_ms: 19.228625
+  ...
+# Subtest: 只读、组合输入、代码块、过期选区和原公式不匹配均拒绝写入
+ok 62 - 只读、组合输入、代码块、过期选区和原公式不匹配均拒绝写入
+  ---
+  duration_ms: 25.223708
+  ...
+# (node:50403) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: MathML 支持分数矩阵，拒绝非法语法、外部资源、HTML 与宏循环
+ok 63 - MathML 支持分数矩阵，拒绝非法语法、外部资源、HTML 与宏循环
+  ---
+  duration_ms: 22.986167
+  ...
+# Subtest: 文件保存还原公式源码，schema 拒绝缺失、非法与超预算属性
+ok 64 - 文件保存还原公式源码，schema 拒绝缺失、非法与超预算属性
+  ---
+  duration_ms: 3.046791
+  ...
+# Subtest: 预渲染 HTML 无外链依赖，内部粘贴仅恢复源码，错误源码保留且转义
+ok 65 - 预渲染 HTML 无外链依赖，内部粘贴仅恢复源码，错误源码保留且转义
+  ---
+  duration_ms: 20.534167
+  ...
+# Subtest: 节点异步渲染只保留最新源码，销毁后不再改 DOM
+ok 66 - 节点异步渲染只保留最新源码，销毁后不再改 DOM
+  ---
+  duration_ms: 11.739167
+  ...
+# Subtest: 格式刷跨公式应用只修改文字，公式源码与原子结构保持
+ok 67 - 格式刷跨公式应用只修改文字，公式源码与原子结构保持
+  ---
+  duration_ms: 24.156042
+  ...
+# (node:50404) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 标题 1 的实际字号显示及格式刷保留 22.5pt、字重、颜色和行距
+ok 68 - 标题 1 的实际字号显示及格式刷保留 22.5pt、字重、颜色和行距
+  ---
+  duration_ms: 44.855917
+  ...
+# Subtest: 标题 2 的实际字号显示及格式刷保留 15pt、字重、颜色和行距
+ok 69 - 标题 2 的实际字号显示及格式刷保留 15pt、字重、颜色和行距
+  ---
+  duration_ms: 12.508916
+  ...
+# Subtest: 标题 3 的实际字号显示及格式刷保留 12.75pt、字重、颜色和行距
+ok 70 - 标题 3 的实际字号显示及格式刷保留 12.75pt、字重、颜色和行距
+  ---
+  duration_ms: 10.268625
+  ...
+# Subtest: 标题显式字号优先，混合选区按实际字号判断，空标题及清除格式正确回显
+ok 71 - 标题显式字号优先，混合选区按实际字号判断，空标题及清除格式正确回显
+  ---
+  duration_ms: 11.009
+  ...
+# Subtest: 正文刷到标题保留标题级别，并覆盖标题默认字号、颜色、字重和行距
+ok 72 - 正文刷到标题保留标题级别，并覆盖标题默认字号、颜色、字重和行距
+  ---
+  duration_ms: 8.126458
+  ...
+# Subtest: 标题格式可内部复制、文件往返，显式字重不遮住后续加粗与取消
+ok 73 - 标题格式可内部复制、文件往返，显式字重不遮住后续加粗与取消
+  ---
+  duration_ms: 21.5825
+  ...
+# Subtest: 相同默认外观不制造撤销步骤，显式字重在只读期间不改变
+ok 74 - 相同默认外观不制造撤销步骤，显式字重在只读期间不改变
+  ---
+  duration_ms: 10.6695
+  ...
+# (node:50405) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 局域网 HTTP 缺少 randomUUID 时仍能新建文档、读取附件和导入文件
+ok 75 - 局域网 HTTP 缺少 randomUUID 时仍能新建文档、读取附件和导入文件
+  ---
+  duration_ms: 2.361792
+  ...
+# Subtest: Markdown 导出保留块结构、列表起点、代码源码及公式
+ok 76 - Markdown 导出保留块结构、列表起点、代码源码及公式
+  ---
+  duration_ms: 2.187833
+  ...
+# Subtest: 相邻文本标记合并为连续范围，保留内层不同标记和链接
+ok 77 - 相邻文本标记合并为连续范围，保留内层不同标记和链接
+  ---
+  duration_ms: 0.357333
+  ...
+# Subtest: 普通矩形表格保留列对齐、公式和标记并报告布局差异
+ok 78 - 普通矩形表格保留列对齐、公式和标记并报告布局差异
+  ---
+  duration_ms: 0.198916
+  ...
+# Subtest: 富表格降为逐格正文，保留多段、图片说明、公式与嵌套引用
+ok 79 - 富表格降为逐格正文，保留多段、图片说明、公式与嵌套引用
+  ---
+  duration_ms: 0.186125
+  ...
+# Subtest: 无法表达的样式只报告一次，原始文字及危险围栏语言不作为语法注入
+ok 80 - 无法表达的样式只报告一次，原始文字及危险围栏语言不作为语法注入
+  ---
+  duration_ms: 0.257417
+  ...
+# Subtest: 未知节点与文字标记显式失败，行内换行报告归一化
+ok 81 - 未知节点与文字标记显式失败，行内换行报告归一化
+  ---
+  duration_ms: 0.298
+  ...
+# Subtest: 图片使用替代文本或文件名说明，不导出内部资源 ID 和本地目录
+ok 82 - 图片使用替代文本或文件名说明，不导出内部资源 ID 和本地目录
+  ---
+  duration_ms: 18.1825
+  ...
+# Subtest: 实际 Markdown 序列化往返保留交叉标记、字面符号与代码围栏
+ok 83 - 实际 Markdown 序列化往返保留交叉标记、字面符号与代码围栏
+  ---
+  duration_ms: 17.986042
+  ...
+# Subtest: GFM 表格转义竖线与代码；无法表达的公式和换行降级后源码完整
+ok 84 - GFM 表格转义竖线与代码；无法表达的公式和换行降级后源码完整
+  ---
+  duration_ms: 15.967125
+  ...
+# Subtest: 超出九位的起始编号从一重新编号并明确报告原始起点
+ok 85 - 超出九位的起始编号从一重新编号并明确报告原始起点
+  ---
+  duration_ms: 3.748667
+  ...
+# Subtest: 空段落按 Markdown 规则折叠并报告，非空正文保持完整
+ok 86 - 空段落按 Markdown 规则折叠并报告，非空正文保持完整
+  ---
+  duration_ms: 0.597167
+  ...
+# Subtest: 粗斜体边缘空白无损往返，删除线仅移出边缘空白并保留文字
+ok 87 - 粗斜体边缘空白无损往返，删除线仅移出边缘空白并保留文字
+  ---
+  duration_ms: 5.34425
+  ...
+# Subtest: 应用入口往返把带标记的硬换行放在标记外，不泄漏字符实体或分隔符
+ok 88 - 应用入口往返把带标记的硬换行放在标记外，不泄漏字符实体或分隔符
+  ---
+  duration_ms: 48.792292
+  ...
+# Subtest: 应用入口往返保留普通与带标记正文的连续换行，不拆段或泄漏分隔符
+ok 89 - 应用入口往返保留普通与带标记正文的连续换行，不拆段或泄漏分隔符
+  ---
+  duration_ms: 27.918459
+  ...
+# Subtest: 段首和段中连续硬换行可保留，段尾硬换行明确移除且不产生反斜杠正文
+ok 90 - 段首和段中连续硬换行可保留，段尾硬换行明确移除且不产生反斜杠正文
+  ---
+  duration_ms: 4.249458
+  ...
+# Subtest: 含换行标题降为正文并报告级别，行内代码连续换行明确转换为空格
+ok 91 - 含换行标题降为正文并报告级别，行内代码连续换行明确转换为空格
+  ---
+  duration_ms: 14.948
+  ...
+# Subtest: 仅含换行的文字或硬换行仍报告下划线与文字样式的降级
+ok 92 - 仅含换行的文字或硬换行仍报告下划线与文字样式的降级
+  ---
+  duration_ms: 1.004708
+  ...
+# Subtest: Markdown 导入完整结构并通过既有 schema，创建独立文档
+# (node:50407) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+ok 93 - Markdown 导入完整结构并通过既有 schema，创建独立文档
+  ---
+  duration_ms: 138.651833
+  ...
+# Subtest: 高阶标题、任务项、脚注及图片按约定保留内容并说明
+ok 94 - 高阶标题、任务项、脚注及图片按约定保留内容并说明
+  ---
+  duration_ms: 4.043417
+  ...
+# Subtest: 引用链接先解引用，危险和相对地址作为文字，HTML 不执行
+ok 95 - 引用链接先解引用，危险和相对地址作为文字，HTML 不执行
+  ---
+  duration_ms: 22.720584
+  ...
+# Subtest: 代码附加参数与过长语言报告降级，源码中的公式和 HTML 保持原样
+ok 96 - 代码附加参数与过长语言报告降级，源码中的公式和 HTML 保持原样
+  ---
+  duration_ms: 3.9015
+  ...
+# Subtest: 重复链接定义取首条，空引用可载入，不齐表格补齐且保留多余列
+ok 97 - 重复链接定义取首条，空引用可载入，不齐表格补齐且保留多余列
+  ---
+  duration_ms: 5.842666
+  ...
+# Subtest: 空或超长公式保留原始文字，公式总量越界则拒绝新建
+ok 98 - 空或超长公式保留原始文字，公式总量越界则拒绝新建
+  ---
+  duration_ms: 9.823417
+  ...
+# Subtest: UTF-8 文件与源码边界拒绝截断、二进制、空内容及超限
+ok 99 - UTF-8 文件与源码边界拒绝截断、二进制、空内容及超限
+  ---
+  duration_ms: 1.11275
+  ...
+# Subtest: AST 深度、节点数与未知节点不被静默接受
+ok 100 - AST 深度、节点数与未知节点不被静默接受
+  ---
+  duration_ms: 10.045042
+  ...
+# Subtest: 空链接和空图片地址不产生 undefined，零起点编号明确报告
+ok 101 - 空链接和空图片地址不产生 undefined，零起点编号明确报告
+  ---
+  duration_ms: 4.649916
+  ...
+# Subtest: 导入导出 Markdown 保留公式、嵌套标记和代码，原快照不变
+ok 102 - 导入导出 Markdown 保留公式、嵌套标记和代码，原快照不变
+  ---
+  duration_ms: 7.161083
+  ...
+# (node:50408) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: 光标、跨段选区与下一段起点边界只改变应选段落，一次撤销恢复
+ok 103 - 光标、跨段选区与下一段起点边界只改变应选段落，一次撤销恢复
+  ---
+  duration_ms: 26.909542
+  ...
+# Subtest: 参数非法、只读、组合输入与节点选区均不写入
+ok 104 - 参数非法、只读、组合输入与节点选区均不写入
+  ---
+  duration_ms: 10.429
+  ...
+# Subtest: 段落切标题、Enter 分段继承缩进，列表层级命令仍可使用
+ok 105 - 段落切标题、Enter 分段继承缩进，列表层级命令仍可使用
+  ---
+  duration_ms: 12.887667
+  ...
+# Subtest: 表格内文字可缩进，全选不改代码块和结构
+ok 106 - 表格内文字可缩进，全选不改代码块和结构
+  ---
+  duration_ms: 7.82
+  ...
+# Subtest: HTML 和清理后的内部粘贴保留缩进，非法 CSS 单位及越界值不带入
+ok 107 - HTML 和清理后的内部粘贴保留缩进，非法 CSS 单位及越界值不带入
+  ---
+  duration_ms: 13.783084
+  ...
+# Subtest: 格式刷复制缩进，普通来源清除目标缩进
+ok 108 - 格式刷复制缩进，普通来源清除目标缩进
+  ---
+  duration_ms: 18.614417
+  ...
+# Subtest: 旧文件补默认属性，新文件往返保存缩进，非法 JSON 拒绝
+ok 109 - 旧文件补默认属性，新文件往返保存缩进，非法 JSON 拒绝
+  ---
+  duration_ms: 5.298292
+  ...
+# Subtest: 打印等待资源期间会话结束：立即释放 iframe，迟到资源不再触发打印
+ok 110 - 打印等待资源期间会话结束：立即释放 iframe，迟到资源不再触发打印
+  ---
+  duration_ms: 2.4725
+  ...
+# Subtest: 打印只在资源就绪后调用，afterprint 释放 iframe
+ok 111 - 打印只在资源就绪后调用，afterprint 释放 iframe
+  ---
+  duration_ms: 0.138708
+  ...
+# Subtest: 系统打印窗口停留超过一分钟仍保留输出，关闭后重复清理不访问失效窗口
+ok 112 - 系统打印窗口停留超过一分钟仍保留输出，关闭后重复清理不访问失效窗口
+  ---
+  duration_ms: 0.280042
+  ...
+# Subtest: 浏览器未发送 afterprint 时由会话清理释放，清理可重复调用
+ok 113 - 浏览器未发送 afterprint 时由会话清理释放，清理可重复调用
+  ---
+  duration_ms: 1.265875
+  ...
+# Subtest: 双会话存储版本冲突不会覆盖已保存文档
+ok 114 - 双会话存储版本冲突不会覆盖已保存文档
+  ---
+  duration_ms: 5.35275
+  ...
+# Subtest: 资源与文档原子保存，缺失资源时整笔写入中止
+ok 115 - 资源与文档原子保存，缺失资源时整笔写入中止
+  ---
+  duration_ms: 2.233792
+  ...
+# Subtest: 不同文档的同名资源 ID 不会互相覆盖
+ok 116 - 不同文档的同名资源 ID 不会互相覆盖
+  ---
+  duration_ms: 2.577792
+  ...
+# Subtest: 删除图片后保存清理磁盘资源，保留会话 Blob 可供撤销恢复
+ok 117 - 删除图片后保存清理磁盘资源，保留会话 Blob 可供撤销恢复
+  ---
+  duration_ms: 2.010375
+  ...
+# Subtest: 配额写入异常回滚已排队的资源删除，版本不变且允许重试
+ok 118 - 配额写入异常回滚已排队的资源删除，版本不变且允许重试
+  ---
+  duration_ms: 9.562542
+  ...
+# Subtest: 异步写入失败也回滚资源删除与文档版本
+ok 119 - 异步写入失败也回滚资源删除与文档版本
+  ---
+  duration_ms: 1.464292
+  ...
+# Subtest: 保存期间继续输入时，旧响应不会确认新版本；后续写入串行
+ok 120 - 保存期间继续输入时，旧响应不会确认新版本；后续写入串行
+  ---
+  duration_ms: 2.73575
+  ...
+# Subtest: 失败不显示已保存，重试使用原始存储版本
+ok 121 - 失败不显示已保存，重试使用原始存储版本
+  ---
+  duration_ms: 0.452208
+  ...
+# Subtest: 会话结束后，迟到响应不再更新 UI
+ok 122 - 会话结束后，迟到响应不再更新 UI
+  ---
+  duration_ms: 0.638458
+  ...
+# Subtest: 无偏好和非法偏好跟随系统，合法选择保存并可重新读取
+ok 123 - 无偏好和非法偏好跟随系统，合法选择保存并可重新读取
+  ---
+  duration_ms: 1.142708
+  ...
+# Subtest: 系统变化只影响跟随系统，返回跟随系统立即使用当前值
+ok 124 - 系统变化只影响跟随系统，返回跟随系统立即使用当前值
+  ---
+  duration_ms: 0.195959
+  ...
+# Subtest: 跨页设置、删除和清空同步，其他键及 sessionStorage 不影响主题
+ok 125 - 跨页设置、删除和清空同步，其他键及 sessionStorage 不影响主题
+  ---
+  duration_ms: 0.147708
+  ...
+# Subtest: 存储读写异常不阻断本页主题，重试成功清除错误
+ok 126 - 存储读写异常不阻断本页主题，重试成功清除错误
+  ---
+  duration_ms: 0.299833
+  ...
+# Subtest: 卸载移除全部监听，重新挂载读取最新系统状态
+ok 127 - 卸载移除全部监听，重新挂载读取最新系统状态
+  ---
+  duration_ms: 0.100917
+  ...
+1..127
+# tests 127
+# suites 0
+# pass 127
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2517.4115

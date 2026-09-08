@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef } from "react"
 
+/**
+ * 弹窗会抢走正文焦点，因此打开前捕获选区，确认时再解析到当前文档。
+ * bookmark 随每次事务映射，不能直接复用旧 from/to；原起点被删除后返回 null。
+ * 只在弹窗打开期间监听，调用方在确认或取消时清空书签。
+ */
 export function useSelectionBookmark(editor, open) {
   const selectionRef = useRef(null)
 

@@ -1,5 +1,6 @@
 import { Node } from "@tiptap/core"
 
+// 仅表示用户插入的分页边界；编辑时显示标记，打印 CSS 解释为换页，不负责实时自动分页。
 export const PageBreak = Node.create({
   name: "pageBreak",
   group: "block",

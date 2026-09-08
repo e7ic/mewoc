@@ -9,6 +9,7 @@ export function ParagraphIndentControls() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
   const state = useEditorState({ editor, selector: ({ editor: current }) => {
+    // 回显与执行共用段落范围算法，避免选区边缘在控件和命令中被解释成不同段落。
     const paragraphs = getIndentParagraphs(current.state)
     const firstLines = new Set(paragraphs.map(({ node }) => node.attrs.firstLineIndent ?? 0))
     const lefts = new Set(paragraphs.map(({ node }) => node.attrs.leftIndent ?? 0))

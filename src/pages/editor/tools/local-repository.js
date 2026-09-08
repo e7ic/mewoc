@@ -1,3 +1,4 @@
+// 同一页面复用数据库连接；打开失败或其他标签页升级版本后清空，允许后续重试。
 let databasePromise = null
 
 function getDatabase() {
@@ -11,6 +12,7 @@ function getDatabase() {
     }
     request.onsuccess = () => {
       const database = request.result
+      // blocked 已向调用方报错，迟到的成功连接不能再留在后台阻碍数据库升级。
       if (blocked) {
         database.close()
         return
@@ -45,6 +47,7 @@ export async function getDocuments() {
   })
 }
 
+// 读取完整资源集后才交付会话；此层只返回 Blob，临时 URL 由会话创建并释放。
 export async function getDocumentAssets(document) {
   const database = await getDatabase()
   return new Promise((resolve, reject) => {
@@ -66,6 +69,11 @@ export async function getDocumentAssets(document) {
   })
 }
 
+/**
+ * 在同一个读写事务中比较版本、更新资源和保存正文，任何一步失败都整体回滚。
+ * document.assets 是当前快照的引用清单，assets 则还可能保留供撤销使用的旧 Blob。
+ * baseVersion 必须来自上一次成功提交；版本不一致时拒绝覆盖其他标签页的内容。
+ */
 export async function saveLocalDocument(document, assets, baseVersion) {
   const database = await getDatabase()
   return new Promise((resolve, reject) => {
@@ -104,6 +112,7 @@ export async function saveLocalDocument(document, assets, baseVersion) {
         transaction.abort()
       }
     }
+    // 单个 put 成功不等于整个事务成功，只在 oncomplete 后允许界面显示已保存。
     transaction.oncomplete = () => resolve({ storageVersion: baseVersion + 1 })
     transaction.onabort = () => reject(failure || getSaveError(transaction.error))
     transaction.onerror = event => {

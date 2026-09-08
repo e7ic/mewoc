@@ -74,6 +74,7 @@
   p.is-editor-empty:first-child::before { float: left; height: 0; color: #b3b4c2; pointer-events: none; content: attr(data-placeholder); }
 }
 
+// 打印使用静态正文：去掉编辑标记，将手动分页符转成分页规则，长代码改为换行避免横向裁切。
 @media print {
   body { margin: 0; }
   .mewoc-content {

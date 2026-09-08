@@ -1,6 +1,7 @@
 import { Extension } from "@tiptap/core"
 import { LINE_HEIGHTS } from "../constants/editor-constants.js"
 
+// 行距持久化为无单位倍数，null 表示沿用正文/标题 CSS 默认值；整段生效，不属于文字 mark。
 export const ParagraphSpacing = Extension.create({
   name: "paragraphSpacing",
   addGlobalAttributes() {

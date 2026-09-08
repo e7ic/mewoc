@@ -23,6 +23,7 @@ export function getEffectiveTheme({ preference, systemDark }) {
   return preference
 }
 
+// 主题属于浏览器界面偏好，与文档 revision 无关；偏好写入失败仍应用本次选择并报告错误。
 export function createThemeStore(browser = window) {
   return createStore(set => ({
     ...getThemePreference(browser),
@@ -41,6 +42,7 @@ export function createThemeStore(browser = window) {
   }))
 }
 
+// 系统主题和其他标签页的存储变化分别监听；返回清理函数供 Provider 卸载时调用。
 export function startThemeSync(store, browser = window) {
   const media = browser.matchMedia("(prefers-color-scheme: dark)")
   const handleSystemTheme = event => store.setState({ systemDark: event.matches })

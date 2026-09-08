@@ -5,6 +5,7 @@ import { highlightCode, MAX_CODE_HIGHLIGHT_LENGTH, MAX_CODE_HIGHLIGHT_TOTAL } fr
 
 export const CodeHighlightKey = new PluginKey("codeHighlight")
 
+// 高亮属于视图 Decoration，不写入正文 marks，因此不会改变源码、保存内容或正文撤销栈。
 export function createCodeHighlightPlugin(highlight = highlightCode) {
   return new Plugin({
     key: CodeHighlightKey,
@@ -30,6 +31,7 @@ function createHighlightView(view, highlight) {
     clearTimeout(timer)
     const request = ++version
     const doc = view.state.doc
+    // 动态加载和着色可能晚于下一次输入；同时核对任务序号与文档引用后才能发布结果。
     const isCurrent = () => request === version && !view.isDestroyed && view.state.doc === doc
     timer = setTimeout(async () => {
       if (!isCurrent() || view.composing) return
@@ -39,6 +41,7 @@ function createHighlightView(view, highlight) {
       }
     }, 150)
   }
+  // 组合输入期间跳过装饰更新，结束时重新调度，避免中文候选确认被 DOM 更新打断。
   const handleCompositionEnd = () => schedule()
   view.dom.addEventListener("compositionend", handleCompositionEnd)
   schedule()
@@ -66,6 +69,7 @@ async function getCodeDecorations(doc, highlight, isCurrent) {
     if (!isCurrent()) return null
     if (!node.textContent || getCodeLanguage(node.attrs.language) === "plaintext") continue
     const length = node.textContent.length
+    // 限额只控制着色开销，超限代码仍完整保留并可编辑、保存和导出。
     if (length > MAX_CODE_HIGHLIGHT_LENGTH || characters + length > MAX_CODE_HIGHLIGHT_TOTAL) {
       messages[pos] = "代码较长，当前按纯文本显示；源码可正常编辑和保存"
       continue
@@ -74,6 +78,7 @@ async function getCodeDecorations(doc, highlight, isCurrent) {
     try {
       const tokens = await highlight(node.textContent, node.attrs.language)
       if (!isCurrent()) return null
+      // pos 指向块节点边界，正文从 pos + 1 开始；无样式文本也必须推进偏移。
       let offset = pos + 1
       for (const token of tokens) {
         if (token.text.length && token.classes.length) {

@@ -44,6 +44,7 @@ export function observeSessionResources() {
     getCounts: () => ({
       urls: urls.size, observers: observers.size,
       listeners: [...listeners.values()].reduce((total, entries) => total + entries.size, 0),
+      listenerDetails: [...listeners].flatMap(([type, entries]) => [...entries].map(listener => `${type}:${listener.name || "anonymous"}`)),
       createdUrls, peakUrls, peakObservers
     }),
     restore() {

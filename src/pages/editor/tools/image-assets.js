@@ -1,6 +1,7 @@
 import { IMAGE_TYPES, MAX_IMAGE_BYTES } from "../constants/editor-constants.js"
 import { createId } from "./create-id.js"
 
+// MIME 与头部特征需匹配；这里只做文件类型/大小初检，实际图片解码在 readImageFile 中执行。
 export async function validateImageBlob(blob) {
   if (!IMAGE_TYPES.includes(blob.type) || blob.size <= 0 || blob.size > MAX_IMAGE_BYTES) {
     throw new Error("请选择不超过 5 MiB 的 PNG、JPEG 或 WebP 图片")
@@ -13,6 +14,7 @@ export async function validateImageBlob(blob) {
   if (!valid[blob.type]) throw new Error("图片内容与文件类型不一致")
 }
 
+// 返回的宽高是初始排版尺寸（px），不重采样原图；成功 URL 交给调用方持有，失败立即回收。
 export async function readImageFile(file) {
   await validateImageBlob(file)
   const url = URL.createObjectURL(file)

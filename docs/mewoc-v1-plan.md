@@ -1,6 +1,6 @@
 # Mewoc 首期实施方案
 
-日期：2026-09-06。状态：已按本方案开始实现，当前工程与验收结果见 [编码记录](implementation-notes.md) 和 [使用说明](../README.md)。下文保留实施前的计划与验收门槛，历史“尚未验证”描述以编码记录为准。
+日期：2026-09-06。状态：已按本方案开始实现，当前工程与验收结果见 [编码记录](implementation-notes.md) 和 [使用说明](../README.md)。下文保留实施前的计划与验收门槛，历史“尚未验证”描述以 [M5 当前版本验收](m5-closure.md) 为准。
 
 本方案承接 [Umo / React 技术调研](/Users/e7ic/Desktop/Zephyr/Labs/mewoc/docs/umo-react-research.md)，把已验证的技术组合收敛成开发范围、数据契约和验收门槛。
 

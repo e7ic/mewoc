@@ -1,6 +1,7 @@
 import { Extension } from "@tiptap/core"
 import { FONT_WEIGHTS } from "../constants/editor-constants.js"
 
+// 显式字重用于保留格式刷带来的标题外观；data-font-weight 配合内容样式防止嵌套 strong 再增粗。
 export const FontWeight = Extension.create({
   name: "fontWeight",
   addGlobalAttributes() {

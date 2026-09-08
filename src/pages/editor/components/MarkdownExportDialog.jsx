@@ -3,6 +3,7 @@ import { MarkdownWarnings } from "./MarkdownWarnings.jsx"
 import { downloadDocument } from "../tools/file-transfer.js"
 import styles from "../sass/markdown.module.scss"
 
+// 下载复用生成时的完整 source，和用户确认的预览保持同一快照；文本框截断只影响展示。
 export function MarkdownExportDialog({ result, onCancel }) {
   const handleDownload = () => {
     downloadDocument(new Blob([result.source], { type: "text/markdown;charset=utf-8" }), result.title, "md")

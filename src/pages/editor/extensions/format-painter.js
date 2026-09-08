@@ -5,6 +5,7 @@ import { getTextAppearance, getPaintedMarks } from "../tools/text-appearance.js"
 
 export const FORMAT_PAINTER_KEY = new PluginKey("formatPainter")
 
+// 只复制外观标记；链接、行内代码和目标段落类型不属于格式刷的替换范围。
 const MARK_NAMES = ["bold", "italic", "underline", "strike", "textStyle"]
 const TEXT_ATTRIBUTES = ["fontFamily", "fontSize", "color", "backgroundColor", "fontWeight"]
 const isParagraph = node => ["paragraph", "heading"].includes(node.type.name)
@@ -21,6 +22,8 @@ const getTextRanges = ({ doc, selection }) => {
   return ranges
 }
 
+// 范围选区取首个可刷文本作为来源；空选区优先采用下一次输入将使用的 storedMarks。
+// appearance 补齐 CSS 提供的默认标题样式，locked 表示刷完一次后仍保留来源。
 const copySource = (editor, state, locked) => {
   const { selection, storedMarks } = state
   let source = getTextRanges(state)[0]
@@ -77,6 +80,7 @@ const createPainterPlugin = editor => {
     const source = FORMAT_PAINTER_KEY.getState(view.state)
     const doc = view.state.doc
     if (!source) return false
+    // 等浏览器完成本轮选区更新后再应用；文档或格式来源已变时丢弃这次延迟操作。
     frame = requestAnimationFrame(() => {
       frame = null
       if (editor.isDestroyed || !editor.isEditable || view.composing || !view.hasFocus()) return
@@ -97,6 +101,7 @@ const createPainterPlugin = editor => {
         return tr.docChanged ? null : value
       }
     },
+    // 在格式事务之后再关闭历史分组，避免后续输入与本次格式修改被一起撤销。
     appendTransaction: (transactions, oldState, state) => transactions.some(tr => tr.getMeta(FORMAT_PAINTER_KEY)?.applied)
       ? closeHistory(state.tr).setMeta("addToHistory", false) : null,
     props: {

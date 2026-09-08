@@ -9,6 +9,7 @@ export function AttachmentAction() {
 
   const handleAttachment = event => {
     const file = event.target.files[0]
+    // 插入失败或删除后允许重新选择同一个文件，清空控件才能再次收到 change。
     event.target.value = ""
     if (file) insertAttachment(file)
   }

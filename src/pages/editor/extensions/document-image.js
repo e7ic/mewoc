@@ -1,5 +1,6 @@
 import Image from "@tiptap/extension-image"
 
+// 文档只持久化 assetId 和未缩放的尺寸，显示地址由当前会话或导出器注入。
 export const DocumentImage = Image.extend({
   addOptions() {
     return { ...this.parent?.(), getAssetUrl: () => "" }
@@ -35,6 +36,7 @@ export const DocumentImage = Image.extend({
   }
 })
 
+// NodeView 中的按钮只属于编辑界面；静态导出走 renderHTML，不序列化这些操作控件。
 function createImageView({ node, editor, getPos }, getAssetUrl) {
   let currentNode = node
   const dom = document.createElement("figure")
@@ -79,6 +81,10 @@ function createImageView({ node, editor, getPos }, getAssetUrl) {
   }
 }
 
+/**
+ * 拖动期间只修改 DOM 预览，松开后一次性提交文档属性，使整次调整可一步撤销。
+ * 丢失捕获、窗口失焦、正文改变或销毁时恢复原尺寸，并解绑本轮拖动的外部监听。
+ */
 function bindImageResize(handle, image, dom, getNode, commitSize, editor) {
   let drag = null
   const win = dom.ownerDocument.defaultView

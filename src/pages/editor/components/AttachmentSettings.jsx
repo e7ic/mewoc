@@ -7,6 +7,7 @@ export function AttachmentSettings() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
 
+  // 命令层负责校验节点选区和撤销边界，界面只在删除成功后将焦点还给正文。
   const handleRemove = () => {
     if (removeAttachment(editor)) editor.commands.focus()
   }

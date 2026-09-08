@@ -7,6 +7,10 @@ import contentStyles from "../sass/content.scss?inline"
 
 export { createPortableFile, readPortableFile } from "./portable-file.js"
 
+/**
+ * 从最新文档快照生成独立 HTML：先内嵌资源，再通过 schema 输出正文并补公式/代码渲染。
+ * 不读取编辑器 NodeView 的 DOM，因此缩放手柄、选区和工具栏不会进入导出或打印。
+ */
 export async function createDocumentHtml(document, assets) {
   const portable = await createPortableFile(document, assets)
   const references = new Map(portable.document.assets.map(asset => [asset.id, asset]))
@@ -17,6 +21,7 @@ export async function createDocumentHtml(document, assets) {
   const formulaHtml = await renderFormulaHtml(generateHTML(document.content, createExtensions(getAssetUrl, id => references.get(id))))
   const content = await renderCodeHtml(formulaHtml)
   const margins = document.page.marginsMm
+  // 纸张保持物理 mm 单位，编辑界面的 zoom 不参与输出；实际分页仍由浏览器打印控制。
   const pageStyle = `@page { size: A4 ${document.page.orientation}; margin: ${margins.top}mm ${margins.right}mm ${margins.bottom}mm ${margins.left}mm; }`
   const title = document.title.replace(/[&<>"']/g, character => `&#${character.charCodeAt(0)};`)
   return `<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><title>${title}</title><style>${contentStyles}\n${pageStyle}</style></head><body><article class="mewoc-content">${content}</article></body></html>`

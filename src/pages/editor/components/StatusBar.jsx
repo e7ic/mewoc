@@ -11,8 +11,11 @@ export function StatusBar() {
   const readOnly = useEditorStore(state => state.readOnly)
   const outlineOpen = useEditorStore(state => state.outlineOpen)
   const doc = useEditorState({ editor, selector: ({ editor: current }) => current.state.doc, equalityFn: (a, b) => a === b })
+  // 排除空白后按 Unicode 码点计数；这是正文文本字符数，不是中文分词或可见字形数量。
+  // 只在 doc 变化时重算，光标移动和缩放不重复遍历全文。
   const count = useMemo(() => [...doc.textBetween(0, doc.content.size, "\n").replace(/\s/g, "")].length, [doc])
 
+  // 手动调节退出自动适宽，否则下一次尺寸观察会覆盖用户选定的缩放值。
   const handleZoom = value => store.getState().updateView({ zoom: Math.min(1.5, Math.max(0.5, value)), fitWidth: false })
 
   return (
