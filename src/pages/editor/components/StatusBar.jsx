@@ -25,7 +25,7 @@ export function StatusBar() {
           onClick={() => store.getState().updateView({ outlineOpen: !outlineOpen })}
         ><AlignLeftOutlined /></button>
         <span>{count.toLocaleString()} 字符（不含空白）</span>
-        <span>{uploading ? "正在读取图片…" : readOnly ? "只读模式" : "编辑模式"}</span>
+        <span>{uploading ? "正在读取资源…" : readOnly ? "只读模式" : "编辑模式"}</span>
       </div>
       <div className={styles.zoom}>
         <button type="button" onClick={() => store.getState().updateView({ fitWidth: true })}>适应宽度</button>

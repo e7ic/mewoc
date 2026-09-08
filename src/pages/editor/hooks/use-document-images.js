@@ -2,21 +2,19 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { message } from "antd"
 import { TextSelection } from "@tiptap/pm/state"
 import { readImageFile } from "../tools/image-assets.js"
-import { getReferencedAssetIds } from "../tools/document-schema.js"
-import { MAX_ASSET_BYTES } from "../constants/editor-constants.js"
+import { checkAssetCapacity } from "../tools/document-schema.js"
 
-export function useDocumentImages(editor, assets, store) {
+export function useDocumentImages(editor, assets, store, assetTaskRef) {
   const [uploading, setUploading] = useState(false)
   const mountedRef = useRef(true)
-  const pendingRef = useRef(false)
 
   const insertImages = useCallback(async (files, position) => {
-    if (!editor?.isEditable || pendingRef.current) return
-    const ids = getReferencedAssetIds(editor.getJSON())
-    const currentBytes = ids.map(id => assets.get(id).byteLength).reduce((sum, size) => sum + size, 0)
+    if (!editor?.isEditable || assetTaskRef.current || store.getState().readOnly || store.getState().switching) return
     const incomingBytes = files.reduce((sum, file) => sum + file.size, 0)
-    if (currentBytes + incomingBytes > MAX_ASSET_BYTES) {
-      message.error("当前文档图片总量不能超过 20 MiB")
+    try {
+      checkAssetCapacity(editor.getJSON(), assets, incomingBytes)
+    } catch (error) {
+      message.error(error.message)
       return
     }
     const selection = position === undefined ? editor.state.selection : TextSelection.create(editor.state.doc, position)
@@ -30,14 +28,20 @@ export function useDocumentImages(editor, assets, store) {
       }
     }
     editor.on("transaction", handleTransaction)
-    pendingRef.current = true
+    assetTaskRef.current = true
     setUploading(true)
     try {
       for (const file of files) {
         const asset = await readImageFile(file)
-        if (!mountedRef.current || editor.isDestroyed || !editor.isEditable || deleted || store.getState().readOnly) {
+        if (!mountedRef.current || editor.isDestroyed || !editor.isEditable || deleted || store.getState().readOnly || store.getState().switching) {
           URL.revokeObjectURL(asset.url)
           return
+        }
+        try {
+          checkAssetCapacity(editor.getJSON(), assets, asset.byteLength)
+        } catch (error) {
+          URL.revokeObjectURL(asset.url)
+          throw error
         }
         assets.set(asset.id, asset)
         const target = bookmark.resolve(editor.state.doc)
@@ -57,10 +61,10 @@ export function useDocumentImages(editor, assets, store) {
       if (mountedRef.current) message.error(error.message)
     } finally {
       editor.off("transaction", handleTransaction)
-      pendingRef.current = false
+      assetTaskRef.current = false
       if (mountedRef.current) setUploading(false)
     }
-  }, [editor, assets, store])
+  }, [editor, assets, store, assetTaskRef])
 
   useEffect(() => {
     mountedRef.current = true

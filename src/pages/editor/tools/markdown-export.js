@@ -1,4 +1,5 @@
 import { DEFAULT_PAGE } from "../constants/editor-constants.js"
+import { getAttachmentText } from "./attachment-assets.js"
 
 const INLINE_TYPES = ["text", "hardBreak", "inlineMath"]
 const MARK_TYPES = ["bold", "italic", "strike", "code", "link", "underline", "textStyle"]
@@ -34,6 +35,11 @@ function getBlocks(nodes, context) {
     if (node.type === "codeBlock") return [getCodeBlock(node, context)]
     if (node.type === "blockMath") return [{ type: "math", value: node.attrs.latex }]
     if (node.type === "image") return [{ type: "paragraph", children: [getImageText(node, context)] }]
+    if (node.type === "attachment") {
+      const asset = context.assets.find(item => item.id === node.attrs.assetId)
+      context.warnings.add("附件已转换为文件说明；请使用 Mewoc 文件保留附件内容")
+      return [{ type: "paragraph", children: [{ type: "text", value: `${getAttachmentText(asset)}（附件内容请从 Mewoc 文件获取）` }] }]
+    }
     if (node.type === "table") return getTable(node, context)
     if (node.type === "pageBreak") {
       context.warnings.add("手动分页符已转换为文字说明")

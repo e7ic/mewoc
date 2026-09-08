@@ -13,8 +13,9 @@ export const DEFAULT_PAGE = {
   orientation: "portrait",
   marginsMm: { top: 20, right: 20, bottom: 20, left: 20 }
 }
-// 首期便携文件采用 base64；限制原始图片总量，避免编辑与导出同时驻留过大数据。
+// 便携文件采用 base64；图片与附件共用原始字节预算，避免编辑与导出同时驻留过大数据。
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024
+export const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
 export const MAX_ASSET_BYTES = 20 * 1024 * 1024
 export const MAX_FILE_BYTES = 32 * 1024 * 1024
 export const IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp"]

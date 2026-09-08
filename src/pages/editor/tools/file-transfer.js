@@ -9,7 +9,12 @@ export { createPortableFile, readPortableFile } from "./portable-file.js"
 
 export async function createDocumentHtml(document, assets) {
   const portable = await createPortableFile(document, assets)
-  const formulaHtml = await renderFormulaHtml(generateHTML(document.content, createExtensions(id => portable.assetData[id])))
+  const references = new Map(portable.document.assets.map(asset => [asset.id, asset]))
+  const getAssetUrl = id => {
+    const source = portable.assetData[id]
+    return references.get(id)?.kind === "attachment" ? source.replace(/^data:[^;]+;/, "data:application/octet-stream;") : source
+  }
+  const formulaHtml = await renderFormulaHtml(generateHTML(document.content, createExtensions(getAssetUrl, id => references.get(id))))
   const content = await renderCodeHtml(formulaHtml)
   const margins = document.page.marginsMm
   const pageStyle = `@page { size: A4 ${document.page.orientation}; margin: ${margins.top}mm ${margins.right}mm ${margins.bottom}mm ${margins.left}mm; }`

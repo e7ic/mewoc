@@ -8,6 +8,7 @@ import { checkImageInteractions } from "./interaction-checks.js"
 import { checkFormulaFlows } from "./formula-checks.js"
 import { checkCodeFlows } from "./code-checks.js"
 import { checkMarkdownFlows } from "./markdown-checks.js"
+import { checkAttachmentFlows } from "./attachment-checks.js"
 
 function assert(condition, message) {
   if (!condition) throw new Error(message)
@@ -83,6 +84,7 @@ export async function runEditorChecks(sessions, report) {
   await checkFormulaFlows(left, check)
   await checkCodeFlows(left, check)
   await checkMarkdownFlows(left, check)
+  await checkAttachmentFlows(left, check)
   await check("1 万字输入与快照可用", () => {
     const start = performance.now()
     right.editor.commands.setContent({ type: "doc", content: Array.from({ length: 100 }, () => ({ type: "paragraph", content: [{ type: "text", text: "中".repeat(100) }] })) })

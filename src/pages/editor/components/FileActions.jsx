@@ -7,6 +7,7 @@ import { useDocumentEditor } from "./EditorProvider.jsx"
 import { createDocument } from "../tools/document-schema.js"
 import { readPortableFile } from "../tools/file-transfer.js"
 import { getDocuments, getDocumentAssets } from "../tools/local-repository.js"
+import { createDocumentAssetUrl } from "../tools/attachment-assets.js"
 import styles from "../sass/document-bar.module.scss"
 
 export function FileActions({ onDocumentChange }) {
@@ -30,7 +31,7 @@ export function FileActions({ onDocumentChange }) {
         nextRecord = { ...latest, assets: await getDocumentAssets(latest.document) }
       }
       if (!mountedRef.current) return
-      nextRecord.assets.forEach(asset => { asset.url = URL.createObjectURL(asset.blob) })
+      nextRecord.assets.forEach(asset => { asset.url = createDocumentAssetUrl(asset) })
       changed = true
       onDocumentChange(nextRecord)
       return true

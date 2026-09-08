@@ -11,7 +11,7 @@ pnpm install --frozen-lockfile
 pnpm dev --port 4177
 ```
 
-打开 http://127.0.0.1:4177 。文档按浏览器和访问源保存在 IndexedDB；更换端口、浏览器或清理站点数据不会共享原来的本地文档。跨设备或独立备份请导出 `.mewoc.json`，文件包含当前文档引用的图片。
+打开 http://127.0.0.1:4177 。文档按浏览器和访问源保存在 IndexedDB；更换端口、浏览器或清理站点数据不会共享原来的本地文档。跨设备或独立备份请导出 `.mewoc.json`，文件包含当前文档引用的图片和附件。
 
 ```sh
 pnpm lint
@@ -32,10 +32,11 @@ pnpm licenses:collect
 - 代码块：纯文本及 JavaScript、HTML、CSS、JSON、Bash、Python 高亮；语言选择、整行缩进、继承缩进换行、退出正文和撤销，保存/复制/HTML 输出保留源码与语言。
 - Markdown：选择 UTF-8 文件或粘贴源码，预览转换后新建文档；导出前查看实际源码和转换说明，支持代码块、公式及普通 GFM 表格。
 - 本地图片插入/粘贴/拖入、等比调整、替代文本；表格增删行列、合并/拆分、表头和列宽调整。
+- 附件：选择本地文件插入下载卡片，支持保存恢复、只读下载、删除撤销及 Mewoc 文件往返；HTML 内嵌附件下载数据。
 - A4 横竖版、页边距、50%–150% 缩放、适应宽度、手动分页符、大纲、字符统计、查找替换、只读。
-- 带图 JSON、静态 HTML、纯文本导出，以及独立打印文档入口。
+- 含图片与附件的 JSON、静态 HTML、纯文本导出，以及独立打印文档入口。
 
-图片支持 PNG/JPEG/WebP，单张 5 MiB，文档资源总量 20 MiB；外链图片不自动下载。正文是连续纸张容器；没有实时自动分页、DOCX、协作、AI、批注或修订。打印由浏览器控制，可在系统打印窗口选择另存 PDF。
+图片支持 PNG/JPEG/WebP；附件通过本地文件选择器插入，保留原始字节，只提供下载。图片或附件单个最多 5 MiB，文档资源合计最多 20 MiB；外链图片不自动下载。正文是连续纸张容器；没有实时自动分页、DOCX、协作、AI、批注或修订。打印由浏览器控制，可在系统打印窗口选择另存 PDF。
 
 保存停顿为 800 ms，连续输入最长等待约 5 s；成功状态明确为“已保存到此浏览器”。写入失败保留编辑内容，仍可尝试导出文件。冲突时先导出当前副本，再刷新读取存储版本；导入导出的文件会生成新的文档 ID。浏览器关闭/崩溃前的最后一次输入不保证已经落盘。
 
@@ -46,9 +47,9 @@ rsbuild.config.js                    React / Sass 插件、HTML 与开发验收�
 src/main.jsx                         React 17 入口、AntD 5 中文与主题配置
 src/pages/editor/EditorPage.jsx       本地文档加载与会话切换
 src/pages/editor/components/          工具栏、纸张、表单和领域 Context
-src/pages/editor/hooks/               保存、图片、选区、输入生命周期
+src/pages/editor/hooks/               保存、图片、附件、选区、输入生命周期
 src/pages/editor/tools/               Schema、IndexedDB、快照、文件与打印
-src/pages/editor/extensions/          图片、表格列宽、格式刷、段落行距、分页符、公式、代码块
+src/pages/editor/extensions/          图片、附件、表格列宽、格式刷、段落行距、分页符、公式、代码块
 src/pages/editor/sass/                Sass CSS Modules 与内容样式
 tests/                               自动化与浏览器验收
 ```
@@ -59,15 +60,17 @@ Tiptap 是正文、选区与正文撤销的唯一所有者；Zustand 按编辑�
 
 2026-09-07：按用户要求，M5 暂缓，保留现有结果和未完成项，不计为通过。M6 第一批实施与验证见 [格式刷记录](docs/m6-format-painter.md)。
 
-M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主题](docs/m6-theme.md)、[公式](docs/m6-formula.md)、[代码块与高亮](docs/m6-code-block.md)和 [Markdown 导入/导出](docs/m6-markdown.md)。当前 Node 18.18 下 95 项测试、lint、生产构建通过；内置浏览器常规回归 48 项通过，另验证 Markdown 弹窗、取消、保存恢复、只读导出和实际下载文件。下一批为附件。
+M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主题](docs/m6-theme.md)、[公式](docs/m6-formula.md)、[代码块与高亮](docs/m6-code-block.md)、[Markdown 导入/导出](docs/m6-markdown.md)和[附件](docs/m6-attachments.md)。2026-09-08 本批在 Node 18.20.6 下 117 项测试、lint、生产构建通过，内置浏览器常规回归 56 项通过；此前 Markdown 批次在 Node 18.18 下的验证记录保留。M5 完整验收继续暂缓。
 
-使用顶部「导入 Markdown」，或「导出 → Markdown 文档」。导入源码最多 200000 字符，UTF-8 文件最多 1 MiB。图片转换为说明文字，HTML 源码按文字保留；合并表格和无法表达的排版会显示转换说明。Markdown 用于内容交换，完整样式与图片备份继续使用 Mewoc 文件。
+在「插入 → 附件」选择单个本地文件；选中卡片后可删除，删除和插入均可撤销。Mewoc 文件保留原文件名、MIME 和字节；HTML 提供内嵌下载，打印、Markdown 与纯文本保留文件说明，Markdown 同时提示转换。附件不提供在线预览、服务端上传或拖入识别。实际下载的 112 字节验收文件与源文件 SHA-256 一致；系统落盘、浏览器覆盖范围及一次未复现的 UI 操作现象详见附件记录。
+
+使用顶部「导入 Markdown」，或「导出 → Markdown 文档」。导入源码最多 200000 字符，UTF-8 文件最多 1 MiB。图片转换为说明文字，HTML 源码按文字保留；合并表格和无法表达的排版会显示转换说明。Markdown 用于内容交换，完整样式、图片与附件备份继续使用 Mewoc 文件。
 
 在「插入 → 代码块」将当前纯文字段落转为代码块；Tab / Shift+Tab 调整缩进，Enter 继承缩进，⌘ / Ctrl+Enter 继续正文。高亮按需加载，单块超过 20000 字符或累计超过 100000 字符时按纯文本显示；未知语言保留原属性，不截断源码。HTML/打印内嵌高亮样式，打印允许长行折行；代码块的 Edge/Safari、原生输入法与系统打印尚未专项验收。
 
 公式渲染器 KaTeX 0.18.4 按需加载，采用原生 MathML；导出不依赖外链字体、样式或脚本。单条源码最多 2000 字符、文档累计最多 100000 字符。不自动转换 `$` 输入；编辑已有公式时保留显示类型。公式的 Edge/Safari 和系统打印尚未专项验收。
 
-新增缩进属性默认 0，新程序可读取旧文件；旧程序的严格校验会拒绝携带新增属性或公式节点的文件，文件协议尚未发布，不宣称双向兼容。
+新增缩进属性默认 0，旧资源未声明 kind 时继续作为图片读取；新程序可读取旧文件。旧程序的严格校验会拒绝携带新增属性、公式或附件节点的文件，文件协议尚未发布，不宣称双向兼容。
 
 当前构建使用 AntD 5.29.3、Rsbuild 1.7.6，Vite 已移除；历史迁移见 [AntD v5 / Rsbuild 记录](docs/stack-migration.md)。2026-09-08 为支持 Node 18，调整构建及公式依赖；Node 18.18 下冻结安装、46 项测试、lint、构建和内置浏览器 38 项回归通过，Node 24.13.1 下 46 项测试也通过。开发服务保留 `/tests/browser.html`、`/tests/lifecycle.html`、`/tests/pointer.html`，请用 `pnpm dev --port 4179` 启动隔离验收；生产包只含应用入口。
 

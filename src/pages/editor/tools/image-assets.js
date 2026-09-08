@@ -42,7 +42,7 @@ export function readBlobDataUrl(blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
     reader.onload = () => resolve(reader.result)
-    reader.onerror = () => reject(new Error("图片编码失败，请重试导出"))
+    reader.onerror = () => reject(new Error("资源编码失败，请重试导出"))
     reader.readAsDataURL(blob)
   })
 }

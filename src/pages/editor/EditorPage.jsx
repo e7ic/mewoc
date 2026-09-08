@@ -3,6 +3,7 @@ import { Alert, Button, Spin, message } from "antd"
 import { EditorProvider, EditorWorkspace } from "./components"
 import { createDocument, validateDocument } from "./tools/document-schema.js"
 import { getDocuments, getDocumentAssets } from "./tools/local-repository.js"
+import { createDocumentAssetUrl } from "./tools/attachment-assets.js"
 import styles from "./sass/page.module.scss"
 
 const ACTIVE_DOCUMENT_KEY = "mewoc.activeDocumentId"
@@ -24,7 +25,7 @@ export default function EditorPage() {
       return { ...latest, assets: await getDocumentAssets(latest.document) }
     }).then(nextRecord => {
       if (!mountedRef.current) return
-      nextRecord.assets.forEach(asset => { asset.url = URL.createObjectURL(asset.blob) })
+      nextRecord.assets.forEach(asset => { asset.url = createDocumentAssetUrl(asset) })
       setRecord(nextRecord)
     }).catch(failure => {
       if (mountedRef.current) setError(failure.message)

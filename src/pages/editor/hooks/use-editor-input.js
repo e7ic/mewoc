@@ -51,6 +51,7 @@ export function cleanPastedHtml(html, hasAsset = () => false) {
   const parsed = new DOMParser().parseFromString(html, "text/html")
   parsed.querySelectorAll("script, style, iframe, object, embed, svg, math, link, meta").forEach(node => node.remove())
   const codes = cleanPastedCode(parsed)
+  const attachments = cleanPastedAttachments(parsed, hasAsset)
   const formulas = new Set()
   parsed.querySelectorAll('span[data-type="inline-math"], div[data-type="block-math"]').forEach(element => {
     const latex = element.getAttribute("data-latex")
@@ -60,7 +61,7 @@ export function cleanPastedHtml(html, hasAsset = () => false) {
   })
   let hasExternalImages = false
   parsed.querySelectorAll("img").forEach(image => {
-    if (!hasAsset(image.getAttribute("data-mewoc-asset-id"))) {
+    if (!hasAsset(image.getAttribute("data-mewoc-asset-id"), "image")) {
       hasExternalImages = true
       image.remove()
     }
@@ -75,12 +76,26 @@ export function cleanPastedHtml(html, hasAsset = () => false) {
       const isImageSize = element.tagName === "IMG" && ["width", "height"].includes(attr.name) && Number(attr.value) > 0 && Number(attr.value) <= 20000
       const isFormula = formulas.has(element) && ["data-type", "data-latex"].includes(attr.name)
       const isCode = codes.has(element) && attr.name === "data-code-language"
-      if (!isLink && !isTableSpan && !isImageId && !isImageText && !isImageSize && !isFormula && !isCode) element.removeAttribute(attr.name)
+      const isAttachment = attachments.has(element) && ["data-type", "data-mewoc-asset-id"].includes(attr.name)
+      if (!isLink && !isTableSpan && !isImageId && !isImageText && !isImageSize && !isFormula && !isCode && !isAttachment) element.removeAttribute(attr.name)
     }
     if (textStyle) element.setAttribute("style", textStyle)
   })
   if (hasExternalImages) message.info("已粘贴文字。网页图片请保存后通过「图片」插入")
   return parsed.body.innerHTML
+}
+
+function cleanPastedAttachments(parsed, hasAsset) {
+  const attachments = new Set()
+  parsed.querySelectorAll('div[data-type="attachment"]').forEach(element => {
+    const assetId = element.getAttribute("data-mewoc-asset-id")
+    const name = element.querySelector("[data-attachment-name]")?.textContent || "附件"
+    const available = hasAsset(assetId, "attachment")
+    // 复制只携带本会话资源 ID，不接受剪贴板里的下载 URL 或重复元数据。
+    element.textContent = available ? name : `[附件：${name}；请通过 Mewoc 文件传递附件]`
+    if (available) attachments.add(element)
+  })
+  return attachments
 }
 
 function cleanPastedCode(parsed) {

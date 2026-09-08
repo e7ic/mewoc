@@ -7,16 +7,19 @@ import { FormulaAction } from "./FormulaAction.jsx"
 import { TableControls } from "./TableControls.jsx"
 import { ImageSettings } from "./ImageSettings.jsx"
 import { CodeBlockControls } from "./CodeBlockControls.jsx"
+import { AttachmentAction } from "./AttachmentAction.jsx"
+import { AttachmentSettings } from "./AttachmentSettings.jsx"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import { getCodeBlockTarget, insertCodeBlock } from "../tools/code-block-commands.js"
 import styles from "../sass/toolbar.module.scss"
 
 export function InsertToolbar() {
   const fileInputRef = useRef(null)
-  const { editor, insertImages, uploading } = useDocumentEditor()
+  const { editor, insertImages, uploading, imageUploading } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
   const selection = useEditorState({ editor, selector: ({ editor: current }) => ({
-    table: current.isActive("table"), image: current.isActive("image"), code: Boolean(getCodeBlockTarget(current.state.selection))
+    table: current.isActive("table"), image: current.isActive("image"), code: Boolean(getCodeBlockTarget(current.state.selection)),
+    attachment: current.isActive("attachment")
   }) })
 
   const handleImages = event => {
@@ -33,8 +36,9 @@ export function InsertToolbar() {
     <>
       <div className={styles.insert}>
         <button type="button" disabled={readOnly || uploading} onClick={() => fileInputRef.current.click()}>
-          <PictureOutlined /><span>{uploading ? "读取图片…" : "图片"}</span>
+          <PictureOutlined /><span>{imageUploading ? "读取图片…" : "图片"}</span>
         </button>
+        <AttachmentAction />
         <button type="button" disabled={readOnly} onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>
           <TableOutlined /><span>表格 3 × 3</span>
         </button>
@@ -63,7 +67,8 @@ export function InsertToolbar() {
       {selection.table && <TableControls />}
       {selection.image && <ImageSettings />}
       {selection.code && <CodeBlockControls />}
-      {!selection.table && !selection.image && !selection.code && <p className={styles.description}>图片支持粘贴与拖入，单张不超过 5 MiB。<br />选中图片、表格或代码块后，可在这里调整内容。</p>}
+      {selection.attachment && <AttachmentSettings />}
+      {!selection.table && !selection.image && !selection.code && !selection.attachment && <p className={styles.description}>图片或附件单个不超过 5 MiB，合计不超过 20 MiB。<br />图片支持粘贴与拖入；附件通过「附件」选择。</p>}
     </>
   )
 }

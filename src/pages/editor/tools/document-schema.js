@@ -1,6 +1,7 @@
 import { getSchema } from "@tiptap/core"
 import { createExtensions } from "./create-extensions.js"
 import { FORMULA_TYPES, getFormulaSourceError, MAX_FORMULA_TOTAL } from "./formula.js"
+import { validateAttachmentMetadata } from "./attachment-assets.js"
 import { DEFAULT_PAGE, FONT_FAMILIES, FONT_SIZES, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS, IMAGE_TYPES, MAX_IMAGE_BYTES, MAX_ASSET_BYTES } from "../constants/editor-constants.js"
 
 const SCHEMA = getSchema(createExtensions())
@@ -76,31 +77,34 @@ export function validateDocument(record) {
   }
   validatePage(record.page)
   validateAssets(record.assets)
-  const assetIds = new Set(record.assets.map(asset => asset.id))
+  const assetKinds = new Map(record.assets.map(asset => [asset.id, asset.kind || "image"]))
   const budget = { nodes: 0, characters: 0, formulaCharacters: 0 }
-  validateNode(record.content, "content", assetIds, budget, 0)
+  validateNode(record.content, "content", assetKinds, budget, 0)
   if (record.content.type !== "doc") throw new Error("content 必须是 doc 节点")
   SCHEMA.nodeFromJSON(record.content).check()
   return record
 }
 
 function validateAssets(assets) {
-  if (!Array.isArray(assets)) throw new Error("文档缺少图片资源清单")
+  if (!Array.isArray(assets)) throw new Error("文档缺少资源清单")
   const ids = new Set()
   let bytes = 0
   assets.forEach(asset => {
-    if (!asset || !ID_PATTERN.test(asset.id) || ids.has(asset.id)) throw new Error("图片资源 ID 无效或重复")
-    if (!IMAGE_TYPES.includes(asset.mimeType) || !Number.isInteger(asset.byteLength) || asset.byteLength <= 0 || asset.byteLength > MAX_IMAGE_BYTES) {
+    if (!asset || !ID_PATTERN.test(asset.id) || ids.has(asset.id)) throw new Error("资源 ID 无效或重复")
+    // 首批文件没有 kind，仅在字段缺省时继续按图片解释。
+    if (asset.kind !== undefined && !["image", "attachment"].includes(asset.kind)) throw new Error("资源种类无效")
+    if (asset.kind === "attachment") validateAttachmentMetadata(asset)
+    else if (!IMAGE_TYPES.includes(asset.mimeType) || !Number.isInteger(asset.byteLength) || asset.byteLength <= 0 || asset.byteLength > MAX_IMAGE_BYTES) {
       throw new Error("图片资源类型或大小无效")
     }
-    if (typeof asset.fileName !== "string" || asset.fileName.length > 255) throw new Error("图片文件名无效")
+    if (typeof asset.fileName !== "string" || asset.fileName.length > 255) throw new Error("资源文件名无效")
     ids.add(asset.id)
     bytes += asset.byteLength
   })
-  if (bytes > MAX_ASSET_BYTES) throw new Error("图片总量超过 20 MiB")
+  if (bytes > MAX_ASSET_BYTES) throw new Error("图片与附件总量超过 20 MiB")
 }
 
-function validateNode(node, path, assetIds, budget, depth) {
+function validateNode(node, path, assetKinds, budget, depth) {
   if (!node || typeof node !== "object" || !SCHEMA.nodes[node.type]) throw new Error(`${path}：不支持的节点 ${node?.type}`)
   budget.nodes += 1
   if (depth > 64 || budget.nodes > 50000) throw new Error("文档结构过深或节点过多")
@@ -112,7 +116,9 @@ function validateNode(node, path, assetIds, budget, depth) {
     budget.formulaCharacters += node.attrs.latex.length
     if (budget.formulaCharacters > MAX_FORMULA_TOTAL) throw new Error("文档公式源码总量超过 100000 个字符")
   }
-  if (node.type === "image" && !assetIds.has(node.attrs?.assetId)) throw new Error(`${path}：缺少图片资源`)
+  if (["image", "attachment"].includes(node.type) && assetKinds.get(node.attrs?.assetId) !== node.type) {
+    throw new Error(`${path}：${node.type === "image" ? "图片" : "附件"}资源缺失或种类不匹配`)
+  }
   if (node.text !== undefined) {
     if (typeof node.text !== "string") throw new Error(`${path}：文本必须是字符串`)
     budget.characters += node.text.length
@@ -127,7 +133,7 @@ function validateNode(node, path, assetIds, budget, depth) {
   }
   if (node.content !== undefined) {
     if (!Array.isArray(node.content)) throw new Error(`${path}：content 格式无效`)
-    node.content.forEach((child, index) => validateNode(child, `${path}.${index}`, assetIds, budget, depth + 1))
+    node.content.forEach((child, index) => validateNode(child, `${path}.${index}`, assetKinds, budget, depth + 1))
   }
 }
 
@@ -169,9 +175,19 @@ function isValidAttribute(type, key, value) {
 export function getReferencedAssetIds(content) {
   const ids = new Set()
   const visit = node => {
-    if (node.type === "image") ids.add(node.attrs.assetId)
+    if (["image", "attachment"].includes(node.type)) ids.add(node.attrs.assetId)
     node.content?.forEach(visit)
   }
   visit(content)
   return [...ids]
+}
+
+export function checkAssetCapacity(content, assets, incomingBytes = 0) {
+  let bytes = incomingBytes
+  for (const id of getReferencedAssetIds(content)) {
+    const asset = assets.get(id)
+    if (!asset) throw new Error("部分资源缺失，请重新打开文档后重试")
+    bytes += asset.byteLength
+  }
+  if (bytes > MAX_ASSET_BYTES) throw new Error("当前文档图片与附件总量不能超过 20 MiB")
 }

@@ -12,8 +12,9 @@ import { FormatPainter } from "../extensions/format-painter.js"
 import { ParagraphIndent } from "../extensions/paragraph-indent.js"
 import { InlineMath, BlockMath } from "../extensions/formula.js"
 import { DocumentCodeBlock } from "../extensions/code-block.js"
+import { DocumentAttachment } from "../extensions/document-attachment.js"
 
-export function createExtensions(getAssetUrl = () => "") {
+export function createExtensions(getAssetUrl = () => "", getAsset = () => null) {
   return [
     StarterKit.configure({
       codeBlock: false,
@@ -25,7 +26,8 @@ export function createExtensions(getAssetUrl = () => "") {
     // 官方列宽拖动使用屏幕增量；由本模块处理缩放坐标，保留官方表格模型和视图。
     TableKit.configure({ table: { resizable: false } }),
     TableColumnResize,
-    DocumentImage.configure({ getAssetUrl }),
+    DocumentImage.configure({ getAssetUrl: id => getAsset(id)?.kind === "attachment" ? "" : getAssetUrl(id) }),
+    DocumentAttachment.configure({ getAssetUrl, getAsset }),
     ParagraphSpacing,
     ParagraphIndent,
     FormatPainter,

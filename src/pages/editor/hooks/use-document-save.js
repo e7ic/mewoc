@@ -11,8 +11,8 @@ export function useDocumentSave(editor, record, assets, store) {
     const content = editor.getJSON()
     const references = getReferencedAssetIds(content).map(id => {
       const asset = assets.get(id)
-      if (!asset) throw new Error("图片尚未就绪，请稍后保存")
-      return { id, fileName: asset.fileName, mimeType: asset.mimeType, byteLength: asset.byteLength }
+      if (!asset) throw new Error("资源尚未就绪，请稍后保存")
+      return { id, ...(asset.kind && { kind: asset.kind }), fileName: asset.fileName, mimeType: asset.mimeType, byteLength: asset.byteLength }
     })
     return validateDocument({
       ...record.document,

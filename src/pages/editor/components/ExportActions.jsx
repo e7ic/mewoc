@@ -9,7 +9,7 @@ import { printDocument } from "../tools/print-document.js"
 import styles from "../sass/document-bar.module.scss"
 
 const EXPORT_ITEMS = [
-  { key: "json", label: "Mewoc 文件（含图片）" },
+  { key: "json", label: "Mewoc 文件（含图片与附件）" },
   { key: "html", label: "HTML 网页" },
   { key: "markdown", label: "Markdown 文档" },
   { key: "text", label: "纯文本" }
