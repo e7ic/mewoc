@@ -1,11 +1,12 @@
 import { Extension } from "@tiptap/core"
 import { Plugin, PluginKey, TextSelection, AllSelection } from "@tiptap/pm/state"
 import { closeHistory } from "@tiptap/pm/history"
+import { getTextAppearance, getPaintedMarks } from "../tools/text-appearance.js"
 
 export const FORMAT_PAINTER_KEY = new PluginKey("formatPainter")
 
 const MARK_NAMES = ["bold", "italic", "underline", "strike", "textStyle"]
-const TEXT_ATTRIBUTES = ["fontFamily", "fontSize", "color", "backgroundColor"]
+const TEXT_ATTRIBUTES = ["fontFamily", "fontSize", "color", "backgroundColor", "fontWeight"]
 const isParagraph = node => ["paragraph", "heading"].includes(node.type.name)
 
 const getTextRanges = ({ doc, selection }) => {
@@ -20,11 +21,11 @@ const getTextRanges = ({ doc, selection }) => {
   return ranges
 }
 
-const copySource = (state, locked) => {
+const copySource = (editor, state, locked) => {
   const { selection, storedMarks } = state
   let source = getTextRanges(state)[0]
   if (selection instanceof TextSelection && selection.empty && isParagraph(selection.$from.parent)) {
-    source = { paragraph: selection.$from.parent, marks: storedMarks || selection.$from.marks() }
+    source = { from: selection.from, paragraph: selection.$from.parent, marks: storedMarks || selection.$from.marks() }
     if (source.marks.some(mark => mark.type.name === "code")) return null
   }
   if (!source) return null
@@ -33,16 +34,17 @@ const copySource = (state, locked) => {
     attrs: mark.type.name === "textStyle"
       ? Object.fromEntries(TEXT_ATTRIBUTES.map(name => [name, mark.attrs[name] ?? null])) : undefined
   }))
-  const { textAlign, lineHeight, firstLineIndent, leftIndent } = source.paragraph.attrs
-  return { marks, paragraph: { textAlign, lineHeight, firstLineIndent, leftIndent }, locked, source: { from: selection.from, to: selection.to } }
+  const appearance = getTextAppearance(editor, source.from, source.marks)
+  const { textAlign, firstLineIndent, leftIndent } = source.paragraph.attrs
+  return { marks, appearance, paragraph: { textAlign, lineHeight: appearance.lineHeight, firstLineIndent, leftIndent }, locked, source: { from: selection.from, to: selection.to } }
 }
 
-const applySource = (tr, schema, ranges, source) => {
+const applySource = (editor, tr, ranges, source) => {
   // 一次格式应用独立成组，前后的普通输入各自保留撤销边界。
   const doc = tr.doc
-  const marks = source.marks.map(mark => schema.marks[mark.type].create(mark.attrs))
   const paragraphs = new Map()
   ranges.forEach(range => {
+    const marks = getPaintedMarks(editor, range, source)
     MARK_NAMES.forEach(name => {
       const current = range.marks.find(mark => mark.type.name === name)
       const next = marks.find(mark => mark.type.name === name)
@@ -52,8 +54,10 @@ const applySource = (tr, schema, ranges, source) => {
     paragraphs.set(range.pos, range.paragraph)
   })
   paragraphs.forEach((node, pos) => {
-    if (Object.keys(source.paragraph).some(name => node.attrs[name] !== source.paragraph[name])) {
-      tr.setNodeMarkup(pos, undefined, { ...node.attrs, ...source.paragraph })
+    const paragraph = { ...source.paragraph }
+    if (node.attrs.lineHeight === null && getTextAppearance(editor, pos + 1).lineHeight === paragraph.lineHeight) paragraph.lineHeight = null
+    if (Object.keys(paragraph).some(name => node.attrs[name] !== paragraph[name])) {
+      tr.setNodeMarkup(pos, undefined, { ...node.attrs, ...paragraph })
     }
   })
   const applied = !tr.doc.eq(doc)
@@ -132,7 +136,7 @@ export const FormatPainter = Extension.create({
     return {
       copyFormat: (locked = false) => ({ state, tr, dispatch, editor }) => {
         if (!editor.isEditable || editor.view.composing) return false
-        const value = copySource(state, locked)
+        const value = copySource(editor, state, locked)
         if (!value) return false
         if (dispatch) tr.setMeta(FORMAT_PAINTER_KEY, { value })
         return true
@@ -146,7 +150,7 @@ export const FormatPainter = Extension.create({
         if (!source || !editor.isEditable || editor.view.composing) return false
         const ranges = getTextRanges(state)
         if (!ranges.length) return false
-        if (dispatch) applySource(tr, state.schema, ranges, source)
+        if (dispatch) applySource(editor, tr, ranges, source)
         return true
       }
     }

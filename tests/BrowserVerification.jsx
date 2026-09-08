@@ -3,6 +3,7 @@ import ReactDOM from "react-dom"
 import { EditorContent } from "@tiptap/react"
 import { EditorProvider, useDocumentEditor, useEditorStore } from "../src/pages/editor/components/EditorProvider.jsx"
 import { SearchPanel } from "../src/pages/editor/components/SearchPanel.jsx"
+import { TextStyleControls } from "../src/pages/editor/components/TextStyleControls.jsx"
 import { createDocument } from "../src/pages/editor/tools/document-schema.js"
 import { runEditorChecks, removeVerificationDocuments } from "./browser-checks.js"
 import { runStressChecks } from "./stress-checks.js"
@@ -76,6 +77,7 @@ const EditorProbe = ({ id, onReady }) => {
   useEffect(() => { if (context.editor) onReady(id, context) }, [id, context, onReady])
   return (
     <section data-probe={id} style={{ width: 640, margin: 20, transformOrigin: "top left" }}>
+      <TextStyleControls />
       <EditorContent editor={context.editor} />
       {searchOpen && <SearchPanel />}
     </section>

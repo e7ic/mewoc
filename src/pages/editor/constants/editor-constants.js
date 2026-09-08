@@ -4,8 +4,10 @@ export const FONT_FAMILIES = [
   { label: "黑体 / 无衬线", value: "Microsoft YaHei, PingFang SC, sans-serif" },
   { label: "等宽字体", value: "Consolas, Menlo, monospace" }
 ]
-export const FONT_SIZES = ["10pt", "12pt", "14pt", "16pt", "18pt", "24pt", "32pt"]
-export const LINE_HEIGHTS = [1, 1.25, 1.5, 1.75, 2, 2.5, 3]
+// 保留标题现有 30 / 20 / 17 px 外观，加入对应的精确 pt 值。
+export const FONT_SIZES = ["10pt", "12pt", "12.75pt", "14pt", "15pt", "16pt", "18pt", "22.5pt", "24pt", "32pt"]
+export const FONT_WEIGHTS = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+export const LINE_HEIGHTS = [1, 1.25, 1.5, 1.55, 1.75, 2, 2.5, 3]
 export const FIRST_LINE_INDENTS = [0, 1, 2, 3, 4]
 export const LEFT_INDENTS = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 export const DEFAULT_PAGE = {

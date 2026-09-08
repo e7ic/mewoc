@@ -1,8 +1,9 @@
 import { getSchema } from "@tiptap/core"
+import { createId } from "./create-id.js"
 import { createExtensions } from "./create-extensions.js"
 import { FORMULA_TYPES, getFormulaSourceError, MAX_FORMULA_TOTAL } from "./formula.js"
 import { validateAttachmentMetadata } from "./attachment-assets.js"
-import { DEFAULT_PAGE, FONT_FAMILIES, FONT_SIZES, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS, IMAGE_TYPES, MAX_IMAGE_BYTES, MAX_ASSET_BYTES } from "../constants/editor-constants.js"
+import { DEFAULT_PAGE, FONT_FAMILIES, FONT_SIZES, FONT_WEIGHTS, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS, IMAGE_TYPES, MAX_IMAGE_BYTES, MAX_ASSET_BYTES } from "../constants/editor-constants.js"
 
 const SCHEMA = getSchema(createExtensions())
 const NODE_KEYS = ["type", "attrs", "content", "marks", "text"]
@@ -12,7 +13,7 @@ export function createDocument(welcome = false) {
   const time = new Date().toISOString()
   return {
     schemaVersion: 1,
-    id: crypto.randomUUID(),
+    id: createId(),
     title: welcome ? "Mewoc · 从这里开始" : "未命名文档",
     content: welcome ? createWelcomeContent() : { type: "doc", content: [{ type: "paragraph" }] },
     page: structuredClone(DEFAULT_PAGE),
@@ -158,6 +159,7 @@ function isValidAttribute(type, key, value) {
   if (key === "level") return [1, 2, 3].includes(value)
   if (key === "fontFamily") return FONT_FAMILIES.some(font => font.value === value)
   if (key === "fontSize") return FONT_SIZES.includes(value)
+  if (key === "fontWeight") return FONT_WEIGHTS.includes(value)
   if (["color", "backgroundColor"].includes(key)) return /^#[0-9a-f]{6}$/i.test(value)
   if (key === "href") return isSafeLink(value)
   if (key === "target") return value === "_blank" || value === "_self"

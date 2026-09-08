@@ -13,7 +13,7 @@ export function TextToolbar() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
   const state = useEditorState({ editor, selector: ({ editor: current }) => ({
-    bold: current.isActive("bold"), italic: current.isActive("italic"),
+    bold: current.getAttributes("textStyle").fontWeight ? Number(current.getAttributes("textStyle").fontWeight) >= 600 : current.isActive("bold"), italic: current.isActive("italic"),
     underline: current.isActive("underline"), strike: current.isActive("strike"),
     undo: current.can().undo(), redo: current.can().redo()
   }) })
@@ -42,7 +42,7 @@ export function TextToolbar() {
             label="加粗"
             active={state.bold}
             disabled={readOnly}
-            onClick={() => editor.chain().focus().toggleBold().run()}
+            onClick={() => editor.chain().focus().toggleTextBold().run()}
           ><BoldOutlined /></ToolbarButton>
           <ToolbarButton
             label="斜体"

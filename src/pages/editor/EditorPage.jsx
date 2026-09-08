@@ -4,6 +4,7 @@ import { EditorProvider, EditorWorkspace } from "./components"
 import { createDocument, validateDocument } from "./tools/document-schema.js"
 import { getDocuments, getDocumentAssets } from "./tools/local-repository.js"
 import { createDocumentAssetUrl } from "./tools/attachment-assets.js"
+import { createId } from "./tools/create-id.js"
 import styles from "./sass/page.module.scss"
 
 const ACTIVE_DOCUMENT_KEY = "mewoc.activeDocumentId"
@@ -34,7 +35,7 @@ export default function EditorPage() {
     })
   }, [])
 
-  const handleDocumentChange = nextRecord => setRecord({ ...nextRecord, sessionId: crypto.randomUUID() })
+  const handleDocumentChange = nextRecord => setRecord({ ...nextRecord, sessionId: createId() })
 
   useEffect(() => {
     mountedRef.current = true

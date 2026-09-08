@@ -13,6 +13,7 @@ import { ParagraphIndent } from "../extensions/paragraph-indent.js"
 import { InlineMath, BlockMath } from "../extensions/formula.js"
 import { DocumentCodeBlock } from "../extensions/code-block.js"
 import { DocumentAttachment } from "../extensions/document-attachment.js"
+import { FontWeight } from "../extensions/font-weight.js"
 
 export function createExtensions(getAssetUrl = () => "", getAsset = () => null) {
   return [
@@ -22,6 +23,7 @@ export function createExtensions(getAssetUrl = () => "", getAsset = () => null) 
       link: { openOnClick: false, HTMLAttributes: { rel: "noopener noreferrer", target: "_blank" } }
     }),
     TextStyleKit.configure({ lineHeight: false }),
+    FontWeight,
     TextAlign.configure({ types: ["heading", "paragraph"] }),
     // 官方列宽拖动使用屏幕增量；由本模块处理缩放坐标，保留官方表格模型和视图。
     TableKit.configure({ table: { resizable: false } }),

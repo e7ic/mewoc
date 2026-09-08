@@ -1,4 +1,5 @@
 import { IMAGE_TYPES, MAX_IMAGE_BYTES } from "../constants/editor-constants.js"
+import { createId } from "./create-id.js"
 
 export async function validateImageBlob(blob) {
   if (!IMAGE_TYPES.includes(blob.type) || blob.size <= 0 || blob.size > MAX_IMAGE_BYTES) {
@@ -23,7 +24,7 @@ export async function readImageFile(file) {
     if (image.naturalWidth * image.naturalHeight > 40000000) throw new Error("图片像素过多，请先缩小图片")
     const width = Math.min(520, image.naturalWidth)
     return {
-      id: crypto.randomUUID(),
+      id: createId(),
       fileName: file.name.slice(0, 255),
       mimeType: file.type,
       byteLength: file.size,

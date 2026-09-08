@@ -21,6 +21,15 @@ pnpm preview --port 4178
 pnpm licenses:collect
 ```
 
+局域网访问时先构建，再监听全部网卡：
+
+```sh
+pnpm build
+pnpm preview --host 0.0.0.0 --port 4180
+```
+
+同一局域网设备打开启动输出中物理网卡对应的 `Network` 地址。文档仍按设备、浏览器与访问源分别保存在本地，不会自动同步；跨设备使用 Mewoc 文件传递。普通 HTTP 的 ID 生成兼容修复及验证见[局域网访问记录](docs/lan-access.md)。
+
 ## 已实现
 
 - 新建、打开 Mewoc 文件、最近文档、标题、自动/手动保存、刷新恢复上次打开文档、版本冲突提示。
@@ -61,6 +70,8 @@ Tiptap 是正文、选区与正文撤销的唯一所有者；Zustand 按编辑�
 2026-09-07：按用户要求，M5 暂缓，保留现有结果和未完成项，不计为通过。M6 第一批实施与验证见 [格式刷记录](docs/m6-format-painter.md)。
 
 M6 已完成格式刷、[段落缩进](docs/m6-paragraph-indent.md)、[界面主题](docs/m6-theme.md)、[公式](docs/m6-formula.md)、[代码块与高亮](docs/m6-code-block.md)、[Markdown 导入/导出](docs/m6-markdown.md)和[附件](docs/m6-attachments.md)。2026-09-08 本批在 Node 18.20.6 下 117 项测试、lint、生产构建通过，内置浏览器常规回归 56 项通过；此前 Markdown 批次在 Node 18.18 下的验证记录保留。M5 完整验收继续暂缓。
+
+2026-09-08 后续修复[标题格式刷与字号回显](docs/heading-format-fix.md)：默认标题字号、字重、颜色和行距可以刷到正文；字号控件按实际 pt 值显示，H1 / H2 / H3 分别为 22.5 / 15 / 12.75，手动字号优先。最新 125 项测试、lint、构建及 62 项浏览器回归通过。
 
 在「插入 → 附件」选择单个本地文件；选中卡片后可删除，删除和插入均可撤销。Mewoc 文件保留原文件名、MIME 和字节；HTML 提供内嵌下载，打印、Markdown 与纯文本保留文件说明，Markdown 同时提示转换。附件不提供在线预览、服务端上传或拖入识别。实际下载的 112 字节验收文件与源文件 SHA-256 一致；系统落盘、浏览器覆盖范围及一次未复现的 UI 操作现象详见附件记录。
 

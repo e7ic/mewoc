@@ -1,4 +1,5 @@
 import { MAX_ATTACHMENT_BYTES } from "../constants/editor-constants.js"
+import { createId } from "./create-id.js"
 
 export function validateAttachmentMetadata(asset) {
   if (typeof asset.fileName !== "string" || !asset.fileName.trim() || asset.fileName.length > 255 || /[\\/\u0000-\u001f\u007f]/.test(asset.fileName)) {
@@ -14,7 +15,7 @@ export function validateAttachmentMetadata(asset) {
 
 export async function readAttachmentFile(file) {
   const asset = {
-    id: crypto.randomUUID(), kind: "attachment", fileName: file.name,
+    id: createId(), kind: "attachment", fileName: file.name,
     mimeType: file.type || "application/octet-stream", byteLength: file.size
   }
   validateAttachmentMetadata(asset)

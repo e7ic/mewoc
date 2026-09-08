@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { message } from "antd"
 import { isSafeLink } from "../tools/document-schema.js"
-import { FONT_FAMILIES, FONT_SIZES, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS } from "../constants/editor-constants.js"
+import { FONT_FAMILIES, FONT_SIZES, FONT_WEIGHTS, LINE_HEIGHTS, FIRST_LINE_INDENTS, LEFT_INDENTS } from "../constants/editor-constants.js"
 import { parseParagraphIndent } from "../extensions/paragraph-indent.js"
 import { getFormulaSourceError } from "../tools/formula.js"
 import { getPastedCodeLanguage } from "../tools/code-highlight.js"
@@ -127,6 +127,7 @@ function getPastedTextStyle(element) {
   const font = FONT_FAMILIES.find(item => item.value && item.value === family)
   if (font) styles.push(`font-family: ${font.value}`)
   if (FONT_SIZES.includes(css.fontSize)) styles.push(`font-size: ${css.fontSize}`)
+  if (FONT_WEIGHTS.includes(css.fontWeight)) styles.push(`font-weight: ${css.fontWeight}`)
   if (["P", "H1", "H2", "H3"].includes(element.tagName)) {
     if (["left", "center", "right", "justify"].includes(css.textAlign)) styles.push(`text-align: ${css.textAlign}`)
     if (LINE_HEIGHTS.includes(Number(css.lineHeight))) styles.push(`line-height: ${css.lineHeight}`)

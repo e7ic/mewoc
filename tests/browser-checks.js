@@ -9,6 +9,7 @@ import { checkFormulaFlows } from "./formula-checks.js"
 import { checkCodeFlows } from "./code-checks.js"
 import { checkMarkdownFlows } from "./markdown-checks.js"
 import { checkAttachmentFlows } from "./attachment-checks.js"
+import { checkHeadingFormatFlows } from "./heading-format-checks.js"
 
 function assert(condition, message) {
   if (!condition) throw new Error(message)
@@ -96,6 +97,7 @@ export async function runEditorChecks(sessions, report) {
 }
 
 async function checkPasteFlows(left, check) {
+  await checkHeadingFormatFlows(left, check)
   const { editor } = left
   await check("富文本粘贴清理脚本、事件、外链图片与危险 URL", () => {
     const html = cleanPastedHtml('<p onclick="bad()">文字</p><script>bad()</script><a href="javascript:bad()">链接</a>')

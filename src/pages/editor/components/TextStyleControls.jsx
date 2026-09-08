@@ -2,12 +2,13 @@ import { useEditorState } from "@tiptap/react"
 import { Button, ColorPicker, Select } from "antd"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import { FONT_FAMILIES, FONT_SIZES } from "../constants/editor-constants.js"
+import { getSelectionTextStyle } from "../tools/text-appearance.js"
 import styles from "../sass/toolbar.module.scss"
 
 export function TextStyleControls() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
-  const format = useEditorState({ editor, selector: ({ editor: current }) => getTextStyle(current) })
+  const format = useEditorState({ editor, selector: ({ editor: current }) => getSelectionTextStyle(current) })
 
   return (
     <div className={styles.row}>
@@ -52,24 +53,4 @@ export function TextStyleControls() {
       </ColorPicker>
     </div>
   )
-}
-
-function getTextStyle(editor) {
-  const defaults = { fontFamily: "", fontSize: "12pt", color: "#252837", backgroundColor: "#fff1ad" }
-  const { selection, storedMarks, doc } = editor.state
-  const formats = []
-  if (selection.empty) {
-    const marks = storedMarks || selection.$from.marks()
-    formats.push(marks.find(mark => mark.type.name === "textStyle")?.attrs || {})
-  } else {
-    doc.nodesBetween(selection.from, selection.to, node => {
-      if (node.isText) formats.push(node.marks.find(mark => mark.type.name === "textStyle")?.attrs || {})
-    })
-  }
-  const result = { ...defaults }
-  Object.keys(defaults).forEach(key => {
-    const values = new Set(formats.map(format => format[key] || defaults[key]))
-    result[key] = values.size > 1 ? "mixed" : [...values][0] || defaults[key]
-  })
-  return result
 }

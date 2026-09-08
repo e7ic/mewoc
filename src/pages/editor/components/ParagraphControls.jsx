@@ -4,6 +4,7 @@ import { AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined, MenuOutline
 import { ToolbarButton } from "./ToolbarButton.jsx"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import { LINE_HEIGHTS } from "../constants/editor-constants.js"
+import { getTextAppearance } from "../tools/text-appearance.js"
 import styles from "../sass/toolbar.module.scss"
 
 export function ParagraphControls() {
@@ -103,12 +104,12 @@ const AlignmentControls = ({ editor, align, readOnly }) => (
 function getParagraphStyle(editor) {
   const { selection, doc } = editor.state
   const blocks = []
-  doc.nodesBetween(selection.from, selection.to, node => {
-    if (["paragraph", "heading"].includes(node.type.name)) blocks.push(node)
+  doc.nodesBetween(selection.from, selection.to, (node, pos) => {
+    if (["paragraph", "heading"].includes(node.type.name)) blocks.push({ node, pos })
   })
-  const headings = new Set(blocks.map(node => node.type.name === "heading" ? node.attrs.level : 0))
-  const heights = new Set(blocks.map(node => node.attrs.lineHeight || 1.75))
-  const alignments = new Set(blocks.map(node => node.attrs.textAlign || "left"))
+  const headings = new Set(blocks.map(({ node }) => node.type.name === "heading" ? node.attrs.level : 0))
+  const heights = new Set(blocks.map(({ pos }) => getTextAppearance(editor, pos + 1).lineHeight))
+  const alignments = new Set(blocks.map(({ node }) => node.attrs.textAlign || "left"))
   return {
     heading: headings.size > 1 ? "mixed" : [...headings][0] || 0,
     lineHeight: heights.size > 1 ? "mixed" : [...heights][0] || 1.75,

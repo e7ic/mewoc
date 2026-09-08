@@ -13,6 +13,8 @@
   outline: none;
   > :first-child { margin-top: 0; }
   p { margin: 0 0 1em; }
+  // TextStyle 在 strong 外层；复制解析产生的 strong 不应再次放大显式字重。
+  [data-font-weight] strong { font-weight: inherit; }
   h1 { margin: 0 0 22px; font-weight: 600; font-size: 30px; color: #242633; line-height: 1.5; letter-spacing: -0.6px; }
   h2 { margin: 32px 0 14px; font-weight: 600; font-size: 20px; color: #363444; line-height: 1.55; }
   h3 { margin: 24px 0 10px; font-weight: 600; font-size: 17px; color: #363444; line-height: 1.55; }

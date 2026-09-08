@@ -1,6 +1,7 @@
 import { validateDocument, getReferencedAssetIds } from "./document-schema.js"
 import { readBlobDataUrl, validateImageBlob } from "./image-assets.js"
 import { MAX_FILE_BYTES } from "../constants/editor-constants.js"
+import { createId } from "./create-id.js"
 
 export async function createPortableFile(document, assets) {
   validateDocument(document)
@@ -49,7 +50,7 @@ export async function readPortableFile(file) {
   }
   // 导入作为新文档，不覆盖源文件中同 ID 的本地版本。
   return {
-    document: { ...source.document, id: crypto.randomUUID(), updatedAt: new Date().toISOString() },
+    document: { ...source.document, id: createId(), updatedAt: new Date().toISOString() },
     storageVersion: 0,
     assets
   }

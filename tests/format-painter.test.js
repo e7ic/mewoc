@@ -140,7 +140,7 @@ test("普通来源清除目标样式，全选跳过代码，快照不进入新�
     assert.equal(editor.commands.applyFormat(), true)
     const result = editor.getJSON()
     assert.equal(result.content[0].content[0].marks, undefined)
-    assert.equal(result.content[0].attrs.lineHeight, null)
+    assert.equal(result.content[0].attrs.lineHeight, 1.75)
     assert.equal(result.content[0].attrs.textAlign, null)
     assert.equal(result.content[3].content[0].text, "const a = 1")
     assert.equal(FORMAT_PAINTER_KEY.getState(next.state), null)
