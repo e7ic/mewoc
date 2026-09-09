@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-09-09T13:47:10.164Z",
+  "baseline": "5490b65",
+  "sdk": "docx 9.6.1",
+  "node": "v24.19.0",
+  "results": [
+    {
+      "name": "portrait：纸张、页边距、样式、缩进、图表、分页、源数据不可变",
+      "passed": true,
+      "bytes": 10500,
+      "warnings": [
+        "公式暂以 LaTeX 原文输出，不是 Word 原生公式",
+        "代码块保留源码与换行，本样例不转换语法高亮",
+        "附件暂保留文件名和大小，不在 DOCX 内嵌文件；完整备份请使用 Mewoc 文件"
+      ]
+    },
+    {
+      "name": "landscape：纸张、页边距、样式、缩进、图表、分页、源数据不可变",
+      "passed": true,
+      "bytes": 10502,
+      "warnings": [
+        "公式暂以 LaTeX 原文输出，不是 Word 原生公式",
+        "代码块保留源码与换行，本样例不转换语法高亮",
+        "附件暂保留文件名和大小，不在 DOCX 内嵌文件；完整备份请使用 Mewoc 文件"
+      ]
+    },
+    {
+      "name": "缺失资源拒绝导出",
+      "passed": true
+    },
+    {
+      "name": "有效但超宽的表格拒绝裁切",
+      "passed": true
+    },
+    {
+      "name": "合并单元格明确拒绝",
+      "passed": true
+    },
+    {
+      "name": "范围外列表不静默丢失",
+      "passed": true
+    },
+    {
+      "name": "未知节点由应用 Schema 拒绝",
+      "passed": true
+    },
+    {
+      "name": "H3 四分之一磅字号转换提示",
+      "passed": true
+    }
+  ]
+}

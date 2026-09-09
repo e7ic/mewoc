@@ -6,6 +6,18 @@ const ROOT = process.cwd()
 const PACKAGES = new Map()
 const GROUPS = new Map()
 const LICENSE_SOURCES = {
+  "hash.js@1.1.7": {
+    file: "docs/licenses/hash-js.txt",
+    url: "https://github.com/indutny/hash.js/blob/v1.1.7/README.md#license"
+  },
+  "isarray@1.0.0": {
+    file: "docs/licenses/isarray-1.txt",
+    url: "https://github.com/juliangruber/isarray/blob/v1.0.0/README.md#license"
+  },
+  "isarray@2.0.5": {
+    file: "docs/licenses/isarray.txt",
+    url: "https://github.com/juliangruber/isarray/blob/v2.0.5/LICENSE"
+  },
   "@ant-design/icons-svg@4.6.0": {
     file: "docs/licenses/ant-design-icons-svg.txt",
     url: "https://github.com/ant-design/ant-design-icons/blob/7f2516ac91226d2b41f93b35cb5197c8d94f7189/LICENSE"
@@ -19,7 +31,8 @@ const LICENSE_SOURCES = {
 function getPackageDirectory(name, parent) {
   const require = createRequire(path.join(parent, "package.json"))
   // 有些包只导出子路径，不能 require.resolve 包入口；沿 Node 的模块搜索路径读取元数据。
-  const candidates = require.resolve.paths(name).map(directory => path.join(directory, name))
+  // buffer 等浏览器依赖与 Node 内置模块同名，用包子路径取搜索目录，避免得到内置模块的 null。
+  const candidates = require.resolve.paths(`${name}/package.json`).map(directory => path.join(directory, name))
   const directory = candidates.find(candidate => fs.existsSync(path.join(candidate, "package.json")))
   if (!directory) throw new Error(`找不到已安装依赖 ${name}`)
   return fs.realpathSync(directory)
@@ -57,7 +70,7 @@ for (const [license, packages] of GROUPS) {
   NOTICES.push(`${packages.sort().join("\n")}\n\n${license}`)
 }
 fs.mkdirSync(path.join(ROOT, "public"), { recursive: true })
-fs.writeFileSync(path.join(ROOT, "public/THIRD_PARTY_NOTICES.txt"), `${NOTICES.join("\n\n========================================\n\n")}\n`)
+fs.writeFileSync(path.join(ROOT, "public/THIRD_PARTY_NOTICES.txt"), `${NOTICES.join("\n\n========================================\n\n")}\n`.replace(/\r\n/g, "\n"))
 fs.writeFileSync(path.join(ROOT, "docs/runtime-dependencies.json"), `${JSON.stringify([...PACKAGES.values()].sort((a, b) => a.name.localeCompare(b.name)), null, 2)}\n`)
 process.stdout.write(`Collected licenses for ${PACKAGES.size} installed runtime packages\n`)
 process.stdout.write(`Packages without bundled license text: ${[...PACKAGES.values()].filter(item => !item.licenseTextIncluded).map(item => item.name).join(", ")}\n`)

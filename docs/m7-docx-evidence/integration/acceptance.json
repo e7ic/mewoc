@@ -1,0 +1,255 @@
+{
+  "recordedAt": "2026-09-09T15:20:12.745218+00:00",
+  "scope": "DOCX complex conversion and editor export integration",
+  "nodeTests": {
+    "all": {
+      "passed": 140,
+      "total": 140
+    },
+    "node18.18.0Docx": {
+      "passed": 13,
+      "total": 13
+    }
+  },
+  "lint": {
+    "passed": true
+  },
+  "productionBuild": {
+    "passed": true,
+    "totalKb": 2484.3,
+    "gzipKb": 753.7,
+    "docxSdkLoadedAsynchronously": true
+  },
+  "browserChecks": {
+    "inAppBrowser": {
+      "passed": 5,
+      "total": 5,
+      "stage": "before final page-break fix"
+    },
+    "Safari": {
+      "passed": 5,
+      "total": 5,
+      "stage": "final production code",
+      "evidence": "Observed native accessibility result and five successful records"
+    },
+    "Chrome": {
+      "passed": 5,
+      "total": 5,
+      "stage": "final production code after fresh page load",
+      "evidence": "Observed browser DOM status and five successful records"
+    }
+  },
+  "chromeDownload": {
+    "source": "Chrome browser download through production ExportActions after final page-break fix",
+    "fileName": "M7 · Word 复杂内容验收 (1).docx",
+    "bytes": 11794,
+    "sha256": "b57689f0d8c052fe33a4e59cf130ccd2127d95dde0392c6439f5f27312356300",
+    "formulas": 3,
+    "tables": 2,
+    "verticalMergeCells": 2,
+    "mediaFiles": 1,
+    "xmlParsed": true
+  },
+  "rendering": {
+    "engine": "LibreOfficeDev 26.8.0.0.alpha0",
+    "samples": [
+      {
+        "name": "complex-portrait",
+        "pages": 2,
+        "pageSizesPt": [
+          [
+            595.3,
+            841.89
+          ],
+          [
+            595.3,
+            841.89
+          ]
+        ],
+        "textCharactersByPage": [
+          212,
+          128
+        ],
+        "allPagesNonBlank": true,
+        "visualChecks": [
+          {
+            "page": 1,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "59eddcf32c8a3764087b686463a5aa848c01b0d69258dcdd359e2ab3aea4637e",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 2,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "5208c6fed0749970de06ddb9cce0992c80ed387a04f4ee92b0abf8d831035851",
+            "matchesPreviouslyViewedPage": true
+          }
+        ]
+      },
+      {
+        "name": "complex-landscape",
+        "pages": 3,
+        "pageSizesPt": [
+          [
+            841.89,
+            595.3
+          ],
+          [
+            841.89,
+            595.3
+          ],
+          [
+            841.89,
+            595.3
+          ]
+        ],
+        "textCharactersByPage": [
+          212,
+          109,
+          18
+        ],
+        "allPagesNonBlank": true,
+        "visualChecks": [
+          {
+            "page": 1,
+            "pixels": [
+              1602,
+              1133
+            ],
+            "pixelSha256": "13f2ad6eb5d2dc423a59bd2b63254ef6ccd95d03f884f2e9dc6e27fc5375b173",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 2,
+            "pixels": [
+              1602,
+              1133
+            ],
+            "pixelSha256": "8dcfbc3137c520054655b25b27aa88ebd8c933279691c2566ffd10991e6ac27a",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 3,
+            "pixels": [
+              1602,
+              1133
+            ],
+            "pixelSha256": "00b978afe882cbd43d735599a908a19a58baccf4eac329291567cb24c5375010",
+            "matchesPreviouslyViewedPage": true
+          }
+        ]
+      },
+      {
+        "name": "long-table",
+        "pages": 5,
+        "pageSizesPt": [
+          [
+            595.3,
+            841.89
+          ],
+          [
+            595.3,
+            841.89
+          ],
+          [
+            595.3,
+            841.89
+          ],
+          [
+            595.3,
+            841.89
+          ],
+          [
+            595.3,
+            841.89
+          ]
+        ],
+        "textCharactersByPage": [
+          246,
+          258,
+          258,
+          258,
+          213
+        ],
+        "allPagesNonBlank": true,
+        "visualChecks": [
+          {
+            "page": 1,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "2b7953aa731f039bfc965b48d41979e26ec171bc1d62d5959c9216d2f8da0913",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 2,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "d72894ed9e4ca9800a1770ed531f0d9191ceb09b503f5932369245c19be1b038",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 3,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "0490846070236a68cd92f72bbe7a56313278e329dbba68fef7608f00df25982c",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 4,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "34ec11859f205ebc5f1f23b16cd42058ed4e6e674ba98483f2e2e6572f236d00",
+            "matchesPreviouslyViewedPage": true
+          },
+          {
+            "page": 5,
+            "pixels": [
+              1414,
+              2000
+            ],
+            "pixelSha256": "e1d4d9e29db7bd14178883fde86e57ea00afb86b148e2e113ca5a6c8a7739c7f",
+            "matchesPreviouslyViewedPage": true
+          }
+        ],
+        "all48RowsPresent": true
+      }
+    ]
+  },
+  "targetApplications": {
+    "MicrosoftWord": {
+      "verified": false
+    },
+    "WPS": {
+      "verified": false
+    }
+  },
+  "resolvedFindings": [
+    "Landscape extra blank page: moved page break to following paragraph; added consecutive and trailing page-break tests",
+    "Browser harness initially 4/5 twice: fixed stale dropdown selection by waiting for previous menu to close",
+    "Chrome development page remained pending after hot updates: fresh reload of isolated test page completed generation and actual download"
+  ],
+  "toolLimitations": [
+    "In-app browser download-event wait timed out; actual download independently verified in Chrome"
+  ],
+  "licenseCollection": {
+    "runtimePackages": 228,
+    "newDependencyLicenseTextsComplete": true,
+    "preExistingMissingText": [
+      "toggle-selection"
+    ]
+  }
+}

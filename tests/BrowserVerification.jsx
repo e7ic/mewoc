@@ -9,6 +9,7 @@ import { runEditorChecks, removeVerificationDocuments } from "./browser-checks.j
 import { runStressChecks } from "./stress-checks.js"
 import { exportVerification } from "./verification-export.js"
 import { runAssetPersistenceChecks } from "./asset-persistence-checks.js"
+import { runDocxChecks } from "./docx-checks.jsx"
 import "../src/pages/editor/sass/content.scss"
 
 function BrowserVerification() {
@@ -62,6 +63,11 @@ function BrowserVerification() {
         finally { setRunning(false) }
       }}>运行资源重复保存验收</button>
       <button type="button" disabled={running || !results.length} onClick={() => exportVerification("browser", results)}>导出验收结果</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocxChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行 Word 导出验收</button>
       <p role="status">{running ? "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
       <ol>{results.map(result => (
         <li key={result.name}>

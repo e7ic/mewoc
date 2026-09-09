@@ -1,0 +1,556 @@
+{
+  "format": "mewoc",
+  "formatVersion": 1,
+  "document": {
+    "schemaVersion": 1,
+    "id": "m5-current-file-fixture",
+    "title": "M7 · Word 复杂内容验收",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "Word 复杂内容转换"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "firstLineIndent": 2,
+            "lineHeight": 1.5
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "中文 English 样式："
+            },
+            {
+              "type": "text",
+              "text": "彩色加粗下划线",
+              "marks": [
+                {
+                  "type": "bold"
+                },
+                {
+                  "type": "underline"
+                },
+                {
+                  "type": "textStyle",
+                  "attrs": {
+                    "color": "#6942a3",
+                    "backgroundColor": "#fff1ad",
+                    "fontSize": "14pt"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "text": "、文档链接",
+              "marks": [
+                {
+                  "type": "link",
+                  "attrs": {
+                    "href": "https://docx.js.org/"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "start": 3,
+            "type": "1"
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "从编号三开始"
+                    }
+                  ]
+                },
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "同一列表项的第二段不重复编号。"
+                    }
+                  ]
+                },
+                {
+                  "type": "bulletList",
+                  "content": [
+                    {
+                      "type": "listItem",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "嵌套项目甲"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "listItem",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "嵌套项目乙"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "外层编号继续为四"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "start": 1,
+            "type": "A"
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "独立列表重新从 A 开始"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "blockquote",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "引用内容保留缩进、底色和左边线。"
+                }
+              ]
+            },
+            {
+              "type": "bulletList",
+              "content": [
+                {
+                  "type": "listItem",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "引用中的列表"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "horizontalRule"
+        },
+        {
+          "type": "codeBlock",
+          "attrs": {
+            "language": "javascript"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "// 中文注释与完整换行\nconst message = \"你好 Word\"\n\nif (message) {\n  alert(message)\n}"
+            }
+          ]
+        },
+        {
+          "type": "pageBreak"
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "公式、图片与合并表格"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "行内公式："
+            },
+            {
+              "type": "inlineMath",
+              "attrs": {
+                "latex": "E=mc^2"
+              }
+            }
+          ]
+        },
+        {
+          "type": "blockMath",
+          "attrs": {
+            "latex": "\\frac{a_1+\\sqrt{x}}{b^2}=\\sum_{i=1}^{n}i"
+          }
+        },
+        {
+          "type": "blockMath",
+          "attrs": {
+            "latex": "\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}"
+          }
+        },
+        {
+          "type": "image",
+          "attrs": {
+            "assetId": "m5-image",
+            "width": 160,
+            "height": 80,
+            "alt": "紫色验收图片"
+          }
+        },
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "区域"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "内容"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "状态"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 2,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "纵向合并"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 2,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160,
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "横向合并（两列）"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "bulletList",
+                      "content": [
+                        {
+                          "type": "listItem",
+                          "content": [
+                            {
+                              "type": "paragraph",
+                              "content": [
+                                {
+                                  "type": "text",
+                                  "text": "合并单元格里的列表"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "含图片"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "image",
+                      "attrs": {
+                        "assetId": "m5-image",
+                        "width": 240,
+                        "height": 120
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "嵌套表格"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "table",
+                      "content": [
+                        {
+                          "type": "tableRow",
+                          "content": [
+                            {
+                              "type": "tableCell",
+                              "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": [
+                                  55
+                                ]
+                              },
+                              "content": [
+                                {
+                                  "type": "paragraph",
+                                  "content": [
+                                    {
+                                      "type": "text",
+                                      "text": "内甲"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "tableCell",
+                              "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": [
+                                  55
+                                ]
+                              },
+                              "content": [
+                                {
+                                  "type": "paragraph",
+                                  "content": [
+                                    {
+                                      "type": "text",
+                                      "text": "内乙"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "attachment",
+          "attrs": {
+            "assetId": "m5-attachment"
+          }
+        }
+      ]
+    },
+    "page": {
+      "size": "A4",
+      "orientation": "landscape",
+      "marginsMm": {
+        "top": 20,
+        "right": 20,
+        "bottom": 20,
+        "left": 30
+      }
+    },
+    "assets": [
+      {
+        "id": "m5-image",
+        "fileName": "fixture.png",
+        "mimeType": "image/png",
+        "byteLength": 940
+      },
+      {
+        "id": "m5-attachment",
+        "kind": "attachment",
+        "fileName": "M5验收.txt",
+        "mimeType": "text/plain",
+        "byteLength": 36
+      }
+    ],
+    "createdAt": "2026-09-06T14:00:00.000Z",
+    "updatedAt": "2026-09-06T14:00:00.000Z"
+  },
+  "assetData": {
+    "m5-image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAADwCAIAAABXFyDtAAADc0lEQVR4nO3UMQ2AMAAAwbrEAZ4RQYIDaoCJAT7NJSfgpx/XeQMQNH4vAOCRQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEfTHofTsA1mPQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNELXCoAF4waABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABoibc9KrOf+yFIwAAAABJRU5ErkJggg==",
+    "m5-attachment": "data:text/plain;base64,TTUg6ZmE5Lu25Y6f5paH77ya5L2g5aW977yMTWV3b2PjgIIK"
+  }
+}

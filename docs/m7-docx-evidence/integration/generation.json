@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-09-09T15:07:44.611Z",
+  "node": "v24.13.1",
+  "results": [
+    {
+      "name": "complex-portrait",
+      "bytes": 11788,
+      "sha256": "a6d2bc54657f51599d22b4b8dd0db37dfddda7a7d08d55f0ef2829ba6a518ca5",
+      "warnings": [
+        "超出正文、单元格宽度或单页高度的图片已等比缩小",
+        "附件保留文件名和大小，不在 Word 文档中嵌入文件；完整备份请使用 Mewoc 文件"
+      ]
+    },
+    {
+      "name": "complex-landscape",
+      "bytes": 11790,
+      "sha256": "f1e6429864169236ce9b18c4c6c4e72bd10b67ab775aa4e59fd3a9fd1833f187",
+      "warnings": [
+        "超出正文、单元格宽度或单页高度的图片已等比缩小",
+        "附件保留文件名和大小，不在 Word 文档中嵌入文件；完整备份请使用 Mewoc 文件"
+      ]
+    },
+    {
+      "name": "long-table",
+      "bytes": 10324,
+      "sha256": "3a78d12cd3855bde414b909233ea8670b54cba298bf513bde2bbf33c57f350df",
+      "warnings": []
+    }
+  ]
+}

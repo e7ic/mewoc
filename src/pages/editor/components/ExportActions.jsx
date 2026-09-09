@@ -3,13 +3,16 @@ import { Button, Dropdown, message } from "antd"
 import { DownloadOutlined, DownOutlined, PrinterOutlined } from "@ant-design/icons"
 import { useDocumentEditor } from "./EditorProvider.jsx"
 import { MarkdownExportDialog } from "./MarkdownExportDialog.jsx"
+import { DocxExportDialog } from "./DocxExportDialog.jsx"
 import { createDocumentMarkdown } from "../tools/markdown-file.js"
+import { createDocumentDocx } from "../tools/docx-file.js"
 import { createDocumentHtml, createPortableFile, downloadDocument } from "../tools/file-transfer.js"
 import { printDocument } from "../tools/print-document.js"
 import styles from "../sass/document-bar.module.scss"
 
 const EXPORT_ITEMS = [
   { key: "json", label: "Mewoc 文件（含图片与附件）" },
+  { key: "docx", label: "Word 文档（.docx）" },
   { key: "html", label: "HTML 网页" },
   { key: "markdown", label: "Markdown 文档" },
   { key: "text", label: "纯文本" }
@@ -18,14 +21,18 @@ const EXPORT_ITEMS = [
 export function ExportActions() {
   const [pending, setPending] = useState(false)
   const [markdown, setMarkdown] = useState(null)
+  const [docx, setDocx] = useState(null)
   const mountedRef = useRef(true)
+  const exportAbortRef = useRef(null)
+  const pendingRef = useRef(false)
   const printCleanupRef = useRef(null)
   const printAbortRef = useRef(null)
   const { editor, assets, getSnapshot, uploading } = useDocumentEditor()
 
   // 直接捕获当前内容，允许本地保存失败时仍尝试导出备份；异步转换完成后再检查会话存活。
   const handleExport = async ({ key }) => {
-    if (pending) return
+    if (pendingRef.current || uploading) return
+    pendingRef.current = true
     setPending(true)
     try {
       const snapshot = getSnapshot()
@@ -37,6 +44,12 @@ export function ExportActions() {
       if (key === "markdown") {
         const result = await createDocumentMarkdown(snapshot)
         if (mountedRef.current) setMarkdown(result)
+      }
+      if (key === "docx") {
+        const controller = new AbortController()
+        exportAbortRef.current = controller
+        const result = await createDocumentDocx(snapshot, assets, controller.signal)
+        if (mountedRef.current) setDocx(result)
       }
       if (key === "html" || key === "print") {
         const html = await createDocumentHtml(snapshot, assets)
@@ -59,12 +72,15 @@ export function ExportActions() {
     } catch (error) {
       if (mountedRef.current && error.name !== "AbortError") message.error(error.message)
     } finally {
+      pendingRef.current = false
+      exportAbortRef.current = null
       if (mountedRef.current) setPending(false)
     }
   }
 
   useEffect(() => () => {
     mountedRef.current = false
+    exportAbortRef.current?.abort()
     printAbortRef.current?.abort()
     printCleanupRef.current?.()
   }, [])
@@ -88,6 +104,7 @@ export function ExportActions() {
         >导出文档 <DownOutlined /></Button>
       </Dropdown>
       <MarkdownExportDialog result={markdown} onCancel={() => setMarkdown(null)} />
+      <DocxExportDialog result={docx} onCancel={() => setDocx(null)} />
     </>
   )
 }

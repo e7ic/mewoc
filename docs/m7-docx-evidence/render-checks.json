@@ -1,0 +1,41 @@
+{
+  "renderer": "bundled LibreOffice via render_docx.py",
+  "fontconfig": "tests/docx-prototype/fontconfig-macos.conf",
+  "wordVerified": false,
+  "results": [
+    {
+      "name": "portrait",
+      "pages": 2,
+      "pageSizesPt": [
+        [
+          595.303937007874,
+          841.889763779528
+        ],
+        [
+          595.303937007874,
+          841.889763779528
+        ]
+      ],
+      "chineseText": true,
+      "visualInspection": "两页均已逐页查看，无缺字、重叠或裁切",
+      "docxSha256": "fa6fb3a914b8a516cd730e5c59ef73f2d9957b5662e9ad2c59aa09231a1b0014"
+    },
+    {
+      "name": "landscape",
+      "pages": 2,
+      "pageSizesPt": [
+        [
+          841.889763779528,
+          595.303937007874
+        ],
+        [
+          841.889763779528,
+          595.303937007874
+        ]
+      ],
+      "chineseText": true,
+      "visualInspection": "两页均已逐页查看，无缺字、重叠或裁切",
+      "docxSha256": "70fa8afbc22be60a2990774167aec4596429be5a7c691390e7b6eb1083735c3e"
+    }
+  ]
+}
