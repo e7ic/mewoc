@@ -1,0 +1,98 @@
+[
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/page-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/page-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:16958:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:16401:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:16400:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:16375:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:16328:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:16373:13",
+    "timestamp": "2026-10-06T13:31:03.933Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "File: ./tests/table-pagination-checks.jsx:1:1\n  × Module build failed (from builtin:swc-loader):\n  ├─▶   ×   x Expression expected\n  │     │      ,-[/Users/e7ic/Desktop/Zephyr/Labs/mewoc/tests/table-pagination-checks.jsx:152:1]\n  │     │  149 |       assert(headers.length === layout().breaks.filter(gap => gap.tablePos !== undefined && gap.headerHeight > 0).length && headers.length >= 2, \"续页缺少或重复表头\")\n  │     │  150 |       for (const header of headers) {\n  │     │  151 |         assert(header.textContent === original.textContent, \"重复头与原文字不同\")\n  │     │  152 |         [...header.children].forEach((clone, index) => { const real = original.children[index]; assert(Math.abs(clone.getBoundingClientRect().width - real.getBoundingClientRect().width) < 1, \"重复头没有使用真实 colgroup\") })\n  │     │      :          ^^^\n  │     │  153 |         const next = header.nextElementSibling\n  │     │  154 |         assert(next && !next.hasAttribute(\"data-mewoc-table-pagination\") && header.getBoundingClientRect().bottom <= next.getBoundingClientRect().top + 1, \"表头盖住续页数据行\")\n  │     │  155 |       }\n  │     │      `----\n  │     │\n  │   \n  ╰─▶   × Syntax Error\n      \nImport traces (entry → error):\n  ./tests/BrowserVerification.jsx\n  ./tests/table-pagination-checks.jsx ×",
+    "timestamp": "2026-10-06T13:33:16.916Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "File: ./tests/table-pagination-checks.jsx:1:1\n  × Module build failed (from builtin:swc-loader):\n  ├─▶   ×   x Expression expected\n  │     │      ,-[/Users/e7ic/Desktop/Zephyr/Labs/mewoc/tests/table-pagination-checks.jsx:152:1]\n  │     │  149 |       assert(headers.length === layout().breaks.filter(gap => gap.tablePos !== undefined && gap.headerHeight > 0).length && headers.length >= 2, \"续页缺少或重复表头\")\n  │     │  150 |       for (const header of headers) {\n  │     │  151 |         assert(header.textContent === original.textContent, \"重复头与原文字不同\")\n  │     │  152 |         [...header.children].forEach((clone, index) => { const real = original.children[index]; assert(Math.abs(clone.getBoundingClientRect().width - real.getBoundingClientRect().width) < 1, \"重复头没有使用真实 colgroup\") })\n  │     │      :          ^^^\n  │     │  153 |         const next = header.nextElementSibling\n  │     │  154 |         assert(next && !next.hasAttribute(\"data-mewoc-table-pagination\") && header.getBoundingClientRect().bottom <= next.getBoundingClientRect().top + 1, \"表头盖住续页数据行\")\n  │     │  155 |       }\n  │     │      `----\n  │     │\n  │   \n  ╰─▶   × Syntax Error\n      \nImport traces (entry → error):\n  ./tests/BrowserVerification.jsx\n  ./tests/table-pagination-checks.jsx ×",
+    "timestamp": "2026-10-06T13:33:22.615Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "File: ./tests/table-pagination-checks.jsx:1:1\n  × Module build failed (from builtin:swc-loader):\n  ├─▶   ×   x Expression expected\n  │     │      ,-[/Users/e7ic/Desktop/Zephyr/Labs/mewoc/tests/table-pagination-checks.jsx:152:1]\n  │     │  149 |       assert(headers.length === layout().breaks.filter(gap => gap.tablePos !== undefined && gap.headerHeight > 0).length && headers.length >= 2, \"续页缺少或重复表头\")\n  │     │  150 |       for (const header of headers) {\n  │     │  151 |         assert(header.textContent === original.textContent, \"重复头与原文字不同\")\n  │     │  152 |         [...header.children].forEach((clone, index) => { const real = original.children[index]; assert(Math.abs(clone.getBoundingClientRect().width - real.getBoundingClientRect().width) < 1, \"重复头没有使用真实 colgroup\") })\n  │     │      :          ^^^\n  │     │  153 |         const next = header.nextElementSibling\n  │     │  154 |         assert(next && !next.hasAttribute(\"data-mewoc-table-pagination\") && header.getBoundingClientRect().bottom <= next.getBoundingClientRect().top + 1, \"表头盖住续页数据行\")\n  │     │  155 |       }\n  │     │      `----\n  │     │\n  │   \n  ╰─▶   × Syntax Error\n      \nImport traces (entry → error):\n  ./tests/BrowserVerification.jsx\n  ./tests/table-pagination-checks.jsx ×",
+    "timestamp": "2026-10-06T13:33:22.665Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "File: ./tests/table-pagination-checks.jsx:1:1\n  × Module build failed (from builtin:swc-loader):\n  ├─▶   ×   x Expression expected\n  │     │      ,-[/Users/e7ic/Desktop/Zephyr/Labs/mewoc/tests/table-pagination-checks.jsx:152:1]\n  │     │  149 |       assert(headers.length === layout().breaks.filter(gap => gap.tablePos !== undefined && gap.headerHeight > 0).length && headers.length >= 2, \"续页缺少或重复表头\")\n  │     │  150 |       for (const header of headers) {\n  │     │  151 |         assert(header.textContent === original.textContent, \"重复头与原文字不同\")\n  │     │  152 |         [...header.children].forEach((clone, index) => { const real = original.children[index]; assert(Math.abs(clone.getBoundingClientRect().width - real.getBoundingClientRect().width) < 1, \"重复头没有使用真实 colgroup\") })\n  │     │      :          ^^^\n  │     │  153 |         const next = header.nextElementSibling\n  │     │  154 |         assert(next && !next.hasAttribute(\"data-mewoc-table-pagination\") && header.getBoundingClientRect().bottom <= next.getBoundingClientRect().top + 1, \"表头盖住续页数据行\")\n  │     │  155 |       }\n  │     │      `----\n  │     │\n  │   \n  ╰─▶   × Syntax Error\n      \nImport traces (entry → error):\n  ./tests/BrowserVerification.jsx\n  ./tests/table-pagination-checks.jsx ×",
+    "timestamp": "2026-10-06T13:33:22.711Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/BrowserVerification.jsx is not accepted\nUpdate propagation: ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:16974:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:16417:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:16416:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:16391:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:16344:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:16389:13",
+    "timestamp": "2026-10-06T13:33:43.702Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/table-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/table-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18056:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17499:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17498:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17473:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17426:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17471:13",
+    "timestamp": "2026-10-06T13:34:18.243Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/extensions/page-pagination.js is not accepted\nUpdate propagation: ./src/pages/editor/extensions/page-pagination.js -> ./tests/page-furniture-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18062:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17505:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17504:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17479:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17432:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17477:13",
+    "timestamp": "2026-10-06T13:34:50.698Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/extensions/page-pagination.js is not accepted\nUpdate propagation: ./src/pages/editor/extensions/page-pagination.js -> ./tests/page-furniture-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18062:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17505:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17504:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17479:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17432:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17477:13",
+    "timestamp": "2026-10-06T13:35:05.801Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/extensions/page-pagination.js is not accepted\nUpdate propagation: ./src/pages/editor/extensions/page-pagination.js -> ./tests/page-furniture-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18062:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17505:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17504:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17479:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17432:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17477:13",
+    "timestamp": "2026-10-06T13:39:00.986Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/extensions/page-pagination.js is not accepted\nUpdate propagation: ./src/pages/editor/extensions/page-pagination.js -> ./tests/page-furniture-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18062:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17505:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17504:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17479:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17432:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17477:13",
+    "timestamp": "2026-10-06T13:39:33.827Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/extensions/page-pagination.js is not accepted\nUpdate propagation: ./src/pages/editor/extensions/page-pagination.js -> ./tests/page-furniture-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18062:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17505:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17504:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17479:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17432:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17477:13",
+    "timestamp": "2026-10-06T13:40:00.220Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/table-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/table-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18062:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17505:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17504:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17479:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17432:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17477:13",
+    "timestamp": "2026-10-06T13:43:48.062Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/page-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/page-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18098:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17541:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17540:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17515:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17468:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17513:13",
+    "timestamp": "2026-10-06T13:43:58.662Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/table-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/table-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18116:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17559:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17558:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17533:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17486:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17531:13",
+    "timestamp": "2026-10-06T13:44:26.736Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/table-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/table-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:18176:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17619:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:17618:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17593:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:17546:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:17591:13",
+    "timestamp": "2026-10-06T13:46:19.324Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  }
+]

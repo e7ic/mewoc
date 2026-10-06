@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-06",
+  "milestone": "M24 本地音频与视频",
+  "node": {
+    "passed": 691,
+    "total": 691,
+    "newMediaTests": 40
+  },
+  "lint": "passed",
+  "build": "passed",
+  "browser": {
+    "name": "Chrome",
+    "passed": 107,
+    "total": 107,
+    "groups": {
+      "media": 11,
+      "common": 62,
+      "toolbar": 29,
+      "word": 5
+    },
+    "nativeFormats": [
+      "MP3",
+      "WAV",
+      "WebM",
+      "MP4"
+    ]
+  },
+  "actualDownloadedFormats": [
+    "mewoc.json",
+    "html",
+    "docx",
+    "md",
+    "txt"
+  ],
+  "nativeControls": {
+    "audioPlayPause": "passed",
+    "videoPlayPause": "passed"
+  },
+  "pendingNativeChecks": [
+    "系统文件选择：扩展文件权限及原生窗口控制不稳定，未确认成功交付文件",
+    "系统打印/PDF：本批仅验证打印 CSS 和提示，未取得原生 PDF"
+  ],
+  "notes": [
+    "自动选择/IME 中断使用合成事件，不替代真实输入法或系统文件选择",
+    "Chrome 结果不扩展为 Safari/Firefox 兼容性",
+    "开始的 HMR 中断不计入通过结果，之后在冻结源码重新完整验收"
+  ],
+  "nextMilestone": "M25 自动分页：分页编辑、跨页表格、重复表头，分批推进"
+}

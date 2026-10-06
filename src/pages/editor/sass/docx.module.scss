@@ -13,7 +13,41 @@
 .warnings { margin: 6px 0 0; padding-left: 20px; max-height: 240px; overflow-y: auto; line-height: 1.8; }
 
 // 正文区域按视口限制高度，操作区在其外部保持独立排布。
-.body { max-height: calc(100vh - 240px); overflow-y: auto; }
+.body {
+  max-height: calc(100dvh - 160px);
+  overflow-y: auto;
+  // 让焦点描边留在滚动容器内，左右输入框和末尾预览都不会被边界裁切。
+  margin: -6px;
+  padding: 6px;
+}
 .actions { display: flex; justify-content: flex-end; gap: 10px; }
 .result { display: flex; flex-direction: column; gap: 12px; }
 .error { font-size: 13px; color: #c45e67; }
+
+.pageSummary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  > div:last-child { flex: 1; min-width: 0; line-height: 1.8; }
+}
+.pagePreview {
+  position: relative;
+  box-sizing: border-box;
+  flex: 0 0 160px;
+  max-width: 160px;
+  background: white;
+  border: 1px solid $ui-border;
+  overflow: hidden;
+}
+.previewLines {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  span { height: 2px; background: #dedce5; }
+  span:last-child { width: 65%; }
+}
+@media (max-width: 520px) {
+  .pageSummary { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .pagePreview { flex-basis: auto; width: 160px !important; }
+}

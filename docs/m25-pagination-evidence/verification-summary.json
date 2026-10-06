@@ -1,0 +1,115 @@
+{
+  "milestone": "M25",
+  "batch": 1,
+  "date": "2026-10-06",
+  "status": "本批通过；M25 其余能力继续分批实现",
+  "scope": [
+    "按顶层正文块实测自动分页",
+    "逐页纸面、水印、页眉页脚与真实页码",
+    "手动空页及同页链",
+    "超高内容完整展开",
+    "单编辑器跨页编辑、撤销、选择、复制与保存"
+  ],
+  "node": {
+    "total": 711,
+    "passed": 711,
+    "failed": 0,
+    "skipped": 0,
+    "evidence": "node-test.log"
+  },
+  "browser": {
+    "browser": "Chrome",
+    "total": 143,
+    "passed": 143,
+    "groups": [
+      {
+        "name": "pagination",
+        "total": 15,
+        "passed": 15,
+        "evidence": "pagination-browser.json"
+      },
+      {
+        "name": "page-settings",
+        "total": 11,
+        "passed": 11,
+        "evidence": "page-settings-browser.json"
+      },
+      {
+        "name": "page-furniture",
+        "total": 10,
+        "passed": 10,
+        "evidence": "page-furniture-browser.json"
+      },
+      {
+        "name": "editor",
+        "total": 62,
+        "passed": 62,
+        "evidence": "editor-browser.json"
+      },
+      {
+        "name": "toolbar",
+        "total": 29,
+        "passed": 29,
+        "evidence": "toolbar-browser.json"
+      },
+      {
+        "name": "media",
+        "total": 11,
+        "passed": 11,
+        "evidence": "media-browser.json"
+      },
+      {
+        "name": "word",
+        "total": 5,
+        "passed": 5,
+        "evidence": "word-browser.json"
+      }
+    ]
+  },
+  "checks": {
+    "lint": "passed",
+    "productionBuild": "passed",
+    "gitDiffCheck": "passed",
+    "lintEvidence": "lint.log",
+    "buildEvidence": "build.log"
+  },
+  "longDocument": {
+    "paragraphs": 400,
+    "pages": 14,
+    "maxDriftPx": 0.010545534576522186,
+    "evidence": "pagination-browser.json"
+  },
+  "nativePaste": {
+    "passed": true,
+    "beforePage": 1,
+    "afterPage": 2,
+    "caretVisible": true,
+    "evidence": "native-caret.json"
+  },
+  "screenshot": "editor-pagination.png",
+  "mainService": {
+    "url": "http://127.0.0.1:4177/",
+    "evidence": "main-service.json"
+  },
+  "cleanup": {
+    "isolatedPort": 4190,
+    "recycledDocuments": 17,
+    "recoverable": true,
+    "evidence": "cleanup.json",
+    "mainUserDocumentsUntouched": true
+  },
+  "runNotes": [
+    "开发中 HMR 中断的分页/页眉页脚尝试未计入通过数，最终完整重跑通过",
+    "媒体专项测试原先仅允许 4189，扩展到专用 4190 后完整 11 项通过",
+    "清理期间等待确认弹窗动画结束后完成回收，未清空回收站"
+  ],
+  "limitations": [
+    "段内按行分页、跨页表格和重复表头尚未接入",
+    "超高纸面是编辑视图展开，不是单张物理打印页",
+    "HTML、打印和 Word 从文档快照独立排版，不承诺与编辑屏幕分页一致",
+    "组合输入保护通过合成事件验证，本批未执行真实输入法候选手动验收",
+    "本批未执行系统打印或原生 Word/WPS 排版验收",
+    "本批浏览器证据来自 Chrome，未新增 Safari/Firefox 验收"
+  ],
+  "nextBatch": "表格按行跨页及重复表头；随后段内和长容器分页"
+}

@@ -13,8 +13,8 @@ import { MAX_ASSET_BYTES } from "../constants/editor-constants.js"
 // Worker 返回纯数据及 Blob；不创建 DOM、编辑器或会话 URL。
 /** 返回可通过 Worker structured clone 传递的 HTML、元信息、资源和 warnings；任一步失败整体拒绝。 */
 export async function convertDocxImport(source, signal) {
-  const warnings = new Set(["按内容语义导入，字体、字号、颜色、间距和纸张布局使用编辑器默认值，请保留原 DOCX"])
-  const { buffer, paragraphs, formulas } = await readDocxImportArchive(source, warnings, signal)
+  const warnings = new Set(["按内容语义导入，字体、字号、颜色和段落间距使用编辑器默认值；原始分页不保证保留，请保留原 DOCX"])
+  const { buffer, paragraphs, formulas, page } = await readDocxImportArchive(source, warnings, signal)
   // 按图片内容 SHA-256 去重，重复引用共享资源；总量只累计唯一图片的字节数。
   const images = new Map()
   let total = 0
@@ -57,5 +57,6 @@ export async function convertDocxImport(source, signal) {
   if (formulas.length) warnings.add("常用 Word 公式已转换为可编辑公式，字体及细节间距可能不同")
   if (images.size) warnings.add("图片保留原始字节，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留")
   if (converted.value.includes("<table")) warnings.add("表格保留内容和合并结构，列宽、行高、底色、边框与单元格设置使用编辑器默认值")
-  return { html: converted.value, paragraphs, formulas, images: [...images.values()], warnings: [...warnings] }
+  // page 是纯数据，和正文/资源一起经过 Worker structured clone；不会读取当前编辑会话的页面。
+  return { html: converted.value, paragraphs, formulas, page, images: [...images.values()], warnings: [...warnings] }
 }

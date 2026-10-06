@@ -1,0 +1,14 @@
+{
+  "audio": {
+    "observedPlaying": true,
+    "time": 0.130752,
+    "pausedAfterClick": true
+  },
+  "video": {
+    "error": null,
+    "kind": "VIDEO",
+    "paused": false,
+    "ready": 4,
+    "time": 0.234273
+  }
+}

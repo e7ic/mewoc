@@ -1,0 +1,11 @@
+{
+  "source": "Buffered isolated dev-server output returned when SIGINT stopped the server",
+  "browserMessage": "ResizeObserver loop completed with undelivered notifications.",
+  "exactTimeAvailable": false,
+  "earlierCompileErrors": "导入新增 paragraph-pagination helper 后、该文件首次写入前有临时 module-not-found 编译失败；helper 写入后恢复 ready，最终生产构建通过。",
+  "finalProductionBuild": {
+    "exitCode": 0,
+    "file": "build.log"
+  },
+  "finalBrowserChecks": 191
+}

@@ -13,6 +13,7 @@
         z-index: -1;
         inset: -5px -8px;
         background: rgb(245, 248, 252);
+        clip-path: var(--mewoc-paragraph-focus-clip, none);
         border-radius: 3px;
         pointer-events: none;
         content: "";

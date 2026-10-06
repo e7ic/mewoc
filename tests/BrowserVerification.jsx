@@ -24,6 +24,12 @@ import { runViewImageChecks } from "./view-image-checks.jsx"
 import { runRichBlocksChecks } from "./rich-blocks-checks.jsx"
 import { runNavigationChecks } from "./navigation-checks.jsx"
 import { runPageSettingsChecks } from "./page-settings-checks.jsx"
+import { runDocxPageImportChecks, showDocxPageImportPreview } from "./docx-page-import-checks.jsx"
+import { runPageFurnitureChecks, showPageFurnitureExample } from "./page-furniture-checks.jsx"
+import { runMediaChecks, showMediaExample } from "./media-checks.jsx"
+import { runPagePaginationChecks } from "./page-pagination-checks.jsx"
+import { runTablePaginationChecks, showTablePaginationExample } from "./table-pagination-checks.jsx"
+import { runParagraphPaginationChecks, showParagraphPaginationExample } from "./paragraph-pagination-checks.jsx"
 import "../src/pages/editor/sass/content.scss"
 
 // 运行状态限制重复启动；双会话用于证明编辑器与 Zustand 实例隔离。
@@ -152,6 +158,67 @@ function BrowserVerification() {
         try { await runPageSettingsChecks(result => setResults(items => [...items, result])) }
         finally { setRunning(false) }
       }}>运行页面与水印验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocxPageImportChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行 Word 页面往返验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showDocxPageImportPreview() }
+        finally { setRunning(false) }
+      }}>打开 Word 页面预览示例</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runPageFurnitureChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行页眉页脚与页码验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showPageFurnitureExample() }
+        finally { setRunning(false) }
+      }}>打开页眉页脚补验示例</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runMediaChecks(result => setResults(items => [...items, result])) }
+        catch (error) { setResults(items => [...items, { name: "媒体验收运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>运行音频与视频验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showMediaExample() }
+        finally { setRunning(false) }
+      }}>打开媒体补验示例</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runPagePaginationChecks(result => setResults(items => [...items, result])) }
+        catch (error) { setResults(items => [...items, { name: "分页验收运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>运行自动分页验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runTablePaginationChecks(result => setResults(items => [...items, result])) }
+        catch (error) { setResults(items => [...items, { name: "跨页表格验收运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>运行跨页表格验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showTablePaginationExample() }
+        catch (error) { setResults(items => [...items, { name: "跨页表格示例运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>显示跨页表格示例</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runParagraphPaginationChecks(result => setResults(items => [...items, result])) }
+        catch (error) { setResults(items => [...items, { name: "段内分页验收运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>运行段内分页验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showParagraphPaginationExample() }
+        catch (error) { setResults(items => [...items, { name: "段内分页示例运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>显示段内分页示例</button>
       <p role="status">{running ? "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
       <ol>{results.map(result => (
         <li key={result.name}>

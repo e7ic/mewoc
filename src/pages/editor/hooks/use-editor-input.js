@@ -72,6 +72,7 @@ export function cleanPastedHtml(html, hasAsset = () => false, currentContent) {
   parsed.querySelectorAll("script, style, iframe, object, embed, svg, math, link, meta").forEach(node => node.remove())
   const codes = cleanPastedCode(parsed)
   const attachments = cleanPastedAttachments(parsed, hasAsset)
+  const media = cleanPastedMedia(parsed, hasAsset)
   const blockContainers = cleanPastedBlockContainers(parsed)
   const navigation = cleanPastedNavigation(parsed, currentContent)
   const taskLists = new Set(parsed.querySelectorAll('ul[data-type="taskList"]'))
@@ -120,11 +121,12 @@ export function cleanPastedHtml(html, hasAsset = () => false, currentContent) {
       const isFormula = formulas.has(element) && ["data-type", "data-latex"].includes(attr.name)
       const isCode = codes.has(element) && attr.name === "data-code-language"
       const isAttachment = attachments.has(element) && ["data-type", "data-mewoc-asset-id"].includes(attr.name)
+      const isMedia = media.has(element) && ["data-type", "data-mewoc-asset-id", "data-media-kind"].includes(attr.name)
       const isTask = (taskLists.has(element) && attr.name === "data-type")
         || (taskItems.has(element) && ["data-type", "data-checked"].includes(attr.name))
       const isBlockContainer = container?.attributes.has(attr.name)
       const isNavigation = navigation.get(element)?.has(attr.name)
-      if (!isLink && !isListNumbering && !isTableSpan && !isColumnWidth && !isImageId && !isImageText && !isImageSize && !isImageAlignment && !isImageLock && !isFormula && !isCode && !isAttachment && !isTask && !isBlockContainer && !isNavigation) element.removeAttribute(attr.name)
+      if (!isLink && !isListNumbering && !isTableSpan && !isColumnWidth && !isImageId && !isImageText && !isImageSize && !isImageAlignment && !isImageLock && !isFormula && !isCode && !isAttachment && !isMedia && !isTask && !isBlockContainer && !isNavigation) element.removeAttribute(attr.name)
     }
     const style = [textStyle, tableStyle, container?.style].filter(Boolean).join("; ")
     if (style) element.setAttribute("style", style)
@@ -156,6 +158,26 @@ function getPastedTableStyle(element) {
 }
 
 // 附件字节不会随 HTML 剪贴板跨会话传递；缺失引用退化为说明文字，保留可理解的文件名。
+// 媒体粘贴只承接本会话已有资源，播放器地址与浏览器控件始终由节点视图重建。
+// 外部 HTML/其他文档的资源引用转为说明，不访问 URL，也不让未知媒体冒充已有附件或图片。
+function cleanPastedMedia(parsed, hasAsset) {
+  const media = new Set()
+  parsed.querySelectorAll('div[data-type="media"]').forEach(element => {
+    const assetId = element.getAttribute("data-mewoc-asset-id")
+    const kind = element.getAttribute("data-media-kind")
+    const name = element.querySelector("[data-media-name]")?.textContent || "媒体文件"
+    const available = ["audio", "video"].includes(kind) && hasAsset(assetId, kind)
+    element.textContent = `${kind === "audio" ? "音频" : "视频"}：${name}${available ? "" : "（请通过本地文件重新插入）"}`
+    if (available) media.add(element)
+    else element.removeAttribute("data-type")
+  })
+  parsed.querySelectorAll("audio, video").forEach(element => {
+    element.replaceWith(parsed.createTextNode(`[外部${element.tagName === "AUDIO" ? "音频" : "视频"}：请通过本地文件插入]`))
+  })
+  parsed.querySelectorAll("source, track").forEach(element => element.remove())
+  return media
+}
+
 function cleanPastedAttachments(parsed, hasAsset) {
   const attachments = new Set()
   parsed.querySelectorAll('div[data-type="attachment"]').forEach(element => {

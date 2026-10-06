@@ -66,7 +66,7 @@ async function checkLargeTable({ editor, getSnapshot, saveDocument }) {
   const snapshot = getSnapshot()
   const table = snapshot.content.content.find(node => node.type === "table")
   assert(table.content.length === 100 && table.content.every(row => row.content.length === 10), "大表格行列数错误")
-  assert(editor.view.dom.querySelectorAll("td, th").length === 1000, "表格 DOM 单元格丢失")
+  assert([...editor.view.dom.querySelectorAll("td, th")].filter(cell => !cell.closest("[data-mewoc-table-pagination]")).length === 1000, "表格 DOM 单元格丢失")
   assert(await saveDocument(), "大表格保存失败")
   return { loadAndLayoutMs: laidOut - start, editColumnMs: commandEnd - laidOut, snapshotAndSaveMs: performance.now() - commandEnd }
 }

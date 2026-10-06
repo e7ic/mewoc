@@ -17,7 +17,7 @@ export const TableColumnResize = Extension.create({
 // 合并单元格的右边缘对应其覆盖的最后一列；TableMap 给出逻辑列号和相对表格的位置。
 function getResizeColumn(view, event) {
   const cell = event.target.closest?.("td, th")
-  if (!cell || !view.dom.contains(cell)) return null
+  if (!cell || !view.dom.contains(cell) || cell.closest("[data-mewoc-table-pagination]")) return null
   const edge = cell.getBoundingClientRect().right - event.clientX
   // 6 个屏幕像素是拖动热区，与文档缩放后的逻辑列宽分开。
   if (edge < -2 || edge > 6) return null

@@ -12,6 +12,8 @@ import { ImageSettings } from "./ImageSettings.jsx"
 import { CodeBlockControls } from "./CodeBlockControls.jsx"
 import { AttachmentAction } from "./AttachmentAction.jsx"
 import { AttachmentSettings } from "./AttachmentSettings.jsx"
+import { MediaAction } from "./MediaAction.jsx"
+import { MediaSettings } from "./MediaSettings.jsx"
 import { QuickInsertControls } from "./QuickInsertControls.jsx"
 import { TableInsertAction } from "./TableInsertAction.jsx"
 import { BlockContainerInsertActions, BlockContainerSettings } from "./BlockContainerControls.jsx"
@@ -28,7 +30,7 @@ export function InsertToolbar({ active = true, layoutKey = "", compact = false }
   // 按当前正文选区展示对应节点工具，不另存“当前图片/表格”以免编辑后目标过期。
   const selection = useEditorState({ editor, selector: ({ editor: current }) => ({
     table: current.isActive("table"), image: current.isActive("image"), code: Boolean(getCodeBlockTarget(current.state.selection)),
-    attachment: current.isActive("attachment"), container: current.isActive("textBox") || current.isActive("details"), toc: current.isActive("tableOfContents")
+    attachment: current.isActive("attachment"), media: current.isActive("media"), container: current.isActive("textBox") || current.isActive("details"), toc: current.isActive("tableOfContents")
   }) })
 
   // 复制 FileList 后立即清空文件框，使同一图片再次选择仍触发 change；无文件时不启动插入。
@@ -51,6 +53,8 @@ export function InsertToolbar({ active = true, layoutKey = "", compact = false }
           <IconPhoto aria-hidden="true" /><span>{imageUploading ? "读取图片…" : "图片"}</span>
         </button>
         <AttachmentAction />
+        <MediaAction kind="audio" />
+        <MediaAction kind="video" />
         <TableInsertAction active={active} layoutKey={layoutKey} />
         <button type="button" disabled={readOnly} onClick={() => editor.chain().focus().setHorizontalRule().run()}>
           <IconSeparatorHorizontal aria-hidden="true" /><span>水平线</span>
@@ -81,10 +85,11 @@ export function InsertToolbar({ active = true, layoutKey = "", compact = false }
       <ImageSettings active={selection.image} />
       {selection.code && <CodeBlockControls active={active} layoutKey={layoutKey} />}
       {selection.attachment && <AttachmentSettings />}
+      {selection.media && <MediaSettings />}
       {/* 容器设置保持挂载，弹窗保存打开时的原容器和草稿，而不是跟随正文改选区重新初始化。 */}
       <BlockContainerSettings active={active} />
       <TableOfContentsControls active={active} />
-      {!selection.table && !selection.image && !selection.code && !selection.attachment && !selection.container && !selection.toc && <p className={styles.description}>图片或附件单个不超过 5 MiB，合计不超过 20 MiB。<br />图片支持粘贴与拖入；附件通过「附件」选择。</p>}
+      {!selection.table && !selection.image && !selection.code && !selection.attachment && !selection.media && !selection.container && !selection.toc && <p className={styles.description}>资源单个不超过 5 MiB，合计不超过 20 MiB。<br />音频支持 MP3、WAV；视频支持 MP4、WebM。</p>}
     </>
   )
 }

@@ -1,0 +1,150 @@
+{
+  "milestone": "M25",
+  "batch": 2,
+  "date": "2026-10-06",
+  "status": "本批通过；段内按行与长容器继续后续批次",
+  "scope": [
+    "表格安全行组跨页",
+    "连续多行起始表头重复",
+    "合并跨度保护与续页编辑",
+    "富表头静态净化和原资源稳定",
+    "HTML真实thead与Word原始表头输出"
+  ],
+  "node": {
+    "total": 753,
+    "passed": 753,
+    "failed": 0,
+    "skipped": 0,
+    "evidence": "node-test.log"
+  },
+  "browser": {
+    "browser": "Chrome",
+    "total": 173,
+    "passed": 173,
+    "groups": [
+      {
+        "name": "table-pagination",
+        "total": 20,
+        "passed": 20,
+        "evidence": "table-pagination-browser.json"
+      },
+      {
+        "name": "pagination",
+        "total": 15,
+        "passed": 15,
+        "evidence": "pagination-browser.json"
+      },
+      {
+        "name": "precision",
+        "total": 10,
+        "passed": 10,
+        "evidence": "precision-browser.json"
+      },
+      {
+        "name": "editor",
+        "total": 62,
+        "passed": 62,
+        "evidence": "editor-browser.json"
+      },
+      {
+        "name": "toolbar",
+        "total": 29,
+        "passed": 29,
+        "evidence": "toolbar-browser.json"
+      },
+      {
+        "name": "media",
+        "total": 11,
+        "passed": 11,
+        "evidence": "media-browser.json"
+      },
+      {
+        "name": "word",
+        "total": 5,
+        "passed": 5,
+        "evidence": "word-browser.json"
+      },
+      {
+        "name": "page-settings",
+        "total": 11,
+        "passed": 11,
+        "evidence": "page-settings-browser.json"
+      },
+      {
+        "name": "page-furniture",
+        "total": 10,
+        "passed": 10,
+        "evidence": "page-furniture-browser.json"
+      }
+    ]
+  },
+  "checks": {
+    "lint": "passed",
+    "productionBuild": "passed",
+    "gitDiffCheck": "passed",
+    "lintEvidence": "lint.log",
+    "buildEvidence": "build.log"
+  },
+  "longTable": {
+    "rows": 400,
+    "columns": 2,
+    "cells": 800,
+    "pages": 22,
+    "maxDriftPx": 0.01607998431791202,
+    "fontSize": "12.75pt",
+    "evidence": "table-pagination-browser.json"
+  },
+  "longDocument": {
+    "paragraphs": 400,
+    "pageCount": 13,
+    "maxDriftPx": 0.009694855794805335,
+    "fontSize": "12.75pt",
+    "evidence": "pagination-browser.json"
+  },
+  "nativeEditing": {
+    "originalRows": 61,
+    "pages": 6,
+    "repeatedHeaders": 5,
+    "ASCIIInputAndUndo": "passed",
+    "evidence": "native-edit-undo.json"
+  },
+  "screenshot": "editor-table-pagination.png",
+  "mainService": {
+    "url": "http://127.0.0.1:4177/",
+    "errors": 0,
+    "evidence": "main-service.json"
+  },
+  "cleanup": {
+    "testServer4190": "stopped",
+    "agentTabs": "closed",
+    "formal4177UserDocuments": "not modified",
+    "evidence": "cleanup.json"
+  },
+  "developmentAttempts": {
+    "first": "非法13.5pt/20pt夹具与保存校验不一致，已改用合法12.75pt/22.5pt并收紧保存检查",
+    "second": "清空CellSelection后恢复普通光标属预期，检查改读最新TableMap九格",
+    "pageFurniture": "一轮页面重置后完整重跑10/10；中断文档已回收",
+    "evidence": [
+      "browser-first-attempt.json",
+      "browser-second-attempt.json"
+    ]
+  },
+  "console": {
+    "tableSpecialtyRuntimeErrors": 0,
+    "regressionRuntimeErrors": 0,
+    "nonBlockingCleanupWarnings": 1,
+    "note": "验收卸载ExportActions时出现一条AntD Overflow延迟状态更新警告，保留原日志；正式页无控制台错误",
+    "evidence": "final-run-errors.json"
+  },
+  "notVerified": [
+    "本批真实输入法候选",
+    "本批物理鼠标按住拖动",
+    "本批Safari原生交互",
+    "系统打印PDF与Word/WPS原生物理分页"
+  ],
+  "remaining": [
+    "长段落按行分页",
+    "长列表与嵌套容器分页",
+    "M25持续验收与版本收口"
+  ]
+}

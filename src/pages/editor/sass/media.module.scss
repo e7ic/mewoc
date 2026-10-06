@@ -1,0 +1,12 @@
+@use "../../../assets/style/theme.scss" as *;
+
+// 节点工具沿用工具栏对齐，下载为原生链接，键盘也能独立访问。
+.settings { min-width: 0; }
+.download {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 28px; padding: 3px 6px; border-radius: 3px; color: $ui-text;
+  white-space: nowrap; text-decoration: none;
+  &:hover { color: $ui-accent; background: $ui-hover; }
+  &:focus-visible { outline: 2px solid #3480f9; outline-offset: 2px; }
+  :global(.tabler-icon) { font-size: 20px; }
+}

@@ -1,0 +1,218 @@
+{
+  "milestone": "M23 · 页眉、页脚与页码",
+  "verifiedAtUtc": "2026-10-06T11:17:12.852787+00:00",
+  "scope": [
+    "全局单行普通文字页眉与页脚",
+    "独立启用、三种对齐、无页码/当前页/当前页与总页",
+    "保存、历史、模板、备份和独立预览",
+    "HTML 原生页码与 Chrome 系统 PDF",
+    "DOCX 原生 PAGE/NUMPAGES 域及自有结构严格导回"
+  ],
+  "node": {
+    "passed": 651,
+    "total": 651,
+    "failed": 0,
+    "log": "node-final.log",
+    "version": "24.13.1"
+  },
+  "browser": {
+    "passed": 126,
+    "total": 126,
+    "groups": [
+      {
+        "name": "browser",
+        "passed": 10,
+        "total": 10,
+        "result": "browser.json",
+        "console": "browser-console-final.json"
+      },
+      {
+        "name": "word-page",
+        "passed": 8,
+        "total": 8,
+        "result": "word-page.json",
+        "console": "word-page-console-final.json"
+      },
+      {
+        "name": "page",
+        "passed": 11,
+        "total": 11,
+        "result": "page.json",
+        "console": "page-console-final.json"
+      },
+      {
+        "name": "regression",
+        "passed": 62,
+        "total": 62,
+        "result": "regression.json",
+        "console": "regression-console-final.json"
+      },
+      {
+        "name": "import",
+        "passed": 6,
+        "total": 6,
+        "result": "import.json",
+        "console": "import-console-final.json"
+      },
+      {
+        "name": "toolbar",
+        "passed": 29,
+        "total": 29,
+        "result": "toolbar.json",
+        "console": "toolbar-console-final.json"
+      }
+    ],
+    "origin": "http://127.0.0.1:4188/tests/browser.html",
+    "fileInput": "开发示例合成文件经真实 Worker 和生产预览确认；不冒充原生文件选择器补验"
+  },
+  "lint": {
+    "passed": true,
+    "log": "lint.log",
+    "npmConfigWarnings": "npm 报告 pnpm 专用配置项提醒，ESLint 零警告"
+  },
+  "build": {
+    "passed": true,
+    "log": "build.log",
+    "totalKb": 3586.3,
+    "gzipKb": 1136.0
+  },
+  "console": {
+    "finalSourceCutoffUtc": "2026-10-06T11:08:16.000Z",
+    "groups": [
+      {
+        "name": "browser",
+        "historicalRawWarnErrorCount": 8,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 1
+      },
+      {
+        "name": "word-page",
+        "historicalRawWarnErrorCount": 1,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 0
+      },
+      {
+        "name": "page",
+        "historicalRawWarnErrorCount": 1,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 0
+      },
+      {
+        "name": "regression",
+        "historicalRawWarnErrorCount": 1,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 0
+      },
+      {
+        "name": "import",
+        "historicalRawWarnErrorCount": 1,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 0
+      },
+      {
+        "name": "toolbar",
+        "historicalRawWarnErrorCount": 2,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 0
+      },
+      {
+        "name": "manual",
+        "historicalRawWarnErrorCount": 1,
+        "afterFinalSourceCutoffAppWarnErrors": 0,
+        "afterFinalSourceCutoffExtensionWarnErrors": 1
+      }
+    ],
+    "classification": "原始开发热更新失败和扩展 locatorjs 提示均保留；最终源冻结后无应用警告/错误"
+  },
+  "narrowDialog": {
+    "passed": true,
+    "viewport": [
+      920,
+      600
+    ],
+    "bounds": {
+      "top": 24,
+      "bottom": 584,
+      "height": 560
+    },
+    "keyboard": "实际 Tab 到达取消和应用，Enter 应用",
+    "geometry": "narrow-checks.json",
+    "screenshot": "settings-narrow.png"
+  },
+  "nativePdf": {
+    "passed": true,
+    "file": "native-print.pdf",
+    "sha256": "9e7768e5dac069f1c35cd2ebc6bee0e49b190ce9d169749981aeb19397860f1a",
+    "pages": 9,
+    "paper": "A5 横向",
+    "marginsMm": {
+      "top": 12,
+      "right": 20,
+      "bottom": 12,
+      "left": 20
+    },
+    "backgroundGraphics": false,
+    "pageNumbers": "每页 header 第 n 页，footer 第 n / 9 页，各出现一次",
+    "appendix": "第 7–9 页批注附录计入总页数，全文1280字符匹配",
+    "body": "标题与12段正文、2951字符完整比对",
+    "textAnalysis": "native-print-analysis.json",
+    "nativeState": "print-native-state.txt",
+    "nativeScreenshot": "print-preview.png",
+    "renderedPages": [
+      "print-page-1.png",
+      "print-page-2.png",
+      "print-page-3.png",
+      "print-page-4.png",
+      "print-page-5.png",
+      "print-page-6.png",
+      "print-page-7.png",
+      "print-page-8.png",
+      "print-page-9.png"
+    ],
+    "visualReview": "全部九页渲染并逐页查看：页眉页脚不裁切、不覆盖正文，水印每页独立",
+    "comparisonNote": "Unicode NFKC、CJK radical 页别名与提取换行空白只用于比较，PDF 未被改写"
+  },
+  "initialFindings": [
+    {
+      "issue": "旧无装饰 @page 字符串多余空白令首轮 Node 630/631",
+      "resolution": "保持原格式后全部651通过",
+      "evidence": "node.log"
+    },
+    {
+      "issue": "并行工具栏和页面专项共享测试源偏好，工具栏28/29",
+      "resolution": "独立重跑29/29，最终126/126只计独立重跑",
+      "evidence": "toolbar-parallel.json"
+    },
+    {
+      "issue": "920×600弹窗初次底部超出视口",
+      "resolution": "缩短可滚动正文高度，实测bottom584且键盘按钮可达"
+    },
+    {
+      "issue": "Chrome 首次打印停在空白遮罩",
+      "resolution": "关闭本次测试标签页，以前台新补验示例恢复；最终原生保存9页 PDF"
+    }
+  ],
+  "notVerified": [
+    "原生 Microsoft Word/WPS 打开和域更新、重存兼容",
+    "Safari/Firefox 系统 PDF",
+    "真实输入法候选和物理鼠标（已有旧批证据不扩为本批）"
+  ],
+  "limits": [
+    "正文编辑区域连续显示，编辑页码仅示意",
+    "无分节编辑、首页/奇偶不同、起始页码、自定义页码格式、富文本页眉或实时自动分页",
+    "DOCX 仅恢复完整 canonical 自有格式，外部重存改结构可能明确拒绝",
+    "不支持页面边距框时打印入口停止并提示替代方案"
+  ],
+  "services": {
+    "main": "http://127.0.0.1:4177/",
+    "test": "4188 临时验收服务已关闭，4177 主服务保留",
+    "mainHttpStatus": 200
+  },
+  "cleanupNote": "正常补验通过结束按钮释放当前记录；首次打印中断使用独立4188测试源，关闭其测试标签页不操作4177用户文档",
+  "cleanup": {
+    "ownTestTabsClosed": 7,
+    "viewportOverrideReset": true,
+    "currentManualFixtureEndedByUi": true,
+    "interruptedPrintFixture": "首次打印中断记录仅位于4188测试源，未操作4177用户文档"
+  }
+}

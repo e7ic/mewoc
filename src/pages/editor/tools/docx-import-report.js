@@ -57,10 +57,20 @@ export function appendDocxPageContent(parts, warnings) {
   const mainRelations = parts.get("word/_rels/document.xml.rels")
   // used 防止多节共用的页内容重复；ids 防止新增关系与主文档已有关系 ID 冲突。
   const used = new Set()
+  const historical = new Set()
   const ids = new Set(Array.from(mainRelations?.getElementsByTagNameNS(PACKAGE_XML, "Relationship") || []).map(node => node.getAttribute("Id")))
   for (const kind of ["header", "footer"]) {
     for (const reference of Array.from(xml.getElementsByTagNameNS(WORD_XML, `${kind}Reference`))) {
       const path = partTarget("word/document.xml", relationship(parts, "word/document.xml", reference.getAttributeNS(REL_XML, "id"), kind))
+      // 页面读取器已验证 sectPrChange 的归属；历史快照的独占页部件不属于当前正文。
+      // 仍检查关系与部件根，不能把缺失资源或任意无引用内容借历史标记放行。
+      if (hasSectionHistory(reference)) {
+        const part = parts.get(path)
+        if (!part || part.documentElement.namespaceURI !== WORD_XML || part.documentElement.localName !== (kind === "header" ? "hdr" : "ftr")) throw new Error("历史页眉、页脚部件缺失或无效，请保留原 DOCX")
+        historical.add(path)
+        warnings.add("页面属性修订快照中的旧页眉、页脚不属于当前正文，未导入；请保留原 DOCX")
+        continue
+      }
       if (used.has(path)) continue
       used.add(path)
       const part = parts.get(path)
@@ -100,8 +110,15 @@ export function appendDocxPageContent(parts, warnings) {
   }
   // 包内有正文未引用但含内容的页部件时无法判断是有效内容还是旧残留，明确拒绝以免遗漏。
   for (const [path, part] of parts) {
-    if (/^word\/(header|footer)\d*\.xml$/.test(path) && !used.has(path) && hasPageContent(part)) throw new Error("页眉、页脚未被正文引用，无法确定其归属，请保留原 DOCX")
+    if (/^word\/(header|footer)\d*\.xml$/.test(path) && !used.has(path) && !historical.has(path) && hasPageContent(part)) throw new Error("页眉、页脚未被正文引用，无法确定其归属，请保留原 DOCX")
   }
+}
+
+function hasSectionHistory(node) {
+  for (let parent = node.parentNode; parent; parent = parent.parentNode) {
+    if (parent.namespaceURI === WORD_XML && parent.localName === "sectPrChange") return true
+  }
+  return false
 }
 
 /** 文字或可见资源节点都算内容；纯空白页部件跳过，含图片的无文字页仍必须保留。 */

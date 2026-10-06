@@ -14,7 +14,9 @@ import { TEXT_BOX_DEFAULTS, DETAILS_DEFAULTS } from "./block-containers.js"
 import { isInternalNavigationHref } from "./document-navigation.js"
 import { prepareNavigationExportContent, MISSING_NAVIGATION_WARNING } from "./navigation-export.js"
 import { PAGE_SIZES, getPageContentDimensions } from "./page-settings.js"
-import { createDocxWatermarkHeader } from "./docx-watermark.js"
+import { createDocxPageFurniture, getDocxFurnitureDistances } from "./docx-page-furniture.js"
+import { isPageFurnitureActive } from "./page-furniture.js"
+import { getMediaText } from "./media-assets.js"
 
 // 语法着色类到 Word 色值的固定映射，OOXML 使用不含 # 的十六进制 RGB。
 const CODE_COLORS = [
@@ -46,8 +48,6 @@ export async function createDocumentDocx(document, assets, signal) {
   const pageSize = PAGE_SIZES[document.page.size]
   const contentSize = getPageContentDimensions(document.page)
   const warnings = new Set(navigation.warnings)
-  // 导出使用原生 VML 水印，但现有导入器仍拒绝这类旧式形状；确认下载时明确完整备份出口。
-  if (document.page.watermark) warnings.add("文字水印已保留；当前 Word 导入暂不支持这种水印，重新编辑请保留 Mewoc 文件")
   const numbering = []
   // Word 名称限定为以字母开头的 ASCII 字母/数字/下划线且不超过 40 字符。
   // nav-UUIDv4 映射为 nav_UUID，名字稳定；每份文件另分配唯一整数，配对 start/end，避免 SDK 每实例重置编号。
@@ -71,10 +71,12 @@ export async function createDocumentDocx(document, assets, signal) {
     })
   }
   signal?.throwIfAborted()
-  const watermarkHeader = createDocxWatermarkHeader(document.page)
+  const furniture = createDocxPageFurniture(document.page)
   // 正文样式、编号定义与页面设置一起封装到一个节；设置 eastAsia 字体以稳定中文默认外观。
   const file = new sdk.Document({
     creator: "Mewoc", title: document.title,
+    // 原生页码缓存只供未排版查看器显示；请 Office 打开时重算，不能缓存编辑连续纸面的假总页数。
+    ...([document.page.header, document.page.footer].some(value => isPageFurnitureActive(value) && value.pageNumber !== "none") && { features: { updateFields: true } }),
     styles: { default: { ...EXTENDED_HEADING_STYLES, document: {
       run: { font: { ascii: "Arial", hAnsi: "Arial", eastAsia: "PingFang SC" }, size: 24, color: "252837" },
       paragraph: { spacing: { after: 240, line: 420 }, widowControl: true }
@@ -84,8 +86,8 @@ export async function createDocumentDocx(document, assets, signal) {
       properties: { page: {
         // SDK 根据 orientation 交换宽高，因此提供选定纸张的竖版基准，不能先交换一次再交 SDK。
         size: { width: mmToTwips(pageSize.widthMm), height: mmToTwips(pageSize.heightMm), orientation: document.page.orientation },
-        margin: Object.fromEntries(Object.entries(margins).map(([name, value]) => [name, mmToTwips(value)]))
-      } }, ...(watermarkHeader && { headers: { default: watermarkHeader } }), children
+        margin: { ...Object.fromEntries(Object.entries(margins).map(([name, value]) => [name, mmToTwips(value)])), ...getDocxFurnitureDistances(document.page) }
+      } }, ...furniture, children
     }]
   })
   const blob = await sdk.Packer.toBlob(file)
@@ -162,6 +164,11 @@ async function createBlocks(nodes, parent) {
       const asset = context.assets.get(node.attrs.assetId)
       context.warnings.add("附件保留文件名和大小，不在 Word 文档中嵌入文件；完整备份请使用 Mewoc 文件")
       children.push(new sdk.Paragraph({ text: `附件：${asset.fileName}（${asset.byteLength} B）`, indent: { left: context.indent }, pageBreakBefore: context.pageBreakBefore }))
+    } else if (node.type === "media") {
+      // Word 输出明确保留文件说明，不建立无效的媒体关系或假装可以播放内嵌文件。
+      const asset = context.assets.get(node.attrs.assetId)
+      context.warnings.add("音频和视频保留文件说明，Word 不嵌入播放内容；完整资源请使用 Mewoc 文件或 HTML")
+      children.push(new sdk.Paragraph({ text: getMediaText(asset), indent: { left: context.indent }, pageBreakBefore: context.pageBreakBefore }))
     } else throw new Error(`Word 导出暂不支持节点 ${node.type}`)
   }
   if (pageBreakBefore) children.push(new sdk.Paragraph({ pageBreakBefore: true, spacing: { after: 0, line: 1, lineRule: "exact" }, run: { size: 2 } }))

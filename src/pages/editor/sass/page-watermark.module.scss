@@ -1,4 +1,5 @@
-// 固定于首张纸面的一层水印；height:auto 按 SVG 的毫米 viewBox 比例缩放，连续正文增长不重复绘制。
+// 一个组件只绘制一层水印；PaperCanvas 为每页分别挂载，预览保留单页示意。
+// height:auto 按 SVG 的毫米 viewBox 比例缩放，不参与正文布局。
 .watermark {
   position: absolute;
   inset: 0 auto auto 0;

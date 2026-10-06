@@ -14,6 +14,7 @@ export function StatusBar() {
   const zoom = useEditorStore(state => state.zoom)
   const readOnly = useEditorStore(state => state.readOnly)
   const outlineOpen = useEditorStore(state => state.outlineOpen)
+  const pagination = useEditorStore(state => state.pagination)
   const doc = useEditorState({ editor, selector: ({ editor: current }) => current.state.doc, equalityFn: (a, b) => a === b })
   // 排除空白后按 Unicode 码点计数；这是正文文本字符数，不是中文分词或可见字形数量。
   // 只在 doc 变化时重算，光标移动和缩放不重复遍历全文。
@@ -33,6 +34,10 @@ export function StatusBar() {
           onClick={() => store.getState().updateView({ outlineOpen: !outlineOpen })}
         ><IconListTree aria-hidden="true" /></button>
         <span>{count.toLocaleString()} 字符（不含空白）</span>
+        {pagination?.pageCount > 0 && <span data-pagination-status="" title={`${pagination.overflowCount ? "超高内容页完整显示尚未拆分的长段落或表格。" : ""}${pagination.constraintCount ? "连续的同页设置超出一页，可减少段间距或关闭部分与下段同页设置。" : ""}此处页数用于编辑视图，打印和 Word 会独立排版。`}>
+          {pagination.overflowCount ? `${pagination.pageCount} 张纸面 · ${pagination.overflowCount} 张超高内容页` : `共 ${pagination.pageCount} 页`}
+          {pagination.constraintCount > 0 && " · 同页设置待调整"}
+        </span>}
         <span>{uploading ? "正在读取资源…" : readOnly ? "只读模式" : "编辑模式"}</span>
       </div>
       <div className={styles.zoom}>

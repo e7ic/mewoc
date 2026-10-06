@@ -1,0 +1,128 @@
+{
+  "before": {
+    "selection": {
+      "from": 1241,
+      "to": 1241
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9452,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": "，页间留白不会写入正文。同一个长段落按真实行连续编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "left": {
+    "selection": {
+      "from": 1240,
+      "to": 1240
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9452,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": "辑，页间留白不会写入正文。同一个长段落按真实行连续编辑，页间留白不会写入正文。同一个长段落按真实"
+  },
+  "right": {
+    "selection": {
+      "from": 1241,
+      "to": 1241
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9452,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": "，页间留白不会写入正文。同一个长段落按真实行连续编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "typed": {
+    "selection": {
+      "from": 1251,
+      "to": 1251
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9462,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": false,
+    "markerPosition": 1236,
+    "textAroundCaret": "文。同一个长段落按真实行连续M25_NATIVE编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "backspace": {
+    "selection": {
+      "from": 1250,
+      "to": 1250
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9461,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": false,
+    "markerPosition": -1,
+    "textAroundCaret": "正文。同一个长段落按真实行连续M25_NATIV编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "undo": {
+    "selection": {
+      "from": 1241,
+      "to": 1241
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9452,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": "，页间留白不会写入正文。同一个长段落按真实行连续编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "boundaryDelete": {
+    "selection": {
+      "from": 1240,
+      "to": 1240
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9451,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": false,
+    "markerPosition": -1,
+    "textAroundCaret": "辑，页间留白不会写入正文。同一个长段落按真实行连编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "boundaryUndo": {
+    "selection": {
+      "from": 1241,
+      "to": 1241
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9452,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": "，页间留白不会写入正文。同一个长段落按真实行连续编辑，页间留白不会写入正文。同一个长段落按真实行"
+  },
+  "selection": {
+    "selection": {
+      "from": 1240,
+      "to": 1241
+    },
+    "currentBoundary": 1241,
+    "currentBoundaryLine": 29,
+    "textContentLength": 9452,
+    "paragraphCount": 3,
+    "pageCount": 8,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": "辑，页间留白不会写入正文。同一个长段落按真实行连续编辑，页间留白不会写入正文。同一个长段落按真实行"
+  }
+}

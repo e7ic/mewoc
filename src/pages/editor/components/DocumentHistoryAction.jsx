@@ -13,6 +13,7 @@ import { createDocumentAssetUrl } from "../tools/attachment-assets.js"
 import { getCommentAppendix } from "../tools/comment-export.js"
 import { getPreviewPage } from "../tools/page-preview.js"
 import { PageWatermark } from "./PageWatermark.jsx"
+import { PageFurniture } from "./PageFurniture.jsx"
 import styles from "../sass/history.module.scss"
 import "../sass/content.scss"
 
@@ -332,6 +333,7 @@ export function DocumentHistoryAction({ record, currentDocumentId, disabled, onP
                 <p className={styles.pageDescription}>{previewPage.description}</p>
                 <div className={styles.paperViewport}><div className={styles.paper} style={previewPage.style}>
                 <PageWatermark page={preview.version.document.page} />
+                <PageFurniture page={preview.version.document.page} />
                 <div className={styles.paperContent}>
                 <p className={styles.previewDocumentTitle}>{preview.version.document.title || "未命名文档"}</p>
                 <PreviewBoundary key={preview.key} onError={failure => {

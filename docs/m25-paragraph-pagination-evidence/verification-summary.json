@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-06",
+  "milestone": "M25-b3",
+  "scope": "顶层段落与标题按真实文字行分页",
+  "node": {
+    "total": 795,
+    "passed": 795,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "file": "node-test.log"
+  },
+  "browser": {
+    "engine": "Chrome",
+    "origin": "http://127.0.0.1:4190",
+    "passed": 191,
+    "total": 191,
+    "suites": {
+      "paragraph": {
+        "passed": 18,
+        "total": 18,
+        "file": "paragraph-browser.json"
+      },
+      "pagination": {
+        "passed": 15,
+        "total": 15,
+        "file": "pagination-browser.json"
+      },
+      "table-pagination": {
+        "passed": 20,
+        "total": 20,
+        "file": "table-pagination-browser.json"
+      },
+      "precision": {
+        "passed": 10,
+        "total": 10,
+        "file": "precision-browser.json"
+      },
+      "editor": {
+        "passed": 62,
+        "total": 62,
+        "file": "editor-browser.json"
+      },
+      "toolbar": {
+        "passed": 29,
+        "total": 29,
+        "file": "toolbar-browser.json"
+      },
+      "media": {
+        "passed": 11,
+        "total": 11,
+        "file": "media-browser.json"
+      },
+      "word": {
+        "passed": 5,
+        "total": 5,
+        "file": "word-browser.json"
+      },
+      "page-settings": {
+        "passed": 11,
+        "total": 11,
+        "file": "page-settings-browser.json"
+      },
+      "page-furniture": {
+        "passed": 10,
+        "total": 10,
+        "file": "page-furniture-browser.json"
+      }
+    }
+  },
+  "checks": {
+    "lint": {
+      "exitCode": 0,
+      "file": "lint.log"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "file": "build.log"
+    },
+    "diff": {
+      "exitCode": 0
+    },
+    "localLinks": {
+      "checked": 130,
+      "missing": 0
+    }
+  },
+  "metrics": {
+    "paragraph": [
+      {
+        "name": "单段多页：一个原始段落按真实行跨页，JSON、字符与保存修订保持不变",
+        "pages": 7,
+        "paragraphs": 1,
+        "glyphs": 9360,
+        "internalBreaks": 6
+      },
+      {
+        "name": "400行精度：小数字号单段硬换行逐页不漂移，每个续页首字形对齐相同正文起点",
+        "lines": 400,
+        "paragraphs": 1,
+        "pages": 13,
+        "maxDriftPx": 0.04466043306933898
+      }
+    ],
+    "pagination": [
+      {
+        "name": "自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订",
+        "pageCount": 4,
+        "blocks": 40
+      },
+      {
+        "name": "长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚",
+        "paragraphs": 400,
+        "pageCount": 13,
+        "maxDriftPx": 0.009694855794805335
+      }
+    ],
+    "table-pagination": [
+      {
+        "name": "跨页表格：48 原行按行分页，页尾页首正文与表后段落均不覆盖边距",
+        "rows": 48,
+        "pages": 3,
+        "internalBreaks": 2
+      },
+      {
+        "name": "小数精度：400 行12.75pt与小数段距逐页不累积漂移，最后原行不盖页脚",
+        "rows": 400,
+        "columns": 2,
+        "cells": 800,
+        "pages": 22,
+        "maxDriftPx": 0.01607998431791202
+      }
+    ]
+  },
+  "metricsDefinitions": {
+    "paragraph400Lines": "各续页首字形相对正文页顶偏移的极差，排除首张页；并非所有字形或规划placement的最大误差。",
+    "paragraph400BlocksAndTable400Rows": "真实DOM位置对规划placement的累计位置偏差。"
+  },
+  "nativeKeyboard": {
+    "file": "native-edit-undo.json",
+    "screenshot": "native-paragraph-pagination.png",
+    "initialBoundary": 1241,
+    "arrowLeft": 1240,
+    "arrowRight": 1241,
+    "initialTextLength": 9452,
+    "typedTextLength": 9462,
+    "afterBackspace": 9461,
+    "afterUndo": 9452,
+    "afterBoundaryDelete": 9451,
+    "afterBoundaryUndo": 9452,
+    "shiftSelection": {
+      "from": 1240,
+      "to": 1241
+    },
+    "originalRestored": true,
+    "note": "Chrome 原生键盘事件补验；并非物理键鼠或系统输入法候选补验。"
+  },
+  "mainService": {
+    "ui": {
+      "editor": true,
+      "pages": "共 1 页",
+      "saved": "已保存到此浏览器",
+      "workspace": true
+    },
+    "errors": []
+  },
+  "cleanup": {
+    "file": "cleanup.json",
+    "interruptedRunDocumentsMovedToRecoverableTrash": 11,
+    "interruptedRunTemplateRetained": "M23临时模板-1791298635174",
+    "permanentDeletion": false
+  },
+  "nonFinalRecords": {
+    "file": "page-furniture-first-browser.json",
+    "reason": "旧几何断言按 continuation 文字位置查 NodeView，导致一项失败。改用独立字形 Range 检查后最终 10/10；不重复计入总数。"
+  },
+  "console": {
+    "file": "development-console-errors.json",
+    "knownNonblockingWarning": "AntD Overflow 在导出工具卸载后出现一次 React unmounted state update warning；未证明完整进程无泄漏。",
+    "developmentReloads": "开发中 HMR 全量刷新记录保留；曾中断页眉页脚测试，最终完整重跑通过。",
+    "developmentServerNote": {
+      "file": "development-server-notes.json",
+      "message": "开发服务缓冲输出还出现一次 ResizeObserver loop completed with undelivered notifications；未归为最终正式页错误。"
+    }
+  },
+  "limits": [
+    "长列表与嵌套容器仍以完整块或安全表格行组排版，留待下一批。",
+    "本批未新增真实系统输入法、Safari、系统打印/PDF、Microsoft Word/WPS 排版补验。",
+    "编辑视图页数与浏览器打印、Word 页数可能不同。",
+    "M25 持续验收与版本收口仍待后续。"
+  ],
+  "services": {
+    "main": {
+      "port": 4177,
+      "pid": 64056,
+      "status": "running"
+    },
+    "isolated": {
+      "port": 4190,
+      "status": "stopped after verification",
+      "signal": "SIGINT",
+      "exitCode": 130
+    }
+  }
+}

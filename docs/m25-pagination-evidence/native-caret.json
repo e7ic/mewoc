@@ -1,0 +1,71 @@
+{
+  "scenario": "最终实现版本：页尾段落一次原生 Meta+V 粘贴，整段移到下一页后光标留在可见编辑区域；非真实输入法候选验收",
+  "browser": "Chrome",
+  "before": {
+    "caretBottom": 491.5859375,
+    "caretTop": 472.5859375,
+    "pages": [
+      {
+        "bottom": 711.015625,
+        "index": "0",
+        "top": -411.5
+      },
+      {
+        "bottom": 1857.53125,
+        "index": "1",
+        "top": 735.015625
+      },
+      {
+        "bottom": 3004.0546875,
+        "index": "2",
+        "top": 1881.5390625
+      },
+      {
+        "bottom": 4150.5703125,
+        "index": "3",
+        "top": 3028.0546875
+      }
+    ],
+    "paragraphBottom": 580.0859375,
+    "paragraphTop": 384.0859375,
+    "scrollTop": 686,
+    "viewportBottom": 766,
+    "viewportTop": 199
+  },
+  "after": {
+    "caretBottom": 223.1015625,
+    "caretTop": 204.1015625,
+    "caretVisible": true,
+    "pages": [
+      {
+        "bottom": -235.984375,
+        "index": "0",
+        "top": -1358.5
+      },
+      {
+        "bottom": 910.53125,
+        "index": "1",
+        "top": -211.984375
+      },
+      {
+        "bottom": 2057.0546875,
+        "index": "2",
+        "top": 934.5390625
+      },
+      {
+        "bottom": 3203.5703125,
+        "index": "3",
+        "top": 2081.0546875
+      }
+    ],
+    "paragraphBottom": 311.6015625,
+    "paragraphTop": -136.3984375,
+    "scrollTop": 1633,
+    "status": "paginated",
+    "viewportBottom": 766,
+    "viewportTop": 199
+  },
+  "beforePage": 1,
+  "afterPage": 2,
+  "passed": true
+}

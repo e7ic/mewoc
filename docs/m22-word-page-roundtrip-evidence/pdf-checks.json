@@ -1,0 +1,86 @@
+{
+  "browser-print-first.pdf": {
+    "pages": 2,
+    "pageSizesPt": [
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ]
+    ],
+    "watermarksPerPage": [
+      2,
+      0
+    ]
+  },
+  "browser-print-final.pdf": {
+    "pages": 2,
+    "pageSizesPt": [
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ]
+    ],
+    "watermarksPerPage": [
+      1,
+      1
+    ]
+  },
+  "word-roundtrip-print.pdf": {
+    "pages": 7,
+    "pageSizesPt": [
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ],
+      [
+        594.95996,
+        420.0
+      ]
+    ],
+    "watermarksPerPage": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "review": {
+    "method": "Poppler renders, all seven final page PNGs visually inspected; compacted pypdf text only supplements visual checks",
+    "finalPaper": "A5 landscape",
+    "finalVisualPassed": true,
+    "browser": "Chrome 154 / Skia PDF",
+    "backgroundGraphics": false,
+    "browserHeadersFooters": false
+  }
+}

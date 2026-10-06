@@ -4,6 +4,7 @@
  */
 import { getSchema, generateText } from "@tiptap/core"
 import { createExtensions } from "./create-extensions.js"
+import { validatePageSettings } from "./page-settings.js"
 import { createDocument, validateDocument } from "./document-schema.js"
 import { renderFormula } from "./formula.js"
 import { createDocxImportContent } from "./docx-import-content.js"
@@ -63,6 +64,10 @@ export function runDocxImportWorker(bytes, signal) {
  */
 export async function createDocxImportRecord(converted, title, signal) {
   signal?.throwIfAborted()
+  const document = createDocument()
+  // 在图片解码等工作之前复验 Worker 返回的元信息；独立克隆防止预览来源被后续草稿改写。
+  // 旧转换结果没有 page 时沿用原默认值，显式损坏的 page 不允许作为缺省值略过。
+  if (converted.page !== undefined) document.page = structuredClone(validatePageSettings(converted.page))
   // 占位 src 到节点尺寸的映射与 assetId 到 Blob 的映射分开，JSON 中不混入临时资源键或 Blob。
   const images = new Map()
   const assets = new Map()
@@ -88,7 +93,6 @@ export async function createDocxImportRecord(converted, title, signal) {
     catch { throw new Error("部分 Word 公式无法在编辑器中完整渲染，已停止导入，请保留原文件") }
   }
   const warnings = new Set(converted.warnings)
-  const document = createDocument()
   document.title = title.slice(0, 100) || "Word 文档"
   document.content = createDocxImportContent(converted.html, images, converted.paragraphs, converted.formulas, warnings)
   document.assets = [...assets.values()].map(({ blob: _blob, ...metadata }) => metadata)

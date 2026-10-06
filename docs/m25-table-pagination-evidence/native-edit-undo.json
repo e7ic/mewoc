@@ -1,0 +1,16 @@
+{
+  "kind": "Chrome native ASCII keys in page 3 cell, then Meta+Z",
+  "active": "文档正文",
+  "originalRows": 61,
+  "repeatedHeaders": 5,
+  "row": "任务 23真实数据行沿安全边界自动换页已就绪",
+  "viewportHeight": 805,
+  "visibleCaretCell": [
+    {
+      "bottom": 264.1328125,
+      "top": 191.1328125
+    }
+  ],
+  "observedBeforeUndo": "任务 23 / M25真实数据行沿安全边界自动换页已就绪",
+  "undoRestoredOriginal": true
+}

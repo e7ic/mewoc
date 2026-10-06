@@ -24,6 +24,8 @@ export function createEditorStore(record) {
     switching: false,
     zoom: 1,
     fitWidth: false,
+    // DOM 实测的页布局只属于当前视图，不写入文档、保存序号或正文撤销历史。
+    pagination: null,
     outlineOpen: true,
     searchOpen: false,
     commentsOpen: false,

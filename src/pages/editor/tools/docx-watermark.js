@@ -9,6 +9,12 @@ const element = (name, attributes = {}, children = []) => new sdk.BuilderElement
 })
 
 export function createDocxWatermarkHeader(page) {
+  const paragraph = createDocxWatermarkParagraph(page)
+  return paragraph ? new sdk.Header({ children: [paragraph] }) : null
+}
+
+// 页眉文字和水印必须共享同一关系部件；返回段落供页面装饰导出器组合，原单水印入口不变。
+export function createDocxWatermarkParagraph(page) {
   if (!page.watermark) return null
   const { text, color, opacity, angle } = page.watermark
   const geometry = getWatermarkGeometry(page)
@@ -37,5 +43,5 @@ export function createDocxWatermarkHeader(page) {
   const run = new sdk.Run({})
   run.addChildElement(element("w:pict", {}, [shapeType, shape]))
   // 页眉中只放无占位文字的浮动路径；极小空段不挤占正文，也不产生可搜索的水印正文 run。
-  return new sdk.Header({ children: [new sdk.Paragraph({ children: [run], spacing: { before: 0, after: 0, line: 1, lineRule: "exact" } })] })
+  return new sdk.Paragraph({ children: [run], spacing: { before: 0, after: 0, line: 1, lineRule: "exact" } })
 }

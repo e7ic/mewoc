@@ -12,13 +12,15 @@ import { createDocumentMarkdown } from "../tools/markdown-file.js"
 import { createDocumentDocx } from "../tools/docx-file.js"
 import { createDocumentHtml, createPortableFile, downloadDocument } from "../tools/file-transfer.js"
 import { printDocument } from "../tools/print-document.js"
+import { hasPageFurniture, supportsPageMarginBoxes, PAGE_FURNITURE_PRINT_HINT } from "../tools/page-furniture-export.js"
 import { createDocumentText, getDocumentTextWarnings } from "../tools/document-text.js"
+import { hasDocumentMedia, MEDIA_PRINT_WARNING } from "../tools/media-export.js"
 import styles from "../sass/document-bar.module.scss"
 import toolbarStyles from "../sass/toolbar.module.scss"
 
 // 菜单与功能区使用同一导出 key，外观不同但共享快照生成和错误处理路径。
 const EXPORT_ITEMS = [
-  { key: "json", label: "Mewoc 文件（含图片、附件与批注）" },
+  { key: "json", label: "Mewoc 文件（含全部资源与批注）" },
   { key: "docx", label: "Word 文档（.docx）" },
   { key: "html", label: "HTML 网页" },
   { key: "markdown", label: "Markdown 文档" },
@@ -82,10 +84,16 @@ export function ExportActions({ variant = "menu" }) {
       }
       // HTML 下载与打印共用快照 HTML；生成结束先检查所有者，再下载或建立打印文档。
       if (key === "html" || key === "print") {
+        if (key === "print" && hasPageFurniture(snapshot.page) && !supportsPageMarginBoxes()) {
+          message.warning({ content: "当前浏览器无法打印文档页眉、页脚与页码，请使用支持页面边距框的 Chrome 或导出 Word。", icon: <IconAlertTriangle aria-hidden="true" /> })
+          return
+        }
         const html = await createDocumentHtml(snapshot, assets)
         if (!mountedRef.current) return
         if (key === "html") downloadDocument(new Blob([html], { type: "text/html;charset=utf-8" }), snapshot.title, "html")
+        if (key === "html" && hasPageFurniture(snapshot.page)) message.info({ content: PAGE_FURNITURE_PRINT_HINT, icon: <IconAlertTriangle aria-hidden="true" /> })
         if (key === "print") {
+          if (hasDocumentMedia(snapshot.content)) message.info({ content: MEDIA_PRINT_WARNING, icon: <IconAlertTriangle aria-hidden="true" /> })
           // 打印前检查实际表格宽度，避免超出正文纸宽导致裁切；需要用户调整纸张/列宽时提示并停止本轮打印。
           const tables = [...editor.view.dom.querySelectorAll("table")]
           if (tables.some(table => table.offsetWidth > editor.view.dom.clientWidth + 1)) {

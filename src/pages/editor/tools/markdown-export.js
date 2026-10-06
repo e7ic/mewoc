@@ -8,6 +8,8 @@ import { createCommentAppendixMarkdown, COMMENT_MARKDOWN_WARNING } from "./comme
 import { DETAILS_DEFAULTS } from "./block-containers.js"
 import { isInternalNavigationHref } from "./document-navigation.js"
 import { prepareNavigationExportContent } from "./navigation-export.js"
+import { isPageFurnitureActive } from "./page-furniture.js"
+import { getMediaText } from "./media-assets.js"
 
 // 类型白名单用于拒绝未知内容；marks 接受 commentAnchor，但实际批注由文末附录保留。
 const INLINE_TYPES = ["text", "hardBreak", "inlineMath"]
@@ -29,6 +31,7 @@ export function createMarkdownTree(document) {
     context.warnings.add("Markdown 不保留纸张大小、方向和页边距")
   }
   if (page.watermark) context.warnings.add("Markdown 不保留页面水印，正文文字保持原内容")
+  if ([page.header, page.footer].some(isPageFurnitureActive)) context.warnings.add("Markdown 不保留页眉、页脚和页码，正文文字保持原内容")
   const appendix = createCommentAppendixMarkdown(document)
   if (appendix.length) context.warnings.add(COMMENT_MARKDOWN_WARNING)
   const tree = { type: "root", children: [...getBlocks(navigation.content.content || [], context), ...appendix] }
@@ -72,6 +75,11 @@ function getBlocks(nodes, context) {
       const asset = context.assets.find(item => item.id === node.attrs.assetId)
       context.warnings.add("附件已转换为文件说明；请使用 Mewoc 文件保留附件内容")
       return [{ type: "paragraph", children: [{ type: "text", value: `${getAttachmentText(asset)}（附件内容请从 Mewoc 文件获取）` }] }]
+    }
+    if (node.type === "media") {
+      const asset = context.assets.find(item => item.id === node.attrs.assetId)
+      context.warnings.add("音频和视频已转换为文件说明；完整资源请使用 Mewoc 文件或 HTML")
+      return [{ type: "paragraph", children: [{ type: "text", value: getMediaText(asset) }] }]
     }
     if (node.type === "table") return getTable(node, context)
     if (node.type === "pageBreak") {

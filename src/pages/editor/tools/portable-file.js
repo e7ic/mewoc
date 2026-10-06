@@ -4,6 +4,7 @@
  */
 import { validateDocument, getReferencedAssetIds } from "./document-schema.js"
 import { readBlobDataUrl, validateImageBlob } from "./image-assets.js"
+import { validateMediaBlob } from "./media-assets.js"
 import { MAX_FILE_BYTES } from "../constants/editor-constants.js"
 import { createId } from "./create-id.js"
 
@@ -19,13 +20,18 @@ export async function createPortableFile(document, assets) {
   const references = document.assets.filter(asset => ids.has(asset.id))
   for (const asset of references) {
     const entry = assets.get(asset.id)
-    const label = asset.kind === "attachment" ? "附件" : "图片"
+    const label = getAssetLabel(asset)
     if (!entry?.blob) throw new Error(`${label}「${asset.fileName}」资源缺失，无法导出完整文件`)
     if (entry.blob.size !== asset.byteLength || entry.blob.type !== asset.mimeType) throw new Error(`${label}「${asset.fileName}」资源与声明不匹配`)
-    if (asset.kind !== "attachment") await validateImageBlob(entry.blob)
+    await validatePortableAssetBlob(asset, entry.blob)
     assetData[asset.id] = await readBlobDataUrl(entry.blob)
   }
-  return { format: "mewoc", formatVersion: 1, document: { ...document, assets: references }, assetData }
+  const result = { format: "mewoc", formatVersion: 1, document: { ...document, assets: references }, assetData }
+  // 二进制 base64 与 Unicode 正文都会放大 JSON；校验最终 UTF-8 体积，不能生成本入口无法读回的备份。
+  if (new Blob([JSON.stringify(result)]).size > MAX_FILE_BYTES) {
+    throw new Error("导出的文档文件超过 32 MiB，请缩小正文或减少资源后重新导出")
+  }
+  return result
 }
 
 // 文件、文档结构和所有二进制资源全部校验成功后才返回新记录，调用方随后创建会话 URL。
@@ -42,7 +48,7 @@ export async function readPortableFile(file) {
   // 所有 Blob 先在临时 Map 中准备；任何一项声明、编码或内容不合法都会终止导入，调用方拿不到半份文档。
   const assets = new Map()
   for (const asset of source.document.assets) {
-    const label = asset.kind === "attachment" ? "附件" : "图片"
+    const label = getAssetLabel(asset)
     const dataUrl = source.assetData?.[asset.id]
     const prefix = `data:${asset.mimeType};base64,`
     if (typeof dataUrl !== "string" || !dataUrl.startsWith(prefix)) throw new Error(`${label}「${asset.fileName}」内容缺失或类型不匹配`)
@@ -54,10 +60,10 @@ export async function readPortableFile(file) {
       throw new Error(`${label}编码或大小无效`)
     }
     const bytes = Uint8Array.from(atob(encoded), character => character.charCodeAt(0))
-    // base64 解码后再次核对真实字节数；图片还检查头部，附件只保留字节，不解析其活动内容。
+    // 解码后再次核对字节数；图片和媒体检查容器头，附件只保留字节，不解析其活动内容。
     const blob = new Blob([bytes], { type: asset.mimeType })
     if (blob.size !== asset.byteLength) throw new Error(`${label}「${asset.fileName}」大小不匹配`)
-    if (asset.kind !== "attachment") await validateImageBlob(blob)
+    await validatePortableAssetBlob(asset, blob)
     assets.set(asset.id, { ...asset, blob })
   }
   // 导入作为新文档，不覆盖源文件中同 ID 的本地版本。
@@ -66,4 +72,14 @@ export async function readPortableFile(file) {
     storageVersion: 0,
     assets
   }
+}
+
+// 资源种类由文档契约先校验；图片与媒体不共享头部验证，不能互相伪装后进入便携文件。
+function validatePortableAssetBlob(asset, blob) {
+  if (["audio", "video"].includes(asset.kind)) return validateMediaBlob(blob, { kind: asset.kind })
+  if (asset.kind !== "attachment") return validateImageBlob(blob)
+}
+
+function getAssetLabel(asset) {
+  return { attachment: "附件", audio: "音频", video: "视频" }[asset.kind] || "图片"
 }

@@ -22,8 +22,32 @@ export async function createDocumentHtml(document, assets, contentStyles = "") {
     return references.get(id)?.kind === "attachment" ? source.replace(/^data:[^;]+;/, "data:application/octet-stream;") : source
   }
   const formulaHtml = await renderFormulaHtml(generateHTML(document.content, createExtensions(getAssetUrl, id => references.get(id))))
-  const content = await renderCodeHtml(formulaHtml)
+  const content = groupStaticTableHeaders(await renderCodeHtml(formulaHtml))
   // 输出只依赖快照，不读取编辑 NodeView 的控件、缩放或焦点装饰；实际分页由浏览器打印处理。
-  const { styles: pageStyle, watermark } = createPageExportLayout(document.page)
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><title>${escapePageText(document.title)}</title><style>${contentStyles}\n${pageStyle}</style></head><body><main class="mewoc-export-page">${watermark}<article class="mewoc-content">${content}${createCommentAppendixHtml(portable.document)}</article></main></body></html>`
+  const { styles: pageStyle, watermark, furniture, furnitureHint } = createPageExportLayout(document.page)
+  return `<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><title>${escapePageText(document.title)}</title><style>${contentStyles}\n${pageStyle}</style></head><body>${furnitureHint}<main class="mewoc-export-page">${watermark}${furniture}<article class="mewoc-content">${content}${createCommentAppendixHtml(portable.document)}</article></main></body></html>`
+}
+
+/**
+ * 静态表格把可重复的真实起始表头提到 thead，供浏览器打印按页重复。
+ * 规则与 Word 相同：前缀连续全 th 且无纵向合并；只移动原行，不复制正文。
+ * 每次只读取当前 table 的直属行，避免把嵌套表格的表头并入外表。
+ */
+function groupStaticTableHeaders(source) {
+  const parsed = new DOMParser().parseFromString(source, "text/html")
+  for (const table of parsed.querySelectorAll("table")) {
+    const body = [...table.children].find(element => element.tagName === "TBODY")
+    if (!body) continue
+    const headers = []
+    for (const row of body.children) {
+      const cells = [...row.children]
+      if (row.tagName !== "TR" || !cells.length || cells.some(cell => cell.tagName !== "TH" || cell.rowSpan !== 1)) break
+      headers.push(row)
+    }
+    if (!headers.length) continue
+    const head = parsed.createElement("thead")
+    table.insertBefore(head, body)
+    headers.forEach(row => head.append(row))
+  }
+  return parsed.body.innerHTML
 }

@@ -12,6 +12,7 @@ import { createEditorStore } from "../tools/create-editor-store.js"
 import { useDocumentSave } from "../hooks/use-document-save.js"
 import { useDocumentImages } from "../hooks/use-document-images.js"
 import { useDocumentAttachments } from "../hooks/use-document-attachments.js"
+import { useDocumentMedia } from "../hooks/use-document-media.js"
 import { useEditorInput, cleanPastedHtml } from "../hooks/use-editor-input.js"
 import { createCommentClipboardHandlers } from "../tools/comment-clipboard.js"
 import { hasNavigationSliceFeatures, remapNavigationSlice } from "../tools/navigation-clipboard.js"
@@ -64,7 +65,8 @@ export function EditorProvider({ record, children }) {
   const { getSnapshot, saveDocument, getStorageVersion } = useDocumentSave(editor, record, assets, store)
   const { insertImages, replaceImage, uploading: imageUploading } = useDocumentImages(editor, assets, store, assetTaskRef)
   const { insertAttachment, attachmentUploading } = useDocumentAttachments(editor, assets, store, assetTaskRef)
-  const uploading = imageUploading || attachmentUploading
+  const { insertMedia, mediaUploading } = useDocumentMedia(editor, assets, store, assetTaskRef)
+  const uploading = imageUploading || attachmentUploading || mediaUploading
   useEditorInput(editor, store, insertImages, saveDocument)
 
   useEffect(() => {
@@ -94,8 +96,8 @@ export function EditorProvider({ record, children }) {
 
   const documentId = record.document.id
   // 缓存 Context 服务对象，依赖未变化时避免仅因 Provider 渲染让所有后代重新接收新引用。
-  const value = useMemo(() => ({ editor, store, assets, documentId, getSnapshot, saveDocument, getStorageVersion, insertImages, replaceImage, insertAttachment, uploading, imageUploading, attachmentUploading }),
-    [editor, store, assets, documentId, getSnapshot, saveDocument, getStorageVersion, insertImages, replaceImage, insertAttachment, uploading, imageUploading, attachmentUploading])
+  const value = useMemo(() => ({ editor, store, assets, documentId, getSnapshot, saveDocument, getStorageVersion, insertImages, replaceImage, insertAttachment, insertMedia, uploading, imageUploading, attachmentUploading, mediaUploading }),
+    [editor, store, assets, documentId, getSnapshot, saveDocument, getStorageVersion, insertImages, replaceImage, insertAttachment, insertMedia, uploading, imageUploading, attachmentUploading, mediaUploading])
 
   return <EditorContext.Provider value={value}>{children}</EditorContext.Provider>
 }

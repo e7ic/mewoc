@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-06",
+  "status": "passed",
+  "node": {
+    "passed": 617,
+    "total": 617,
+    "file": "node-final.log"
+  },
+  "browser": {
+    "passed": 116,
+    "total": 116,
+    "groups": {
+      "wordPage": {
+        "passed": 8,
+        "total": 8,
+        "file": "browser-final.json"
+      },
+      "pageSettings": {
+        "passed": 11,
+        "total": 11,
+        "file": "page-final.json"
+      },
+      "editing": {
+        "passed": 62,
+        "total": 62,
+        "file": "regression.json"
+      },
+      "wordImport": {
+        "passed": 6,
+        "total": 6,
+        "file": "import.json"
+      },
+      "toolbar": {
+        "passed": 29,
+        "total": 29,
+        "file": "toolbar.json"
+      }
+    }
+  },
+  "console": {
+    "browser-final-console.json": {
+      "applicationWarningsErrors": 4,
+      "extensionWarnings": 8,
+      "priorHmrReloads": 4,
+      "finalApplicationWarningsErrors": 0
+    },
+    "page-final-console.json": {
+      "applicationWarningsErrors": 4,
+      "extensionWarnings": 6,
+      "priorHmrReloads": 4,
+      "finalApplicationWarningsErrors": 0
+    },
+    "regression-console.json": {
+      "applicationWarningsErrors": 0,
+      "extensionWarnings": 1,
+      "priorHmrReloads": 0,
+      "finalApplicationWarningsErrors": 0
+    },
+    "import-console.json": {
+      "applicationWarningsErrors": 0,
+      "extensionWarnings": 1,
+      "priorHmrReloads": 0,
+      "finalApplicationWarningsErrors": 0
+    },
+    "toolbar-console.json": {
+      "applicationWarningsErrors": 0,
+      "extensionWarnings": 1,
+      "priorHmrReloads": 0,
+      "finalApplicationWarningsErrors": 0
+    },
+    "manual-console.json": {
+      "applicationWarningsErrors": 1,
+      "extensionWarnings": 3,
+      "priorHmrReloads": 1,
+      "finalApplicationWarningsErrors": 0
+    }
+  },
+  "lint": "passed",
+  "productionBuild": "passed",
+  "nativePrint": {
+    "file": "word-roundtrip-print.pdf",
+    "pages": 7,
+    "paper": "A5 landscape",
+    "watermarksPerPage": 1,
+    "checkedAllPageRenders": true
+  },
+  "narrow": {
+    "viewport": [
+      920,
+      600
+    ],
+    "pageSettings": "passed",
+    "wordImportCancelAndConfirm": "passed",
+    "file": "import-narrow-checks.json"
+  },
+  "limits": [
+    "Only verified Mewoc-exported text watermarks recovered; unknown VML remains rejected",
+    "Global page uses first section; differing sections, custom paper, unsupported margins and first/even-only watermarks warn",
+    "File input selection was synthesized in dedicated test workflow; browser extension lacked local-file access",
+    "No desktop Microsoft Word/WPS or Safari/Firefox system PDF validation in M22",
+    "Original pagination and typography are not guaranteed"
+  ],
+  "consoleSourceFrozenAt": "2026-10-06T10:46:12.000Z"
+}

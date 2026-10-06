@@ -7,6 +7,7 @@ import { createId } from "./create-id.js"
 import { createExtensions } from "./create-extensions.js"
 import { FORMULA_TYPES, getFormulaSourceError, MAX_FORMULA_TOTAL } from "./formula.js"
 import { validateAttachmentMetadata } from "./attachment-assets.js"
+import { validateMediaMetadata } from "./media-assets.js"
 import { validateCommentThreads } from "./document-comments.js"
 import { BLOCK_CONTAINER_TYPES, validateBlockContainerAttrs } from "./block-containers.js"
 import { isNavigationId, isSafeDocumentLink, validateNavigationBlockAttrs, validateTableOfContentsAttrs } from "./document-navigation.js"
@@ -101,8 +102,9 @@ function validateAssets(assets) {
   assets.forEach(asset => {
     if (!asset || !ID_PATTERN.test(asset.id) || ids.has(asset.id)) throw new Error("资源 ID 无效或重复")
     // 首批文件没有 kind，仅在字段缺省时继续按图片解释。
-    if (asset.kind !== undefined && !["image", "attachment"].includes(asset.kind)) throw new Error("资源种类无效")
+    if (asset.kind !== undefined && !["image", "attachment", "audio", "video"].includes(asset.kind)) throw new Error("资源种类无效")
     if (asset.kind === "attachment") validateAttachmentMetadata(asset)
+    else if (["audio", "video"].includes(asset.kind)) validateMediaMetadata(asset)
     else if (!IMAGE_TYPES.includes(asset.mimeType) || !Number.isInteger(asset.byteLength) || asset.byteLength <= 0 || asset.byteLength > MAX_IMAGE_BYTES) {
       throw new Error("图片资源类型或大小无效")
     }
@@ -110,7 +112,7 @@ function validateAssets(assets) {
     ids.add(asset.id)
     bytes += asset.byteLength
   })
-  if (bytes > MAX_ASSET_BYTES) throw new Error("图片与附件总量超过 20 MiB")
+  if (bytes > MAX_ASSET_BYTES) throw new Error("图片、附件与音视频资源总量超过 20 MiB")
 }
 
 // 递归验证节点和 marks，path 定位具体损坏位置；全树共享预算避免深度或碎片节点放大处理成本。
@@ -152,6 +154,9 @@ function validateNode(node, path, assetKinds, budget, depth) {
   }
   if (["image", "attachment"].includes(node.type) && assetKinds.get(node.attrs?.assetId) !== node.type) {
     throw new Error(`${path}：${node.type === "image" ? "图片" : "附件"}资源缺失或种类不匹配`)
+  }
+  if (node.type === "media" && !["audio", "video"].includes(assetKinds.get(node.attrs?.assetId))) {
+    throw new Error(`${path}：音视频资源缺失或种类不匹配`)
   }
   // 只累计真实文本字段；公式源码单独计入公式预算，资源数据单独计入资源预算。
   if (node.text !== undefined) {
@@ -244,11 +249,11 @@ function isValidAttribute(type, key, value) {
   return false
 }
 
-// 遍历正文收集图片和附件的去重 ID，供保存清理、备份和容量计算使用；重复引用不重复计费。
+// 遍历正文收集所有资源的去重 ID，供保存清理、备份和容量计算使用；重复引用不重复计费。
 export function getReferencedAssetIds(content) {
   const ids = new Set()
   const visit = node => {
-    if (["image", "attachment"].includes(node.type)) ids.add(node.attrs.assetId)
+    if (["image", "attachment", "media"].includes(node.type)) ids.add(node.attrs.assetId)
     node.content?.forEach(visit)
   }
   visit(content)
@@ -263,5 +268,5 @@ export function checkAssetCapacity(content, assets, incomingBytes = 0) {
     if (!asset) throw new Error("部分资源缺失，请重新打开文档后重试")
     bytes += asset.byteLength
   }
-  if (bytes > MAX_ASSET_BYTES) throw new Error("当前文档图片与附件总量不能超过 20 MiB")
+  if (bytes > MAX_ASSET_BYTES) throw new Error("当前文档图片、附件与音视频资源总量不能超过 20 MiB")
 }

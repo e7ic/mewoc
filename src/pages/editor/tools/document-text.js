@@ -5,6 +5,8 @@ import { appendCommentText } from "./comment-export.js"
 import { DETAILS_DEFAULTS } from "./block-containers.js"
 import { prepareNavigationExportContent } from "./navigation-export.js"
 import { DEFAULT_PAGE } from "../constants/editor-constants.js"
+import { isPageFurnitureActive } from "./page-furniture.js"
+import { hasDocumentMedia } from "./media-export.js"
 
 /** 转换说明交给下载入口呈现，不能把页面装饰文字或说明追加进正文文件。 */
 export function getDocumentTextWarnings(document) {
@@ -13,6 +15,8 @@ export function getDocumentTextWarnings(document) {
   if (page.size !== DEFAULT_PAGE.size || page.orientation !== DEFAULT_PAGE.orientation ||
     Object.keys(DEFAULT_PAGE.marginsMm).some(key => page.marginsMm[key] !== DEFAULT_PAGE.marginsMm[key])) warnings.push("纯文本不保留纸张大小、方向和页边距")
   if (page.watermark) warnings.push("纯文本不保留页面水印，正文文字保持原内容")
+  if ([page.header, page.footer].some(isPageFurnitureActive)) warnings.push("纯文本不保留页眉、页脚和页码，正文文字保持原内容")
+  if (hasDocumentMedia(document.content)) warnings.push("纯文本只保留音频和视频的文件说明；完整资源请使用 Mewoc 文件或 HTML")
   return warnings
 }
 

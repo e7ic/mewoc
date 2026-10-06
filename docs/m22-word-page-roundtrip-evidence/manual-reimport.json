@@ -1,0 +1,23 @@
+{
+  "page": {
+    "size": "A5",
+    "orientation": "landscape",
+    "marginsMm": {
+      "top": 12.7,
+      "right": 17,
+      "bottom": 19,
+      "left": 23
+    },
+    "watermark": {
+      "text": "内部资料 M22",
+      "color": "#6554C0",
+      "opacity": 0.18,
+      "angle": -35
+    }
+  },
+  "warnings": [
+    "按内容语义导入，字体、字号、颜色和段落间距使用编辑器默认值；原始分页不保证保留，请保留原 DOCX"
+  ],
+  "bodyIncludesWatermark": false,
+  "paragraphs": 13
+}

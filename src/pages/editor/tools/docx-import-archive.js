@@ -11,6 +11,9 @@ import { readDocxParagraphs } from "./docx-import-numbering.js"
 import { normalizeDocxLegacyContent } from "./docx-import-drawings.js"
 import { normalizeDocxFields } from "./docx-import-fields.js"
 import { appendDocxPageContent, createDocxChartReader } from "./docx-import-report.js"
+import { readDocxPageSettings } from "./docx-import-page.js"
+import { extractDocxWatermark } from "./docx-import-watermark.js"
+import { extractDocxPageFurniture, normalizeDocxCurrentPageFields } from "./docx-import-furniture.js"
 
 // 这些元素具有当前编辑器无法完整表示的独立语义，不能当作普通样式略过。
 const UNSUPPORTED = {
@@ -90,8 +93,8 @@ export async function readDocxImportArchive(source, warnings, signal) {
         if (relation.getAttribute("TargetMode") === "External" && !relation.getAttribute("Type").endsWith("/hyperlink")) throw new Error("暂不读取外部图片或文件，请先在 Word 中内嵌资源")
       }
       if (/word\/comments\d*\.xml/.test(entry.name) && (xml.documentElement.textContent.trim() || ["drawing", "pict", "txbxContent", "comment"].some(name => xml.getElementsByTagNameNS(WORD_XML, name).length))) throw new Error("暂不支持非空批注，请保留原 DOCX")
-      // 域在所有部件中先静态化，因此页眉/页脚追加到正文时也只携带已保存的显示值。
-      normalizeDocxFields(xml, warnings)
+      // 正文与其它部件先静态化；页部件须留到自有页眉/页脚提取后，不能先抹掉其原生页码字段。
+      if (!(xml.documentElement.namespaceURI === WORD_XML && ["hdr", "ftr"].includes(xml.documentElement.localName))) normalizeDocxFields(xml, warnings)
       // Mammoth 只判断表头元素存在性；显式关闭的标记必须先移除，不能误把整表导成表头。
       for (const header of Array.from(xml.getElementsByTagNameNS(WORD_XML, "tblHeader"))) {
         if (["0", "false", "off"].includes(header.getAttributeNS(WORD_XML, "val"))) header.parentNode.removeChild(header)
@@ -103,7 +106,15 @@ export async function readDocxImportArchive(source, warnings, signal) {
   const xml = parts.get("word/document.xml")
   if (xml?.documentElement.namespaceURI === "http://purl.oclc.org/ooxml/wordprocessingml/main") throw new Error("暂不支持严格 Open XML 文档，请在 Word 中另存为普通 Word 文档（.docx）后重试，并保留原文件")
   if (!xml || xml.documentElement.namespaceURI !== WORD_XML || xml.documentElement.localName !== "document" || !parts.has("[Content_Types].xml") || !parts.has("_rels/.rels")) throw new Error("Word 文件缺少必要部件或使用暂不支持的文档格式")
-  // 先附加页内容、再展开图形，最后读取公式与段落；这一顺序确保新增正文被统一编号和统计。
+  // 页面元信息须先从原节读取；已识别的水印再从页眉分离，避免被静态页眉链当作正文图形。
+  // 未识别的 VML 保持原样，继续由严格旧式图形转换检查拒绝，不能借水印支持跳过未知内容。
+  const page = readDocxPageSettings(xml, warnings)
+  const watermark = extractDocxWatermark(parts, page, warnings)
+  if (watermark) page.watermark = watermark
+  Object.assign(page, extractDocxPageFurniture(parts, page, warnings))
+  // 当前与孤立部件保留原字段拒绝规则；仅已验证的历史快照专用部件不当作当前内容处理。
+  normalizeDocxCurrentPageFields(parts, warnings)
+  // 先附加剩余页内容、再展开图形，最后读取公式与段落，普通页眉文字与资源仍统一编号和统计。
   appendDocxPageContent(parts, warnings)
   const charts = createDocxChartReader(parts, warnings, embeddedFiles)
   normalizeDocxLegacyContent(xml, warnings, charts.read)
@@ -118,7 +129,7 @@ export async function readDocxImportArchive(source, warnings, signal) {
   // 新 ZIP 使用 STORE 避免重新压缩的额外开销；生成前检查取消，调用方在下一转换阶段也会复查。
   for (const [name, part] of parts) checked.file(name, writeDocxXml(part))
   signal?.throwIfAborted()
-  return { buffer: await checked.generateAsync({ type: "uint8array", compression: "STORE" }), paragraphs, formulas }
+  return { buffer: await checked.generateAsync({ type: "uint8array", compression: "STORE" }), paragraphs, formulas, page }
 }
 
 /**

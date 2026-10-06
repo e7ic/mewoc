@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Word 页面：真实 Worker 恢复四种纸型横竖方向和非对称边距",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：80 emoji 与正负 90 度完整往返，取消 Worker 后可重新导入",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：预览显示纸张摘要和独立水印，取消保持原会话页面与正文",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：读取中更换文件中止旧 Worker，旧纸张和水印不能覆盖新预览",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：未知 VML 失败可换好文件，保存失败保留预览并只确认一次",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：确认重建真实 Provider，保存重开与 Mewoc 备份均保留导入页面",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：导入后 HTML 展示实际纸面和水印，再导出 DOCX 仍能完整恢复",
+    "passed": true
+  },
+  {
+    "name": "Word 页面：取消读取与卸载中止真实 Worker，迟到结果不复活弹窗和页面",
+    "passed": true
+  }
+]

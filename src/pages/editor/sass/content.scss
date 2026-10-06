@@ -121,6 +121,26 @@
     [data-attachment-download] { flex-shrink: 0; padding: 4px 6px; font-size: 13px; border-radius: 4px; }
     [data-attachment-download]:focus-visible { outline: 2px solid $theme-color; outline-offset: 2px; }
   }
+  // 音频/视频共用离线 HTML 的卡片布局；原生播放和下载分别提供独立键盘入口。
+  [data-type="media"] {
+    box-sizing: border-box; margin: 20px 0; padding: 14px; max-width: 100%;
+    color: #363444; background: #f8f7fc; border: 1px solid #e3dff0; border-radius: 8px;
+    font-size: 14px; line-height: 1.5;
+    &.ProseMirror-selectednode { outline: 2px solid #8271df; outline-offset: 2px; }
+    [data-media-info] { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; min-width: 0; }
+    [data-media-kind-label] { flex-shrink: 0; padding: 3px 6px; color: #6554c0; background: #ece8fb; border-radius: 4px; font-size: 12px; }
+    [data-media-name] { min-width: 0; flex: 1; font-weight: 500; overflow-wrap: anywhere; }
+    [data-media-size] { flex-shrink: 0; color: #797087; font-size: 12px; }
+    [data-media-player] { display: block; width: 100%; max-width: 100%; }
+    video[data-media-player] { height: auto; max-height: 360px; object-fit: contain; background: #20222c; border-radius: 4px; }
+    [data-media-player]:focus-visible { outline: 2px solid #8271df; outline-offset: 2px; }
+    [data-media-actions] { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+    [data-media-hint] { font-size: 12px; color: #797087; }
+    [data-media-download] { flex-shrink: 0; padding: 4px 6px; font-size: 13px; border-radius: 4px; }
+    [data-media-download]:focus-visible { outline: 2px solid #8271df; outline-offset: 2px; }
+    [data-media-error] { margin: 10px 0 0; color: #a63737; font-size: 13px; }
+    [data-media-error][hidden], [data-media-print] { display: none; }
+  }
   // 公式按节点类型采用行内/居中块布局，失败态展示可恢复源码，选中框提示整体节点选区。
   [data-type="inline-math"] { display: inline-block; padding: 0 2px; max-width: 100%; vertical-align: middle; }
   [data-type="block-math"] { margin: 18px 0; max-width: 100%; overflow-x: auto; text-align: center; }
@@ -149,7 +169,7 @@
   .selectedCell::after { position: absolute; z-index: 2; inset: 0; background: #897bd72e; pointer-events: none; content: ""; }
   .column-resize-handle { position: absolute; z-index: 3; top: 0; right: -2px; bottom: 0; width: 4px; background: #9c8cec; pointer-events: none; }
   &.resize-cursor { cursor: col-resize; }
-  // 屏幕显示分页提示、搜索结果与空文档占位；这些反馈不代表实时自动分页。
+  // 默认文档流显示手动分页提示；启用编辑分页时，由 page-pagination.scss 与插件安排纸面间隙。
   [data-page-break] { position: relative; margin: 24px 0; height: 24px; border-top: 1px dashed #c8c4d9; }
   [data-page-break]::after { position: absolute; top: -9px; left: 40%; padding: 0 10px; font-size: 10px; color: #a4a0b3; background: #ffffff; content: "分页符"; }
   .find-and-replace-result { background: #fff1a8; }
@@ -168,6 +188,9 @@
     figure, img { break-inside: avoid; }
     [data-type="attachment"] { break-inside: avoid; }
     [data-attachment-download] { display: none; }
+    [data-type="media"] { break-inside: avoid; }
+    [data-media-player], [data-media-actions], [data-media-error] { display: none; }
+    [data-type="media"] [data-media-print] { display: block; margin: 0; font-size: 12px; color: #626777; }
     // 静态快照默认展开；同时防御用户在离线 HTML 中收起后打印，避免正文漏印。
     [data-type="details"] {
       > [data-details-content] { display: block !important; }
@@ -187,6 +210,9 @@
     }
     [data-type="block-math"] { overflow: visible; break-inside: avoid; }
     table { width: 100%; }
+    // 静态导出只保存一份起始表头，浏览器负责在物理分页时重复显示。
+    thead { display: table-header-group; }
+    tbody { display: table-row-group; }
     a { color: inherit; }
   }
 }

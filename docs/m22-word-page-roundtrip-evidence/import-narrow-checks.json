@@ -1,0 +1,15 @@
+{
+  "focused": {
+    "bottom": 548,
+    "text": "取 消"
+  },
+  "modal": {
+    "bottom": 592,
+    "top": 24,
+    "width": 720
+  },
+  "viewport": {
+    "height": 600,
+    "width": 920
+  }
+}

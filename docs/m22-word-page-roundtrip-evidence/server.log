@@ -1,0 +1,53 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+> mewoc@0.1.0 dev
+> rsbuild dev --port 4187
+
+Rsbuild v1.7.6
+
+  ➜  Local:  
+  -  index              http://127.0.0.1:4187/
+  -  tests/browser      http://127.0.0.1:4187/tests/browser
+  -  tests/lifecycle    http://127.0.0.1:4187/tests/lifecycle
+  -  tests/pointer      http://127.0.0.1:4187/tests/pointer
+
+start   build started...
+ready   built in 0.44 s
+start   building editor/tools/docx-import-page.js
+ready   built in 0.03 s
+start   building editor/tools/docx-export.js
+ready   built in 0.06 s
+start   building editor/tools/docx-import-session.js
+ready   built in 0.04 s
+start   building editor/tools/docx-import-watermark.js
+ready   built in 0.02 s
+error   [browser] ResizeObserver loop completed with undelivered notifications.
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_jszip_3_10_2_node_modules_jszip_dist_jszip_min_js.js' failed to load.
+start   building editor/tools/docx-import-watermark.js
+ready   built in 0.03 s
+start   building editor/tools/docx-import-watermark.js
+ready   built in 0.02 s
+start   building editor/tools/docx-import-report.js
+ready   built in 0.02 s
+start   building editor/tools/formula-renderer.js
+ready   built in 0.08 s
+start   building editor/tools/code-highlight-renderer.js
+ready   built in 0.04 s
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4187/static/js/async/vendors-node_modules_pnpm_hash_js_1_1_7_node_modules_hash_js_lib_hash_js-node_modules_pnpm_ma-ae39c8.js' failed to load.
+start   building editor/tools/markdown-converter.js
+ready   built in 0.08 s
+error   [browser] ResizeObserver loop completed with undelivered notifications.
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4187/static/js/async/vendors-node_modules_pnpm_hash_js_1_1_7_node_modules_hash_js_lib_hash_js-node_modules_pnpm_ma-ae39c8.js' failed to load.
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_jszip_3_10_2_node_modules_jszip_dist_jszip_min_js.js' failed to load.
+start   building tests/docx-page-import-checks.jsx
+ready   built in 0.05 s
+start   building tests/BrowserVerification.jsx
+ready   built in 0.04 s
+start   building editor/tools/page-export-layout.js
+ready   built in 0.03 s
+start   building editor/tools/page-export-layout.js
+ready   built in 0.04 s
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js' failed to load.
+error   [browser] ResizeObserver loop completed with undelivered notifications.
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4187/static/js/src_pages_editor_tools_formula_js-src_pages_editor_tools_image-assets_js-src_pages_editor_too-c8eb61.js' failed to load.

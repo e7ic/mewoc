@@ -26,6 +26,10 @@ export const DEFAULT_PAGE = {
 // 便携文件采用 base64；图片与附件共用原始字节预算，避免编辑与导出同时驻留过大数据。
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024
 export const MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
+// 音视频保留本地原始字节，与图片/附件共享总额度，不扩大便携文件预算。
+export const MAX_MEDIA_BYTES = 5 * 1024 * 1024
+export const MEDIA_TYPES = { audio: ["audio/mpeg", "audio/wav"], video: ["video/mp4", "video/webm"] }
+export const MEDIA_LOAD_TIMEOUT = 10000
 export const MAX_ASSET_BYTES = 20 * 1024 * 1024
 export const MAX_FILE_BYTES = 32 * 1024 * 1024
 // 限制可解码的静态图片种类，实际导入还会核对头部特征，MIME 白名单并非完整内容验证。

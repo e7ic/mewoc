@@ -15,6 +15,7 @@ import { createDocumentVersion } from "../src/pages/editor/tools/document-histor
 import { createDocumentHtml, createPortableFile, readPortableFile } from "../src/pages/editor/tools/file-transfer.js"
 import { getPageDimensions, DEFAULT_WATERMARK } from "../src/pages/editor/tools/page-settings.js"
 import { getWatermarkGeometry } from "../src/pages/editor/tools/page-watermark.js"
+import { getPagePagination, PAGE_PAGINATION_KEY } from "../src/pages/editor/extensions/page-pagination.js"
 import { FORMATTING_MARKS_KEY } from "../src/pages/editor/tools/formatting-marks-preferences.js"
 import { TOOLBAR_MODE_KEY, TOOLBAR_MODES } from "../src/pages/editor/tools/toolbar-preferences.js"
 import { removeVerificationDocuments } from "./browser-checks.js"
@@ -29,7 +30,7 @@ const field = name => dialog("纸张设置")?.querySelector(`[aria-label="${name
 const json = value => JSON.stringify(value)
 const content = editor => json(editor.getJSON())
 const paragraph = text => ({ type: "paragraph", content: [{ type: "text", text }] })
-const fixture = () => ({ type: "doc", content: [paragraph("页面设置正文，不应包含水印文字。"), paragraph("第二段保留选择和撤销历史。"), paragraph("连续长正文保持正常编辑。".repeat(60))] })
+const fixture = () => ({ type: "doc", content: [paragraph("页面设置正文，不应包含水印文字。"), paragraph("第二段保留选择和撤销历史。"), ...Array.from({ length: 14 }, (_, index) => paragraph(`${index + 1} · ` + "长正文保持正常编辑。".repeat(10)))] })
 const setInput = (element, value) => { assert(element instanceof HTMLInputElement, "纸张输入不存在"); Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(element, String(value)); element.dispatchEvent(new Event("input", { bubbles: true })) }
 const setSelect = (element, value) => { assert(element instanceof HTMLSelectElement, "纸张选项不存在"); element.value = value; element.dispatchEvent(new Event("change", { bubbles: true })) }
 const near = (left, right, tolerance = 0.6) => Math.abs(left - right) < tolerance
@@ -44,7 +45,17 @@ export async function runPageSettingsChecks(report = () => {}) {
   let current
   const toolbar = () => host.querySelector("[data-toolbar-mode]")
   const paper = () => host.querySelector("[data-mewoc-editor-surface]")
+  const sheets = () => [...(paper()?.querySelectorAll("[data-mewoc-page-layer] > [data-mewoc-page-index]") || [])]
   const watermark = () => paper().querySelector("[data-mewoc-watermark]")
+  const settledPages = async () => {
+    await delay()
+    return waitFor(() => {
+      const state = PAGE_PAGINATION_KEY.getState(current.editor.state)
+      const layout = getPagePagination(current.editor)
+      return state?.settings.enabled && !state.pending && layout.pageCount > 0 && sheets().length === layout.pageCount &&
+        paper()?.getAttribute("data-mewoc-pagination-status") === layout.status && layout
+    }, "页面设置后的分页纸面未就绪")
+  }
   const panel = () => [...host.querySelectorAll('[role="tabpanel"]')].find(visible)
   const menuItem = name => [...document.querySelectorAll('[role="menuitemradio"]')].find(element => visible(element) && element.textContent === name)
   const mode = async value => { if (toolbar().dataset.toolbarMode === value) return; button(host, "切换工具栏").click(); const label = TOOLBAR_MODES.find(item => item.key === value).label; (await waitFor(() => menuItem(label), "页面模式菜单未打开")).click(); await waitFor(() => toolbar().dataset.toolbarMode === value && !menuItem(label), "页面模式未切换") }
@@ -55,13 +66,13 @@ export async function runPageSettingsChecks(report = () => {}) {
     if (!record) { const document = { ...createDocument(), title: `页面增强验收-${Date.now()}-${Math.random().toString(16).slice(2, 8)}`, content: fixture() }; const assets = new Map(); const saved = await saveLocalDocument(document, assets, 0); record = { document, assets, storageVersion: saved.storageVersion }; records.set(document.id, { document, assets }) }
     ReactDOM.render(<EditorProvider record={record}><Probe onContext={context => { current = context }} /></EditorProvider>, host)
     await waitFor(() => current?.editor && current.documentId === record.document.id && paper(), "页面 Workspace 未就绪")
-    current.store.getState().updateView({ activeTab: "页面", outlineOpen: false, fitWidth: false, zoom: 1 }); await pagePanel(); return current
+    current.store.getState().updateView({ activeTab: "页面", outlineOpen: false, fitWidth: false, zoom: 1 }); await pagePanel(); await settledPages(); return current
   }
   const open = async () => { await pagePanel(); (await waitFor(() => button(panel(), "纸张设置")?.disabled === false && button(panel(), "纸张设置"), "纸张设置不可用")).click(); return waitFor(() => dialog("纸张设置"), "纸张表单未打开") }
   const put = async (name, value) => { setInput(field(name), value); await delay() }
   const choose = async (name, value) => { setSelect(field(name), value); await delay() }
   const enable = async value => { const control = field("文字水印"); if (control.checked !== value) control.click(); await delay() }
-  const apply = async () => { const control = button(dialog("纸张设置"), "应用"); assert(control && !control.disabled, "页面应用不可用"); control.click(); await waitFor(() => !dialog("纸张设置"), "页面应用未关闭") }
+  const apply = async () => { const control = button(dialog("纸张设置"), "应用"); assert(control && !control.disabled, "页面应用不可用"); control.click(); await waitFor(() => !dialog("纸张设置"), "页面应用未关闭"); await settledPages() }
   const cancel = async () => { button(dialog("纸张设置"), "取消").click(); await waitFor(() => !dialog("纸张设置"), "页面取消未关闭") }
   const submitInvalid = async () => { const before = json(current.store.getState().page); const revision = current.store.getState().revision; dialog("纸张设置").querySelector("form").dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); await waitFor(() => dialog("纸张设置")?.querySelector('[role="alert"]'), "页面无效草稿没有错误"); assert(json(current.store.getState().page) === before && current.store.getState().revision === revision, "无效草稿改写页面或修订") }
   const setWatermark = async (text = "审阅水印") => { await open(); await enable(true); await put("水印文字", text); await apply(); return current.store.getState().page }
@@ -80,8 +91,28 @@ export async function runPageSettingsChecks(report = () => {}) {
       const swatch = field("选择水印颜色").getBoundingClientRect(); const hex = field("水印颜色").getBoundingClientRect(); assert(near(swatch.width, 42) && hex.width > 150 && near(swatch.top, hex.top) && swatch.right <= hex.left, "颜色块没有保持42px或HEX框被挤掉/不在同一行")
       const preview = dialog("纸张设置").querySelector("[data-page-settings-preview]"); const svg = preview.querySelector("[data-mewoc-watermark]"); const node = svg.querySelector("text"); assert(svg.getAttribute("viewBox") === "0 0 148 210" && node.textContent === "预览 <草稿> & 保留" && node.getAttribute("transform") === "rotate(23 74 105)" && getComputedStyle(node).fill === "rgb(18, 52, 86)" && getComputedStyle(node).opacity === "0.35", "草稿预览没有准确呈现水印"); assert(!watermark() && json(store.getState().page) === before && store.getState().revision === revision && content(editor) === text, "预览提前写入页面或正文"); await cancel(); assert(json(store.getState().page) === before && !watermark(), "取消水印仍改了页面")
     })
-    await check("水印：仅一层置于文字下方，不影响布局、选区、正文统计、复制及正文撤销", async ({ editor, store }) => {
-      const before = content(editor); editor.view.dispatch(closeHistory(editor.state.tr)); editor.commands.insertContentAt(2, "可撤销正文"); editor.view.dispatch(closeHistory(editor.state.tr)); editor.view.dispatch(editor.state.tr.setSelection(TextSelection.create(editor.state.doc, 2, 5))); const selected = json(editor.state.selection.toJSON()); const text = editor.getText(); const shape = { height: paper().offsetHeight, width: paper().offsetWidth, bodyHeight: editor.view.dom.offsetHeight }; const currentBody = content(editor); await setWatermark("  水印 <script>保留文字</script>  "); const layer = watermark(); assert(layer && paper().querySelectorAll("[data-mewoc-watermark]").length === 1 && layer.getAttribute("aria-hidden") === "true" && getComputedStyle(layer).pointerEvents === "none" && getComputedStyle(layer).userSelect === "none", "水印层截获操作或重复绘制"); assert(getComputedStyle(layer).zIndex === "0" && getComputedStyle(editor.view.dom.parentElement.parentElement).zIndex === "1", "水印不在正文下方"); assert(layer.querySelector("text").textContent === "水印 <script>保留文字</script>" && !layer.querySelector("script"), "水印文字没有安全转义或去掉首尾空白"); assert(content(editor) === currentBody && editor.getText() === text && json(editor.state.selection.toJSON()) === selected && shape.height === paper().offsetHeight && shape.width === paper().offsetWidth && shape.bodyHeight === editor.view.dom.offsetHeight, "水印改变正文、选择、统计或布局"); const copied = editor.view.serializeForClipboard(editor.state.selection.content()); assert(!copied.dom.querySelector("svg") && !copied.text.includes("水印"), "水印混入复制正文"); assert(editor.commands.undo() && content(editor) === before && store.getState().page.watermark, "页面设置占用了正文撤销或随正文撤销丢失")
+    await check("水印：每页一层置于文字下方，不影响布局、选区、正文统计、复制及正文撤销", async ({ editor, store }) => {
+      const before = content(editor)
+      editor.view.dispatch(closeHistory(editor.state.tr)); editor.commands.insertContentAt(2, "可撤销正文"); editor.view.dispatch(closeHistory(editor.state.tr))
+      editor.view.dispatch(editor.state.tr.setSelection(TextSelection.create(editor.state.doc, 2, 5)))
+      const initialLayout = await settledPages()
+      assert(initialLayout.pageCount > 1 && initialLayout.overflowCount === 0, "水印夹具没有实际形成多张标准编辑页")
+      const selected = json(editor.state.selection.toJSON()); const text = editor.getText()
+      const shape = { height: paper().offsetHeight, width: paper().offsetWidth, bodyHeight: editor.view.dom.offsetHeight }
+      const currentBody = content(editor)
+      await setWatermark("  水印 <script>保留文字</script>  ")
+      assert(paper().querySelectorAll("[data-mewoc-watermark]").length === sheets().length, "编辑页水印数量不足或重复绘制")
+      for (const sheet of sheets()) {
+        const layers = sheet.querySelectorAll("[data-mewoc-watermark]")
+        const layer = layers[0]
+        assert(layers.length === 1 && layer.getAttribute("aria-hidden") === "true" && getComputedStyle(layer).pointerEvents === "none" && getComputedStyle(layer).userSelect === "none", "水印层截获操作或同一页重复绘制")
+        assert(getComputedStyle(layer).zIndex === "0" && getComputedStyle(paper().querySelector("[data-mewoc-editor-body]")).zIndex === "1", "水印不在正文下方")
+        assert(layer.querySelector("text").textContent === "水印 <script>保留文字</script>" && !layer.querySelector("script"), "水印文字没有安全转义或去掉首尾空白")
+      }
+      assert(content(editor) === currentBody && editor.getText() === text && json(editor.state.selection.toJSON()) === selected && shape.height === paper().offsetHeight && shape.width === paper().offsetWidth && shape.bodyHeight === editor.view.dom.offsetHeight, "水印改变正文、选择、统计或布局")
+      const copied = editor.view.serializeForClipboard(editor.state.selection.content())
+      assert(!copied.dom.querySelector("svg, [data-mewoc-page-gap]") && !copied.text.includes("水印"), "水印或分页装饰混入复制正文")
+      assert(editor.commands.undo() && content(editor) === before && store.getState().page.watermark, "页面设置占用了正文撤销或随正文撤销丢失")
     })
     await check("水印校验：空文字、非法颜色、透明度和角度越界都保留错误草稿且不提交", async () => {
       await open(); await enable(true); for (const [name, value, valid] of [["水印文字", " ", "合法水印"], ["水印文字", "长".repeat(81), "合法水印"], ["水印颜色", "red", "#797087"], ["不透明度（%）", 4.9, 12], ["不透明度（%）", 50.1, 12], ["水印角度（°）", -91, -35], ["水印角度（°）", 91, -35]]) { await put(name, value); await submitInvalid(); await put(name, valid) } assert(field("水印文字").maxLength >= 160, "原生字符上限不能容纳80个Unicode代理对"); await put("水印文字", "😀".repeat(80)); await apply(); assert(Array.from(current.store.getState().page.watermark.text).length === 80, "80个Unicode码点的合法水印被拒绝")
@@ -95,8 +126,24 @@ export async function runPageSettingsChecks(report = () => {}) {
     await check("页面保存：非A4水印保存重开与Mewoc往返，关闭水印和无修改应用不制造额外修订", async context => {
       await open(); await choose("纸张规格", "Letter"); await choose("边距预设", "narrow"); await enable(true); await put("水印文字", "持久水印"); await apply(); assert(await context.saveDocument(), "页面保存失败"); const expected = json(context.store.getState().page); const record = await getLocalDocument(context.documentId); const reopened = await mount({ ...record, assets: new Map() }); assert(json(reopened.store.getState().page) === expected && watermark().querySelector("text").textContent === "持久水印", "同ID重开丢水印/规格"); const portable = await createPortableFile(reopened.getSnapshot(), reopened.assets); const imported = await readPortableFile(new File([JSON.stringify(portable)], "page-settings.mewoc.json")); assert(json(imported.document.page) === expected, "Mewoc往返丢页面设置"); await open(); await enable(false); await apply(); assert(current.store.getState().page.watermark === null && !watermark(), "关闭水印没有持久语义"); const revision = current.store.getState().revision; await open(); await apply(); assert(current.store.getState().revision === revision, "未修改页面应用制造了修订")
     })
-    await check("水印几何：80字及90度在横竖纸面内，缩放保持比例且连续正文只有一次水印", async ({ store }) => {
-      for (const orientation of ["portrait", "landscape"]) { await open(); await choose("纸张规格", "A5"); dialog("纸张设置").querySelector(`input[value="${orientation}"]`).click(); await enable(true); await put("水印文字", "长".repeat(80)); await put("水印角度（°）", 90); await apply(); const page = store.getState().page; const geometry = getWatermarkGeometry(page); for (const zoom of [0.75, 1, 1.25]) { store.getState().updateView({ zoom }); await delay(); const svg = watermark(); const box = svg.getBoundingClientRect(); const dimensions = getPageDimensions(page); assert(near(box.width, dimensions.widthMm * 96 / 25.4 * zoom) && near(box.height, dimensions.heightMm * 96 / 25.4 * zoom) && svg.querySelector("text").textContent.length === 80, "水印没有随真实纸面同比缩放"); const textBox = svg.querySelector("text").getBBox(); assert(textBox.height <= geometry.textHeightMm * 1.2 && geometry.textWidthMm <= dimensions.heightMm * 0.78 + 0.01 && paper().querySelectorAll("[data-mewoc-watermark]").length === 1, "长水印或旋转后超纸面/重复") } }
+    await check("水印几何：80字及90度在横竖纸面内，缩放保持比例且每张编辑页只有一次水印", async ({ store }) => {
+      for (const orientation of ["portrait", "landscape"]) {
+        await open(); await choose("纸张规格", "A5"); dialog("纸张设置").querySelector(`input[value="${orientation}"]`).click()
+        await enable(true); await put("水印文字", "长".repeat(80)); await put("水印角度（°）", 90); await apply()
+        const page = store.getState().page; const geometry = getWatermarkGeometry(page); const dimensions = getPageDimensions(page)
+        const pageCount = getPagePagination(current.editor).pageCount
+        assert(pageCount > 1, "A5 水印夹具没有实际形成多个编辑页")
+        for (const zoom of [0.75, 1, 1.25]) {
+          store.getState().updateView({ zoom }); const layout = await settledPages()
+          assert(layout.pageCount === pageCount && paper().querySelectorAll("[data-mewoc-watermark]").length === pageCount, "缩放改变分页或页面水印重复/遗漏")
+          for (const sheet of sheets()) {
+            const svg = sheet.querySelector("[data-mewoc-watermark]"); const box = svg.getBoundingClientRect(); const paperBox = sheet.getBoundingClientRect()
+            assert(near(box.width, dimensions.widthMm * 96 / 25.4 * zoom) && near(box.height, dimensions.heightMm * 96 / 25.4 * zoom) && svg.querySelector("text").textContent.length === 80, "水印没有随真实纸面同比缩放")
+            const textBox = svg.querySelector("text").getBBox()
+            assert(textBox.height <= geometry.textHeightMm * 1.2 && geometry.textWidthMm <= dimensions.heightMm * 0.78 + 0.01 && box.top >= paperBox.top - 1 && box.bottom <= paperBox.bottom + 1, "长水印或旋转后超出对应纸面")
+          }
+        }
+      }
     })
     await check("离线HTML：实际iframe纸型、边距、水印同几何且正文与源快照保持原样", async context => {
       await open(); await choose("纸张规格", "A3"); dialog("纸张设置").querySelector('input[value="landscape"]').click(); await choose("边距预设", "wide"); await enable(true); await put("水印文字", "静态 <草稿> & 水印"); await put("水印颜色", "#125678"); await put("不透明度（%）", 20); await put("水印角度（°）", -30); await apply(); const before = content(context.editor); const source = context.getSnapshot(); const frame = document.createElement("iframe"); frame.style.cssText = "width:900px;height:600px;border:0"; host.append(frame); try { frame.srcdoc = await createDocumentHtml(source, context.assets); const document = await waitFor(() => frame.contentDocument?.querySelector(".mewoc-export-watermark") && frame.contentDocument, "页面HTML水印未载入"); const paper = document.querySelector(".mewoc-export-page"); const svg = document.querySelector(".mewoc-export-watermark svg"); const text = svg.querySelector("text"); assert(near(parseFloat(frame.contentWindow.getComputedStyle(paper).width), 420 * 96 / 25.4) && near(parseFloat(frame.contentWindow.getComputedStyle(paper).paddingLeft), 25.4 * 96 / 25.4) && svg.getAttribute("viewBox") === "0 0 420 297" && text.textContent === "静态 <草稿> & 水印", "HTML纸型/边距/安全水印错误"); assert(text.getAttribute("transform") === "rotate(-30 210 148.5)" && frame.contentWindow.getComputedStyle(text).opacity === "0.2" && document.querySelectorAll(".mewoc-export-watermark").length === 1 && !document.querySelector("article svg"), "HTML水印角度透明度错误或混入正文"); assert(document.querySelector("article").textContent.includes("第二段保留") && content(context.editor) === before && json(context.store.getState().page) === json(source.page), "HTML导出改写来源") } finally { frame.remove() }

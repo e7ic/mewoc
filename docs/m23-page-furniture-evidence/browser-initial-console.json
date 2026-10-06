@@ -1,0 +1,38 @@
+[
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T11:03:39.466Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T11:03:44.053Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/BrowserVerification.jsx is not accepted\nUpdate propagation: ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4188/static/js/tests/browser.js:13236:20)\n    at http://127.0.0.1:4188/static/js/tests/browser.js:12679:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4188/static/js/tests/browser.js:12678:43)\n    at http://127.0.0.1:4188/static/js/tests/browser.js:12653:15\n    at waitForBlockingPromises (http://127.0.0.1:4188/static/js/tests/browser.js:12606:37)\n    at http://127.0.0.1:4188/static/js/tests/browser.js:12651:13",
+    "timestamp": "2026-10-06T11:05:03.282Z",
+    "url": "http://127.0.0.1:4188/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T11:05:03.352Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/page-furniture-checks.jsx is not accepted\nUpdate propagation: ./tests/page-furniture-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4188/static/js/tests/browser.js:14233:20)\n    at http://127.0.0.1:4188/static/js/tests/browser.js:13676:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4188/static/js/tests/browser.js:13675:43)\n    at http://127.0.0.1:4188/static/js/tests/browser.js:13650:15\n    at waitForBlockingPromises (http://127.0.0.1:4188/static/js/tests/browser.js:13603:37)\n    at http://127.0.0.1:4188/static/js/tests/browser.js:13648:13",
+    "timestamp": "2026-10-06T11:05:26.162Z",
+    "url": "http://127.0.0.1:4188/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T11:05:26.236Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  }
+]

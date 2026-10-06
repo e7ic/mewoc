@@ -1,0 +1,335 @@
+{
+  "checkedAtUtc": "2026-10-06T11:16:31.240945+00:00",
+  "source": "Chrome native system Save as PDF output supplied by root",
+  "pdf": "native-print.pdf",
+  "pdfSha256": "9e7768e5dac069f1c35cd2ebc6bee0e49b190ce9d169749981aeb19397860f1a",
+  "fixture": "tests/page-furniture-checks.jsx::showPageFurnitureExample",
+  "fixtureFileSha256": "bbb6740f9d5f166deb7307633bfec1f99ec8246e4de44e17449b4ab8b6d75967",
+  "method": "pypdf PdfReader text extraction and physical MediaBox comparison. Comparison only applies Unicode NFKC, maps the identical CJK radical U+2EDA to 页 (U+9875), and removes extraction whitespace including line wraps and split rotated watermark glyphs. This does not alter the PDF and is not visual clipping proof.",
+  "comparisonAlias": {
+    "U+2EDA CJK RADICAL C-SIMPLIFIED LEAF": "U+9875 页"
+  },
+  "pageCount": 9,
+  "paperExpected": {
+    "name": "A5 landscape",
+    "widthMm": 210,
+    "heightMm": 148,
+    "widthPt": 595.2755905511812,
+    "heightPt": 419.52755905511816,
+    "tolerancePt": 1
+  },
+  "fixtureExpected": {
+    "heading": "M23 · 页眉页脚与页码",
+    "paragraphCount": 12,
+    "sentenceRepeatsEach": 5,
+    "bodyNormalizedCharacters": 2951,
+    "commentRepeats": 40,
+    "commentNormalizedCharacters": 1280
+  },
+  "checks": {
+    "exactPageCount9": true,
+    "allA5Landscape": true,
+    "eachHeaderHasOwnCurrentPageOnce": true,
+    "eachFooterHasOwnCurrentPageAndActualTotalOnce": true,
+    "eachWatermarkExtractedOnce": true,
+    "allDecorationsSeparatedFromBodyInExtraction": true,
+    "fullBodyExactlyMatchesHeadingAnd12FixtureParagraphs": true,
+    "all12ParagraphsCompleteAndOnce": true,
+    "fullCommentExactlyMatches40FixtureRepeats": true,
+    "appendixRetainsOriginalAndCurrentQuotes": true,
+    "appendixRetainsUnresolvedStatus": true,
+    "appendixRetainsCreatedAndUpdatedTimes": true
+  },
+  "allChecksPassed": true,
+  "pages": [
+    {
+      "page": 1,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 1 页",
+      "expectedFooter": "内部资料 · 第 1 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 548
+    },
+    {
+      "page": 2,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 2 页",
+      "expectedFooter": "内部资料 · 第 2 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 583
+    },
+    {
+      "page": 3,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 3 页",
+      "expectedFooter": "内部资料 · 第 3 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 583
+    },
+    {
+      "page": 4,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 4 页",
+      "expectedFooter": "内部资料 · 第 4 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 583
+    },
+    {
+      "page": 5,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 5 页",
+      "expectedFooter": "内部资料 · 第 5 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 583
+    },
+    {
+      "page": 6,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 6 页",
+      "expectedFooter": "内部资料 · 第 6 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 583
+    },
+    {
+      "page": 7,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 7 页",
+      "expectedFooter": "内部资料 · 第 7 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 367
+    },
+    {
+      "page": 8,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 8 页",
+      "expectedFooter": "内部资料 · 第 8 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 746
+    },
+    {
+      "page": 9,
+      "mediaBoxPt": [
+        0.0,
+        0.0,
+        594.95996,
+        420.0
+      ],
+      "widthPt": 594.95996,
+      "heightPt": 420.0,
+      "rotation": 0,
+      "a5Landscape": true,
+      "expectedHeader": "M23 页面验收 · 第 9 页",
+      "expectedFooter": "内部资料 · 第 9 / 9 页",
+      "headerCount": 1,
+      "footerCount": 1,
+      "watermarkCount": 1,
+      "decorationPrefixMatches": true,
+      "extractedCharacters": 670
+    }
+  ],
+  "paragraphs": [
+    {
+      "number": 1,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 2,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 3,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 4,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 5,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 6,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 7,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 8,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 9,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 10,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 11,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    },
+    {
+      "number": 12,
+      "expectedNormalizedCharacters": 245,
+      "completeOccurrences": 1
+    }
+  ],
+  "bodyParagraphStartPages": {
+    "1": [
+      1
+    ],
+    "2": [
+      1
+    ],
+    "3": [
+      2
+    ],
+    "4": [
+      2
+    ],
+    "5": [
+      3
+    ],
+    "6": [
+      3
+    ],
+    "7": [
+      4
+    ],
+    "8": [
+      4
+    ],
+    "9": [
+      5
+    ],
+    "10": [
+      5
+    ],
+    "11": [
+      6
+    ],
+    "12": [
+      6
+    ]
+  },
+  "commentAppendixPages": [
+    7,
+    8,
+    9
+  ],
+  "limits": [
+    "Does not certify Word/WPS native rendering or re-save compatibility.",
+    "Text extraction checks prove complete text flow and decorations present, not visible glyphs or no clipping; render review is separate."
+  ]
+}

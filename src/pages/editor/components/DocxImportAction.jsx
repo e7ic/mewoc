@@ -6,6 +6,9 @@ import { useEffect, useRef, useState } from "react"
 import { Alert, Button, Input, Modal } from "antd"
 import { IconAlertTriangle, IconFileTypeDocx, IconLoader2 } from "@tabler/icons-react"
 import { readDocxDocument } from "../tools/docx-import-file.js"
+import { getPreviewPage } from "../tools/page-preview.js"
+import { PageWatermark } from "./PageWatermark.jsx"
+import { PageFurniture } from "./PageFurniture.jsx"
 import styles from "../sass/docx.module.scss"
 
 export function DocxImportAction({ disabled, onImport }) {
@@ -95,10 +98,13 @@ export function DocxImportAction({ disabled, onImport }) {
     abortRef.current?.abort()
   }, [])
 
+  // 页面摘要只读转换结果，不引用当前会话；取消预览不会提前应用纸张、边距或水印。
+  const previewPage = result ? getPreviewPage(result.record.document.page) : null
+
   // 转换期间显示进度，完成后展示预览；提交期间锁定关闭入口，避免文件切换中断父级保存契约。
   return <>
     <button type="button" disabled={disabled} onClick={handleOpen}><IconFileTypeDocx aria-hidden="true" />导入 Word</button>
-    <Modal title="导入 Word 文档" open={open} onCancel={handleCancel} width={720} destroyOnHidden
+    <Modal title="导入 Word 文档" open={open} onCancel={handleCancel} width={720} style={{ top: 24 }} destroyOnHidden
       classNames={{ body: styles.body }} closable={!importing && !disabled} maskClosable={!importing && !disabled} keyboard={!importing && !disabled}
       footer={<div className={styles.actions}>
         <Button disabled={importing || disabled} onClick={handleCancel}>取消</Button>
@@ -111,6 +117,17 @@ export function DocxImportAction({ disabled, onImport }) {
         {pending && <p role="status">正在检查文档与图片，可以取消本次转换。</p>}
         {result && <div className={styles.result}>
           <p>将创建「{result.record.document.title}」</p>
+          <div className={styles.pageSummary}>
+            <div className={styles.pagePreview} data-docx-import-page-preview="" style={previewPage.style} aria-hidden="true">
+              <PageWatermark page={result.record.document.page} />
+              <PageFurniture page={result.record.document.page} />
+              <div className={styles.previewLines}><span /><span /><span /><span /></div>
+            </div>
+            <div>
+              <p aria-label="Word 导入页面设置">{previewPage.description}</p>
+              <p className={styles.hint}>页面设置示意；正文按内容语义导入，原始分页不保证保留。</p>
+            </div>
+          </div>
           {result.warnings.length > 0 && <Alert type="warning" icon={<IconAlertTriangle aria-hidden="true" />} showIcon message="转换说明"
             description={<ul className={styles.warnings}>{result.warnings.map(warning => <li key={warning}>{warning}</li>)}</ul>} />}
           <label>导入正文（前 5000 字符纯文本预览）</label>

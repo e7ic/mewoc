@@ -1,0 +1,51 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+> mewoc@0.1.0 dev
+> rsbuild dev --port 4188
+
+Rsbuild v1.7.6
+
+  ➜  Local:  
+  -  index              http://127.0.0.1:4188/
+  -  tests/browser      http://127.0.0.1:4188/tests/browser
+  -  tests/lifecycle    http://127.0.0.1:4188/tests/lifecycle
+  -  tests/pointer      http://127.0.0.1:4188/tests/pointer
+
+start   build started...
+ready   built in 0.40 s
+start   building editor/components/PaperCanvas.jsx and 4 more
+ready   built in 0.05 s
+start   building editor/tools/docx-export.js
+ready   built in 0.04 s
+start   building editor/tools/page-export-layout.js
+ready   built in 0.09 s
+start   building editor/tools/page-furniture.js
+ready   built in 0.10 s
+start   building editor/components/PageFurniture.jsx
+ready   built in 0.06 s
+start   building editor/tools/docx-export.js
+ready   built in 0.06 s
+start   building editor/tools/docx-import-session.js
+ready   built in 0.04 s
+start   building tests/BrowserVerification.jsx
+ready   built in 0.04 s
+start   building tests/page-furniture-checks.jsx
+ready   built in 0.04 s
+start   building editor/tools/formula-renderer.js
+ready   built in 0.07 s
+start   building editor/tools/code-highlight-renderer.js
+ready   built in 0.06 s
+start   building editor/tools/markdown-converter.js
+ready   built in 0.07 s
+start   building editor/tools/docx-import-furniture.js
+ready   built in 0.03 s
+start   building editor/tools/docx-import-archive.js
+ready   built in 0.03 s
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4188/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js' failed to load.
+error   [browser] ResizeObserver loop completed with undelivered notifications.
+error   [browser] Uncaught NetworkError: Failed to execute 'importScripts' on 'WorkerGlobalScope': The script at 'http://127.0.0.1:4188/static/js/vendors-node_modules_pnpm_jszip_3_10_2_node_modules_jszip_dist_jszip_min_js.js' failed to load.
+start   building editor/components/LayoutToolbar.jsx
+ready   built in 0.07 s
+start   building editor/sass/page-settings.module.scss
+ready   built in 0.06 s

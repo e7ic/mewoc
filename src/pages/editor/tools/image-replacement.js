@@ -26,7 +26,7 @@ export function checkImageReplacementCapacity(editor, assets, target, incomingBy
   if (!assets.has(current.node.attrs.assetId)) throw new Error("部分资源缺失，请重新打开文档后重试")
   const references = []
   editor.state.doc.descendants((node, position) => {
-    if (["image", "attachment"].includes(node.type.name) && position !== current.position) {
+    if (["image", "attachment", "media"].includes(node.type.name) && position !== current.position) {
       references.push({ type: node.type.name, attrs: { assetId: node.attrs.assetId } })
     }
   })
@@ -88,7 +88,7 @@ export async function replaceDocumentImage({ editor, assets, target, file, canEd
       // 派发中发生异常时，若正文已引用新图则继续交给会话管理，避免留下指向已释放 URL 的节点。
       let referenced = false
       if (!editor.isDestroyed) editor.state.doc.descendants(node => {
-        if (["image", "attachment"].includes(node.type.name) && node.attrs.assetId === asset.id) referenced = true
+        if (["image", "attachment", "media"].includes(node.type.name) && node.attrs.assetId === asset.id) referenced = true
       })
       if (!referenced) {
         if (registered) assets.delete(asset.id)

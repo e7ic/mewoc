@@ -58,7 +58,7 @@ function getSizes() {
     tables: [...document.querySelectorAll(".ProseMirror table")].map(table => ({
       width: table.style.width,
       columns: [...table.querySelectorAll("col")].map(column => column.style.width),
-      cells: [...table.querySelectorAll("th, td")].map(cell => cell.getAttribute("colwidth"))
+      cells: [...table.querySelectorAll("th, td")].filter(cell => !cell.closest("[data-mewoc-table-pagination]")).map(cell => cell.getAttribute("colwidth"))
     }))
   }
 }

@@ -76,7 +76,7 @@ test("旧图片格式仍可读，附件与图片必须引用匹配种类的资�
   const missing = structuredClone(record)
   missing.assets = []
   assert.throws(() => validateDocument(missing), /资源缺失/)
-  for (const kind of [null, "", "video"]) {
+  for (const kind of [null, "", "unknown-resource"]) {
     const invalid = structuredClone(record)
     invalid.assets[0].kind = kind
     assert.throws(() => validateDocument(invalid), /资源种类无效/)

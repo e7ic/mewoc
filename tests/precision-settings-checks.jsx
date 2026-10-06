@@ -263,7 +263,7 @@ export async function runPrecisionSettingsChecks(report = () => {}) {
       assert(JSON.stringify(table.child(0).child(0).attrs.colwidth) === "[110,260]" && table.child(1).child(1).attrs.colwidth[0] === 260, "合并单元格内的逻辑 B 列宽没有同步")
       assert(table.child(0).child(1).attrs.colwidth[0] === 180 && table.child(1).child(0).attrs.colwidth[0] === 110, "列宽设置污染了其他逻辑列")
       assert(table.child(0).attrs.minHeight === 44 && table.child(1).attrs.minHeight === 84, "行高没有限制到选中行")
-      const rows = editor.view.dom.querySelectorAll("tr")
+      const rows = editor.view.dom.querySelectorAll("tr:not([data-mewoc-table-pagination])")
       const selected = rows[1].querySelectorAll("td")[1]
       assert(rows[1].getBoundingClientRect().height >= 83 && getComputedStyle(selected).paddingLeft === "0px" && getComputedStyle(selected).paddingTop === "0px", "正文没有呈现行高或零内边距")
       const updated = JSON.stringify(editor.getJSON())

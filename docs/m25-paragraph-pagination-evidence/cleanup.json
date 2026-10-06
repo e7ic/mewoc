@@ -1,0 +1,26 @@
+{
+  "origin": "http://127.0.0.1:4190",
+  "interruptedRunDocumentsMovedToRecoverableTrash": [
+    "M23 页眉页脚验收-1791298637709-a78e66",
+    "M23 页眉页脚验收-1791298636535-9bcc3a",
+    "M23临时模板-1791298635174",
+    "M23 页眉页脚验收-1791298634145-04352c",
+    "M23 页眉页脚验收-1791298633034-82d539",
+    "M23 页眉页脚验收-1791298632040-6da39d",
+    "M23 页眉页脚验收-1791298631743-0d8a86",
+    "M23 页眉页脚验收-1791298630602-c284f8",
+    "M23 页眉页脚验收-1791298628472-c7193e",
+    "M23 页眉页脚验收-1791298627857-7dca74",
+    "M23 页眉页脚验收-1791298623640-dbc154"
+  ],
+  "activeLibraryAfterCleanup": [
+    {
+      "title": "未命名文档",
+      "created": "2026/10/6 21:58:06",
+      "preserved": true
+    }
+  ],
+  "permanentDeletion": false,
+  "interruptedTemplate": "M23临时模板-1791298635174",
+  "templateStatus": "Confirmed visible in 我的模板 at 22:57:15; retained because UI offers irreversible deletion. Older templates were untouched."
+}

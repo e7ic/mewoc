@@ -1,15 +1,11 @@
 /**
- * 定义纸张、页边距与文字水印的共享契约，供页面设置、保存和导出使用。
- * 校验只报告错误，不改写输入；旧文档缺少 watermark 时继续保留原来的字段形状。
+ * 定义纸张、页边距、文字水印与页眉页脚的共享契约，供页面设置、保存和导出使用。
+ * 校验只报告错误，不改写输入；旧文档缺少可选水印或页眉页脚时继续保留原来的字段形状。
  */
 
-// 尺寸始终按竖版毫米值存放；横版只在读取时交换宽高，避免多套尺寸常量出现偏差。
-export const PAGE_SIZES = Object.freeze({
-  A3: Object.freeze({ widthMm: 297, heightMm: 420 }),
-  A4: Object.freeze({ widthMm: 210, heightMm: 297 }),
-  A5: Object.freeze({ widthMm: 148, heightMm: 210 }),
-  Letter: Object.freeze({ widthMm: 215.9, heightMm: 279.4 })
-})
+import { getPageDimensions } from "./page-paper.js"
+import { getPageFurnitureFontPt, isPageFurnitureActive, validatePageFurniture } from "./page-furniture.js"
+export { PAGE_SIZES, getPageDimensions } from "./page-paper.js"
 
 // 预设和水印默认值不可直接修改；会话或表单需要可编辑草稿时应显式深克隆。
 export const MARGIN_PRESETS = Object.freeze([
@@ -22,7 +18,7 @@ export const DEFAULT_WATERMARK = Object.freeze({
   text: "草稿", color: "#797087", opacity: 0.12, angle: -35
 })
 
-const PAGE_KEYS = ["size", "orientation", "marginsMm", "watermark"]
+const PAGE_KEYS = ["size", "orientation", "marginsMm", "watermark", "header", "footer"]
 const MARGIN_KEYS = ["top", "right", "bottom", "left"]
 const WATERMARK_KEYS = ["text", "color", "opacity", "angle"]
 const SINGLE_LINE_CONTROLS = /[\u0000-\u001f\u007f-\u009f\u2028\u2029]/
@@ -33,19 +29,6 @@ function makeMarginPreset(id, label, margin) {
     id, label,
     marginsMm: Object.freeze({ top: margin, right: margin, bottom: margin, left: margin })
   })
-}
-
-/**
- * 按纸型与方向返回纸面尺寸，不依赖边距或水印，因此也能服务纸型选项的小预览。
- * 不接受继承得到的纸型、未知枚举或数组，避免原型属性被当作可保存的页面配置。
- */
-export function getPageDimensions(page) {
-  if (!isRecord(page) || !Object.hasOwn(page, "size") || !Object.hasOwn(page, "orientation") ||
-    typeof page.size !== "string" || !Object.hasOwn(PAGE_SIZES, page.size) || !["portrait", "landscape"].includes(page.orientation)) {
-    throw new Error("纸张设置无效，请选择 A3、A4、A5 或 Letter 的横版或竖版")
-  }
-  const { widthMm, heightMm } = PAGE_SIZES[page.size]
-  return page.orientation === "landscape" ? { widthMm: heightMm, heightMm: widthMm } : { widthMm, heightMm }
 }
 
 // 正文区域从已验证的毫米边距计算，编辑画布与导出无需各自重复尺寸减法。
@@ -75,6 +58,15 @@ export function validatePageSettings(page) {
     throw new Error("页边距过大，请至少保留 40 mm 的正文区域")
   }
   if (Object.hasOwn(page, "watermark") && page.watermark !== null) validateWatermark(page.watermark)
+  // 关闭或缺省不迁移旧文档；完整但空白的设置可保留草稿偏好，只有激活后才占用页边距。
+  for (const [position, label, side] of [["header", "页眉", "top"], ["footer", "页脚", "bottom"]]) {
+    if (!Object.hasOwn(page, position) || page[position] === null) continue
+    validatePageFurniture(page[position], label)
+    if (isPageFurnitureActive(page[position])) {
+      if (margins[side] < 12) throw new Error(`启用${label}时${side === "top" ? "上" : "下"}边距至少为 12 mm`)
+      getPageFurnitureFontPt(page, page[position])
+    }
+  }
   return page
 }
 

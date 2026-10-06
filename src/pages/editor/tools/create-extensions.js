@@ -13,6 +13,7 @@ import { ParagraphLayout } from "../extensions/paragraph-layout.js"
 import { EditorFocus } from "../extensions/editor-focus.js"
 import { FormattingMarks } from "../extensions/formatting-marks.js"
 import { PageBreak } from "../extensions/page-break.js"
+import { PagePagination } from "../extensions/page-pagination.js"
 import { DocumentImage } from "../extensions/document-image.js"
 import { TableColumnResize } from "../extensions/table-column-resize.js"
 import { TableAppearance } from "../extensions/table-appearance.js"
@@ -21,6 +22,7 @@ import { ParagraphIndent } from "../extensions/paragraph-indent.js"
 import { InlineMath, BlockMath } from "../extensions/formula.js"
 import { DocumentCodeBlock } from "../extensions/code-block.js"
 import { DocumentAttachment } from "../extensions/document-attachment.js"
+import { DocumentMedia } from "../extensions/document-media.js"
 import { FontWeight } from "../extensions/font-weight.js"
 import { DocumentComments, CommentAnchor } from "../extensions/document-comments.js"
 import { Superscript, Subscript } from "../extensions/text-scripts.js"
@@ -57,9 +59,10 @@ export function createExtensions(getAssetUrl = () => "", getAsset = () => null) 
     TableKit.configure({ table: { resizable: false } }),
     TableAppearance,
     TableColumnResize,
-    // 图片解析器拒绝附件资源，附件则同时读取元数据和地址，避免同 ID 的错误种类被渲染成图片。
-    DocumentImage.configure({ getAssetUrl: id => getAsset(id)?.kind === "attachment" ? "" : getAssetUrl(id) }),
+    // 图片只解析图片资源；附件和媒体同时读取元数据与地址，避免错误种类被渲染成图片。
+    DocumentImage.configure({ getAssetUrl: id => (getAsset(id)?.kind || "image") === "image" ? getAssetUrl(id) : "" }),
     DocumentAttachment.configure({ getAssetUrl, getAsset }),
+    DocumentMedia.configure({ getAssetUrl, getAsset }),
     // 段落布局、格式刷与插入节点在基础模型之后注册，给同一正文添加持久属性和交互命令。
     ParagraphSpacing,
     ParagraphLayout,
@@ -68,6 +71,8 @@ export function createExtensions(getAssetUrl = () => "", getAsset = () => null) 
     ParagraphIndent,
     FormatPainter,
     PageBreak,
+    // 自动分页只产生视图装饰；PaperCanvas 显式启用，schema 校验及静态导出保持普通文档流。
+    PagePagination,
     InlineMath,
     BlockMath,
     DocumentCodeBlock,

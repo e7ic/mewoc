@@ -9,6 +9,8 @@
   overflow-y: auto;
   overscroll-behavior: contain;
 }
+// 页眉页脚的操作栏在滚动区域外；另预留页脚和底边高度，920×600 时整个弹窗仍在视口内。
+.furnitureModal :global(.ant-modal-body) { max-height: calc(100dvh - 180px); }
 .summary { flex-wrap: wrap; white-space: normal; }
 .summary > span { white-space: normal; }
 .summary > :global(.tabler-icon) { flex-shrink: 0; font-size: 24px; }
@@ -29,6 +31,8 @@
 .radios label, .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
 .radios input, .toggle input { accent-color: $ui-accent; }
 .watermarkFields { border-top: 1px solid $ui-border; padding-top: 16px; }
+.furnitureSection { display: flex; flex-direction: column; gap: 12px; }
+.furnitureSection + .furnitureSection { border-top: 1px solid $ui-border; padding-top: 16px; }
 .color { display: flex; gap: 8px; }
 .color input[type="color"] { flex-shrink: 0; width: 42px; padding: 4px; }
 .preview { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; border-radius: 8px; background: $ui-canvas; }

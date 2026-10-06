@@ -1,0 +1,74 @@
+[
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:35:55.390Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:35:58.335Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:37:18.707Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/docx-page-import-checks.jsx is not accepted\nUpdate propagation: ./tests/docx-page-import-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4187/static/js/tests/browser.js:13018:20)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12461:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4187/static/js/tests/browser.js:12460:43)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12435:15\n    at waitForBlockingPromises (http://127.0.0.1:4187/static/js/tests/browser.js:12388:37)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12433:13",
+    "timestamp": "2026-10-06T10:43:29.986Z",
+    "url": "http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:43:30.270Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/BrowserVerification.jsx is not accepted\nUpdate propagation: ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4187/static/js/tests/browser.js:13219:20)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12662:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4187/static/js/tests/browser.js:12661:43)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12636:15\n    at waitForBlockingPromises (http://127.0.0.1:4187/static/js/tests/browser.js:12589:37)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12634:13",
+    "timestamp": "2026-10-06T10:43:59.908Z",
+    "url": "http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:44:00.123Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/tools/page-export-layout.js is not accepted\nUpdate propagation: ./src/pages/editor/tools/page-export-layout.js -> ./src/pages/editor/tools/html-export.js -> ./src/pages/editor/tools/file-transfer.js -> ./tests/docx-page-import-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4187/static/js/tests/browser.js:13236:20)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12679:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4187/static/js/tests/browser.js:12678:43)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12653:15\n    at waitForBlockingPromises (http://127.0.0.1:4187/static/js/tests/browser.js:12606:37)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12651:13",
+    "timestamp": "2026-10-06T10:45:13.883Z",
+    "url": "http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:45:14.130Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/tools/page-export-layout.js is not accepted\nUpdate propagation: ./src/pages/editor/tools/page-export-layout.js -> ./src/pages/editor/tools/html-export.js -> ./src/pages/editor/tools/file-transfer.js -> ./tests/docx-page-import-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4187/static/js/tests/browser.js:13236:20)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12679:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4187/static/js/tests/browser.js:12678:43)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12653:15\n    at waitForBlockingPromises (http://127.0.0.1:4187/static/js/tests/browser.js:12606:37)\n    at http://127.0.0.1:4187/static/js/tests/browser.js:12651:13",
+    "timestamp": "2026-10-06T10:46:11.134Z",
+    "url": "http://127.0.0.1:4187/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:46:11.371Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T10:49:29.380Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  }
+]

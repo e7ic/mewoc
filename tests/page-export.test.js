@@ -103,9 +103,11 @@ test("Word 水印是唯一关联的原生页眉 VML：居中、旋转、颜色�
   source.content.attrs = { commentThreads: [{ id: "comment-1", text: "批注原文", quote: "原段正文", createdAt: "2026-10-04T01:00:00.000Z", updatedAt: "2026-10-04T01:00:00.000Z", resolved: false }] }
   const before = structuredClone(source)
   const result = await unpack(source)
-  assert.ok(result.warnings.some(text => text.includes("Word 导入暂不支持这种水印") && text.includes("Mewoc")))
-  // 实际导出的水印文件触发既有严格导入守卫；界面不能声称此格式可替代 Mewoc 完整往返。
-  await assert.rejects(async () => convertDocxImport(new Uint8Array(await result.blob.arrayBuffer())), /旧式图形/)
+  assert.ok(!result.warnings.some(text => text.includes("Word 导入暂不支持这种水印")))
+  // M22 仅分离已验证的本项目水印元信息，未知 VML 的严格拒绝规则仍由导入专项覆盖。
+  const imported = await convertDocxImport(new Uint8Array(await result.blob.arrayBuffer()))
+  assert.deepEqual(imported.page.watermark, { ...watermark, text: watermark.text.trim() })
+  assert.ok(!imported.html.includes(watermark.text.trim()))
   const headerFiles = result.zip.file(/^word\/header\d+\.xml$/)
   assert.equal(headerFiles.length, 1)
   const headerXml = await headerFiles[0].async("string")
@@ -159,6 +161,14 @@ test("HTML 单层水印文字安全转义且不进入正文，打印复用同层
   assert.equal(svg.querySelector("text").getAttribute("fill"), watermark.color)
   assert.equal(svg.querySelector("text").getAttribute("opacity"), String(watermark.opacity))
   assert.equal(svg.querySelector("text").getAttribute("transform"), "rotate(-35 139.7 107.95)")
+  // 实际 Chrome 多页 PDF 的绘制回归：打印图片必须与安全屏幕 SVG 使用同一份内容，不能重复可见。
+  const image = layer.querySelector("img")
+  assert.equal(image.getAttribute("alt"), "")
+  assert.ok(image.getAttribute("src").startsWith("data:image/svg+xml,"))
+  const printSvg = parseXml(decodeURIComponent(image.getAttribute("src").slice("data:image/svg+xml,".length)))
+  assert.equal(printSvg.querySelector("text").textContent, watermark.text.trim())
+  assert.equal(printSvg.querySelector("script"), null)
+  assert.equal(printSvg.documentElement.getAttribute("viewBox"), svg.getAttribute("viewBox"))
   assert.equal(rendered.querySelector("script"), null)
   assert.equal(rendered.querySelector("article").textContent, before.content.content[0].content[0].text)
   const styles = rendered.querySelector("style").textContent
@@ -166,6 +176,7 @@ test("HTML 单层水印文字安全转义且不进入正文，打印复用同层
   assert.match(styles, /@media print[\s\S]*padding: 0/)
   assert.match(styles, /position: fixed; left: -23mm; top: -12mm/)
   assert.match(styles, /print-color-adjust: exact/)
+  assert.match(styles, /@media print[\s\S]*watermark svg \{ display: none; \}[\s\S]*watermark img \{ display: block;/)
   assert.deepEqual(source, before)
 })
 

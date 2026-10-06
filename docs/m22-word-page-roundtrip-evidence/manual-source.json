@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "d5eb1cbe-f0f8-4998-a16c-af910fd66f5b",
+  "title": "M22 · Word 页面往返验收",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Word 页面往返验收"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "纸型 A5 横向。四边页边距随导入恢复；水印独立于正文。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "01 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "02 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "03 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "04 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "05 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "06 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "07 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "08 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "09 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "10 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "11 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "12 · 导出后重新导入，保留纸型、方向、边距和 Mewoc 文字水印。页面内容按语义恢复，原始分页不保证完全一致。"
+          }
+        ]
+      }
+    ]
+  },
+  "page": {
+    "size": "A5",
+    "orientation": "landscape",
+    "marginsMm": {
+      "top": 12.7,
+      "right": 17,
+      "bottom": 19,
+      "left": 23
+    },
+    "watermark": {
+      "text": "内部资料 M22",
+      "color": "#6554C0",
+      "opacity": 0.18,
+      "angle": -35
+    }
+  },
+  "assets": [],
+  "createdAt": "2026-10-06T10:38:07.030Z",
+  "updatedAt": "2026-10-06T10:38:07.030Z"
+}

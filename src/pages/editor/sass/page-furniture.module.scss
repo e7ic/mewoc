@@ -1,0 +1,14 @@
+// 每张纸面各自挂载装饰。页脚锚定所属纸面底部，展开页也不能覆盖正文。
+.furniture {
+  position: absolute;
+  inset-inline-start: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.header { top: 0; }
+.footer { bottom: 0; }

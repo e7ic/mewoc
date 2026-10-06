@@ -1,63 +1,46 @@
 /**
- * 按当前纸张规格展示连续正文，独立处理毫米到像素换算、视图缩放与滚动区域尺寸。
- * 正文内容尺寸始终保持文档原始比例，缩放仅作用于视觉容器，不修改保存数据。
+ * 一个可编辑正文覆盖多张独立纸面。分页插件只增加屏幕占位，不复制正文或改变文档结构。
+ * 每张纸面单独呈现页眉、页脚和水印；超高整块展开所在编辑页，保证正文完整可见。
  */
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { EditorContent } from "@tiptap/react"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import { PageWatermark } from "./PageWatermark.jsx"
+import { PageFurniture } from "./PageFurniture.jsx"
 import { getPageDimensions } from "../tools/page-settings.js"
+import { usePagePagination } from "../hooks/use-page-pagination.js"
 import styles from "../sass/paper.module.scss"
 import "../sass/content.scss"
 import "../sass/editor-interaction.scss"
+import "../sass/page-pagination.scss"
 
-/**
- * 纸张内部按实际尺寸排版，sheet 用 transform 缩放，frame 用缩放后的宽高撑开滚动空间。
- * ResizeObserver 跟踪连续正文高度；这里没有分页排版，也不据容器高度推算页数。
- */
+const PX_PER_MM = 96 / 25.4
+
 export function PaperCanvas() {
-  // height 是纸张实测高度；paperRef 用于内容测量，viewportRef 用于计算可见宽度。
-  // 默认高度保证首次测量前已有合理滚动空间，后续随正文增长更新。
-  const [height, setHeight] = useState(1123)
-  const paperRef = useRef(null)
   const viewportRef = useRef(null)
   const { editor, store } = useDocumentEditor()
   const page = useEditorStore(state => state.page)
   const zoom = useEditorStore(state => state.zoom)
   const fitWidth = useEditorStore(state => state.fitWidth)
+  const pagination = usePagePagination(editor, page, store)
   const { widthMm, heightMm } = getPageDimensions(page)
-  // 浏览器 CSS 绝对单位按 96 px/in 换算，纸张缩放不改文档数据。
-  const width = widthMm * 96 / 25.4
+  // CSS 绝对单位按 96 px/in 换算。缩放仅作用于视觉容器，不改变插件的纸面排版预算。
+  const width = widthMm * PX_PER_MM
+  const pageHeight = heightMm * PX_PER_MM
   const margins = page.marginsMm
+  const pages = pagination.pages?.length ? pagination.pages : [{ index: 0, top: 0, height: pageHeight, overflow: false }]
+  const lastPage = pages[pages.length - 1]
+  const height = Math.max(pageHeight, lastPage.top + lastPage.height)
 
-  // 观察正文实际高度以同步缩放后的外框；清理观察器和待执行帧，避免卸载后继续测量。
+  // 自动适宽沿用 50%–150% 范围；纸型/方向改变时重算，视口的左右留白始终各 32px。
   useEffect(() => {
-    const paper = paperRef.current
-    let frame = 0
-    // 将测量后的 React 更新合并到下一帧，避免在同一轮 ResizeObserver 回调中反复布局。
-    const observer = new ResizeObserver(() => {
-      cancelAnimationFrame(frame)
-      frame = requestAnimationFrame(() => {
-        if (paperRef.current === paper) setHeight(paper.offsetHeight)
-      })
-    })
-    observer.observe(paper)
-    return () => {
-      observer.disconnect()
-      cancelAnimationFrame(frame)
-    }
-  }, [])
-
-  // 适应宽度模式才持续追踪视口；纸张方向改变导致 width 改变时重建观察，重新计算缩放。
-  useEffect(() => {
-    if (!fitWidth) return
+    if (!fitWidth) return undefined
     const viewport = viewportRef.current
     let frame = 0
     const observer = new ResizeObserver(() => {
       cancelAnimationFrame(frame)
       frame = requestAnimationFrame(() => {
         if (viewportRef.current !== viewport) return
-        // 扣除视口左右各 32px 留白，保持与纸张容器 padding 一致，并沿用 50%–150% 范围。
         const nextZoom = Math.max(0.5, Math.min(1.5, (viewport.clientWidth - 64) / width))
         store.getState().updateView({ zoom: nextZoom })
       })
@@ -69,7 +52,6 @@ export function PaperCanvas() {
     }
   }, [fitWidth, width, store])
 
-  // frame 预留缩放后的滚动占位，sheet 保持未缩放的排版宽度；标尺只是辅助视觉，不参与正文。
   return (
     <div ref={viewportRef} className={styles.container}>
       <div className={styles.label}><span>文档编辑</span><span>{page.size} · {widthMm} × {heightMm} mm</span></div>
@@ -78,15 +60,20 @@ export function PaperCanvas() {
           <div className={styles.ruler} aria-hidden="true">
             {Array.from({ length: Math.floor(widthMm / 10) }, (_, index) => <span key={index}>{index}</span>)}
           </div>
-          <div
-            ref={paperRef}
-            className={styles.paper}
-            data-mewoc-editor-surface=""
-            style={{ minHeight: `${heightMm}mm`, padding: `${margins.top}mm ${margins.right}mm ${margins.bottom}mm ${margins.left}mm` }}
-          >
-            {/* 水印固定于首个物理纸面；内容变长只延伸正文，不按高度生成重复水印或虚构页数。 */}
-            <PageWatermark page={page} />
-            <div className={styles.paperContent}><EditorContent editor={editor} /></div>
+          <div className={styles.paper} data-mewoc-editor-surface="" data-mewoc-pagination-status={pagination.status}
+            style={{ minHeight: pageHeight, height, padding: `${margins.top}mm ${margins.right}mm 0 ${margins.left}mm` }}>
+            {/* 底层纸面不接收鼠标、不进入选区；页间空隙露出画布本色，正文仍是一份连续编辑视图。 */}
+            <div className={styles.pageLayers} data-mewoc-page-layer="" aria-hidden="true">
+              {pages.map(sheetPage => <div key={sheetPage.index} className={styles.page}
+                data-mewoc-page-index={sheetPage.index} data-mewoc-page-overflow={sheetPage.overflow ? "true" : "false"}
+                style={{ top: sheetPage.top, height: sheetPage.height }}>
+                {/* 展开页的水印保持原纸型大小，整体平移到该编辑页中部，不撑高或改变正文。 */}
+                <div className={styles.watermarkLayer} style={{ top: Math.max(0, (sheetPage.height - pageHeight) / 2) }}><PageWatermark page={page} /></div>
+                <PageFurniture page={page} pageNumber={sheetPage.index + 1} pageTotal={pages.length} />
+                {sheetPage.overflow && <span className={styles.overflowLabel} data-mewoc-overflow-label="">超高内容页</span>}
+              </div>)}
+            </div>
+            <div className={styles.paperContent} data-mewoc-editor-body=""><EditorContent editor={editor} /></div>
           </div>
         </div>
       </div>

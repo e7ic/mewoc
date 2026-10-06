@@ -13,6 +13,7 @@ import { createExtensions } from "../tools/create-extensions.js"
 import { createDocumentAssetUrl } from "../tools/attachment-assets.js"
 import { getPreviewPage } from "../tools/page-preview.js"
 import { PageWatermark } from "./PageWatermark.jsx"
+import { PageFurniture } from "./PageFurniture.jsx"
 import styles from "../sass/templates.module.scss"
 import "../sass/content.scss"
 
@@ -373,6 +374,7 @@ export function DocumentTemplatesAction({ disabled, onPrepare, onSave, onCreate 
                 <p className={styles.pageDescription}>{previewPage.description}</p>
                 <div className={styles.paperViewport}><div className={styles.paper} style={previewPage.style}>
                   <PageWatermark page={preview.template.document.page} />
+                  <PageFurniture page={preview.template.document.page} />
                   <div className={styles.paperContent}>
                   <p className={styles.previewDocumentTitle}>{preview.template.document.title || preview.template.name}</p>
                   <PreviewBoundary key={preview.key} onError={failure => {

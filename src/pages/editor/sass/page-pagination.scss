@@ -1,0 +1,65 @@
+// 分页仅作用于单一编辑视图。离线 HTML 与静态打印沿用浏览器自身的物理分页。
+@media screen {
+  .ProseMirror[data-mewoc-pagination="true"] {
+    display: flex;
+    flex-direction: column;
+    > * { flex-shrink: 0; }
+    // 防止 table 的上下 margin 穿出 wrapper，导致块实测高度遗漏它们。
+    > .tableWrapper { display: flow-root; }
+    // 顶层 figure 原本是 display:table；成为 flex item 后仍按自身宽度对齐。
+    > [data-document-image] { align-self: flex-start; }
+    > [data-document-image][data-image-align="center"] { align-self: center; }
+    > [data-document-image][data-image-align="right"] { align-self: flex-end; }
+    > [data-page-break] {
+      height: 0;
+      min-height: 0;
+      margin: 0;
+      border: 0;
+      &::after { top: 3px; left: 0; padding-left: 0; }
+    }
+    > [data-mewoc-page-gap] {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      min-height: 0;
+      width: 100%;
+      pointer-events: none;
+      user-select: none;
+    }
+    // 合法 span 留在同一段落的 inline 格式上下文：续页不会重新应用首行缩进，上一页行仍能两端对齐。
+    [data-mewoc-paragraph-pagination] {
+      display: inline-block;
+      width: 100%;
+      vertical-align: top;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 0;
+      line-height: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    // 虚拟 TR 只占布局高度，不画跨越页脚和页间的表格边框，也不成为可选单元格。
+    [data-mewoc-table-pagination="gap"] > td {
+      padding: 0 !important;
+      border: 0 !important;
+      min-width: 0;
+      line-height: 0;
+      font-size: 0;
+      background: transparent !important;
+      &::after { display: none; }
+    }
+    [data-mewoc-table-pagination] {
+      pointer-events: none;
+      user-select: none;
+      * { pointer-events: none; user-select: none; }
+    }
+  }
+}
+
+// 直接打印编辑 DOM 也不能把空隙 Decoration 变成额外的纸面空白。
+@media print {
+  [data-mewoc-page-gap], [data-mewoc-repeat-header] { display: none !important; }
+}

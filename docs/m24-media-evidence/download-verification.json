@@ -1,0 +1,27 @@
+{
+  "downloadedFormats": [
+    "mewoc.json",
+    "html",
+    "docx",
+    "md",
+    "txt"
+  ],
+  "media": [
+    {
+      "kind": "audio",
+      "fileName": "M24-音频验收.wav",
+      "mimeType": "audio/wav",
+      "byteLength": 64044,
+      "sha256": "bc09dcbf5a5cb5e067aa48d339bff313ffc702d69e9322fe976f61a28746a699"
+    },
+    {
+      "kind": "video",
+      "fileName": "M24-视频验收.webm",
+      "mimeType": "video/webm",
+      "byteLength": 30563,
+      "sha256": "31a53c8835eebf4f38b8e155318a88295b3bd541096261e19c360b80dcf2ada8"
+    }
+  ],
+  "portableHtmlBytesEqual": true,
+  "wavSourceBytesEqual": true
+}

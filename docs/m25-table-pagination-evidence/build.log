@@ -1,0 +1,33 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+> mewoc@0.1.0 build
+> rsbuild build
+
+Rsbuild v1.7.6
+
+info    build started...
+ready   built in 1.83 s
+
+File (web)                                          Size        Gzip   
+dist/static/js/async/852.e7aae69b.js                0.38 kB     0.33 kB
+dist/static/js/async/814.65ea178a.js                0.51 kB     0.38 kB
+dist/index.html                                     1.1 kB      0.68 kB
+dist/favicon.ico                                    5.3 kB   
+dist/static/js/async/793.be8a219b.js                8.4 kB      4.0 kB
+dist/static/js/async/138.cc6eabbf.js                17.1 kB     6.6 kB
+dist/static/js/async/713.e8588f52.js                21.3 kB     8.8 kB
+dist/static/js/async/359.787affb7.js                50.7 kB     17.8 kB
+dist/static/js/async/704.e49a812d.js                58.8 kB     20.5 kB
+dist/static/css/index.ddb35d00.css                  79.2 kB     15.1 kB
+dist/static/image/mewoc-logo-v3-tiny.40edf9a0.png   111.7 kB 
+dist/static/js/async/17.faf37759.js                 123.4 kB    34.8 kB
+dist/static/js/lib-react.9927f934.js                148.2 kB    46.4 kB
+dist/static/js/async/973.fdc54647.js                263.6 kB    76.9 kB
+dist/static/js/async/655.323b9c4e.js                357.3 kB    98.8 kB
+dist/static/js/index.4a98e91e.js                    430.8 kB    132.3 kB
+dist/static/js/async/841.8c77d79b.js                521.2 kB    132.1 kB
+dist/static/js/493.eb098f89.js                      1428.4 kB   435.8 kB
+
+                                           Total:   3627.3 kB   1148.3 kB
+
