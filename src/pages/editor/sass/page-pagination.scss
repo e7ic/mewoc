@@ -6,24 +6,46 @@
     > * { flex-shrink: 0; }
     // 防止 table 的上下 margin 穿出 wrapper，导致块实测高度遗漏它们。
     > .tableWrapper { display: flow-root; }
+    // 每层保持自然垂直流并封住子块 margin；空隙进入后也不改变原来的 margin 折叠关系。
+    ul, ol, blockquote, [data-type="text-box"], [data-details-content], .tableWrapper { display: flow-root; }
+    li:not([data-type="taskItem"]) { display: flow-root list-item; }
     // 顶层 figure 原本是 display:table；成为 flex item 后仍按自身宽度对齐。
     > [data-document-image] { align-self: flex-start; }
     > [data-document-image][data-image-align="center"] { align-self: center; }
     > [data-document-image][data-image-align="right"] { align-self: flex-end; }
-    > [data-page-break] {
+    [data-page-break] {
       height: 0;
       min-height: 0;
       margin: 0;
       border: 0;
       &::after { top: 3px; left: 0; padding-left: 0; }
     }
-    > [data-mewoc-page-gap] {
+    [data-mewoc-page-gap]:not([data-mewoc-paragraph-pagination]):not([data-mewoc-code-pagination]):not([data-mewoc-table-pagination]) {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       border: 0;
       min-height: 0;
       width: 100%;
+      pointer-events: none;
+      user-select: none;
+    }
+    // HTML 列表直属间隙必须是 LI；屏幕占位不参与原列表的隐式计数，也不产生新的任务。
+    li[data-mewoc-container-pagination="list"] {
+      display: block;
+      list-style: none;
+      counter-increment: list-item 0;
+      &::marker { content: ""; }
+    }
+    [data-mewoc-container-fragment] { clip-path: var(--mewoc-container-clip, none); }
+    // 源码只在原换行之后插入合法 phrasing SPAN，block 布局保留后续原行的高度与横向滚动。
+    [data-mewoc-code-pagination] {
+      display: block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 0;
+      line-height: 0;
       pointer-events: none;
       user-select: none;
     }

@@ -30,6 +30,7 @@ import { runMediaChecks, showMediaExample } from "./media-checks.jsx"
 import { runPagePaginationChecks } from "./page-pagination-checks.jsx"
 import { runTablePaginationChecks, showTablePaginationExample } from "./table-pagination-checks.jsx"
 import { runParagraphPaginationChecks, showParagraphPaginationExample } from "./paragraph-pagination-checks.jsx"
+import { runContainerPaginationChecks, showContainerPaginationExample } from "./container-pagination-checks.jsx"
 import "../src/pages/editor/sass/content.scss"
 
 // 运行状态限制重复启动；双会话用于证明编辑器与 Zustand 实例隔离。
@@ -219,6 +220,18 @@ function BrowserVerification() {
         catch (error) { setResults(items => [...items, { name: "段内分页示例运行异常", passed: false, error: error.message }]) }
         finally { setRunning(false) }
       }}>显示段内分页示例</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runContainerPaginationChecks(result => setResults(items => [...items, result])) }
+        catch (error) { setResults(items => [...items, { name: "容器分页验收运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>运行容器分页验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showContainerPaginationExample() }
+        catch (error) { setResults(items => [...items, { name: "容器分页示例运行异常", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>显示容器分页示例</button>
       <p role="status">{running ? "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
       <ol>{results.map(result => (
         <li key={result.name}>

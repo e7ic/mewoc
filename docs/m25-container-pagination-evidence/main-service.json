@@ -1,0 +1,20 @@
+{
+  "url": "http://127.0.0.1:4177/",
+  "state": {
+    "documentTitle": "Mewoc · 从这里开始",
+    "editorCount": 1,
+    "pageCountText": "共 1 页",
+    "status": [
+      "已保存到此浏览器"
+    ],
+    "title": "Mewoc · 文档编辑器"
+  },
+  "logs": [
+    {
+      "level": "warn",
+      "message": "[locatorjs]: ok",
+      "timestamp": "2026-10-06T15:47:07.484Z",
+      "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+    }
+  ]
+}

@@ -54,16 +54,17 @@ function rowIndex(rect, rows) {
 }
 
 /**
- * 仅支持顶层 paragraph/heading 的普通横向文本与 hardBreak；keepTogether、inline atom、RTL 或未知布局返回 null。
+ * 支持 paragraph/heading 的普通横向文本与 hardBreak；嵌套测量需显式 nested，且由调用者核对容器边界。
+ * keepTogether、inline atom、RTL 或未知布局返回 null。
  * scale 是编辑纸面的实际 transform 比例；widgets 为当前屏幕装饰的 {dom,height}，height 已还原为纸面像素。
  * 每行返回 {pos,start,height}：pos 是原模型完整字符/硬换行边界，start 相对整个 EditorView 的无装饰自然流。
  * Range glyph box 不是 CSS 行盒：相邻 glyph 空白各分一半给前后行，首尾 leading 由真实段落总高兜住。
  */
-export function measureParagraphLines(view, node, pos, { scale = 1, widgets = [] } = {}) {
+export function measureParagraphLines(view, node, pos, { scale = 1, widgets = [], nested = false } = {}) {
   if (!view?.dom || !node?.isTextblock || !["paragraph", "heading"].includes(node.type.name) || node.attrs.keepTogether === true ||
     !Number.isSafeInteger(pos) || pos < 0 || !Number.isFinite(scale) || scale <= 0 || !Array.isArray(widgets)) return null
   const dom = view.nodeDOM(pos)
-  if (!dom || !/^(P|H[1-6])$/.test(dom.tagName) || dom.parentElement !== view.dom) return null
+  if (!dom || !/^(P|H[1-6])$/.test(dom.tagName) || (!nested && dom.parentElement !== view.dom) || !view.dom.contains(dom)) return null
   const doc = dom.ownerDocument
   const style = doc.defaultView.getComputedStyle(dom)
   if (style.direction === "rtl" || style.writingMode && style.writingMode !== "horizontal-tb" ||

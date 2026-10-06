@@ -2,7 +2,7 @@
 
 本批把编辑区从连续白纸容器改为按正文块实测的多页视图。段落、标题、图片、媒体及其他顶层内容在块边界自动换页，保留一个编辑器和一份文档。第一批完成时，段内按行分页、跨页表格和重复表头尚未接入；下文保留当时范围与验收。
 
-后续：[第二批跨页表格与重复表头](m25-table-pagination.md)已接入安全行组分页、原始连续表头的静态重复、合并格与跨页编辑保护；[第三批](m25-paragraph-pagination.md)接入顶层普通段落与标题按行跨页。长列表与嵌套容器分页仍待后续批次。
+后续：[第二批跨页表格与重复表头](m25-table-pagination.md)已接入安全行组分页、原始连续表头的静态重复、合并格与跨页编辑保护；[第三批](m25-paragraph-pagination.md)接入顶层普通段落与标题按行跨页。[第四批](m25-container-pagination.md)接入长列表与嵌套容器的递归分页；整体持续验收和版本收口仍待后续。
 
 ## 已接入
 
@@ -41,6 +41,6 @@
 
 ## 后续进度
 
-第一批原定的表格按行跨页和重复表头已在[第二批](m25-table-pagination.md)实施，顶层普通长段落和标题已在[第三批](m25-paragraph-pagination.md)按行分页。当前后续为长列表与嵌套容器分页，再做 M25 全部能力的持续验收和版本收口。后续成绩单独记录，不覆盖上方第一批历史验收数字。
+第一批原定的表格按行跨页和重复表头已在[第二批](m25-table-pagination.md)实施，顶层普通长段落和标题已在[第三批](m25-paragraph-pagination.md)按行分页。长列表与嵌套容器分页已在[第四批](m25-container-pagination.md)实施，当前后续为 M25 全部能力的持续验收和版本收口。后续成绩单独记录，不覆盖上方第一批历史验收数字。
 
 设计依据：[ProseMirror Decoration](https://prosemirror.net/docs/ref/#view.Decoration)、[CSS Fragmentation](https://www.w3.org/TR/css-break-3/)。官方 [Tiptap Pages](https://tiptap.dev/docs/pages/getting-started/overview) 与 [PagesTableKit](https://tiptap.dev/docs/pages/guides/pages-tablekit) 属于单独的商业能力，本项目没有接入这些依赖。

@@ -1,6 +1,6 @@
 /**
  * 屏幕分页的纯排版器。输入来自真实 DOM 的块尺寸，输出只用于编辑视图，不进入文档 JSON。
- * 段落在真实行边界换页，表格在不跨 rowspan 的完整行组边界换页。
+ * 段落在真实行边界、源码在原换行、列表与容器在安全首叶边界换页；表格保留完整 rowspan 行组。
  * 不能安全拆分的块或行组独占展开页，保留全部内容，并明确区别于打印物理页。
  */
 export const DEFAULT_PAGINATION_SETTINGS = Object.freeze({
@@ -31,6 +31,7 @@ export function emptyPaginationLayout() {
  * 可选 start 为去除旧分页空隙后的真实自然流坐标；用于保留浏览器 used-margin，避免小数间距累计漂移。
  * 表格行组额外携带 table={pos,firstRow,columns,headerRows,headerHeight}。
  * 段落行额外携带 paragraph={pos,firstLine,lastLine,lineCount}；首行仍在段落外换页，续行在字符位置插屏幕空隙。
+ * code 使用同形行元数据但只在原换行后插空隙；可选 boundary={pos,kind:list|block} 把首叶断点提升到合法外壳。
  * headerRows 为原始连续表头行的绝对位置，重复表头只存在于视图装饰中，不添加持久行。
  * height 为 border-box，两个 margin 单独计入；首项默认顶部空白由正文 CSS 决定，显式段前距必须保留。
  * pageBreak 不占正文高度，首尾及连续分页符仍各自产生一页，不能悄悄吞掉用户边界。
@@ -47,6 +48,9 @@ export function planPagePagination(input, options, renderedBreaks = []) {
       throw new Error("分页块尺寸无效")
     }
     if (block.minimumGap !== undefined && (!Number.isFinite(block.minimumGap) || block.minimumGap < 0)) throw new Error("分页块尺寸无效")
+    if (block.boundary !== undefined && (!block.boundary || typeof block.boundary !== "object" || Array.isArray(block.boundary)
+      || !Number.isInteger(block.boundary.pos) || block.boundary.pos < 0 || block.boundary.pos > block.pos
+      || !["list", "block"].includes(block.boundary.kind))) throw new Error("分页容器边界无效")
     if (block.table !== undefined) {
       const table = block.table
       if (!table || typeof table !== "object" || Array.isArray(table)
@@ -63,10 +67,20 @@ export function planPagePagination(input, options, renderedBreaks = []) {
         || !Number.isInteger(paragraph.lineCount) || paragraph.lineCount < 1
         || !Number.isInteger(paragraph.firstLine) || paragraph.firstLine < 0
         || !Number.isInteger(paragraph.lastLine) || paragraph.lastLine < paragraph.firstLine
-        || paragraph.lastLine >= paragraph.lineCount || block.table
+        || paragraph.lastLine >= paragraph.lineCount || block.table || block.code
         || (paragraph.firstLine === 0 ? block.pos !== paragraph.pos : block.pos <= paragraph.pos)) {
         throw new Error("分页段落行无效")
       }
+    }
+    if (block.code !== undefined) {
+      const code = block.code
+      if (!code || typeof code !== "object" || Array.isArray(code)
+        || !Number.isInteger(code.pos) || code.pos < 0
+        || !Number.isInteger(code.lineCount) || code.lineCount < 1
+        || !Number.isInteger(code.firstLine) || code.firstLine < 0
+        || !Number.isInteger(code.lastLine) || code.lastLine < code.firstLine
+        || code.lastLine >= code.lineCount || block.table || block.paragraph
+        || (code.firstLine === 0 ? block.pos !== code.pos : block.pos <= code.pos)) throw new Error("分页代码行无效")
     }
     const marginTop = block.marginTop || 0
     const marginBottom = block.marginBottom || 0
@@ -132,9 +146,15 @@ export function planPagePagination(input, options, renderedBreaks = []) {
   // 重复表头不能挤掉完整行组；装不下时只省略本页表头，原始表头仍完整保留在正文中。
   const blockBoundary = (block, oversized) => {
     const table = block.table
-    if (!table) return { pos: block.pos, tableBreak: block.paragraph?.firstLine > 0
-      ? { paragraphPos: block.paragraph.pos, paragraphLine: block.paragraph.firstLine } : null }
-    if (table.firstRow === 0) return { pos: table.pos, tableBreak: null }
+    const outer = () => block.boundary ? { pos: block.boundary.pos,
+      tableBreak: block.boundary.kind === "list" ? { listPagination: true } : { containerPagination: true } }
+      : { pos: block.pos, tableBreak: null }
+    if (!table) {
+      if (block.paragraph?.firstLine > 0) return { pos: block.pos, tableBreak: { paragraphPos: block.paragraph.pos, paragraphLine: block.paragraph.firstLine } }
+      if (block.code?.firstLine > 0) return { pos: block.pos, tableBreak: { codePos: block.code.pos, codeLine: block.code.firstLine } }
+      return outer()
+    }
+    if (table.firstRow === 0) return block.boundary ? outer() : { pos: table.pos, tableBreak: null }
     const repeat = !oversized && table.headerRows.length > 0 && table.firstRow >= table.headerRows.length
       && table.headerHeight + block.marginTop + block.height + block.marginBottom <= available + EPSILON
     return {

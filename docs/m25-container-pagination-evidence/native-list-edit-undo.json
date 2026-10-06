@@ -1,0 +1,182 @@
+[
+  {
+    "action": "located-continuation-item",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "Enter-split",
+    "selection": {
+      "from": 785,
+      "to": 785
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 65,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": false,
+    "markerPosition": -1,
+    "textAroundCaret": "表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "Enter-undo",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "located-before-Backspace",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "Backspace-merge",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 63,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": false,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "Backspace-undo",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "ASCII-insert",
+    "selection": {
+      "from": 794,
+      "to": 794
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4221,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": false,
+    "markerPosition": 716,
+    "textAroundCaret": "留编号和正文。M25_CONTAINER16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "ASCII-undo",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "nested-task-click",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 9
+    },
+    "pageCount": 6,
+    "originalMatches": false,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  },
+  {
+    "action": "nested-task-undo",
+    "selection": {
+      "from": 781,
+      "to": 781
+    },
+    "currentBoundary": 773,
+    "textContentLength": 4208,
+    "counts": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8
+    },
+    "pageCount": 6,
+    "originalMatches": true,
+    "markerPosition": -1,
+    "textAroundCaret": " 原始列表项跨页之后继续保留编号和正文。16 · 原始列表项跨页之后继续保留编号和正文。"
+  }
+]

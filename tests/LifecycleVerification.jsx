@@ -103,7 +103,7 @@ async function unmountSession(host, session, resources) {
   await new Promise(resolve => setTimeout(resolve, 20))
   const counts = resources.getCounts()
   if (!session.editor.isDestroyed || host.querySelector(".ProseMirror")) throw new Error("旧编辑器未销毁")
-  if (counts.urls || counts.observers || counts.listeners) throw new Error(`资源未释放：${JSON.stringify(counts)}`)
+  if (counts.urls || counts.observers || counts.mutationObservers || counts.listeners) throw new Error(`资源未释放：${JSON.stringify(counts)}`)
 }
 
 // 单轮覆盖插图/附件/公式/代码保存、读取期间卸载、重新恢复以及图表拖动中销毁。

@@ -1,0 +1,319 @@
+{
+  "date": "2026-10-06",
+  "milestone": "M25-b4",
+  "scope": "长列表与嵌套容器递归分页，原始代码换行延续",
+  "node": {
+    "version": "v24.13.1",
+    "total": 838,
+    "passed": 838,
+    "failed": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "file": "node-test.log"
+  },
+  "browser": {
+    "engine": "Chrome",
+    "origin": "http://127.0.0.1:4190",
+    "passed": 227,
+    "total": 227,
+    "suites": {
+      "container": {
+        "passed": 22,
+        "total": 22,
+        "file": "container-browser.json"
+      },
+      "paragraph": {
+        "passed": 18,
+        "total": 18,
+        "file": "paragraph-browser.json"
+      },
+      "table-pagination": {
+        "passed": 20,
+        "total": 20,
+        "file": "table-pagination-browser.json"
+      },
+      "pagination": {
+        "passed": 15,
+        "total": 15,
+        "file": "pagination-browser.json"
+      },
+      "precision": {
+        "passed": 10,
+        "total": 10,
+        "file": "precision-browser.json"
+      },
+      "editor": {
+        "passed": 62,
+        "total": 62,
+        "file": "editor-browser.json"
+      },
+      "toolbar": {
+        "passed": 29,
+        "total": 29,
+        "file": "toolbar-browser.json"
+      },
+      "media": {
+        "passed": 11,
+        "total": 11,
+        "file": "media-browser.json"
+      },
+      "word": {
+        "passed": 5,
+        "total": 5,
+        "file": "word-browser.json"
+      },
+      "page-settings": {
+        "passed": 11,
+        "total": 11,
+        "file": "page-settings-browser.json"
+      },
+      "page-furniture": {
+        "passed": 10,
+        "total": 10,
+        "file": "page-furniture-browser.json"
+      },
+      "rich-blocks": {
+        "passed": 14,
+        "total": 14,
+        "file": "rich-blocks-browser.json"
+      }
+    }
+  },
+  "lifecycle": {
+    "passed": 30,
+    "total": 30,
+    "mounts": 60,
+    "elapsedSeconds": 12,
+    "allObservedResourcesZero": true,
+    "peakMutationObservers": 2,
+    "peakResizeObservers": 2,
+    "file": "lifecycle-browser.json",
+    "consoleFile": "lifecycle-console.json",
+    "consoleErrors": 0,
+    "consoleWarnings": 2,
+    "consoleNotes": [
+      "生命周期夹具留有 TextSelection endpoint 指向 doc 的 warning，未称全过程零警告。"
+    ]
+  },
+  "native": {
+    "passed": true,
+    "fixture": {
+      "listItem": 64,
+      "taskItem": 24,
+      "checked": 8,
+      "pageCount": 6,
+      "textContentLength": 4208
+    },
+    "operations": [
+      "续页原项目 Enter 分项 64→65 与撤销",
+      "续页原项目项首 Backspace 合并 64→63 与撤销",
+      "M25_CONTAINER 输入 4208→4221 与撤销",
+      "嵌套续页任务实际点击 8→9 与撤销"
+    ],
+    "allUndoRestoredOriginal": true,
+    "file": "native-list-edit-undo.json",
+    "screenshots": [
+      "native-list-continuation.png",
+      "native-nested-container-continuation.png"
+    ]
+  },
+  "checks": {
+    "lint": {
+      "exitCode": 0,
+      "file": "lint.log"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "file": "build.log",
+      "prototypeExcluded": true
+    },
+    "diff": {
+      "exitCode": 0
+    },
+    "localLinks": {
+      "checked": 151,
+      "missing": 0
+    }
+  },
+  "metrics": {
+    "container": [
+      {
+        "name": "无序列表：64原项目分布多张标准页，列表、li和模型只保留一份",
+        "glyphs": 3054,
+        "items": 64,
+        "pages": 5
+      },
+      {
+        "name": "纸型与400项精度：小数字号列表在A4/A5与50%至150%缩放保持稳定正文预算",
+        "items": 400,
+        "maxDriftPx": 0.05247293306933898,
+        "pages": 13
+      },
+      {
+        "name": "长前缀容器精度：400项列表后的长文本框在75%与100%保持真实origin、height和正文裁剪",
+        "measurements": [
+          {
+            "heightDriftPx": 0.007187499999417923,
+            "originDriftPx": 0.0006988188979448751,
+            "pages": 21,
+            "zoom": 0.75
+          },
+          {
+            "heightDriftPx": 0.007187499999417923,
+            "originDriftPx": 0.0006988188979448751,
+            "pages": 21,
+            "zoom": 1
+          }
+        ],
+        "precedingItems": 400
+      },
+      {
+        "name": "代码空行与换行契约：200行空白、仅newline、尾换行和CRLF保持真实PRE/CODE与完整源码",
+        "variants": [
+          {
+            "lineBreaks": 201,
+            "measuredRects": 231,
+            "pages": 7,
+            "placements": 202,
+            "sourceLength": 231,
+            "variant": "mixed-blank"
+          },
+          {
+            "lineBreaks": 200,
+            "measuredRects": 200,
+            "pages": 7,
+            "placements": 200,
+            "sourceLength": 200,
+            "variant": "newline-only"
+          },
+          {
+            "lineBreaks": 200,
+            "measuredRects": 3200,
+            "pages": 7,
+            "placements": 200,
+            "sourceLength": 3200,
+            "variant": "trailing-newline"
+          },
+          {
+            "lineBreaks": 200,
+            "measuredRects": 3200,
+            "pages": 7,
+            "placements": 200,
+            "sourceLength": 3400,
+            "variant": "crlf"
+          },
+          {
+            "lineBreaks": 200,
+            "measuredRects": 600,
+            "pages": 7,
+            "placements": 200,
+            "sourceLength": 600,
+            "variant": "whitespace-only"
+          }
+        ]
+      }
+    ],
+    "paragraph": [
+      {
+        "name": "单段多页：一个原始段落按真实行跨页，JSON、字符与保存修订保持不变",
+        "glyphs": 9360,
+        "internalBreaks": 6,
+        "pages": 7,
+        "paragraphs": 1
+      },
+      {
+        "name": "400行精度：小数字号单段硬换行逐页不漂移，每个续页首字形对齐相同正文起点",
+        "lines": 400,
+        "maxDriftPx": 0.04466043306933898,
+        "pages": 13,
+        "paragraphs": 1
+      }
+    ],
+    "table-pagination": [
+      {
+        "name": "跨页表格：48 原行按行分页，页尾页首正文与表后段落均不覆盖边距",
+        "internalBreaks": 2,
+        "pages": 3,
+        "rows": 48
+      },
+      {
+        "name": "小数精度：400 行12.75pt与小数段距逐页不累积漂移，最后原行不盖页脚",
+        "cells": 800,
+        "columns": 2,
+        "maxDriftPx": 0.01607998431791202,
+        "pages": 22,
+        "rows": 400
+      }
+    ],
+    "pagination": [
+      {
+        "name": "自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订",
+        "blocks": 40,
+        "pageCount": 4
+      },
+      {
+        "name": "长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚",
+        "maxDriftPx": 0.009694855794805337,
+        "pageCount": 13,
+        "paragraphs": 400
+      }
+    ],
+    "media": [
+      {
+        "name": "媒体UI：完整/极简模式分别插入音频视频，原书签与一次撤销重做",
+        "chooser": "click默认弹框取消后合成DataTransfer，不替代原生文件选择器",
+        "formats": [
+          "WAV",
+          "WebM"
+        ],
+        "modes": 2
+      },
+      {
+        "name": "原生媒体：MP3/WAV/WebM真实解码、静音播放时钟、暂停及进度定位，无自动播放",
+        "audio": "WAV 4秒原始PCM、MP3 4秒静音帧",
+        "mp4": "原生录制与播放已验证",
+        "video": "WebM原生录制"
+      }
+    ]
+  },
+  "console": {
+    "file": "browser-console.json",
+    "warningEntries": 13,
+    "errorEntries": 1,
+    "notes": [
+      "扩展 locatorjs 的 ok 提示以 warn 记录。",
+      "一次 AntD Overflow 的 React 卸载后更新开发警告以 error 记录，旧批次已见；不把最终控制台称为完全无警告。"
+    ]
+  },
+  "mainService": {
+    "url": "http://127.0.0.1:4177/",
+    "editorCount": 1,
+    "pageCountText": "共 1 页",
+    "consoleErrors": 0,
+    "file": "main-service.json",
+    "screenshot": "main-service.png"
+  },
+  "diagnostics": {
+    "excludedFromFinalCounts": [
+      "container-first-browser.json"
+    ],
+    "notes": [
+      "初次专项 19/20 的失败是原生 OL 默认 type 空属性被夹具当作非 1 类型；按浏览器默认十进制修正断言后完整 22/22 通过。",
+      "一次页眉页脚运行中验收页返回等待状态，原因未确定，未记为通过；完整重跑 10/10 通过。"
+    ]
+  },
+  "cleanup": {
+    "nativeExampleRemoved": true,
+    "ownBrowserTabsClosed": true,
+    "isolatedServer": "4190 已停止（本轮启动会话 SIGINT 收到并退出）",
+    "mainServer": "4177 保持运行",
+    "fixtureDeletion": "验收流程仅精确清理其本轮创建的文档/模板 ID；未执行用户文档批量清理"
+  },
+  "limitations": [
+    "本批系统输入法候选、Safari、物理键鼠、系统打印/PDF 与 Microsoft Word/WPS 原生版式未补验。",
+    "30 轮检查仅证明指定资源在这些会话卸载后归零，不代表整个进程无泄漏，未执行本批 15/60 分钟持续模式。",
+    "屏幕分页与导出的物理分页独立；单元格内部、RTL、行内原子和未知布局采用保守完整块回退。",
+    "M25 全部能力的持续验收和最终版本收口仍待后续。"
+  ]
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "metrics": {
+      "chooser": "click默认弹框取消后合成DataTransfer，不替代原生文件选择器",
+      "formats": [
+        "WAV",
+        "WebM"
+      ],
+      "modes": 2
+    },
+    "name": "媒体UI：完整/极简模式分别插入音频视频，原书签与一次撤销重做",
+    "passed": true
+  },
+  {
+    "name": "媒体UI：取消选择、选择前只读/组合输入中断，旧目标永不复活",
+    "passed": true
+  },
+  {
+    "metrics": {
+      "audio": "WAV 4秒原始PCM、MP3 4秒静音帧",
+      "mp4": "原生录制与播放已验证",
+      "video": "WebM原生录制"
+    },
+    "name": "原生媒体：MP3/WAV/WebM真实解码、静音播放时钟、暂停及进度定位，无自动播放",
+    "passed": true
+  },
+  {
+    "name": "媒体NodeView：正文事务与选区改变持续播放，同资源两个播放器彼此独立",
+    "passed": true
+  },
+  {
+    "name": "媒体只读：原生播放/原文件下载可用，插入删除禁用且资源不变",
+    "passed": true
+  },
+  {
+    "name": "媒体删除：工具栏一次撤销恢复原字节，旧播放器暂停清源，卸载不后台播放",
+    "passed": true
+  },
+  {
+    "name": "媒体持久化：IndexedDB重开和Mewoc独立往返保持原字节、类型与可播放控件",
+    "passed": true
+  },
+  {
+    "name": "媒体HTML：内嵌原格式数据离线解码播放，下载字节一致，打印CSS只保留说明",
+    "passed": true
+  },
+  {
+    "name": "媒体历史/模板：历史只读预览真实播放，关闭释放播放器，独立模板实例可重开",
+    "passed": true
+  },
+  {
+    "name": "媒体异步：只读/切换/IME/删除永久取消，映射与共享忙碌锁拒绝并发",
+    "passed": true
+  },
+  {
+    "name": "媒体粘贴与降级：外部播放器不创建资源，Word/Markdown/TXT保留说明并明确提示",
+    "passed": true
+  }
+]

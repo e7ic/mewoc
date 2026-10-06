@@ -1,0 +1,86 @@
+[
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:35:52.543Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:37:16.870Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:39:32.319Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:40:18.669Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:40:40.742Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:40:53.190Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:41:31.129Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:41:56.909Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in %s.%s a useEffect cleanup function \n    at Overflow (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:41789:32)\n    at InheritableContextProvider (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:40767:23)\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:39392:27\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:21280:43\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:21196:52\n    at NoCompactStyle (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:29057:5)\n    at ContextIsolator (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:5697:5)\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:21078:7\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:34841:23\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:3881:23\n    at div\n    at DomWrapper (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rspack_core_1_7_12__swc_helpers_0_5_23_node_modules_rspack_core_dis-d528e6.js:9028:78)\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rspack_core_1_7_12__swc_helpers_0_5_23_node_modules_rspack_core_dis-d528e6.js:8742:32\n    at DomWrapper (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:43026:78)\n    at SingleObserver (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:43062:24)\n    at ResizeObserver (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:43192:24)\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:3516:20\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:3923:21\n    at http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:4890:34\n    at Dropdown (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:34716:28)\n    at Dropdown (http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_antd_5_29_3_date-fns_2_30_0_moment_2_30_1_react-dom_17_0_2_react_17-763be4.js:12879:5)\n    at ExportActions (http://127.0.0.1:4190/static/js/src_pages_editor_components_EditorWorkspace_jsx.js:7282:11)",
+    "timestamp": "2026-10-06T15:41:57.636Z",
+    "url": "http://127.0.0.1:4190/static/js/lib-react.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:42:00.310Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:42:32.836Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:42:47.026Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:44:02.124Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:45:04.479Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "DOCX 浏览器 WebP 转 PNG 并释放 ImageBitmap",
+    "passed": true
+  },
+  {
+    "name": "DOCX 图片编码失败后仍释放 Bitmap，重试可成功",
+    "passed": true
+  },
+  {
+    "name": "DOCX 连续点击只生成一次，取消弹窗不触发下载",
+    "passed": true
+  },
+  {
+    "name": "DOCX 切换会话后旧任务不再打开弹窗",
+    "passed": true
+  },
+  {
+    "name": "DOCX 资源失败收口按钮状态，修复资源后可重新生成",
+    "passed": true
+  }
+]

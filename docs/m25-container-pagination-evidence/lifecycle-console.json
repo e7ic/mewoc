@@ -1,0 +1,14 @@
+[
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-06T15:44:27.019Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "TextSelection endpoint not pointing into a node with inline content (doc)",
+    "timestamp": "2026-10-06T15:44:30.415Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rspack_core_1_7_12__swc_helpers_0_5_23_node_modules_rspack_core_dis-d528e6.js"
+  }
+]

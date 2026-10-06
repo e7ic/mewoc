@@ -1,6 +1,6 @@
 # M25 自动分页 · 第三批：顶层段落与标题按行延续
 
-本批在[多页编辑视图](m25-pagination.md)与[跨页表格](m25-table-pagination.md)上接入顶层段落和标题的段内分页。一个长段落可以延续到多张编辑纸面，原始文档仍只有一个段落；真实标题也保持原层级与一份正文。本批能力与验收结果记录如下，M25 整体仍待长容器分页和持续验收收口。
+本批在[多页编辑视图](m25-pagination.md)与[跨页表格](m25-table-pagination.md)上接入顶层段落和标题的段内分页。一个长段落可以延续到多张编辑纸面，原始文档仍只有一个段落；真实标题也保持原层级与一份正文。本批能力与验收结果记录如下，长列表和嵌套容器已在[第四批](m25-container-pagination.md)接入，M25 整体仍待持续验收收口。
 
 ## 范围
 
@@ -69,8 +69,8 @@
 
 [开发控制台记录](m25-paragraph-pagination-evidence/development-console-errors.json)保留一次 AntD Overflow 在导出工具卸载后的 React 状态更新警告，以及三次 HMR 回退全量刷新记录。关闭隔离服务时的缓冲输出还包含一次 `ResizeObserver loop completed with undelivered notifications`，详情见[开发服务备注](m25-paragraph-pagination-evidence/development-server-notes.json)；不能据此声称全过程无警告或完整进程无泄漏。[正式服务复核](m25-paragraph-pagination-evidence/main-service.json)显示编辑器、保存状态与页数正常，最终页面错误列表为空。验收结束后隔离 4190 服务关闭，正式 4177 服务继续运行。
 
-本批没有新增真实系统输入法、Safari、物理鼠标或系统打印/PDF、Microsoft Word/WPS 版式补验；自动 Word 检查验证导出语义，不能代表外部软件的物理分页。长列表、嵌套容器与 M25 持续验收仍未收口。
+本批没有新增真实系统输入法、Safari、物理鼠标或系统打印/PDF、Microsoft Word/WPS 版式补验；自动 Word 检查验证导出语义，不能代表外部软件的物理分页。上述数字为第三批记录；长列表和嵌套容器已在[第四批](m25-container-pagination.md)实施，M25 持续验收仍待收口。
 
 ## 后续
 
-下一批继续长列表及嵌套容器分页，处理安全边界、光标、选择和资源节点稳定，然后进行 M25 持续验收与版本收口。本批不会把仍采用完整展开布局的容器描述为已完成细分分页。
+长列表及嵌套容器已在[第四批](m25-container-pagination.md)按安全边界分页，后续进行 M25 持续验收与版本收口。第三批当时的完整块回退范围与成绩保留为历史记录。

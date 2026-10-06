@@ -1,0 +1,93 @@
+[
+  {
+    "metrics": {
+      "glyphs": 3054,
+      "items": 64,
+      "pages": 5
+    },
+    "name": "无序列表：64原项目分布多张标准页，列表、li和模型只保留一份",
+    "passed": true
+  },
+  {
+    "error": "跨页重建或重置原有序列表编号",
+    "name": "有序列表：原start和五种编号外观跨页保留，原始li数量与顺序不变",
+    "passed": false
+  },
+  {
+    "name": "任务列表：跨页checked与唯一原checkbox保留，勾选真实项目可一次撤销",
+    "passed": true
+  },
+  {
+    "name": "单个长列表项：原li内一段按行延续，不复制编号、checkbox或持久段落",
+    "passed": true
+  },
+  {
+    "name": "混合嵌套列表：UL、带起始号OL与task递归跨页，原层级、顺序与checked不变",
+    "passed": true
+  },
+  {
+    "name": "递归富容器：textBox、details和blockquote内长段与列表共同分页，原外壳不复制",
+    "passed": true
+  },
+  {
+    "name": "详情视图：收起只隐藏原内容并减少页数，展开重新分页，不写正文修订或更换NodeView",
+    "passed": true
+  },
+  {
+    "name": "嵌套混合字形：marks、hardBreak和emoji完整跨页，不拆代理对或修改原文字",
+    "passed": true
+  },
+  {
+    "name": "文本框外观：0与40px内边距、0与6px边框实时重测，原样式和尾段均保留",
+    "passed": true
+  },
+  {
+    "name": "列表快捷键：续页Enter真实分项、项首Backspace合并，UL/OL/task各一次撤销恢复",
+    "passed": true
+  },
+  {
+    "name": "跨页模型选区：复制和删除只触及原嵌套正文，撤销恢复完整结构",
+    "passed": true
+  },
+  {
+    "name": "表格与媒体：嵌套原行和TableView保留，播放中audio不因容器重排被复制或暂停",
+    "passed": true
+  },
+  {
+    "name": "安全回退：嵌套keepTogether与RTL保留完整展开，后续普通正文恢复标准页",
+    "passed": true
+  },
+  {
+    "name": "嵌套边界与代码：手动分页保留，200原代码行跨页保持newline和高亮，可Enter撤销",
+    "passed": true
+  },
+  {
+    "name": "格式重测：嵌套合法字号、行距和半磅段距改变页数，恢复后返回原布局",
+    "passed": true
+  },
+  {
+    "metrics": {
+      "items": 400,
+      "maxDriftPx": 0.05247293306933898,
+      "pages": 13
+    },
+    "name": "纸型与400项精度：小数字号列表在A4/A5与50%至150%缩放保持稳定正文预算",
+    "passed": true
+  },
+  {
+    "name": "组合与只读：composition期间保留原容器装饰，只读勾选被拒绝且原节点状态恢复",
+    "passed": true
+  },
+  {
+    "name": "保存与备份：原嵌套JSON和checked保存，Mewoc不含视图空隙，重开重新测得相同布局",
+    "passed": true
+  },
+  {
+    "name": "HTML、TXT与Word：嵌套壳与真实项目只导出一次，不导出屏幕断点、克隆控件或自动分页符",
+    "passed": true
+  },
+  {
+    "name": "开关与会话清理：关闭清全部内层间隙，销毁后停止发布，新短文空文只有一页",
+    "passed": true
+  }
+]

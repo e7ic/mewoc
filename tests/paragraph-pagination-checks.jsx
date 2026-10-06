@@ -306,9 +306,9 @@ export async function runParagraphPaginationChecks(report = () => {}) {
       const xml = new DOMParser().parseFromString(await archive.file("word/document.xml").async("string"), "application/xml")
       assert(xml.getElementsByTagName("w:p").length === 1 && xml.getElementsByTagName("w:br").length === 0 && xml.documentElement.textContent === longText && json(context.editor.getJSON()) === before, "Word把屏幕断点变成真实段落或分页符")
     })
-    await check("安全范围与清理：列表、引用及代码块保留完整展开；旧会话销毁后短文和空文只有一页", async ({ editor }) => {
+    await check("嵌套范围与清理：列表、引用及代码块安全延续；旧会话销毁后短文和空文只有一页", async ({ editor }) => {
       await replace(content([{ type: "bulletList", content: [{ type: "listItem", content: [paragraph(longText)] }] }, { type: "blockquote", content: [paragraph(longText)] }, { type: "codeBlock", attrs: { language: "plaintext" }, content: [{ type: "text", text: "完整代码行\n".repeat(200) }] }, paragraph("安全容器之后")]))
-      assert(!editor.view.dom.querySelector("li [data-mewoc-paragraph-pagination],blockquote [data-mewoc-paragraph-pagination],pre [data-mewoc-paragraph-pagination]") && layout().overflowCount === 3, "本批错误切开未支持的嵌套容器")
+      assert(editor.view.dom.querySelector("li [data-mewoc-paragraph-pagination]") && editor.view.dom.querySelector("blockquote [data-mewoc-paragraph-pagination]") && editor.view.dom.querySelector("pre [data-mewoc-code-pagination]") && layout().overflowCount === 0, "已支持的嵌套结构没有按安全原行延续")
       let events = 0; editor.on("paginationUpdate", () => { events += 1 })
       await mount(content([paragraph("另一份短文")]))
       const count = events; await delay(280); verify(); assert(editor.isDestroyed && events === count && layout().pageCount === 1, "旧会话仍发布布局或短文继承旧页数")
