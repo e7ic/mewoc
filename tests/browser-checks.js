@@ -1,3 +1,4 @@
+/** 常规浏览器验收主链路：双会话隔离、正文命令、图表交互、资源和各内容交换模块。 */
 import React from "react"
 import { closeHistory } from "@tiptap/pm/history"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
@@ -11,13 +12,16 @@ import { checkMarkdownFlows } from "./markdown-checks.js"
 import { checkAttachmentFlows } from "./attachment-checks.js"
 import { checkHeadingFormatFlows } from "./heading-format-checks.js"
 
+// 以抛错表达当前场景失败，check 包装器统一收集结果。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 用同一组真实上下文执行检查，左侧覆盖功能，右侧证明隔离并运行独立长文本样例。
 export async function runEditorChecks(sessions, report) {
   const { left, right } = sessions
   const { editor, store } = left
+  // 每项独立捕获错误，避免一处失败截断整轮报告。
   const check = async (name, action) => {
     try {
       await action()
@@ -96,6 +100,7 @@ export async function runEditorChecks(sessions, report) {
   })
 }
 
+// 内部 HTML 必须保留支持的样式，外部主动内容则先清理再进入 schema。
 async function checkPasteFlows(left, check) {
   await checkHeadingFormatFlows(left, check)
   const { editor } = left
@@ -119,6 +124,7 @@ async function checkPasteFlows(left, check) {
   })
 }
 
+// 从真实本机 PNG 解码开始，贯穿图像视图、缩放、文件输出、仓库和只读状态。
 async function checkImageFlows(left, check) {
   const { editor, store, assets } = left
   await check("真实图片解码、插入与节点视图", async () => {
@@ -169,6 +175,7 @@ async function checkImageFlows(left, check) {
   })
 }
 
+// 磁盘仅保留活引用，会话仍保留撤销所需 Blob；最后删除后再撤销保存应重新写回资源。
 async function checkDeletedImage({ editor, getSnapshot, saveDocument, assets }) {
   const before = getSnapshot()
   let position = null
@@ -190,6 +197,7 @@ async function checkDeletedImage({ editor, getSnapshot, saveDocument, assets }) 
   assert(restored.get(before.assets[0].id).blob.size === before.assets[0].byteLength, "撤销后图片未重新写回磁盘")
 }
 
+// 结构命令往返到原规模，合并/拆分结果再通过真实快照校验。
 function checkTableCommands(editor, getSnapshot) {
   editor.commands.setContent("<p></p>")
   editor.commands.insertTable({ rows: 3, cols: 3, withHeaderRow: true })
@@ -211,6 +219,7 @@ function checkTableCommands(editor, getSnapshot) {
   getSnapshot()
 }
 
+// 屏幕移动 20px 应转换为 20/scale 的逻辑列宽，使用实际单元格矩形测量。
 function checkTableResize(editor, scale) {
   const wrapper = editor.view.dom.closest("[data-probe]")
   wrapper.style.transform = `scale(${scale})`
@@ -227,6 +236,7 @@ function checkTableResize(editor, scale) {
   wrapper.style.transform = ""
 }
 
+// 全行合并时内部边界不可见，按既有列宽权重重建后只调整末列，并验证一次撤销。
 function checkMergedTableResize(editor) {
   const cell = { type: "tableCell", attrs: { colspan: 3, rowspan: 1, colwidth: [100, 200, 300] }, content: [{ type: "paragraph" }] }
   editor.commands.setContent({ type: "doc", content: [{ type: "table", content: [{ type: "tableRow", content: [cell] }] }] })
@@ -243,6 +253,7 @@ function checkMergedTableResize(editor) {
   assert(JSON.stringify(editor.getJSON()) === JSON.stringify(before), "列宽拖动无法撤销")
 }
 
+// 模拟窗口外松键后只有悬停事件的情况，文档和表格 inline 预览都必须恢复。
 function checkReleasedTableDrag(editor) {
   const before = JSON.stringify(editor.getJSON())
   const cell = editor.view.dom.querySelector("td, th")
@@ -257,6 +268,7 @@ function checkReleasedTableDrag(editor) {
   assert(table.getAttribute("style") === style, "取消后未恢复表格预览宽度")
 }
 
+// 生成固定 240×120 PNG，测试无需读取用户图片或访问外部资源。
 async function createImageFixture() {
   const canvas = document.createElement("canvas")
   canvas.width = 240
@@ -268,10 +280,12 @@ async function createImageFixture() {
   return new File([blob], "verification.png", { type: "image/png" })
 }
 
+// 从实际 JSON 取第一张顶层图片属性，作为拖动与键盘尺寸断言的持久化依据。
 function getImage(editor) {
   return editor.getJSON().content.find(node => node.type === "image")
 }
 
+// 键盘每次改逻辑宽度 10px，不随视觉缩放改变步长。
 function checkImageKeyboard(editor, scale) {
   const wrapper = editor.view.dom.closest("[data-probe]")
   wrapper.style.transform = `scale(${scale})`
@@ -282,6 +296,7 @@ function checkImageKeyboard(editor, scale) {
   wrapper.style.transform = ""
 }
 
+// 合成指针检查坐标换算与提交路径，系统捕获仅作替身，finally 还原原入口与缩放。
 function checkImagePointer(editor, scale) {
   const wrapper = editor.view.dom.closest("[data-probe]")
   wrapper.style.transform = `scale(${scale})`
@@ -301,6 +316,7 @@ function checkImagePointer(editor, scale) {
   }
 }
 
+// 只删除本轮传入文档 ID 及其资源键前缀，在同一事务完成后关闭数据库连接。
 export async function removeVerificationDocuments(records) {
   const database = await new Promise((resolve, reject) => {
     const request = indexedDB.open("mewoc")
@@ -310,8 +326,17 @@ export async function removeVerificationDocuments(records) {
   await new Promise((resolve, reject) => {
     const transaction = database.transaction(["documents", "assets"], "readwrite")
     records.forEach(record => {
-      transaction.objectStore("documents").delete(record.document.id)
-      record.assets.forEach(asset => transaction.objectStore("assets").delete(`${record.document.id}:${asset.id}`))
+      const id = record.document.id
+      transaction.objectStore("documents").delete(id)
+      // 仅遍历本轮精确文档 ID 的资源键；同时清理 live Blob、历史元数据和历史 Blob。
+      const prefix = `${id}:`
+      const request = transaction.objectStore("assets").openCursor(IDBKeyRange.bound(prefix, prefix + "\uffff"))
+      request.onsuccess = () => {
+        const cursor = request.result
+        if (!cursor) return
+        cursor.delete()
+        cursor.continue()
+      }
     })
     transaction.oncomplete = resolve
     transaction.onerror = () => reject(transaction.error)

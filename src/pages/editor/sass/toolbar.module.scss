@@ -1,52 +1,62 @@
+// 七分组工具栏与模式切换的布局契约；相同组件在完整/极简模式下重新排布，弹窗状态仍由组件持有。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
   flex-shrink: 0;
   background: $ui-surface;
   border-bottom: 1px solid $ui-border;
-  .header { display: flex; justify-content: space-between; padding: 0 26px; height: 43px; }
-  .tabs { display: flex; gap: 26px; }
+  .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 10px; height: 42px; }
+  .tabs { display: flex; flex-shrink: 0; gap: 26px; }
+  .categoryPicker { display: none; }
+  .panel { min-width: 0; }
+  // 活动标签通过底线与文字色提示当前分组，header 的操作区与分组工具区分别占位。
   .tab {
     position: relative;
-    min-width: 35px;
-    height: 43px;
+    min-width: 24px;
+    height: 42px;
     color: $ui-secondary;
-    &.active { font-weight: 600; color: $ui-accent; }
-    &.active::after { position: absolute; right: 0; bottom: 0; left: 0; height: 3px; background: $ui-accent; border-radius: 3px; content: ""; }
+    &.active { font-weight: 600; color: #3480f9; }
+    &.active::after { position: absolute; right: 0; bottom: 0; left: 0; height: 3px; background: #3480f9; content: ""; }
   }
   .actions {
     display: flex;
-    gap: 22px;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+    font-size: 12px;
     color: $ui-secondary;
     button { display: flex; align-items: center; gap: 6px; }
+    button :global(.tabler-icon) { font-size: 20px; }
     kbd { margin-left: 5px; font-size: 10px; color: #aaadba; }
   }
-  .content { display: flex; align-items: center; gap: 22px; padding: 12px 24px; min-height: 91px; overflow-x: auto; }
+  .content { padding: 7px 8px; min-height: 76px; }
+  // 完整模式按组纵向排列控件，禁止组自身压缩，空间不足时由外层溢出视口滚动。
   .group {
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    padding-right: 22px;
-    min-height: 65px;
+    padding-right: 12px;
+    min-height: 56px;
     border-right: 1px solid $ui-border;
   }
   .caption { text-align: center; font-size: 10px; color: $ui-muted; }
   .row { display: flex; align-items: center; gap: 5px; }
-  .font, .fontSize, .paragraph, .spacing, .indentation {
+  // 固定选择器尺寸稳定工具栏宽度，文字色按钮用底部色条展示当前颜色。
+  .font, .fontSize, .spacing, .indentation {
     flex-shrink: 0;
-    height: 28px;
+    height: 26px;
     font-size: 12px;
   }
-  .font { width: 132px; }
+  .font { width: 144px; }
   .fontSize { width: 80px; }
-  .paragraph, .spacing { width: 100px; }
+  .spacing { width: 84px; }
   .indentation { width: 132px; }
   .color {
     padding: 0 4px;
-    width: 29px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     font-weight: 600;
     font-size: 15px;
     line-height: 17px;
@@ -55,33 +65,92 @@
   .hint { display: flex; align-items: center; gap: 12px; margin-left: auto; color: #b8baca; }
   .hint span { font-family: Georgia, serif; font-size: 38px; }
   .hint p { margin: 0; font-size: 11px; line-height: 1.8; white-space: nowrap; }
-  .view { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 22px; white-space: nowrap; }
+  .view { display: flex; align-items: center; gap: 16px 22px; white-space: nowrap; }
+  .viewAction {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 28px;
+    padding: 3px 6px; border-radius: 3px;
+    &[aria-pressed="true"] { color: $ui-accent; background: $ui-active; }
+  }
+  .viewAction :global(.tabler-icon) { font-size: 20px; }
   .view > span, .description { margin: 0; font-size: 12px; color: $ui-muted; line-height: 1.9; }
   .theme { display: flex; align-items: center; gap: 10px; }
   .themeSelect { width: 116px; }
   .themeError { max-width: 220px; font-size: 11px; color: $ui-muted; white-space: normal; }
+  // 插入和导出入口在完整模式采用图标/文字双行，极简模式下方规则改为并排。
   .insert { display: flex; align-items: center; gap: 14px; padding-right: 20px; border-right: 1px solid $ui-border; }
   .insert > button { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 65px; font-size: 12px; }
+  .insert > button:hover:not(:disabled) { color: $ui-accent; }
   .insert svg { font-size: 24px; color: $ui-secondary; }
   .table { display: grid; grid-template-columns: repeat(4, auto); gap: 8px 16px; margin: 0; padding: 0; border: 0; }
   .table legend { margin-bottom: 7px; font-size: 11px; color: $ui-muted; border: 0; }
   .table button { font-size: 12px; }
   .table .remove { color: #c45e67; }
+  .exports { display: flex; align-items: center; gap: 20px; }
+  .exports button { display: flex; align-items: center; flex-direction: column; gap: 8px; padding: 4px 8px; white-space: nowrap; font-size: 12px; border-radius: 3px; }
+  .exports button:hover { background: $ui-hover; }
+  .exports svg { font-size: 24px; color: $ui-secondary; }
+  button:focus-visible { outline: 2px solid #3480f9; outline-offset: 2px; }
+  &[data-toolbar-mode="compact"] {
+    // DOM 与弹窗所有者保持原位，网格只把分组、当前工具和模式按钮排成同一行。
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr) auto;
+    align-items: center;
+    .header { display: contents; }
+    .tabs { display: none; }
+    .categoryPicker {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      grid-column: 1; grid-row: 1; height: 32px; margin: 8px 8px 8px 6px;
+      border-right: 1px solid $ui-border; color: $ui-text; white-space: nowrap;
+      &:hover { color: $ui-accent; }
+    }
+    .panel { grid-column: 2; grid-row: 1; }
+    .actions { grid-column: 3; grid-row: 1; gap: 14px; padding: 0 12px; min-height: 32px; border-left: 1px solid $ui-border; }
+    .content { min-height: 48px; padding: 7px 4px; }
+    .insert { gap: 12px; padding-right: 12px; }
+    .insert > button { flex-direction: row; gap: 5px; min-width: 0; height: 30px; white-space: nowrap; }
+    .insert svg, .exports svg { font-size: 20px; }
+    .exports button { flex-direction: row; gap: 5px; padding: 4px; }
+    .description { display: none; }
+    [data-ribbon-group] { flex-direction: row; align-items: center; min-height: 28px; }
+    [data-paragraph-style-picker] { padding: 3px; }
+    [data-paragraph-style] { height: 28px; }
+    [data-paragraph-style] > span:last-child { display: none; }
+  }
 }
 
+// 保存状态在工具栏内保持单行；未保存和失败突出颜色，具体文案由状态组件提供。
+.saveStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: $ui-muted;
+  &[data-save-status="dirty"], &[data-save-status="error"] { color: #e5484d; }
+  &[data-save-status="error"] .statusDot { background: #e5484d; }
+}
+.statusDot { width: 10px; height: 10px; border-radius: 50%; background: #20bd20; }
+
+// 基础图标按钮统一尺寸、悬停与活动反馈，业务可用性通过原生 disabled 表达。
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 29px;
-  height: 27px;
-  font-size: 16px;
-  color: $ui-secondary;
-  border-radius: 4px;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  font-size: 20px;
+  color: color-mix(in srgb, $ui-text 85%, $ui-surface);
+  border-radius: 2px;
   &:hover { background: $ui-hover; }
-  &.active { color: $ui-accent; background: $ui-active; }
+  &.active { color: $ui-text; background: $ui-hover; }
 }
 
+// 宽度不足先收起装饰性提示，再由更窄断点调整 header 换行。
 @media (max-width: 1100px) {
   .container .hint { display: none; }
+}
+
+@media (max-width: 760px) {
+  .container .header { height: auto; flex-wrap: wrap; gap: 4px; padding-bottom: 6px; }
+  .container .tabs { flex: 1; justify-content: space-between; gap: 12px; }
+  .container .actions { margin-left: auto; }
 }

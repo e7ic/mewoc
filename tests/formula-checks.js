@@ -1,11 +1,14 @@
+/** 浏览器公式验收：原生 MathML 显示、源码更新、静态输出及 IndexedDB 恢复。 */
 import { createDocumentHtml } from "../src/pages/editor/tools/file-transfer.js"
 import { renderFormula } from "../src/pages/editor/tools/formula.js"
 import { getDocuments } from "../src/pages/editor/tools/local-repository.js"
 
+// 错误由统一 check 包装为场景报告，不在模块内吞掉失败。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 同时放入行内和独立公式；等待渲染后用实际 DOM 尺寸证明可见显示。
 export async function checkFormulaFlows(left, check) {
   const { editor } = left
   await check("公式节点显示原生 MathML，编辑源码后视图同步", async () => {

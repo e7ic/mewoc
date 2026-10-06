@@ -1,0 +1,305 @@
+{
+  "format": "mewoc",
+  "formatVersion": 1,
+  "document": {
+    "schemaVersion": 1,
+    "id": "799f3553-395b-456c-beea-cfaa85680aa0",
+    "title": "图表精细设置 · 演示",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "图表精细设置"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "选中表格单元格或图片，在「插入」中打开精细设置。"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "事项"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "设置"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "结果"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "表格"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "底色 / 边框 / 内边距"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "列宽 / 最小行高"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "图片"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "宽高 / 锁定比例"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": [
+                      160
+                    ]
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "对齐 / 说明文字"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "图片宽高按文档像素保存，对齐可选左、中、右。"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "attrs": {
+            "assetId": "m5-image",
+            "width": 280,
+            "height": 160,
+            "alt": "紫色示例图片",
+            "title": "精细设置演示",
+            "align": "left",
+            "lockAspectRatio": true
+          }
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "设置随保存、历史版本、模板以及 Mewoc 文件保留。"
+            }
+          ]
+        }
+      ]
+    },
+    "page": {
+      "size": "A4",
+      "orientation": "portrait",
+      "marginsMm": {
+        "top": 20,
+        "right": 20,
+        "bottom": 20,
+        "left": 20
+      }
+    },
+    "assets": [
+      {
+        "id": "m5-image",
+        "fileName": "fixture.png",
+        "mimeType": "image/png",
+        "byteLength": 940
+      },
+      {
+        "id": "m5-attachment",
+        "kind": "attachment",
+        "fileName": "M5验收.txt",
+        "mimeType": "text/plain",
+        "byteLength": 36
+      }
+    ],
+    "createdAt": "2026-10-01T15:45:31.804Z",
+    "updatedAt": "2026-10-01T15:45:31.804Z"
+  },
+  "assetData": {
+    "m5-image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAADwCAIAAABXFyDtAAADc0lEQVR4nO3UMQ2AMAAAwbrEAZ4RQYIDaoCJAT7NJSfgpx/XeQMQNH4vAOCRQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEfTHofTsA1mPQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNELXCoAF4waABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABoibc9KrOf+yFIwAAAABJRU5ErkJggg==",
+    "m5-attachment": "data:text/plain;base64,TTUg6ZmE5Lu25Y6f5paH77ya5L2g5aW977yMTWV3b2PjgIIK"
+  }
+}

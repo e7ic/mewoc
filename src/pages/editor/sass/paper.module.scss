@@ -1,3 +1,4 @@
+// 纸张视口、缩放占位和标尺样式；毫米单位与文档纸张设置对应，应用主题仅影响纸张外部。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
@@ -6,12 +7,16 @@
   min-width: 0;
   overflow: auto;
   background: $ui-canvas;
+  // 纸张上方的方向/尺寸说明与正文分开排布，不进入导出内容。
   .label { display: flex; justify-content: space-between; margin: 0 auto 16px; max-width: 980px; font-size: 10px; color: #9a9dad; letter-spacing: 1px; }
   // transform 不改变布局占位，外层 frame 的尺寸由 PaperCanvas 按缩放值单独计算。
   .frame { position: relative; margin: 0 auto; }
   .sheet { position: absolute; top: 0; left: 0; transform-origin: top left; }
   // 深色主题只改变编辑器界面，文档纸张固定浅色，与 HTML/打印的正文颜色一致。
-  .paper { color-scheme: light; color: $text-color; background: #ffffff; box-shadow: 0 3px 16px #33364b0a, 0 0 0 1px #e4e5ed; }
+  .paper { position: relative; isolation: isolate; color-scheme: light; color: $text-color; background: #ffffff; box-shadow: 0 3px 16px #33364b0a, 0 0 0 1px #e4e5ed; }
+  // 正文层位于非交互水印之上，背景保持透明；水印绝对定位，不参与高度与文字排版。
+  .paperContent { position: relative; z-index: 1; }
+  // 标尺按毫米刻度重复绘制，随纸张整体缩放，刻度文字不参与正文编辑。
   .ruler {
     display: flex;
     align-items: flex-start;
@@ -22,5 +27,4 @@
     background: repeating-linear-gradient(90deg, #c5c7d1 0 1px, transparent 1px 5mm) bottom / 100% 5px no-repeat;
     span { flex-shrink: 0; width: 10mm; }
   }
-  .hint { margin: 24px 0 0; text-align: center; font-size: 11px; color: #a4a7b4; letter-spacing: 1px; }
 }

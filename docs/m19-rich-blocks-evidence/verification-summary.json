@@ -1,0 +1,62 @@
+{
+  "node": {
+    "passed": 509,
+    "total": 509
+  },
+  "browserDistinctScenarios": {
+    "passed": 123,
+    "total": 123
+  },
+  "browserSuites": [
+    {
+      "name": "文本框与折叠详情",
+      "passed": 14,
+      "total": 14,
+      "evidence": "browser-final.json"
+    },
+    {
+      "name": "常规回归（固定验收配置）",
+      "passed": 62,
+      "total": 62,
+      "evidence": "regression.json"
+    },
+    {
+      "name": "工具栏",
+      "passed": 29,
+      "total": 29,
+      "evidence": "toolbar.json"
+    },
+    {
+      "name": "图片替换与格式标记",
+      "passed": 13,
+      "total": 13,
+      "evidence": "view-image.json"
+    },
+    {
+      "name": "Word导出",
+      "passed": 5,
+      "total": 5,
+      "evidence": "docx.json"
+    },
+    {
+      "name": "常规回归（默认开发配置）",
+      "passed": 62,
+      "total": 62,
+      "evidence": "regression-dev-final.json"
+    }
+  ],
+  "consoleEntries": {
+    "browser-final-console.json": 0,
+    "regression-console.json": 0,
+    "toolbar-console.json": 0,
+    "view-image-console.json": 0,
+    "docx-console.json": 1,
+    "regression-dev-final-console.json": 0,
+    "manual-console.json": 0
+  },
+  "lint": "passed",
+  "build": "passed",
+  "manualDownloads": "Mewoc,HTML,DOCX,Markdown,TXT passed",
+  "finalContainerCheck": "14/14 after focus-outline fix; default development configuration",
+  "temporaryTestServer": "stopped; existing 4177 server remains listening"
+}

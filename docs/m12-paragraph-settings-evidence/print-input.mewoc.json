@@ -1,0 +1,261 @@
+{
+  "format": "mewoc",
+  "formatVersion": 1,
+  "document": {
+    "schemaVersion": 1,
+    "id": "86201293-af54-4747-8972-2b78273902fe",
+    "title": "段落分页 · 打印验收",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 前置段落 1"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 前置段落 2"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 前置段落 3"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 前置段落 4"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 50
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 页尾之前"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2,
+            "spaceBefore": 0,
+            "spaceAfter": 0,
+            "keepWithNext": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 标题"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 0,
+            "keepTogether": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "开启同页 · 正文第 1 行"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "开启同页 · 正文第 2 行"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "开启同页 · 正文第 3 行"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "开启同页 · 正文第 4 行"
+            }
+          ]
+        },
+        {
+          "type": "pageBreak"
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 前置段落 1"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 前置段落 2"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 前置段落 3"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 120
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 前置段落 4"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 50
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 页尾之前"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2,
+            "spaceBefore": 0,
+            "spaceAfter": 0,
+            "keepWithNext": false
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 标题"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "spaceBefore": 0,
+            "spaceAfter": 0,
+            "keepTogether": true
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "关闭同页 · 正文第 1 行"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "关闭同页 · 正文第 2 行"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "关闭同页 · 正文第 3 行"
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "关闭同页 · 正文第 4 行"
+            }
+          ]
+        }
+      ]
+    },
+    "page": {
+      "size": "A4",
+      "orientation": "portrait",
+      "marginsMm": {
+        "top": 20,
+        "right": 20,
+        "bottom": 20,
+        "left": 20
+      }
+    },
+    "assets": [],
+    "createdAt": "2026-10-02T04:55:12.030Z",
+    "updatedAt": "2026-10-02T04:55:12.030Z"
+  },
+  "assetData": {}
+}

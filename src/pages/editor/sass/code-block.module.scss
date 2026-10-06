@@ -1,3 +1,4 @@
+// 代码块语言控件与高亮提示布局；失败或超限提示保留，极简模式仅收起普通辅助文字。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
@@ -9,4 +10,11 @@
   .language { width: 150px; }
   p { margin: 0; font-size: 12px; color: $ui-muted; }
   .notice { flex-basis: 100%; color: $ui-secondary; }
+}
+
+// 完整模式允许说明换行，极简模式维持入口单行并给溢出视口管理宽度。
+:global([data-toolbar-mode="compact"]) .container {
+  flex-wrap: nowrap;
+  max-width: none;
+  p:not(.notice) { display: none; }
 }

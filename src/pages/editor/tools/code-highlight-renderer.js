@@ -1,3 +1,7 @@
+/**
+ * 按需加载的代码着色实现，把 lowlight 的语法树转换成文本及样式类片段。
+ * 结果仅描述外观，不改变源码或文档属性，编辑视图与静态导出可以按片段长度定位文字。
+ */
 import { createLowlight } from "lowlight"
 import javascript from "highlight.js/lib/languages/javascript"
 import html from "highlight.js/lib/languages/xml"
@@ -13,6 +17,7 @@ const LOWLIGHT = createLowlight({ javascript, html, css, json, bash, python })
 export function getCodeTokens(text, language) {
   const tree = LOWLIGHT.highlight(language, text)
   const tokens = []
+  // 沿树递归携带祖先样式，叶子文本保持原顺序；组合类名使嵌套语法仍保留全部着色信息。
   const visit = (node, classes) => {
     if (node.type === "text") {
       tokens.push({ text: node.value, classes })

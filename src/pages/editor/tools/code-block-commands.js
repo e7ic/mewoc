@@ -1,3 +1,7 @@
+/**
+ * 代码块的插入、语言切换、退出、缩进和换行命令。
+ * 所有位置使用未变化的文档坐标；事务负责映射选区，公共入口拒绝只读、组合输入和过期选区。
+ */
 import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 import { closeHistory } from "@tiptap/pm/history"
 import { CODE_LANGUAGES } from "../constants/code-languages.js"
@@ -12,11 +16,13 @@ export function getCodeBlockTarget(selection) {
   return { node: selection.$from.parent, pos: selection.$from.before() }
 }
 
+// 统一检查编辑生命周期与选区所属正文，防止弹层持有的旧位置误改新文档。
 function canEditCode(editor, selection = editor.state.selection) {
   return !editor.isDestroyed && editor.isEditable && !editor.view.composing
     && selection?.$from.doc === editor.state.doc
 }
 
+// 选区变化可以正常派发；只有正文变化需要隔开撤销分组，让一次工具操作对应一次撤销。
 function dispatchCodeChange(editor, transaction) {
   if (!transaction.docChanged) {
     editor.view.dispatch(transaction)
@@ -27,6 +33,7 @@ function dispatchCodeChange(editor, transaction) {
   editor.view.dispatch(closeHistory(editor.state.tr))
 }
 
+// 把当前普通段落或标题整体转为纯文本代码块，保留原文字而不额外创建重复内容。
 export function insertCodeBlock(editor) {
   const { selection, schema } = editor.state
   if (!canEditCode(editor) || !(selection instanceof TextSelection)
@@ -44,6 +51,7 @@ export function insertCodeBlock(editor) {
   return true
 }
 
+// 只接受菜单支持的语言并只改目标块的 language 属性；选择当前语言视为成功但不新增历史。
 export function setCodeBlockLanguage(editor, language, selection = editor.state.selection) {
   if (!canEditCode(editor, selection) || !CODE_LANGUAGES.some(item => item.value === language)) return false
   const target = getCodeBlockTarget(selection)
@@ -53,6 +61,7 @@ export function setCodeBlockLanguage(editor, language, selection = editor.state.
   return true
 }
 
+// 把光标移到代码块之后的普通段落；已有相邻段落时复用，缺少时先检查父节点能否插入。
 export function exitCodeBlock(editor) {
   if (!canEditCode(editor)) return false
   const target = getCodeBlockTarget(editor.state.selection)
@@ -71,6 +80,7 @@ export function exitCodeBlock(editor) {
   return true
 }
 
+// 普通 Tab 在空光标处插入两个空格，范围选择则逐行处理；反向操作最多删除一档缩进。
 export function indentCodeBlock(editor, reverse = false) {
   const { selection } = editor.state
   if (!canEditCode(editor) || !(selection instanceof TextSelection)) return false
@@ -96,6 +106,8 @@ export function indentCodeBlock(editor, reverse = false) {
   return true
 }
 
+// 先用原源码计算每一行的绝对编辑位置，返回计划而不修改正文，供调用方倒序提交。
+// 反向缩进将一个制表符或最多两个行首空格视为一档，不触碰行内空白。
 function getCodeIndentChanges(target, selection, reverse) {
   const text = target.node.textContent
   const base = target.pos + 1
@@ -115,6 +127,7 @@ function getCodeIndentChanges(target, selection, reverse) {
   return changes
 }
 
+// 替换当前选择为换行和本行缩进，使代码输入延续排版；只处理同一个代码块内部的文字。
 export function insertCodeNewline(editor) {
   const { selection } = editor.state
   if (!canEditCode(editor) || !(selection instanceof TextSelection)) return false

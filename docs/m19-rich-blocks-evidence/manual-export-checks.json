@@ -1,0 +1,31 @@
+{
+  "html": {
+    "passed": true,
+    "detailsExpanded": true,
+    "summary": "补充材料",
+    "textBoxPadding": "20px",
+    "bodyComplete": true,
+    "editingButtons": false
+  },
+  "docx": {
+    "passed": true,
+    "tables": 1,
+    "cells": 1,
+    "fill": "F5F3FF",
+    "paddingTwips": 300,
+    "detailsBodyComplete": true
+  },
+  "markdown": {
+    "passed": true,
+    "detailsBodyComplete": true
+  },
+  "text": {
+    "passed": true,
+    "detailsBodyComplete": true
+  },
+  "mewoc": {
+    "passed": true,
+    "textBoxPadding": 20,
+    "detailsSummary": "补充材料"
+  }
+}

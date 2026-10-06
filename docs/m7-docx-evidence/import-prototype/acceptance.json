@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-09-12T10:11:27.177380+00:00",
+  "scope": "Independent Node DOCX import prototype; production import UI not added",
+  "exportBaseline": "76a3b56",
+  "allNodeTests": {
+    "passed": 153,
+    "total": 153
+  },
+  "importTests": {
+    "node24.13.1": {
+      "passed": 13,
+      "total": 13
+    },
+    "node18.18.0": {
+      "passed": 13,
+      "total": 13
+    }
+  },
+  "lint": true,
+  "productionBuild": {
+    "passed": true,
+    "totalKb": 2484.3,
+    "gzipKb": 753.7,
+    "productionSourcesChanged": false
+  },
+  "roundtripSamples": 3,
+  "longTableAll48RowsPresent": true,
+  "prototypeImages": {
+    "actuallyTestedFormats": [
+      "PNG"
+    ],
+    "fullBrowserDecodeVerified": false
+  },
+  "wordWps": {
+    "installed": false,
+    "verified": false
+  },
+  "browserImport": {
+    "implemented": false,
+    "verified": false
+  },
+  "limits": [
+    "Native formulas and unsupported content rejected",
+    "List starts, numbering style and complex nesting not preserved reliably; warning emitted",
+    "Page layout and visual styles use editor defaults"
+  ],
+  "priorFailures": [
+    "JSZip Node stream lacks async iteration; switched to documented StreamHelper",
+    "Script strict equality compared ProseMirror null-prototype attrs; compare persistent JSON data instead"
+  ],
+  "next": [
+    "Numbering identities, starts and multi-paragraph list items",
+    "Reliable formula import or explicit preservation strategy",
+    "Browser decoding, confirmation and session cancellation before production import UI"
+  ]
+}

@@ -1,8 +1,12 @@
+/**
+ * 公式插入和编辑入口：保存 LaTeX 草稿与原目标内容，预渲染通过后才修改正文。
+ * 选区书签跟踪位置，原始类型/源码核对目标身份，版本号阻止关闭后异步渲染继续写入。
+ */
 import { useEffect, useRef, useState } from "react"
 import { useEditorState } from "@tiptap/react"
 import { NodeSelection } from "@tiptap/pm/state"
 import { Button, Form, Input, Modal, Select } from "antd"
-import { FunctionOutlined } from "@ant-design/icons"
+import { IconChevronDown, IconLoader2, IconMathFunction } from "@tabler/icons-react"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import { useSelectionBookmark } from "../hooks/use-selection-bookmark.js"
 import { FORMULA_TYPES, MAX_FORMULA_LENGTH, renderFormula } from "../tools/formula.js"
@@ -13,8 +17,10 @@ import styles from "../sass/formula.module.scss"
 export function FormulaAction() {
   const { editor } = useDocumentEditor()
   const readOnly = useEditorStore(state => state.readOnly || state.switching)
+  // 只有选中公式节点时进入编辑模式；普通文本选区或光标使用插入模式。
   const selected = useEditorState({ editor, selector: ({ editor: current }) => current.state.selection instanceof NodeSelection
     && FORMULA_TYPES.includes(current.state.selection.node.type.name) })
+  // 草稿独立于文档；pending 控制提交进度，versionRef 标识本次弹窗会话而不是文档修订。
   const [open, setOpen] = useState(false)
   const [draft, setDraft] = useState({ type: "inlineMath", latex: "", original: null })
   const [pending, setPending] = useState(false)
@@ -22,6 +28,7 @@ export function FormulaAction() {
   const versionRef = useRef(0)
   const { captureSelection, getSelection, clearSelection } = useSelectionBookmark(editor, open)
 
+  // 捕获正文选区再填充公式草稿；编辑沿用原类型和源码，插入提供可预览的初始表达式。
   const handleOpen = () => {
     captureSelection()
     const node = selected ? editor.state.selection.node : null
@@ -32,12 +39,14 @@ export function FormulaAction() {
     setOpen(true)
     versionRef.current += 1
   }
+  // 关闭立即使正在渲染的提交失效，并释放映射书签，避免迟到结果写到之后的新选区。
   const handleCancel = () => {
     versionRef.current += 1
     clearSelection()
     setOpen(false)
     setPending(false)
   }
+  // 提交将语法校验与正文写入串联；渲染失败或目标变化时留在弹窗保留用户源码。
   const handleSave = async () => {
     if (pending || readOnly) return
     const version = versionRef.current
@@ -56,6 +65,7 @@ export function FormulaAction() {
       if (version === versionRef.current) setPending(false)
     }
   }
+  // 删除同样核对原公式内容与映射选区，不能仅凭旧位置移除已经被替换的节点。
   const handleRemove = () => {
     if (!removeFormula(editor, getSelection(), draft.original)) {
       setError("原公式已变化或当前不可编辑，请关闭后重新选择")
@@ -64,23 +74,25 @@ export function FormulaAction() {
     handleCancel()
     editor.commands.focus()
   }
+  // 组件卸载使所有未完成提交失效，保障文档切换后旧公式任务不能继续更新 UI。
   useEffect(() => () => { versionRef.current += 1 }, [])
 
   return <>
     <button type="button" disabled={readOnly} onMouseDown={event => event.preventDefault()} onClick={handleOpen}>
-      <FunctionOutlined /><span>{selected ? "编辑公式" : "公式"}</span>
+      <IconMathFunction aria-hidden="true" /><span>{selected ? "编辑公式" : "公式"}</span>
     </button>
     <FormulaDialog open={open} draft={draft} setDraft={setDraft} error={error} pending={pending} readOnly={readOnly}
       onCancel={handleCancel} onSave={handleSave} onRemove={handleRemove} />
   </>
 }
 
+// 弹窗只呈现草稿、预览与错误；编辑现有公式时锁定显示类型，所有正文操作仍由上层命令处理。
 const FormulaDialog = ({ open, draft, setDraft, error, pending, readOnly, onCancel, onSave, onRemove }) => (
   <Modal title={draft.original ? "编辑公式" : "插入公式"} open={open} onCancel={onCancel} footer={null} destroyOnHidden>
     <div className={styles.container}>
       <Form layout="vertical" onFinish={onSave}>
         <Form.Item label="显示方式">
-          <Select aria-label="公式显示方式" value={draft.type} disabled={!!draft.original || pending || readOnly}
+          <Select suffixIcon={<IconChevronDown aria-hidden="true" />} aria-label="公式显示方式" value={draft.type} disabled={!!draft.original || pending || readOnly}
             options={[{ value: "inlineMath", label: "行内公式" }, { value: "blockMath", label: "独立公式" }]}
             onChange={type => setDraft({ ...draft, type })} />
         </Form.Item>
@@ -91,7 +103,7 @@ const FormulaDialog = ({ open, draft, setDraft, error, pending, readOnly, onCanc
         {open && <FormulaPreview latex={draft.latex} type={draft.type} />}
         {error && <p className={styles.error} role="alert">{error}</p>}
         <div className={styles.actions}>
-          <Button type="primary" htmlType="submit" loading={pending} disabled={readOnly}>应用公式</Button>
+          <Button type="primary" htmlType="submit" loading={(pending) && { icon: <IconLoader2 aria-hidden="true" className="mewoc-icon-spin" /> }} disabled={readOnly}>应用公式</Button>
           <Button onClick={onCancel}>取消</Button>
           {draft.original && <Button danger disabled={pending || readOnly} onClick={onRemove}>删除公式</Button>}
         </div>

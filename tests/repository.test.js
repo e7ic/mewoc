@@ -1,3 +1,7 @@
+/**
+ * 验证本地自动保存的乐观锁、文档/资源原子性、跨文档资源键隔离与撤销重写。
+ * 同步异常和异步 IDB 请求失败均在提交后核对旧版本及 Blob，防止资源已删除但正文未保存。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import "fake-indexeddb/auto"
@@ -13,6 +17,7 @@ test("双会话存储版本冲突不会覆盖已保存文档", async () => {
   assert.equal(records.find(record => record.id === document.id).document.title, document.title)
 })
 
+// 仓库场景用带 MIME 的可读字节 fixture 比较原始内容，图像解码另有测试；此处聚焦提交完整性。
 test("资源与文档原子保存，缺失资源时整笔写入中止", async () => {
   const document = createDocument()
   const blob = new Blob(["image-bytes"], { type: "image/png" })
@@ -25,6 +30,7 @@ test("资源与文档原子保存，缺失资源时整笔写入中止", async ()
   assert.equal(await assets.get(asset.id).blob.text(), "image-bytes")
 })
 
+// 两份文档故意复用同一 assetId，更新/清理其中一份后再读另一份，证明数据库键包含文档身份。
 test("不同文档的同名资源 ID 不会互相覆盖", async () => {
   const first = createDocument()
   const second = createDocument()
@@ -57,6 +63,7 @@ test("删除图片后保存清理磁盘资源，保留会话 Blob 可供撤销�
   assert.equal(await (await getDocumentAssets(document)).get(asset.id).blob.text(), "undo-image")
 })
 
+// 故障注入在最终 documents.put，前面已排队的删除必须回滚；恢复原方法后以原版本重试证明未误推进锁。
 test("配额写入异常回滚已排队的资源删除，版本不变且允许重试", async () => {
   const document = createDocument()
   const blob = new Blob(["keep-image"], { type: "image/png" })
@@ -82,6 +89,7 @@ test("配额写入异常回滚已排队的资源删除，版本不变且允许�
   await assert.rejects(() => getDocumentAssets(document), /资源缺失/)
 })
 
+// 覆盖请求完成阶段失败，与同步 throw 的路径分开，防止事务错误处理只保护一种异常来源。
 test("异步写入失败也回滚资源删除与文档版本", async () => {
   const document = createDocument()
   const blob = new Blob(["keep-on-abort"], { type: "image/png" })

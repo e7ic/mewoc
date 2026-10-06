@@ -1,7 +1,9 @@
+/** 表格列宽拖动扩展：以渲染后的单元格边界测量尺寸，预览后在一个事务中同步整列。 */
 import { Extension } from "@tiptap/core"
 import { Plugin, PluginKey } from "@tiptap/pm/state"
 import { TableMap, cellAround } from "@tiptap/pm/tables"
 
+// Plugin 的 view 生命周期持有 DOM 监听，与当前编辑器实例一起创建、更新和销毁。
 export const TableColumnResize = Extension.create({
   name: "tableColumnResize",
   addProseMirrorPlugins() {
@@ -36,6 +38,7 @@ function bindColumnResize(view) {
   let drag = null
   const win = view.dom.ownerDocument.defaultView
   const stopDrag = () => {
+    // 取消和确认都先恢复开始时的 inline 样式，确认后的文档属性再由 TableView 重绘。
     if (drag) {
       drag.columns.forEach((column, index) => { column.style.width = drag.styles[index] })
       drag.element.style.width = drag.tableWidth
@@ -56,6 +59,7 @@ function bindColumnResize(view) {
     drag.element.style.width = `${widths.reduce((total, value) => total + value, 0)}px`
   }
   const handleFinish = () => {
+    // 在清理 drag 前保留本轮快照；只有原文档仍有效且可编辑时才提交预览宽度。
     if (!drag) return
     const completed = drag
     stopDrag()
@@ -63,10 +67,12 @@ function bindColumnResize(view) {
     updateColumnWidths(view, completed)
   }
   const handleMouseMove = event => {
+    // 非拖动状态只更新热区光标，不修改文档或列宽。
     if (drag) return
     view.dom.classList.toggle("resize-cursor", view.editable && !!getResizeColumn(view, event))
   }
   const handleMouseDown = event => {
+    // 捕获阶段接管左键边缘拖动，阻止正文选区处理同时启动；窗口级监听覆盖跨区域移动。
     if (!view.editable || event.button !== 0) return
     const column = getResizeColumn(view, event)
     if (!column) return
@@ -89,6 +95,7 @@ function bindColumnResize(view) {
   }
 }
 
+// 保存逻辑列宽、文档引用和原 DOM 样式，用于计算增量、校验有效性与取消恢复。
 function createColumnDrag(column, x, view) {
   const widths = getRenderedColumnWidths(column, view)
   return {
@@ -99,10 +106,12 @@ function createColumnDrag(column, x, view) {
   }
 }
 
+// 将屏幕坐标除以纸张缩放，重建表格各列的逻辑像素宽度，兼容跨行/跨列合并。
 function getRenderedColumnWidths({ table, start, map, scale }, view) {
   // Safari 的 col 元素没有可靠的布局矩形；从实际单元格边界重建逻辑列宽。
   const boundaries = Array(map.width + 1).fill(null)
   const weights = Array(map.width).fill(1)
+  // TableMap 中跨格节点会重复出现，先去重，再记录其左右边界和已有列宽权重。
   new Set(map.map).forEach(pos => {
     const node = table.nodeAt(pos)
     const column = map.colCount(pos)

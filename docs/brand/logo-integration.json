@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-02",
+  "source": "public/brand/mewoc-logo-v3.png",
+  "asset": "src/assets/images/mewoc-logo-v3-tiny.png",
+  "compression": {
+    "service": "https://tinypng.com/",
+    "originalBytes": 401649,
+    "compressedBytes": 111690,
+    "savedPercent": 72.19,
+    "width": 2079,
+    "height": 756,
+    "alphaPreserved": true,
+    "evidence": "tinypng-compression.jpg"
+  },
+  "integration": {
+    "component": "src/pages/editor/components/DocumentBar.jsx",
+    "style": "src/pages/editor/sass/document-bar.module.scss",
+    "approach": "CSS crops the approved 3D symbol from the compressed lockup; existing live text retains theme colors and the accessible brand label.",
+    "displayWidth": 42,
+    "displayHeight": 48
+  },
+  "validation": {
+    "eslint": "passed using the existing local executable",
+    "productionBuild": "passed using the existing local Rsbuild executable",
+    "browserConsoleWarningsAndErrors": 0,
+    "lightTheme": "logo-integration-light.jpg",
+    "darkTheme": "logo-integration-dark.jpg",
+    "narrow920px": "logo-integration-920.jpg",
+    "themePreferenceRestored": "system"
+  }
+}

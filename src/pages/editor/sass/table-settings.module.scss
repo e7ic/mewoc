@@ -1,0 +1,46 @@
+// 表格精确设置弹窗：列宽、行高、单元格外观与整表边框按功能分区。
+@use "../../../assets/style/theme.scss" as *;
+
+// 矮窗口滚动表单主体，overscroll-behavior 防止滚动串到背景编辑器。
+.modal :global(.ant-modal-body) { max-height: calc(100dvh - 150px); overflow-y: auto; overscroll-behavior: contain; }
+
+.form {
+  .hint { color: $ui-muted; font-size: 12px; line-height: 1.7; }
+  .section {
+    margin: 20px 0;
+    padding: 0;
+    border: 0;
+    legend { margin-bottom: 5px; font-size: 14px; font-weight: 600; }
+    > p { margin: 0 0 12px; color: $ui-secondary; font-size: 12px; line-height: 1.7; }
+  }
+  // 相关数值字段采用两列布局；原生输入统一继承主题、焦点和禁用样式。
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    small { color: $ui-muted; }
+    input, select {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 34px;
+      padding: 6px 10px;
+      color: $ui-text;
+      background: $ui-surface;
+      border: 1px solid $ui-border;
+      border-radius: 6px;
+      &:focus { outline: 2px solid $ui-accent; outline-offset: 1px; }
+      &:disabled { opacity: .55; }
+    }
+  }
+  // 恢复默认与批量应用动作独立于数值字段，footer 集中提交/取消。
+  .reset { margin: 9px 10px 0 0; color: $ui-accent; font-size: 12px; text-decoration: underline; }
+  .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; }
+  .checkbox { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+  .footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 8px; }
+  .error { color: #b42318; font-size: 13px; }
+}
+
+// 窄视口降为单列，避免标签和精确数值输入互相挤压。
+@media (max-width: 480px) { .form .grid { grid-template-columns: 1fr; } }

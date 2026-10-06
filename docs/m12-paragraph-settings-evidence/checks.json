@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-02",
+  "milestone": "M12 paragraph settings",
+  "node": "v24.13.1",
+  "nodeTests": {
+    "passed": 347,
+    "total": 347,
+    "file": "node-tests.txt"
+  },
+  "lint": {
+    "passed": true,
+    "file": "lint.txt"
+  },
+  "build": {
+    "passed": true,
+    "file": "build.txt"
+  },
+  "browser": {
+    "paragraph": {
+      "passed": 9,
+      "total": 9,
+      "file": "paragraph-browser.json"
+    },
+    "precision": {
+      "passed": 10,
+      "total": 10,
+      "file": "precision-browser.json"
+    },
+    "base": {
+      "passed": 62,
+      "total": 62,
+      "file": "base-browser.json"
+    },
+    "library": {
+      "passed": 8,
+      "total": 8,
+      "file": "library-browser.json"
+    },
+    "history": {
+      "passed": 11,
+      "total": 11,
+      "file": "history-browser.json"
+    },
+    "comments": {
+      "passed": 8,
+      "total": 8,
+      "file": "comments-browser.json"
+    },
+    "templates": {
+      "passed": 10,
+      "total": 10,
+      "file": "templates-browser.json"
+    },
+    "docx-export": {
+      "passed": 5,
+      "total": 5,
+      "file": "docx-export-browser.json"
+    },
+    "docx-import": {
+      "passed": 6,
+      "total": 6,
+      "file": "docx-import-browser.json"
+    }
+  },
+  "browserTotal": 129,
+  "manual": {
+    "scope": "Full editor at isolated port 4181",
+    "spacingPt": {
+      "before": 12.5,
+      "after": 18
+    },
+    "keepWithNext": true,
+    "keepTogether": true,
+    "savedAndReloaded": true,
+    "consoleErrors": [],
+    "actualExports": "export-roundtrip.json"
+  },
+  "print": {
+    "htmlStylesAndWordXml": true,
+    "nativePdfVerified": false,
+    "nativeWordWpsVerified": false,
+    "note": "Native printing entered a blocking wait in the in-app browser; tools prohibit access to the Codex native app. Test tab closed; no physical print or PDF completed."
+  },
+  "retainedService": "http://127.0.0.1:4177/",
+  "userDocumentEdited": false,
+  "screenshots": [
+    "paragraph-settings.jpg",
+    "paragraph-applied.jpg"
+  ],
+  "testRunObservations": [
+    "Two ResizeObserver loop completed with undelivered notifications messages appeared in the development server browser log; no assertion failures, exact test origin undetermined.",
+    "Manual demo page error log was empty; this is scoped to that tab.",
+    "Some first-pass tabs returned to waiting; final reruns completed and all results were persisted."
+  ]
+}

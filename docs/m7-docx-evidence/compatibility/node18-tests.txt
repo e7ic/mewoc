@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: 独立 DOCX：comments.docx（明确拒绝）
+ok 1 - 独立 DOCX：comments.docx（明确拒绝）
+  ---
+  duration_ms: 15.634583
+  ...
+# Subtest: 独立 DOCX：embedded-style-map.docx（导入与再次导出）
+ok 2 - 独立 DOCX：embedded-style-map.docx（导入与再次导出）
+  ---
+  duration_ms: 80.241292
+  ...
+# Subtest: 独立 DOCX：empty.docx（导入与再次导出）
+ok 3 - 独立 DOCX：empty.docx（导入与再次导出）
+  ---
+  duration_ms: 30.870333
+  ...
+# Subtest: 独立 DOCX：endnotes.docx（明确拒绝）
+ok 4 - 独立 DOCX：endnotes.docx（明确拒绝）
+  ---
+  duration_ms: 1.737
+  ...
+# Subtest: 独立 DOCX：external-picture.docx（明确拒绝）
+ok 5 - 独立 DOCX：external-picture.docx（明确拒绝）
+  ---
+  duration_ms: 1.105541
+  ...
+# Subtest: 独立 DOCX：footnote-hyperlink.docx（明确拒绝）
+ok 6 - 独立 DOCX：footnote-hyperlink.docx（明确拒绝）
+  ---
+  duration_ms: 1.133708
+  ...
+# Subtest: 独立 DOCX：footnotes.docx（明确拒绝）
+ok 7 - 独立 DOCX：footnotes.docx（明确拒绝）
+  ---
+  duration_ms: 1.013208
+  ...
+# Subtest: 独立 DOCX：simple-list.docx（导入与再次导出）
+ok 8 - 独立 DOCX：simple-list.docx（导入与再次导出）
+  ---
+  duration_ms: 38.105709
+  ...
+# Subtest: 独立 DOCX：single-paragraph.docx（导入与再次导出）
+ok 9 - 独立 DOCX：single-paragraph.docx（导入与再次导出）
+  ---
+  duration_ms: 33.533042
+  ...
+# Subtest: 独立 DOCX：strict-format.docx（明确拒绝）
+ok 10 - 独立 DOCX：strict-format.docx（明确拒绝）
+  ---
+  duration_ms: 4.646875
+  ...
+# Subtest: 独立 DOCX：strikethrough.docx（导入与再次导出）
+ok 11 - 独立 DOCX：strikethrough.docx（导入与再次导出）
+  ---
+  duration_ms: 34.634459
+  ...
+# Subtest: 独立 DOCX：tables.docx（导入与再次导出）
+ok 12 - 独立 DOCX：tables.docx（导入与再次导出）
+  ---
+  duration_ms: 36.68775
+  ...
+# Subtest: 独立 DOCX：text-box.docx（明确拒绝）
+ok 13 - 独立 DOCX：text-box.docx（明确拒绝）
+  ---
+  duration_ms: 1.979041
+  ...
+# Subtest: 独立 DOCX：tiny-picture-target-base-relative.docx（导入与再次导出）
+ok 14 - 独立 DOCX：tiny-picture-target-base-relative.docx（导入与再次导出）
+  ---
+  duration_ms: 37.570125
+  ...
+# Subtest: 独立 DOCX：tiny-picture.docx（导入与再次导出）
+ok 15 - 独立 DOCX：tiny-picture.docx（导入与再次导出）
+  ---
+  duration_ms: 30.668791
+  ...
+# Subtest: 独立 DOCX：underline.docx（导入与再次导出）
+ok 16 - 独立 DOCX：underline.docx（导入与再次导出）
+  ---
+  duration_ms: 26.633917
+  ...
+# Subtest: 独立 DOCX：utf8-bom.docx（导入与再次导出）
+ok 17 - 独立 DOCX：utf8-bom.docx（导入与再次导出）
+  ---
+  duration_ms: 21.637333
+  ...
+# Subtest: 独立 DOCX：tbl-cell-access.docx（导入与再次导出）
+ok 18 - 独立 DOCX：tbl-cell-access.docx（导入与再次导出）
+  ---
+  duration_ms: 46.48975
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 730.281917

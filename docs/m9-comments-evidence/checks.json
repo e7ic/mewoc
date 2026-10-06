@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-01",
+  "runtime": "Node 24.13.1",
+  "unitTests": {
+    "passed": 262,
+    "total": 262,
+    "newTests": { "core": 16, "nativeDragHandlers": 7, "integration": 5, "exports": 5 }
+  },
+  "lint": { "passed": true, "maxWarnings": 0 },
+  "productionBuild": { "passed": true },
+  "diffCheck": { "passed": true },
+  "browser": {
+    "environment": "Codex In-app Browser, http://127.0.0.1:4181/",
+    "comments": { "passed": 8, "total": 8, "evidence": "browser-comments.json" },
+    "regression": { "passed": 62, "total": 62, "evidence": "browser-regression.json" },
+    "history": { "passed": 11, "total": 11, "evidence": "browser-history.json" },
+    "library": { "passed": 8, "total": 8, "evidence": "browser-library.json" },
+    "docxImport": { "passed": 6, "total": 6, "evidence": "browser-docx-import.json" },
+    "fixtureCleanup": "Only exact IDs created by each run are removed."
+  },
+  "manualUiVerification": {
+    "document": "本地批注 · 演示",
+    "steps": ["Select body text using keyboard", "Add a comment using the review toolbar and modal", "Verify anchor highlight and side panel", "Save and reload", "Verify preserved comment text and anchor", "Create a checkpoint with comments", "Verify comment details in history read-only preview"],
+    "existingUserDocumentsEdited": false,
+    "screenshot": "comments-panel.jpg"
+  },
+  "scopeNotes": [
+    "Native drag event tests run real ProseMirror handlers with JSDOM coordinate substitutes; they are not physical mouse verification.",
+    "No new Safari physical interaction, Chrome native IME or Node 18 acceptance was performed.",
+    "Word and Markdown comments are converted to appendix text; native review interactions are retained only in Mewoc files."
+  ]
+}

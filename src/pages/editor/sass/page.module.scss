@@ -1,6 +1,8 @@
+// 页面加载壳：限制整页滚动，读取中和失败态在可用高度内居中；工作区内部承担正文滚动。
 .container {
   height: 100vh;
   overflow: hidden;
+  // 加载和失败共用布局，状态文字及重试按钮保持同一视觉位置。
   .loading, .error {
     display: flex;
     flex-direction: column;

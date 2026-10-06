@@ -1,0 +1,31 @@
+npm warn Unknown project config "auto-install-peers". This will stop working in the next major version of npm.
+npm warn Unknown project config "strict-peer-dependencies". This will stop working in the next major version of npm.
+
+> mewoc@0.1.0 build
+> rsbuild build
+
+Rsbuild v1.7.6
+
+info    build started...
+ready   built in 2.18 s
+
+File (web)                             Size        Gzip   
+dist/static/js/async/852.865f16c9.js   0.37 kB     0.33 kB
+dist/static/js/async/814.dff157ad.js   0.50 kB     0.38 kB
+dist/index.html                        0.55 kB     0.34 kB
+dist/static/js/async/793.eca6e66d.js   8.4 kB      4.0 kB
+dist/static/js/async/138.43ef8714.js   14.3 kB     5.7 kB
+dist/static/js/async/248.7d041d5a.js   14.9 kB     6.5 kB
+dist/static/js/async/97.a6229b82.js    31.8 kB     12.3 kB
+dist/static/css/index.a7b9d943.css     37.6 kB     8.3 kB
+dist/static/js/async/359.7ffd6853.js   50.7 kB     17.8 kB
+dist/static/js/async/17.4f55a731.js    123.3 kB    34.8 kB
+dist/static/js/lib-react.6c6354fd.js   128.9 kB    41.9 kB
+dist/static/js/index.42e94ed7.js       212.7 kB    68.0 kB
+dist/static/js/async/973.506720e7.js   263.6 kB    76.9 kB
+dist/static/js/async/655.11731f68.js   357.0 kB    98.7 kB
+dist/static/js/async/841.af6c6ae7.js   520.8 kB    131.9 kB
+dist/static/js/386.72b192fd.js         1442.2 kB   439.7 kB
+
+                              Total:   3207.7 kB   947.4 kB
+

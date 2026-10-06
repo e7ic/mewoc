@@ -1,0 +1,14 @@
+[
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/hooks/use-document-attachments.js is not accepted\nUpdate propagation: ./src/pages/editor/hooks/use-document-attachments.js -> ./src/pages/editor/components/EditorProvider.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4183/static/js/tests/browser.js:8970:20)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:8413:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4183/static/js/tests/browser.js:8412:43)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:8387:15\n    at waitForBlockingPromises (http://127.0.0.1:4183/static/js/tests/browser.js:8340:37)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:8385:13",
+    "timestamp": "2026-10-02T11:11:55.535Z",
+    "url": "http://127.0.0.1:4183/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./src/pages/editor/components/EditorProvider.jsx is not accepted\nUpdate propagation: ./src/pages/editor/components/EditorProvider.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4183/static/js/tests/browser.js:8970:20)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:8413:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4183/static/js/tests/browser.js:8412:43)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:8387:15\n    at waitForBlockingPromises (http://127.0.0.1:4183/static/js/tests/browser.js:8340:37)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:8385:13",
+    "timestamp": "2026-10-02T11:12:45.919Z",
+    "url": "http://127.0.0.1:4183/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  }
+]

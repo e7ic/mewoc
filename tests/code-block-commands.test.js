@@ -1,3 +1,7 @@
+/**
+ * 验证代码块命令的结构约束、精确选区映射、行缩进边界与撤销隔离。
+ * 同一套命令在普通正文和表格内执行，非法目标或编辑状态必须保持原文不变。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -7,6 +11,7 @@ import { TableKit } from "@tiptap/extension-table"
 import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 import { getCodeBlockTarget, insertCodeBlock, setCodeBlockLanguage, exitCodeBlock, indentCodeBlock, insertCodeNewline } from "../src/pages/editor/tools/code-block-commands.js"
 
+// 安装编辑器需要的浏览器对象和帧调度，让 Node 测试执行真实 schema/事务逻辑；JSDOM 不承担原生版式验收。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
@@ -14,12 +19,15 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
 
+// 每个场景创建独立编辑器并在 finally 销毁，隔离正文、插件和撤销历史；扩展组合只提供该组验证所需能力。
 const createEditor = content => new Editor({
   element: document.createElement("div"), extensions: [StarterKit.configure({ trailingNode: false }), TableKit], content
 })
+// 最小单块 JSON 使源码偏移与文档位置可直接对应，空源码保留合法的空内容数组。
 const codeDocument = text => ({ type: "doc", content: [{
   type: "codeBlock", attrs: { language: "plaintext" }, content: text ? [{ type: "text", text }] : []
 }] })
+// 直接创建正向/反向文字选区与节点选区，避免编辑器便利 API 隐式规范化掉要验证的方向和类型。
 const selectText = (editor, anchor, head = anchor) => editor.view.dispatch(editor.state.tr.setSelection(TextSelection.create(editor.state.doc, anchor, head)))
 const selectNode = (editor, pos) => editor.view.dispatch(editor.state.tr.setSelection(NodeSelection.create(editor.state.doc, pos)))
 
@@ -114,6 +122,7 @@ test("Tab 在光标插入两空格，缩进历史与前后输入独立", () => {
   }
 })
 
+// 同一范围同时测试两个方向，既核对源码也核对 anchor/head；只检查 from/to 会漏掉方向丢失。
 test("多行缩进按整行处理，下一行起点不扩选，正反向选区保持", () => {
   for (const backward of [false, true]) {
     const editor = createEditor(codeDocument("one\ntwo\nthree"))
@@ -135,6 +144,7 @@ test("多行缩进按整行处理，下一行起点不扩选，正反向选区�
   }
 })
 
+// 退缩进可能把整块文本删空或把光标映射到起点，必须确认空块合法且无缩进时不新增正文更新。
 test("Shift-Tab 安全处理纯空白、Tab、无缩进及光标位于前导空白", () => {
   const editor = createEditor(codeDocument("  "))
   try {
@@ -202,6 +212,7 @@ test("换行继承已有缩进并替换选区，行首与空代码块保持安�
   }
 })
 
+// 分别覆盖纯选区跳转与实际新增段落，再在单元格检查父结构，防止退出时把段落放到表格外。
 test("退出保留源码，进入既有正文或新建正文，并支持表格内代码块", () => {
   const editor = createEditor("<pre><code>a\n\n</code></pre><p>after</p>")
   try {

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "1df3f338-be5c-4e6c-98df-b6ba28f75582",
+  "title": "M21 长水印边界验证",
+  "content": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "80 字中文水印 · 90 度"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "正文完整保留。水印应居中且在纸面内完整显示。"
+          }
+        ]
+      }
+    ]
+  },
+  "page": {
+    "size": "A5",
+    "orientation": "landscape",
+    "marginsMm": {
+      "top": 15,
+      "right": 15,
+      "bottom": 15,
+      "left": 15
+    },
+    "watermark": {
+      "text": "甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸甲乙丙丁戊己庚辛壬癸",
+      "color": "#AB12EF",
+      "opacity": 0.3,
+      "angle": 90
+    }
+  },
+  "assets": [],
+  "createdAt": "2026-10-04T13:29:53.056Z",
+  "updatedAt": "2026-10-04T13:29:53.056Z"
+}

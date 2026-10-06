@@ -1,6 +1,8 @@
+// 全局应用基础样式：统一盒模型、原生控件、键盘焦点和第三方组件中的 Tabler 图标呈现。
 @use "./theme.scss" as *;
 @use "./appearance.scss";
 
+// 桌面编辑器以 900px 为最小页面宽度；各面板在内部处理溢出和紧凑布局。
 * { box-sizing: border-box; }
 body {
   margin: 0;
@@ -10,6 +12,7 @@ body {
   color: $ui-text;
   background: $ui-canvas;
 }
+// 原生控件继承应用字体，按钮由所属组件定义尺寸和背景，保留全局禁用反馈。
 button, input, select, textarea { font: inherit; }
 button {
   padding: 0;
@@ -19,9 +22,45 @@ button {
   cursor: pointer;
   &:disabled { opacity: 0.4; cursor: not-allowed; }
 }
+// focus-visible 只在需要键盘导航反馈时描边，不让普通鼠标点击常驻焦点框。
 button:focus-visible, input:focus-visible, select:focus-visible {
   outline: 2px solid $ui-accent;
   outline-offset: 3px;
 }
 button, input, select { -webkit-tap-highlight-color: transparent; }
 ::selection { background: #dcd6ff; }
+
+// 图标不能随辅助文字缩到 8–12px；设定可辨认的下限，同时保留插入工具和空状态的大图标。
+.tabler-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  width: max(1em, 18px);
+  height: max(1em, 18px);
+  vertical-align: -0.125em;
+}
+// AntD 的图标包装层仍参与字体基线排版；单独居中包装层，避免大图标高于按钮文字。
+.ant-btn > .ant-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+.ant-pagination .ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination .ant-pagination-next .ant-pagination-item-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+// 数字输入框的上下按钮各占半行，使用独立尺寸，避免箭头跨入另一个按钮的点击区域。
+.ant-input-number-handler .tabler-icon { width: 14px; height: 14px; }
+.ant-select:not(.ant-select-disabled) .ant-select-arrow { color: $ui-secondary; }
+// 忙碌图标和静态消息共用状态色；减少动态效果偏好会停用转动而保留状态图标。
+.mewoc-icon-spin { animation: mewoc-icon-spin 1s linear infinite; }
+.ant-message-custom-content > .tabler-icon { margin-inline-end: 8px; font-size: 16px; }
+.ant-message-error > .tabler-icon { color: #ff4d4f; }
+.ant-message-warning > .tabler-icon { color: #faad14; }
+.ant-message-info > .tabler-icon { color: $ui-accent; }
+@keyframes mewoc-icon-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .mewoc-icon-spin { animation: none; }
+}

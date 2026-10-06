@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 920,
+    "height": 600
+  },
+  "bookmarks": {
+    "dialogBottom": 570,
+    "leftClearance": 6,
+    "rightClearance": 6
+  },
+  "toc": {
+    "dialogBottom": 367.640625,
+    "focused": "目录标题",
+    "height": 600,
+    "leftClearance": 6,
+    "rightClearance": 6,
+    "width": 920
+  },
+  "internalLink": {
+    "dialogBottom": 317.21875,
+    "focused": "链接目标位置",
+    "withinViewport": true
+  },
+  "restored": {
+    "width": 1280,
+    "height": 720,
+    "toolbar": "完整模式",
+    "theme": "跟随系统",
+    "zoom": 100,
+    "viewportOverride": "reset"
+  }
+}

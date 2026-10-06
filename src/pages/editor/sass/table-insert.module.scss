@@ -1,0 +1,45 @@
+// 表格插入浮层：网格选择、自定义行列和表头选项使用同一面板，支持矮窗口滚动。
+@use "../../../assets/style/theme.scss" as *;
+
+// 滚动裁切区内为焦点描边留出空间；负 margin 抵消留白，保持原内容宽度与浮层间距。
+.panel {
+  box-sizing: content-box;
+  width: 267px;
+  max-width: calc(100vw - 48px);
+  // 完整工具栏下方也要留出浮层内边距；矮窗口通过面板滚动访问底部操作。
+  max-height: max(80px, calc(100dvh - 240px));
+  padding: 6px;
+  margin: -6px;
+  overflow-y: auto;
+  color: $ui-text;
+}
+.heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; font-size: 13px; }
+.heading span { color: $ui-secondary; font-size: 12px; }
+// 十列网格以正方形单元格呈现，活动区域由组件写 data-active，键盘焦点单独描边。
+.grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 3px; }
+.grid button {
+  aspect-ratio: 1; min-width: 0; padding: 0; background: $ui-panel; border: 1px solid $ui-border; border-radius: 2px;
+  &[data-active="true"] { background: $ui-active; border-color: $ui-accent; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+.hint { margin: 8px 0; color: $ui-muted; font-size: 12px; line-height: 1.6; }
+.checkbox { display: flex; align-items: center; gap: 7px; margin: 10px 0; font-size: 13px; }
+.checkbox input { accent-color: $ui-accent; width: 15px; height: 15px; }
+// 自定义行列并排输入，尺寸限制与总格数校验由表格插入工具负责。
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fields label { display: flex; flex-direction: column; gap: 7px; font-size: 13px; }
+.fields input {
+  width: 100%; min-height: 32px; border: 1px solid $ui-border; border-radius: 4px;
+  background: $ui-surface; color: $ui-text; padding: 4px 8px;
+  &:focus { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+.error { color: #d34848; font-size: 12px; margin: 8px 0; line-height: 1.6; }
+// 返回/插入动作与输入区分隔，禁用态反映当前是否可安全创建表格。
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 10px; margin-top: 10px; border-top: 1px solid $ui-border; }
+.footer button { min-height: 30px; padding: 4px 8px; border-radius: 3px; font-size: 13px; }
+.footer button:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+.custom { width: 100%; color: $ui-text; text-align: left; &:hover { background: $ui-hover; } }
+.back { display: flex; align-items: center; gap: 4px; color: $ui-secondary; }
+.primary { background: $ui-accent; color: $ui-surface; &:disabled { opacity: .45; } }
+.triggerLabel { display: inline-flex; align-items: center; gap: 3px; }
+.triggerLabel .chevron { font-size: 18px; }

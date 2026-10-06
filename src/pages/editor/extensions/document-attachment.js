@@ -1,3 +1,4 @@
+/** 附件节点的解析、静态序列化和编辑视图；实际文件读取与资源回收由会话层负责。 */
 import { Node } from "@tiptap/core"
 import { DOMSerializer } from "@tiptap/pm/model"
 import { formatAttachmentSize, getAttachmentFileName, getAttachmentText } from "../tools/attachment-assets.js"
@@ -12,6 +13,7 @@ export const DocumentAttachment = Node.create({
   addOptions: () => ({ getAsset: () => null, getAssetUrl: () => "" }),
   addAttributes: () => ({ assetId: { default: null, rendered: false } }),
   parseHTML() {
+    // HTML 标记仅是引用，必须在当前资源表验证其类型，不能凭外部属性创建下载卡片。
     return [{
       tag: 'div[data-type="attachment"][data-mewoc-asset-id]',
       getAttrs: element => {
@@ -50,6 +52,7 @@ function getAttachmentContent(assetId, options) {
   ]
 }
 
+// 卡片内部禁止直接编辑；仅在 assetId 改变时重建内容，避免无关事务打断原生下载交互。
 function createAttachmentView(node, options) {
   const dom = document.createElement("div")
   dom.contentEditable = "false"
@@ -69,6 +72,7 @@ function createAttachmentView(node, options) {
     },
     // 下载保持浏览器原生行为，也允许只读文档下载；其余卡片事件仍交给编辑器选中节点。
     stopEvent: event => Boolean(event.target.closest("[data-attachment-download]")),
+    // 卡片自身的 DOM 更新不反向解析为正文；选区变化仍交给 ProseMirror。
     ignoreMutation: mutation => mutation.type !== "selection"
   }
 }

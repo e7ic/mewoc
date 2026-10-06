@@ -1,3 +1,4 @@
+/** 浏览器验收专用构建配置：沿用真实应用入口，固定验收端口并消除开发重载带来的干扰。 */
 import { defineConfig } from "@rsbuild/core"
 import createConfig from "../rsbuild.config.js"
 

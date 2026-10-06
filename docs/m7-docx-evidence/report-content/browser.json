@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-12",
+  "environment": "Codex in-app browser, isolated localhost port 4180",
+  "sourceSha256": "bed75a1538d0b963612ccbb7dd04039aec8c876df6c7e900cb63d2bcab3ae7cb",
+  "preview": "passed, with static field, page content and chart conversion warnings",
+  "confirmImport": "passed",
+  "save": "passed",
+  "reload": "passed",
+  "beforeReload": { "images": 49, "decoded": 49, "tables": 3, "internalBookmarkShown": false },
+  "afterReload": { "images": 49, "decoded": 49, "tables": 3, "hasFooter": true, "internalBookmarkShown": false },
+  "limitations": [
+    "First file chooser attempt lost the dialog and was not counted as passed",
+    "File chooser calls had long delays; these are not converter timing measurements",
+    "After reload, role-based reads timed out; a fresh DOM snapshot and direct DOM-backed read verified recovery",
+    "The user's port 4177 document was not replaced",
+    "Native Word/WPS open and save not performed"
+  ]
+}

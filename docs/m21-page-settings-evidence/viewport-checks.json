@@ -1,0 +1,112 @@
+{
+  "actualViewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "colorHex": {
+    "bottom": 378.953125,
+    "height": 36,
+    "right": 926,
+    "width": 522,
+    "x": 404,
+    "y": 342.953125
+  },
+  "colorSwatch": {
+    "bottom": 378.953125,
+    "height": 36,
+    "right": 396,
+    "width": 42,
+    "x": 354,
+    "y": 342.953125
+  },
+  "dialog": {
+    "bottom": 690,
+    "height": 666,
+    "right": 950,
+    "width": 620,
+    "x": 330,
+    "y": 24
+  },
+  "radioLabels": [
+    {
+      "rect": {
+        "bottom": -58.3671875,
+        "height": 20.421875,
+        "right": 695,
+        "width": 47,
+        "x": 648,
+        "y": -78.7890625
+      },
+      "text": "纵向"
+    },
+    {
+      "rect": {
+        "bottom": -58.3671875,
+        "height": 20.421875,
+        "right": 762,
+        "width": 47,
+        "x": 715,
+        "y": -78.7890625
+      },
+      "text": "横向"
+    }
+  ],
+  "scroll": {
+    "bottom": 652,
+    "height": 582,
+    "right": 932,
+    "width": 584,
+    "x": 348,
+    "y": 70
+  },
+  "viewportOverride": {
+    "requested": {
+      "width": 920,
+      "height": 600
+    },
+    "applied": false
+  },
+  "responsiveEvidence": {
+    "kind": "actual-app iframe",
+    "width": 920,
+    "height": 600,
+    "screenshot": "editor-responsive-dark.png",
+    "interactiveCheck": "not completed: browser control could not click frame controls"
+  },
+  "footer": {
+    "active": "取 消",
+    "buttons": [
+      {
+        "rect": {
+          "bottom": 646.015625,
+          "height": 32,
+          "right": 852.2109375,
+          "width": 63.7890625,
+          "x": 788.421875,
+          "y": 614.015625
+        },
+        "text": "取 消"
+      },
+      {
+        "rect": {
+          "bottom": 646.015625,
+          "height": 32,
+          "right": 926,
+          "width": 63.7890625,
+          "x": 862.2109375,
+          "y": 614.015625
+        },
+        "text": "应 用"
+      }
+    ],
+    "scroll": {
+      "bottom": 652,
+      "height": 582,
+      "right": 932,
+      "width": 584,
+      "x": 348,
+      "y": 70
+    },
+    "scrollTop": 318.5
+  }
+}

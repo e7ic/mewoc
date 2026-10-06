@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-04",
+  "passed": true,
+  "node": {
+    "passed": 551,
+    "total": 551,
+    "addedThisBatch": 42,
+    "evidence": "node.log"
+  },
+  "browserDistinctScenarios": {
+    "passed": 121,
+    "total": 121
+  },
+  "browserSuites": [
+    {
+      "name": "目录、书签与文内链接",
+      "passed": 16,
+      "total": 16,
+      "evidence": "browser-final.json"
+    },
+    {
+      "name": "常规编辑",
+      "passed": 62,
+      "total": 62,
+      "evidence": "regression.json"
+    },
+    {
+      "name": "工具栏",
+      "passed": 29,
+      "total": 29,
+      "evidence": "toolbar.json"
+    },
+    {
+      "name": "文本框与折叠详情",
+      "passed": 14,
+      "total": 14,
+      "evidence": "rich-blocks.json"
+    }
+  ],
+  "consoleEntries": {
+    "browser-final-console.json": 0,
+    "regression-console.json": 0,
+    "toolbar-console.json": 0,
+    "rich-blocks-console.json": 0,
+    "manual-console.json": 0
+  },
+  "lint": "passed",
+  "build": "passed",
+  "diffCheck": "passed",
+  "manualDownloads": {
+    "passed": true,
+    "formats": [
+      "Mewoc",
+      "HTML",
+      "DOCX",
+      "Markdown",
+      "TXT"
+    ],
+    "evidence": "manual-export-checks.json"
+  },
+  "manualInteraction": [
+    "Command 点击目录与内部文字链接定位",
+    "标题编辑自动更新目录，稳定 ID 保留",
+    "书签添加与重命名",
+    "保存刷新恢复导航",
+    "只读点击保持页面 URL"
+  ],
+  "viewportEvidence": "viewport-checks.json",
+  "finalScreenshot": "final-editor.png",
+  "review": "独立只读核对未发现新的具体 P1/P2",
+  "limits": [
+    "Word 目录为静态可点击快照，不含自动页码或自动目录域",
+    "Markdown 与 TXT 不保留书签跳转",
+    "未执行 Word/WPS 原生排版、系统 PDF、真实输入法候选或物理鼠标拖动验收"
+  ],
+  "counting": "browser-first.json 与 browser-final.json 是同一次专项结果，不重复计数；最终 Node 以 node.log 为准",
+  "temporaryTestServer": "4184 stopped; existing 4177 server remains listening",
+  "userDocument": "4177 用户正文未参与测试修改"
+}

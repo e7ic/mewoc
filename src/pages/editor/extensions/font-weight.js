@@ -1,3 +1,4 @@
+/** 协调显式 textStyle 字重与原生 bold 标记，使格式刷后的加粗按钮和快捷键保持一致。 */
 import { Extension } from "@tiptap/core"
 import { FONT_WEIGHTS } from "../constants/editor-constants.js"
 
@@ -5,6 +6,7 @@ import { FONT_WEIGHTS } from "../constants/editor-constants.js"
 export const FontWeight = Extension.create({
   name: "fontWeight",
   addGlobalAttributes() {
+    // 只把允许的字重读入 textStyle；输出额外标记供 CSS 阻止嵌套 strong 重复增粗。
     return [{ types: ["textStyle"], attributes: {
       fontWeight: {
         default: null,
@@ -27,6 +29,7 @@ export const FontWeight = Extension.create({
     }
   },
   addKeyboardShortcuts() {
+    // 让键盘入口复用与工具栏相同的字重切换逻辑。
     return { "Mod-b": () => this.editor.commands.toggleTextBold() }
   },
   priority: 110

@@ -1,3 +1,4 @@
+/** 段落缩进的命令与交换契约回归：半开选区边界、继承、格式刷、HTML 清理和文档往返。 */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -9,6 +10,7 @@ import { createDocument, validateDocument } from "../src/pages/editor/tools/docu
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 
+// 提供 schema HTML 解析环境；行距与缩进属性按逻辑值比较，不依赖字体排版。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
@@ -16,10 +18,12 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
 
+// 预置连续段落和空段，便于检验光标、跨段选择与下一段起点的批量作用范围。
 const createEditor = (content = "<p>第一段</p><p>第二段</p><p></p>") => new Editor({
   element: document.createElement("div"), extensions: createExtensions(), content
 })
 
+// 结束位置刚好在下一段文字起点时，下一段尚未真正被选择，不能一并改缩进。
 test("光标、跨段选区与下一段起点边界只改变应选段落，一次撤销恢复", () => {
   const editor = createEditor()
   let updates = 0
@@ -91,6 +95,7 @@ test("段落切标题、Enter 分段继承缩进，列表层级命令仍可使�
   }
 })
 
+// 表格内段落也应使用同一命令，代码块与结构节点不属于段落缩进目标。
 test("表格内文字可缩进，全选不改代码块和结构", () => {
   const editor = createEditor("<table><tr><td><p>单元格</p></td></tr></table><pre><code>代码</code></pre><p></p>")
   try {
@@ -143,6 +148,7 @@ test("格式刷复制缩进，普通来源清除目标缩进", () => {
   }
 })
 
+// 旧文档未声明属性时应读成默认值，新属性则必须经过严格协议校验才能保存。
 test("旧文件补默认属性，新文件往返保存缩进，非法 JSON 拒绝", async () => {
   const record = createDocument()
   const editor = createEditor(record.content)

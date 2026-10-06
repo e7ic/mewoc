@@ -1,3 +1,4 @@
+/** 首行与整段缩进的文档属性及批量命令；解析、界面设置和格式刷共用同一组允许值。 */
 import { Extension } from "@tiptap/core"
 import { TextSelection, AllSelection } from "@tiptap/pm/state"
 import { FIRST_LINE_INDENTS, LEFT_INDENTS } from "../constants/editor-constants.js"
@@ -9,6 +10,7 @@ export function parseParagraphIndent(value, allowed) {
   return allowed.includes(indent) ? indent : 0
 }
 
+// 获取文字/全选涉及的正文与标题；节点选区和单元格选区不按文字范围推断段落。
 export function getIndentParagraphs(state) {
   const { selection, doc } = state
   const paragraphs = []
@@ -22,6 +24,7 @@ export function getIndentParagraphs(state) {
   return paragraphs
 }
 
+// 段落属性保存逻辑字符数，渲染为 em；修改时保留节点类型、其他属性及所有文字标记。
 export const ParagraphIndent = Extension.create({
   name: "paragraphIndent",
   addGlobalAttributes() {
@@ -44,6 +47,7 @@ export const ParagraphIndent = Extension.create({
   addCommands() {
     return {
       setParagraphIndent: attrs => ({ state, tr, dispatch, editor }) => {
+        // 拒绝只读、组合输入、未知字段及菜单外值，避免命令绕过界面校验写入异常属性。
         if (!editor.isEditable || editor.view.composing || !attrs || typeof attrs !== "object" || Array.isArray(attrs)) return false
         const keys = Object.keys(attrs)
         if (!keys.length || keys.some(key => !["firstLineIndent", "leftIndent"].includes(key))) return false

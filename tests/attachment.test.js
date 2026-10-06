@@ -1,3 +1,7 @@
+/**
+ * 覆盖附件从读取、schema 校验、便携文件往返到正文操作与降级导出的完整契约。
+ * 关键不变量是原始字节保持、资源种类匹配、容量去重、下载/粘贴安全及独立撤销。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -11,12 +15,14 @@ import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/
 import { createDocumentMarkdown } from "../src/pages/editor/tools/markdown-file.js"
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 
+// 安装编辑器需要的浏览器对象和帧调度，让 Node 测试执行真实 schema/事务逻辑；JSDOM 不承担原生版式验收。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
 }
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
+// Node 用 Blob 字节转 base64 模拟浏览器 FileReader，验证便携资源编码而无需触发原生文件选择器。
 globalThis.FileReader = class {
   readAsDataURL(blob) {
     blob.arrayBuffer().then(bytes => {
@@ -26,6 +32,7 @@ globalThis.FileReader = class {
   }
 }
 
+// 通过真实读取入口建立附件与文档引用，默认混合 0/255/高位字节用于检出意外文本转码。
 async function createAttachment(file = new File([new Uint8Array([0, 255, 13, 10, 128, 1])], "原始附件.bin")) {
   const asset = await readAttachmentFile(file)
   const record = createDocument()
@@ -82,6 +89,7 @@ test("旧图片格式仍可读，附件与图片必须引用匹配种类的资�
   assert.throws(() => validateDocument(duplicate), /重复/)
 })
 
+// 同一文件同时放入旧式图片和可含 HTML 的附件，证明兼容图片契约且不会把附件当活动内容解析。
 test("混合图片与附件的 Mewoc 往返保留字节、名称、类型与稳定 ID", async () => {
   const { record, assets, asset } = await createAttachment(new File(["<script>原样保留</script>\u0000"], "报告<草稿>.html", { type: "text/html" }))
   const blob = new Blob([Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jWZkAAAAASUVORK5CYII=", "base64")], { type: "image/png" })
@@ -109,6 +117,7 @@ test("缺失内容、伪造类型、长度或 base64 均拒绝导入，缺失 Bl
   await assert.rejects(() => createPortableFile(record, assets), /不匹配/)
 })
 
+// 边界值验证允许等于上限；未引用 Blob 模拟撤销缓存，导出应筛选副本而不能修改会话资源清单。
 test("5 MiB 附件可以完整往返，未引用资源不会进入导出文件", async () => {
   const { record, assets, asset } = await createAttachment(new File([new Uint8Array(5 * 1024 * 1024).fill(171)], "边界.bin"))
   const unused = await readAttachmentFile(new File(["unused"], "未引用.txt"))
@@ -137,6 +146,7 @@ test("容量按正文唯一资源引用计算，新增附件与图片共用 20 M
   assert.throws(() => validateDocument(record), /20 MiB/)
 })
 
+// 分别验证 HTTP 内容类型、实际字节及 DOM 文本，避免仅替换 MIME 或仅转义文件名造成片面保护。
 test("下载 URL 按二进制返回原字节，文件名进入 DOM 时不会执行 HTML", async () => {
   const { record, asset, assets } = await createAttachment(new File(["<script>test</script>"], '<草稿>".html', { type: "text/html" }))
   const url = createDocumentAssetUrl(asset)
@@ -154,6 +164,7 @@ test("下载 URL 按二进制返回原字节，文件名进入 DOM 时不会执�
   }
 })
 
+// 通过插入后继续打字再逐次 undo 检查历史边界，确认附件操作不会吞掉相邻输入。
 test("附件插入、后续文字和删除各自可撤销，只读与代码块拒绝修改", async () => {
   const { asset, assets } = await createAttachment()
   const editor = new Editor({ element: document.createElement("div"), extensions: createExtensions(() => "", id => assets.get(id)), content: "<p>正文</p>" })

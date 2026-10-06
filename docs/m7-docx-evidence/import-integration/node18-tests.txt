@@ -1,0 +1,77 @@
+TAP version 13
+# Subtest: Word 正式转换保留 3 起编号、独立 A 列表、多段项和混合嵌套
+ok 1 - Word 正式转换保留 3 起编号、独立 A 列表、多段项和混合嵌套
+  ---
+  duration_ms: 74.795416
+  ...
+# Subtest: Word 分式、上下限和矩阵转为可编辑公式，再导出仍含 OMML
+ok 2 - Word 分式、上下限和矩阵转为可编辑公式，再导出仍含 OMML
+  ---
+  duration_ms: 72.465833
+  ...
+# Subtest: 同一编号被正文打断后续编，不同实例重新开始
+ok 3 - 同一编号被正文打断后续编，不同实例重新开始
+  ---
+  duration_ms: 14.72775
+  ...
+# Subtest: 继承样式的编号属性、起点覆盖和罗马数字保留
+ok 4 - 继承样式的编号属性、起点覆盖和罗马数字保留
+  ---
+  duration_ms: 12.816042
+  ...
+# Subtest: 父级推进重置子级，lvlRestart=0 继续计数
+ok 5 - 父级推进重置子级，lvlRestart=0 继续计数
+  ---
+  duration_ms: 23.405416
+  ...
+# Subtest: 复合编号、样式链接、负数起点和缺失定义明确拒绝
+ok 6 - 复合编号、样式链接、负数起点和缺失定义明确拒绝
+  ---
+  duration_ms: 16.661458
+  ...
+# Subtest: Word 数学结构覆盖根式、组合上下标、大运算符、重音与括号
+ok 7 - Word 数学结构覆盖根式、组合上下标、大运算符、重音与括号
+  ---
+  duration_ms: 1.13975
+  ...
+# Subtest: 未知或超限整式拒绝，不从 textContent 拼出错误公式
+ok 8 - 未知或超限整式拒绝，不从 textContent 拼出错误公式
+  ---
+  duration_ms: 0.351958
+  ...
+# Subtest: 纵向合并续格只允许空占位，不静默丢掉其中正文
+ok 9 - 纵向合并续格只允许空占位，不静默丢掉其中正文
+  ---
+  duration_ms: 5.027625
+  ...
+# (node:83173) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Word 图片去重、合并及真实解码接口清理，取消不返回记录
+ok 10 - Word 图片去重、合并及真实解码接口清理，取消不返回记录
+  ---
+  duration_ms: 20.061833
+  ...
+# Subtest: DOCX 文件类型与大小先校验，不创建转换 Worker
+ok 11 - DOCX 文件类型与大小先校验，不创建转换 Worker
+  ---
+  duration_ms: 0.54675
+  ...
+# Subtest: Worker 成功、错误、传输失败、取消均销毁且清理监听
+ok 12 - Worker 成功、错误、传输失败、取消均销毁且清理监听
+  ---
+  duration_ms: 0.403417
+  ...
+# Subtest: Worker 超时和 postMessage 抛错也收口
+ok 13 - Worker 超时和 postMessage 抛错也收口
+  ---
+  duration_ms: 0.099916
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 521.451

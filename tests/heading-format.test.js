@@ -1,3 +1,7 @@
+/**
+ * 验证工具栏与格式刷使用标题实际继承外观，而非只读取显式 textStyle 属性。
+ * 字号、字重、颜色和行距跨正文/标题迁移时保留视觉结果，同时保留标题级别与撤销语义。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -9,6 +13,7 @@ import { getSelectionTextStyle } from "../src/pages/editor/tools/text-appearance
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 
+// 加载真实正文 Sass，标题默认字号和字重从 getComputedStyle 获得，检出 CSS 与回显转换偏差。
 const dom = new JSDOM("<!doctype html><html><head></head><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: dom.window[key], configurable: true, writable: true })
@@ -16,6 +21,7 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 const style = document.head.appendChild(document.createElement("style"))
 style.textContent = compile("src/pages/editor/sass/content.scss").css
 
+// 每个场景创建独立编辑器并在 finally 销毁，隔离正文、插件和撤销历史；扩展组合只提供该组验证所需能力。
 const createEditor = (level = 1, marks) => new Editor({
   element: document.body.appendChild(document.createElement("div")), extensions: createExtensions(),
   editorProps: { attributes: { class: "mewoc-content" }, handleScrollToSelection: () => true },
@@ -25,6 +31,7 @@ const createEditor = (level = 1, marks) => new Editor({
   ] }
 })
 
+// 逐级固定基线，pt 期望来自既有 px 外观换算；格式刷后仍是普通段落，只改变必要外观属性。
 for (const [level, size, height] of [[1, "22.5pt", 1.5], [2, "15pt", 1.55], [3, "12.75pt", 1.55]]) {
   test(`标题 ${level} 的实际字号显示及格式刷保留 ${size}、字重、颜色和行距`, () => {
     const editor = createEditor(level)
@@ -71,6 +78,7 @@ test("标题显式字号优先，混合选区按实际字号判断，空标题�
   }
 })
 
+// 目标的默认 CSS 与来源不同，必须显式补外观差异但保留 heading 语义，不能用改类型模拟相同视觉。
 test("正文刷到标题保留标题级别，并覆盖标题默认字号、颜色、字重和行距", () => {
   const editor = createEditor()
   try {
@@ -116,6 +124,7 @@ test("标题格式可内部复制、文件往返，显式字重不遮住后续�
   }
 })
 
+// 无视觉变化的格式刷不能新增正文历史；只读时既检查命令拒绝也检查实际显式属性没有改变。
 test("相同默认外观不制造撤销步骤，显式字重在只读期间不改变", () => {
   const editor = createEditor()
   try {

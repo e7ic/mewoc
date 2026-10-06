@@ -1,0 +1,8 @@
+[
+  {
+    "level": "error",
+    "message": "SyntaxError: Unexpected token '<'",
+    "timestamp": "2026-10-04T11:38:42.945Z",
+    "url": "http://127.0.0.1:4183/static/js/async/src_pages_editor_tools_markdown-converter_js.js"
+  }
+]

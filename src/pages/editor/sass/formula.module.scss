@@ -1,8 +1,10 @@
+// 公式输入与 MathML 预览布局；预览固定白底和浅色原生配色，与文档输出保持一致。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
   .actions { display: flex; gap: 10px; margin-top: 18px; }
 }
+// 较长公式在预览内部滚动，不扩张弹窗；源码错误保留在输入操作附近。
 .preview {
   margin-top: 24px;
   padding: 18px;

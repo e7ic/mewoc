@@ -1,3 +1,7 @@
+/**
+ * Markdown 导出的 AST 与真正序列化回归：覆盖块、交叉标记、表格、字面符号和换行边界。
+ * 可表示内容需往返保持语义，不可表示布局/资源给去重说明，源 JSON 不应被转换过程改写。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { unified } from "unified"
@@ -10,19 +14,24 @@ import { createDocument } from "../src/pages/editor/tools/document-schema.js"
 import { createDocumentMarkdown, readMarkdownDocument } from "../src/pages/editor/tools/markdown-file.js"
 import { DEFAULT_PAGE } from "../src/pages/editor/constants/editor-constants.js"
 
+// 最小 JSON 构造器让每个测试只声明所需语义；直接 AST 测试省略无关文档元数据。
 const text = (value, marks) => ({ type: "text", text: value, ...(marks && { marks }) })
 const paragraph = (content = [], attrs) => ({ type: "paragraph", content, ...(attrs && { attrs }) })
 const document = content => ({ content: { type: "doc", content }, assets: [], page: structuredClone(DEFAULT_PAGE) })
 const cell = (type, content, attrs) => ({ type, content, ...(attrs && { attrs }) })
 const row = content => ({ type: "tableRow", content })
 const math = latex => ({ type: "inlineMath", attrs: { latex } })
+// 独立 remark 编解码验证实际分隔符/围栏/转义行为，不仅检查内部 AST 看起来正确。
 const CODEC = unified().use(remarkParse).use(remarkStringify, { emphasis: "_", strong: "*", incrementListMarker: false }).use(remarkGfm).use(remarkMath)
+// 去掉解析器添加的位置/辅助数据，再比较语义 AST，避免把来源位置当作正文内容。
 const cleanTree = tree => JSON.parse(JSON.stringify(tree, (key, value) => ["position", "data"].includes(key) ? undefined : value))
+// 将 JSON hardBreak 还原为换行字符，便于核对连续换行是否被拆段或实体文本污染。
 const getText = node => {
   if (node.type === "text") return node.text
   if (node.type === "hardBreak") return "\n"
   return (node.content || []).map(getText).join("")
 }
+// 应用级往返保留生产校验与 Schema 规范化，返回原 record 供断言导出没有写回修改。
 const exportAndRead = async content => {
   const record = { ...createDocument(), content: { type: "doc", content } }
   const result = await createDocumentMarkdown(record)
@@ -30,6 +39,7 @@ const exportAndRead = async content => {
   return { ...result, content: imported.record.document.content, record }
 }
 
+// 结构与文字都要检查，源码中的缩进/反引号/空行由 AST 原样保存，转换只读原文档。
 test("Markdown 导出保留块结构、列表起点、代码源码及公式", () => {
   const source = document([
     { type: "heading", attrs: { level: 3 }, content: [text("标题")] },
@@ -52,6 +62,7 @@ test("Markdown 导出保留块结构、列表起点、代码源码及公式", ()
   assert.deepEqual(source, before)
 })
 
+// JSON 文本分片不能制造连续 Markdown 分隔符；同外层标记合并时内层不同格式仍需保持。
 test("相邻文本标记合并为连续范围，保留内层不同标记和链接", () => {
   const bold = { type: "bold" }
   const link = { type: "link", attrs: { href: "https://example.com/?a=1&b=2" } }
@@ -67,6 +78,7 @@ test("相邻文本标记合并为连续范围，保留内层不同标记和链�
   assert.deepEqual(children[2], { type: "inlineCode", value: "f" })
 })
 
+// GFM 只能用首行定义整列对齐，公式与标记仍为行内 AST，不支持的列宽或冲突对齐需说明。
 test("普通矩形表格保留列对齐、公式和标记并报告布局差异", () => {
   const source = document([{ type: "table", content: [
     row([cell("tableHeader", [paragraph([text("标题|单元格")], { textAlign: "center" })], { colwidth: [160] }), cell("tableHeader", [paragraph([])])]),
@@ -80,6 +92,7 @@ test("普通矩形表格保留列对齐、公式和标记并报告布局差异",
   assert.equal(warnings.some(value => value.includes("统一为首行")), true)
 })
 
+// 复杂格按块展开而非 stringify 成一段，验证多段、图片说明、公式和引用都按顺序保留。
 test("富表格降为逐格正文，保留多段、图片说明、公式与嵌套引用", () => {
   const source = document([{ type: "table", content: [row([
     cell("tableCell", [paragraph([text("第一段")]), paragraph([math("a+b")]), { type: "image", attrs: { assetId: "image-1", alt: "图注" } }], { colspan: 2 }),
@@ -95,6 +108,7 @@ test("富表格降为逐格正文，保留多段、图片说明、公式与嵌�
   assert.equal(warnings.some(value => value.includes("按行转换为正文")), true)
 })
 
+// 样式 warning 按类去重，危险围栏语言不能注入新块，字面 Markdown/HTML 保持普通文字。
 test("无法表达的样式只报告一次，原始文字及危险围栏语言不作为语法注入", () => {
   const source = document([
     paragraph([text("$a$ <script> **字面**", [{ type: "underline" }, { type: "textStyle", attrs: { color: "#ff0000" } }])], { firstLineIndent: 2, lineHeight: 2 }),
@@ -111,6 +125,7 @@ test("无法表达的样式只报告一次，原始文字及危险围栏语言�
   assert.equal(warnings.some(value => value.includes("纸张")), true)
 })
 
+// 未知语义必须显式失败，受支持但无法精确保留的换行则通过既定降级规则报告。
 test("未知节点与文字标记显式失败，行内换行报告归一化", () => {
   assert.throws(() => createMarkdownTree(document([{ type: "futureBlock" }])), /futureBlock/)
   assert.throws(() => createMarkdownTree(document([paragraph([text("正文", [{ type: "futureMark" }])])])), /futureMark/)
@@ -119,6 +134,7 @@ test("未知节点与文字标记显式失败，行内换行报告归一化", ()
   assert.equal(warnings.filter(value => value.includes("转换为空格")).length, 1)
 })
 
+// Markdown 不携带会话资源，说明优先 alt 再文件基本名，避免暴露内部资产 ID 或本地目录。
 test("图片使用替代文本或文件名说明，不导出内部资源 ID 和本地目录", () => {
   const source = document([
     { type: "image", attrs: { assetId: "internal-image-1", alt: "" } },
@@ -136,6 +152,7 @@ test("图片使用替代文本或文件名说明，不导出内部资源 ID 和�
   assert.equal(warnings.length, 1)
 })
 
+// 经过真正 stringify/parse 才能发现分隔符冲突，嵌套格式、数学美元符号及代码围栏均需复原。
 test("实际 Markdown 序列化往返保留交叉标记、字面符号与代码围栏", () => {
   const italic = { type: "italic" }
   const content = [
@@ -154,6 +171,7 @@ test("实际 Markdown 序列化往返保留交叉标记、字面符号与代码�
   assert.equal(parsed.children[4].lang, "js")
 })
 
+// 竖线可以转义的普通/代码格继续用表格；公式或特殊组合无法保证等价时逐格展开保全源码。
 test("GFM 表格转义竖线与代码；无法表达的公式和换行降级后源码完整", () => {
   const simple = { type: "table", content: [
     row([cell("tableHeader", [paragraph([text("标题|单元格")])])]),
@@ -173,6 +191,7 @@ test("GFM 表格转义竖线与代码；无法表达的公式和换行降级后�
   }
 })
 
+// Markdown 语法只允许九位起点，检查上界内外的列表仍是一份结构，降级只影响编号不改源起点。
 test("超出九位的起始编号从一重新编号并明确报告原始起点", () => {
   for (const start of [1000000000, Number.MAX_SAFE_INTEGER]) {
     const source = document([{ type: "orderedList", attrs: { start }, content: ["第一项", "第二项"].map(value => ({
@@ -198,6 +217,7 @@ test("超出九位的起始编号从一重新编号并明确报告原始起点",
   assert.deepEqual(warnings, [])
 })
 
+// 空段间距无法在 Markdown 中保留，但非空文字不能因此消失，源文档块数量仍保持。
 test("空段落按 Markdown 规则折叠并报告，非空正文保持完整", () => {
   const source = document([paragraph(), paragraph([text("正文")]), paragraph(), paragraph()])
   const { tree, warnings } = createMarkdownTree(source)
@@ -207,6 +227,7 @@ test("空段落按 Markdown 规则折叠并报告，非空正文保持完整", (
   assert.equal(source.content.content.length, 4)
 })
 
+// 强调与删除线的分隔符规则不同，空白移出删除线后要既保留字符顺序又产生可重新解析的标记。
 test("粗斜体边缘空白无损往返，删除线仅移出边缘空白并保留文字", () => {
   for (const value of [" hello ", "  ", "\thello\t"]) {
     for (const type of ["bold", "italic"]) {
@@ -223,6 +244,7 @@ test("粗斜体边缘空白无损往返，删除线仅移出边缘空白并保�
   }
 })
 
+// hardBreak 不属于文字标记范围，分隔符必须在换行两侧闭合，不能泄漏实体或打断后文格式。
 test("应用入口往返把带标记的硬换行放在标记外，不泄漏字符实体或分隔符", async () => {
   for (const type of ["bold", "italic", "strike"]) {
     const marks = [{ type }]
@@ -237,6 +259,7 @@ test("应用入口往返把带标记的硬换行放在标记外，不泄漏字�
   }
 })
 
+// 连续文字换行转两个 hardBreak 而非分两个段落；四种 marks 分别保证前后标记仍存在。
 test("应用入口往返保留普通与带标记正文的连续换行，不拆段或泄漏分隔符", async () => {
   for (const type of [null, "bold", "italic", "strike"]) {
     const marks = type ? [{ type }] : []
@@ -250,6 +273,7 @@ test("应用入口往返保留普通与带标记正文的连续换行，不拆�
   }
 })
 
+// 分别验证可保留的首/中换行与不可表示的尾换行，避免尾反斜杠变成正文或空段失去说明。
 test("段首和段中连续硬换行可保留，段尾硬换行明确移除且不产生反斜杠正文", async () => {
   const hardBreak = () => ({ type: "hardBreak" })
   const result = await exportAndRead([paragraph([hardBreak(), hardBreak(), text("a"), hardBreak(), hardBreak(), text("b"), hardBreak(), hardBreak()])])
@@ -260,6 +284,7 @@ test("段首和段中连续硬换行可保留，段尾硬换行明确移除且�
   assert.equal(empty.warnings.some(value => value.includes("空段落")), true)
 })
 
+// 标题不能跨显式行，行内代码只能把换行化为空格，两种不可表示结构要各自保留正文并报告。
 test("含换行标题降为正文并报告级别，行内代码连续换行明确转换为空格", async () => {
   const heading = await exportAndRead([{ type: "heading", attrs: { level: 2 }, content: [text("a\r\n\r\nb", [{ type: "bold" }])] }])
   assert.equal(heading.content.content[0].type, "paragraph")
@@ -271,6 +296,7 @@ test("含换行标题降为正文并报告级别，行内代码连续换行明�
   assert.equal(code.warnings.some(value => value.includes("行内代码的换行")), true)
 })
 
+// 即使最终没有非空文字，原有视觉样式仍要报告丢失，不能因为清掉尾换行而漏掉 warning。
 test("仅含换行的文字或硬换行仍报告下划线与文字样式的降级", async () => {
   const marks = [{ type: "underline" }, { type: "textStyle", attrs: { color: "#ff0000" } }]
   for (const inline of [text("\n\n", marks), { type: "hardBreak", marks }]) {

@@ -1,8 +1,8 @@
-import { generateHTML } from "@tiptap/core"
-import { createExtensions } from "./create-extensions.js"
-import { createPortableFile } from "./portable-file.js"
-import { renderFormulaHtml } from "./formula.js"
-import { renderCodeHtml } from "./code-highlight.js"
+/**
+ * 组合便携备份、schema HTML、公式/代码渲染和批注说明，生成可离线阅读与打印的输出。
+ * 静态输出从快照重建，二进制资源内嵌；下载入口管理临时地址而不依赖编辑界面 DOM。
+ */
+import { createDocumentHtml as createSnapshotHtml } from "./html-export.js"
 import contentStyles from "../sass/content.scss?inline"
 
 export { createPortableFile, readPortableFile } from "./portable-file.js"
@@ -12,21 +12,10 @@ export { createPortableFile, readPortableFile } from "./portable-file.js"
  * 不读取编辑器 NodeView 的 DOM，因此缩放手柄、选区和工具栏不会进入导出或打印。
  */
 export async function createDocumentHtml(document, assets) {
-  const portable = await createPortableFile(document, assets)
-  const references = new Map(portable.document.assets.map(asset => [asset.id, asset]))
-  const getAssetUrl = id => {
-    const source = portable.assetData[id]
-    return references.get(id)?.kind === "attachment" ? source.replace(/^data:[^;]+;/, "data:application/octet-stream;") : source
-  }
-  const formulaHtml = await renderFormulaHtml(generateHTML(document.content, createExtensions(getAssetUrl, id => references.get(id))))
-  const content = await renderCodeHtml(formulaHtml)
-  const margins = document.page.marginsMm
-  // 纸张保持物理 mm 单位，编辑界面的 zoom 不参与输出；实际分页仍由浏览器打印控制。
-  const pageStyle = `@page { size: A4 ${document.page.orientation}; margin: ${margins.top}mm ${margins.right}mm ${margins.bottom}mm ${margins.left}mm; }`
-  const title = document.title.replace(/[&<>"']/g, character => `&#${character.charCodeAt(0)};`)
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><title>${title}</title><style>${contentStyles}\n${pageStyle}</style></head><body><article class="mewoc-content">${content}</article></body></html>`
+  return createSnapshotHtml(document, assets, contentStyles)
 }
 
+// 借助临时 a 元素触发浏览器下载，标题中的文件名禁用字符替换为下划线，扩展名由导出入口指定。
 export function downloadDocument(blob, title, extension) {
   const url = URL.createObjectURL(blob)
   const link = document.createElement("a")

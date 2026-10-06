@@ -1,0 +1,34 @@
+Rsbuild v1.7.6
+
+  ➜  Local:  
+  -  index              http://127.0.0.1:4185/
+  -  tests/browser      http://127.0.0.1:4185/tests/browser
+  -  tests/lifecycle    http://127.0.0.1:4185/tests/lifecycle
+  -  tests/pointer      http://127.0.0.1:4185/tests/pointer
+
+start   build started...
+ready   built in 0.43 s
+start   building tests/BrowserVerification.jsx
+ready   built in 0.05 s
+start   building editor/components/PageWatermark.jsx
+ready   built in 0.04 s
+start   building editor/tools/page-watermark.js
+ready   built in 0.04 s
+start   building editor/tools/docx-watermark.js
+ready   built in 0.04 s
+start   building editor/components/LayoutToolbar.jsx
+ready   built in 0.06 s
+start   building editor/sass/page-settings.module.scss
+ready   built in 0.06 s
+start   building tests/page-settings-checks.jsx
+ready   built in 0.03 s
+start   building editor/sass/page-settings.module.scss
+ready   built in 0.04 s
+start   building editor/tools/docx-export.js
+ready   built in 0.03 s
+start   building editor/sass/page-settings.module.scss
+ready   built in 0.11 s
+start   building editor/sass/page-settings.module.scss
+ready   built in 0.06 s
+start   building tests/page-settings-checks.jsx
+ready   built in 0.04 s

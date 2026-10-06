@@ -1,0 +1,88 @@
+// 编辑视图的选区与当前段落反馈；配合 EditorFocus 装饰类，避免将交互状态写入文档样式。
+// 编辑专用反馈既受 PaperCanvas 容器限制，也只在屏幕介质生效；静态正文和打印不带交互背景。
+@media screen {
+  [data-mewoc-editor-surface] .mewoc-content[contenteditable="true"] {
+    &::selection, *::selection { color: inherit; background: rgb(148, 207, 255); }
+
+    :is(p, h1, h2, h3, h4, h5, h6).mewoc-focused-paragraph {
+      position: relative;
+      // 负 z-index 的背景留在本段堆叠上下文里，不能沉到白纸下面，也不会压住文字或链接。
+      isolation: isolate;
+      &::before {
+        position: absolute;
+        z-index: -1;
+        inset: -5px -8px;
+        background: rgb(245, 248, 252);
+        border-radius: 3px;
+        pointer-events: none;
+        content: "";
+      }
+    }
+
+    // 正文占位提示原来使用 ::before；仅编辑视图移到 ::after，避免空文档聚焦时覆盖提示。
+    p.is-editor-empty:first-child::before { float: none; height: auto; color: inherit; content: ""; }
+    p.is-editor-empty:first-child::after { float: left; height: 0; color: #b3b4c2; pointer-events: none; content: attr(data-placeholder); }
+    // 段尾 widget 后的原生光标辅助 BR 会把浮动提示推到下一行；提示单独定位在首行并让出 ¶。
+    p.is-editor-empty:first-child:has(> [data-mewoc-format-mark="paragraph"]) {
+      position: relative;
+      &::after { position: absolute; top: 0; left: 0.9em; float: none; }
+    }
+
+    // 不可打印字符保留原有文本宽度；背景按连续同类空白的数量等分，不新增占位字符。
+    [data-mewoc-format-mark] {
+      --mewoc-format-mark-color: var(--mewoc-formatting-mark, #75a8eb);
+      position: relative;
+    }
+    [data-mewoc-format-mark="space"], [data-mewoc-format-mark="nbsp"], [data-mewoc-format-mark="tab"] {
+      &::after {
+        position: absolute;
+        inset: 0;
+        background-repeat: repeat-x;
+        background-size: calc(100% / var(--mewoc-format-count)) 100%;
+        pointer-events: none;
+        user-select: none;
+        content: "";
+      }
+    }
+    [data-mewoc-format-mark="space"]::after {
+      background-image: radial-gradient(circle at center, var(--mewoc-format-mark-color) 0.7px, transparent 1px);
+    }
+    [data-mewoc-format-mark="nbsp"]::after {
+      background-image: radial-gradient(circle at center, transparent 1px, var(--mewoc-format-mark-color) 1.2px, var(--mewoc-format-mark-color) 1.7px, transparent 1.9px);
+    }
+    [data-mewoc-format-mark="tab"]::after {
+      background: var(--mewoc-format-mark-color);
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='1.6' d='M3 12h17m-5-5 5 5-5 5'/%3E%3C/svg%3E");
+      mask-position: center;
+      mask-size: calc(100% / var(--mewoc-format-count)) 0.85em;
+      mask-repeat: repeat-x;
+    }
+    // ¶/↵ 从零宽 widget 向右绘制；绝对定位的符号不撑开行高，也不移动正文光标。
+    [data-mewoc-format-mark="paragraph"], [data-mewoc-format-mark="hardBreak"] {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      vertical-align: baseline;
+      pointer-events: none;
+      user-select: none;
+      &::after {
+        position: absolute;
+        bottom: -0.16em;
+        left: 0.12em;
+        font-weight: 400;
+        font-size: 0.85em;
+        color: var(--mewoc-format-mark-color);
+        line-height: 1;
+        white-space: nowrap;
+      }
+    }
+    [data-mewoc-format-mark="paragraph"]::after { content: "¶"; }
+    [data-mewoc-format-mark="hardBreak"]::after { content: "↵"; }
+  }
+}
+
+// 防御直接打印当前编辑 DOM 的场景；静态导出本身也不会生成这些 Decoration。
+@media print {
+  .mewoc-content [data-mewoc-format-mark]::after { display: none; }
+  .mewoc-content [data-mewoc-format-mark="paragraph"], .mewoc-content [data-mewoc-format-mark="hardBreak"] { display: none; }
+}

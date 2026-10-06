@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-09-12T10:08:50.340Z",
+  "node": "v24.13.1",
+  "baseline": "76a3b56",
+  "scope": "Node import prototype; no production import UI",
+  "targetApplications": {
+    "Word": "not installed; unverified",
+    "WPS": "not installed; unverified"
+  },
+  "results": [
+    {
+      "source": "docs/m7-docx-evidence/portrait.docx",
+      "sourceSha256": "fa6fb3a914b8a516cd730e5c59ef73f2d9957b5662e9ad2c59aa09231a1b0014",
+      "output": "portrait.mewoc.json",
+      "outputSha256": "afc09768123042ad80ce06ad84b807aaeb17e38b902ad23a06d70cb000f08445",
+      "assets": [
+        {
+          "fileName": "Word 图片-1.png",
+          "bytes": 940,
+          "sha256": "7d0d3346704bde14576a71fac4083debdd22e90e2cc4bec30833a649b557e5c0"
+        }
+      ],
+      "warnings": [
+        "原型按内容语义导入；字体、字号、颜色、间距和纸张布局使用编辑器默认值，请保留原 DOCX",
+        "表格保留合并及内容，列宽、边框、底色和跨页设置使用编辑器默认值",
+        "换行保留，手动分页与原文分页位置不保证保留",
+        "图片以原始字节内嵌，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留，正式接入前需补浏览器解码"
+      ],
+      "editedSavedRestoredExported": true,
+      "exportedBytes": 10506
+    },
+    {
+      "source": "docs/m7-docx-evidence/landscape.docx",
+      "sourceSha256": "70fa8afbc22be60a2990774167aec4596429be5a7c691390e7b6eb1083735c3e",
+      "output": "landscape.mewoc.json",
+      "outputSha256": "4f9204275d9f3620006edf4b508886251074d49aa7ba98c17bea17130286e544",
+      "assets": [
+        {
+          "fileName": "Word 图片-1.png",
+          "bytes": 940,
+          "sha256": "7d0d3346704bde14576a71fac4083debdd22e90e2cc4bec30833a649b557e5c0"
+        }
+      ],
+      "warnings": [
+        "原型按内容语义导入；字体、字号、颜色、间距和纸张布局使用编辑器默认值，请保留原 DOCX",
+        "表格保留合并及内容，列宽、边框、底色和跨页设置使用编辑器默认值",
+        "换行保留，手动分页与原文分页位置不保证保留",
+        "图片以原始字节内嵌，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留，正式接入前需补浏览器解码"
+      ],
+      "editedSavedRestoredExported": true,
+      "exportedBytes": 10508
+    },
+    {
+      "source": "docs/m7-docx-evidence/integration/long-table.docx",
+      "sourceSha256": "3a78d12cd3855bde414b909233ea8670b54cba298bf513bde2bbf33c57f350df",
+      "output": "long-table.mewoc.json",
+      "outputSha256": "36d25c603b6637cca47d1ec69ffbed13f004b717b7bb2a29024c9ab154e91e70",
+      "assets": [],
+      "warnings": [
+        "原型按内容语义导入；字体、字号、颜色、间距和纸张布局使用编辑器默认值，请保留原 DOCX",
+        "表格保留合并及内容，列宽、边框、底色和跨页设置使用编辑器默认值"
+      ],
+      "editedSavedRestoredExported": true,
+      "exportedBytes": 10367
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+/**
+ * 为文档、资源、模板、历史版本和批注生成可持久化的 UUID v4 身份。
+ * 使用浏览器安全随机源，调用方在数据库创建时仍通过 add 检测极低概率的键碰撞。
+ */
 export function createId() {
   // 局域网 HTTP 没有 randomUUID，但仍提供安全随机字节；保持 UUID v4 格式。
   const bytes = crypto.getRandomValues(new Uint8Array(16))

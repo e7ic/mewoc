@@ -1,3 +1,4 @@
+// 底部状态栏展示文档信息、缩放比例和适应宽度入口，固定高度不随正文增长。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
@@ -11,9 +12,13 @@
   color: $ui-muted;
   background: $ui-surface;
   border-top: 1px solid $ui-border;
+  // 左侧文档信息与右侧缩放控件各自排成行，信息之间用边线分隔。
   .info, .zoom { display: flex; align-items: center; gap: 17px; }
   .info span + span { padding-left: 17px; border-left: 1px solid $ui-border; }
+  // 缩放滑块固定占宽，比例数字固定文字宽度，避免调整时整行跳动。
   .slider { flex-shrink: 0; margin: 0; width: 105px; }
   .zoom > span { width: 32px; text-align: right; }
-  button { color: $ui-secondary; }
+  button { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; color: $ui-secondary; border-radius: 3px; }
+  button :global(.tabler-icon) { font-size: 20px; }
+  button:hover:not(:disabled) { background: $ui-hover; }
 }

@@ -1,7 +1,9 @@
+// 工作区纵向布局：文档栏、工具栏和状态栏占固定高度，中间区域分配给侧栏与纸张。
 .container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  // min-height: 0 允许 flex 子区缩小，避免正文把底部状态栏推出视口。
   .content {
     flex: 1;
     display: flex;

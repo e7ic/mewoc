@@ -1,0 +1,14 @@
+[
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/rich-blocks-checks.jsx is not accepted\nUpdate propagation: ./tests/rich-blocks-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4183/static/js/tests/browser.js:12483:20)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:11926:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4183/static/js/tests/browser.js:11925:43)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:11900:15\n    at waitForBlockingPromises (http://127.0.0.1:4183/static/js/tests/browser.js:11853:37)\n    at http://127.0.0.1:4183/static/js/tests/browser.js:11898:13",
+    "timestamp": "2026-10-04T11:34:37.209Z",
+    "url": "http://127.0.0.1:4183/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "error",
+    "message": "SyntaxError: Unexpected token '<'",
+    "timestamp": "2026-10-04T11:35:32.113Z",
+    "url": "http://127.0.0.1:4183/static/js/async/src_pages_editor_tools_markdown-converter_js.js"
+  }
+]

@@ -201,6 +201,29 @@
     }
   },
   {
+    "name": "@tabler/icons",
+    "version": "3.48.0",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/tabler/tabler-icons.git"
+    }
+  },
+  {
+    "name": "@tabler/icons-react",
+    "version": "3.48.0",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/tabler/tabler-icons.git",
+      "directory": "packages/icons-react"
+    }
+  },
+  {
     "name": "@tiptap/core",
     "version": "3.31.3",
     "license": "MIT",
@@ -669,6 +692,17 @@
     }
   },
   {
+    "name": "@xmldom/xmldom",
+    "version": "0.8.15",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/xmldom/xmldom.git"
+    }
+  },
+  {
     "name": "antd",
     "version": "5.29.3",
     "license": "MIT",
@@ -680,12 +714,42 @@
     }
   },
   {
+    "name": "argparse",
+    "version": "1.0.10",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": "nodeca/argparse"
+  },
+  {
     "name": "bail",
     "version": "2.0.2",
     "license": "MIT",
     "licenseTextIncluded": true,
     "licenseSource": "installed package",
     "repository": "wooorm/bail"
+  },
+  {
+    "name": "base64-js",
+    "version": "1.5.1",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/beatgammit/base64-js.git"
+    }
+  },
+  {
+    "name": "bluebird",
+    "version": "3.4.7",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/petkaantonov/bluebird.git"
+    }
   },
   {
     "name": "ccount",
@@ -821,6 +885,17 @@
     "repository": "wooorm/devlop"
   },
   {
+    "name": "dingbat-to-unicode",
+    "version": "1.0.1",
+    "license": "BSD-2-Clause",
+    "licenseTextIncluded": false,
+    "licenseSource": null,
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mwilliamson/dingbat-to-unicode.git"
+    }
+  },
+  {
     "name": "docx",
     "version": "9.6.1",
     "license": "MIT",
@@ -829,6 +904,17 @@
     "repository": {
       "type": "git",
       "url": "git+https://github.com/dolanmiu/docx.git"
+    }
+  },
+  {
+    "name": "duck",
+    "version": "0.1.12",
+    "license": "BSD",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mwilliamson/duck.js.git"
     }
   },
   {
@@ -881,6 +967,17 @@
     "repository": {
       "type": "git",
       "url": "git://github.com/highlightjs/highlight.js.git"
+    }
+  },
+  {
+    "name": "image-size",
+    "version": "2.0.2",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/image-size/image-size.git"
     }
   },
   {
@@ -1016,12 +1113,34 @@
     }
   },
   {
+    "name": "lop",
+    "version": "0.4.2",
+    "license": "BSD-2-Clause",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mwilliamson/lop.git"
+    }
+  },
+  {
     "name": "lowlight",
     "version": "3.3.0",
     "license": "MIT",
     "licenseTextIncluded": true,
     "licenseSource": "installed package",
     "repository": "wooorm/lowlight"
+  },
+  {
+    "name": "mammoth",
+    "version": "1.12.3",
+    "license": "BSD-2-Clause",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mwilliamson/mammoth.js.git"
+    }
   },
   {
     "name": "markdown-table",
@@ -1395,6 +1514,17 @@
     "repository": "sindresorhus/object-assign"
   },
   {
+    "name": "option",
+    "version": "0.2.4",
+    "license": "BSD-2-Clause",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mwilliamson/node-options.git"
+    }
+  },
+  {
     "name": "orderedmap",
     "version": "2.1.1",
     "license": "MIT",
@@ -1412,6 +1542,14 @@
     "licenseTextIncluded": true,
     "licenseSource": "installed package",
     "repository": "nodeca/pako"
+  },
+  {
+    "name": "path-is-absolute",
+    "version": "1.0.1",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": "sindresorhus/path-is-absolute"
   },
   {
     "name": "process-nextick-args",
@@ -2104,6 +2242,17 @@
     "repository": "YuzuJS/setImmediate"
   },
   {
+    "name": "sprintf-js",
+    "version": "1.0.3",
+    "license": "BSD-3-Clause",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/alexei/sprintf.js.git"
+    }
+  },
+  {
     "name": "string_decoder",
     "version": "1.1.1",
     "license": "MIT",
@@ -2162,6 +2311,17 @@
     "licenseTextIncluded": true,
     "licenseSource": "installed package",
     "repository": "wooorm/trough"
+  },
+  {
+    "name": "underscore",
+    "version": "1.13.8",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/jashkenas/underscore.git"
+    }
   },
   {
     "name": "undici-types",
@@ -2292,6 +2452,17 @@
     "repository": {
       "type": "git",
       "url": "git+https://github.com/nashwaan/xml-js.git"
+    }
+  },
+  {
+    "name": "xmlbuilder",
+    "version": "10.1.1",
+    "license": "MIT",
+    "licenseTextIncluded": true,
+    "licenseSource": "installed package",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/oozcitak/xmlbuilder-js.git"
     }
   },
   {

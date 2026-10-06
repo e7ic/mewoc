@@ -1,3 +1,7 @@
+/**
+ * 处理图片文件的类型初检、真实解码、初始排版尺寸与 data URL 编码。
+ * 资源保留原始字节，宽高只影响正文排版；临时 URL 成功交给会话，失败在本模块立即回收。
+ */
 import { IMAGE_TYPES, MAX_IMAGE_BYTES } from "../constants/editor-constants.js"
 import { createId } from "./create-id.js"
 
@@ -6,6 +10,7 @@ export async function validateImageBlob(blob) {
   if (!IMAGE_TYPES.includes(blob.type) || blob.size <= 0 || blob.size > MAX_IMAGE_BYTES) {
     throw new Error("请选择不超过 5 MiB 的 PNG、JPEG 或 WebP 图片")
   }
+  // 仅读取头部做轻量格式验证，避免为了识别类型复制整幅图片；随后仍必须执行浏览器解码。
   const bytes = new Uint8Array(await blob.slice(0, 12).arrayBuffer())
   const png = bytes[0] === 137 && bytes[1] === 80 && bytes[2] === 78 && bytes[3] === 71
   const jpeg = bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255
@@ -41,6 +46,7 @@ export async function readImageFile(file) {
   }
 }
 
+// 将任意已验证资源编码为便携文件可内嵌的地址，FileReader 的异步错误转换为统一导出提示。
 export function readBlobDataUrl(blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

@@ -1,3 +1,7 @@
+/**
+ * 验证附件正文和原始 Blob 的原子持久化、资源清理、撤销重写与失败回滚。
+ * 使用真实 IndexedDB 事务模拟器核对最终提交状态，内存资源 Map 代表会话仍持有的撤销资源。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import "fake-indexeddb/auto"
@@ -6,6 +10,7 @@ import { createDocument } from "../src/pages/editor/tools/document-schema.js"
 import { readAttachmentFile } from "../src/pages/editor/tools/attachment-assets.js"
 import { getDocuments, saveLocalDocument, getDocumentAssets } from "../src/pages/editor/tools/local-repository.js"
 
+// 构造含非文本字节的附件，避免只比较字符串而漏掉编码改变；元数据与 Blob 分开模拟实际存储契约。
 async function createRecord() {
   const asset = await readAttachmentFile(new File([new Uint8Array([0, 255, 128, 1])], "数据库附件.bin"))
   const record = createDocument()
@@ -15,6 +20,7 @@ async function createRecord() {
   return { record, assets: new Map([[asset.id, { ...metadata, blob }]]), asset }
 }
 
+// 磁盘清理和会话清理具有不同生命周期，先证明持久资源消失，再证明同一内存 Blob 仍可恢复。
 test("附件正文与原始 Blob 可保存读取，删除回收磁盘资源后撤销可重新写回", async () => {
   const { record, assets, asset } = await createRecord()
   await saveLocalDocument(record, assets, 0)
@@ -37,6 +43,7 @@ test("附件资源丢失或类型不符时中止保存，不产生不完整文�
   assert.equal((await getDocuments()).some(item => item.id === record.id), false)
 })
 
+// 故意在文档写入时失败，此时资源删除已经排队；必须同时检查旧版本与原字节，不能只检查 Promise 拒绝。
 test("附件版本冲突和配额异常不会删除已保存资源，重试仍可成功", async () => {
   const { record, assets, asset } = await createRecord()
   await saveLocalDocument(record, assets, 0)

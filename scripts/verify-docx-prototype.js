@@ -1,3 +1,7 @@
+/**
+ * 固定版本 DOCX 导出原型的结构验收：校验页面、样式、媒体、输入不变以及明确拒绝的范围。
+ * 命令行传入外部 SDK 安装目录，可选输出目录；生成样例/检查记录供原型阶段复核。
+ */
 import assert from "node:assert/strict"
 import { readFile, mkdir, writeFile } from "node:fs/promises"
 import { createRequire } from "node:module"
@@ -14,6 +18,7 @@ const sdk = require("docx")
 const JSZip = require("jszip")
 const sdkPackage = JSON.parse(await readFile(path.join(modules, "docx/package.json"), "utf8"))
 assert.equal(sdkPackage.version, "9.6.1", "本轮样例固定使用 docx 9.6.1")
+// 从当前文档夹具恢复真实资源，再克隆修改正文构造样例，避免写坏共享夹具。
 const fixture = JSON.parse(await readFile(new URL("../tests/fixtures/m5-current-document.mewoc.json", import.meta.url), "utf8"))
 const assets = new Map(fixture.document.assets.map(asset => [asset.id, {
   ...asset, blob: new Blob([Buffer.from(fixture.assetData[asset.id].split(",")[1], "base64")], { type: asset.mimeType })
@@ -32,6 +37,7 @@ source.content.content[1] = {
 const output = process.argv[3] ? pathToFileURL(`${path.resolve(process.argv[3])}${path.sep}`) : new URL("../docs/m7-docx-evidence/", import.meta.url)
 await mkdir(output, { recursive: true })
 const results = []
+// 对竖横页面各导出一次，逐项验证 OOXML/关系/媒体内容，而非只断言 ZIP 能被打开。
 for (const orientation of ["portrait", "landscape"]) {
   const document = structuredClone(source)
   document.page.orientation = orientation
@@ -39,10 +45,12 @@ for (const orientation of ["portrait", "landscape"]) {
   const before = JSON.stringify(document)
   const { file, warnings } = await createDocxPrototype(document, assets, sdk)
   const buffer = await sdk.Packer.toBuffer(file)
+  // 输入的串行化快照前后相等，确保转换只是读取，不能把 SDK 所需单位写回源文档。
   assert.equal(JSON.stringify(document), before, "转换不能改写输入文档")
   const zip = await JSZip.loadAsync(buffer)
   const xml = await zip.file("word/document.xml").async("string")
   const relations = await zip.file("word/_rels/document.xml.rels").async("string")
+  // 样式与段落单位转换必须落在最终 OOXML：包括半磅字号、twip 缩进、行距与分页。
   assert.match(xml, /w:sz w:val="28"/)
   assert.match(xml, /w:color w:val="6942a3"/i)
   assert.match(xml, /w:fill="fff1ad"/i)
@@ -59,6 +67,7 @@ for (const orientation of ["portrait", "landscape"]) {
   assert.ok(xml.includes(size), `纸张宽高错误：${orientation}`)
   assert.ok(xml.includes(`w:left="${orientation === "landscape" ? 1701 : 1134}"`))
   assert.match(relations, /relationships\/image/)
+  // 每份原型只有一个图片资源，验证数量和原字节，避免截图或会话 URL 取代原图。
   const media = Object.values(zip.files).filter(entry => entry.name.startsWith("word/media/") && !entry.dir)
   assert.equal(media.length, 1)
   assert.deepEqual(await media[0].async("nodebuffer"), Buffer.from(await assets.get("m5-image").blob.arrayBuffer()))
@@ -67,12 +76,14 @@ for (const orientation of ["portrait", "landscape"]) {
   results.push({ name: `${orientation}：纸张、页边距、样式、缩进、图表、分页、源数据不可变`, passed: true, bytes: buffer.length, warnings })
 }
 
+/** 每个拒绝场景从独立克隆开始，注入一项边界变更后核对错误，避免案例彼此污染。 */
 async function checkRejected(name, change, pattern, entries = assets) {
   const document = structuredClone(source)
   change(document)
   await assert.rejects(() => createDocxPrototype(document, entries, sdk), pattern)
   results.push({ name, passed: true })
 }
+// 原型故意覆盖缺资源、宽表、合并、列表和未知节点的拒绝边界，范围应按原型实现解释。
 await checkRejected("缺失资源拒绝导出", () => {}, /资源.*缺失/, new Map())
 await checkRejected("有效但超宽的表格拒绝裁切", document => {
   document.content.content[3].content.forEach(row => row.content.forEach(cell => { cell.attrs.colwidth = [400] }))
@@ -89,11 +100,13 @@ await checkRejected("范围外列表不静默丢失", document => {
 await checkRejected("未知节点由应用 Schema 拒绝", document => {
   document.content.content.push({ type: "unknown" })
 }, /节点/)
+// H3 的四分之一磅字号无法由 Word 精确表达，检查成功输出时也有取整说明。
 const rounded = structuredClone(source)
 rounded.content.content[0].attrs.level = 3
 const roundedResult = await createDocxPrototype(rounded, assets, sdk)
 assert.ok(roundedResult.warnings.some(message => message.includes("半磅")))
 results.push({ name: "H3 四分之一磅字号转换提示", passed: true })
+// 保存固定 SDK/基线和所有断言的通过记录；不包含桌面办公应用的渲染结论。
 const report = { generatedAt: new Date().toISOString(), baseline: "5490b65", sdk: `docx ${sdkPackage.version}`, node: process.version, results }
 await writeFile(new URL("checks.json", output), `${JSON.stringify(report, null, 2)}\n`)
 process.stdout.write(`${results.length}/${results.length} DOCX 样例检查通过\n`)

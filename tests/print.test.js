@@ -1,7 +1,12 @@
+/**
+ * 验证打印 iframe 的资源就绪、取消、长时间系统窗口与幂等清理生命周期。
+ * 测试使用受控窗口和字体 Promise 检查调用顺序与资源释放，不替代真实浏览器打印分页验收。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { printDocument } from "../src/pages/editor/tools/print-document.js"
 
+// 把字体完成时间交给场景控制，frame 移除后读取窗口主动抛错，检出重复 cleanup 仍访问失效窗口。
 function createPrintFixture() {
   let finishFonts
   let printCount = 0
@@ -23,6 +28,7 @@ function createPrintFixture() {
   return { finishFonts, printWindow, getPrintCount: () => printCount, isRemoved: () => removed }
 }
 
+// 取消先于字体完成，随后再放行迟到资源，确认异步 continuation 已检查 disposed 而不会误唤起系统打印。
 test("打印等待资源期间会话结束：立即释放 iframe，迟到资源不再触发打印", async () => {
   const fixture = createPrintFixture()
   const controller = new AbortController()
@@ -49,6 +55,7 @@ test("打印只在资源就绪后调用，afterprint 释放 iframe", async () =>
   assert.equal(fixture.isRemoved(), true)
 })
 
+// 用模拟计时器推进时间而不等待一分钟，检出固定销毁计时器会截断用户仍在操作的打印输出。
 test("系统打印窗口停留超过一分钟仍保留输出，关闭后重复清理不访问失效窗口", async context => {
   const timers = new Map()
   let nextTimer = 0

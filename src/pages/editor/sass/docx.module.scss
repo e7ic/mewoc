@@ -1,3 +1,4 @@
+// Word 导入/导出弹窗的状态、转换说明与确认动作布局；转换结果与错误均在弹窗内呈现。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
@@ -8,4 +9,11 @@
   .hint { font-size: 12px; color: $ui-muted; line-height: 1.8; }
 }
 
+// 较多兼容性说明在局部滚动，避免把下载/确认按钮推到不可访问区域。
 .warnings { margin: 6px 0 0; padding-left: 20px; max-height: 240px; overflow-y: auto; line-height: 1.8; }
+
+// 正文区域按视口限制高度，操作区在其外部保持独立排布。
+.body { max-height: calc(100vh - 240px); overflow-y: auto; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; }
+.result { display: flex; flex-direction: column; gap: 12px; }
+.error { font-size: 13px; color: #c45e67; }

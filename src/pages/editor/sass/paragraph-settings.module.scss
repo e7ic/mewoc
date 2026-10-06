@@ -1,0 +1,48 @@
+// 段落精确设置弹窗：间距与分页按语义分组，混合选区说明及错误就近展示。
+@use "../../../assets/style/theme.scss" as *;
+
+// 主体高度随动态视口限制，长表单使用局部滚动，避免操作被窗口裁切。
+.modal :global(.ant-modal-body) {
+  max-height: calc(100dvh - 150px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.form {
+  .hint { color: $ui-muted; font-size: 12px; line-height: 1.7; }
+  .section {
+    margin: 20px 0;
+    padding: 0;
+    border: 0;
+    legend { margin-bottom: 10px; color: $ui-text; font-size: 14px; font-weight: 600; }
+    > p { margin: 10px 0 0; }
+  }
+  // 通常两列排列相关字段，原生输入继承界面主题并保留键盘焦点与禁用反馈。
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 18px; }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: $ui-text;
+    font-size: 13px;
+    small { color: $ui-muted; }
+    input, select {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 34px;
+      padding: 6px 10px;
+      color: $ui-text;
+      background: $ui-surface;
+      border: 1px solid $ui-border;
+      border-radius: 6px;
+      &:focus { outline: 2px solid $ui-accent; outline-offset: 1px; }
+      &:disabled { opacity: .55; }
+    }
+  }
+  // 确认与取消集中在底部，校验错误占独立文字行。
+  .footer { display: flex; justify-content: flex-end; gap: 10px; padding-top: 12px; }
+  .error { margin: 14px 0 0; color: #b42318; font-size: 13px; line-height: 1.7; }
+}
+
+// 窄视口将字段改为单列，保持标签与输入的可读性。
+@media (max-width: 480px) { .form .grid { grid-template-columns: 1fr; } }

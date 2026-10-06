@@ -1,3 +1,4 @@
+/** 浏览器附件链路验收：原始字节下载、文件/仓库往返、删除撤销、只读与 Markdown 降级。 */
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 import { createDocumentHtml } from "../src/pages/editor/tools/file-transfer.js"
 import { createDocumentMarkdown } from "../src/pages/editor/tools/markdown-file.js"
@@ -6,10 +7,12 @@ import { removeAttachment } from "../src/pages/editor/tools/attachment-commands.
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 import { checkAttachmentRestoration } from "./attachment-restore-checks.jsx"
 
+// 断言抛错交给外层 check 收集为单项失败，当前模块不直接操作结果列表。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 复用真实会话执行每个领域场景，下载内容通过 fetch 读取 Blob URL 的真实字节。
 export async function checkAttachmentFlows(left, check) {
   const { editor, assets, store } = left
   await check("附件原始字节进入正文卡片，下载地址按二进制提供原文件", async () => {
@@ -82,6 +85,7 @@ export async function checkAttachmentFlows(left, check) {
   await checkAttachmentRestoration(left, check)
 }
 
+// 删除最后引用后磁盘应回收，但会话缓存仍需支持撤销并重新保存资源。
 async function checkAttachmentUndo(left) {
   const { editor } = left
   const snapshot = left.getSnapshot()
@@ -108,6 +112,7 @@ async function checkAttachmentUndo(left) {
   assert(restored.get(snapshot.assets[0].id).blob.size === snapshot.assets[0].byteLength, "撤销后附件未恢复")
 }
 
+// 逐字节比较二进制，不用文本解码推断附件完整性。
 function equalBytes(first, second) {
   const bytes = new Uint8Array(second)
   return first.byteLength === second.byteLength && new Uint8Array(first).every((byte, index) => byte === bytes[index])

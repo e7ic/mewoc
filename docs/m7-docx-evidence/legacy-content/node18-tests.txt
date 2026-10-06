@@ -1,0 +1,140 @@
+TAP version 13
+# Subtest: 独立 DOCX：comments.docx（明确拒绝）
+ok 1 - 独立 DOCX：comments.docx（明确拒绝）
+  ---
+  duration_ms: 14.562792
+  ...
+# Subtest: 独立 DOCX：embedded-style-map.docx（导入与再次导出）
+ok 2 - 独立 DOCX：embedded-style-map.docx（导入与再次导出）
+  ---
+  duration_ms: 97.943209
+  ...
+# Subtest: 独立 DOCX：empty.docx（导入与再次导出）
+ok 3 - 独立 DOCX：empty.docx（导入与再次导出）
+  ---
+  duration_ms: 31.017
+  ...
+# Subtest: 独立 DOCX：endnotes.docx（明确拒绝）
+ok 4 - 独立 DOCX：endnotes.docx（明确拒绝）
+  ---
+  duration_ms: 1.895792
+  ...
+# Subtest: 独立 DOCX：external-picture.docx（明确拒绝）
+ok 5 - 独立 DOCX：external-picture.docx（明确拒绝）
+  ---
+  duration_ms: 1.001834
+  ...
+# Subtest: 独立 DOCX：footnote-hyperlink.docx（明确拒绝）
+ok 6 - 独立 DOCX：footnote-hyperlink.docx（明确拒绝）
+  ---
+  duration_ms: 1.368959
+  ...
+# Subtest: 独立 DOCX：footnotes.docx（明确拒绝）
+ok 7 - 独立 DOCX：footnotes.docx（明确拒绝）
+  ---
+  duration_ms: 1.400208
+  ...
+# Subtest: 独立 DOCX：simple-list.docx（导入与再次导出）
+ok 8 - 独立 DOCX：simple-list.docx（导入与再次导出）
+  ---
+  duration_ms: 40.505709
+  ...
+# Subtest: 独立 DOCX：single-paragraph.docx（导入与再次导出）
+ok 9 - 独立 DOCX：single-paragraph.docx（导入与再次导出）
+  ---
+  duration_ms: 27.535625
+  ...
+# Subtest: 独立 DOCX：strict-format.docx（明确拒绝）
+ok 10 - 独立 DOCX：strict-format.docx（明确拒绝）
+  ---
+  duration_ms: 4.549958
+  ...
+# Subtest: 独立 DOCX：strikethrough.docx（导入与再次导出）
+ok 11 - 独立 DOCX：strikethrough.docx（导入与再次导出）
+  ---
+  duration_ms: 31.7445
+  ...
+# Subtest: 独立 DOCX：tables.docx（导入与再次导出）
+ok 12 - 独立 DOCX：tables.docx（导入与再次导出）
+  ---
+  duration_ms: 35.263375
+  ...
+# Subtest: 独立 DOCX：text-box.docx（导入与再次导出）
+ok 13 - 独立 DOCX：text-box.docx（导入与再次导出）
+  ---
+  duration_ms: 27.122041
+  ...
+# Subtest: 独立 DOCX：tiny-picture-target-base-relative.docx（导入与再次导出）
+ok 14 - 独立 DOCX：tiny-picture-target-base-relative.docx（导入与再次导出）
+  ---
+  duration_ms: 29.345209
+  ...
+# Subtest: 独立 DOCX：tiny-picture.docx（导入与再次导出）
+ok 15 - 独立 DOCX：tiny-picture.docx（导入与再次导出）
+  ---
+  duration_ms: 26.778333
+  ...
+# Subtest: 独立 DOCX：underline.docx（导入与再次导出）
+ok 16 - 独立 DOCX：underline.docx（导入与再次导出）
+  ---
+  duration_ms: 23.999958
+  ...
+# Subtest: 独立 DOCX：utf8-bom.docx（导入与再次导出）
+ok 17 - 独立 DOCX：utf8-bom.docx（导入与再次导出）
+  ---
+  duration_ms: 18.289333
+  ...
+# Subtest: 独立 DOCX：tbl-cell-access.docx（导入与再次导出）
+ok 18 - 独立 DOCX：tbl-cell-access.docx（导入与再次导出）
+  ---
+  duration_ms: 43.42225
+  ...
+# Subtest: 同一段落的多个文本框保留源顺序，文字置于所属段落之后并提示布局变化
+ok 19 - 同一段落的多个文本框保留源顺序，文字置于所属段落之后并提示布局变化
+  ---
+  duration_ms: 46.796833
+  ...
+# Subtest: 兼容分支只读取 Fallback 一次，嵌套兼容分支也不重复正文
+ok 20 - 兼容分支只读取 Fallback 一次，嵌套兼容分支也不重复正文
+  ---
+  duration_ms: 28.873292
+  ...
+# Subtest: 文本框内表格、格式、公式、编号及嵌套文本框可导出后重新导入
+ok 21 - 文本框内表格、格式、公式、编号及嵌套文本框可导出后重新导入
+  ---
+  duration_ms: 94.747791
+  ...
+# Subtest: 旧式内嵌图片保留字节、与文本框的先后顺序及去重，再导出不丢图片
+ok 22 - 旧式内嵌图片保留字节、与文本框的先后顺序及去重，再导出不丢图片
+  ---
+  duration_ms: 56.3725
+  ...
+# Subtest: 纯矢量图形、艺术字和图片旁的未支持图形不能静默丢失
+ok 23 - 纯矢量图形、艺术字和图片旁的未支持图形不能静默丢失
+  ---
+  duration_ms: 15.751042
+  ...
+# Subtest: 旧式图片缺失关系、引用不存在或外链时拒绝，不返回残缺记录
+ok 24 - 旧式图片缺失关系、引用不存在或外链时拒绝，不返回残缺记录
+  ---
+  duration_ms: 16.4915
+  ...
+# Subtest: 没有兼容分支的对象、未识别文本框及不完整文本框明确拒绝
+ok 25 - 没有兼容分支的对象、未识别文本框及不完整文本框明确拒绝
+  ---
+  duration_ms: 15.551292
+  ...
+# Subtest: 文本框中的修订和仅含旧式图片的页眉仍明确拒绝
+ok 26 - 文本框中的修订和仅含旧式图片的页眉仍明确拒绝
+  ---
+  duration_ms: 12.764833
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 26
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 738.840666

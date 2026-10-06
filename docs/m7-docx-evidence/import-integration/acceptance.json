@@ -1,0 +1,140 @@
+{
+  "date": "2026-09-12",
+  "stage": "M7 DOCX import integration",
+  "node24": {
+    "passed": 166,
+    "total": 166,
+    "log": "node24-tests.txt"
+  },
+  "node18": {
+    "version": "18.18.0",
+    "passed": 13,
+    "total": 13,
+    "scope": "Production import tests only; no fresh install in this run",
+    "log": "node18-tests.txt"
+  },
+  "lint": true,
+  "build": {
+    "passed": true,
+    "totalKb": 3035.3,
+    "gzipKb": 898.5,
+    "log": "build.txt"
+  },
+  "browserChecks": [
+    {
+      "browser": "Codex In-app Browser",
+      "url": "http://127.0.0.1:4180/tests/browser",
+      "passed": 6,
+      "total": 6,
+      "method": "Clicked run button and read completed UI result",
+      "checks": [
+        {
+          "name": "真实 Worker、编号、合并、公式和 Bitmap 释放",
+          "passed": true
+        },
+        {
+          "name": "取消真实 Worker 后可重试",
+          "passed": true
+        },
+        {
+          "name": "PNG、JPEG、WebP 真实解码，坏图拒绝",
+          "passed": true
+        },
+        {
+          "name": "取消预览不调用导入，失败文件可重新选择",
+          "passed": true
+        },
+        {
+          "name": "保存失败保留旧会话，重试成功后才创建资源 URL",
+          "passed": true
+        },
+        {
+          "name": "组件卸载中止旧任务，迟到结果不复活",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "browser": "Safari native app",
+      "url": "http://127.0.0.1:4180/tests/browser",
+      "passed": 6,
+      "total": 6,
+      "method": "Clicked run button and read completed UI result",
+      "checks": [
+        {
+          "name": "真实 Worker、编号、合并、公式和 Bitmap 释放",
+          "passed": true
+        },
+        {
+          "name": "取消真实 Worker 后可重试",
+          "passed": true
+        },
+        {
+          "name": "PNG、JPEG、WebP 真实解码，坏图拒绝",
+          "passed": true
+        },
+        {
+          "name": "取消预览不调用导入，失败文件可重新选择",
+          "passed": true
+        },
+        {
+          "name": "保存失败保留旧会话，重试成功后才创建资源 URL",
+          "passed": true
+        },
+        {
+          "name": "组件卸载中止旧任务，迟到结果不复活",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "fullEditor": {
+    "url": "http://127.0.0.1:4180/",
+    "imported": true,
+    "markers": [
+      "3.",
+      "4.",
+      "A."
+    ],
+    "multiParagraphItem": true,
+    "imagesAndMergedTablesVisible": true,
+    "formulas": 3,
+    "autosaved": true,
+    "reloaded": true,
+    "downloaded": true
+  },
+  "production": {
+    "url": "http://127.0.0.1:4181/",
+    "fileChooser": true,
+    "workerLoaded": true,
+    "preview": true,
+    "imported": true,
+    "autosaved": true,
+    "reloaded": true,
+    "renderedFormulaCountAfterReload": 3,
+    "fixtureImagesDecodedAfterReload": 2
+  },
+  "fixture": {
+    "path": "../integration/complex-portrait.docx",
+    "sha256": "a6d2bc54657f51599d22b4b8dd0db37dfddda7a7d08d55f0ef2829ba6a518ca5",
+    "origin": "Project-generated export fixture, not an independent Word/WPS-authored document"
+  },
+  "download": {
+    "path": "editor-roundtrip.docx",
+    "bytes": 11437,
+    "sha256": "bcbb3dcc4a28bba0fddfd884ae71eb60f21181ae94d0cdad0a2ccfc2c582cd8b",
+    "omml": 3,
+    "tables": 2,
+    "drawings": 2
+  },
+  "limitations": [
+    "Microsoft Word/WPS application verification pending",
+    "Node bitmap is a size/lifecycle stub; browser checks exercise real decode",
+    "Numbered-item continuation paragraphs inferred by alignment with explicit warning",
+    "Runtime license full texts missing for toggle-selection and dingbat-to-unicode; official pinned dingbat repository also lacks text",
+    "No claim of exact layout or all DOCX structures being supported"
+  ],
+  "developmentLogNotes": [
+    "Accumulated dev-server output included ResizeObserver loop notifications and one Worker importScripts chunk-load failure; precise cause not established from this log. Final IAB and Safari checks passed 6/6 and isolated production import succeeded."
+  ]
+}

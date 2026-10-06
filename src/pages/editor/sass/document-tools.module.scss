@@ -1,0 +1,16 @@
+// 工具分组的全选与统计入口，以及字数统计弹窗中的对比表格。
+@use "../../../assets/style/theme.scss" as *;
+
+.toolbar { display: flex; flex: 0 0 auto; align-items: center; gap: 6px; }
+.toolbar :global(.ant-btn) { display: inline-flex; align-items: center; padding: 0 8px; height: 28px; white-space: nowrap; }
+.toolbar :global(.tabler-icon) { font-size: 20px; }
+.hint { margin: 0 0 16px; color: $ui-secondary; font-size: 12px; line-height: 1.6; }
+// 统计数字右对齐便于比较，行标题左对齐；表头区分正文与选区的统计维度。
+.statistics { width: 100%; border-collapse: collapse; font-size: 13px; }
+.statistics th, .statistics td { padding: 10px 8px; text-align: right; border-bottom: 1px solid $ui-border; }
+.statistics th:first-child { text-align: left; }
+.statistics thead { color: $ui-secondary; background: $ui-hover; }
+.statistics tbody th { font-weight: 400; }
+
+// 极简模式只收紧入口间距，统计内容与操作保持同一组件。
+:global([data-toolbar-mode="compact"]) .toolbar { gap: 4px; }

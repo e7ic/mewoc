@@ -1,0 +1,13 @@
+// 文字颜色弹层的格式选择与通道输入布局，支持窄空间中多个数字输入平分宽度。
+@use "../../../assets/style/theme.scss" as *;
+
+.panel { width: 280px; max-width: calc(100vw - 48px); }
+// 颜色格式保留固定宽度，通道组弹性伸展，每个通道标签位于数字输入下方。
+.inputs { display: flex; align-items: flex-start; gap: 8px; }
+.format { flex: 0 0 76px; width: 76px; }
+.channels { display: flex; flex: 1; gap: 4px; min-width: 0; }
+.channel { display: flex; flex: 1; flex-direction: column; gap: 3px; min-width: 0; text-align: center; }
+.channel :global(.ant-input-number) { width: 100%; }
+.channel span { color: $ui-secondary; font-size: 10px; }
+.hue { flex: 1; }
+.error { margin: 8px 0 0; color: #b42318; font-size: 12px; line-height: 1.5; }

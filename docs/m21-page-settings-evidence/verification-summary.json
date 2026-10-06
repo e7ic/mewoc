@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-04",
+  "milestone": "M21",
+  "node": {
+    "total": 576,
+    "passed": 576,
+    "failed": 0,
+    "log": "node.log"
+  },
+  "browser": {
+    "total": 118,
+    "passed": 118,
+    "groups": [
+      {
+        "name": "browser-final",
+        "total": 11,
+        "passed": 11,
+        "console": 0
+      },
+      {
+        "name": "regression",
+        "total": 62,
+        "passed": 62,
+        "console": 0
+      },
+      {
+        "name": "toolbar",
+        "total": 29,
+        "passed": 29,
+        "console": 0
+      },
+      {
+        "name": "navigation",
+        "total": 16,
+        "passed": 16,
+        "console": 0
+      }
+    ],
+    "repeatNotCounted": "browser-first.json (11 original checks)"
+  },
+  "manualConsole": 0,
+  "lint": {
+    "passed": true,
+    "log": "lint.log"
+  },
+  "build": {
+    "passed": true,
+    "log": "build.log"
+  },
+  "manualExports": "manual-export-checks.json",
+  "docxRender": "word-preview/README.md",
+  "responsive": {
+    "actualAppIframe": {
+      "width": 920,
+      "height": 600,
+      "screenshot": "editor-responsive-dark.png"
+    },
+    "mainViewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "narrowDialogInteractionVerified": false,
+    "reason": "Viewport capability did not apply; browser control could not interact with iframe controls."
+  },
+  "limitations": [
+    "Continuous editor layout: one watermark on first paper; no live automatic pagination.",
+    "Microsoft Word/WPS native layout and browser system PDF not run in this batch.",
+    "Real IME candidates and physical drag not repeated.",
+    "Existing DOCX importer rejects native VML watermark; export confirmation warns to retain Mewoc for full editable backup."
+  ],
+  "docxReimport": "docx-reimport-boundary.json"
+}

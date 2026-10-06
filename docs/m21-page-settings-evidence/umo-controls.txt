@@ -1,0 +1,16 @@
+      - textbox "字体大小": 默认
+      - generic: 默认纸张大小
+        - option "A4" [selected]
+        - option "A3"
+        - option "A5"
+        - option "信纸"
+      - generic: 默认纸张方向
+        - option "纵向" [selected]
+        - option "横向"
+      - button "页面水印设置":
+        - generic: 页面水印设置
+      - generic: 透明度
+      - generic: 字体大小
+      - generic: 字体颜色
+      - generic: 水印类型
+      - generic: 水印内容

@@ -1,3 +1,7 @@
+/**
+ * 验证公式的原子节点、源码持久化、受限 MathML 渲染、异步视图更新和格式刷协作。
+ * 公式编辑只更新匹配原目标，源码或展示错误仍可恢复，插入/删除与相邻输入独立撤销。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -10,6 +14,7 @@ import { renderFormula, renderFormulaHtml } from "../src/pages/editor/tools/form
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 
+// 安装编辑器需要的浏览器对象和帧调度，让 Node 测试执行真实 schema/事务逻辑；JSDOM 不承担原生版式验收。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
@@ -17,10 +22,13 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
 
+// 每个场景创建独立编辑器并在 finally 销毁，隔离正文、插件和撤销历史；扩展组合只提供该组验证所需能力。
 const createEditor = (content = "<p>前后</p>") => new Editor({
   element: document.createElement("div"), extensions: createExtensions(), content
 })
+// 最小公式 fixture 仅存类型与 LaTeX，展示 MathML 不进入持久节点属性。
 const formula = (latex = "x^2", type = "inlineMath") => ({ type, attrs: { latex } })
+// 使用真实节点选区模拟打开公式弹窗，编辑/删除测试由此校验目标身份而非仅靠位置数值。
 const selectFormula = (editor, position) => {
   editor.view.dispatch(editor.state.tr.setSelection(NodeSelection.create(editor.state.doc, position)))
   return editor.state.selection
@@ -95,6 +103,7 @@ test("只读、组合输入、代码块、过期选区和原公式不匹配均�
   assert.equal(applyFormula(editor, null, values), false)
 })
 
+// 合法复杂公式与受限指令并列验证，证明限制防止无界/外部内容，同时不会禁掉常规数学结构。
 test("MathML 支持分数矩阵，拒绝非法语法、外部资源、HTML 与宏循环", async () => {
   for (const latex of ["\\frac{a}{b}", "\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}"]) {
     const html = await renderFormula(latex, true)
@@ -148,6 +157,7 @@ test("预渲染 HTML 无外链依赖，内部粘贴仅恢复源码，错误源�
   }
 })
 
+// 快速更新和销毁制造展示请求迟到，最终 DOM 必须对应最新源码且不访问已结束视图。
 test("节点异步渲染只保留最新源码，销毁后不再改 DOM", async () => {
   const editor = createEditor({ type: "doc", content: [formula("x", "blockMath")] })
   const dom = editor.view.dom.querySelector('[data-type="block-math"]')
@@ -161,6 +171,7 @@ test("节点异步渲染只保留最新源码，销毁后不再改 DOM", async (
   assert.equal(dom.innerHTML, html)
 })
 
+// 选择范围含公式时样式只作用文字，逐节点核对源码和类型，防止格式工具重建或展开公式。
 test("格式刷跨公式应用只修改文字，公式源码与原子结构保持", () => {
   const editor = createEditor({ type: "doc", content: [
     { type: "paragraph", content: [{ type: "text", text: "源", marks: [{ type: "bold" }] }] },

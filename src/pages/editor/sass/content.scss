@@ -1,3 +1,4 @@
+// 文档内容样式是编辑、HTML 和打印的共用排版契约；界面主题与交互专属背景在其它文件定义。
 @use "../../../assets/style/theme.scss" as *;
 
 // ProseMirror、独立 HTML 与打印共享内容规则；全部限定在编辑器内容命名空间。
@@ -15,15 +16,86 @@
   p { margin: 0 0 1em; }
   // TextStyle 在 strong 外层；复制解析产生的 strong 不应再次放大显式字重。
   [data-font-weight] strong { font-weight: inherit; }
+  // 标题默认外观也由 text-appearance 工具读取，格式刷可将这些计算样式带到目标文字。
   h1 { margin: 0 0 22px; font-weight: 600; font-size: 30px; color: #242633; line-height: 1.5; letter-spacing: -0.6px; }
   h2 { margin: 32px 0 14px; font-weight: 600; font-size: 20px; color: #363444; line-height: 1.55; }
   h3 { margin: 24px 0 10px; font-weight: 600; font-size: 17px; color: #363444; line-height: 1.55; }
+  h4 { margin: 20px 0 8px; font-weight: 600; font-size: 15px; color: #363444; line-height: 1.55; }
+  h5 { margin: 18px 0 8px; font-weight: 600; font-size: 14px; color: #363444; line-height: 1.55; }
+  h6 { margin: 16px 0 6px; font-weight: 600; font-size: 13px; color: #363444; line-height: 1.55; }
+  // 普通块、链接、列表与批注附录使用固定正文色板，保证导出脱离应用主题也能一致显示。
   hr { margin: 28px 0; height: 1px; background: #eaeaf0; border: 0; }
   blockquote { margin: 28px 0; padding: 13px 20px; color: #797087; background: #f6f4fb; border-left: 3px solid #b6abd9; }
   blockquote p { margin: 0; }
+  // 富文本容器沿正文自然排列；颜色、边框及内边距由已校验节点属性内联输出。
+  [data-type="text-box"] {
+    box-sizing: border-box; margin: 20px 0; max-width: 100%; border-radius: 4px;
+    > :first-child { margin-top: 0; }
+    > :last-child { margin-bottom: 0; }
+    &.ProseMirror-selectednode { outline: 2px solid #8271df; outline-offset: 2px; }
+  }
+  // 编辑节点的按钮和离线 HTML 的 summary 共用标题排版，详情正文始终是实际文档内容。
+  [data-type="details"] {
+    margin: 20px 0; max-width: 100%; border: 1px solid #d9dbe5; border-radius: 4px;
+    &.ProseMirror-selectednode { outline: 2px solid #8271df; outline-offset: 2px; }
+    > summary, > [data-details-toggle] {
+      box-sizing: border-box; width: 100%; padding: 10px 14px; font: inherit; font-weight: 500;
+      color: #363444; background: #f6f5fa; border: 0; border-radius: 3px; text-align: left; cursor: pointer;
+      overflow-wrap: anywhere;
+    }
+    > [data-details-toggle] { display: flex; align-items: center; gap: 10px; }
+    > [data-details-toggle]:focus-visible { outline: 2px solid #8271df; outline-offset: -2px; }
+    [data-details-chevron] { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 20px; }
+    [data-details-chevron] svg { width: 20px; height: 20px; }
+    &[data-expanded="true"] [data-details-chevron] { transform: rotate(90deg); }
+    > [data-details-content] {
+      padding: 14px; border-top: 1px solid #e5e3ee;
+      > :first-child { margin-top: 0; }
+      > :last-child { margin-bottom: 0; }
+    }
+    > [data-details-content][hidden] { display: none; }
+  }
   a { color: $theme-color; text-decoration: underline; }
+  // 编辑与离线 HTML 共用目录外观，缩进来自标题级别；不使用假页码或可编辑列表编号。
+  [data-type="table-of-contents"] {
+    box-sizing: border-box; margin: 24px 0; padding: 18px 22px; max-width: 100%;
+    color: #363444; background: #f8f7fc; border: 1px solid #e3dff0; border-radius: 4px;
+    &.ProseMirror-selectednode { outline: 2px solid #8271df; outline-offset: 2px; }
+    > [data-toc-title] { margin: 0 0 10px; font-size: 18px; font-weight: 600; line-height: 1.5; }
+    > [data-toc-entries-list] { margin: 0; padding: 0; list-style: none; }
+    [data-toc-level] { margin: 4px 0; line-height: 1.65; }
+    @for $level from 2 through 6 {
+      [data-toc-level="#{$level}"] { padding-left: ($level - 1) * 1.25em; }
+    }
+    a { display: inline-block; max-width: 100%; border-radius: 2px; text-decoration: none; overflow-wrap: anywhere; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid #8271df; outline-offset: 2px; }
+    [data-toc-empty] { margin: 0; color: #797087; font-size: 13px; }
+  }
+  // 滚动定位为纸张留出少量上下文，不向正文增加可见字符或占位节点。
+  [data-navigation-id] { scroll-margin-block: 24px; }
+  .mewoc-comment-anchor { background: #fff0b6; border-bottom: 1px solid #ce9b27; }
+  &.mewoc-comment-appendix, .mewoc-comment-appendix { margin-top: 32px; padding-top: 16px; border-top: 1px solid #d9dbe5; }
+  &.mewoc-comment-appendix li, .mewoc-comment-appendix li { margin-bottom: 16px; white-space: pre-wrap; overflow-wrap: anywhere; }
   ul, ol { padding-left: 1.6em; }
   li > p { margin-bottom: 0.3em; }
+  // 上下标不额外撑开行高，保留中文正文与公式式文字在同一行的基线。
+  sup, sub { position: relative; font-size: 0.75em; line-height: 0; vertical-align: baseline; }
+  sup { top: -0.5em; }
+  sub { bottom: -0.25em; }
+  // 编辑 NodeView 与静态 HTML 共用 li/label/div 结构；子列表仍按自己的缩进和类型呈现。
+  ul[data-type="taskList"] { padding-left: 0; list-style: none; }
+  li[data-type="taskItem"] {
+    display: flex; align-items: flex-start; gap: 0.5em;
+    > label { display: flex; flex: 0 0 auto; align-items: center; height: 1.75em; }
+    > label > input { margin: 0; width: 1em; height: 1em; accent-color: $theme-color; cursor: pointer; }
+    > label > input:disabled { opacity: 1; cursor: default; }
+    > div { flex: 1; min-width: 0; }
+    > div > p { margin-bottom: 0.3em; }
+    > div > :last-child { margin-bottom: 0.3em; }
+    ul, ol { margin-top: 0.3em; }
+  }
+  // 屏幕源码保留空白与横向滚动；语法类别由高亮插件/导出器生成，样式仅负责着色。
   pre { padding: 16px; overflow-x: auto; font-family: Consolas, monospace; color: #e0dcef; background: #282b39; border-radius: 6px; }
   code { font-family: Consolas, monospace; font-size: 0.9em; }
   pre code {
@@ -37,6 +109,7 @@
     .hljs-built_in, .hljs-type, .hljs-meta { color: #e9d398; }
   }
   img { max-width: 100%; height: auto; }
+  // 附件布局同时用于 NodeView 和静态 HTML；下载是独立链接，文件名长时可自然折行。
   [data-type="attachment"] {
     display: flex; align-items: center; gap: 14px; margin: 18px 0; padding: 14px 16px;
     font-size: 14px; line-height: 1.5; background: #f8f7fc; border: 1px solid #e3dff0; border-radius: 8px;
@@ -48,17 +121,26 @@
     [data-attachment-download] { flex-shrink: 0; padding: 4px 6px; font-size: 13px; border-radius: 4px; }
     [data-attachment-download]:focus-visible { outline: 2px solid $theme-color; outline-offset: 2px; }
   }
+  // 公式按节点类型采用行内/居中块布局，失败态展示可恢复源码，选中框提示整体节点选区。
   [data-type="inline-math"] { display: inline-block; padding: 0 2px; max-width: 100%; vertical-align: middle; }
   [data-type="block-math"] { margin: 18px 0; max-width: 100%; overflow-x: auto; text-align: center; }
   [data-type="inline-math"], [data-type="block-math"] {
     &.ProseMirror-selectednode { outline: 2px solid #8271df; }
     &[data-formula-error] { color: #a63737; background: #fff0f0; overflow-wrap: anywhere; }
   }
+  // figure 是编辑专用图片壳，承担选中框与拖动手柄；图片内容自身仍按文档属性呈现。
   [data-document-image] { position: relative; display: table; margin: 20px 0; max-width: 100%; line-height: 0; }
+  // 编辑器的 figure 与静态 HTML 的 img 使用相同水平对齐；纸张缩放不进入文档尺寸。
+  [data-document-image][data-image-align="center"] { margin-left: auto; margin-right: auto; }
+  [data-document-image][data-image-align="right"] { margin-left: auto; margin-right: 0; }
+  img[data-mewoc-image-align] { display: block; margin: 20px 0; }
+  img[data-mewoc-image-align="center"] { margin-left: auto; margin-right: auto; }
+  img[data-mewoc-image-align="right"] { margin-left: auto; margin-right: 0; }
   [data-document-image] img { display: block; }
   [data-document-image][data-selected] { outline: 2px solid #8271df; }
   [data-resize-handle] { position: absolute; right: -5px; bottom: -5px; padding: 0; width: 11px; height: 11px; background: $theme-color; border: 2px solid #ffffff; border-radius: 2px; cursor: nwse-resize; touch-action: none; }
   &[contenteditable="false"] [data-resize-handle] { display: none; }
+  // 固定表格布局与 colgroup 一起维持列宽；过宽表格在 wrapper 内滚动，选区遮罩不拦截点击。
   table { margin: 18px 0; width: 100%; table-layout: fixed; border-collapse: collapse; }
   td, th { position: relative; padding: 8px 10px; min-width: 35px; vertical-align: top; border: 1px solid #d9dbe5; }
   th { font-weight: 600; background: #f2f1f8; }
@@ -67,6 +149,7 @@
   .selectedCell::after { position: absolute; z-index: 2; inset: 0; background: #897bd72e; pointer-events: none; content: ""; }
   .column-resize-handle { position: absolute; z-index: 3; top: 0; right: -2px; bottom: 0; width: 4px; background: #9c8cec; pointer-events: none; }
   &.resize-cursor { cursor: col-resize; }
+  // 屏幕显示分页提示、搜索结果与空文档占位；这些反馈不代表实时自动分页。
   [data-page-break] { position: relative; margin: 24px 0; height: 24px; border-top: 1px dashed #c8c4d9; }
   [data-page-break]::after { position: absolute; top: -9px; left: 40%; padding: 0 10px; font-size: 10px; color: #a4a0b3; background: #ffffff; content: "分页符"; }
   .find-and-replace-result { background: #fff1a8; }
@@ -81,10 +164,16 @@
     min-height: 0;
     [data-page-break] { margin: 0; height: 0; border: 0; break-before: page; }
     [data-page-break]::after, [data-resize-handle] { display: none; }
-    h1, h2, h3 { break-after: avoid; }
+    h1, h2, h3, h4, h5, h6 { break-after: avoid; }
     figure, img { break-inside: avoid; }
     [data-type="attachment"] { break-inside: avoid; }
     [data-attachment-download] { display: none; }
+    // 静态快照默认展开；同时防御用户在离线 HTML 中收起后打印，避免正文漏印。
+    [data-type="details"] {
+      > [data-details-content] { display: block !important; }
+      &::details-content { content-visibility: visible !important; height: auto !important; }
+      > summary, > [data-details-toggle] { break-after: avoid; }
+    }
     pre { overflow: visible; color: #252837; background: #f6f6f8; white-space: pre-wrap; border: 1px solid #e4e5ec; }
     pre code {
       white-space: pre-wrap; overflow-wrap: anywhere;

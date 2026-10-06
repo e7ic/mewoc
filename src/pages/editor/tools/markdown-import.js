@@ -1,6 +1,11 @@
+/**
+ * Markdown 导入的语义适配层：读取 remark AST，构造编辑器支持的节点与标记。
+ * 先收集定义再转换，无法原样表达的 HTML、资源、脚注或格式保留为文字并返回说明。
+ */
 import { isSafeLink } from "./document-schema.js"
 import { getFormulaSourceError } from "./formula.js"
 
+// Markdown 强调节点映射到编辑器 marks；链接、代码与公式使用独立规则处理。
 const MARKDOWN_MARKS = new Map([["strong", "bold"], ["emphasis", "italic"], ["delete", "strike"]])
 
 /**
@@ -12,6 +17,7 @@ export function createMarkdownContent(tree) {
   const warnings = new Set()
   const definitions = new Map()
   let count = 0
+  // 引用定义允许出现在正文之后，预扫描先建索引；大小写折叠且首个定义优先，符合引用解析规则。
   const visit = (node, depth) => {
     count += 1
     if (depth > 48 || count > 50000) throw new Error("Markdown 结构过深或节点过多")
@@ -24,6 +30,8 @@ export function createMarkdownContent(tree) {
   return { content: { type: "doc", content: content.length ? content : [{ type: "paragraph" }] }, warnings: [...warnings] }
 }
 
+/** 扁平化块转换结果，支持一个源块（如脚注定义）展开为多个编辑器段落。 */
+/** 按块语义生成 JSON；定义节点只供引用查找，未知类型必须报错，不能丢弃正文后继续导入。 */
 function getMarkdownBlocks(nodes, context) {
   return nodes.flatMap(node => getMarkdownBlock(node, context))
 }
@@ -33,14 +41,14 @@ function getMarkdownBlock(node, context) {
   if (node.type === "definition") return []
   if (node.type === "paragraph") return [{ type: "paragraph", content: getMarkdownInline(node.children, context) }]
   if (node.type === "heading") {
-    if (node.depth > 3) warnings.add("四至六级标题已转换为三级标题")
-    return [{ type: "heading", attrs: { level: Math.min(node.depth, 3) }, content: getMarkdownInline(node.children, context) }]
+    return [{ type: "heading", attrs: { level: node.depth }, content: getMarkdownInline(node.children, context) }]
   }
   if (node.type === "blockquote") {
     const content = getMarkdownBlocks(node.children, context)
     return [{ type: "blockquote", content: content.length ? content : [{ type: "paragraph" }] }]
   }
   if (node.type === "thematicBreak") return [{ type: "horizontalRule" }]
+  // 围栏语言保留为属性，过长语言降为纯文本；附加 meta 无编辑器对应项但源码不受影响。
   if (node.type === "code") {
     let language = node.lang || "plaintext"
     if (language.length > 1000) {
@@ -55,8 +63,9 @@ function getMarkdownBlock(node, context) {
     return [{ type: "paragraph", content: getText(node.value) }]
   }
   if (node.type === "math") return getMarkdownFormula(node.value, false, context)
-  if (node.type === "list") return [getMarkdownList(node, context)]
+  if (node.type === "list") return getMarkdownLists(node, context)
   if (node.type === "table") return [getMarkdownTable(node, context)]
+  // 脚注不生成隐藏引用体系，而是在当前位置保留带标识的说明和完整正文块。
   if (node.type === "footnoteDefinition") {
     warnings.add("脚注已转换为带编号的普通文字")
     return [{ type: "paragraph", content: getText(`[^${node.label || node.identifier}]：`) }, ...getMarkdownBlocks(node.children, context)]
@@ -64,19 +73,26 @@ function getMarkdownBlock(node, context) {
   throw new Error(`暂不支持 Markdown 节点：${node.type}`)
 }
 
-function getMarkdownList(node, context) {
+/**
+ * GFM 允许同一列表混排普通项和任务项；编辑器分别使用 listItem / taskItem。
+ * 按连续类型拆成相邻列表，保留正文顺序、勾选状态与嵌套，不把普通项误转为未完成任务。
+ */
+function getMarkdownLists(node, context) {
   if (node.ordered && node.start === 0) context.warnings.add("从 0 开始的有序列表已改为从 1 开始")
-  const content = node.children.map(item => {
+  const lists = []
+  node.children.forEach((item, index) => {
+    const task = typeof item.checked === "boolean"
+    const type = task ? "taskList" : node.ordered ? "orderedList" : "bulletList"
+    if (task && node.ordered) context.warnings.add("带编号的任务项已转换为待办清单，保留勾选状态，普通列表项继续保留原编号")
+    if (lists.at(-1)?.type !== type) lists.push({
+      type, ...(type === "orderedList" && { attrs: { start: (node.start || 1) + index } }), content: []
+    })
     const blocks = getMarkdownBlocks(item.children, context)
-    // listItem 的 schema 要求首块为段落，代码/公式开头的列表项需补空段落才能载入。
+    // 两种列表项均以段落开头，代码/公式开头需补空段落才能载入。
     if (blocks[0]?.type !== "paragraph") blocks.unshift({ type: "paragraph", content: [] })
-    if (item.checked !== null && item.checked !== undefined) {
-      context.warnings.add("任务列表已保留为 [x] / [ ] 文字，不提供勾选控件")
-      blocks[0].content = [...getText(item.checked ? "[x] " : "[ ] "), ...(blocks[0].content || [])]
-    }
-    return { type: "listItem", content: blocks }
+    lists.at(-1).content.push({ type: task ? "taskItem" : "listItem", ...(task && { attrs: { checked: item.checked } }), content: blocks })
   })
-  return node.ordered ? { type: "orderedList", attrs: { start: node.start || 1 }, content } : { type: "bulletList", content }
+  return lists
 }
 
 // GFM 首行映射表头，各行补齐至最大列数；对齐写入单元格内段落，符合编辑器属性归属。
@@ -92,6 +108,10 @@ function getMarkdownTable(node, context) {
   })) }
 }
 
+/**
+ * 递归传播行内 marks，遇到代码使用互斥 code 标记，图片与不支持 HTML 保留为显式文字。
+ * 输出只含编辑器支持的行内节点，外部地址不会触发资源请求。
+ */
 function getMarkdownInline(nodes, context, marks = []) {
   return nodes.flatMap(node => {
     if (node.type === "text") return getText(node.value, marks)
@@ -122,6 +142,7 @@ function getMarkdownInline(nodes, context, marks = []) {
   })
 }
 
+/** 解析直接/引用链接，仅安全协议创建 link mark；其它地址附在正文后以保留用户原输入。 */
 function getMarkdownLink(node, context, marks) {
   const link = node.type === "link" ? node : context.definitions.get(node.identifier.toUpperCase())
   if (link?.title) context.warnings.add("链接的附加标题不受支持，已保留正文与地址")
@@ -144,6 +165,7 @@ function getMarkdownFormula(latex, inline, context, marks = []) {
   return [{ type: inline ? "inlineMath" : "blockMath", attrs: { latex }, ...(marks.length ? { marks } : {}) }]
 }
 
+/** 仅为非空源码创建文字节点，已有 marks 原样附上，空字符串不生成非法空 text 节点。 */
 function getText(value, marks = []) {
   return value ? [{ type: "text", text: value, ...(marks.length ? { marks } : {}) }] : []
 }

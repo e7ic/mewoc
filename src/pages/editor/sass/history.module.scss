@@ -1,0 +1,130 @@
+// 历史检查点列表、恢复确认与只读预览布局，版本内容使用固定白纸色板。
+@use "../../../assets/style/theme.scss" as *;
+
+// 整个历史弹窗主体随视口限制高度，长列表和预览都留在本弹窗滚动区域。
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  max-height: calc(100dvh - 220px);
+  overflow-y: auto;
+}
+
+.documentTitle, .versionTitle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  font-weight: 600;
+  line-height: 1.6;
+
+  > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+  :global(.ant-tag) { flex-shrink: 0; margin: 2px 0 0; }
+}
+
+.hint, .notice {
+  margin: 0;
+  color: $ui-muted;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.loading { display: flex; justify-content: center; align-items: center; gap: 12px; min-height: 100px; color: $ui-muted; }
+
+// 检查点命名输入分配剩余宽度，保存动作保留固定点击区域。
+.checkpoint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > :global(.ant-input-affix-wrapper) { flex: 1; min-width: 120px; }
+  > button { flex-shrink: 0; }
+}
+
+// 版本元信息与动作允许换行，长标题不会挤出操作按钮。
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start !important;
+  gap: 12px;
+  min-width: 0;
+}
+
+.details { flex: 1; min-width: 200px; }
+
+.metadata { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 5px; color: $ui-muted; font-size: 12px; line-height: 1.6; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.pagination { display: flex; justify-content: flex-end; padding-top: 4px; overflow-x: auto; }
+
+// 预览作为列表下方独立区域，分隔线表明进入只读版本内容。
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid #e3dff0;
+}
+
+.previewHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+
+  > div { min-width: 0; overflow-wrap: anywhere; }
+  strong { margin-right: 10px; }
+  p { margin: 6px 0 0; color: $ui-muted; font-size: 12px; line-height: 1.6; }
+  > button { flex-shrink: 0; }
+}
+
+.pageDescription { margin: 0; color: $ui-muted; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+
+// 预览背景与白纸分离，过宽内容在局部滚动而不扩张整个弹窗。
+.paperViewport {
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px;
+  overflow-x: auto;
+  background: #f5f3fa;
+  border-radius: 6px;
+}
+
+.paper {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #e3dff0;
+  border-radius: 6px;
+
+  :global(.mewoc-content) { color: #292c38; }
+}
+
+// 正文层位于水印之上，水印本身不参与预览文字、链接与选区的事件命中。
+.paperContent { position: relative; z-index: 1; }
+
+.previewDocumentTitle { margin: 0 0 24px; color: #6f677d; font-size: 12px; overflow-wrap: anywhere; }
+.confirmation { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.confirmation p { margin: 0; line-height: 1.8; overflow-wrap: anywhere; }
+
+// 窄视口改为上下排布，检查点输入与版本详情优先占满一行。
+@media (max-width: 600px) {
+  .checkpoint {
+    flex-wrap: wrap;
+
+    > :global(.ant-input-affix-wrapper) { flex-basis: 100%; }
+  }
+
+  .details { min-width: 100%; }
+  .pagination { justify-content: flex-start; }
+  .paperViewport { padding: 6px; }
+  .loading { align-items: flex-start; padding: 24px 0; }
+}

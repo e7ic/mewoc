@@ -1,0 +1,25 @@
+Mewoc Logo v1
+Generated with the built-in image_gen tool.
+Final file: public/brand/mewoc-logo-v1.png
+Concept: folded-paper M with the existing mewoc. wordmark.
+
+INITIAL GENERATION PROMPT
+Use case: logo-brand
+Asset type: primary horizontal logo for Mewoc, a calm desktop document editor for writing, formatting and local document management.
+Primary request: Create one original, polished brand logo combining a distinctive folded-paper M symbol with the exact lowercase wordmark "mewoc.".
+Scene/backdrop: genuinely transparent background, clean alpha, no baked-in checkerboard.
+Subject: A compact, confident geometric monogram. Two folded page forms resolve into an unmistakable M, using a simple silhouette, balanced open negative space and gently softened corners. The paper metaphor should feel clever and restrained, not like a generic file icon. Pair the symbol with a carefully kerned, substantial, friendly geometric sans-serif wordmark.
+Style/medium: precise flat vector-like logo artwork rendered as a high-resolution PNG; clean, minimal, editorial software identity.
+Composition/framing: one horizontal lockup centered on a landscape canvas approximately 3:2; symbol on the left, wordmark on the right as conventional reading order; symbol visually slightly taller than the wordmark. Good clear space around the entire lockup. Strong legibility at small sizes.
+Color palette: symbol in the project's existing solid violet #6657D9; wordmark in existing deep charcoal #252837; the final period in violet #6657D9. Two solid colors only.
+Text (verbatim): "mewoc." — m e w o c followed by one period, all lowercase, exactly this spelling, no other text.
+Constraints: deliver a single finished logo, not an exploration board or a mockup. Make the symbol memorable through geometry and negative space rather than tiny detail. True transparency including open areas of the mark. Keep every part fully inside the canvas.
+Avoid: gradients, shadows, 3D, lighting effects, gloss, texture, thin hairlines, pen clipart, extra symbols, slogans, labels, watermarks, presentation boards, backgrounds.
+
+REFINEMENT PROMPT
+Use case: logo-brand
+Input image: edit target, the first Mewoc logo draft.
+Primary request: Correct only the rendering finish and transparency of this exact logo. Preserve the same folded-paper M geometry, wordmark lettering, exact text "mewoc.", proportions, position and spacing.
+Replace ALL shaded or gradient regions of the M symbol with one uniform flat opaque violet #6657D9. Make the final period the same flat opaque violet. Replace ALL regions of the letters mewoc with one uniform flat opaque charcoal #252837.
+REMOVE EVERY trace of surrounding glow, bloom, light, haze, blur and shadow. The outside of the M and text must be completely empty, alpha 0. Interior negative spaces must also be truly transparent. The logo shapes themselves must be opaque, with smooth crisp antialiased boundaries only. A flat two-ink identity asset, not illuminated artwork.
+Keep the logo arrangement unchanged. Do not add a white or black background, a checkerboard, a box, any other words, effects or decorations. Deliver clean transparent PNG.

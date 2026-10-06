@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-02",
+  "node": {
+    "passed": 394,
+    "total": 394
+  },
+  "browser": {
+    "passed": 149,
+    "total": 149,
+    "suites": {
+      "base-browser.json": {
+        "passed": 62,
+        "total": 62
+      },
+      "comments-browser.json": {
+        "passed": 8,
+        "total": 8
+      },
+      "docx-export-browser.json": {
+        "passed": 5,
+        "total": 5
+      },
+      "docx-import-browser.json": {
+        "passed": 6,
+        "total": 6
+      },
+      "history-browser.json": {
+        "passed": 11,
+        "total": 11
+      },
+      "interaction-browser.json": {
+        "passed": 9,
+        "total": 9
+      },
+      "library-browser.json": {
+        "passed": 8,
+        "total": 8
+      },
+      "paragraph-browser.json": {
+        "passed": 9,
+        "total": 9
+      },
+      "precision-browser.json": {
+        "passed": 10,
+        "total": 10
+      },
+      "ribbon-browser.json": {
+        "passed": 11,
+        "total": 11
+      },
+      "templates-browser.json": {
+        "passed": 10,
+        "total": 10
+      }
+    }
+  },
+  "lint": "passed",
+  "build": "passed",
+  "designQA": "passed",
+  "testOrigin": "http://127.0.0.1:4183",
+  "appOrigin": "http://127.0.0.1:4177",
+  "manual": {
+    "fontStepAndUndo": "passed",
+    "tableAlignment": {
+      "vertical": "middle",
+      "horizontal": "center"
+    },
+    "tableBackgroundAfterReopen": "rgb(207, 226, 255)",
+    "darkAndCompact": "passed",
+    "narrowToolbarWidth": 900,
+    "nativeImeOrMouseRetest": false
+  },
+  "notes": [
+    "模板全库计数套件最终单独运行，避免并行创建文档干扰。",
+    "开发中 HMR 重置运行不计入结果。"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-12",
+  "scope": "VML text boxes and embedded raster images",
+  "node24": { "passed": 192, "failed": 0 },
+  "node18": { "passed": 26, "failed": 0 },
+  "independentFixtures": { "acceptedRoundTrip": 12, "explicitlyRejected": 6 },
+  "lint": "passed",
+  "build": { "status": "passed", "totalKB": 3039.1, "gzipKB": 899.7 },
+  "browser": {
+    "environment": "Codex in-app browser, http://127.0.0.1:4180/",
+    "fixture": "tests/fixtures/docx-compatibility/text-box.docx",
+    "preview": "Datum plane exactly once, with layout conversion warning",
+    "confirmImport": "passed",
+    "saveAndReload": "passed",
+    "firstAttempt": "dialog disappeared after file chooser; not counted as passed",
+    "fileChooserLatency": "long tool calls; not measured as converter duration"
+  },
+  "limitations": [
+    "The user's failing DOCX has not been supplied or verified",
+    "Native Word/WPS open and save were not performed",
+    "Drawing placement and appearance are not preserved",
+    "Unknown text boxes, vectors and unsupported content still fail explicitly"
+  ]
+}

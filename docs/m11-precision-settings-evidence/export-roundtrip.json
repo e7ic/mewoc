@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-01T15:50:21.267Z",
+  "source": "真实UI保存、刷新与导出下载",
+  "documentId": "972658c0-9937-41f8-ac12-d66ec53d84c9",
+  "reimportedDocumentId": "e4ef86e7-a732-4b97-b111-6b5fe14be019",
+  "assets": 1,
+  "selectedCell": {
+    "backgroundColor": "#ede8fa",
+    "verticalAlign": "middle",
+    "paddingX": 18,
+    "paddingY": 12,
+    "borderColor": "#8e77bc",
+    "borderWidth": 2,
+    "borderStyle": "dashed",
+    "colspan": 1,
+    "rowspan": 1,
+    "colwidth": [
+      230
+    ],
+    "align": null
+  },
+  "image": {
+    "assetId": "m5-image",
+    "alt": "紫色示例图片 · 居中",
+    "title": "360 × 206 px，锁定比例，可恢复原始比例。",
+    "width": 360,
+    "height": 206,
+    "align": "center",
+    "lockAspectRatio": true
+  },
+  "checks": {
+    "portable": true,
+    "html": true,
+    "docx": true
+  },
+  "files": [
+    "demo-export.mewoc.json",
+    "demo-export.html",
+    "demo-export.docx"
+  ]
+}

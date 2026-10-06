@@ -1,0 +1,13 @@
+// 工具栏分组下拉菜单样式，活动项以 aria-checked 回显，键盘焦点保持可见。
+@use "../../../assets/style/theme.scss" as *;
+
+.menu { display: flex; flex-direction: column; gap: 3px; min-width: 132px; }
+.menu button {
+  display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 5px 8px;
+  border-radius: 3px; color: $ui-text; white-space: nowrap; text-align: left;
+  &[aria-checked="true"] { color: $ui-accent; background: $ui-active; }
+  &:hover { background: $ui-hover; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: -2px; }
+}
+// 勾选图标推到右侧，与项目名称分开，长菜单项仍保持单行。
+.check { margin-left: auto; }

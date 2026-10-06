@@ -1,6 +1,10 @@
+/**
+ * 从正文标题构建可点击的大纲，按标题层级缩进并定位回正文。
+ * 大纲是当前不可变文档的派生视图，正文变化后重新生成位置，避免缓存失效节点坐标。
+ */
 import { useMemo } from "react"
 import { useEditorState } from "@tiptap/react"
-import { AlignLeftOutlined, CloseOutlined } from "@ant-design/icons"
+import { IconListTree, IconX } from "@tabler/icons-react"
 import { useDocumentEditor } from "./EditorProvider.jsx"
 import styles from "../sass/panels.module.scss"
 
@@ -8,6 +12,7 @@ export function OutlinePanel() {
   const { editor, store } = useDocumentEditor()
   // 只订阅不可变 doc 引用，移动光标无需重新扫描大纲；正文变更后重建位置，避免缓存旧 pos。
   const doc = useEditorState({ editor, selector: ({ editor: current }) => current.state.doc, equalityFn: (a, b) => a === b })
+  // 遍历标题节点采集 pos、级别与纯文本，计算结果仅在 doc 更新时重建。
   const headings = useMemo(() => {
     const items = []
     doc.descendants((node, pos) => {
@@ -22,22 +27,21 @@ export function OutlinePanel() {
     editor.view.nodeDOM(heading.pos)?.scrollIntoView({ behavior: "smooth", block: "center" })
   }
 
+  // 列表按钮根据标题级别增加左侧留白；无标题时展示空态，收起操作只改变视图状态。
   return (
     <aside className={styles.container} aria-label="文档大纲">
       <div className={styles.header}>
-        <strong><AlignLeftOutlined /> 文档大纲</strong>
-        <button type="button" aria-label="收起大纲" onClick={() => store.getState().updateView({ outlineOpen: false })}><CloseOutlined /></button>
+        <strong><IconListTree aria-hidden="true" /> 文档大纲</strong>
+        <button type="button" aria-label="收起大纲" onClick={() => store.getState().updateView({ outlineOpen: false })}><IconX aria-hidden="true" /></button>
       </div>
-      <p className={styles.caption}>用标题，理清每一个思路</p>
       <nav className={styles.outline}>
         {headings.map(heading => (
           <button key={heading.pos} type="button" style={{ paddingLeft: 16 + (heading.level - 1) * 12 }} onClick={() => handleLocate(heading)}>
             <span className={styles.dot} />{heading.text || "未命名标题"}
           </button>
         ))}
-        {!headings.length && <p className={styles.empty}>为段落设置标题，<br />即可在这里快速定位。</p>}
+        {!headings.length && <p className={styles.empty}>暂无标题</p>}
       </nav>
-      <div className={styles.note}><span>一点写作提示</span><p>先记录想法，<br />再慢慢雕琢。</p><small>⌘ / Ctrl + S 保存文档</small></div>
     </aside>
   )
 }

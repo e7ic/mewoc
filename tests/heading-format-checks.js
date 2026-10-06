@@ -1,11 +1,14 @@
+/** 浏览器标题格式验收：默认视觉外观、格式刷、字号回显、显式字重与文件交换互相一致。 */
 import { createDocumentHtml } from "../src/pages/editor/tools/file-transfer.js"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 
+// 场景失败抛给外部检查包装器，便于统一汇总。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 使用真实字体计算值和 React 选择器文字，避免只检查节点属性遗漏 CSS 默认外观。
 export async function checkHeadingFormatFlows(left, check) {
   const { editor } = left
   await checkHeadingWeight(editor, check)
@@ -76,6 +79,7 @@ export async function checkHeadingFormatFlows(left, check) {
   })
 }
 
+// 正反向复制与显式加粗/字号组合验证外观优先级，同时保留目标段落类型。
 async function checkHeadingWeight(editor, check) {
   await check("标题手动字号与加粗优先；正文反刷标题保留级别并匹配实际外观", () => {
     for (const [headingSource, boldSource] of [[true, true], [false, false], [false, true]]) {
@@ -83,29 +87,33 @@ async function checkHeadingWeight(editor, check) {
         ? '<h1><strong><span style="font-size:24pt">标题</span></strong></h1><p>正文</p>'
         : `${boldSource ? "<p><strong>正文</strong></p>" : "<p>正文</p>"}<h3>标题</h3>`)
       const source = editor.view.dom.firstElementChild
-      const expected = getAppearance(source.querySelector("span") || source)
+      // 从实际文字读取，格式标记的空 widget 也可能是段落唯一的 span。
+      const expected = getAppearance(source)
       editor.commands.setTextSelection(1)
       editor.commands.copyFormat()
       editor.commands.setTextSelection({ from: 5, to: 7 })
       editor.commands.applyFormat()
       const target = editor.view.dom.children[1]
-      const actual = getAppearance(target.querySelector("span") || target)
+      const actual = getAppearance(target)
       assert(JSON.stringify(actual) === JSON.stringify(expected), `显式格式或反向复制不一致：${JSON.stringify({ headingSource, expected, actual })}`)
       assert(target.tagName === (headingSource ? "P" : "H3"), "改变了目标段落类型")
     }
   })
 }
 
+// 从实际文本父元素读取计算样式，覆盖 span/strong 嵌套而非只看块元素。
 function getAppearance(element) {
   const text = document.createTreeWalker(element, NodeFilter.SHOW_TEXT).nextNode()
   const css = getComputedStyle(text?.parentElement || element)
   return { fontSize: css.fontSize, fontWeight: css.fontWeight, color: css.color, lineHeight: css.lineHeight }
 }
 
+// 读取实际 AntD 选择器的显示标签，以验证 store/选区变化已更新界面。
 function getSizeLabel(wrapper) {
   return wrapper.querySelector('[aria-label="字号"]').closest(".ant-select").querySelector(".ant-select-selection-item")?.textContent
 }
 
+// 等待两帧，让选区驱动的 React 更新和浏览器样式计算完成后再断言。
 function nextFrame() {
   return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
 }

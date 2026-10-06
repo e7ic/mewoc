@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-02",
+  "tablerVersion": "3.48.0",
+  "directAntDesignIconImports": 0,
+  "directAntDesignIconsDependency": false,
+  "antdTransitiveDependencyRetained": true,
+  "node": {
+    "passed": 397,
+    "total": 397
+  },
+  "browser": {
+    "passed": 102,
+    "total": 102,
+    "suites": {
+      "base": {
+        "passed": 62,
+        "total": 62
+      },
+      "ribbon": {
+        "passed": 11,
+        "total": 11
+      },
+      "library": {
+        "passed": 8,
+        "total": 8
+      },
+      "history": {
+        "passed": 11,
+        "total": 11
+      },
+      "templates": {
+        "passed": 10,
+        "total": 10
+      }
+    }
+  },
+  "manual": [
+    "浅色与深色、双行与单行工具栏图标显示正常",
+    "表格上下文、搜索、文档库弹窗和分页实际可用",
+    "HEX FF0000应用为rgb(255,0,0)，无效ZZ保留草稿并显示错误",
+    "RGB 0/255/0应用为绿色",
+    "HSB亮度0时将色相改为240，恢复亮度100后得到蓝色",
+    "色相键盘右键从240到241，文字颜色变为rgb(4,0,255)",
+    "默认高亮FFF1AD可以明确应用，撤销恢复原文字背景",
+    "切换标签关闭颜色弹层",
+    "颜色面板HEX/RGB/HSB状态均无可见anticon元素",
+    "主服务4177重启后编辑器正常，83个Tabler图标、0个可见anticon元素"
+  ],
+  "lint": "passed",
+  "build": "passed",
+  "limitations": [
+    "保留AntD自身的间接图标依赖及许可信息，未修改第三方包源码",
+    "单元格合并/拆分使用Tabler通用合并/拆分箭头并保留中文按钮标签",
+    "本轮未重做真实输入法、物理拖动、Word/WPS验收"
+  ]
+}

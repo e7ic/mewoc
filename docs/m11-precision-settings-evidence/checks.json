@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-01T15:51:55.934Z",
+  "runtime": "Node 24.13.1",
+  "node": {
+    "passed": 323,
+    "total": 323
+  },
+  "lint": "passed, zero warnings",
+  "productionBuild": "passed",
+  "diffCheck": "passed",
+  "browser": {
+    "precision": {
+      "passed": 10,
+      "total": 10
+    },
+    "base": {
+      "passed": 62,
+      "total": 62
+    },
+    "library": {
+      "passed": 8,
+      "total": 8
+    },
+    "history": {
+      "passed": 11,
+      "total": 11
+    },
+    "comments": {
+      "passed": 8,
+      "total": 8
+    },
+    "templates": {
+      "passed": 10,
+      "total": 10
+    },
+    "docx-export": {
+      "passed": 5,
+      "total": 5
+    },
+    "docx-import": {
+      "passed": 6,
+      "total": 6
+    }
+  },
+  "browserTotal": 120,
+  "actualDownloads": {
+    "portable": true,
+    "html": true,
+    "docx": true
+  },
+  "origin": "http://127.0.0.1:4181",
+  "mainOrigin": "http://127.0.0.1:4177",
+  "nativeWordWps": "not performed",
+  "userMainDocument": "not edited"
+}

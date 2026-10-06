@@ -1,9 +1,12 @@
+/** Word 转换的共享内容样例：Node 包检查、渲染脚本与浏览器验收复用相同文档结构。 */
+// 短构造器保证段落、列表项与单元格 fixture 的基础 schema 一致。
 const paragraph = text => ({ type: "paragraph", content: text ? [{ type: "text", text }] : [] })
 const heading = text => ({ type: "heading", attrs: { level: 2 }, content: [{ type: "text", text }] })
 const item = (text, children = []) => ({ type: "listItem", content: [paragraph(text), ...children] })
 const cell = (text, attrs = {}, children = []) => ({ type: "tableCell", attrs: { colspan: 1, rowspan: 1, colwidth: [160], ...attrs }, content: [paragraph(text), ...children] })
 
 // 同一份复杂内容用于 Node 包结构检查、渲染检查和真实浏览器导出，避免每条链路各测一个样例。
+// 复制来源文档后覆盖正文，保留已有图片/附件资源，集中覆盖编号、公式、代码及合并嵌套表格。
 export function createComplexDocxDocument(base) {
   const document = structuredClone(base)
   document.title = "M7 · Word 复杂内容验收"
@@ -42,6 +45,7 @@ export function createComplexDocxDocument(base) {
   return document
 }
 
+// 独立构造无资源的长表格，供跨页与重复表头渲染核验；不修改原始 base。
 export function createLongDocxTable(base) {
   const document = structuredClone(base)
   document.title = "M7 · Word 长表格验收"

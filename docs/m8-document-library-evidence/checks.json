@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-01",
+  "runtime": "Node.js 24.13.1",
+  "nodeTests": {
+    "passed": 213,
+    "total": 213
+  },
+  "lint": "passed",
+  "productionBuild": "passed",
+  "diffWhitespace": "passed",
+  "inAppBrowser": {
+    "documentLibrary": "8/8",
+    "editorRegression": "62/62",
+    "docxImport": "6/6"
+  },
+  "note": "Browser checks ran on port 4180. Main development server remains on 4177. No new Node 18 or native-browser acceptance claimed."
+}

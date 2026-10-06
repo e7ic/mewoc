@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Word 导入：真实 Worker、编号、合并、公式和 Bitmap 释放",
+    "passed": true
+  },
+  {
+    "name": "Word 导入：取消真实 Worker 后可重试",
+    "passed": true
+  },
+  {
+    "name": "Word 导入：PNG、JPEG、WebP 真实解码，坏图拒绝",
+    "passed": true
+  },
+  {
+    "name": "Word 导入：取消预览不调用导入，失败文件可重新选择",
+    "passed": true
+  },
+  {
+    "name": "Word 导入：保存失败保留旧会话，重试成功后才创建资源 URL",
+    "passed": true
+  },
+  {
+    "name": "Word 导入：组件卸载中止旧任务，迟到结果不复活",
+    "passed": true
+  }
+]

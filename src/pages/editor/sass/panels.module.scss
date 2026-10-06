@@ -1,3 +1,4 @@
+// 大纲与查找替换侧栏布局：两者固定宽度、独立纵向滚动，纸张使用剩余空间。
 @use "../../../assets/style/theme.scss" as *;
 
 .container, .search {
@@ -9,10 +10,11 @@
   background: $ui-panel;
   border-right: 1px solid $ui-border;
   .header { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; }
-  .header strong { font-weight: 600; }
-  .header button { font-size: 10px; color: $ui-muted; }
-  .caption { margin-top: 12px; font-size: 10px; color: $ui-muted; line-height: 1.8; }
-  .outline { margin: 25px -18px 0; }
+  .header strong { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+  .header button { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; font-size: 18px; color: $ui-muted; border-radius: 3px; }
+  .header button:hover { color: $ui-text; background: $ui-hover; }
+  // 大纲按钮按标题层级由组件传入缩进，支持多行长标题，圆点保留固定尺寸。
+  .outline { margin: 12px -18px 0; }
   .outline button {
     display: flex;
     align-items: flex-start;
@@ -28,16 +30,8 @@
   }
   .dot { flex-shrink: 0; margin-top: 8px; width: 4px; height: 4px; background: #b8b6cd; border-radius: 50%; }
   .empty { padding: 14px 24px; font-size: 12px; color: $ui-muted; line-height: 2; }
-  .note {
-    margin-top: 90px;
-    padding: 18px 16px;
-    background: $ui-hover;
-    border-radius: 8px;
-    span { font-size: 10px; color: $ui-muted; letter-spacing: 1px; }
-    p { margin: 10px 0 16px; font-size: 15px; color: $ui-secondary; line-height: 1.9; }
-    small { font-size: 9px; color: $ui-muted; }
-  }
 }
+// 搜索位于纸张右侧，因此分隔线改到左边；输入与匹配导航纵向排列。
 .search {
   display: flex;
   flex-direction: column;
@@ -45,6 +39,7 @@
   width: 270px;
   border-right: 0;
   border-left: 1px solid $ui-border;
+  .caption { margin-top: 12px; font-size: 10px; color: $ui-muted; line-height: 1.8; }
   .navigation { display: flex; align-items: center; gap: 6px; }
   .navigation span:first-child { margin-right: auto; font-size: 11px; color: $ui-muted; }
 }

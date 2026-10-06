@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-01",
+  "runtime": "Node 24.13.1",
+  "node": {
+    "passed": 285,
+    "total": 285,
+    "added": 23
+  },
+  "lint": {
+    "passed": true,
+    "maxWarnings": 0
+  },
+  "productionBuild": {
+    "passed": true
+  },
+  "diffCheck": {
+    "passed": true
+  },
+  "browser": {
+    "templates": {
+      "passed": 10,
+      "total": 10,
+      "evidence": "browser-templates.json"
+    },
+    "regression": {
+      "passed": 62,
+      "total": 62,
+      "evidence": "browser-regression.json"
+    },
+    "library": {
+      "passed": 8,
+      "total": 8,
+      "evidence": "browser-library.json"
+    },
+    "history": {
+      "passed": 11,
+      "total": 11,
+      "evidence": "browser-history.json"
+    },
+    "comments": {
+      "passed": 8,
+      "total": 8,
+      "evidence": "browser-comments.json"
+    }
+  },
+  "exportRoundtrip": {
+    "passed": true,
+    "title": "会议纪要 · 模板实例",
+    "byteLength": 4137,
+    "newDocumentId": true,
+    "assets": 0,
+    "contentPreserved": true
+  },
+  "manual": {
+    "origin": "http://127.0.0.1:4181",
+    "document": "会议纪要 · 模板实例",
+    "template": "会议纪要 · 演示模板",
+    "checks": [
+      "内置会议纪要只读预览与新建",
+      "新文档保存",
+      "当前文档保存为自定义模板",
+      "刷新后模板与文档恢复",
+      "从自定义模板新建独立文档",
+      "实际 Mewoc 文件下载与重新读取"
+    ]
+  },
+  "observations": [
+    "首轮浏览器专项8/9：最后一条误以纯文本断言匹配含附件卡片的getText；改为首段匹配并继续核对编辑器身份与资源字节，最终10/10通过",
+    "完整页面发现新建按钮位于长预览底部，移至预览标题栏并复验10/10",
+    "下载事件监听未返回，但实际下载文件已在Downloads落盘，读取4137字节并完成Schema与Mewoc往返校验"
+  ],
+  "coverageLimits": [
+    "本批未重做Node18、Safari物理鼠标或Chrome真实输入法验收",
+    "模板保存在当前浏览器；模板自身无独立导入导出格式"
+  ]
+}

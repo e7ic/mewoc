@@ -1,0 +1,131 @@
+// 模板列表、搜索、创建动作与只读内容预览；内置和自定义类型由组件标签区分。
+@use "../../../assets/style/theme.scss" as *;
+
+// 模板主体独立滚动，限制高度以保留弹窗关闭与操作入口。
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  max-height: calc(100dvh - 220px);
+  overflow-y: auto;
+
+  :global(.ant-tabs-nav) { margin-bottom: 0; }
+}
+
+.hint, .notice, .description, .metadata {
+  margin: 0;
+  color: $ui-muted;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.loading { display: flex; justify-content: center; align-items: center; gap: 12px; min-height: 100px; color: $ui-muted; }
+
+// 搜索框弹性占宽，新建动作不收缩，窄视口可换到下一行。
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > :global(.ant-input-affix-wrapper) { flex: 1; min-width: 120px; }
+  > button { flex-shrink: 0; }
+}
+
+// 模板名称和描述自然折行，操作按钮作为独立组保留。
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start !important;
+  gap: 12px;
+  min-width: 0;
+}
+
+.details { flex: 1; min-width: 200px; }
+.templateTitle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  font-weight: 600;
+  line-height: 1.6;
+
+  > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+  :global(.ant-tag) { flex-shrink: 0; margin: 2px 0 0; }
+}
+
+.description, .metadata { margin-top: 5px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.pagination { display: flex; justify-content: flex-end; padding-top: 4px; overflow-x: auto; }
+
+// 列表与预览之间使用分隔线；预览标题、页面说明与白纸内容分别布局。
+.preview {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid #e3dff0;
+}
+
+.previewHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+
+  strong { margin-right: 10px; }
+  > .actions { flex-shrink: 0; }
+}
+
+.previewTitle { flex: 1; min-width: 160px; overflow-wrap: anywhere; }
+.pageDescription { margin: 0; color: $ui-muted; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+
+// 模板预览固定白底，与应用深色主题区分，并在本区域处理横向溢出。
+.paperViewport {
+  min-width: 0;
+  max-width: 100%;
+  padding: 10px;
+  overflow-x: auto;
+  background: #f5f3fa;
+  border-radius: 6px;
+}
+
+.paper {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #e3dff0;
+  border-radius: 6px;
+
+  :global(.mewoc-content) { color: #292c38; }
+}
+
+// 纸张内容独立于后置水印，模板标题和链接继续由真实正文接收交互。
+.paperContent { position: relative; z-index: 1; }
+
+.previewDocumentTitle { margin: 0 0 24px; color: #6f677d; font-size: 12px; overflow-wrap: anywhere; }
+.confirmation { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.confirmation p { margin: 0; line-height: 1.8; overflow-wrap: anywhere; }
+
+// 窄视口将搜索与模板详情改为整行排列，减少预览外围留白。
+@media (max-width: 600px) {
+  .toolbar {
+    flex-wrap: wrap;
+
+    > :global(.ant-input-affix-wrapper) { flex-basis: 100%; }
+  }
+
+  .details { min-width: 100%; }
+  .pagination { justify-content: flex-start; }
+  .paperViewport { padding: 6px; }
+  .loading { align-items: flex-start; padding: 24px 0; }
+}

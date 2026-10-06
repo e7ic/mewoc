@@ -1,3 +1,4 @@
+/** 浏览器功能验收入口：按需创建真实会话，汇总各领域检查结果，结束后清理本轮数据。 */
 import { useCallback, useEffect, useRef, useState } from "react"
 import ReactDOM from "react-dom"
 import { EditorContent } from "@tiptap/react"
@@ -9,9 +10,23 @@ import { runEditorChecks, removeVerificationDocuments } from "./browser-checks.j
 import { runStressChecks } from "./stress-checks.js"
 import { exportVerification } from "./verification-export.js"
 import { runAssetPersistenceChecks } from "./asset-persistence-checks.js"
+import { runDocxImportChecks } from "./docx-import-checks.jsx"
 import { runDocxChecks } from "./docx-checks.jsx"
+import { runDocumentLibraryChecks } from "./document-library-checks.jsx"
+import { runDocumentHistoryChecks } from "./document-history-checks.jsx"
+import { runDocumentCommentsChecks } from "./document-comments-checks.jsx"
+import { runDocumentTemplateChecks } from "./document-template-checks.jsx"
+import { runPrecisionSettingsChecks } from "./precision-settings-checks.jsx"
+import { runParagraphSettingsChecks } from "./paragraph-settings-checks.jsx"
+import { runEditorInteractionChecks } from "./editor-interaction-checks.jsx"
+import { runToolbarRibbonChecks } from "./toolbar-ribbon-checks.jsx"
+import { runViewImageChecks } from "./view-image-checks.jsx"
+import { runRichBlocksChecks } from "./rich-blocks-checks.jsx"
+import { runNavigationChecks } from "./navigation-checks.jsx"
+import { runPageSettingsChecks } from "./page-settings-checks.jsx"
 import "../src/pages/editor/sass/content.scss"
 
+// 运行状态限制重复启动；双会话用于证明编辑器与 Zustand 实例隔离。
 function BrowserVerification() {
   const [results, setResults] = useState([])
   const [running, setRunning] = useState(false)
@@ -19,6 +34,7 @@ function BrowserVerification() {
   const [records] = useState(() => ["left", "right"].map(id => ({
     id, document: { ...createDocument(), title: `浏览器验收-${id}` }, storageVersion: 0, assets: new Map()
   })))
+  // 会话上下文不参与渲染，通过 ready 回调确认两侧 editor 都已创建后才开始检查。
   const sessionsRef = useRef({})
   const readyRef = useRef(null)
   const handleReady = useCallback((id, context) => {
@@ -26,6 +42,7 @@ function BrowserVerification() {
     if (sessionsRef.current.left?.editor && sessionsRef.current.right?.editor) readyRef.current?.()
   }, [])
 
+  // 普通与压力验收共用挂载、报告和清理流程；具体领域检查由独立模块执行。
   const handleRun = async stress => {
     setRunning(true)
     const ready = new Promise(resolve => { readyRef.current = resolve })
@@ -37,6 +54,7 @@ function BrowserVerification() {
       else await runEditorChecks(sessionsRef.current, report)
     } catch (error) {
       report({ name: "验收运行异常", passed: false, error: error.message })
+    // 先排空保存任务，再卸载和删除精确测试 ID，防止迟到写入重新创建测试记录。
     } finally {
       await Promise.all(Object.values(sessionsRef.current).map(context => context.saveDocument()))
       setMounted(false)
@@ -50,6 +68,7 @@ function BrowserVerification() {
     }
   }
 
+  // 每类专项独立触发并逐项展示结果；已运行页面需刷新后再创建新一轮记录。
   return (
     <main>
       <h1>Mewoc 浏览器验收</h1>
@@ -68,6 +87,71 @@ function BrowserVerification() {
         try { await runDocxChecks(result => setResults(items => [...items, result])) }
         finally { setRunning(false) }
       }}>运行 Word 导出验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocxImportChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行 Word 导入验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocumentLibraryChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行文档库验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocumentHistoryChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行历史版本验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocumentCommentsChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行批注验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runDocumentTemplateChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行模板验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runPrecisionSettingsChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行图表精细设置验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runParagraphSettingsChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行段落精细设置验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runEditorInteractionChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行编辑交互验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runToolbarRibbonChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行工具栏验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runViewImageChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行图片替换与格式标记验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runRichBlocksChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行文本框与折叠详情验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runNavigationChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行目录与书签导航验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runPageSettingsChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行页面与水印验收</button>
       <p role="status">{running ? "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
       <ol>{results.map(result => (
         <li key={result.name}>
@@ -85,6 +169,7 @@ function BrowserVerification() {
   )
 }
 
+// 把真实上下文交给检查器，并挂载字号和查找控件以覆盖 DOM 联动。
 const EditorProbe = ({ id, onReady }) => {
   const context = useDocumentEditor()
   const searchOpen = useEditorStore(state => state.searchOpen)

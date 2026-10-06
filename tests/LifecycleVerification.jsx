@@ -1,3 +1,4 @@
+/** 反复挂载/卸载的生命周期验收入口：记录指定资源释放与异步任务收口，提供短轮次与持续模式。 */
 import { useCallback, useEffect, useRef, useState } from "react"
 import ReactDOM from "react-dom"
 import { EditorProvider, useDocumentEditor } from "../src/pages/editor/components/EditorProvider.jsx"
@@ -8,6 +9,7 @@ import { removeVerificationDocuments } from "./browser-checks.js"
 import { observeSessionResources } from "./lifecycle-resources.js"
 import { exportVerification } from "./verification-export.js"
 
+// 状态控制运行与展示，stopRef 允许在当前轮完成清理后退出，mountedRef 阻止卸载后回写。
 function LifecycleVerification() {
   const [running, setRunning] = useState(false)
   const [results, setResults] = useState([])
@@ -19,6 +21,7 @@ function LifecycleVerification() {
     if (mountedRef.current) setResults(items => [...items, result])
   }, [])
 
+  // 每轮复用固定资源样例，监测浏览器异常并报告资源计数、时间和可用的堆估算。
   const handleRun = async (minutes = 0) => {
     const count = minutes ? minutes * 12 : 30
     const host = hostRef.current
@@ -26,6 +29,7 @@ function LifecycleVerification() {
     stopRef.current = false
     setRounds(count)
     setRunning(true)
+    // 观察器在本轮验收开始后接管指定 API，finally 恢复原实现以免影响后续页面操作。
     const resources = observeSessionResources()
     const errors = []
     const handleError = event => errors.push(event.message)
@@ -78,18 +82,21 @@ function LifecycleVerification() {
   )
 }
 
+// 挂载真实 PaperCanvas，等待编辑器上下文就绪，不手动创建替代编辑器。
 const SessionProbe = ({ onReady }) => {
   const context = useDocumentEditor()
   useEffect(() => { if (context.editor) onReady(context) }, [context, onReady])
   return <PaperCanvas />
 }
 
+// React Provider 创建成功后返回会话，确保后续图片与保存操作走产品生命周期。
 function mountSession(host, record) {
   return new Promise(resolve => {
     ReactDOM.render(<EditorProvider record={record}><SessionProbe onReady={resolve} /></EditorProvider>, host)
   })
 }
 
+// 卸载后等待 Tiptap 自身延迟销毁，再检查 DOM 和被观测资源均已释放。
 async function unmountSession(host, session, resources) {
   ReactDOM.unmountComponentAtNode(host)
   // Tiptap React 的销毁延迟一个定时器；等待它自己的生命周期，不代替 destroy。
@@ -99,6 +106,7 @@ async function unmountSession(host, session, resources) {
   if (counts.urls || counts.observers || counts.listeners) throw new Error(`资源未释放：${JSON.stringify(counts)}`)
 }
 
+// 单轮覆盖插图/附件/公式/代码保存、读取期间卸载、重新恢复以及图表拖动中销毁。
 async function checkSessionCycle(host, file, resources) {
   const record = { document: createDocument(), storageVersion: 0, assets: new Map() }
   let session = null
@@ -148,6 +156,7 @@ async function checkSessionCycle(host, file, resources) {
   }
 }
 
+// 合成指针仅替换系统捕获入口，让真实 NodeView 进入拖动监听状态供清理检查。
 function startImageResize(editor) {
   const handle = editor.view.dom.querySelector("[data-resize-handle]")
   const capture = handle.setPointerCapture
@@ -159,6 +168,7 @@ function startImageResize(editor) {
   }
 }
 
+// 在本机 canvas 生成确定尺寸的 PNG，避免外部图片服务影响持续验收。
 async function createImageFixture() {
   const canvas = document.createElement("canvas")
   canvas.width = 480

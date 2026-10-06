@@ -1,0 +1,193 @@
+{
+  "icons": [
+    {
+      "name": "tabler-icon tabler-icon-file-text",
+      "size": 22
+    },
+    {
+      "name": "新建",
+      "size": 20
+    },
+    {
+      "name": "模板",
+      "size": 20
+    },
+    {
+      "name": "打开",
+      "size": 20
+    },
+    {
+      "name": "导入 Markdown",
+      "size": 20
+    },
+    {
+      "name": "导入 Word",
+      "size": 20
+    },
+    {
+      "name": "保存",
+      "size": 20
+    },
+    {
+      "name": "文档库",
+      "size": 20
+    },
+    {
+      "name": "tabler-icon tabler-icon-lock",
+      "size": 18
+    },
+    {
+      "name": "切换工具栏",
+      "size": 20
+    },
+    {
+      "name": "撤销",
+      "size": 20
+    },
+    {
+      "name": "重做",
+      "size": 20
+    },
+    {
+      "name": "格式刷",
+      "size": 20
+    },
+    {
+      "name": "格式刷选项",
+      "size": 18
+    },
+    {
+      "name": "清除文字格式",
+      "size": 20
+    },
+    {
+      "name": "tabler-icon tabler-icon-chevron-down",
+      "size": 18
+    },
+    {
+      "name": "tabler-icon tabler-icon-chevron-down",
+      "size": 18
+    },
+    {
+      "name": "增大字号",
+      "size": 20
+    },
+    {
+      "name": "减小字号",
+      "size": 20
+    },
+    {
+      "name": "加粗",
+      "size": 20
+    },
+    {
+      "name": "斜体",
+      "size": 20
+    },
+    {
+      "name": "下划线",
+      "size": 20
+    },
+    {
+      "name": "删除线",
+      "size": 20
+    },
+    {
+      "name": "编辑链接",
+      "size": 20
+    },
+    {
+      "name": "文字颜色",
+      "size": 20
+    },
+    {
+      "name": "文字背景色",
+      "size": 20
+    },
+    {
+      "name": "有序列表",
+      "size": 20
+    },
+    {
+      "name": "无序列表",
+      "size": 20
+    },
+    {
+      "name": "列表减少缩进",
+      "size": 20
+    },
+    {
+      "name": "列表增加缩进",
+      "size": 20
+    },
+    {
+      "name": "tabler-icon tabler-icon-chevron-down",
+      "size": 18
+    },
+    {
+      "name": "段落缩进",
+      "size": 20
+    },
+    {
+      "name": "左对齐",
+      "size": 20
+    },
+    {
+      "name": "居中对齐",
+      "size": 20
+    },
+    {
+      "name": "右对齐",
+      "size": 20
+    },
+    {
+      "name": "两端对齐",
+      "size": 20
+    },
+    {
+      "name": "行内代码",
+      "size": 20
+    },
+    {
+      "name": "引用块",
+      "size": 20
+    },
+    {
+      "name": "段落设置",
+      "size": 20
+    },
+    {
+      "name": "更多段落样式",
+      "size": 18
+    },
+    {
+      "name": "向右查看更多工具",
+      "size": 20
+    },
+    {
+      "name": "tabler-icon tabler-icon-list-tree",
+      "size": 18
+    },
+    {
+      "name": "收起大纲",
+      "size": 18
+    },
+    {
+      "name": "切换文档大纲",
+      "size": 20
+    },
+    {
+      "name": "缩小",
+      "size": 20
+    },
+    {
+      "name": "放大",
+      "size": 20
+    }
+  ],
+  "scrollWidth": 1440,
+  "viewport": {
+    "height": 900,
+    "width": 1440
+  }
+}

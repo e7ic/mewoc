@@ -1,11 +1,14 @@
+/** 三份独立压力样例的浏览器验收：长文档、大表格和多图文档分别检查正确性并记录本机耗时。 */
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 import { createDocumentHtml } from "../src/pages/editor/tools/file-transfer.js"
 import { getDocumentAssets, getDocuments } from "../src/pages/editor/tools/local-repository.js"
 
+// 先保证内容完整与可保存，再报告性能观测，避免把错误产物计为快速完成。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 各样例失败独立上报，互不阻止后续场景，耗时仅描述当前机器观测。
 export async function runStressChecks(session, report) {
   for (const [name, action] of [["10 万字独立样例", checkLongDocument], ["100×10 表格独立样例", checkLargeTable], ["20 张图片独立样例", checkManyImages]]) {
     try {
@@ -17,6 +20,7 @@ export async function runStressChecks(session, report) {
   }
 }
 
+// 交替在首尾输入后核对总字数、段落、快照与保存恢复，分别测量命令及两帧等待时间。
 async function checkLongDocument({ editor, getSnapshot, saveDocument }) {
   const start = performance.now()
   const content = Array.from({ length: 1000 }, (_, index) => ({
@@ -48,6 +52,7 @@ async function checkLongDocument({ editor, getSnapshot, saveDocument }) {
   return { loadMs: loaded - start, layoutWaitMs: laidOut - loaded, commandP95Ms: percentile(edits), twoFrameP95Ms: percentile(frames), snapshotMs, saveAndReadMs: performance.now() - saveStart }
 }
 
+// 大表格增删列后回到原行列规模，联合检查 schema 和真实 DOM 单元格数量。
 async function checkLargeTable({ editor, getSnapshot, saveDocument }) {
   editor.commands.setContent("<p></p>")
   const start = performance.now()
@@ -66,6 +71,7 @@ async function checkLargeTable({ editor, getSnapshot, saveDocument }) {
   return { loadAndLayoutMs: laidOut - start, editColumnMs: commandEnd - laidOut, snapshotAndSaveMs: performance.now() - commandEnd }
 }
 
+// 本地生成同源 PNG，顺序插入二十份并解码，再检查仓库、Mewoc 与 HTML 均未丢图。
 async function checkManyImages({ editor, assets, insertImages, getSnapshot, saveDocument }) {
   editor.commands.setContent("<p>20 张图片验收</p>")
   const canvas = document.createElement("canvas")
@@ -93,10 +99,12 @@ async function checkManyImages({ editor, assets, insertImages, getSnapshot, save
   return { imageSize: "1200×800", totalBytes: blob.size * 20, insertDecodeLayoutMs: inserted - start, storageAndExportsMs: performance.now() - inserted }
 }
 
+// 复制后排序计算样本 P95，保留原记录顺序，不将该值当作跨设备性能承诺。
 function percentile(values) {
   return [...values].sort((a, b) => a - b)[Math.ceil(values.length * 0.95) - 1]
 }
 
+// 两帧等待将命令执行与后续视图/布局时间分开观察。
 function nextPaint() {
   return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))
 }

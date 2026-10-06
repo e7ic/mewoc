@@ -1,3 +1,4 @@
+/** 资源重复保存回归：现有记录只读验证，写入使用独立测试副本，并比较导出后的完整资源字节。 */
 import { getDocuments, getDocumentAssets, saveLocalDocument } from "../src/pages/editor/tools/local-repository.js"
 import { readPortableFile, createPortableFile } from "../src/pages/editor/tools/portable-file.js"
 import { removeVerificationDocuments } from "./browser-checks.js"
@@ -14,6 +15,7 @@ export async function runAssetPersistenceChecks(report) {
       report({ name: `现有资源可读：${record.document.title}`, passed: false, error: `${error.name}: ${error.message}` })
     }
   }
+  // 导入产生新文档 ID，重复写入版本只作用于本轮副本，不覆盖原样例或现有记录。
   const record = await readPortableFile(new File([JSON.stringify(fixture)], "fixture.mewoc.json"))
   let assets = record.assets
   let version = 0
@@ -24,6 +26,7 @@ export async function runAssetPersistenceChecks(report) {
       // 让提交后的文件回收与下一次读取跨越任务边界，覆盖从 IndexedDB 恢复的 Blob 再写回。
       await new Promise(resolve => setTimeout(resolve, 250))
       assets = await getDocumentAssets(record.document)
+      // 从 IndexedDB 恢复的 Blob 再经过文件导出，比对 data URL 能发现读取/重存损坏。
       const portable = await createPortableFile(record.document, assets)
       for (const id of Object.keys(fixture.assetData)) {
         if (portable.assetData[id] !== fixture.assetData[id]) throw new Error(`第 ${index + 1} 次保存资源字节变化`)
@@ -32,6 +35,7 @@ export async function runAssetPersistenceChecks(report) {
     }
   } catch (error) {
     report({ name: "资源重复保存与导出", passed: false, error: `${error.name}: ${error.message}` })
+  // 失败也删除副本及所属资源，避免下次验收读到本轮残留记录。
   } finally {
     await removeVerificationDocuments([record])
   }

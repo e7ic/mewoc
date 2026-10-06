@@ -1,15 +1,21 @@
+/**
+ * 格式刷的来源快照、目标应用和交互状态机。
+ * 来源保存在插件状态中，文字/段落修改使用正文事务；单次模式完成后清空，连续模式保留来源。
+ */
 import { Extension } from "@tiptap/core"
 import { Plugin, PluginKey, TextSelection, AllSelection } from "@tiptap/pm/state"
 import { closeHistory } from "@tiptap/pm/history"
 import { getTextAppearance, getPaintedMarks } from "../tools/text-appearance.js"
+import { normalizeParagraphLayout } from "./paragraph-layout.js"
 
 export const FORMAT_PAINTER_KEY = new PluginKey("formatPainter")
 
 // 只复制外观标记；链接、行内代码和目标段落类型不属于格式刷的替换范围。
-const MARK_NAMES = ["bold", "italic", "underline", "strike", "textStyle"]
+const MARK_NAMES = ["bold", "italic", "underline", "strike", "textStyle", "superscript", "subscript"]
 const TEXT_ATTRIBUTES = ["fontFamily", "fontSize", "color", "backgroundColor", "fontWeight"]
 const isParagraph = node => ["paragraph", "heading"].includes(node.type.name)
 
+// 截取选区内可刷的实际文本片段，并记录所属段落位置；代码、非文字节点不参与。
 const getTextRanges = ({ doc, selection }) => {
   const ranges = []
   if (selection.empty || !(selection instanceof TextSelection || selection instanceof AllSelection)) return ranges
@@ -32,6 +38,7 @@ const copySource = (editor, state, locked) => {
     if (source.marks.some(mark => mark.type.name === "code")) return null
   }
   if (!source) return null
+  // 复制普通数据而非原 mark 对象；textStyle 显式包含空值，使目标多余外观也能被清除。
   const marks = source.marks.filter(mark => MARK_NAMES.includes(mark.type.name)).map(mark => ({
     type: mark.type.name,
     attrs: mark.type.name === "textStyle"
@@ -39,9 +46,12 @@ const copySource = (editor, state, locked) => {
   }))
   const appearance = getTextAppearance(editor, source.from, source.marks)
   const { textAlign, firstLineIndent, leftIndent } = source.paragraph.attrs
-  return { marks, appearance, paragraph: { textAlign, lineHeight: appearance.lineHeight, firstLineIndent, leftIndent }, locked, source: { from: selection.from, to: selection.to } }
+  // 复制显式段落设置；null 仍表示沿用目标段落类型的默认间距/分页规则。
+  const layout = normalizeParagraphLayout(source.paragraph.attrs)
+  return { marks, appearance, paragraph: { textAlign, lineHeight: appearance.lineHeight, firstLineIndent, leftIndent, ...layout }, locked, source: { from: selection.from, to: selection.to } }
 }
 
+// 按来源替换允许的文字外观，再对去重后的段落写入外观；链接等非外观标记保持原样，段落属性合并保留。
 const applySource = (editor, tr, ranges, source) => {
   // 一次格式应用独立成组，前后的普通输入各自保留撤销边界。
   const doc = tr.doc
@@ -56,6 +66,7 @@ const applySource = (editor, tr, ranges, source) => {
     })
     paragraphs.set(range.pos, range.paragraph)
   })
+  // 一个段落可能含多个文本片段，Map 保证只写一次；与目标默认相同的行距继续保留 null。
   paragraphs.forEach((node, pos) => {
     const paragraph = { ...source.paragraph }
     if (node.attrs.lineHeight === null && getTextAppearance(editor, pos + 1).lineHeight === paragraph.lineHeight) paragraph.lineHeight = null
@@ -63,12 +74,14 @@ const applySource = (editor, tr, ranges, source) => {
       tr.setNodeMarkup(pos, undefined, { ...node.attrs, ...paragraph })
     }
   })
+  // 只有实际变更才关闭正文历史组；即使样式相同，也按单次/连续规则更新插件状态。
   const applied = !tr.doc.eq(doc)
   if (applied) closeHistory(tr)
   const value = source.locked ? { ...source, source: { from: tr.selection.from, to: tr.selection.to } } : null
   tr.setMeta(FORMAT_PAINTER_KEY, { value, applied })
 }
 
+// 监听选区完成事件后延迟一帧应用，避免浏览器尚未同步选区时刷到原来源位置。
 const createPainterPlugin = editor => {
   let frame = null
   const cancelFrame = () => {
@@ -96,6 +109,7 @@ const createPainterPlugin = editor => {
     state: {
       init: () => null,
       apply: (tr, value) => {
+        // 显式格式刷元数据优先；其它正文修改会使来源失效，纯选区事务则继续保留。
         const change = tr.getMeta(FORMAT_PAINTER_KEY)
         if (change) return change.value
         return tr.docChanged ? null : value
@@ -121,10 +135,12 @@ const createPainterPlugin = editor => {
           return false
         },
         blur: () => {
+          // 失焦取消尚未执行的帧，来源仍可在用户回到正文后继续使用。
           cancelFrame()
           return false
         },
         compositionstart: () => {
+          // 开始输入法组合时退出格式刷，避免候选确认与延迟样式事务竞争。
           cancelFrame()
           if (FORMAT_PAINTER_KEY.getState(editor.state)) editor.commands.clearFormat()
           return false
@@ -135,11 +151,13 @@ const createPainterPlugin = editor => {
   })
 }
 
+// 命令统一区分 can() 探测与真实 dispatch：复制/清空仅改插件状态，应用才修改正文。
 export const FormatPainter = Extension.create({
   name: "formatPainter",
   addCommands() {
     return {
       copyFormat: (locked = false) => ({ state, tr, dispatch, editor }) => {
+        // 只有普通文字来源可复制；locked 由连续模式入口提供。
         if (!editor.isEditable || editor.view.composing) return false
         const value = copySource(editor, state, locked)
         if (!value) return false
@@ -151,6 +169,7 @@ export const FormatPainter = Extension.create({
         return true
       },
       applyFormat: () => ({ state, tr, dispatch, editor }) => {
+        // 提交前重新核对编辑与输入法状态，空选区或无可刷文字不消费来源。
         const source = FORMAT_PAINTER_KEY.getState(state)
         if (!source || !editor.isEditable || editor.view.composing) return false
         const ranges = getTextRanges(state)

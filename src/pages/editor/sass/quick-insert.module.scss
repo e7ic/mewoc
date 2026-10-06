@@ -1,0 +1,46 @@
+// 日期时间、特殊字符和表情的快捷插入浮层；完整/极简模式共用入口与面板内容。
+@use "../../../assets/style/theme.scss" as *;
+
+.trigger {
+  border-radius: 3px;
+  &:hover:not(:disabled) { color: $ui-text; background: $ui-hover; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 2px; }
+}
+// 增加选择器权重以覆盖基础插入按钮布局，极简入口改为图标与文字并排。
+.trigger.trigger[data-quick-insert-compact="true"] {
+  flex-direction: row;
+  gap: 5px;
+  min-width: 0;
+  height: 28px;
+  padding: 3px 5px;
+  > :global(.tabler-icon) { font-size: 20px; }
+}
+// 面板按视口限制宽高并内部滚动，内容过多时仍能访问最后一组字符。
+.panel { width: 284px; max-width: calc(100vw - 48px); max-height: min(420px, calc(100dvh - 180px)); overflow-y: auto; overscroll-behavior: contain; }
+.category { margin: 0 0 12px; padding: 0; border: 0; }
+.category legend { margin-bottom: 5px; color: $ui-secondary; font-size: 12px; }
+// 字符与表情按八列排列，原生按钮提供键盘焦点和禁用反馈。
+.grid { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px; }
+.grid button {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  height: 32px;
+  border: 1px solid $ui-border;
+  border-radius: 3px;
+  color: $ui-text;
+  background: $ui-surface;
+  font-size: 20px;
+  &:hover:not(:disabled) { color: $ui-accent; border-color: $ui-accent; background: $ui-hover; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+.emoji button { font-size: 22px; }
+// 日期格式名称与本机时间预览左右排布，等宽数字减少预览变化造成的视觉跳动。
+.dates { display: flex; flex-direction: column; gap: 4px; }
+.dates button { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 34px; padding: 6px; border-radius: 3px; text-align: left; }
+.dates button:hover:not(:disabled) { background: $ui-hover; }
+.dates button:focus-visible { outline: 2px solid $ui-accent; outline-offset: -1px; }
+.dates span { flex: 0 0 auto; max-width: 45%; color: $ui-secondary; font-size: 11px; }
+.dates strong { min-width: 0; color: $ui-text; font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; text-align: right; overflow-wrap: anywhere; }
+.hint { margin: 0 0 8px; color: $ui-secondary; font-size: 12px; line-height: 1.6; }
+.error { margin: 8px 0 0; color: #b42318; font-size: 12px; line-height: 1.6; }

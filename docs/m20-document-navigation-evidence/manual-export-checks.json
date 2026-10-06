@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "documentId": "399e626a-c24c-4731-871c-d59fc09ce3f0",
+  "formats": 5,
+  "headingTargets": 3,
+  "bookmarks": 1,
+  "htmlTargets": 4,
+  "htmlInternalLinks": 4,
+  "docxBookmarks": 4,
+  "docxInternalLinks": 4,
+  "markdownNestedChildren": 2,
+  "notes": [
+    "真实界面点击下载，逐个核验文件内容",
+    "未执行 Word/WPS 原生排版或系统 PDF 验收"
+  ]
+}

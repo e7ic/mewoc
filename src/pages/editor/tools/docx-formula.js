@@ -1,3 +1,7 @@
+/**
+ * 编辑器 LaTeX 到 Word OMML：先由安全公式渲染器生成 MathML，再递归映射支持的结构。
+ * SDK 没有覆盖的 OMML 结构通过 ImportedXmlComponent 构造，未知结构使整公式降级为源码文字。
+ */
 import * as sdk from "docx"
 import { renderFormula } from "./formula.js"
 
@@ -16,9 +20,11 @@ export async function createDocxFormula(latex, displayMode, warnings) {
   }
 }
 
+/** 返回当前 MathML 节点对应的一组 OMML 组件；子节点数量/布局由具体公式类型决定。 */
 function convertMath(node) {
   const children = [...node.children]
   const tag = node.localName
+  // 单项与多项读取共用同一递归校验入口；缺少必需子节点会抛错并触发整公式源码兜底。
   const child = index => convertMath(children[index])
   const content = () => children.flatMap(convertMath)
   if (tag === "math" || tag === "mrow") {
@@ -32,11 +38,13 @@ function convertMath(node) {
     }
     return content()
   }
+  // semantics 首子树是可见公式，其余注释仅保存源语义，不作为额外文字重复输出。
   if (tag === "semantics") return child(0)
   if (tag === "mstyle") {
     if ([...node.attributes].some(attr => !["displaystyle", "scriptlevel"].includes(attr.name))) throw new Error("公式样式不支持")
     return content()
   }
+  // 数学标识符默认斜体，数字/运算符/文字默认正体；只接受能对应 Word 字形的 mathvariant。
   if (["mi", "mn", "mo", "mtext"].includes(tag)) {
     const variant = node.getAttribute("mathvariant")
     if (variant && !["normal", "italic", "bold", "bold-italic"].includes(variant)) throw new Error("公式字体不支持")
@@ -46,6 +54,7 @@ function convertMath(node) {
       element("m:t", [node.textContent], { "xml:space": "preserve" })
     ])]
   }
+  // 分式、根式和上下标交给 SDK 的语义组件，保留基底/分子/分母各自的树结构。
   if (tag === "mfrac") {
     if (node.hasAttribute("linethickness")) throw new Error("特殊分式线不支持")
     return [new sdk.MathFraction({ numerator: child(0), denominator: child(1) })]
@@ -55,6 +64,7 @@ function convertMath(node) {
   if (tag === "msup") return [new sdk.MathSuperScript({ children: child(0), superScript: child(1) })]
   if (tag === "msub") return [new sdk.MathSubScript({ children: child(0), subScript: child(1) })]
   if (tag === "msubsup") return [new sdk.MathSubSuperScript({ children: child(0), subScript: child(1), superScript: child(2) })]
+  // 重音与普通上限外观相似但语义不同，accent 标志分支必须先于通用 mover。
   if (tag === "mover" && node.getAttribute("accent") === "true") {
     if (children[1].localName !== "mo") throw new Error("组合重音不支持")
     return [element("m:acc", [element("m:accPr", [element("m:chr", [], { "m:val": children[1].textContent })]), element("m:e", child(0))])]
@@ -62,6 +72,7 @@ function convertMath(node) {
   if (tag === "munder") return [new sdk.MathLimitLower({ children: child(0), limit: child(1) })]
   if (tag === "mover") return [new sdk.MathLimitUpper({ children: child(0), limit: child(1) })]
   if (tag === "munderover") return [new sdk.MathLimitUpper({ children: [new sdk.MathLimitLower({ children: child(0), limit: child(1) })], limit: child(2) })]
+  // 只映射规则数学矩阵，并显式声明列数量/对齐；不规则 MathML 表格交给完整源码兜底。
   if (tag === "mtable") {
     if (children.some(row => row.localName !== "mtr" || [...row.children].some(cell => cell.localName !== "mtd"))) throw new Error("公式表格不支持")
     const columns = children[0]?.children.length
@@ -71,6 +82,7 @@ function convertMath(node) {
       ...children.map(row => element("m:mr", [...row.children].map(cell => element("m:e", [...cell.children].flatMap(convertMath)))))
     ])]
   }
+  // SDK 不能精确表达任意 MathML 间距，仅支持范围内 em 间距的近似薄空格。
   if (tag === "mspace") {
     const width = node.getAttribute("width") || "0em"
     if (!/^(0|0\.\d+|1)em$/.test(width)) throw new Error("公式特殊间距不支持")
@@ -79,6 +91,7 @@ function convertMath(node) {
   throw new Error(`不支持的公式结构 ${tag}`)
 }
 
+/** 封装低层 OMML 节点及属性，children 可含 SDK 组件或文本，最终由 SDK 统一序列化 XML。 */
 function element(name, children, attrs) {
   const node = new sdk.ImportedXmlComponent(name, attrs)
   children.forEach(child => node.push(child))

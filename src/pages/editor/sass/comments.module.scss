@@ -1,0 +1,94 @@
+// 批注工具入口、右侧列表与编辑弹窗；使用状态类区分当前、已解决和失去正文锚点的意见。
+@use "../../../assets/style/theme.scss" as *;
+
+.toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; }
+.toolbarHint { color: $ui-muted; font-size: 12px; line-height: 1.8; }
+:global([data-toolbar-mode="compact"]) {
+  .toolbar { flex-wrap: nowrap; }
+  .toolbarHint { display: none; }
+}
+
+// 批注面板独立滚动并限制最大宽度，避免长列表扩大整个工作区。
+.panel {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 320px;
+  max-width: 90vw;
+  padding: 24px 16px 18px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: $ui-panel;
+  border-left: 1px solid $ui-border;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  strong { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  strong > span:last-child { color: $ui-muted; font-weight: 400; font-size: 12px; }
+  > button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; color: $ui-muted; border-radius: 4px; }
+  > button:hover { color: $ui-accent; background: $ui-hover; }
+}
+// 过滤标签以活动背景标识当前范围，数量与内容仍由批注逻辑计算。
+.filters {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  background: $ui-hover;
+  border-radius: 6px;
+  button { flex: 1; min-height: 30px; color: $ui-secondary; font-size: 11px; border-radius: 4px; }
+  .activeFilter { color: $ui-accent; background: $ui-surface; box-shadow: 0 1px 3px #00000008; }
+}
+// 意见卡片纵向排列，当前定位卡片强化边框；解决态只弱化文字而保留内容。
+.list { display: flex; flex-direction: column; gap: 12px; }
+.card { padding: 14px 12px 12px; border: 1px solid $ui-border; border-radius: 8px; background: $ui-surface; }
+.activeCard { border-color: $ui-accent; box-shadow: 0 0 0 1px $ui-active; }
+.resolvedCard .commentText { color: $ui-secondary; }
+.cardHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  time { color: $ui-muted; font-size: 10px; }
+  :global(.ant-tag) { margin: 0; font-size: 10px; line-height: 18px; }
+}
+// 引文最多显示三行，保留换行并让长文本折行，定位按钮不被挤压。
+.quote {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 9px;
+  color: $ui-secondary;
+  background: $ui-hover;
+  border-left: 2px solid $ui-accent;
+  border-radius: 0 4px 4px 0;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.7;
+  > span:first-child { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; min-width: 0; overflow: hidden; overflow-wrap: anywhere; white-space: pre-wrap; }
+  > span:last-child { flex-shrink: 0; margin-top: 3px; }
+  &:hover:not(:disabled) { color: $ui-accent; }
+  &:disabled { cursor: default; }
+}
+.commentText { margin: 12px 0; color: $ui-text; font-size: 12px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.orphaned { margin: 5px 0 0; color: $ui-muted; font-size: 10px; line-height: 1.7; }
+.cardActions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; > button { font-size: 11px; } > button:last-child { margin-left: auto; color: $ui-muted; } }
+.empty { margin: 28px 6px; text-align: center; color: $ui-muted; > :global(.tabler-icon) { font-size: 28px; opacity: .65; } p { margin-top: 15px; font-size: 12px; line-height: 1.9; } }
+.caption { margin: 0; color: $ui-muted; font-size: 10px; line-height: 1.8; }
+.error { margin: 0; color: #c45e67; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+// 弹窗保留引文预览与意见输入，长引文在局部滚动，提交操作靠右集中。
+.dialog { display: flex; flex-direction: column; gap: 14px; :global(.ant-form-item) { margin-bottom: 8px; } }
+.dialogQuote { font-size: 12px; line-height: 1.8; > strong { color: $ui-secondary; font-weight: 500; } blockquote { max-height: 125px; margin: 8px 0 0; padding: 10px 12px; overflow-y: auto; color: $ui-secondary; background: $ui-hover; border-left: 3px solid $ui-accent; border-radius: 0 4px 4px 0; white-space: pre-wrap; overflow-wrap: anywhere; } }
+.dialogActions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+
+// 较窄视口缩小侧栏，继续给正文保留可用宽度。
+@media (max-width: 900px) {
+  .panel { width: 280px; }
+}

@@ -1,0 +1,60 @@
+// 工具栏溢出滚动容器：左右箭头与原生横向视口配合，让宽工具组保持完整可访问。
+@use "../../../assets/style/theme.scss" as *;
+
+.container {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+// 视口只裁切纵向溢出并隐藏滚动条，横向仍使用浏览器原生滚动与焦点自动滚入。
+.viewport {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  // 保留原生焦点与滚动行为：Tab 到被裁切的控件时，浏览器仍会滚动它的最近 overflow 容器。
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: -2px; }
+}
+
+// 内容按实际总宽度排布且不换行，工具组不压缩；留白保护焦点描边。
+.content {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  min-width: max-content;
+  padding: 2px;
+  > * { flex-shrink: 0; }
+}
+
+// 箭头固定占宽，是否可滚动由组件计算，disabled 仅呈现当前边界状态。
+.arrow {
+  display: inline-flex;
+  flex: 0 0 26px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 26px;
+  height: 56px;
+  padding: 0;
+  color: $ui-secondary;
+  font-size: 20px;
+  background: $ui-panel;
+  border: 1px solid $ui-border;
+  border-radius: 3px;
+  cursor: pointer;
+  &:hover:not(:disabled) { color: $ui-text; background: $ui-hover; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 2px; }
+  &:disabled { color: $ui-muted; cursor: default; opacity: .45; }
+}
+
+// 极简模式减少箭头高度，与单行控件对齐。
+[data-toolbar-mode="compact"] .arrow { height: 28px; }

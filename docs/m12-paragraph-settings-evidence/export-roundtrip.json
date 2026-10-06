@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-02T05:01:02.449Z",
+  "artifactSource": "/Users/e7ic/Downloads/段落精细设置 · 演示.{mewoc.json,html,docx}",
+  "targetTextPrefix": "这段用于演示精细间距",
+  "expectedParagraphAttributes": {
+    "spaceBefore": 12.5,
+    "spaceAfter": 18,
+    "keepWithNext": true,
+    "keepTogether": true
+  },
+  "files": {
+    "mewoc.json": {
+      "file": "demo-export.mewoc.json",
+      "byteLength": 2827,
+      "sha256": "d58852ba6845f54d9d2b6aa888808e3c085fb63e06b4d001ae61dadd3cbf6efa"
+    },
+    "html": {
+      "file": "demo-export.html",
+      "byteLength": 10296,
+      "sha256": "5f0618c3b8f05ac71f07984a944a3983795ba26d5adefc07a673b93e3ca63973"
+    },
+    "docx": {
+      "file": "demo-export.docx",
+      "byteLength": 9403,
+      "sha256": "3c4aaff08e955accc5977c4e0e884039591ac669082f808a057d0a1fe6f98fc1"
+    }
+  },
+  "checks": [
+    {
+      "name": "实际下载文件完整复制：mewoc.json",
+      "passed": true,
+      "details": {
+        "file": "demo-export.mewoc.json",
+        "byteLength": 2827,
+        "sha256": "d58852ba6845f54d9d2b6aa888808e3c085fb63e06b4d001ae61dadd3cbf6efa"
+      }
+    },
+    {
+      "name": "实际下载文件完整复制：html",
+      "passed": true,
+      "details": {
+        "file": "demo-export.html",
+        "byteLength": 10296,
+        "sha256": "5f0618c3b8f05ac71f07984a944a3983795ba26d5adefc07a673b93e3ca63973"
+      }
+    },
+    {
+      "name": "实际下载文件完整复制：docx",
+      "passed": true,
+      "details": {
+        "file": "demo-export.docx",
+        "byteLength": 9403,
+        "sha256": "3c4aaff08e955accc5977c4e0e884039591ac669082f808a057d0a1fe6f98fc1"
+      }
+    },
+    {
+      "name": "Mewoc 实际导出保留目标段落四属性",
+      "passed": true,
+      "details": {
+        "text": "这段用于演示精细间距。选中后打开「开始 → 段落设置」，也可以用格式刷复制到其他段落。",
+        "attrs": {
+          "spaceBefore": 12.5,
+          "spaceAfter": 18,
+          "keepWithNext": true,
+          "keepTogether": true
+        }
+      }
+    },
+    {
+      "name": "Mewoc 产品 importer 保留四属性并分配新文档 ID",
+      "passed": true,
+      "details": {
+        "sourceDocumentId": "bbfe0401-d006-4a82-905a-2e126d00e910",
+        "importedDocumentId": "882556e5-5a8b-4f48-9892-a678123e9542",
+        "target": {
+          "text": "这段用于演示精细间距。选中后打开「开始 → 段落设置」，也可以用格式刷复制到其他段落。",
+          "attrs": {
+            "spaceBefore": 12.5,
+            "spaceAfter": 18,
+            "keepWithNext": true,
+            "keepTogether": true
+          }
+        },
+        "assetCount": 0,
+        "storageVersion": 0,
+        "persisted": false
+      }
+    },
+    {
+      "name": "HTML 实际目标段落样式保留间距及分页",
+      "passed": true,
+      "details": {
+        "text": "这段用于演示精细间距。选中后打开「开始 → 段落设置」，也可以用格式刷复制到其他段落。",
+        "inlineStyle": "margin-top: 12.5pt; margin-bottom: 18pt; break-after: avoid; break-inside: avoid;",
+        "styles": {
+          "marginTop": "12.5pt",
+          "marginBottom": "18pt",
+          "breakAfter": "avoid",
+          "breakInside": "avoid"
+        },
+        "verification": "对实际下载 HTML 进行 DOM 解析，检查目标段落内联 CSS；iframe 实际 computed style 另由 9/9 浏览器专项覆盖。"
+      }
+    },
+    {
+      "name": "HTML 导出不携带编辑器控件、脚本、事件或临时 Blob 地址",
+      "passed": true,
+      "details": {
+        "controlCount": 0,
+        "eventAttributeCount": 0,
+        "scriptCount": 0,
+        "hasTemporaryBlobUrl": false
+      }
+    },
+    {
+      "name": "DOCX 实际 document.xml 精确保存 250/360 twip 与 keepNext/keepLines",
+      "passed": true,
+      "details": {
+        "text": "这段用于演示精细间距。选中后打开「开始 → 段落设置」，也可以用格式刷复制到其他段落。",
+        "paragraphProperties": "<w:pPr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><w:keepNext/><w:keepLines/><w:spacing w:after=\"360\" w:before=\"250\" w:line=\"420\"/><w:ind w:left=\"0\" w:firstLine=\"0\"/><w:jc w:val=\"left\"/></w:pPr>",
+        "attributes": {
+          "before": "250",
+          "after": "360",
+          "keepNext": true,
+          "keepLines": true
+        },
+        "twipsPerPoint": 20,
+        "packageEntries": 22
+      }
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  }
+}

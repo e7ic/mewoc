@@ -1,3 +1,7 @@
+/**
+ * 验证文档 schema 与便携文件的基础契约：拒绝未知格式、约束链接/纸张/样式并完整恢复图片。
+ * 编辑器实际生成的 JSON 也进入校验，防止持久白名单与扩展 schema 各自合法却无法互通。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -6,6 +10,7 @@ import { createDocument, validateDocument, validatePage, isSafeLink } from "../s
 import { createExtensions } from "../src/pages/editor/tools/create-extensions.js"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 
+// 安装编辑器需要的浏览器对象和帧调度，让 Node 测试执行真实 schema/事务逻辑；JSDOM 不承担原生版式验收。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   // Node 24 提供只读 navigator getter；测试环境显式安装自己的 DOM 对象。
@@ -13,6 +18,7 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 }
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
+// 用 Blob 原始字节模拟浏览器 data URL 编码，使 Node 测试覆盖同一便携文件资源表示。
 globalThis.FileReader = class {
   readAsDataURL(blob) {
     blob.arrayBuffer().then(bytes => {
@@ -22,6 +28,7 @@ globalThis.FileReader = class {
   }
 }
 
+// 最小真实 PNG fixture 供头部验证和文件往返使用，避免用仅 MIME 合法的假图绕开内容检查。
 const PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jWZkAAAAASUVORK5CYII="
 
 test("文档拒绝未知节点、未知属性与未来版本，保留原始内容", () => {
@@ -41,6 +48,7 @@ test("链接与纸张在边界拒绝非法值", () => {
   assert.throws(() => validatePage({ ...page, marginsMm: { top: 20, right: 150, bottom: 20, left: 150 } }), /页边距过大/)
 })
 
+// 通过真实命令和 undo 生成快照再校验，证明合法编辑状态与持久化白名单同步。
 test("完整扩展组合：段落行距、表格和撤销后的 JSON 仍通过校验", () => {
   const record = createDocument()
   const editor = new Editor({ element: document.createElement("div"), extensions: createExtensions(), content: record.content })
@@ -58,6 +66,7 @@ test("完整扩展组合：段落行距、表格和撤销后的 JSON 仍通过�
   editor.destroy()
 })
 
+// 区分第三方解析器的合法空串默认与非法具体 CSS，兼容往返时不能顺带放宽危险样式。
 test("文字样式 HTML 往返产生的空属性可保存，非法颜色仍被拒绝", () => {
   const record = createDocument()
   const editor = new Editor({ element: document.createElement("div"), extensions: createExtensions(), content: '<p><span style="color: #6657d9">粘贴文字</span></p>' })

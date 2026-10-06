@@ -1,3 +1,7 @@
+/**
+ * 仅用于早期验收的 DOCX 导出原型：调用方注入固定 SDK，模块只实现最小内容范围。
+ * 验证业务快照/资源后生成 SDK Document，打包和落盘交给脚本；不修改源对象或编辑器状态。
+ */
 import { validateDocument } from "../../src/pages/editor/tools/document-schema.js"
 import { validateImageBlob } from "../../src/pages/editor/tools/image-assets.js"
 
@@ -5,6 +9,7 @@ import { validateImageBlob } from "../../src/pages/editor/tools/image-assets.js"
 // 输入仍是应用快照及资源 Map；转换只读取它们，不接触 editor、存储或临时 URL。
 export async function createDocxPrototype(source, assets, sdk) {
   const document = validateDocument(structuredClone(source))
+  // 原型也必须核对资源声明与真实 Blob 的存在/大小/MIME，避免导出后才发现缺图。
   for (const asset of document.assets) {
     const entry = assets.get(asset.id)
     if (!entry?.blob || entry.blob.size !== asset.byteLength || entry.blob.type !== asset.mimeType) throw new Error(`资源「${asset.fileName}」缺失或声明不匹配`)
@@ -12,6 +17,7 @@ export async function createDocxPrototype(source, assets, sdk) {
   const warnings = new Set()
   const margins = document.page.marginsMm
   const landscape = document.page.orientation === "landscape"
+  // 正文可用宽度按 A4 方向与页边距算为 px，图片/表格使用同一约束，输出时再换 OOXML 单位。
   const widthMm = landscape ? 297 : 210
   const widthPx = (widthMm - margins.left - margins.right) * 96 / 25.4
   const context = { sdk, assets, warnings, widthPx }
@@ -39,16 +45,19 @@ export async function createDocxPrototype(source, assets, sdk) {
   return { file, warnings: [...warnings] }
 }
 
+/** 最小块类型映射：公式和代码保留源码、附件保留说明，其余未实现结构显式拒绝。 */
 async function createBlock(node, context) {
   const { sdk, warnings } = context
   if (node.type === "paragraph" || node.type === "heading") return createParagraph(node, context)
   if (node.type === "pageBreak") return new sdk.Paragraph({ children: [new sdk.PageBreak()], spacing: { before: 0, after: 0 } })
   if (node.type === "image") return createImage(node, context)
   if (node.type === "table") return createTable(node, context)
+  // 原型尚不生成 OMML，完整 LaTeX 作为可读文字输出，warning 明确表示其可编辑语义没有保留。
   if (node.type === "blockMath") {
     warnings.add("公式暂以 LaTeX 原文输出，不是 Word 原生公式")
     return new sdk.Paragraph({ children: [new sdk.TextRun(node.attrs.latex)], alignment: "center" })
   }
+  // 将每个源码换行作为 Word break 输出，固定等宽字体，语法着色不属于本阶段范围。
   if (node.type === "codeBlock") {
     warnings.add("代码块保留源码与换行，本样例不转换语法高亮")
     const lines = (node.content || []).map(child => child.text).join("").split("\n")
@@ -67,6 +76,7 @@ async function createBlock(node, context) {
   throw new Error(`DOCX 样例暂不支持节点 ${node.type}`)
 }
 
+/** 将段落/前三层标题和基础行内样式映射到 Word，表头通过 header 参数补默认粗体。 */
 function createParagraph(node, context, header = false) {
   const { sdk } = context
   const attrs = node.attrs || {}
@@ -83,6 +93,7 @@ function createParagraph(node, context, header = false) {
   })
 }
 
+/** 映射普通文字、换行与源码公式，字号取最近半磅，文字样式/安全业务链接转成 SDK run。 */
 function createInline(node, defaults, context) {
   const { sdk, warnings } = context
   if (node.type === "hardBreak") return new sdk.TextRun({ break: 1 })
@@ -97,6 +108,7 @@ function createInline(node, defaults, context) {
   const size = Math.round(points * 2)
   if (size !== points * 2) warnings.add("Word 字号以半磅为单位，部分字号已取最近的半磅")
   const markTypes = marks.map(mark => mark.type)
+  // Word 常规/加粗与连续数值字重不同，按阈值折算并提示，显式字重优先于默认标题粗体。
   const weight = style.fontWeight ? Number(style.fontWeight) : null
   if (weight && ![400, 700].includes(weight)) warnings.add("Word 本样例将数值字重转换为常规或加粗")
   const run = new sdk.TextRun({
@@ -113,6 +125,7 @@ function createInline(node, defaults, context) {
   return link ? new sdk.ExternalHyperlink({ children: [run], link: link.attrs.href }) : run
 }
 
+/** 验签名后嵌入原始 PNG/JPEG 字节，显示超宽时等比缩小；WebP 尚未实现转换需明确拒绝。 */
 async function createImage(node, context) {
   const { sdk, assets, warnings, widthPx } = context
   const asset = assets.get(node.attrs.assetId)
@@ -129,12 +142,14 @@ async function createImage(node, context) {
   })] })
 }
 
+/** 只接受规则、无合并、格内全为段落的表格，使用固定列宽；超出页面宽度明确拒绝而非裁切。 */
 function createTable(node, context) {
   const { sdk, widthPx } = context
   const first = node.content[0].content
   if (node.content.some(row => row.content.length !== first.length || row.content.some(cell => (cell.attrs?.colspan || 1) !== 1 || (cell.attrs?.rowspan || 1) !== 1))) {
     throw new Error("DOCX 样例尚未实现合并单元格")
   }
+  // 以首行 colwidth 定义列宽，未声明平分正文宽度；后续固定布局均复用同一列宽数组。
   const columns = first.map(cell => cell.attrs?.colwidth?.[0] || widthPx / first.length)
   let total = 0
   columns.forEach(width => { total += width })
@@ -157,10 +172,12 @@ function createTable(node, context) {
   })
 }
 
+/** 毫米转为每英寸 1440 的 OOXML twip 整数，供页面大小与页边距使用。 */
 function mmToTwips(value) {
   return Math.round(value * 1440 / 25.4)
 }
 
+/** 去掉 CSS 的 # 并把三位色扩成六位，满足 Word run/shading 的 RGB 色值格式。 */
 function toColor(value) {
   const hex = value.slice(1)
   return hex.length === 3 ? [...hex].map(character => character.repeat(2)).join("") : hex

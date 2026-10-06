@@ -1,3 +1,4 @@
+// 顶部文档栏：品牌、可编辑标题、文件入口及右侧动作分区，保存与本地存储说明不参与正文。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
@@ -19,15 +20,13 @@
     strong span { color: $ui-accent; }
   }
   .logo {
-    display: grid;
-    place-items: center;
-    width: 36px;
-    height: 39px;
-    font-size: 22px;
-    color: #ffffff;
-    background: $theme-color;
-    border-radius: 10px 10px 10px 3px;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 48px;
+    // 裁出原图中的 3D 图形，文字继续使用主题色，兼容深色界面。
+    background: url("../../../assets/images/mewoc-logo-v3-tiny.png") -15px -14.5px / 207.9px 75.6px no-repeat;
   }
+  // 标题区限制宽度并允许输入框收缩，避免长标题挤走文件操作。
   .document {
     display: flex;
     flex-direction: column;
@@ -44,6 +43,7 @@
       border: 0;
     }
   }
+  // 状态颜色辅助识别已保存与失败；业务文案及重试逻辑由组件提供。
   .status {
     display: flex;
     align-items: center;
@@ -53,11 +53,13 @@
     &.saved svg { color: #71a68a; }
     &.error { color: #c64d4d; }
   }
+  // 文件操作保持横向不换行，右侧动作通过 auto margin 使用剩余空间。
   .files {
     display: flex;
     align-items: center;
     gap: 18px;
     button { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+    :global(.tabler-icon) { font-size: 20px; }
     button:hover { color: $ui-accent; }
   }
   .actions {
@@ -68,13 +70,19 @@
     white-space: nowrap;
     :global(.ant-btn) { height: 35px; border-radius: 6px; }
   }
-  .local { margin-right: 4px; font-size: 11px; color: $ui-muted; }
+  .local { display: inline-flex; align-items: center; gap: 5px; margin-right: 4px; font-size: 11px; color: $ui-muted; }
 }
 
+// 较窄桌面宽度先减少间距并收起辅助说明，主要文档与文件入口继续可见。
 @media (max-width: 1250px) {
   .container { gap: 15px; padding: 0 18px; }
   .container .files { gap: 10px; }
   .container .local { display: none; }
   .container .brand { padding-right: 14px; }
   .container .document { max-width: 190px; }
+}
+
+@media (max-width: 1000px) {
+  .container { gap: 12px; }
+  .container .files { gap: 8px; }
 }

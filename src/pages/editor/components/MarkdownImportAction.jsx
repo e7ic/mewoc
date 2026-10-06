@@ -1,6 +1,10 @@
+/**
+ * Markdown 导入统一支持文件选择与直接输入，先转换预览，再创建独立新文档。
+ * 草稿变化会废弃预览结果；异步版本号阻止旧读取和转换覆盖新输入或已关闭弹窗。
+ */
 import { useEffect, useRef, useState } from "react"
 import { Button, Form, Input, Modal } from "antd"
-import { FileMarkdownOutlined } from "@ant-design/icons"
+import { IconLoader2, IconMarkdown } from "@tabler/icons-react"
 import { MarkdownWarnings } from "./MarkdownWarnings.jsx"
 import { readMarkdownSource, readMarkdownDocument } from "../tools/markdown-file.js"
 import styles from "../sass/markdown.module.scss"
@@ -15,16 +19,19 @@ export function MarkdownImportAction({ disabled, onImport }) {
   // 修改草稿、关闭或卸载都会使旧版本失效，防止迟到的读取/转换结果重新打开旧预览。
   const versionRef = useRef(0)
 
+  // 任何标题或源码变化都清除旧转换结果，保证“导入”只能使用与当前草稿对应的预览。
   const handleChange = next => {
     versionRef.current += 1
     setDraft(next)
     setResult(null)
     setError("")
   }
+  // 每次打开从默认空草稿重新开始，不沿用上次取消后的文件或转换结果。
   const handleOpen = () => {
     handleChange({ title: "Markdown 文档", source: "" })
     setOpen(true)
   }
+  // 父级切换期间禁止取消；普通关闭提高版本号，让正在读取的结果无法重新填回弹窗。
   const handleCancel = () => {
     if (disabled) return
     versionRef.current += 1
@@ -32,6 +39,7 @@ export function MarkdownImportAction({ disabled, onImport }) {
     setPending(false)
     setResult(null)
   }
+  // 文件入口先读取源码，文本入口直接使用草稿；每个异步阶段都核对版本，失败只影响最新任务。
   const handlePreview = async file => {
     const version = ++versionRef.current
     setPending(true)
@@ -49,6 +57,7 @@ export function MarkdownImportAction({ disabled, onImport }) {
       if (version === versionRef.current) setPending(false)
     }
   }
+  // 把已经转换的记录交给父级切换契约，不覆盖当前会话；失败保留预览以便处理保存错误后重试。
   const handleImport = async () => {
     if (!result || pending || disabled) return
     const version = versionRef.current
@@ -64,17 +73,20 @@ export function MarkdownImportAction({ disabled, onImport }) {
     }
   }
 
+  // 卸载使未完成读取或转换全部过期；此处取消结果回写，不声称中止底层读取。
   useEffect(() => () => { versionRef.current += 1 }, [])
 
   return <>
-    <button type="button" disabled={disabled} onClick={handleOpen}><FileMarkdownOutlined />导入 Markdown</button>
+    <button type="button" disabled={disabled} onClick={handleOpen}><IconMarkdown aria-hidden="true" />导入 Markdown</button>
     <MarkdownImportDialog open={open} draft={draft} result={result} error={error} pending={pending} disabled={disabled}
       onChange={handleChange} onCancel={handleCancel} onPreview={handlePreview} onImport={handleImport} />
   </>
 }
 
+// 展示层只负责表单、文件选择与预览；草稿和导入状态由外层拥有，避免弹窗销毁后遗失任务边界。
 const MarkdownImportDialog = ({ open, draft, result, error, pending, disabled, onChange, onCancel, onPreview, onImport }) => {
   const fileInputRef = useRef(null)
+  // 清空文件输入后转交 File，允许同一 Markdown 文件反复预览，实际读取由外层流程管理。
   const handleFile = event => {
     const file = event.target.files[0]
     event.target.value = ""
@@ -83,7 +95,7 @@ const MarkdownImportDialog = ({ open, draft, result, error, pending, disabled, o
   return <Modal title="导入 Markdown" open={open} onCancel={onCancel} width={720} destroyOnHidden
     classNames={{ body: styles.body }} closable={!disabled} maskClosable={!disabled} keyboard={!disabled}
     footer={<div className={styles.actions}>
-      <Button loading={pending} disabled={disabled} onClick={() => onPreview()}>预览转换</Button>
+      <Button loading={(pending) && { icon: <IconLoader2 aria-hidden="true" className="mewoc-icon-spin" /> }} disabled={disabled} onClick={() => onPreview()}>预览转换</Button>
       <Button type="primary" disabled={!result || pending || disabled} onClick={onImport}>导入为新文档</Button>
       <Button disabled={disabled} onClick={onCancel}>取消</Button>
     </div>}>

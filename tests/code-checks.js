@@ -1,13 +1,16 @@
+/** 浏览器代码块验收：异步着色、源码/语言保存、粘贴和键盘编辑均通过真实编辑器处理。 */
 import { createDocumentHtml } from "../src/pages/editor/tools/file-transfer.js"
 import { createPortableFile, readPortableFile } from "../src/pages/editor/tools/portable-file.js"
 import { getDocuments } from "../src/pages/editor/tools/local-repository.js"
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 import { setCodeBlockLanguage } from "../src/pages/editor/tools/code-block-commands.js"
 
+// 将场景错误交由统一报告包装器处理。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 有界等待实际高亮 DOM 出现，覆盖防抖与动态加载；超时抛错而不无期限等待。
 async function waitForHighlight(editor) {
   for (let attempt = 0; attempt < 40; attempt += 1) {
     if (editor.view.dom.querySelector("pre .hljs-keyword")) return
@@ -16,6 +19,7 @@ async function waitForHighlight(editor) {
   throw new Error("代码高亮未就绪")
 }
 
+// 同一源码贯穿显示、输出和恢复，包含脚本文字以验证源码不会变成活动 HTML。
 export async function checkCodeFlows(left, check) {
   const { editor } = left
   const source = 'const text = "<script>示例</script>"\n\n  console.log(text)\n'
@@ -76,6 +80,7 @@ export async function checkCodeFlows(left, check) {
   })
 }
 
+// 向正文派发可取消键盘事件，检查真实快捷键链而非直接调用对应工具函数。
 function pressCodeKey(editor, key, options = {}) {
   const event = new KeyboardEvent("keydown", { key, bubbles: true, cancelable: true, ...options })
   return editor.view.someProp("handleKeyDown", handler => handler(editor.view, event))

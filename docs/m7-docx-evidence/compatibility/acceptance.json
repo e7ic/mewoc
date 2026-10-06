@@ -1,0 +1,154 @@
+{
+  "date": "2026-09-12",
+  "totalNodeTests": 184,
+  "passedNodeTests": 184,
+  "node18Scope": {
+    "version": "18.18.0",
+    "passed": 18,
+    "total": 18
+  },
+  "fixtureResults": [
+    {
+      "file": "comments.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "adc9f524d176f562db830c346c1e9e21c6a6aa6768d9c09892a423f1257fe17c"
+    },
+    {
+      "file": "embedded-style-map.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "3c21d6901093577e52f9681c0af36b01d1127385234077772a8e95d332d08c9e"
+    },
+    {
+      "file": "empty.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "fd9160a87bcbe94570d998499f1b1ed9b39f381fde1688c2ed2b0b0a6d562bf2"
+    },
+    {
+      "file": "endnotes.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "8b0275a08427605e57e0ca7596bc89fb4c00e4b9a5cdae2b1941c619c2496014"
+    },
+    {
+      "file": "external-picture.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "2f5dbcf27f3dcec02e81535de21b81a2719e0acfd73158750cb7f91249e628f5"
+    },
+    {
+      "file": "footnote-hyperlink.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "1024a9054d06dc14d69a59f3b0d9d98361f755d5aff93f7b4f27b4af27fa8295"
+    },
+    {
+      "file": "footnotes.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "a3d786ba3ad53833dd3d5e01bd55e93b628c1287d8f9210eb94cb7533f270306"
+    },
+    {
+      "file": "simple-list.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "ed3c015cf411d07b08bf34264ff709363740b0747af355479088079d0796dfb3"
+    },
+    {
+      "file": "single-paragraph.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "7d89bf44b4d6940234efb6973d24706c881aa875bb794bfbe54efd92f9c6cf3e"
+    },
+    {
+      "file": "strict-format.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "86d90f50d8fd3310c4079291c6622878d8f4d8864d665d1e34841f407e7b7662"
+    },
+    {
+      "file": "strikethrough.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "1058370d03b42e797384e25b2142fce805f5520693e5ddbdf5e5ee64a3cf910c"
+    },
+    {
+      "file": "tables.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "9f75a82d36530d91989a43fcb8940f2e753051787714cecbf6a1f49a22e58ded"
+    },
+    {
+      "file": "text-box.docx",
+      "passed": true,
+      "expected": "reject",
+      "sha256": "a94f4c516bec29b7c2e2e219ad1799700f0eecd0ebf25ef7f8fc59c14db8fdc9"
+    },
+    {
+      "file": "tiny-picture-target-base-relative.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "7ce8d0d134ce59d89217eeee8e604ec5c60f57ff726f38ccda8201c2e8fedf12"
+    },
+    {
+      "file": "tiny-picture.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "791b57c038328560d710c33c5b53bc3ea67a6c08bd9fa0fce0770883e39228d8"
+    },
+    {
+      "file": "underline.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "3cc0b83be6c543ef74624303b5a37881ae1784cddb3a238f4410448c81604dde"
+    },
+    {
+      "file": "utf8-bom.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "8b59e5faa28793693ce0801711525f88b1f94f62d150ae9a92d1e70012d786ee"
+    },
+    {
+      "file": "tbl-cell-access.docx",
+      "passed": true,
+      "expected": "semantic round trip",
+      "sha256": "dc01708a24c5e940c94b99b7ee496606e5f17152bc41cec211c9f8c72334cb22"
+    }
+  ],
+  "lint": true,
+  "build": {
+    "passed": true,
+    "totalKb": 3035.8,
+    "gzipKb": 898.8
+  },
+  "browser": {
+    "engine": "Codex In-app Browser",
+    "origin": "http://127.0.0.1:4180",
+    "strictFormatMessageObserved": true,
+    "originalDocumentRetained": true,
+    "reselectionSucceeded": true,
+    "mergedTableImport": true,
+    "tableCount": 4,
+    "mergeSpans": [
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "autosaveAndReload": true,
+    "firstAttempt": "Modal disappeared without a recorded result; stable-page retry passed"
+  },
+  "nativeWordWpsVerified": false,
+  "independentFormulaAndComplexNumberingFixturesAdded": false,
+  "sourceManifest": "../../../tests/fixtures/docx-compatibility/sources.json"
+}

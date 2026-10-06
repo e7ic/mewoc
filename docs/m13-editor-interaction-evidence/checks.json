@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-02",
+  "reference": "https://www.umodoc.com/demo",
+  "scope": "Style gallery, paragraph focus feedback, text selection color; H1–H6 persistence and conversion",
+  "node": "v24.13.1",
+  "nodeTests": {
+    "passed": 378,
+    "total": 378,
+    "file": "node-tests.txt"
+  },
+  "lint": {
+    "passed": true,
+    "file": "lint.txt"
+  },
+  "build": {
+    "passed": true,
+    "file": "build.txt"
+  },
+  "browser": {
+    "interaction": {
+      "passed": 9,
+      "total": 9,
+      "file": "interaction-browser.json"
+    },
+    "base": {
+      "passed": 62,
+      "total": 62,
+      "file": "base-browser.json"
+    },
+    "paragraph": {
+      "passed": 9,
+      "total": 9,
+      "file": "paragraph-browser.json"
+    },
+    "precision": {
+      "passed": 10,
+      "total": 10,
+      "file": "precision-browser.json"
+    },
+    "library": {
+      "passed": 8,
+      "total": 8,
+      "file": "library-browser.json"
+    },
+    "history": {
+      "passed": 11,
+      "total": 11,
+      "file": "history-browser.json"
+    },
+    "comments": {
+      "passed": 8,
+      "total": 8,
+      "file": "comments-browser.json"
+    },
+    "templates": {
+      "passed": 10,
+      "total": 10,
+      "file": "templates-browser.json"
+    },
+    "docx-export": {
+      "passed": 5,
+      "total": 5,
+      "file": "docx-export-browser.json"
+    },
+    "docx-import": {
+      "passed": 6,
+      "total": 6,
+      "file": "docx-import-browser.json"
+    }
+  },
+  "browserTotal": 138,
+  "manual": {
+    "origin": "http://127.0.0.1:4182/",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "mouseFocusAndMoreButtonBlur": true,
+    "keyboardEndToH6AndEnter": true,
+    "h6SavedAndReloaded": true,
+    "consoleErrors": [],
+    "screenshots": [
+      "09-mewoc-final-focus.jpg",
+      "10-mewoc-final-gallery.jpg"
+    ]
+  },
+  "comparison": {
+    "cardSizePx": [
+      68,
+      42
+    ],
+    "activeBorder": "#3480f9",
+    "focusedParagraphBackground": "#f5f8fc",
+    "focusInsetPx": {
+      "vertical": 5,
+      "horizontal": 8
+    },
+    "focusBorderRadiusPx": 3,
+    "textSelectionBackground": "#94cfff"
+  },
+  "notes": [
+    "Initial focus revision assertion failed because fixture ended with code block and StarterKit inserted its normal trailing paragraph. Fixture corrected; same assertions passed.",
+    "Hot reload/lazy compilation interrupted initial browser runs. Final results persisted after stable reruns.",
+    "After browser tests, restored font size/line height/indent select widths to avoid truncated text; rebuilt and visually checked.",
+    "No physical IME, full screen-reader, native PDF or Word/WPS rendering certification in this batch.",
+    "Development server recorded two ResizeObserver undelivered notifications, exact test origin undetermined; no assertion failure. Manual demo tab error log was empty."
+  ],
+  "retainedService": "http://127.0.0.1:4177/",
+  "userDocumentEdited": false
+}

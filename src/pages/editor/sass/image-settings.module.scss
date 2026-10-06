@@ -1,0 +1,11 @@
+// 图片精确设置表单：宽高并列、比例动作换行，错误与提交区保持独立。
+.form { padding-top: 8px; }
+// 两列使用 minmax(0, 1fr)，允许输入控件在弹窗内缩小而不撑破布局。
+.dimensions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.dimensions :global(.ant-input-number) { width: 100%; }
+.ratio { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.hint { margin: 10px 0 20px; color: #777777; font-size: 12px; }
+.error { color: #b42318; margin: 0 0 16px; }
+.actions { display: flex; gap: 8px; }
+// 矮窗口内只滚动表单主体，并阻止滚动继续传给背后的纸张视口。
+.modal :global(.ant-modal-body) { max-height: calc(100dvh - 150px); overflow-y: auto; overscroll-behavior: contain; }

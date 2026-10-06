@@ -1,0 +1,70 @@
+[
+  {
+    "style": null,
+    "tag": "TR",
+    "text": "事项设置结果"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TH",
+    "text": "事项"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TH",
+    "text": "设置"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TH",
+    "text": "结果"
+  },
+  {
+    "style": "height: 78px;",
+    "tag": "TR",
+    "text": "表格底色 / 边框 / 内边距列宽 / 最小行高"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TD",
+    "text": "表格"
+  },
+  {
+    "style": "background-color: rgb(237, 232, 250); vertical-align: middle; padding: 12px 18px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TD",
+    "text": "底色 / 边框 / 内边距"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TD",
+    "text": "列宽 / 最小行高"
+  },
+  {
+    "style": null,
+    "tag": "TR",
+    "text": "图片宽高 / 锁定比例对齐 / 说明文字"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TD",
+    "text": "图片"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TD",
+    "text": "宽高 / 锁定比例"
+  },
+  {
+    "style": "vertical-align: top; padding: 8px 10px; border-color: rgb(142, 119, 188); border-width: 2px; border-style: dashed;",
+    "tag": "TD",
+    "text": "对齐 / 说明文字"
+  },
+  {
+    "align": "center",
+    "ratio": "360 / 206",
+    "style": null,
+    "tag": "FIGURE",
+    "text": "",
+    "width": "360px"
+  }
+]

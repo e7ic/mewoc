@@ -1,0 +1,18 @@
+Mewoc Logo v2 — Paper Cat
+Generated with the built-in image_gen tool.
+Final file: public/brand/mewoc-logo-v2.png
+Concept: an abstract paper outline with cat-ear peaks and a curled lower corner, paired with a lighter lowercase wordmark.
+
+GENERATION PROMPT
+Use case: logo-brand
+Asset type: a completely new primary logo for "mewoc.", a calm desktop document editor.
+Primary request: Design an elegant, distinctive "paper cat" symbol with a refined lowercase wordmark. The personality is quiet, thoughtful and approachable, like a small companion for writing.
+Subject: A minimal violet outline symbol, a single upright sheet of paper whose top edge subtly forms two little cat-ear peaks. Its bottom-right corner curls inward with one simple controlled curve, suggesting both a turned page and a cat's tucked tail. A single short horizontal writing stroke inside connects the symbol to documents. No cat face, eyes, nose or whiskers. This is an abstract graphic identity, not an illustration or a mascot.
+Style: precise flat vector-like logo, medium-weight monoline curves, generous open interior, softly rounded line endings and a confident iconic silhouette. The line must remain robust at toolbar size. Beautiful restrained geometry, no bulky filled monogram.
+Typography: the exact word "mewoc." in a refined medium-weight lowercase humanist sans-serif, airy but carefully kerned, with open counters. Smooth friendly letterforms, modest stroke weight, no heavy or chunky lettering. The little final period is violet and aligned on the baseline.
+Composition: one horizontal logo lockup, symbol to the left of the wordmark. Symbol about 1.2 times the lowercase letter height, visually balanced with the lettering. Moderate gap. Entire lockup centered with ample clear space. Landscape presentation, only one logo, no alternate versions or labels.
+Color: symbol and final period solid violet #6657D9; wordmark solid charcoal #252837.
+Background: genuine fully transparent alpha background, including open areas within the symbol.
+Text (verbatim): "mewoc." — lowercase m e w o c then one period; no other text.
+Constraints: crisp two-color identity artwork. All colored strokes opaque. Clean transparent areas. Simplify until the symbol remains recognizable at 32 pixels.
+Avoid: folded M monograms, stacked sheets, ribbons, heavy bubble lettering, gradients, glow, bloom, shadows, 3D, glass, textures, mockups, checkerboard backgrounds, cute cartoon faces, extra decorations, slogans, watermarks.

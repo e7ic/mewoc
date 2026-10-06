@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "formats": 5,
+  "documentId": "679524be-28a3-4400-b6fa-7513b1f68d3f",
+  "page": {
+    "size": "A5",
+    "orientation": "landscape",
+    "marginsMm": {
+      "top": 12.7,
+      "right": 12.7,
+      "bottom": 12.7,
+      "left": 12.7
+    },
+    "watermark": {
+      "text": "内部资料",
+      "color": "#6554c0",
+      "opacity": 0.18,
+      "angle": -35
+    }
+  },
+  "htmlWatermarks": 1,
+  "docxPage": {
+    "w": "11906",
+    "h": "8391",
+    "orient": "landscape"
+  },
+  "docxHeaders": 1,
+  "docxWatermark": "内部资料",
+  "watermarkExcludedFromPlainBody": true,
+  "notes": [
+    "通过真实界面下载五种文件，核对实际内容和OOXML结构",
+    "本记录不等于 Word/WPS 原生界面排版验收"
+  ]
+}

@@ -1,0 +1,58 @@
+// 开始工具栏中的字体、段落、历史和拆分按钮布局；所有外观色随界面主题变量变化。
+@use "../../../assets/style/theme.scss" as *;
+
+.group {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  padding-right: 14px;
+  min-height: 56px;
+  border-right: 1px solid $ui-border;
+}
+// 每组以两行控件呈现，组宽不压缩，左右分隔线表达功能边界。
+.row { display: flex; align-items: center; gap: 4px; min-height: 26px; }
+.history { min-width: 78px; padding-right: 4px; }
+.fontGroup { min-width: 350px; }
+.paragraphGroup { min-width: 280px; }
+.font, .fontSize, .lineHeight { flex-shrink: 0; font-size: 12px; }
+.font { width: 142px; }
+.fontSize { width: 80px; }
+.lineHeight { width: 100px; }
+// 颜色主按钮执行当前色，邻接箭头打开选择面板；色条单独表达最近选中的色值。
+.color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  color: $ui-secondary;
+  border-radius: 3px;
+  font-size: 20px;
+  &:hover:not(:disabled) { background: $ui-hover; }
+}
+.colorIcon { display: flex; align-items: center; height: 23px; border-bottom: 3px solid; }
+.split { display: inline-flex; align-items: center; gap: 0; }
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 22px;
+  height: 26px;
+  color: $ui-secondary;
+  border-radius: 3px;
+  font-size: 18px;
+  &:hover:not(:disabled) { background: $ui-hover; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+// 下拉菜单与缩进面板使用纵向布局，校验错误保留在原面板内。
+.menu { display: flex; flex-direction: column; gap: 4px; min-width: 142px; }
+.menu :global(.ant-btn) { display: flex; justify-content: flex-start; }
+.indentPanel { display: flex; flex-direction: column; gap: 12px; width: 184px; }
+.indentField { display: flex; flex-direction: column; gap: 5px; color: $ui-secondary; font-size: 12px; }
+.indentField :global(.ant-select) { width: 100%; }
+.error { max-width: 184px; margin: 0; color: #b42318; font-size: 12px; line-height: 1.6; }

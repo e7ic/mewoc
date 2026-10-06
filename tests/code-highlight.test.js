@@ -1,3 +1,7 @@
+/**
+ * 验证代码着色只影响展示，不改变源码、文档属性、更新计数或撤销历史。
+ * 覆盖预算、安全序列化、异步结果竞态、销毁/组合输入以及代码粘贴与普通链接的优先级。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -10,6 +14,7 @@ import { highlightCode, renderCodeHtml, MAX_CODE_HIGHLIGHT_LENGTH } from "../src
 import { getCodeLanguage } from "../src/pages/editor/constants/code-languages.js"
 import { cleanPastedHtml } from "../src/pages/editor/hooks/use-editor-input.js"
 
+// 安装编辑器需要的浏览器对象和帧调度，让 Node 测试执行真实 schema/事务逻辑；JSDOM 不承担原生版式验收。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
@@ -17,9 +22,11 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
 
+// 源码 JSON fixture 保留空白与原语言标记，用于对比渲染前后和内部粘贴后的完整文档。
 const code = (text, language = "javascript") => ({
   type: "codeBlock", attrs: { language }, content: text ? [{ type: "text", text }] : []
 })
+// 每个场景创建独立编辑器并在 finally 销毁，隔离正文、插件和撤销历史；扩展组合只提供该组验证所需能力。
 const createEditor = (content, highlight) => new Editor({
   element: document.createElement("div"), content,
   extensions: highlight ? [StarterKit.configure({ trailingNode: false }), Extension.create({
@@ -27,6 +34,7 @@ const createEditor = (content, highlight) => new Editor({
   })] : [StarterKit.configure({ codeBlock: false, trailingNode: false }), DocumentCodeBlock]
 })
 const delay = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds))
+// 等待可观察插件状态而非假定渲染立即完成，设置截止时间使挂起的异步场景明确失败。
 const waitFor = async condition => {
   const deadline = Date.now() + 3000
   while (!condition()) {
@@ -34,10 +42,13 @@ const waitFor = async condition => {
     await delay(10)
   }
 }
+// 单独调用代码粘贴插件，隔离 VS Code 元数据解析与块内纯文本处理。
 const paste = (editor, text, metadata = "") => editor.state.plugins.find(plugin => plugin.key.startsWith("documentCodePaste$")).props.handlePaste(editor.view, {
   clipboardData: { getData: type => ({ "text/plain": text, "vscode-editor-data": metadata })[type] || "" }
 })
+// 把每次着色 Promise 的完成权交给测试，显式制造旧结果晚到和销毁后结果到达的竞态。
 const getDeferredHighlight = requests => text => new Promise(resolve => { requests.push({ text, resolve }) })
+// 通过完整 handlePaste 链验证插件优先级，模拟实际切片和剪贴板，防止单插件测试遗漏链接插件抢先处理。
 const pasteThroughPlugins = (editor, text, metadata = "") => {
   const paragraph = editor.schema.nodes.paragraph.create(null, editor.schema.text(text))
   const slice = new Slice(Fragment.from(paragraph), 0, 0)
@@ -110,6 +121,7 @@ test("HTML 文档总高亮预算只限制显示，后续代码块源码保持", 
   }
 })
 
+// 先完成旧请求，再完成新请求，检查装饰、update 数量和 undo 深度，证明着色不会被算作正文编辑。
 test("异步高亮只接收最新文档结果，不产生内容更新或撤销步骤", async () => {
   const requests = []
   const editor = createEditor({ type: "doc", content: [code("old")] }, getDeferredHighlight(requests))
@@ -251,6 +263,7 @@ test("块内粘贴保持纯文本，只读及组合输入拒绝粘贴写入", ()
   }
 })
 
+// 同一个 URL 按有/无代码元数据执行两条链路，证明提高代码优先级仍保留普通链接粘贴语义。
 test("完整粘贴链优先处理 VS Code URL 源码，普通 URL 仍给选中文字加链接", () => {
   const editor = createEditor("<p>replace</p>")
   const source = "https://example.com"

@@ -1,0 +1,468 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><title>段落精细设置 · 演示</title><style>.mewoc-content[data-format-painter="active"] {
+  cursor: copy;
+}
+
+.mewoc-content {
+  color: #252837;
+  overflow-wrap: break-word;
+  outline: none;
+  min-height: 120px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif;
+  font-size: 12pt;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.mewoc-content > :first-child {
+  margin-top: 0;
+}
+
+.mewoc-content p {
+  margin: 0 0 1em;
+}
+
+.mewoc-content [data-font-weight] strong {
+  font-weight: inherit;
+}
+
+.mewoc-content h1 {
+  color: #242633;
+  letter-spacing: -.6px;
+  margin: 0 0 22px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.mewoc-content h2 {
+  color: #363444;
+  margin: 32px 0 14px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.mewoc-content h3 {
+  color: #363444;
+  margin: 24px 0 10px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.mewoc-content hr {
+  background: #eaeaf0;
+  border: 0;
+  height: 1px;
+  margin: 28px 0;
+}
+
+.mewoc-content blockquote {
+  color: #797087;
+  background: #f6f4fb;
+  border-left: 3px solid #b6abd9;
+  margin: 28px 0;
+  padding: 13px 20px;
+}
+
+.mewoc-content blockquote p {
+  margin: 0;
+}
+
+.mewoc-content a {
+  color: #6657d9;
+  text-decoration: underline;
+}
+
+.mewoc-content .mewoc-comment-anchor {
+  background: #fff0b6;
+  border-bottom: 1px solid #ce9b27;
+}
+
+.mewoc-content.mewoc-comment-appendix, .mewoc-content .mewoc-comment-appendix {
+  border-top: 1px solid #d9dbe5;
+  margin-top: 32px;
+  padding-top: 16px;
+}
+
+.mewoc-content.mewoc-comment-appendix li, .mewoc-content .mewoc-comment-appendix li {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin-bottom: 16px;
+}
+
+.mewoc-content ul, .mewoc-content ol {
+  padding-left: 1.6em;
+}
+
+.mewoc-content li > p {
+  margin-bottom: .3em;
+}
+
+.mewoc-content pre {
+  color: #e0dcef;
+  background: #282b39;
+  border-radius: 6px;
+  padding: 16px;
+  font-family: Consolas, monospace;
+  overflow-x: auto;
+}
+
+.mewoc-content code {
+  font-family: Consolas, monospace;
+  font-size: .9em;
+}
+
+.mewoc-content pre code {
+  color: inherit;
+  white-space: pre;
+  tab-size: 2;
+  font-family: inherit;
+}
+
+.mewoc-content pre code .hljs-keyword, .mewoc-content pre code .hljs-literal, .mewoc-content pre code .hljs-selector-tag {
+  color: #c6a6ff;
+}
+
+.mewoc-content pre code .hljs-string, .mewoc-content pre code .hljs-regexp {
+  color: #a8d8a2;
+}
+
+.mewoc-content pre code .hljs-number, .mewoc-content pre code .hljs-symbol {
+  color: #f0bd89;
+}
+
+.mewoc-content pre code .hljs-comment, .mewoc-content pre code .hljs-quote {
+  color: #a5a8b8;
+}
+
+.mewoc-content pre code .hljs-title, .mewoc-content pre code .hljs-attr, .mewoc-content pre code .hljs-attribute {
+  color: #a4cdf8;
+}
+
+.mewoc-content pre code .hljs-name, .mewoc-content pre code .hljs-tag {
+  color: #efa7b3;
+}
+
+.mewoc-content pre code .hljs-built_in, .mewoc-content pre code .hljs-type, .mewoc-content pre code .hljs-meta {
+  color: #e9d398;
+}
+
+.mewoc-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.mewoc-content [data-type="attachment"] {
+  background: #f8f7fc;
+  border: 1px solid #e3dff0;
+  border-radius: 8px;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  display: flex;
+}
+
+.mewoc-content [data-type="attachment"].ProseMirror-selectednode {
+  outline: 2px solid #8271df;
+}
+
+.mewoc-content [data-type="attachment"] [data-attachment-icon] {
+  color: #6657d9;
+  background: #ece8fb;
+  border-radius: 5px;
+  flex-shrink: 0;
+  padding: 8px 6px;
+  font-size: 11px;
+}
+
+.mewoc-content [data-type="attachment"] [data-attachment-info] {
+  flex-direction: column;
+  flex: 1;
+  gap: 3px;
+  min-width: 0;
+  display: flex;
+}
+
+.mewoc-content [data-type="attachment"] [data-attachment-name] {
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+
+.mewoc-content [data-type="attachment"] [data-attachment-size] {
+  color: #797087;
+  font-size: 12px;
+}
+
+.mewoc-content [data-type="attachment"] [data-attachment-download] {
+  border-radius: 4px;
+  flex-shrink: 0;
+  padding: 4px 6px;
+  font-size: 13px;
+}
+
+.mewoc-content [data-type="attachment"] [data-attachment-download]:focus-visible {
+  outline-offset: 2px;
+  outline: 2px solid #6657d9;
+}
+
+.mewoc-content [data-type="inline-math"] {
+  vertical-align: middle;
+  max-width: 100%;
+  padding: 0 2px;
+  display: inline-block;
+}
+
+.mewoc-content [data-type="block-math"] {
+  text-align: center;
+  max-width: 100%;
+  margin: 18px 0;
+  overflow-x: auto;
+}
+
+.mewoc-content [data-type="inline-math"].ProseMirror-selectednode, .mewoc-content [data-type="block-math"].ProseMirror-selectednode {
+  outline: 2px solid #8271df;
+}
+
+.mewoc-content [data-type="inline-math"][data-formula-error], .mewoc-content [data-type="block-math"][data-formula-error] {
+  color: #a63737;
+  overflow-wrap: anywhere;
+  background: #fff0f0;
+}
+
+.mewoc-content [data-document-image] {
+  max-width: 100%;
+  margin: 20px 0;
+  line-height: 0;
+  display: table;
+  position: relative;
+}
+
+.mewoc-content [data-document-image][data-image-align="center"] {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mewoc-content [data-document-image][data-image-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.mewoc-content img[data-mewoc-image-align] {
+  margin: 20px 0;
+  display: block;
+}
+
+.mewoc-content img[data-mewoc-image-align="center"] {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mewoc-content img[data-mewoc-image-align="right"] {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.mewoc-content [data-document-image] img {
+  display: block;
+}
+
+.mewoc-content [data-document-image][data-selected] {
+  outline: 2px solid #8271df;
+}
+
+.mewoc-content [data-resize-handle] {
+  cursor: nwse-resize;
+  touch-action: none;
+  background: #6657d9;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+}
+
+.mewoc-content[contenteditable="false"] [data-resize-handle] {
+  display: none;
+}
+
+.mewoc-content table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 18px 0;
+}
+
+.mewoc-content td, .mewoc-content th {
+  vertical-align: top;
+  border: 1px solid #d9dbe5;
+  min-width: 35px;
+  padding: 8px 10px;
+  position: relative;
+}
+
+.mewoc-content th {
+  background: #f2f1f8;
+  font-weight: 600;
+}
+
+.mewoc-content td > p, .mewoc-content th > p {
+  margin: 0;
+}
+
+.mewoc-content .tableWrapper {
+  overflow-x: auto;
+}
+
+.mewoc-content .selectedCell:after {
+  z-index: 2;
+  pointer-events: none;
+  content: "";
+  background: #897bd72e;
+  position: absolute;
+  inset: 0;
+}
+
+.mewoc-content .column-resize-handle {
+  z-index: 3;
+  pointer-events: none;
+  background: #9c8cec;
+  width: 4px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -2px;
+}
+
+.mewoc-content.resize-cursor {
+  cursor: col-resize;
+}
+
+.mewoc-content [data-page-break] {
+  border-top: 1px dashed #c8c4d9;
+  height: 24px;
+  margin: 24px 0;
+  position: relative;
+}
+
+.mewoc-content [data-page-break]:after {
+  color: #a4a0b3;
+  content: "分页符";
+  background: #fff;
+  padding: 0 10px;
+  font-size: 10px;
+  position: absolute;
+  top: -9px;
+  left: 40%;
+}
+
+.mewoc-content .find-and-replace-result {
+  background: #fff1a8;
+}
+
+.mewoc-content .find-and-replace-result-current {
+  background: #ffc976;
+}
+
+.mewoc-content p.is-editor-empty:first-child:before {
+  float: left;
+  color: #b3b4c2;
+  pointer-events: none;
+  content: attr(data-placeholder);
+  height: 0;
+}
+
+@media print {
+  body {
+    margin: 0;
+  }
+
+  .mewoc-content {
+    min-height: 0;
+  }
+
+  .mewoc-content [data-page-break] {
+    break-before: page;
+    border: 0;
+    height: 0;
+    margin: 0;
+  }
+
+  .mewoc-content [data-page-break]:after, .mewoc-content [data-resize-handle] {
+    display: none;
+  }
+
+  .mewoc-content h1, .mewoc-content h2, .mewoc-content h3 {
+    break-after: avoid;
+  }
+
+  .mewoc-content figure, .mewoc-content img, .mewoc-content [data-type="attachment"] {
+    break-inside: avoid;
+  }
+
+  .mewoc-content [data-attachment-download] {
+    display: none;
+  }
+
+  .mewoc-content pre {
+    color: #252837;
+    white-space: pre-wrap;
+    background: #f6f6f8;
+    border: 1px solid #e4e5ec;
+    overflow: visible;
+  }
+
+  .mewoc-content pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .mewoc-content pre code .hljs-keyword, .mewoc-content pre code .hljs-literal, .mewoc-content pre code .hljs-selector-tag {
+    color: #6942a3;
+  }
+
+  .mewoc-content pre code .hljs-string, .mewoc-content pre code .hljs-regexp {
+    color: #2e693a;
+  }
+
+  .mewoc-content pre code .hljs-number, .mewoc-content pre code .hljs-symbol {
+    color: #8c4e16;
+  }
+
+  .mewoc-content pre code .hljs-comment, .mewoc-content pre code .hljs-quote {
+    color: #626777;
+  }
+
+  .mewoc-content pre code .hljs-title, .mewoc-content pre code .hljs-attr, .mewoc-content pre code .hljs-attribute {
+    color: #235c98;
+  }
+
+  .mewoc-content pre code .hljs-name, .mewoc-content pre code .hljs-tag {
+    color: #993f50;
+  }
+
+  .mewoc-content pre code .hljs-built_in, .mewoc-content pre code .hljs-type, .mewoc-content pre code .hljs-meta {
+    color: #756014;
+  }
+
+  .mewoc-content [data-type="block-math"] {
+    break-inside: avoid;
+    overflow: visible;
+  }
+
+  .mewoc-content table {
+    width: 100%;
+  }
+
+  .mewoc-content a {
+    color: inherit;
+  }
+}
+
+@page { size: A4 portrait; margin: 20mm 20mm 20mm 20mm; }</style></head><body><article class="mewoc-content"><h1>让报告段落更整齐</h1><p>段前和段后间距可精确设置；多段选择时只应用你改动的字段。</p><h2>一、项目进展</h2><p>本阶段完成了图片、表格与段落设置。现在可以用固定的段落间距整理报告，让标题、正文和说明保持清晰的层次。</p><p style="margin-top: 12.5pt; margin-bottom: 18pt; break-after: avoid; break-inside: avoid;">这段用于演示精细间距。选中后打开「开始 → 段落设置」，也可以用格式刷复制到其他段落。</p><h2>二、打印安排</h2><p>开启「与下段同页」可以避免标题落在页尾；开启「段内不分页」会尽量保持一个段落完整。实际分页由打印程序决定。</p><p>文档设置随保存、历史版本、模板和 Mewoc 文件保留。</p></article></body></html>

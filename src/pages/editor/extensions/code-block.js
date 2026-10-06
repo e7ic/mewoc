@@ -1,3 +1,7 @@
+/**
+ * 在 Tiptap 代码块节点上接入语言持久化、源码粘贴和编辑快捷键。
+ * 节点保存原始文字，着色由独立视图插件提供；键盘编辑复用命令工具，粘贴与围栏输入在本扩展处理。
+ */
 import CodeBlock from "@tiptap/extension-code-block"
 import { Extension, textblockTypeInputRule } from "@tiptap/core"
 import { Plugin, PluginKey, TextSelection } from "@tiptap/pm/state"
@@ -13,10 +17,12 @@ export const DocumentCodeBlock = CodeBlock.extend({
     return { language: { default: null, rendered: false, parseHTML: getPastedCodeLanguage } }
   },
   renderHTML({ node }) {
+    // 原始语言进入 data 属性供往返恢复，class 使用受支持语言名称供静态输出着色。
     return ["pre", { "data-code-language": node.attrs.language },
       ["code", { class: `language-${getCodeLanguage(node.attrs.language)}` }, 0]]
   },
   addKeyboardShortcuts() {
+    // 继承的移动/删除命令也要经过只读与输入法保护，避免绕过本项目的编辑约束。
     const editor = this.editor
     const parent = this.parent()
     const guard = handler => () => {
@@ -35,6 +41,7 @@ export const DocumentCodeBlock = CodeBlock.extend({
     }
   },
   addInputRules() {
+    // 输入围栏加空格才转换段落；捕获的语言留在节点属性中，缺省值为纯文本。
     return [/^```([a-z0-9#+._-]{1,40})? $/i, /^~~~([a-z0-9#+._-]{1,40})? $/i].map(find => textblockTypeInputRule({
       find, type: this.type, getAttributes: match => ({ language: match[1] || "plaintext" })
     }))
@@ -56,6 +63,7 @@ const CodeBlockPaste = Extension.create({
   }
 })
 
+// 识别代码块内纯文本与 VS Code 元数据；未匹配的剪贴板继续走普通粘贴流程。
 function createCodePastePlugin(editor, type) {
   return new Plugin({
     key: new PluginKey("documentCodePaste"),
@@ -71,6 +79,7 @@ function createCodePastePlugin(editor, type) {
           view.dispatch(closeHistory(view.state.tr))
           return true
         }
+        // 代码块外必须有明确的编辑器元数据，不能把任意多行文字误判成源码。
         const metadata = event.clipboardData.getData("vscode-editor-data")
         if (!metadata || !text) return false
         let language
@@ -81,6 +90,7 @@ function createCodePastePlugin(editor, type) {
         }
         if (typeof language !== "string" || !language || language.length > 1000) return false
         const tr = closeHistory(view.state.tr).replaceSelectionWith(type.create({ language }, view.state.schema.text(text)))
+        // 替换后若选区落到块外，将光标移回代码块附近，让用户能继续编辑刚粘贴的源码。
         if (tr.selection.$from.parent.type !== type) {
           tr.setSelection(TextSelection.near(tr.doc.resolve(Math.max(0, tr.selection.from - 2))))
         }

@@ -1,0 +1,95 @@
+// 表格工具栏及对齐/底色弹层，支持结构操作、活动状态和精确颜色输入。
+@use "../../../assets/style/theme.scss" as *;
+
+.ribbon {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 12px;
+  box-sizing: border-box;
+  min-width: max-content;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  // 视觉隐藏 fieldset 标题但保留语义，避免占据紧凑工具栏空间。
+  > legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+}
+.group { display: flex; flex: 0 0 auto; flex-direction: column; justify-content: center; gap: 4px; min-height: 56px; padding-right: 12px; border-right: 1px solid $ui-border; }
+.group:last-child { padding-right: 0; border-right: 0; }
+.row { display: flex; align-items: center; gap: 4px; min-height: 26px; }
+// 结构命令按钮按内容占宽，禁用、按下和键盘焦点状态分别反馈。
+.button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 3px 5px;
+  height: 26px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: color-mix(in srgb, $ui-text 85%, $ui-surface);
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  > :global(.tabler-icon) { font-size: 20px; }
+  &:hover:not(:disabled) { background: $ui-hover; color: $ui-text; }
+  &[aria-pressed="true"] { background: $ui-hover; color: $ui-text; }
+  &:disabled { opacity: .4; cursor: not-allowed; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+.button > .arrow { font-size: 18px; }
+.danger:hover:not(:disabled) { color: #b42318; }
+.hint { margin: 0; color: $ui-secondary; font-size: 12px; line-height: 1.6; }
+// 对齐弹层把垂直对齐选项排成行，选择状态由 aria-pressed 回显。
+.alignPanel { display: flex; flex-direction: column; gap: 8px; width: 240px; }
+.alignRow { display: flex; align-items: center; gap: 6px; }
+.verticalLabel { display: inline-flex; align-items: center; gap: 4px; width: 68px; color: $ui-secondary; font-size: 12px; }
+.verticalLabel > :global(.tabler-icon) { font-size: 20px; }
+.alignOption {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid $ui-border;
+  border-radius: 3px;
+  color: $ui-text;
+  background: $ui-surface;
+  font-size: 20px;
+  cursor: pointer;
+  &:hover:not(:disabled), &[aria-pressed="true"] { color: #3480f9; border-color: #3480f9; background: $ui-hover; }
+  &:disabled { opacity: .4; cursor: not-allowed; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+// 底色弹层组合预设色板、原生颜色输入和文本输入，错误显示在同一操作区。
+.colorPanel { display: flex; flex-direction: column; gap: 10px; width: 216px; }
+.swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.swatch {
+  width: 29px;
+  height: 25px;
+  padding: 0;
+  border: 1px solid $ui-border;
+  border-radius: 2px;
+  cursor: pointer;
+  &:hover:not(:disabled), &[aria-pressed="true"] { outline: 2px solid $ui-accent; outline-offset: 1px; }
+  &:disabled { opacity: .4; cursor: not-allowed; }
+  &:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+}
+.reset, .apply { padding: 4px 8px; border: 1px solid $ui-border; border-radius: 3px; background: $ui-surface; color: $ui-text; font-size: 12px; cursor: pointer; }
+.reset:hover:not(:disabled), .apply:hover:not(:disabled) { color: $ui-accent; border-color: $ui-accent; }
+.reset:disabled, .apply:disabled { opacity: .4; cursor: not-allowed; }
+.reset:focus-visible, .apply:focus-visible { outline: 2px solid $ui-accent; outline-offset: 1px; }
+.colorField { display: flex; flex-direction: column; gap: 5px; color: $ui-secondary; font-size: 12px; }
+.colorField > span { display: flex; gap: 6px; }
+.colorField input { box-sizing: border-box; min-width: 0; height: 28px; border: 1px solid $ui-border; border-radius: 3px; background: $ui-surface; color: $ui-text; }
+.colorField input[type="color"] { width: 34px; padding: 2px; }
+.colorField input[type="text"] { flex: 1; padding: 2px 6px; }
+.error { margin: 0; color: #b42318; font-size: 12px; line-height: 1.6; }
+
+// 单行只改变组内排布，所有命令仍由外层可滚动视口访问。
+:global([data-toolbar-mode="compact"]) {
+  .group { flex-direction: row; align-items: center; min-height: 28px; }
+}

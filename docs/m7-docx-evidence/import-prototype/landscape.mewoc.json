@@ -1,0 +1,492 @@
+{
+  "format": "mewoc",
+  "formatVersion": 1,
+  "document": {
+    "schemaVersion": 1,
+    "id": "ae83d7da-0441-466d-8ff2-b57e64bee892",
+    "title": "DOCX 导入验证 · landscape",
+    "content": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0,
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "text": "导入后编辑验证：DOCX 图文表格验证"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "中文与 English 样式验证。"
+            },
+            {
+              "type": "text",
+              "marks": [
+                {
+                  "type": "bold"
+                },
+                {
+                  "type": "underline"
+                }
+              ],
+              "text": "彩色加粗下划线"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "attrs": {
+            "assetId": "f9d9bbad-85f0-4294-af01-4d831542b846",
+            "alt": "紫色验收图片",
+            "title": "",
+            "width": 480,
+            "height": 240
+          }
+        },
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "第 1 行 / 第 1 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "第 1 行 / 第 2 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ],
+                          "text": "第 1 行 / 第 3 列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 2 行 / 第 1 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 2 行 / 第 2 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 2 行 / 第 3 列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 3 行 / 第 1 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 3 行 / 第 2 列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "attrs": {
+                    "colspan": 1,
+                    "rowspan": 1,
+                    "colwidth": null,
+                    "align": null
+                  },
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "attrs": {
+                        "textAlign": null,
+                        "lineHeight": null,
+                        "firstLineIndent": 0,
+                        "leftIndent": 0
+                      },
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第 3 行 / 第 3 列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          }
+        },
+        {
+          "type": "heading",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0,
+            "level": 1
+          },
+          "content": [
+            {
+              "type": "text",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "text": "第二页：手动分页"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "这一段应从第二页开始，打印中不应出现编辑工具栏或图片缩放柄。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "E = mc^2"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "const message = \"你好 Mewoc\""
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "console.log(message)"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "选区第一段：中文与 English。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "选区第二段：格式操作后可以撤销。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "attrs": {
+            "textAlign": null,
+            "lineHeight": null,
+            "firstLineIndent": 0,
+            "leftIndent": 0
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "附件：M5验收.txt（36 B）"
+            }
+          ]
+        }
+      ]
+    },
+    "page": {
+      "size": "A4",
+      "orientation": "portrait",
+      "marginsMm": {
+        "top": 20,
+        "right": 20,
+        "bottom": 20,
+        "left": 20
+      }
+    },
+    "assets": [
+      {
+        "id": "f9d9bbad-85f0-4294-af01-4d831542b846",
+        "kind": "image",
+        "fileName": "Word 图片-1.png",
+        "mimeType": "image/png",
+        "byteLength": 940
+      }
+    ],
+    "createdAt": "2026-09-12T10:08:50.186Z",
+    "updatedAt": "2026-09-12T10:08:50.186Z"
+  },
+  "assetData": {
+    "f9d9bbad-85f0-4294-af01-4d831542b846": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAADwCAIAAABXFyDtAAADc0lEQVR4nO3UMQ2AMAAAwbrEAZ4RQYIDaoCJAT7NJSfgpx/XeQMQNH4vAOCRQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEGTRAlEEDRBk0QJRBA0QZNECUQQNEfTHofTsA1mPQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNEGXQAFEGDRBl0ABRBg0QZdAAUQYNELXCoAF4waABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABogwaIMqgAaIMGiDKoAGiDBogyqABoibc9KrOf+yFIwAAAABJRU5ErkJggg=="
+  }
+}

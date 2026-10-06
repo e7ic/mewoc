@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-01",
+  "runtime": "Node 24.13.1",
+  "unitTests": { "passed": 229, "total": 229, "historyRepositoryTests": 16 },
+  "lint": { "passed": true, "maxWarnings": 0 },
+  "productionBuild": { "passed": true },
+  "diffCheck": { "passed": true },
+  "browser": {
+    "environment": "Codex In-app Browser, http://127.0.0.1:4181/",
+    "history": { "passed": 11, "total": 11, "evidence": "browser-history.json" },
+    "library": { "passed": 8, "total": 8, "evidence": "browser-library.json" },
+    "regression": { "passed": 62, "total": 62, "evidence": "browser-regression.json" },
+    "fixtureCleanup": "Only exact IDs created by each run are removed; existing records are preserved."
+  },
+  "manualUiVerification": {
+    "document": "历史版本 · 演示",
+    "steps": ["Create a new document", "Save the initial checkpoint", "Edit and save new body text", "Restore the initial checkpoint", "Verify automatic before-restore checkpoint", "Preview the preserved newer body in the read-only editor"],
+    "existingDocumentsEdited": false,
+    "screenshots": ["history-list.jpg", "history-preview.jpg"]
+  },
+  "notRepeatedInThisBatch": ["Safari native interaction", "Chrome native IME", "Node 18", "Word/WPS native document verification"]
+}

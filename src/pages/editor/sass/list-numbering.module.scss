@@ -1,0 +1,16 @@
+@use "../../../assets/style/theme.scss" as *;
+
+// 给滚动容器内的原生控件保留焦点描边空间，窄/矮窗口仍可到达底部应用按钮。
+.panel { box-sizing: content-box; width: 260px; max-width: calc(100vw - 48px); max-height: max(100px, calc(100dvh - 240px)); overflow-y: auto; margin: -6px; padding: 6px; display: flex; flex-direction: column; gap: 12px; color: $ui-text; }
+.choices { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.choices legend { margin-bottom: 6px; font-size: 12px; color: $ui-secondary; }
+.choice { display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 4px 6px; border-radius: 4px; cursor: pointer; }
+.choice:hover, .choice[data-selected="true"] { background: $ui-hover; }
+.choice input { margin: 0; width: 16px; height: 16px; accent-color: $ui-accent; }
+.sample { margin-left: auto; color: $ui-secondary; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: $ui-secondary; }
+.field input { width: 100%; min-height: 32px; padding: 4px 10px; color: $ui-text; background: $ui-surface; border: 1px solid $ui-border; border-radius: 4px; }
+.actions { display: flex; justify-content: flex-end; align-items: center; gap: 10px; padding-top: 10px; border-top: 1px solid $ui-border; }
+.actions button { min-height: 30px; padding: 4px 12px; border-radius: 4px; }
+.primary { color: $ui-surface; background: $ui-accent; }
+.error { margin: 0; font-size: 12px; color: #d44d58; line-height: 1.6; }

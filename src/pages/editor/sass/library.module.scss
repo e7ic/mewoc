@@ -1,0 +1,132 @@
+// 本地文档库的搜索排序、分页列表与确认弹窗样式，支持文档与回收站两种内容。
+@use "../../../assets/style/theme.scss" as *;
+
+// 列表主体在弹窗内部滚动，AntD 页签导航不额外增加底部留白。
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  max-height: calc(100dvh - 220px);
+  overflow-y: auto;
+
+  :global(.ant-tabs-nav) { margin-bottom: 0; }
+}
+
+.hint {
+  margin: 0;
+  color: $ui-muted;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 120px;
+  color: $ui-muted;
+}
+
+// 搜索弹性伸展，排序选择器固定宽度，其他操作保留独立点击区域。
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  > :global(.ant-input-affix-wrapper) { flex: 1; min-width: 120px; }
+  > button { flex-shrink: 0; }
+}
+
+.sort { flex: 0 0 168px; }
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch !important;
+  gap: 12px;
+  min-width: 0;
+}
+
+.details { min-width: 0; }
+
+// 标题最多显示两行，标记不收缩；全文与具体状态由文档数据提供。
+.title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  font-weight: 600;
+  line-height: 1.6;
+
+  > span:first-child {
+    min-width: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow-wrap: anywhere;
+  }
+
+  :global(.ant-tag) { flex-shrink: 0; margin: 2px 0 0; }
+}
+
+.metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 5px;
+  color: $ui-muted;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+// 列表操作允许多行排布，右对齐便于与文档详情区分。
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.notice {
+  margin: 0;
+  color: $ui-muted;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+  overflow-x: auto;
+}
+
+// 回收等确认说明允许任意长标题折行，避免正文溢出确认框。
+.dialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+
+  p { margin: 0; line-height: 1.8; overflow-wrap: anywhere; }
+}
+
+.confirmTitle { font-weight: 600; }
+
+// 窄视口中搜索独占一行，排序和操作改为弹性宽度与左对齐。
+@media (max-width: 600px) {
+  .controls {
+    flex-wrap: wrap;
+
+    > :global(.ant-input-affix-wrapper) { flex-basis: 100%; }
+  }
+
+  .sort { flex: 1; min-width: 160px; }
+  .actions { justify-content: flex-start; }
+  .pagination { justify-content: flex-start; }
+  .loading { align-items: flex-start; padding: 24px 0; }
+}

@@ -1,0 +1,28 @@
+{
+  "input": {
+    "bottom": 446.703125,
+    "height": 32,
+    "left": 632,
+    "right": 892,
+    "top": 414.703125,
+    "width": 260,
+    "x": 632,
+    "y": 414.703125
+  },
+  "leftGutter": 6,
+  "panel": {
+    "bottom": 505.703125,
+    "height": 368.703125,
+    "left": 626,
+    "right": 898,
+    "top": 137,
+    "width": 272,
+    "x": 626,
+    "y": 137
+  },
+  "rightGutter": 6,
+  "viewport": {
+    "height": 600,
+    "width": 920
+  }
+}

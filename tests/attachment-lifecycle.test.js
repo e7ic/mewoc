@@ -1,3 +1,4 @@
+/** 附件 hook 的异步生命周期回归：原目标映射、取消不可逆、任务互斥和提交前容量复检。 */
 import test from "node:test"
 import assert from "node:assert/strict"
 import React from "react"
@@ -11,6 +12,7 @@ import { createExtensions } from "../src/pages/editor/tools/create-extensions.js
 import { createEditorStore } from "../src/pages/editor/tools/create-editor-store.js"
 import { useDocumentAttachments } from "../src/pages/editor/hooks/use-document-attachments.js"
 
+// JSDOM 提供节点与事件 API；这些用例检查提交/清理规则，真实布局由浏览器验收负责。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>", { url: "http://localhost" })
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "Element", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
@@ -18,6 +20,7 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
 
+// 把真实编辑器、实例 store 与 React hook 连接起来，返回可独立卸载和完整清理的会话。
 function createSession() {
   const assets = new Map()
   const editor = new Editor({
@@ -49,6 +52,7 @@ function createSession() {
   }
 }
 
+// 手动控制 arrayBuffer 的完成时机，让测试能在读取中插入编辑、只读或卸载动作。
 function createDelayedFile() {
   const file = new File([new Uint8Array([0, 1, 255])], "延迟附件.bin")
   let resolve
@@ -83,6 +87,7 @@ test("附件读取期间选区随事务映射，读取完成不会跟随用户�
   }
 })
 
+// 逐项触发会话失效条件；只读/切换短暂恢复也不能重新接纳原任务的迟到结果。
 for (const reason of ["readOnly", "switching", "deleted", "unmounted", "destroyed"]) {
   test(`附件读取期间 ${reason} 取消迟到结果，不发布资源或残留任务锁`, async () => {
     const session = createSession()
@@ -118,7 +123,7 @@ test("附件读取防重复并复用图片任务锁，错误后恢复状态且�
   const delayed = createDelayedFile()
   const messages = []
   const showError = message.error
-  message.error = text => messages.push(text)
+  message.error = options => messages.push(typeof options === "string" ? options : options.content)
   let pending
   try {
     session.assetTaskRef.current = true
@@ -144,12 +149,13 @@ test("附件读取防重复并复用图片任务锁，错误后恢复状态且�
   }
 })
 
+// 开始读取时容量充足不代表提交时仍充足，等待过程中新增资源必须参与复检。
 test("读取期间恢复其他资源后，提交前再次检查合计容量", async () => {
   const session = createSession()
   const delayed = createDelayedFile()
   const showError = message.error
   const messages = []
-  message.error = text => messages.push(text)
+  message.error = options => messages.push(typeof options === "string" ? options : options.content)
   let pending
   try {
     act(() => { pending = session.getContext().insertAttachment(delayed.file) })

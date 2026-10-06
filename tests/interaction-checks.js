@@ -1,7 +1,10 @@
+/** 浏览器交互边界验收：图片拖动取消、输入法期间快捷键与搜索面板状态复位。 */
+// 业务条件不满足时抛错，由外部 check 记录失败。
 function assert(condition, message) {
   if (!condition) throw new Error(message)
 }
 
+// 逐项改变拖动结束条件，并覆盖组合输入与搜索的独立状态流。
 export async function checkImageInteractions(session, check) {
   for (const reason of ["右键", "其他指针", "窗口失焦", "系统取消", "只读", "正文变化"]) {
     await check(`图片拖动边界：${reason}不提交临时尺寸`, () => checkImageCancellation(session.editor, reason))
@@ -20,6 +23,7 @@ export async function checkImageInteractions(session, check) {
   await check("关闭查找后清空旧替换词与大小写状态，不修改正文版本", () => checkSearchPanelReset(session))
 }
 
+// 等待面板挂载/卸载效果完成，确保临时搜索状态清理不会增加正文 revision。
 async function checkSearchPanelReset({ editor, store }) {
   const revision = store.getState().revision
   try {
@@ -39,6 +43,7 @@ async function checkSearchPanelReset({ editor, store }) {
   }
 }
 
+// 保存原文档宽度，触发临时预览后取消，联合核对文档属性与 DOM 预览恢复。
 function checkImageCancellation(editor, reason) {
   const handle = editor.view.dom.querySelector("[data-resize-handle]")
   const image = editor.view.dom.querySelector("figure img")

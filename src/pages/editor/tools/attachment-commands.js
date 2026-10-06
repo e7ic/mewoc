@@ -1,3 +1,7 @@
+/**
+ * 把附件资源引用写入或移出 ProseMirror 正文，资源字节由会话单独持有。
+ * 命令返回是否成功；异步选文件带回的旧选区必须重新核对正文身份，操作各自独立撤销。
+ */
 import { NodeSelection, TextSelection } from "@tiptap/pm/state"
 import { closeHistory } from "@tiptap/pm/history"
 
@@ -8,10 +12,12 @@ export function canInsertAttachment(editor, selection) {
     selection.$from.sameParent(selection.$to) && !selection.$from.parent.type.spec.code)
 }
 
+// 恢复选文件之前捕获的文字选区，再插入仅携带 assetId 的附件节点；不在这里读写 Blob。
 export function insertAttachmentNode(editor, selection, assetId) {
   if (!canInsertAttachment(editor, selection)) return false
   const inserted = editor.chain().command(({ tr }) => {
     closeHistory(tr)
+    // 文件选择器会转移焦点，显式恢复原范围才能让插入替换用户原先选中的文字。
     tr.setSelection(selection)
     return true
   }).insertContent({ type: "attachment", attrs: { assetId } }).run()

@@ -1,3 +1,5 @@
+/** 验收用资源观察器：计数本轮创建的 URL、活动 ResizeObserver 和指定窗口监听，结束后恢复原 API。 */
+// 只观察安装后发生的资源操作；计数用于指定生命周期检查，不代表完整进程内存诊断。
 export function observeSessionResources() {
   const urls = new Set()
   const observers = new Set()
@@ -9,6 +11,7 @@ export function observeSessionResources() {
   let createdUrls = 0
   let peakUrls = 0
   let peakObservers = 0
+  // 创建/释放同时转发原生实现，Set 记录当前活动 URL，累积与峰值单独保存。
   URL.createObjectURL = blob => {
     const url = original.create.call(URL, blob)
     urls.add(url)
@@ -20,6 +23,7 @@ export function observeSessionResources() {
     urls.delete(url)
     original.revoke.call(URL, url)
   }
+  // 保留原生观察行为，observe 标记活跃实例，disconnect 从活动计数中移除。
   window.ResizeObserver = class extends original.ResizeObserver {
     observe(...args) {
       observers.add(this)
@@ -47,6 +51,7 @@ export function observeSessionResources() {
       listenerDetails: [...listeners].flatMap(([type, entries]) => [...entries].map(listener => `${type}:${listener.name || "anonymous"}`)),
       createdUrls, peakUrls, peakObservers
     }),
+    // 必须在验收 finally 调用，避免测试包装继续影响产品页面与后续测量。
     restore() {
       URL.createObjectURL = original.create
       URL.revokeObjectURL = original.revoke

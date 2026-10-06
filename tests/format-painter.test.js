@@ -1,3 +1,4 @@
+/** 格式刷状态机回归：来源快照、目标外观、单次/连续模式、历史分组和延迟应用的取消规则。 */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { JSDOM } from "jsdom"
@@ -7,6 +8,7 @@ import { createExtensions } from "../src/pages/editor/tools/create-extensions.js
 import { FORMAT_PAINTER_KEY } from "../src/pages/editor/extensions/format-painter.js"
 import { createDocument, validateDocument } from "../src/pages/editor/tools/document-schema.js"
 
+// 以 JSDOM 驱动真实事务，requestAnimationFrame 替身让延迟应用边界可在 Node 中观察。
 const DOM = new JSDOM("<!doctype html><html><body></body></html>")
 for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTMLElement", "MutationObserver", "getComputedStyle"]) {
   Object.defineProperty(globalThis, key, { value: DOM.window[key], configurable: true, writable: true })
@@ -14,6 +16,7 @@ for (const key of ["window", "document", "navigator", "DOMParser", "Node", "HTML
 globalThis.requestAnimationFrame = callback => setTimeout(callback, 0)
 globalThis.cancelAnimationFrame = clearTimeout
 
+// 来源含文字与段落外观，目标是带链接的标题，另含代码块以检查结构与排除范围。
 const createEditor = () => new Editor({
   element: document.body.appendChild(document.createElement("div")), extensions: createExtensions(),
   content: { type: "doc", content: [
@@ -83,6 +86,7 @@ test("格式应用独立于前后输入历史，一次撤销恢复全部样式",
   }
 })
 
+// 样式相同的应用不应制造文档修改，避免空撤销步骤与多余保存。
 test("重复应用相同格式不制造空撤销步骤，也不触发重复保存", () => {
   const editor = createEditor()
   let updates = 0
@@ -175,6 +179,7 @@ test("Esc 和组合输入开始取消模式，只读拒绝复制和应用", () =
   }
 })
 
+// 浏览器选区同步需要延迟；失焦、文档变化或销毁必须使尚未执行的帧失效。
 test("选择结束在下一帧应用，失焦、文档编辑与卸载取消待执行动作", async () => {
   const editor = createEditor()
   try {
@@ -237,6 +242,7 @@ test("Shift 扩选等到松键再应用，启用和取消不触发正文保存",
   }
 })
 
+// 外观应用只影响可刷文字和段落，图表尺寸及内联代码需保持原值。
 test("跨列表和表格刷文字，保留图片与表格尺寸并跳过行内代码", () => {
   const editor = createEditor()
   try {

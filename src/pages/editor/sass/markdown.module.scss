@@ -1,3 +1,4 @@
+// Markdown 导入/导出弹窗：源码输入、结果说明、错误和底部确认动作分区。
 @use "../../../assets/style/theme.scss" as *;
 
 .container {
@@ -9,6 +10,7 @@
   .error { margin: 16px 0; font-size: 13px; color: #c45e67; }
 }
 
+// 按视口约束主体高度，长源码和转换说明使用内部滚动，确认动作单独排列。
 .body { max-height: calc(100vh - 260px); overflow-y: auto; }
 .actions { display: flex; justify-content: flex-end; gap: 10px; }
 .warnings { margin: 6px 0 0; padding-left: 20px; max-height: 160px; overflow-y: auto; line-height: 1.8; }

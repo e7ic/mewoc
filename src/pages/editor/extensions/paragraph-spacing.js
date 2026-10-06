@@ -1,3 +1,4 @@
+/** 把段落行距保存为节点属性，编辑视图、文档快照和静态 HTML 使用相同倍数。 */
 import { Extension } from "@tiptap/core"
 import { LINE_HEIGHTS } from "../constants/editor-constants.js"
 
@@ -22,6 +23,7 @@ export const ParagraphSpacing = Extension.create({
   addCommands() {
     return {
       setParagraphSpacing: lineHeight => ({ tr, dispatch }) => {
+        // 只接纳预设倍数；can() 阶段只验证，执行时在同一事务中修改范围内的正文与标题。
         if (!LINE_HEIGHTS.includes(lineHeight)) return false
         if (dispatch) {
           tr.doc.nodesBetween(tr.selection.from, tr.selection.to, (node, pos) => {

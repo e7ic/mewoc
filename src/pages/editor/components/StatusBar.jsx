@@ -1,7 +1,11 @@
+/**
+ * 持续显示正文字符数、资源读取/只读状态和大纲入口，并提供页面视图缩放控制。
+ * 缩放和侧栏都属于视图状态，不改变文档内容与正文撤销记录。
+ */
 import { useMemo } from "react"
 import { useEditorState } from "@tiptap/react"
 import { Slider } from "antd"
-import { AlignLeftOutlined, MinusOutlined, PlusOutlined } from "@ant-design/icons"
+import { IconListTree, IconMinus, IconPlus } from "@tabler/icons-react"
 import { useDocumentEditor, useEditorStore } from "./EditorProvider.jsx"
 import styles from "../sass/status-bar.module.scss"
 
@@ -18,6 +22,7 @@ export function StatusBar() {
   // 手动调节退出自动适宽，否则下一次尺寸观察会覆盖用户选定的缩放值。
   const handleZoom = value => store.getState().updateView({ zoom: Math.min(1.5, Math.max(0.5, value)), fitWidth: false })
 
+  // 滑块使用百分数展示，store 保存比例值；加减按钮与滑块共享 50%–150% 的缩放范围。
   return (
     <footer className={styles.container}>
       <div className={styles.info}>
@@ -26,13 +31,13 @@ export function StatusBar() {
           aria-label="切换文档大纲"
           aria-pressed={outlineOpen}
           onClick={() => store.getState().updateView({ outlineOpen: !outlineOpen })}
-        ><AlignLeftOutlined /></button>
+        ><IconListTree aria-hidden="true" /></button>
         <span>{count.toLocaleString()} 字符（不含空白）</span>
         <span>{uploading ? "正在读取资源…" : readOnly ? "只读模式" : "编辑模式"}</span>
       </div>
       <div className={styles.zoom}>
         <button type="button" onClick={() => store.getState().updateView({ fitWidth: true })}>适应宽度</button>
-        <button type="button" aria-label="缩小" disabled={zoom <= 0.5} onClick={() => handleZoom(zoom - 0.1)}><MinusOutlined /></button>
+        <button type="button" aria-label="缩小" disabled={zoom <= 0.5} onClick={() => handleZoom(zoom - 0.1)}><IconMinus aria-hidden="true" /></button>
         <Slider
           className={styles.slider}
           ariaLabelForHandle="页面缩放"
@@ -42,7 +47,7 @@ export function StatusBar() {
           tooltip={{ formatter: value => `${value}%` }}
           onChange={value => handleZoom(value / 100)}
         />
-        <button type="button" aria-label="放大" disabled={zoom >= 1.5} onClick={() => handleZoom(zoom + 0.1)}><PlusOutlined /></button>
+        <button type="button" aria-label="放大" disabled={zoom >= 1.5} onClick={() => handleZoom(zoom + 0.1)}><IconPlus aria-hidden="true" /></button>
         <span>{Math.round(zoom * 100)}%</span>
       </div>
     </footer>

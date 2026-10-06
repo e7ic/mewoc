@@ -1,0 +1,19 @@
+Mewoc Logo v3 — Sculpted Paper Cat
+Generated using the built-in image_gen tool in edit mode.
+Edit target: public/brand/mewoc-logo-v2.png
+Final file: public/brand/mewoc-logo-v3.png
+Concept: a solid cat-ear paper surface with violet gradients, beveled thickness, a lifted page curl, and soft shadows.
+
+FINAL EDIT PROMPT
+Use case: logo-brand
+Asset type: primary horizontal Mewoc logo, sculpted surface-based 3D refinement.
+Input image: the provided Mewoc paper-cat logo is the edit target. Preserve the brand, recognizable cat-ear paper silhouette, internal short document stroke, lower-right curled page corner, horizontal symbol-and-wordmark arrangement, exact lowercase lettering "mewoc.", and overall balanced spacing.
+Primary request: Change the SYMBOL from a hollow outline into a solid filled surface with elegant three-dimensional depth created by gradients, thickness and shadows. The user explicitly wants planar filled forms with gradient and shadow modeling.
+Geometry: fill the entire interior of the cat-ear paper silhouette with one broad continuous front face, like a beautifully sculpted solid sheet or plaque. There must be NO hollow frame and NO tubular outline. Retain the two subtle cat ears at the top. Show a restrained amount of extrusion along the right and lower edges, approximately 6 percent of the symbol width. Round and bevel the edges softly. Keep a nearly front-facing view so the silhouette stays readable.
+Page curl: make the lower-right page corner visibly curl upward as a small lavender plane; a narrow soft occlusion shadow at its root and a darker violet side reveal the folded paper volume. Integrate it into the solid front face.
+Internal detail: the single short horizontal document line becomes a small pale-lavender recessed slot in the filled front face, with a very subtle inset shadow. No facial features.
+Materials and light: smooth satin finish; unified large soft light from upper left. Front face transitions from luminous lavender-violet at the upper left through the project's violet #6657D9 into deeper violet at lower right. Fine edge highlights and shaded sidewalls define depth. A soft compact shadow underneath and slightly to the right grounds the icon; preserve transparency around the asset and in the shadow falloff. Refined modern product-brand rendering.
+Typography: keep the exact "mewoc." wordmark from the reference, clean dark charcoal, no change in spelling or glyph design. The final violet dot may have a subtle matching gradient. Keep lettering crisp and visually secondary to the sculpted icon.
+Composition: one horizontal lockup, symbol left and wordmark right, fully visible, moderate clear space around it, no collage, no extra versions.
+Background: genuine transparent alpha background. Opaque filled icon surfaces, semitransparent soft shadow only outside them. No opaque backdrop or floor.
+Avoid: hollow icons, wireframes, outline-only symbols, inflated tubes, cartoon eyes, whiskers, glass, metallic chrome, harsh shine, glow, dramatic perspective, bulky toy-like extrusion, extra symbols, extra text, slogans, watermark.

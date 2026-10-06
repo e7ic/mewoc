@@ -1,0 +1,5 @@
+{
+  "supported": false,
+  "error": "旧式图形包含暂不支持的外观内容，请保留原 DOCX",
+  "scope": "Existing DOCX import guard; watermark DOCX round trip is outside M21. Use Mewoc for full settings backup."
+}

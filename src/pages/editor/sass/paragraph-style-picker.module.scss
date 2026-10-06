@@ -1,0 +1,64 @@
+// 正文/H1–H6 样式卡片与展开面板；选中、悬停、键盘焦点和不可编辑状态分别呈现。
+@use "../../../assets/style/theme.scss" as *;
+
+.picker {
+  position: relative;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  padding: 8px;
+  color: $ui-text;
+  background: $ui-hover;
+  background: color-mix(in srgb, $ui-surface 94%, $ui-text);
+  border-radius: 3px;
+}
+// 正文与前三个标题常驻，最后一列为展开按钮，卡片内显示样式预览和名称。
+.primary { display: grid; grid-template-columns: repeat(4, 68px) 22px; gap: 4px; }
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-sizing: border-box;
+  width: 68px;
+  height: 42px;
+  padding: 3px 4px;
+  color: $ui-text;
+  background: $ui-surface;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  white-space: nowrap;
+  &:hover:not(:disabled) { color: #2368cf; background: #eef5ff; border-color: #9dc1fa; }
+  &:focus-visible { outline: 2px solid #3480f9; outline-offset: 2px; }
+  &.selected, &.selected:hover { border-color: #3480f9; }
+  &:disabled { opacity: .5; cursor: default; }
+}
+.preview { line-height: 1.2; }
+.subtitle { color: $ui-muted; font-size: 8px; line-height: 1; }
+.expand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: $ui-muted;
+  border-radius: 2px;
+  font-size: 18px;
+  &:hover:not(:disabled) { color: #2368cf; background: #e2eafb; }
+  &:focus-visible { outline: 2px solid #3480f9; outline-offset: 1px; }
+  &:disabled { opacity: .5; }
+}
+// 展开面板固定定位并独立滚动，避开工具栏横向溢出容器的裁切。
+.panel {
+  position: fixed;
+  z-index: 1050;
+  box-sizing: border-box;
+  padding: 0 8px 8px;
+  background: $ui-hover;
+  background: color-mix(in srgb, $ui-surface 94%, $ui-text);
+  border-radius: 0 0 3px 3px;
+  max-height: calc(100dvh - 80px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.extra { display: grid; grid-template-columns: repeat(3, 68px); gap: 4px; }
+.error { margin: 6px 0 0; max-width: 300px; color: #b42318; font-size: 11px; line-height: 1.6; }

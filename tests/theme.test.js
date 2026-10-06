@@ -1,7 +1,12 @@
+/**
+ * 验证主题偏好、生效主题、系统事件、跨标签页存储事件和监听清理的分离。
+ * 存储失败不阻断本页主题选择，重试清除错误；其他键或 sessionStorage 不得误影响当前主题。
+ */
 import test from "node:test"
 import assert from "node:assert/strict"
 import { createThemeStore, getEffectiveTheme, startThemeSync, THEME_KEY } from "../src/pages/editor/tools/create-theme-store.js"
 
+// 用可观察监听集合模拟 localStorage 与 matchMedia，事件触发和底层值变化分别受控，可核对卸载是否完全清理。
 const createBrowser = (preference = null, dark = false) => {
   const values = new Map(preference === null ? [] : [[THEME_KEY, preference]])
   const mediaListeners = new Set()
@@ -19,10 +24,12 @@ const createBrowser = (preference = null, dark = false) => {
   }
   return {
     browser, values, mediaListeners, storageListeners,
+    // 先更新系统查询结果再通知监听，模拟用户切换系统颜色后重新挂载也能读到最新值。
     changeSystem: matches => {
       media.matches = matches
       mediaListeners.forEach(listener => listener({ matches }))
     },
+    // 模拟写入、删除和 clear 的 storage 事件，并允许替换 storageArea，验证同名 sessionStorage 事件被忽略。
     changeStorage: (key, value, area = browser.localStorage) => {
       if (key === null) values.clear()
       else if (value === null) values.delete(key)
@@ -88,6 +95,7 @@ test("跨页设置、删除和清空同步，其他键及 sessionStorage 不影�
   }
 })
 
+// 分别制造读和写故障，检查当前生效主题与持久错误回显，避免把存储失败误处理成无法使用主题。
 test("存储读写异常不阻断本页主题，重试成功清除错误", () => {
   const { browser } = createBrowser()
   const storage = browser.localStorage
@@ -104,6 +112,7 @@ test("存储读写异常不阻断本页主题，重试成功清除错误", () =>
   assert.equal(storage.getItem(THEME_KEY), "dark")
 })
 
+// 卸载后检查集合为空，再在无监听期间改变系统并挂载，覆盖初始同步的遗漏窗口。
 test("卸载移除全部监听，重新挂载读取最新系统状态", () => {
   const fixture = createBrowser()
   const store = createThemeStore(fixture.browser)
