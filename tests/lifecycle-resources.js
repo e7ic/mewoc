@@ -4,7 +4,9 @@ export function observeSessionResources() {
   const urls = new Set()
   const observers = new Set()
   const mutationObservers = new Set()
-  const listeners = new Map(["beforeunload", "mousemove", "mouseup", "blur"].map(type => [type, new Set()]))
+  const resourceOrigins = new WeakMap()
+  const eventTypes = ["beforeunload", "mousemove", "mouseup", "blur", "resize"]
+  const listeners = new Map(eventTypes.map(type => [type, new Set()]))
   const original = {
     create: URL.createObjectURL, revoke: URL.revokeObjectURL, ResizeObserver: window.ResizeObserver,
     MutationObserver: window.MutationObserver,
@@ -30,6 +32,7 @@ export function observeSessionResources() {
   window.ResizeObserver = class extends original.ResizeObserver {
     observe(...args) {
       observers.add(this)
+      resourceOrigins.set(this, new Error("ResizeObserver.observe").stack)
       peakObservers = Math.max(peakObservers, observers.size)
       return super.observe(...args)
     }
@@ -42,6 +45,7 @@ export function observeSessionResources() {
   window.MutationObserver = class extends original.MutationObserver {
     observe(...args) {
       mutationObservers.add(this)
+      resourceOrigins.set(this, new Error("MutationObserver.observe").stack)
       peakMutationObservers = Math.max(peakMutationObservers, mutationObservers.size)
       return super.observe(...args)
     }
@@ -53,6 +57,9 @@ export function observeSessionResources() {
   // 只跟踪本模块实际使用的 window 事件；现有监听与 React 根事件不计入。
   window.addEventListener = function (type, listener, options) {
     listeners.get(type)?.add(listener)
+    if (listeners.has(type) && listener) {
+      resourceOrigins.set(listener, new Error(`window.${type}`).stack)
+    }
     return original.add.call(this, type, listener, options)
   }
   window.removeEventListener = function (type, listener, options) {
@@ -60,6 +67,12 @@ export function observeSessionResources() {
     return original.remove.call(this, type, listener, options)
   }
   return {
+    // 只在失败时读取调用栈，用于区分产品资源与开发扩展在验收中途创建的资源。
+    getDetails: () => ({
+      observers: [...observers, ...mutationObservers].map(item => resourceOrigins.get(item)),
+      listeners: [...listeners.values()].flatMap(items =>
+        [...items].map(item => resourceOrigins.get(item)))
+    }),
     getCounts: () => ({
       urls: urls.size, observers: observers.size, mutationObservers: mutationObservers.size,
       listeners: [...listeners.values()].reduce((total, entries) => total + entries.size, 0),

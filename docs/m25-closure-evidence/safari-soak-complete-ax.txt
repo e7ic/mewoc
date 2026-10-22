@@ -1,0 +1,70 @@
+Window: "M25 混合长文持续验收", App: Safari浏览器.
+0 标准窗口 M25 混合长文持续验收, ID: SafariWindow?IsSecure=false&UUID=6B35E14C-7792-4186-88F3-E0ADB8D1CEF1, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: M25 混合长文持续验收, URL: 127.0.0.1:4182/tests/pagination-soak.html
+					6 container
+						7 标题 M25 混合长文持续验收, Value: 1
+							8 文本 M25 混合长文持续验收
+						9 text 覆盖分页重排、跨页替换与撤销、详情收起展开、保存重开和资源释放。 15 分钟按实际运行时间结束；停止会完成当前轮并清理。仅使用专用 4182 / 4190 端口。
+						10 按钮 (disabled) 运行 6 轮混合长文验收
+						11 按钮 (disabled) 运行 15 分钟分页持续验收
+						12 按钮 (disabled) 停止并清理
+						13 按钮 导出验收结果
+						14 text 验收结束 完整运行结束：30 秒，6 轮，12 次会话挂载。
+						15 container 持续验收 JSON 结果
+							16 文本 [
+  {
+    "name": "混合长文第 1 轮",
+    "passed": true,
+    "elapsedSeconds": 6,
+    "cycleMs": 5756,
+    "visible": true,
+    "pages": 30,
+    "rectangles": 837,
+    "gaps": 29,
+    "settleMs": 462,
+    "size": "A5",
+    "zoom": 0.5,
+    "word": true,
+    "assets": 3,
+    "urls": 0,
+    "observers": 0,
+    "mutationObservers": 0,
+    "listeners": 0,
+    "listenerDetails": [],
+    "createdUrls": 6,
+    "peakUrls": 3,
+    "peakObservers": 1,
+    "peakMutationObservers": 2
+  },
+  {
+    "name": "混合长文第 2 轮",
+    "pa
+	17 工具栏
+		18 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			19 按钮 (disabled) Description: 显示边栏, ID: SidebarButton
+			20 菜单按钮 (disabled) Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		21 container BackForwardSegmentedControl
+			22 按钮 (disabled) Description: 返回, Help: 显示上一页, ID: BackButton
+			23 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		24 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			25 按钮 页面菜单, ID: AssistantButton
+			26 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			27 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:4182/tests/pagination-soak.html, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			28 按钮 重新加载此页面, ID: ReloadButton
+		29 按钮 (disabled) Description: 下载, ID: DownloadsButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		30 按钮 (disabled) Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		31 按钮 (disabled) Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		32 按钮 (disabled) Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+33 menu bar
+	34 Safari浏览器
+	35 文件
+	36 编辑
+	37 显示, ID: SafariViewMenu
+	38 历史记录
+	39 书签, ID: SafariBookmarksMenu
+	40 窗口, ID: SafariWindowMenu
+	41 帮助, ID: SafariHelpMenu

@@ -19,6 +19,7 @@ import { createDocumentText } from "../src/pages/editor/tools/document-text.js"
 import { TOOLBAR_MODE_KEY } from "../src/pages/editor/tools/toolbar-preferences.js"
 import { FORMATTING_MARKS_KEY } from "../src/pages/editor/tools/formatting-marks-preferences.js"
 import { removeVerificationDocuments } from "./browser-checks.js"
+import { requireVisibleBrowser } from "./browser-visibility.js"
 
 const assert = (value, message) => { if (!value) throw new Error(message) }
 const delay = (ms = 60) => new Promise(resolve => setTimeout(resolve, ms))
@@ -30,7 +31,13 @@ const content = nodes => ({ type: "doc", content: nodes })
 const longText = "同一个长段落按真实行连续编辑，页间留白不会写入正文。".repeat(360)
 const preferences = () => new Map([TOOLBAR_MODE_KEY, FORMATTING_MARKS_KEY].map(key => [key, localStorage.getItem(key)]))
 const restorePreferences = saved => { for (const [key, value] of saved) { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value) } }
-const requirePort = () => assert(location.hostname === "127.0.0.1" && location.port === "4190", "段内分页验收仅允许在专用 127.0.0.1:4190 运行")
+const requirePort = () => {
+  const allowedPorts = ["4182", "4190"]
+  assert(
+    location.hostname === "127.0.0.1" && allowedPorts.includes(location.port),
+    "段内分页验收仅允许在专用 127.0.0.1:4182 或 :4190 运行"
+  )
+}
 
 /** 只量用户文字，不读取生产测量 helper；按 grapheme 避免拆开代理对与 emoji 连接序列。 */
 export function readParagraphGlyphs(editor, dom) {
@@ -71,6 +78,7 @@ function Probe({ capture }) {
 
 export async function runParagraphPaginationChecks(report = () => {}) {
   requirePort()
+  await requireVisibleBrowser()
   const savedPreferences = preferences(); const records = new Map()
   const host = document.createElement("section")
   host.style.cssText = "position:relative;width:1280px;max-width:100%;height:900px;margin:24px 0"

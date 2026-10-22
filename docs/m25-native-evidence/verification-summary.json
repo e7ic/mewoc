@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-10-22T14:54:54.390483+00:00",
+  "printSourceDocumentId": "ba3ceca8-a2d7-4e76-855f-06014d4db51f",
+  "pdf": {
+    "file": "native-print-a5.pdf",
+    "bytes": 479706,
+    "sha256": "d6b9339d35261d66db2b1aa6211585e10f7ee4ed492c15db6e67ddcbd8d44997",
+    "pages": 27,
+    "sizePoints": [
+      420,
+      594.95996
+    ],
+    "method": "正式产品 打印 / PDF → Chrome 原生打印预览 → 另存为 PDF；背景图形开启，默认边距使用文档 15 mm",
+    "textNormalization": "pdfplumber 正文裁区，排除字号 >=20 的水印；NFKC、空白归一，以及 PDF 字形映射 ⻚→页、⻓→长",
+    "counts": {
+      "startMarker": 1,
+      "endMarker": 1,
+      "longParagraphRepeats": 110,
+      "quoteParagraphRepeats": 80,
+      "orderedAndTaskItemRepeats": 144,
+      "mediaName": 1,
+      "attachmentName": 1,
+      "mediaPrintDescription": 1,
+      "screenOnlyMediaHint": 0
+    },
+    "tableBodyRows": 47,
+    "tableHeaderOccurrencesPerColumn": 4,
+    "tablePages": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "orderedItems": 48,
+    "taskItems": 24,
+    "codeLines": 90,
+    "headerFooterPageNumbers": "27/27，各自出现一次且总页数 27",
+    "manualPageBreak": "第 27 页正文只有结束标记",
+    "visualReview": "渲染并查看全部 27 页、单独查看首尾与跨页内容；首版错误媒体控件已消失；未发现正文裁切、漏页或多余空白页。"
+  },
+  "docx": {
+    "bytes": 17281,
+    "source": "浏览器正式 Word 导出工具下载；未在 Word/WPS 中打开",
+    "startMarker": 1,
+    "endMarker": 1,
+    "longParagraphRepeats": 110,
+    "quoteParagraphRepeats": 80,
+    "tableRowsIncludingConvertedTextBox": 49,
+    "codeLines": 90,
+    "imageFiles": [
+      "word/media/b686d57ef649852fc87e0b1d9f9a52325b457e2d.png"
+    ],
+    "mediaName": 1,
+    "attachmentName": 1,
+    "nativeWordWpsPassed": false
+  },
+  "remaining": [
+    "跨页位置真实系统输入法候选、确认及撤销",
+    "物理指针跨窗口拖选",
+    "Word/WPS 原生打开、修改、另存并导回"
+  ],
+  "acceptanceComplete": false
+}

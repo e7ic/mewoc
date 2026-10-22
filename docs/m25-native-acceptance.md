@@ -1,0 +1,65 @@
+# M25 原生验收与版本收口
+
+2026-10-22，接续 Chrome/Safari 四组分页各 75/75 和持续运行验收。本批已完成混合长文的 Chrome 原生打印/PDF，发现并修复了媒体控件漏印。真实系统输入法、物理指针跨窗口拖选和 Word/WPS 原生往返仍待补齐，M25 整体尚未全部收口。
+
+## 本批结果
+
+| 范围 | 结果与证据 |
+| --- | --- |
+| 原生打印/PDF | 正式「导出 → 打印 / PDF」调用 Chrome 打印预览并保存，27 页 A5，背景图形开启；[最终 PDF](m25-native-evidence/native-print-a5.pdf)、[预览截图](m25-native-evidence/print-preview.png) |
+| 媒体打印修复 | 首版印出了播放条、下载按钮和屏幕提示；修复后只保留文件名、大小和纸面说明；[首版 PDF](m25-native-evidence/initial-native-print-a5.pdf)保留作缺陷证据 |
+| 浏览器媒体回归 | **11/11**，覆盖真实音视频解码、播放、原字节保存和打印样式的最终层叠结果；[JSON](m25-native-evidence/media-browser.json)、[截图](m25-native-evidence/media-browser-complete.png) |
+| Node 与构建 | 相关媒体/打印测试 **10/10**、lint、生产构建和差异检查通过；[测试](m25-native-evidence/print-media-test.log)、[lint](m25-native-evidence/lint.log)、[构建](m25-native-evidence/build.log) |
+| Mewoc 与 Word 文件 | 已通过正式浏览器导出，资源字节与 DOCX 内容结构检查通过；[Mewoc 备份](m25-native-evidence/mixed-source.mewoc.json)、[浏览器导出的 DOCX](m25-native-evidence/browser-export.docx) |
+| 系统输入法与物理拖选 | 尚无本批原生事件证据，不以合成 composition、代码设置选区或打开示例计为通过 |
+| Word/WPS 原生往返 | 在 `/Applications` 和 `~/Applications` 未找到 Word/WPS；尚未完成原生打开、另存和导回 |
+
+原生打印环境由下载快照和 PDF 元数据记录为 macOS、Chrome/Skia **154**。本批环境按实际产物记录，不沿用先前批次的版本号。完整核对见[汇总 JSON](m25-native-evidence/verification-summary.json)。此前全量 Node 838/838 属于前一批基线，本批只重跑与打印修复相关的 10 项，不累加为新一轮全量成绩。
+
+## 打印缺陷与回归方式
+
+`content.scss` 的普通媒体规则位于 `.mewoc-content [data-type="media"]` 下，而打印隐藏规则原来只有 `.mewoc-content [data-media-player]` 等两层选择器。普通样式的优先级更高，导致打印规则虽存在，实际仍显示播放器和操作条。
+
+修复将打印子规则也放入 `[data-type="media"]`，与普通规则保持相同优先级，再由靠后的打印规则覆盖。屏幕上的播放和下载功能保持可用。
+
+原有测试只搜索 SCSS 中是否存在隐藏规则，无法发现层叠失败。本批浏览器媒体专项在真实离线 HTML 的原样式表位置临时启用打印规则，使用 `getComputedStyle` 验证两类媒体的播放器、操作条与错误提示均隐藏，文件信息和纸面说明可见，随后恢复媒体条件并销毁 iframe。该检查验证样式层叠，实际分页由原生 PDF 单独证明。
+
+## 27 页逐页核对
+
+文档使用 A5 纵向、四边 15 mm、页眉页脚、页码和水印，包含中英文与组合 emoji、长表格、有序列表、文本框内嵌详情与引用/待办、长代码及手动分页。打印源文档 ID 为 `ba3ceca8-a2d7-4e76-855f-06014d4db51f`，打印前记录 `originalMatches=true`；见[源快照](m25-native-evidence/print-source-snapshot.json)。
+
+最终 PDF 为 **479706 字节、27 页、420 × 594.95996 pt**。已渲染并查看全部页面，另核对文本内容：
+
+- 开始与结束标记各一次；长段落 110 次、引用段落 80 次完整保留。
+- 表格正文 47 行、每行两列各一次；表头在第 7–10 页各重复一次。
+- 48 个有序列表项、24 个待办项完整，编号从 `g` 延续至 `bb`，待办勾选状态可见。
+- 90 行代码 `line0`–`line89` 顺序完整；手动分页后的第 27 页只有结束标记。
+- 27 组页眉/页脚均出现一次，页码连续且总页数为 27；未发现多余空白页或正文裁切。
+- 第一页的播放器、下载按钮与屏幕提示已消失，保留音频文件说明；图片、附件说明和水印均输出。
+
+逐页图：[第 1–9 页](m25-native-evidence/pages-01-09.png)、[第 10–18 页](m25-native-evidence/pages-10-18.png)、[第 19–27 页](m25-native-evidence/pages-19-27.png)。文本核对使用 pdfplumber，排除大字号水印并归一空白、兼容字形；PDF 字体将「页」「长」映射为部首字形，核对时明确映射回原字。文本提取不替代视觉检查。
+
+Word 文件的结构检查确认相同长段落、90 行代码、47 行表格正文及表头、转换为单格表格的文本框、图片和媒体文件说明。另存的 `mixed-source.docx` 是 Node/JSDOM 准备产物；原生补验应使用浏览器下载的 `browser-export.docx`，两者均不代表已在 Word/WPS 中验证。
+
+## 复现与剩余收口
+
+保持专用服务运行：
+
+```sh
+pnpm dev --config tests/rsbuild.validation.config.js
+```
+
+在 `http://127.0.0.1:4182/tests/browser.html` 点击「打开混合长文原生补验」。初始化完成后，示例提供定位跨页输入位置、导出事件证据和结束清理三个按钮。打印、Mewoc 和 Word 均使用正式工具栏。事件记录包含 `isTrusted`、composition、beforeinput/input 和选区，只观察实际事件，不自动判定通过。
+
+初始化期间禁用补验按钮，避免资源尚未插入或快照尚未保存时结束会话。结束时卸载编辑器、清理本例创建的文档与资源、恢复两项工具栏偏好；不清理用户从文档库打开的已有记录。最新一轮已通过结束按钮清理并关闭验收标签，见[清理状态](m25-native-evidence/final-cleanup-ax.txt)。首次受打印控制中断的示例 `e1a472d8-bb2b-465a-a1cf-4cc787ac807f` 未取得清理完成证据，不能宣称整个 4182 文档库已清空。
+
+媒体专项仍使用其原有隔离端口 4190，本轮临时服务完成后已关闭；4182 保持运行。Chrome 控制会话中途两次读取未返回，重置工具会话后恢复；保存后的窗口读取另返回一次超时，但 PDF 文件和产品页面均确认保存完成，不将工具恢复描述为窗口控制问题永久修复。
+
+下一步按以下顺序完成版本收口：
+
+1. 在真实系统中文输入法下，补验跨页候选、确认、撤销和重做；导出事件证据并核对原文与分页稳定性。
+2. 用物理指针补验跨页、跨窗口拖选及取消；确认选区和滚动恢复。
+3. 在有 Word/WPS 的环境打开本批 DOCX，检查表格、编号、媒体说明、页眉页脚，修改另存后导回 Mewoc 核对正文；独立记录外部排版差异。
+4. 将这些证据合入最终验收矩阵后再标记 M25 全部收口。
+
+编辑器、Chrome 打印和 Word/WPS 分别排版，不要求三者页数完全一致。本批没有扩展文档协议或依赖；新补验入口只在开发构建提供，不进入生产包。

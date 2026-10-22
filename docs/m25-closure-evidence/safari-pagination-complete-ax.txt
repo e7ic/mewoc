@@ -1,0 +1,335 @@
+Window: "Mewoc 浏览器验收", App: Safari浏览器.
+0 标准窗口 Mewoc 浏览器验收, ID: SafariWindow?IsSecure=false&UUID=6B35E14C-7792-4186-88F3-E0ADB8D1CEF1, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html
+					6 container
+						7 标题 Mewoc 浏览器验收, Value: 1
+							8 文本 Mewoc 浏览器验收
+						9 text 使用真实浏览器排版、React 17、编辑器与 IndexedDB。拖动事件为合成事件，不代替真实输入法或物理鼠标验收。 请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。
+						10 按钮 (disabled) 连续运行四组分页验收（75 项）
+						11 按钮 (disabled) 运行浏览器验收
+						12 按钮 (disabled) 运行压力验收
+						13 按钮 (disabled) 运行资源重复保存验收
+						14 按钮 导出验收结果
+						15 按钮 (disabled) 运行 Word 导出验收
+						16 按钮 (disabled) 运行 Word 导入验收
+						17 按钮 (disabled) 运行文档库验收
+						18 按钮 (disabled) 运行历史版本验收
+						19 按钮 (disabled) 运行批注验收
+						20 按钮 (disabled) 运行模板验收
+						21 按钮 (disabled) 运行图表精细设置验收
+						22 按钮 (disabled) 运行段落精细设置验收
+						23 按钮 (disabled) 运行编辑交互验收
+						24 按钮 (disabled) 运行工具栏验收
+						25 按钮 (disabled) 运行图片替换与格式标记验收
+						26 按钮 (disabled) 运行文本框与折叠详情验收
+						27 按钮 (disabled) 运行目录与书签导航验收
+						28 按钮 (disabled) 运行页面与水印验收
+						29 按钮 (disabled) 运行 Word 页面往返验收
+						30 按钮 (disabled) 打开 Word 页面预览示例
+						31 按钮 (disabled) 运行页眉页脚与页码验收
+						32 按钮 (disabled) 打开页眉页脚补验示例
+						33 按钮 (disabled) 运行音频与视频验收
+						34 按钮 (disabled) 打开媒体补验示例
+						35 按钮 (disabled) 运行自动分页验收
+						36 按钮 (disabled) 运行跨页表格验收
+						37 按钮 (disabled) 显示跨页表格示例
+						38 按钮 (disabled) 运行段内分页验收
+						39 按钮 (disabled) 显示段内分页示例
+						40 按钮 (disabled) 运行容器分页验收
+						41 按钮 (disabled) 显示容器分页示例
+						42 文本 完成：75/75
+						43 内容列表
+							44 container 通过：自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订 {"pageCount":4,"blocks":40}
+								45 列表刻度 1
+								46 text 通过 ： 自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订
+								47 文本 {"pageCount":4,"blocks":40}
+							48 container 通过：分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关 {"interactionStyles":[{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"},{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"},{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"},{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"}]}
+								49 列表刻度 2
+								50 text 通过 ： 分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关
+								51 文本 {"interactionStyles":[{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"},{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"},{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"},{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"}]}
+							52 container 通过：分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史
+								53 列表刻度 3
+								54 文本 通过：分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史
+							55 container 通过：分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确
+								56 列表刻度 4
+								57 文本 通过：分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确
+							58 container 通过：手动分页：首尾和连续分页符保留空页，自动边界不额外累加
+								59 列表刻度 5
+								60 文本 通过：手动分页：首尾和连续分页符保留空页，自动边界不额外累加
+							61 container 通过：手动分页编辑：合成删除选中分页符消除空页，撤销恢复原边界
+								62 列表刻度 6
+								63 文本 通过：手动分页编辑：合成删除选中分页符消除空页，撤销恢复原边界
+							64 container 通过：纸张与缩放：A4/A5横竖、非对称边距实时重排，50%–150%和适宽不改变分页
+								65 列表刻度 7
+								66 文本 通过：纸张与缩放：A4/A5横竖、非对称边距实时重排，50%–150%和适宽不改变分页
+							67 container 通过：排版重测：字号、行距和段前后间距改变页数，恢复格式后稳定返回
+								68 列表刻度 8
+								69 文本 通过：排版重测：字号、行距和段前后间距改变页数，恢复格式后稳定返回
+							70 container 通过：长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚 {"paragraphs":400,"pageCount":13,"maxDriftPx":0.016176181103219278}
+								71 列表刻度 9
+								72 text 通过 ： 长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚
+								73 文本 {"paragraphs":400,"pageCount":13,"maxDriftPx":0.016176181103219278}
+							74 container 通过：同页约束：标题与下一段相邻，显式与下段同页生效，过长链有限退化
+								75 列表刻度 10
+								76 文本 通过：同页约束：标题与下一段相邻，显式与下段同页生效，过长链有限退化
+							77 container 通过：长内容：普通长段按行延续，表格逐行分页，真实文字与数据行均不遮页脚
+								78 列表刻度 11
+								79 文本 通过：长内容：普通长段按行延续，表格逐行分页，真实文字与数据行均不遮页脚
+							80 container 通过：图片与媒体：解码加载和尺寸变化触发重排，分页不重建正在播放的原生节点
+								81 列表刻度 12
+								82 文本 通过：图片与媒体：解码加载和尺寸变化触发重排，分页不重建正在播放的原生节点
+							83 container 通过：组合输入：合成composing期间延迟重排，结束后更新，正文只读仍保持分页
+								84 列表刻度 13
+								85 文本 通过：组合输入：合成composing期间延迟重排，结束后更新，正文只读仍保持分页
+							86 container 通过：保存与导出：重开和Mewoc备份重新测量，HTML/TXT不夹带自动间隙或视图页码
+								87 列表刻度 14
+								88 文本 通过：保存与导出：重开和Mewoc备份重新测量，HTML/TXT不夹带自动间隙或视图页码
+							89 container 通过：会话清理：销毁后不再发布布局，新文档页数独立，短文与空正文均只有一页
+								90 列表刻度 15
+								91 文本 通过：会话清理：销毁后不再发布布局，新文档页数独立，短文与空正文均只有一页
+							92 container 通过：跨页表格：48 原行按行分页，页尾页首正文与表后段落均不覆盖边距 {"rows":48,"pages":3,"internalBreaks":2,"interactionStyle":{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"}}
+								93 列表刻度 16
+								94 text 通过 ： 跨页表格：48 原行按行分页，页尾页首正文与表后段落均不覆盖边距
+								95 文本 {"rows":48,"pages":3,"internalBreaks":2,"interactionStyle":{"pointerEvents":"none","userSelect":null,"webkitUserSelect":"none"}}
+							96 container 通过：重复表头：每个正常续页显示原表头一次，与真实列宽及数据行对齐
+								97 列表刻度 17
+								98 文本 通过：重复表头：每个正常续页显示原表头一次，与真实列宽及数据行对齐
+							99 container 通过：多行与横向合并表头：完整起始头链与首数据行同页，续页两行原样重复
+								100 列表刻度 18
+								101 文本 通过：多行与横向合并表头：完整起始头链与首数据行同页，续页两行原样重复
+							102 container 通过：表头规则：无头、混合头、纵向头与中部头均不会启动伪重复
+								103 列表刻度 19
+								104 文本 通过：表头规则：无头、混合头、纵向头与中部头均不会启动伪重复
+							105 container 通过：纵向合并：交错与连锁 rowspan 行组不被纸面间隙切断
+								106 列表刻度 20
+								107 文本 通过：纵向合并：交错与连锁 rowspan 行组不被纸面间隙切断
+							108 container 通过：超高单行：内容与格边框完整展开，后续数据页恢复标准纸高
+								109 列表刻度 21
+								110 文本 通过：超高单行：内容与格边框完整展开，后续数据页恢复标准纸高
+							111 container 通过：超高合并行组：超过一页的 rowspan 保留 DOM 与逻辑跨度，整组一张展开页
+								112 列表刻度 22
+								113 文本 通过：超高合并行组：超过一页的 rowspan 保留 DOM 与逻辑跨度，整组一张展开页
+							114 container 通过：极大表头预算：头加完整数据行放不下时有限退化，不无限生成空页
+								115 列表刻度 23
+								116 文本 通过：极大表头预算：头加完整数据行放不下时有限退化，不无限生成空页
+							117 container 通过：重测：窄列换行、字号、行距及零内边距实时改变分页，恢复后回到初始布局
+								118 列表刻度 24
+								119 文本 通过：重测：窄列换行、字号、行距及零内边距实时改变分页，恢复后回到初始布局
+							120 container 通过：纸型缩放：A4/A5横竖、非对称边距与50%–150%缩放保持正确跨页几何
+								121 列表刻度 25
+								122 文本 通过：纸型缩放：A4/A5横竖、非对称边距与50%–150%缩放保持正确跨页几何
+							123 container 通过：小数精度：400 行12.75pt与小数段距逐页不累积漂移，最后原行不盖页脚 {"rows":400,"columns":2,"cells":800,"pages":22,"maxDriftPx":0.01742618110438343}
+								124 列表刻度 26
+								125 text 通过 ： 小数精度：400 行12.75pt与小数段距逐页不累积漂移，最后原行不盖页脚
+								126 文本 {"rows":400,"columns":2,"cells":800,"pages":22,"maxDriftPx":0.01742618110438343}
+							127 container 通过：结构编辑：续页增删行、合并拆分保持网格完整，单次撤销恢复原行和纸面
+								128 列表刻度 27
+								129 文本 通过：结构编辑：续页增删行、合并拆分保持网格完整，单次撤销恢复原行和纸面
+							130 container 通过：跨页选格：CellSelection复制不含重复头或间隙，清空和撤销仅作用原格
+								131 列表刻度 28
+								132 文本 通过：跨页选格：CellSelection复制不含重复头或间隙，清空和撤销仅作用原格
+							133 container 通过：列宽拖动：合成续页真实列边拖动更新全列及重复头，可独立撤销
+								134 列表刻度 29
+								135 文本 通过：列宽拖动：合成续页真实列边拖动更新全列及重复头，可独立撤销
+							136 container 通过：虚拟格保护：重复头和分页间隙上的合成拖动与点击不修改正文或选格
+								137 列表刻度 30
+								138 文本 通过：虚拟格保护：重复头和分页间隙上的合成拖动与点击不修改正文或选格
+							139 container 通过：富表头同步：原音频与详情只保留一份，续页净化控件并保留摘要、文件名和真实高度
+								140 列表刻度 31
+								141 文本 通过：富表头同步：原音频与详情只保留一份，续页净化控件并保留摘要、文件名和真实高度
+							142 container 通过：组合与只读：合成composition期间保留旧表格装饰，结束后更新；只读保持分页
+								143 列表刻度 32
+								144 文本 通过：组合与只读：合成composition期间保留旧表格装饰，结束后更新；只读保持分页
+							145 container 通过：嵌套表：只按外表完整行组分页，内表原节点保留且没有插入错误的外表间隙
+								146 列表刻度 33
+								147 文本 通过：嵌套表：只按外表完整行组分页，内表原节点保留且没有插入错误的外表间隙
+							148 container 通过：保存重开：原行、合并与JSON保持完整，Mewoc不存虚拟头或屏幕分页状态
+								149 列表刻度 34
+								150 文本 通过：保存重开：原行、合并与JSON保持完整，Mewoc不存虚拟头或屏幕分页状态
+							151 container 通过：HTML与Word导出：真实行与正文各一次，静态thead与OOXML重复头独立于屏幕装饰
+								152 列表刻度 35
+								153 文本 通过：HTML与Word导出：真实行与正文各一次，静态thead与OOXML重复头独立于屏幕装饰
+							154 container 通过：单段多页：一个原始段落按真实行跨页，JSON、字符与保存修订保持不变 {"pages":7,"paragraphs":1,"glyphs":9360,"internalBreaks":6}
+								155 列表刻度 36
+								156 text 通过 ： 单段多页：一个原始段落按真实行跨页，JSON、字符与保存修订保持不变
+								157 文本 {"pages":7,"paragraphs":1,"glyphs":9360,"internalBreaks":6}
+							158 container 通过：续行装饰：合法不可编辑span与页眉页脚独立，续页文字只落在正文预算
+								159 列表刻度 37
+								160 文本 通过：续行装饰：合法不可编辑span与页眉页脚独立，续页文字只落在正文预算
+							161 container 通过：长标题：h1至h6均按行延续，原始标题和标题后普通段落保留一份
+								162 列表刻度 38
+								163 文本 通过：长标题：h1至h6均按行延续，原始标题和标题后普通段落保留一份
+							164 container 通过：混合文字：粗斜体、颜色、链接、hardBreak与emoji跨页后原标记和UTF16内容不变
+								165 列表刻度 39
+								166 文本 通过：混合文字：粗斜体、颜色、链接、hardBreak与emoji跨页后原标记和UTF16内容不变
+							167 container 通过：多个长段：段前后间距只作用于原段首尾，续页不复制段落或吞掉尾后正文
+								168 列表刻度 40
+								169 文本 通过：多个长段：段前后间距只作用于原段首尾，续页不复制段落或吞掉尾后正文
+							170 container 通过：对齐与缩进：首行缩进、左缩进、居中与两端对齐在跨页后保留原格式
+								171 列表刻度 41
+								172 文本 通过：对齐与缩进：首行缩进、左缩进、居中与两端对齐在跨页后保留原格式
+							173 container 通过：整段同页：keepTogether显式保留展开页，关闭后恢复按行分页且普通后段恢复标准纸高
+								174 列表刻度 42
+								175 文本 通过：整段同页：keepTogether显式保留展开页，关闭后恢复按行分页且普通后段恢复标准纸高
+							176 container 通过：跨页选区：复制与删除只操作原文字，页间留白不进入剪贴板，单次撤销恢复原段
+								177 列表刻度 43
+								178 文本 通过：跨页选区：复制与删除只操作原文字，页间留白不进入剪贴板，单次撤销恢复原段
+							179 container 通过：断点模型编辑：续页位置插入和向前删除不操作装饰，每次撤销只恢复正文一步
+								180 列表刻度 44
+								181 文本 通过：断点模型编辑：续页位置插入和向前删除不操作装饰，每次撤销只恢复正文一步
+							182 container 通过：续页分段：splitBlock在段内断点产生两个真实段落，撤销合回一个原始长段
+								183 列表刻度 45
+								184 文本 通过：续页分段：splitBlock在段内断点产生两个真实段落，撤销合回一个原始长段
+							185 container 通过：字号与行距：合法大字号与半磅段距重测，零上下边距和24px纸间距有限收敛
+								186 列表刻度 46
+								187 文本 通过：字号与行距：合法大字号与半磅段距重测，零上下边距和24px纸间距有限收敛
+							188 container 通过：纸型与缩放：A4/A5横竖及非对称边距按行重排，50%至150%与适宽保持未缩放断点
+								189 列表刻度 47
+								190 文本 通过：纸型与缩放：A4/A5横竖及非对称边距按行重排，50%至150%与适宽保持未缩放断点
+							191 container 通过：400行精度：小数字号单段硬换行逐页不漂移，每个续页首字形对齐相同正文起点 {"lines":400,"paragraphs":1,"pages":13,"maxDriftPx":0.04466043306933898}
+								192 列表刻度 48
+								193 text 通过 ： 400行精度：小数字号单段硬换行逐页不漂移，每个续页首字形对齐相同正文起点
+								194 文本 {"lines":400,"paragraphs":1,"pages":13,"maxDriftPx":0.04466043306933898}
+							195 container 通过：组合与只读：合成composition期间只映射旧装饰，结束后按行重排，只读保留完整原段
+								196 列表刻度 49
+								197 文本 通过：组合与只读：合成composition期间只映射旧装饰，结束后按行重排，只读保留完整原段
+							198 container 通过：开关与历史：关闭删除全部段内装饰，重开恢复布局，不增加正文修订或撤销历史
+								199 列表刻度 50
+								200 文本 通过：开关与历史：关闭删除全部段内装饰，重开恢复布局，不增加正文修订或撤销历史
+							201 container 通过：保存与备份：单段JSON原样保存，Mewoc不含屏幕断点，重开后重新测得同页数
+								202 列表刻度 51
+								203 文本 通过：保存与备份：单段JSON原样保存，Mewoc不含屏幕断点，重开后重新测得同页数
+							204 container 通过：HTML、TXT与Word：整段文字只导出一次，段内断点不变成硬换行或物理分页符
+								205 列表刻度 52
+								206 文本 通过：HTML、TXT与Word：整段文字只导出一次，段内断点不变成硬换行或物理分页符
+							207 container 通过：嵌套范围与清理：列表、引用及代码块安全延续；旧会话销毁后短文和空文只有一页
+								208 列表刻度 53
+								209 文本 通过：嵌套范围与清理：列表、引用及代码块安全延续；旧会话销毁后短文和空文只有一页
+							210 container 通过：无序列表：64原项目分布多张标准页，列表、li和模型只保留一份 {"items":64,"pages":5,"glyphs":3054}
+								211 列表刻度 54
+								212 text 通过 ： 无序列表：64原项目分布多张标准页，列表、li和模型只保留一份
+								213 文本 {"items":64,"pages":5,"glyphs":3054}
+							214 container 通过：有序列表：原start和五种编号外观跨页保留，原始li数量与顺序不变
+								215 列表刻度 55
+								216 文本 通过：有序列表：原start和五种编号外观跨页保留，原始li数量与顺序不变
+							217 container 通过：任务列表：跨页checked与唯一原checkbox保留，勾选真实项目可一次撤销
+								218 列表刻度 56
+								219 文本 通过：任务列表：跨页checked与唯一原checkbox保留，勾选真实项目可一次撤销
+							220 container 通过：单个长列表项：原li内一段按行延续，不复制编号、checkbox或持久段落
+								221 列表刻度 57
+								222 文本 通过：单个长列表项：原li内一段按行延续，不复制编号、checkbox或持久段落
+							223 container 通过：混合嵌套列表：UL、带起始号OL与task递归跨页，原层级、顺序与checked不变
+								224 列表刻度 58
+								225 文本 通过：混合嵌套列表：UL、带起始号OL与task递归跨页，原层级、顺序与checked不变
+							226 container 通过：递归富容器：textBox、details和blockquote内长段与列表共同分页，原外壳不复制
+								227 列表刻度 59
+								228 文本 通过：递归富容器：textBox、details和blockquote内长段与列表共同分页，原外壳不复制
+							229 container 通过：详情视图：收起只隐藏原内容并减少页数，展开重新分页，不写正文修订或更换NodeView
+								230 列表刻度 60
+								231 文本 通过：详情视图：收起只隐藏原内容并减少页数，展开重新分页，不写正文修订或更换NodeView
+							232 container 通过：嵌套混合字形：marks、hardBreak和emoji完整跨页，不拆代理对或修改原文字
+								233 列表刻度 61
+								234 文本 通过：嵌套混合字形：marks、hardBreak和emoji完整跨页，不拆代理对或修改原文字
+							235 container 通过：文本框外观：0与40px内边距、0与6px边框实时重测，原样式和尾段均保留
+								236 列表刻度 62
+								237 文本 通过：文本框外观：0与40px内边距、0与6px边框实时重测，原样式和尾段均保留
+							238 container 通过：列表快捷键：续页Enter真实分项、项首Backspace合并，UL/OL/task各一次撤销恢复
+								239 列表刻度 63
+								240 文本 通过：列表快捷键：续页Enter真实分项、项首Backspace合并，UL/OL/task各一次撤销恢复
+							241 container 通过：跨页模型选区：复制和删除只触及原嵌套正文，撤销恢复完整结构
+								242 列表刻度 64
+								243 文本 通过：跨页模型选区：复制和删除只触及原嵌套正文，撤销恢复完整结构
+							244 container 通过：表格与媒体：嵌套原行和TableView保留，播放中audio不因容器重排被复制或暂停
+								245 列表刻度 65
+								246 文本 通过：表格与媒体：嵌套原行和TableView保留，播放中audio不因容器重排被复制或暂停
+							247 container 通过：安全回退：嵌套keepTogether与RTL保留完整展开，后续普通正文恢复标准页
+								248 列表刻度 66
+								249 文本 通过：安全回退：嵌套keepTogether与RTL保留完整展开，后续普通正文恢复标准页
+							250 container 通过：嵌套边界与代码：手动分页保留，200原代码行跨页保持newline和高亮，可Enter撤销
+								251 列表刻度 67
+								252 文本 通过：嵌套边界与代码：手动分页保留，200原代码行跨页保持newline和高亮，可Enter撤销
+							253 container 通过：格式重测：嵌套合法字号、行距和半磅段距改变页数，恢复后返回原布局
+								254 列表刻度 68
+								255 文本 通过：格式重测：嵌套合法字号、行距和半磅段距改变页数，恢复后返回原布局
+							256 container 通过：纸型与400项精度：小数字号列表在A4/A5与50%至150%缩放保持稳定正文预算 {"items":400,"pages":13,"maxDriftPx":0.025959645670354803}
+								257 列表刻度 69
+								258 text 通过 ： 纸型与400项精度：小数字号列表在A4/A5与50%至150%缩放保持稳定正文预算
+								259 文本 {"items":400,"pages":13,"maxDriftPx":0.025959645670354803}
+							260 container 通过：组合与只读：composition期间保留原容器装饰，只读勾选被拒绝且原节点状态恢复 {"composition":{"composing":true,"breaksUnchanged":true,"connectedGaps":4,"initialGaps":4}}
+								261 列表刻度 70
+								262 text 通过 ： 组合与只读：composition期间保留原容器装饰，只读勾选被拒绝且原节点状态恢复
+								263 文本 {"composition":{"composing":true,"breaksUnchanged":true,"connectedGaps":4,"initialGaps":4}}
+							264 container 通过：保存与备份：原嵌套JSON和checked保存，Mewoc不含视图空隙，重开重新测得相同布局
+								265 列表刻度 71
+								266 文本 通过：保存与备份：原嵌套JSON和checked保存，Mewoc不含视图空隙，重开重新测得相同布局
+							267 container 通过：HTML、TXT与Word：嵌套壳与真实项目只导出一次，不导出屏幕断点、克隆控件或自动分页符
+								268 列表刻度 72
+								269 文本 通过：HTML、TXT与Word：嵌套壳与真实项目只导出一次，不导出屏幕断点、克隆控件或自动分页符
+							270 container 通过：开关与会话清理：关闭清全部内层间隙，销毁后停止发布，新短文空文只有一页
+								271 列表刻度 73
+								272 文本 通过：开关与会话清理：关闭清全部内层间隙，销毁后停止发布，新短文空文只有一页
+							273 container 通过：长前缀容器精度：400项列表后的长文本框在75%与100%保持真实origin、height和正文裁剪 {"precedingItems":400,"measurements":[{"zoom":0.75,"pages":21,"originDriftPx":0.017426181100745453,"heightDriftPx":0.003749999999854481},{"zoom":1,"pages":21,"originDriftPx":0.017426181100745453,"heightDriftPx":0.003749999999854481}]}
+								274 列表刻度 74
+								275 text 通过 ： 长前缀容器精度：400项列表后的长文本框在75%与100%保持真实origin、height和正文裁剪
+								276 文本 {"precedingItems":400,"measurements":[{"zoom":0.75,"pages":21,"originDriftPx":0.017426181100745453,"heightDriftPx":0.003749999999854481},{"zoom":1,"pages":21,"originDriftPx":0.017426181100745453,"heightDriftPx":0.003749999999854481}]}
+							277 container 通过：代码空行与换行契约：200行空白、仅newline、尾换行和CRLF保持真实PRE/CODE与完整源码 {"variants":[{"variant":"mixed-blank","sourceLength":231,"lineBreaks":201,"placements":202,"pages":7,"measuredRects":231},{"variant":"newline-only","sourceLength":200,"lineBreaks":200,"placements":200,"pages":7,"measuredRects":200},{"variant":"trailing-newline","sourceLength":3200,"lineBreaks":200,"placements":200,"pages":7,"measuredRects":3200},{"variant":"crlf","sourceLength":3400,"lineBreaks":200,"placements":200,"pages":7,"measuredRects":3400},{"var
+								278 列表刻度 75
+								279 text 通过 ： 代码空行与换行契约：200行空白、仅newline、尾换行和CRLF保持真实PRE/CODE与完整源码
+								280 文本 {"variants":[{"variant":"mixed-blank","sourceLength":231,"lineBreaks":201,"placements":202,"pages":7,"measuredRects":231},{"variant":"newline-only","sourceLength":200,"lineBreaks":200,"placements":200,"pages":7,"measuredRects":200},{"variant":"trailing-newline","sourceLength":3200,"lineBreaks":200,"placements":200,"pages":7,"measuredRects":3200},{"variant":"crlf","sourceLength":3400,"lineBreaks":200,"placements":200,"pages":7,"measuredRects":3400},{"variant":"whitespace-only","sourceLength":600,"lineBreaks"
+						281 container 验收 JSON 结果
+							282 文本 [
+  {
+    "name": "自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订",
+    "passed": true,
+    "metrics": {
+      "pageCount": 4,
+      "blocks": 40
+    },
+    "suite": "自动分页"
+  },
+  {
+    "name": "分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关",
+    "passed": true,
+    "metrics": {
+      "interactionStyles": [
+        {
+          "pointerEvents": "none",
+          "userSelect": null,
+          "webkitUserSelect": "none"
+        },
+        {
+          "pointerEvents": "none",
+          "userSelect": null,
+          "webkitUserSelect": "non
+				283 滚动条 (settable, float) 0
+	284 工具栏
+		285 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			286 按钮 Description: 显示边栏, ID: SidebarButton
+			287 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		288 container BackForwardSegmentedControl
+			289 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			290 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		291 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			292 按钮 页面菜单, ID: AssistantButton
+			293 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			294 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:4182/tests/browser.html, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			295 按钮 重新加载此页面, ID: ReloadButton
+		296 按钮 Description: 下载, ID: DownloadsButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		297 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		298 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		299 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+300 menu bar
+	301 Safari浏览器
+	302 文件
+	303 编辑
+	304 显示, ID: SafariViewMenu
+	305 历史记录
+	306 书签, ID: SafariBookmarksMenu
+	307 窗口, ID: SafariWindowMenu
+	308 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html

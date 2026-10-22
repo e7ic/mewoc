@@ -1,0 +1,83 @@
+Window: "Mewoc 浏览器验收", App: Safari浏览器.
+0 标准窗口 Mewoc 浏览器验收, ID: SafariWindow?IsSecure=false&UUID=6B35E14C-7792-4186-88F3-E0ADB8D1CEF1, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html
+					6 container
+						7 标题 Mewoc 浏览器验收, Value: 1
+							8 文本 Mewoc 浏览器验收
+						9 text 使用真实浏览器排版、React 17、编辑器与 IndexedDB。拖动事件为合成事件，不代替真实输入法或物理鼠标验收。 请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。
+						10 按钮 (disabled) 连续运行四组分页验收（75 项）
+						11 按钮 (disabled) 运行浏览器验收
+						12 按钮 (disabled) 运行压力验收
+						13 按钮 (disabled) 运行资源重复保存验收
+						14 按钮 导出验收结果
+						15 按钮 (disabled) 运行 Word 导出验收
+						16 按钮 (disabled) 运行 Word 导入验收
+						17 按钮 (disabled) 运行文档库验收
+						18 按钮 (disabled) 运行历史版本验收
+						19 按钮 (disabled) 运行批注验收
+						20 按钮 (disabled) 运行模板验收
+						21 按钮 (disabled) 运行图表精细设置验收
+						22 按钮 (disabled) 运行段落精细设置验收
+						23 按钮 (disabled) 运行编辑交互验收
+						24 按钮 (disabled) 运行工具栏验收
+						25 按钮 (disabled) 运行图片替换与格式标记验收
+						26 按钮 (disabled) 运行文本框与折叠详情验收
+						27 按钮 (disabled) 运行目录与书签导航验收
+						28 按钮 (disabled) 运行页面与水印验收
+						29 按钮 (disabled) 运行 Word 页面往返验收
+						30 按钮 (disabled) 打开 Word 页面预览示例
+						31 按钮 (disabled) 运行页眉页脚与页码验收
+						32 按钮 (disabled) 打开页眉页脚补验示例
+						33 按钮 (disabled) 运行音频与视频验收
+						34 按钮 (disabled) 打开媒体补验示例
+						35 按钮 (disabled) 运行自动分页验收
+						36 按钮 (disabled) 运行跨页表格验收
+						37 按钮 (disabled) 显示跨页表格示例
+						38 按钮 (disabled) 运行段内分页验收
+						39 按钮 (disabled) 显示段内分页示例
+						40 按钮 (disabled) 运行容器分页验收
+						41 按钮 (disabled) 显示容器分页示例
+						42 文本 完成：0/1
+						43 内容列表
+							44 container 失败：四组分页验收运行异常 — 验收环境未就绪，尚未创建测试文档：{"visibility":"hidden","focused":false,"frames":0,"topLevel":true,"url":"http://127.0.0.1:4182/tests/browser.html"}
+								45 列表刻度 1
+								46 文本 失败：四组分页验收运行异常 — 验收环境未就绪，尚未创建测试文档：{"visibility":"hidden","focused":false,"frames":0,"topLevel":true,"url":"http://127.0.0.1:4182/tests/browser.html"}
+						47 container 验收 JSON 结果
+							48 文本 [
+  {
+    "name": "四组分页验收运行异常",
+    "passed": false,
+    "error": "验收环境未就绪，尚未创建测试文档：{\"visibility\":\"hidden\",\"focused\":false,\"frames\":0,\"topLevel\":true,\"url\":\"http://127.0.0.1:4182/tests/browser.html\"}"
+  }
+]
+	49 工具栏
+		50 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			51 按钮 Description: 显示边栏, ID: SidebarButton
+			52 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		53 container BackForwardSegmentedControl
+			54 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			55 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		56 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			57 按钮 页面菜单, ID: AssistantButton
+			58 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			59 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:4182/tests/browser.html, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			60 按钮 重新加载此页面, ID: ReloadButton
+		61 按钮 Description: 下载, ID: DownloadsButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		62 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		63 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		64 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+65 menu bar
+	66 Safari浏览器
+	67 文件
+	68 编辑
+	69 显示, ID: SafariViewMenu
+	70 历史记录
+	71 书签, ID: SafariBookmarksMenu
+	72 窗口, ID: SafariWindowMenu
+	73 帮助, ID: SafariHelpMenu
+
+The focused UI element is 5 HTML内容 Description: Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html

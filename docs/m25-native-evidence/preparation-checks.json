@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-10-22T14:26:20.957Z",
+  "portableContentMatches": true,
+  "assets": [
+    {
+      "fileName": "M25-soak.png",
+      "byteLength": 1100,
+      "sha256": "3000f55839a18c6dfd0eba68fa2912af63d525c33b1c402d4fdbef7ca1aa4c4b"
+    },
+    {
+      "fileName": "native-check.txt",
+      "byteLength": 22,
+      "sha256": "cd44e3ae5cc981787bc9368978f36192f330981bbbfe516f30b097da8c9c7bf8"
+    },
+    {
+      "fileName": "native-check.wav",
+      "byteLength": 64044,
+      "sha256": "bc09dcbf5a5cb5e067aa48d339bff313ffc702d69e9322fe976f61a28746a699"
+    }
+  ],
+  "docx": {
+    "generator": "正式 createDocumentDocx 在 Node/JSDOM 中运行；尚未经 Word/WPS 原生打开",
+    "byteLength": 17282,
+    "counts": {
+      "start": 1,
+      "end": 1,
+      "codeLines": 90,
+      "tableRows": 49
+    },
+    "warnings": [
+      "附件保留文件名和大小，不在 Word 文档中嵌入文件；完整备份请使用 Mewoc 文件",
+      "音频和视频保留文件说明，Word 不嵌入播放内容；完整资源请使用 Mewoc 文件或 HTML",
+      "正文文本框已转换为单格表格，保留边框、底色和内边距；不生成浮动文本框",
+      "折叠详情已展开为加粗标题和完整正文，Word 不保留折叠交互",
+      "待办清单以 [x] / [ ] 文字标记保留勾选状态，不生成 Word 交互式复选框"
+    ]
+  },
+  "nativeAcceptancePassed": false
+}

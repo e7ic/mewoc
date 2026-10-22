@@ -1,0 +1,43 @@
+Browser tab: 1025105104, Title: "Mewoc 浏览器验收", URL: "http://127.0.0.1:4182/tests/browser.html".
+0 AXWebArea Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html
+	1 container
+		2 container
+			3 heading Mewoc 浏览器验收, Value: 1
+				4 text Mewoc 浏览器验收
+			5 text 使用真实浏览器排版、React 17、编辑器与 IndexedDB。拖动事件为合成事件，不代替真实输入法或物理鼠标验收。 请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。
+			6 button 连续运行四组分页验收（75 项）
+			7 button 运行浏览器验收
+			8 button 打开混合长文原生补验
+			9 button 运行压力验收
+			10 button 运行资源重复保存验收
+			11 button (disabled) 导出验收结果
+			12 button 运行 Word 导出验收
+			13 button 运行 Word 导入验收
+			14 button 运行文档库验收
+			15 button 运行历史版本验收
+			16 button 运行批注验收
+			17 button 运行模板验收
+			18 button 运行图表精细设置验收
+			19 button 运行段落精细设置验收
+			20 button 运行编辑交互验收
+			21 button 运行工具栏验收
+			22 button 运行图片替换与格式标记验收
+			23 button 运行文本框与折叠详情验收
+			24 button 运行目录与书签导航验收
+			25 button 运行页面与水印验收
+			26 button 运行 Word 页面往返验收
+			27 button 打开 Word 页面预览示例
+			28 button 运行页眉页脚与页码验收
+			29 button 打开页眉页脚补验示例
+			30 button 运行音频与视频验收
+			31 button 打开媒体补验示例
+			32 button 运行自动分页验收
+			33 button 运行跨页表格验收
+			34 button 显示跨页表格示例
+			35 button 运行段内分页验收
+			36 button 显示段内分页示例
+			37 button 运行容器分页验收
+			38 button 显示容器分页示例
+			39 text 等待运行
+
+The focused UI element is 0 AXWebArea Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html

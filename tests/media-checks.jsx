@@ -320,8 +320,17 @@ export async function runMediaChecks(report = () => {}) {
           const asset = context.assets.get(link.closest('[data-type="media"]').dataset.mewocAssetId)
           assert(await sameBytes(await (await fetch(link.href)).blob(), asset.blob), "HTML下载改变原始媒体字节")
         }
-        const printRules = [...doc.styleSheets].flatMap(sheet => [...sheet.cssRules]).filter(rule => rule.conditionText === "print").map(rule => rule.cssText).join("\n")
-        assert(printRules.includes("[data-media-player]") && printRules.includes("[data-media-print]") && doc.querySelectorAll("[data-media-print]").length === 2, "打印没有媒体控件隐藏与文件说明契约")
+        const printRules = [...doc.styleSheets].flatMap(sheet => [...sheet.cssRules]).filter(rule => rule.conditionText === "print")
+        const visible = selector => [...doc.querySelectorAll(selector)].every(node => frame.contentWindow.getComputedStyle(node).display !== "none")
+        const hidden = selector => [...doc.querySelectorAll(selector)].every(node => frame.contentWindow.getComputedStyle(node).display === "none")
+        assert(printRules.length && doc.querySelectorAll("[data-media-print]").length === 2, "打印没有媒体文件说明契约")
+        assert(visible("[data-media-player], [data-media-actions]") && hidden("[data-media-print]"), "屏幕模式未保留播放器与下载操作")
+        // 在原样式表位置启用打印规则，验证真实层叠结果，防止普通规则以更高优先级盖过隐藏样式。
+        for (const rule of printRules) rule.media.mediaText = "screen"
+        try {
+          assert(hidden("[data-media-player], [data-media-actions], [data-media-error]"), "打印样式没有覆盖普通媒体控件样式")
+          assert(visible("[data-media-info], [data-media-print]"), "打印隐藏了媒体文件信息或说明")
+        } finally { for (const rule of printRules) rule.media.mediaText = "print" }
       } finally { [...(frame.contentDocument?.querySelectorAll("[data-media-player]") || [])].forEach(player => player.pause()); frame.remove() }
     })
     await check("媒体历史/模板：历史只读预览真实播放，关闭释放播放器，独立模板实例可重开", async context => {

@@ -21,6 +21,7 @@ import { TOOLBAR_MODE_KEY } from "../src/pages/editor/tools/toolbar-preferences.
 import { FORMATTING_MARKS_KEY } from "../src/pages/editor/tools/formatting-marks-preferences.js"
 import { removeVerificationDocuments } from "./browser-checks.js"
 import { createWaveFile } from "./media-fixtures.js"
+import { requireVisibleBrowser } from "./browser-visibility.js"
 
 const assert = (value, message) => { if (!value) throw new Error(message) }
 const delay = (ms = 60) => new Promise(resolve => setTimeout(resolve, ms))
@@ -35,7 +36,13 @@ const content = nodes => ({ type: "doc", content: nodes })
 const defaultContent = () => content([paragraph("跨页表格之前"), makeTable(), paragraph("跨页表格之后")])
 const preferences = () => new Map([TOOLBAR_MODE_KEY, FORMATTING_MARKS_KEY].map(key => [key, localStorage.getItem(key)]))
 const restorePreferences = saved => { for (const [key, value] of saved) { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value) } }
-const requirePort = () => assert(location.hostname === "127.0.0.1" && location.port === "4190", "跨页表格验收仅允许在专用 127.0.0.1:4190 运行")
+const requirePort = () => {
+  const allowedPorts = ["4182", "4190"]
+  assert(
+    location.hostname === "127.0.0.1" && allowedPorts.includes(location.port),
+    "跨页表格验收仅允许在专用 127.0.0.1:4182 或 :4190 运行"
+  )
+}
 function Probe({ capture }) {
   const context = useDocumentEditor()
   useEffect(() => { if (context.editor) capture(context) }, [context, capture])
@@ -44,6 +51,7 @@ function Probe({ capture }) {
 
 export async function runTablePaginationChecks(report = () => {}) {
   requirePort()
+  await requireVisibleBrowser()
   const savedPreferences = preferences(); const records = new Map()
   const host = document.createElement("section")
   host.style.cssText = "position:relative;width:1280px;max-width:100%;height:900px;margin:24px 0"
@@ -103,7 +111,9 @@ export async function runTablePaginationChecks(report = () => {}) {
       for (const group of structure.groups) assert(pageFor(table.rows[group.firstRow].dom).index === pageFor(table.rows[group.lastRow].dom).index, "分页切开了纵向合并行组")
       for (const header of table.element.querySelectorAll(":scope > tbody > [data-mewoc-repeat-header]")) {
         assert(header.tagName === "TR" && header.contentEditable === "false" && header.getAttribute("aria-hidden") === "true", "重复表头不是不可编辑且隐藏辅助行")
-        assert(getComputedStyle(header).pointerEvents === "none" && getComputedStyle(header).userSelect === "none", "重复表头截获点击或文字选择")
+        const style = getComputedStyle(header)
+        // 标准属性缺失时读取 Safari 的同义前缀属性，仍要求真实计算值为 none。
+        assert(style.pointerEvents === "none" && (style.userSelect || style.webkitUserSelect) === "none", `重复表头截获点击或文字选择：${json({ pointerEvents: style.pointerEvents, userSelect: style.userSelect ?? null, webkitUserSelect: style.webkitUserSelect ?? null })}`)
       }
       for (const gap of table.element.querySelectorAll(":scope > tbody > [data-mewoc-table-pagination='gap']")) assert(gap.tagName === "TR" && gap.children.length === 1 && gap.children[0].colSpan === table.map.width, "间隙不是合法跨全列 TR")
     }
@@ -163,7 +173,8 @@ export async function runTablePaginationChecks(report = () => {}) {
       assert(pageFor(last).index >= pageFor(tables()[0].rows.at(-1).dom).index, "表后段落没有随续页布局移动")
       const before = json(editor.getJSON()); const revision = store.getState().revision
       await delay(250); assert(before === json(editor.getJSON()) && revision === store.getState().revision, "表格视图重排制造文档修订")
-      return { rows: 48, pages: layout().pageCount, internalBreaks: internal.length }
+      const style = getComputedStyle(editor.view.dom.querySelector("[data-mewoc-repeat-header]"))
+      return { rows: 48, pages: layout().pageCount, internalBreaks: internal.length, interactionStyle: { pointerEvents: style.pointerEvents, userSelect: style.userSelect ?? null, webkitUserSelect: style.webkitUserSelect ?? null } }
     })
     await check("重复表头：每个正常续页显示原表头一次，与真实列宽及数据行对齐", async () => {
       verify(); const table = tables()[0]; const original = table.rows[0].dom

@@ -17,6 +17,8 @@ export default defineConfig(({ command }) => ({
       ...(command === "dev" && {
         "tests/browser": "./tests/BrowserVerification.jsx",
         "tests/lifecycle": "./tests/LifecycleVerification.jsx",
+        "tests/pagination-soak": "./tests/PaginationSoakVerification.jsx",
+        "tests/browser-visibility": "./tests/browser-visibility-probe.js",
         "tests/pointer": ["./src/main.jsx", "./tests/pointer-trace.js", "./tests/input-trace.js"]
       })
     }

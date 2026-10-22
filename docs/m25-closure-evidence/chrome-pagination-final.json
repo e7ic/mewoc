@@ -1,0 +1,523 @@
+{
+  "generatedAt": "2026-10-22T13:33:42.798Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "url": "http://127.0.0.1:4182/tests/browser.html",
+  "results": [
+    {
+      "name": "自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订",
+      "passed": true,
+      "metrics": {
+        "pageCount": 4,
+        "blocks": 40
+      },
+      "suite": "自动分页"
+    },
+    {
+      "name": "分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关",
+      "passed": true,
+      "metrics": {
+        "interactionStyles": [
+          {
+            "pointerEvents": "none",
+            "userSelect": "none",
+            "webkitUserSelect": "none"
+          },
+          {
+            "pointerEvents": "none",
+            "userSelect": "none",
+            "webkitUserSelect": "none"
+          },
+          {
+            "pointerEvents": "none",
+            "userSelect": "none",
+            "webkitUserSelect": "none"
+          },
+          {
+            "pointerEvents": "none",
+            "userSelect": "none",
+            "webkitUserSelect": "none"
+          }
+        ]
+      },
+      "suite": "自动分页"
+    },
+    {
+      "name": "分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "手动分页：首尾和连续分页符保留空页，自动边界不额外累加",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "手动分页编辑：合成删除选中分页符消除空页，撤销恢复原边界",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "纸张与缩放：A4/A5横竖、非对称边距实时重排，50%–150%和适宽不改变分页",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "排版重测：字号、行距和段前后间距改变页数，恢复格式后稳定返回",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚",
+      "passed": true,
+      "metrics": {
+        "paragraphs": 400,
+        "pageCount": 13,
+        "maxDriftPx": 0.009694855794805335
+      },
+      "suite": "自动分页"
+    },
+    {
+      "name": "同页约束：标题与下一段相邻，显式与下段同页生效，过长链有限退化",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "长内容：普通长段按行延续，表格逐行分页，真实文字与数据行均不遮页脚",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "图片与媒体：解码加载和尺寸变化触发重排，分页不重建正在播放的原生节点",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "组合输入：合成composing期间延迟重排，结束后更新，正文只读仍保持分页",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "保存与导出：重开和Mewoc备份重新测量，HTML/TXT不夹带自动间隙或视图页码",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "会话清理：销毁后不再发布布局，新文档页数独立，短文与空正文均只有一页",
+      "passed": true,
+      "suite": "自动分页"
+    },
+    {
+      "name": "跨页表格：48 原行按行分页，页尾页首正文与表后段落均不覆盖边距",
+      "passed": true,
+      "metrics": {
+        "rows": 48,
+        "pages": 3,
+        "internalBreaks": 2,
+        "interactionStyle": {
+          "pointerEvents": "none",
+          "userSelect": "none",
+          "webkitUserSelect": "none"
+        }
+      },
+      "suite": "跨页表格"
+    },
+    {
+      "name": "重复表头：每个正常续页显示原表头一次，与真实列宽及数据行对齐",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "多行与横向合并表头：完整起始头链与首数据行同页，续页两行原样重复",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "表头规则：无头、混合头、纵向头与中部头均不会启动伪重复",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "纵向合并：交错与连锁 rowspan 行组不被纸面间隙切断",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "超高单行：内容与格边框完整展开，后续数据页恢复标准纸高",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "超高合并行组：超过一页的 rowspan 保留 DOM 与逻辑跨度，整组一张展开页",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "极大表头预算：头加完整数据行放不下时有限退化，不无限生成空页",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "重测：窄列换行、字号、行距及零内边距实时改变分页，恢复后回到初始布局",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "纸型缩放：A4/A5横竖、非对称边距与50%–150%缩放保持正确跨页几何",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "小数精度：400 行12.75pt与小数段距逐页不累积漂移，最后原行不盖页脚",
+      "passed": true,
+      "metrics": {
+        "rows": 400,
+        "columns": 2,
+        "cells": 800,
+        "pages": 22,
+        "maxDriftPx": 0.01607998431791202
+      },
+      "suite": "跨页表格"
+    },
+    {
+      "name": "结构编辑：续页增删行、合并拆分保持网格完整，单次撤销恢复原行和纸面",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "跨页选格：CellSelection复制不含重复头或间隙，清空和撤销仅作用原格",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "列宽拖动：合成续页真实列边拖动更新全列及重复头，可独立撤销",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "虚拟格保护：重复头和分页间隙上的合成拖动与点击不修改正文或选格",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "富表头同步：原音频与详情只保留一份，续页净化控件并保留摘要、文件名和真实高度",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "组合与只读：合成composition期间保留旧表格装饰，结束后更新；只读保持分页",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "嵌套表：只按外表完整行组分页，内表原节点保留且没有插入错误的外表间隙",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "保存重开：原行、合并与JSON保持完整，Mewoc不存虚拟头或屏幕分页状态",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "HTML与Word导出：真实行与正文各一次，静态thead与OOXML重复头独立于屏幕装饰",
+      "passed": true,
+      "suite": "跨页表格"
+    },
+    {
+      "name": "单段多页：一个原始段落按真实行跨页，JSON、字符与保存修订保持不变",
+      "passed": true,
+      "metrics": {
+        "pages": 7,
+        "paragraphs": 1,
+        "glyphs": 9360,
+        "internalBreaks": 6
+      },
+      "suite": "段内分页"
+    },
+    {
+      "name": "续行装饰：合法不可编辑span与页眉页脚独立，续页文字只落在正文预算",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "长标题：h1至h6均按行延续，原始标题和标题后普通段落保留一份",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "混合文字：粗斜体、颜色、链接、hardBreak与emoji跨页后原标记和UTF16内容不变",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "多个长段：段前后间距只作用于原段首尾，续页不复制段落或吞掉尾后正文",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "对齐与缩进：首行缩进、左缩进、居中与两端对齐在跨页后保留原格式",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "整段同页：keepTogether显式保留展开页，关闭后恢复按行分页且普通后段恢复标准纸高",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "跨页选区：复制与删除只操作原文字，页间留白不进入剪贴板，单次撤销恢复原段",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "断点模型编辑：续页位置插入和向前删除不操作装饰，每次撤销只恢复正文一步",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "续页分段：splitBlock在段内断点产生两个真实段落，撤销合回一个原始长段",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "字号与行距：合法大字号与半磅段距重测，零上下边距和24px纸间距有限收敛",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "纸型与缩放：A4/A5横竖及非对称边距按行重排，50%至150%与适宽保持未缩放断点",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "400行精度：小数字号单段硬换行逐页不漂移，每个续页首字形对齐相同正文起点",
+      "passed": true,
+      "metrics": {
+        "lines": 400,
+        "paragraphs": 1,
+        "pages": 13,
+        "maxDriftPx": 0.04466043306933898
+      },
+      "suite": "段内分页"
+    },
+    {
+      "name": "组合与只读：合成composition期间只映射旧装饰，结束后按行重排，只读保留完整原段",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "开关与历史：关闭删除全部段内装饰，重开恢复布局，不增加正文修订或撤销历史",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "保存与备份：单段JSON原样保存，Mewoc不含屏幕断点，重开后重新测得同页数",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "HTML、TXT与Word：整段文字只导出一次，段内断点不变成硬换行或物理分页符",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "嵌套范围与清理：列表、引用及代码块安全延续；旧会话销毁后短文和空文只有一页",
+      "passed": true,
+      "suite": "段内分页"
+    },
+    {
+      "name": "无序列表：64原项目分布多张标准页，列表、li和模型只保留一份",
+      "passed": true,
+      "metrics": {
+        "items": 64,
+        "pages": 5,
+        "glyphs": 3054
+      },
+      "suite": "容器分页"
+    },
+    {
+      "name": "有序列表：原start和五种编号外观跨页保留，原始li数量与顺序不变",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "任务列表：跨页checked与唯一原checkbox保留，勾选真实项目可一次撤销",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "单个长列表项：原li内一段按行延续，不复制编号、checkbox或持久段落",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "混合嵌套列表：UL、带起始号OL与task递归跨页，原层级、顺序与checked不变",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "递归富容器：textBox、details和blockquote内长段与列表共同分页，原外壳不复制",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "详情视图：收起只隐藏原内容并减少页数，展开重新分页，不写正文修订或更换NodeView",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "嵌套混合字形：marks、hardBreak和emoji完整跨页，不拆代理对或修改原文字",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "文本框外观：0与40px内边距、0与6px边框实时重测，原样式和尾段均保留",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "列表快捷键：续页Enter真实分项、项首Backspace合并，UL/OL/task各一次撤销恢复",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "跨页模型选区：复制和删除只触及原嵌套正文，撤销恢复完整结构",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "表格与媒体：嵌套原行和TableView保留，播放中audio不因容器重排被复制或暂停",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "安全回退：嵌套keepTogether与RTL保留完整展开，后续普通正文恢复标准页",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "嵌套边界与代码：手动分页保留，200原代码行跨页保持newline和高亮，可Enter撤销",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "格式重测：嵌套合法字号、行距和半磅段距改变页数，恢复后返回原布局",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "纸型与400项精度：小数字号列表在A4/A5与50%至150%缩放保持稳定正文预算",
+      "passed": true,
+      "metrics": {
+        "items": 400,
+        "pages": 13,
+        "maxDriftPx": 0.05247293306933898
+      },
+      "suite": "容器分页"
+    },
+    {
+      "name": "组合与只读：composition期间保留原容器装饰，只读勾选被拒绝且原节点状态恢复",
+      "passed": true,
+      "metrics": {
+        "composition": {
+          "composing": true,
+          "breaksUnchanged": true,
+          "connectedGaps": 4,
+          "initialGaps": 4
+        }
+      },
+      "suite": "容器分页"
+    },
+    {
+      "name": "保存与备份：原嵌套JSON和checked保存，Mewoc不含视图空隙，重开重新测得相同布局",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "HTML、TXT与Word：嵌套壳与真实项目只导出一次，不导出屏幕断点、克隆控件或自动分页符",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "开关与会话清理：关闭清全部内层间隙，销毁后停止发布，新短文空文只有一页",
+      "passed": true,
+      "suite": "容器分页"
+    },
+    {
+      "name": "长前缀容器精度：400项列表后的长文本框在75%与100%保持真实origin、height和正文裁剪",
+      "passed": true,
+      "metrics": {
+        "precedingItems": 400,
+        "measurements": [
+          {
+            "zoom": 0.75,
+            "pages": 21,
+            "originDriftPx": 0.0006988188979448751,
+            "heightDriftPx": 0.007187499999417923
+          },
+          {
+            "zoom": 1,
+            "pages": 21,
+            "originDriftPx": 0.0006988188979448751,
+            "heightDriftPx": 0.007187499999417923
+          }
+        ]
+      },
+      "suite": "容器分页"
+    },
+    {
+      "name": "代码空行与换行契约：200行空白、仅newline、尾换行和CRLF保持真实PRE/CODE与完整源码",
+      "passed": true,
+      "metrics": {
+        "variants": [
+          {
+            "variant": "mixed-blank",
+            "sourceLength": 231,
+            "lineBreaks": 201,
+            "placements": 202,
+            "pages": 7,
+            "measuredRects": 231
+          },
+          {
+            "variant": "newline-only",
+            "sourceLength": 200,
+            "lineBreaks": 200,
+            "placements": 200,
+            "pages": 7,
+            "measuredRects": 200
+          },
+          {
+            "variant": "trailing-newline",
+            "sourceLength": 3200,
+            "lineBreaks": 200,
+            "placements": 200,
+            "pages": 7,
+            "measuredRects": 3200
+          },
+          {
+            "variant": "crlf",
+            "sourceLength": 3400,
+            "lineBreaks": 200,
+            "placements": 200,
+            "pages": 7,
+            "measuredRects": 3200
+          },
+          {
+            "variant": "whitespace-only",
+            "sourceLength": 600,
+            "lineBreaks": 200,
+            "placements": 200,
+            "pages": 7,
+            "measuredRects": 600
+          }
+        ]
+      },
+      "suite": "容器分页"
+    }
+  ]
+}

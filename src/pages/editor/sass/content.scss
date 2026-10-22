@@ -188,9 +188,11 @@
     figure, img { break-inside: avoid; }
     [data-type="attachment"] { break-inside: avoid; }
     [data-attachment-download] { display: none; }
-    [data-type="media"] { break-inside: avoid; }
-    [data-media-player], [data-media-actions], [data-media-error] { display: none; }
-    [data-type="media"] [data-media-print] { display: block; margin: 0; font-size: 12px; color: #626777; }
+    [data-type="media"] {
+      break-inside: avoid;
+      [data-media-player], [data-media-actions], [data-media-error] { display: none; }
+      [data-media-print] { display: block; margin: 0; font-size: 12px; color: #626777; }
+    }
     // 静态快照默认展开；同时防御用户在离线 HTML 中收起后打印，避免正文漏印。
     [data-type="details"] {
       > [data-details-content] { display: block !important; }

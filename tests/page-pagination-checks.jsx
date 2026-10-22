@@ -20,6 +20,8 @@ import { FORMATTING_MARKS_KEY } from "../src/pages/editor/tools/formatting-marks
 import { createWaveFile } from "./media-fixtures.js"
 import { removeVerificationDocuments } from "./browser-checks.js"
 import { readParagraphGlyphs } from "./paragraph-pagination-checks.jsx"
+import { PAGE_PAGINATION_KEY } from "../src/pages/editor/extensions/page-pagination.js"
+import { requireVisibleBrowser } from "./browser-visibility.js"
 
 const assert = (value, message) => { if (!value) throw new Error(message) }
 const delay = (ms = 60) => new Promise(resolve => setTimeout(resolve, ms))
@@ -41,6 +43,13 @@ function Probe({ capture }) {
 }
 
 export async function runPagePaginationChecks(report = () => {}) {
+  await requireVisibleBrowser()
+  const runtimeErrors = []
+  const recordError = event => {
+    runtimeErrors.push(event.message || String(event.reason))
+  }
+  window.addEventListener("error", recordError)
+  window.addEventListener("unhandledrejection", recordError)
   const preferences = new Map([TOOLBAR_MODE_KEY, FORMATTING_MARKS_KEY].map(key => [key, localStorage.getItem(key)]))
   const records = new Map()
   const host = document.createElement("section")
@@ -53,14 +62,39 @@ export async function runPagePaginationChecks(report = () => {}) {
   const settle = async () => {
     await document.fonts.ready
     let previous = ""; let stable = 0
-    return waitFor(() => {
-      const state = layout()
-      if (!state?.pages?.length) return false
-      const signature = json({ pages: state.pages, breaks: state.breaks, height: current.editor.view.dom.offsetHeight })
-      stable = signature === previous ? stable + 1 : 0
-      previous = signature
-      return stable >= 3 && state
-    }, "分页布局未收敛")
+    let frames = 0
+    const frame = requestAnimationFrame(() => {
+      frames += 1
+    })
+    try {
+      return await waitFor(() => {
+        const state = layout()
+        if (!state?.pages?.length) return false
+        const signature = json({ pages: state.pages, breaks: state.breaks, height: current.editor.view.dom.offsetHeight })
+        stable = signature === previous ? stable + 1 : 0
+        previous = signature
+        return stable >= 3 && state
+      }, "分页布局未收敛")
+    } catch (error) {
+      const pagination = PAGE_PAGINATION_KEY.getState(current.editor.state)
+      const dom = current.editor.view.dom
+      const diagnostics = {
+        visibility: document.visibilityState,
+        focused: document.hasFocus(),
+        frames,
+        enabled: pagination.settings.enabled,
+        pending: pagination.pending,
+        composing: current.editor.view.composing,
+        pages: pagination.layout.pageCount,
+        status: pagination.layout.status,
+        rect: dom.getBoundingClientRect().toJSON(),
+        width: getComputedStyle(dom).width,
+        runtimeErrors
+      }
+      throw new Error(`${error.message}：${json(diagnostics)}`)
+    } finally {
+      cancelAnimationFrame(frame)
+    }
   }
   const nodes = () => {
     const result = []
@@ -145,14 +179,20 @@ export async function runPagePaginationChecks(report = () => {}) {
       await settle()
       const layers = [...surface().querySelectorAll("[data-mewoc-page-index]")]
       assert(layers.length === count, "独立纸面层数量错误")
+      const interactionStyles = []
       layers.forEach((layer, index) => {
         const header = layer.querySelector('[data-mewoc-page-furniture="header"]'); const footer = layer.querySelector('[data-mewoc-page-furniture="footer"]')
         assert(header.querySelector("text").textContent === `M25 页眉 · 第 ${index + 1} 页` && footer.querySelector("text").textContent === `分页资料 · 第 ${index + 1} / ${count} 页`, "页码或总页数未按纸面编号")
-        assert(layer.querySelectorAll("[data-mewoc-watermark]").length === 1 && getComputedStyle(header).pointerEvents === "none" && getComputedStyle(footer).userSelect === "none", "装饰重复或截获正文交互")
+        const style = getComputedStyle(footer)
+        const interaction = { pointerEvents: getComputedStyle(header).pointerEvents, userSelect: style.userSelect ?? null, webkitUserSelect: style.webkitUserSelect ?? null }
+        interactionStyles.push(interaction)
+        // Safari 的 CSSOM 仍使用前缀属性；检查实际生效值，不把缺少标准别名计作可选择。
+        assert(layer.querySelectorAll("[data-mewoc-watermark]").length === 1 && interaction.pointerEvents === "none" && (interaction.userSelect || interaction.webkitUserSelect) === "none", `装饰重复或截获正文交互：${json(interaction)}`)
         assert(near(footer.getBoundingClientRect().bottom, layer.getBoundingClientRect().bottom), "页脚未贴当前页底部")
       })
       assert(before === json(editor.getJSON()), "装饰进入正文")
       verifyGeometry()
+      return { interactionStyles }
     })
     await check("分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史", async ({ editor, store }) => {
       const before = json(editor.getJSON()); const count = layout().pageCount
@@ -311,6 +351,8 @@ export async function runPagePaginationChecks(report = () => {}) {
       verifyGeometry()
     })
   } finally {
+    window.removeEventListener("error", recordError)
+    window.removeEventListener("unhandledrejection", recordError)
     let failure
     try { await unmount() } catch (error) { failure = error }
     try { await removeVerificationDocuments([...records.values()]) } catch (error) { failure ||= error }

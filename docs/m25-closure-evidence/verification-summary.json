@@ -1,0 +1,354 @@
+{
+  "date": "2026-10-22",
+  "milestone": "M25-sustained-validation",
+  "status": "Chrome 与 Safari 四组分页均 75/75；Chrome 15 分钟持续验收与 Safari 六轮混合长文完成，原生输入及外部排版验收仍待补齐",
+  "environment": {
+    "os": "macOS 27.0 (26A428)",
+    "chrome": "155.0.8059.82",
+    "safari": "27.0",
+    "node": "v24.13.1"
+  },
+  "node": {
+    "passed": 838,
+    "total": 838,
+    "failed": 0,
+    "file": "node-test.log"
+  },
+  "chromeRegression": {
+    "passed": 75,
+    "total": 75,
+    "origin": "http://127.0.0.1:4190",
+    "suites": {
+      "pagination": {
+        "passed": 15,
+        "total": 15,
+        "file": "chrome-pagination-browser.json"
+      },
+      "table": {
+        "passed": 20,
+        "total": 20,
+        "file": "chrome-table-pagination-browser.json"
+      },
+      "paragraph": {
+        "passed": 18,
+        "total": 18,
+        "file": "chrome-paragraph-browser.json"
+      },
+      "container": {
+        "passed": 22,
+        "total": 22,
+        "file": "chrome-container-browser.json"
+      }
+    }
+  },
+  "chromeSoak": {
+    "file": "chrome-soak-15min.json",
+    "screenshot": "chrome-soak-complete.png",
+    "origin": "http://127.0.0.1:4182",
+    "passed": true,
+    "stopped": false,
+    "rounds": 134,
+    "mounts": 268,
+    "elapsedSeconds": 902,
+    "pageCounts": {
+      "A5": 30,
+      "LetterLandscape": 19,
+      "A4": 17
+    },
+    "assetsPerRound": 3,
+    "wordExportChecks": 14,
+    "allVisibilitySamplesVisible": true,
+    "allObservedResourcesZero": true,
+    "maximumEndOfRoundResources": {
+      "urls": 0,
+      "observers": 0,
+      "mutationObservers": 0,
+      "listeners": 0
+    },
+    "createdObjectUrls": 804,
+    "peakUrls": 3,
+    "peakResizeObservers": 1,
+    "peakMutationObservers": 2,
+    "errorsCapturedByHarness": 0,
+    "timings": {
+      "settleMs": {
+        "min": 227,
+        "median": 623.5,
+        "p95": 882,
+        "max": 974
+      },
+      "cycleMs": {
+        "min": 5673,
+        "median": 6331.0,
+        "p95": 8090,
+        "max": 8484
+      }
+    },
+    "timingNotes": "本轮机器与夹具的观察值，包含测试、导出和清理开销；不作为通用性能上限。"
+  },
+  "precheck": {
+    "file": "short-soak-browser.json",
+    "rounds": 6,
+    "mounts": 12,
+    "elapsedSeconds": 29
+  },
+  "stoppedRun": {
+    "file": "stopped-soak-browser.json",
+    "rounds": 99,
+    "mounts": 198,
+    "elapsedSeconds": 505,
+    "stopped": true,
+    "countsAsFullSoak": false
+  },
+  "safari": {
+    "status": "恢复真实可见窗口后，四组分页 75/75 与六轮混合长文通过",
+    "origin": "http://127.0.0.1:4182",
+    "initialPassed": 0,
+    "initialTotal": 15,
+    "diagnosticPassed": 0,
+    "diagnosticTotal": 15,
+    "file": "safari-pagination-diagnostic.json",
+    "rawFile": "safari-pagination-diagnostic-ax.txt",
+    "runtimeErrors": [],
+    "interpretation": "早期 hidden/零动画帧记录只解释当时环境挂起；重开 Safari 并恢复真实可见性后已完成有效验收。旧窗口超时的底层原因未确定。",
+    "foregroundFollowup": {
+      "userConfirmedForeground": true,
+      "observedResults": 13,
+      "observedPassed": 0,
+      "complete": false,
+      "retryFile": "safari-foreground-retry-partial.json",
+      "screenshot": "safari-foreground-retry.png",
+      "newWindowPreflightFile": "safari-foreground-preflight.json",
+      "newWindowPreflight": {
+        "visibility": "hidden",
+        "focused": true,
+        "frames": 0,
+        "topLevel": true
+      },
+      "windowActions": [
+        "前置全部窗口",
+        "退出全屏幕",
+        "新建普通窗口"
+      ],
+      "controlFailure": "新窗口截图已保存；后续关闭与读取组合调用返回 noWindowsAvailable，之后 AX 读取及重新连接 timeoutReached；最终窗口状态未确认。",
+      "interpretation": "可见性与原生窗口通道异常的底层原因未确定；不能计为Safari通过，也不能据此判定分页算法失败。",
+      "newWindowScreenshot": "safari-foreground-preflight.png"
+    },
+    "connectionInvestigation": {
+      "safariAX": "timeoutReached after approximately 5 seconds",
+      "chromeNativeAX": "success on the same channel",
+      "mainThreadSample": {
+        "file": "safari-main-thread-sample.txt",
+        "durationSeconds": 2,
+        "samples": 183,
+        "observedStack": "AppKit event loop waiting for Mach messages",
+        "interpretation": "No busy loop or blocked main thread observed during this sample; does not establish window or accessibility health."
+      },
+      "independentProbe": {
+        "url": "http://127.0.0.1:4182/tests/browser-visibility.html",
+        "chromeFile": "chrome-visibility-probe.json",
+        "chromeElapsedMs": 30008,
+        "chromeFrames": 3245,
+        "chromeVisibility": "visible",
+        "safariResult": {
+          "file": "safari-reopened-visibility-probe.json",
+          "initialVisibility": "visible",
+          "framesBeforeHidden": 694,
+          "hiddenAtMs": 11591,
+          "framesAfterHidden": 694
+        },
+        "chromeScreenshot": "chrome-visibility-probe.png"
+      },
+      "recovery": "用户正常退出并重开 Safari 后原生读取恢复；保持可见、切入临时全屏并重新运行后真实帧测量恢复。导航、下载和截图均已验证，结束后退出临时全屏。",
+      "finderNativeAX": "cgWindowNotFound; recovery through another native app unavailable",
+      "systemLaunch": "Spotlight launch failed with NSCocoaErrorDomain 256 and RBSRequestErrorDomain 5",
+      "systemLog": "Focused Safari visibility/accessibility scan did not reveal an explicit occlusion or visibility error."
+    },
+    "diagnosticAllHidden": true,
+    "diagnosticAllAnimationFrameCountsZero": true,
+    "recoveredRegression": {
+      "file": "safari-pagination-complete.json",
+      "screenshot": "safari-pagination-complete.png",
+      "rawFile": "safari-pagination-complete-ax.txt",
+      "generatedAt": "2026-10-22T13:27:21.822Z",
+      "passed": 75,
+      "total": 75,
+      "suites": {
+        "自动分页": {
+          "passed": 15,
+          "total": 15
+        },
+        "跨页表格": {
+          "passed": 20,
+          "total": 20
+        },
+        "段内分页": {
+          "passed": 18,
+          "total": 18
+        },
+        "容器分页": {
+          "passed": 22,
+          "total": 22
+        }
+      }
+    },
+    "firstVisibleRegression": {
+      "file": "safari-pagination-visible-initial.json",
+      "passed": 57,
+      "total": 75,
+      "failures": {
+        "standardCssAliasMissing": 17,
+        "compositionFocusTiming": 1
+      }
+    },
+    "harnessCorrections": {
+      "css": "标准 userSelect 缺失时读取实际 webkitUserSelect；仍要求 none，并保留 pointer-events、几何和DOM 交互断言。",
+      "composition": "先把光标放到候选位置，等待异步聚焦与布局稳定，再启动合成 composition；确认 composing、原断点和全部原装饰连接。",
+      "productionCodeChanged": false
+    },
+    "recoveredSoak": {
+      "file": "safari-soak-six-rounds.json",
+      "screenshot": "safari-soak-complete.png",
+      "passed": true,
+      "stopped": false,
+      "rounds": 6,
+      "mounts": 12,
+      "elapsedSeconds": 30,
+      "pageCounts": {
+        "A5": 30,
+        "Letter": 19,
+        "A4": 16
+      },
+      "allVisible": true,
+      "allObservedResourcesZero": true,
+      "createdObjectUrls": 36
+    }
+  },
+  "checks": {
+    "lint": {
+      "exitCode": 0,
+      "file": "safari-compatibility-lint.log"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "file": "safari-compatibility-build.log"
+    },
+    "productionTestEntryExcluded": {
+      "filesChecked": 27,
+      "testEntriesFound": [],
+      "testMarkersFound": [],
+      "passed": true
+    },
+    "localLinks": {
+      "checked": 126,
+      "missing": 0
+    },
+    "diff": {
+      "exitCode": 0
+    }
+  },
+  "console": {
+    "regressionFile": "chrome-regression-console.json",
+    "soakFile": "chrome-soak-console.json",
+    "soakErrors": 0,
+    "soakWarnings": 2,
+    "notes": [
+      "持续验收仅记录到两条 locatorjs 扩展初始化提示。",
+      "专项回归记录保留一次新增诊断触发的 HMR 回退刷新，发生在最终75项完整回归之前。"
+    ]
+  },
+  "cleanup": {
+    "ownChromeTabsClosed": false,
+    "isolatedServers": "4190 已关闭；4182 按用户补验要求重启并保持运行。",
+    "fixtureDeletion": "仅按每轮创建的精确文档 ID 清理文档及资源，未批量删除用户文档",
+    "initialOwnSafariTabClosed": true,
+    "safariFollowupWindow": "历史新增窗口的关闭状态未追溯；用户重开后的 Safari 验收窗口保持打开，并已退出本轮临时全屏。",
+    "foregroundRetryFixtureCleanup": "专项最后仅观察到13项结果；后续正常收尾状态未能读取，不宣称该次清理已验证。",
+    "recoveredSafariFixtures": "四组专项均完成各自清理，六轮混合长文正常结束且监测资源逐轮归零。",
+    "finalChromeTab": "75/75 完成后 JSON 已下载并归档；下载等待超时重置控制会话，后续回连与主动关闭未成功，最终关闭状态未确认。未运行中的测试和数据清理已结束。"
+  },
+  "limitations": [
+    "资源计数只覆盖对象URL、ResizeObserver、MutationObserver和五种窗口监听；未取得堆保留路径，不等于完整进程无泄漏证明。",
+    "本轮真实系统输入法、物理鼠标/跨窗口指针、系统打印/PDF及Microsoft Word/WPS原生排版仍待补验；合成 composition 不等于真实输入法验收。",
+    "屏幕编辑分页与导出软件物理分页独立；原始JSON和DOCX XML检查不替代原生版式验收。"
+  ],
+  "diagnosticsFile": "diagnostics.json",
+  "visibilityPreflightRegression": {
+    "chromePagination": {
+      "passed": 15,
+      "total": 15,
+      "file": "chrome-preflight-pagination.json"
+    },
+    "chromeSoak": {
+      "rounds": 6,
+      "mounts": 12,
+      "elapsedSeconds": 41,
+      "allObservedResourcesZero": true,
+      "file": "chrome-preflight-soak.json"
+    },
+    "consoleFile": "chrome-preflight-console.json",
+    "lint": {
+      "exitCode": 0,
+      "file": "visibility-preflight-lint.log"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "file": "visibility-preflight-build.log"
+    }
+  },
+  "visibilityProbeChecks": {
+    "lint": {
+      "exitCode": 0,
+      "file": "visibility-probe-lint.log"
+    },
+    "productionBuild": {
+      "exitCode": 0,
+      "file": "visibility-probe-build.log"
+    },
+    "productionTestEntryExcluded": {
+      "filesChecked": 27,
+      "testMarkersFound": [],
+      "passed": true
+    }
+  },
+  "finalChromeRegression": {
+    "file": "chrome-pagination-final.json",
+    "generatedAt": "2026-10-22T13:33:42.798Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "passed": 75,
+    "total": 75,
+    "sameHarnessAsSafari": true,
+    "css": {
+      "interactionStyles": [
+        {
+          "pointerEvents": "none",
+          "userSelect": "none",
+          "webkitUserSelect": "none"
+        },
+        {
+          "pointerEvents": "none",
+          "userSelect": "none",
+          "webkitUserSelect": "none"
+        },
+        {
+          "pointerEvents": "none",
+          "userSelect": "none",
+          "webkitUserSelect": "none"
+        },
+        {
+          "pointerEvents": "none",
+          "userSelect": "none",
+          "webkitUserSelect": "none"
+        }
+      ]
+    },
+    "composition": {
+      "composition": {
+        "composing": true,
+        "breaksUnchanged": true,
+        "connectedGaps": 4,
+        "initialGaps": 4
+      }
+    }
+  }
+}

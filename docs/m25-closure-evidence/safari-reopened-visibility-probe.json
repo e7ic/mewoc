@@ -1,0 +1,215 @@
+{
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15",
+  "url": "http://127.0.0.1:4182/tests/browser-visibility.html",
+  "state": {
+    "elapsedMs": 39297,
+    "visibility": "hidden",
+    "hidden": true,
+    "focused": false,
+    "topLevel": true,
+    "frames": 694,
+    "viewport": {
+      "width": 1324,
+      "height": 807
+    }
+  },
+  "events": [
+    {
+      "type": "pageshow",
+      "elapsedMs": 2,
+      "visibility": "visible",
+      "hidden": false,
+      "focused": false,
+      "topLevel": true,
+      "frames": 0,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      }
+    },
+    {
+      "type": "focus",
+      "elapsedMs": 86,
+      "visibility": "visible",
+      "hidden": false,
+      "focused": true,
+      "topLevel": true,
+      "frames": 3,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      }
+    },
+    {
+      "type": "focus",
+      "elapsedMs": 86,
+      "visibility": "visible",
+      "hidden": false,
+      "focused": true,
+      "topLevel": true,
+      "frames": 3,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      }
+    },
+    {
+      "type": "visibilitychange",
+      "elapsedMs": 11591,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": true,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      }
+    },
+    {
+      "type": "blur",
+      "elapsedMs": 12219,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      }
+    }
+  ],
+  "samples": [
+    {
+      "elapsedMs": 10015,
+      "visibility": "visible",
+      "hidden": false,
+      "focused": true,
+      "topLevel": true,
+      "frames": 599,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 60
+    },
+    {
+      "elapsedMs": 11018,
+      "visibility": "visible",
+      "hidden": false,
+      "focused": true,
+      "topLevel": true,
+      "frames": 660,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 61
+    },
+    {
+      "elapsedMs": 12022,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": true,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 34
+    },
+    {
+      "elapsedMs": 13693,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    },
+    {
+      "elapsedMs": 15894,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    },
+    {
+      "elapsedMs": 19244,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    },
+    {
+      "elapsedMs": 23547,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    },
+    {
+      "elapsedMs": 25169,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    },
+    {
+      "elapsedMs": 33877,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    },
+    {
+      "elapsedMs": 39297,
+      "visibility": "hidden",
+      "hidden": true,
+      "focused": false,
+      "topLevel": true,
+      "frames": 694,
+      "viewport": {
+        "width": 1324,
+        "height": 807
+      },
+      "framesSincePreviousSample": 0
+    }
+  ]
+}

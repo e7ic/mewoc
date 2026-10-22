@@ -1,0 +1,7 @@
+[
+  {
+    "name": "启动持续验收",
+    "passed": false,
+    "error": "验收环境未就绪，尚未创建测试文档：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"topLevel\":true,\"url\":\"http://127.0.0.1:4182/tests/pagination-soak.html\"}"
+  }
+]

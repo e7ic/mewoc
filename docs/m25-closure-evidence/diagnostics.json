@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-22",
+  "excludedFromFinalCounts": [
+    {
+      "run": "容器基线第一次",
+      "observation": "已读到19项通过，新增开发入口触发服务重启后页面结果被清空；本次不计入最终通过数量，最终需完整重跑。"
+    },
+    {
+      "run": "混合长文第一次与第二次预检",
+      "observation": "首轮几何、撤销、保存与导出完成后，资源统计为urls=0、ResizeObserver=0、MutationObserver=1、window listeners=2。",
+      "listenerNames": [
+        "mousemove:e",
+        "mouseup:e"
+      ],
+      "observedStackFunctions": [
+        "_setupGlobalListenersRemovalDetection",
+        "_setupHitTargetInterceptors"
+      ],
+      "cause": "在开始资源观察之后首次调用浏览器控制工具的Playwright读取，导致工具注入资源进入统计。",
+      "resolution": "重新载入后先执行DOM读取，初始化控制工具，再点击运行；没有增加产品或来源过滤，没有排除活动产品资源。",
+      "followup": "六轮预检12次挂载资源计数全部归零；完整持续验收单独记录。"
+    },
+    {
+      "run": "4190 持续验收停止分支",
+      "result": "99轮、198次挂载、505秒，显式点击停止并清理后完成收尾。",
+      "reason": "补充 Safari 诊断及稳定服务验收配置；本次不是完整15分钟验收。",
+      "file": "stopped-soak-browser.json"
+    }
+  ],
+  "commands": {
+    "packageManager": "宿主提供pnpm 11.25.0，项目固定pnpm 10.34.5；直接pnpm dev触发自动依赖检查失败，未重新安装或修改锁文件。使用npm run执行package.json中原脚本与已安装依赖。",
+    "server": "npm run dev -- --port 4190，仅监听127.0.0.1；首次受沙箱端口限制，授权后启动。",
+    "stableServer": "npm run dev -- --config tests/rsbuild.validation.config.js，监听127.0.0.1:4182，关闭HMR/liveReload。"
+  },
+  "safari": {
+    "version": "27.0",
+    "restrictedPort": "4190 被 Safari 拒绝；使用项目已有4182隔离服务。",
+    "initial": "0/15：全部分页布局未收敛。原始结果已保留。",
+    "diagnostic": {
+      "visibility": "hidden",
+      "focused": true,
+      "frames": 0,
+      "enabled": true,
+      "pending": true,
+      "composing": false,
+      "pages": 0,
+      "status": "disabled",
+      "width": "642.53125px",
+      "runtimeErrors": []
+    },
+    "interpretation": "该环境中页面隐藏且requestAnimationFrame未执行，插件初始测量尚未启动；不能据此判为分页算法失败，也不计为浏览器验收通过。",
+    "toolLimit": "原生滚动返回noWindowsAvailable，Raise/键盘操作未使document.visibilityState变为visible；已请求用户将Safari置于前台。",
+    "diagnosticResults": "完整15项均为 hidden/frames=0，0/15；详见 safari-pagination-diagnostic.json。",
+    "foregroundFollowup": {
+      "userConfirmedForeground": true,
+      "observedResults": 13,
+      "observedPassed": 0,
+      "complete": false,
+      "retryFile": "safari-foreground-retry-partial.json",
+      "screenshot": "safari-foreground-retry.png",
+      "newWindowPreflightFile": "safari-foreground-preflight.json",
+      "newWindowPreflight": {
+        "visibility": "hidden",
+        "focused": true,
+        "frames": 0,
+        "topLevel": true
+      },
+      "windowActions": [
+        "前置全部窗口",
+        "退出全屏幕",
+        "新建普通窗口"
+      ],
+      "controlFailure": "原生截图 noWindowsAvailable，随后 AX 读取及重新连接 timeoutReached；未能继续读取最终状态。",
+      "interpretation": "可见性与原生窗口通道异常的底层原因未确定；不能计为Safari通过，也不能据此判定分页算法失败。"
+    }
+  },
+  "console": {
+    "file": "chrome-regression-console.json",
+    "notes": [
+      "一次新增诊断时的HMR回退刷新已保留；发生在最终75项完整回归之前。",
+      "其他已记录项为locatorjs扩展初始化提示；不声称全过程零警告。"
+    ]
+  }
+}

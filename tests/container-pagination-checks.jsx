@@ -24,6 +24,7 @@ import { FORMATTING_MARKS_KEY } from "../src/pages/editor/tools/formatting-marks
 import { readParagraphGlyphs } from "./paragraph-pagination-checks.jsx"
 import { createWaveFile } from "./media-fixtures.js"
 import { removeVerificationDocuments } from "./browser-checks.js"
+import { requireVisibleBrowser } from "./browser-visibility.js"
 
 const assert = (value, message) => { if (!value) throw new Error(message) }
 const delay = (ms = 60) => new Promise(resolve => setTimeout(resolve, ms))
@@ -40,7 +41,13 @@ const quote = body => ({ type: "blockquote", content: body })
 const table = (count = 28) => ({ type: "table", content: Array.from({ length: count }, (_item, row) => ({ type: "tableRow", content: [0, 1].map(column => ({ type: row ? "tableCell" : "tableHeader", attrs: { colspan: 1, rowspan: 1, colwidth: [220] }, content: [paragraph(`表格真实行 ${row + 1} / ${column + 1}`)] })) })) })
 const preferences = () => new Map([TOOLBAR_MODE_KEY, FORMATTING_MARKS_KEY].map(key => [key, localStorage.getItem(key)]))
 const restorePreferences = saved => { for (const [key, value] of saved) { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value) } }
-const requirePort = () => assert(location.hostname === "127.0.0.1" && location.port === "4190", "容器分页验收仅允许在专用 127.0.0.1:4190 运行")
+const requirePort = () => {
+  const allowedPorts = ["4182", "4190"]
+  assert(
+    location.hostname === "127.0.0.1" && allowedPorts.includes(location.port),
+    "容器分页验收仅允许在专用 127.0.0.1:4182 或 :4190 运行"
+  )
+}
 function Probe({ capture }) {
   const context = useDocumentEditor()
   useEffect(() => { if (context.editor) capture(context) }, [context, capture])
@@ -49,6 +56,7 @@ function Probe({ capture }) {
 
 export async function runContainerPaginationChecks(report = () => {}) {
   requirePort()
+  await requireVisibleBrowser()
   const savedPreferences = preferences(); const records = new Map()
   const host = document.createElement("section")
   host.style.cssText = "position:relative;width:1280px;max-width:100%;height:900px;margin:24px 0"
@@ -285,15 +293,21 @@ export async function runContainerPaginationChecks(report = () => {}) {
     })
     await check("组合与只读：composition期间保留原容器装饰，只读勾选被拒绝且原节点状态恢复", async ({ editor, store }) => {
       await replace(content([details([list("taskList")])]))
-      const before = json(layout().breaks); const gaps = [...editor.view.dom.querySelectorAll("[data-mewoc-page-gap]")]; const target = nodes("paragraph")[40]
-      editor.commands.focus(); editor.view.dom.dispatchEvent(new CompositionEvent("compositionstart", { bubbles: true })); await waitFor(() => editor.view.composing, "合成组合输入未开始")
+      const target = nodes("paragraph")[40]
+      // Tiptap 在下一动画帧继续聚焦；先让光标与布局稳定，再启动该位置的合成候选。
+      editor.commands.focus(target.pos + 1, { scrollIntoView: false })
+      await waitFor(() => editor.view.hasFocus(), "组合输入前正文未获得焦点"); await settle()
+      const before = json(layout().breaks); const gaps = [...editor.view.dom.querySelectorAll("[data-mewoc-page-gap]")]
+      editor.view.dom.dispatchEvent(new CompositionEvent("compositionstart", { bubbles: true })); await waitFor(() => editor.view.composing, "合成组合输入未开始")
       editor.commands.insertContentAt(target.pos + 1, "候选中的嵌套内容。".repeat(100)); await delay(180)
-      assert(json(layout().breaks) === before && gaps.every(item => item.isConnected), "组合输入期间更换原容器装饰")
+      const composition = { composing: editor.view.composing, breaksUnchanged: json(layout().breaks) === before, connectedGaps: gaps.filter(item => item.isConnected).length, initialGaps: gaps.length }
+      assert(composition.composing && composition.breaksUnchanged && composition.connectedGaps === composition.initialGaps, `组合输入期间更换原容器装饰：${json(composition)}`)
       editor.view.dom.dispatchEvent(new CompositionEvent("compositionend", { bubbles: true })); await waitFor(() => !editor.view.composing, "合成组合输入未结束"); await settle(); verify()
       assert(json(layout().breaks) !== before, "组合结束后没测量最终嵌套正文")
       store.getState().updateView({ readOnly: true }); await settle(); const document = json(editor.getJSON()); const pages = json(layout().pages); const item = nodes("taskItem")[40]; const control = item.dom.querySelector(":scope > label > input")
       control.checked = !control.checked; control.dispatchEvent(new Event("change", { bubbles: true })); await delay(); verify()
       assert(!editor.isEditable && control.disabled && control.checked === item.node.attrs.checked && json(editor.getJSON()) === document && json(layout().pages) === pages, "只读勾选改变模型或没有撤回临时UI状态")
+      return { composition }
     })
     await check("保存与备份：原嵌套JSON和checked保存，Mewoc不含视图空隙，重开重新测得相同布局", async context => {
       await replace(content([box([details([list("orderedList", 32, { start: 17, type: "a" }), list("taskList", 32)])])]))

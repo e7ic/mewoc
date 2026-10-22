@@ -1,0 +1,14 @@
+[
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T12:35:18.204Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T12:36:17.742Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  }
+]

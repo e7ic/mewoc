@@ -9,6 +9,8 @@ import { createDocument } from "../src/pages/editor/tools/document-schema.js"
 import { runEditorChecks, removeVerificationDocuments } from "./browser-checks.js"
 import { runStressChecks } from "./stress-checks.js"
 import { exportVerification } from "./verification-export.js"
+import { requireVisibleBrowser } from "./browser-visibility.js"
+import { showNativePaginationExample } from "./native-pagination-example.jsx"
 import { runAssetPersistenceChecks } from "./asset-persistence-checks.js"
 import { runDocxImportChecks } from "./docx-import-checks.jsx"
 import { runDocxChecks } from "./docx-checks.jsx"
@@ -37,6 +39,7 @@ import "../src/pages/editor/sass/content.scss"
 function BrowserVerification() {
   const [results, setResults] = useState([])
   const [running, setRunning] = useState(false)
+  const [paginationPhase, setPaginationPhase] = useState("")
   const [mounted, setMounted] = useState(false)
   const [records] = useState(() => ["left", "right"].map(id => ({
     id, document: { ...createDocument(), title: `浏览器验收-${id}` }, storageVersion: 0, assets: new Map()
@@ -75,13 +78,46 @@ function BrowserVerification() {
     }
   }
 
+  // 可见性恢复后串行执行原有四组检查；每组完成清理后才进入下一组。
+  const handleRunPagination = async () => {
+    setRunning(true)
+    setPaginationPhase("等待页面可见与真实动画帧，请保持此窗口可见")
+    const suites = [
+      ["自动分页", runPagePaginationChecks],
+      ["跨页表格", runTablePaginationChecks],
+      ["段内分页", runParagraphPaginationChecks],
+      ["容器分页", runContainerPaginationChecks]
+    ]
+    try {
+      await requireVisibleBrowser({ timeoutMs: 120000 })
+      for (const [name, run] of suites) {
+        setPaginationPhase(`正在验证：${name}`)
+        await run(result => setResults(items => [...items, { ...result, suite: name }]))
+      }
+    } catch (error) {
+      setResults(items => [...items, { name: "四组分页验收运行异常", passed: false, error: error.message }])
+    } finally {
+      setPaginationPhase("")
+      setRunning(false)
+    }
+  }
+
   // 每类专项独立触发并逐项展示结果；已运行页面需刷新后再创建新一轮记录。
   return (
     <main>
       <h1>Mewoc 浏览器验收</h1>
       <p>使用真实浏览器排版、React 17、编辑器与 IndexedDB。拖动事件为合成事件，不代替真实输入法或物理鼠标验收。</p>
       <p>请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。</p>
+      <button type="button" disabled={running || !!results.length} onClick={handleRunPagination}>
+        连续运行四组分页验收（75 项）
+      </button>
       <button type="button" disabled={running || !!results.length} onClick={() => handleRun(false)}>运行浏览器验收</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await showNativePaginationExample() }
+        catch (error) { setResults(items => [...items, { name: "原生分页补验入口", passed: false, error: error.message }]) }
+        finally { setRunning(false) }
+      }}>打开混合长文原生补验</button>
       <button type="button" disabled={running || !!results.length} onClick={() => handleRun(true)}>运行压力验收</button>
       <button type="button" disabled={running || !!results.length} onClick={async () => {
         setRunning(true)
@@ -232,7 +268,7 @@ function BrowserVerification() {
         catch (error) { setResults(items => [...items, { name: "容器分页示例运行异常", passed: false, error: error.message }]) }
         finally { setRunning(false) }
       }}>显示容器分页示例</button>
-      <p role="status">{running ? "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
+      <p role="status">{running ? paginationPhase || "正在验证" : results.length ? `完成：${results.filter(result => result.passed).length}/${results.length}` : "等待运行"}</p>
       <ol>{results.map(result => (
         <li key={result.name}>
           {result.passed ? "通过" : "失败"}：{result.name}{result.error && ` — ${result.error}`}

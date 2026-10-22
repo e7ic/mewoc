@@ -1,0 +1,153 @@
+Window: "Mewoc 浏览器验收", App: Safari浏览器.
+0 标准窗口 Mewoc 浏览器验收, ID: SafariWindow?IsSecure=false&UUID=3145D049-9A69-4F2E-8383-D9B53E3BE382, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: Mewoc 浏览器验收, URL: 127.0.0.1:4182/tests/browser.html
+					6 container
+						7 标题 Mewoc 浏览器验收, Value: 1
+							8 文本 Mewoc 浏览器验收
+						9 text 使用真实浏览器排版、React 17、编辑器与 IndexedDB。拖动事件为合成事件，不代替真实输入法或物理鼠标验收。 请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。
+						10 按钮 (disabled) 运行浏览器验收
+						11 按钮 (disabled) 运行压力验收
+						12 按钮 (disabled) 运行资源重复保存验收
+						13 按钮 导出验收结果
+						14 按钮 (disabled) 运行 Word 导出验收
+						15 按钮 (disabled) 运行 Word 导入验收
+						16 按钮 (disabled) 运行文档库验收
+						17 按钮 (disabled) 运行历史版本验收
+						18 按钮 (disabled) 运行批注验收
+						19 按钮 (disabled) 运行模板验收
+						20 按钮 (disabled) 运行图表精细设置验收
+						21 按钮 (disabled) 运行段落精细设置验收
+						22 按钮 (disabled) 运行编辑交互验收
+						23 按钮 (disabled) 运行工具栏验收
+						24 按钮 (disabled) 运行图片替换与格式标记验收
+						25 按钮 (disabled) 运行文本框与折叠详情验收
+						26 按钮 (disabled) 运行目录与书签导航验收
+						27 按钮 (disabled) 运行页面与水印验收
+						28 按钮 (disabled) 运行 Word 页面往返验收
+						29 按钮 (disabled) 打开 Word 页面预览示例
+						30 按钮 (disabled) 运行页眉页脚与页码验收
+						31 按钮 (disabled) 打开页眉页脚补验示例
+						32 按钮 (disabled) 运行音频与视频验收
+						33 按钮 (disabled) 打开媒体补验示例
+						34 按钮 (disabled) 运行自动分页验收
+						35 按钮 (disabled) 运行跨页表格验收
+						36 按钮 (disabled) 显示跨页表格示例
+						37 按钮 (disabled) 运行段内分页验收
+						38 按钮 (disabled) 显示段内分页示例
+						39 按钮 (disabled) 运行容器分页验收
+						40 按钮 (disabled) 显示容器分页示例
+						41 文本 完成：0/15
+						42 内容列表
+							43 container 失败：自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订 — 分页布局未收敛
+								44 列表刻度 1
+								45 文本 失败：自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订 — 分页布局未收敛
+							46 container 失败：分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关 — 分页布局未收敛
+								47 列表刻度 2
+								48 文本 失败：分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关 — 分页布局未收敛
+							49 container 失败：分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史 — 分页布局未收敛
+								50 列表刻度 3
+								51 文本 失败：分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史 — 分页布局未收敛
+							52 container 失败：分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确 — 分页布局未收敛
+								53 列表刻度 4
+								54 文本 失败：分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确 — 分页布局未收敛
+							55 container 失败：手动分页：首尾和连续分页符保留空页，自动边界不额外累加 — 分页布局未收敛
+								56 列表刻度 5
+								57 文本 失败：手动分页：首尾和连续分页符保留空页，自动边界不额外累加 — 分页布局未收敛
+							58 container 失败：手动分页编辑：合成删除选中分页符消除空页，撤销恢复原边界 — 分页布局未收敛
+								59 列表刻度 6
+								60 文本 失败：手动分页编辑：合成删除选中分页符消除空页，撤销恢复原边界 — 分页布局未收敛
+							61 container 失败：纸张与缩放：A4/A5横竖、非对称边距实时重排，50%–150%和适宽不改变分页 — 分页布局未收敛
+								62 列表刻度 7
+								63 文本 失败：纸张与缩放：A4/A5横竖、非对称边距实时重排，50%–150%和适宽不改变分页 — 分页布局未收敛
+							64 container 失败：排版重测：字号、行距和段前后间距改变页数，恢复格式后稳定返回 — 分页布局未收敛
+								65 列表刻度 8
+								66 文本 失败：排版重测：字号、行距和段前后间距改变页数，恢复格式后稳定返回 — 分页布局未收敛
+							67 container 失败：长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚 — 分页布局未收敛
+								68 列表刻度 9
+								69 文本 失败：长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚 — 分页布局未收敛
+							70 container 失败：同页约束：标题与下一段相邻，显式与下段同页生效，过长链有限退化 — 分页布局未收敛
+								71 列表刻度 10
+								72 文本 失败：同页约束：标题与下一段相邻，显式与下段同页生效，过长链有限退化 — 分页布局未收敛
+							73 container 失败：长内容：普通长段按行延续，表格逐行分页，真实文字与数据行均不遮页脚 — 分页布局未收敛
+								74 列表刻度 11
+								75 文本 失败：长内容：普通长段按行延续，表格逐行分页，真实文字与数据行均不遮页脚 — 分页布局未收敛
+							76 container 失败：图片与媒体：解码加载和尺寸变化触发重排，分页不重建正在播放的原生节点 — 分页布局未收敛
+								77 列表刻度 12
+								78 文本 失败：图片与媒体：解码加载和尺寸变化触发重排，分页不重建正在播放的原生节点 — 分页布局未收敛
+							79 container 失败：组合输入：合成composing期间延迟重排，结束后更新，正文只读仍保持分页 — 分页布局未收敛
+								80 列表刻度 13
+								81 文本 失败：组合输入：合成composing期间延迟重排，结束后更新，正文只读仍保持分页 — 分页布局未收敛
+							82 container 失败：保存与导出：重开和Mewoc备份重新测量，HTML/TXT不夹带自动间隙或视图页码 — 分页布局未收敛
+								83 列表刻度 14
+								84 文本 失败：保存与导出：重开和Mewoc备份重新测量，HTML/TXT不夹带自动间隙或视图页码 — 分页布局未收敛
+							85 container 失败：会话清理：销毁后不再发布布局，新文档页数独立，短文与空正文均只有一页 — 分页布局未收敛
+								86 列表刻度 15
+								87 文本 失败：会话清理：销毁后不再发布布局，新文档页数独立，短文与空正文均只有一页 — 分页布局未收敛
+						88 container 验收 JSON 结果
+							89 文本 [
+  {
+    "name": "自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订",
+    "passed": false,
+    "error": "分页布局未收敛"
+  },
+  {
+    "name": "分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关",
+    "passed": false,
+    "error": "分页布局未收敛"
+  },
+  {
+    "name": "分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史",
+    "passed": false,
+    "error": "分页布局未收敛"
+  },
+  {
+    "name": "分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确",
+    "passed": false,
+    "error": "分页布局未收敛"
+  },
+  {
+    "name": "手动分页：首尾和连续分页符保留空页，自动边界不额外累加",
+    "passed": false,
+    "error": "分页布局未收敛"
+  },
+  {
+
+				90 滚动条 (settable, float) 1
+	91 工具栏
+		92 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			93 按钮 Description: 显示边栏, ID: SidebarButton
+			94 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		95 container BackForwardSegmentedControl
+			96 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			97 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		98 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			99 按钮 页面菜单, ID: AssistantButton
+			100 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			101 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:4182/tests/browser.html, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			102 按钮 重新加载此页面, ID: ReloadButton
+		103 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		104 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		105 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	106 标签页组 Description: 标签页栏，2个标签页, ID: TabBar?isSeparate=false
+		107 标签 起始页, Value: off, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=false
+			108 图像 Description: 个人收藏, ID: FaviconImageView
+			109 文本 Value: 起始页, ID: UnifiedTabBarButton._titleTextField
+		110 标签 Mewoc 浏览器验收, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, Secondary Actions: 关闭标签页, ID: TabBarTab?isNarrow=false&isExpanded=false&tabCount=&isPinned=false&isCluster=false&clusterID=&isActive=true
+			111 图像 FaviconImageView
+			112 文本 Value: Mewoc 浏览器验收, ID: UnifiedTabBarButton._titleTextField
+	113 关闭按钮
+	114 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	115 最小化按钮
+116 menu bar
+	117 Safari浏览器
+	118 文件
+	119 编辑
+	120 显示, ID: SafariViewMenu
+	121 历史记录
+	122 书签, ID: SafariBookmarksMenu
+	123 窗口, ID: SafariWindowMenu
+	124 帮助, ID: SafariHelpMenu

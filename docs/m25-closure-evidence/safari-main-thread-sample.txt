@@ -1,0 +1,53 @@
+Analysis of sampling Safari (pid 81316) every 10 milliseconds
+Process:         Safari [81316]
+Path:            /System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/Contents/MacOS/Safari
+Load Address:    0x100030000
+Identifier:      com.apple.Safari
+Version:         27.0 (22625.1.29.11.27)
+Build Info:      Safari-7625001029011027~1
+Code Type:       ARM64E
+Platform:        macOS
+Parent Process:  launchd [1]
+Target Type:     live task (MTE Enabled, Roots Present)
+
+Date/Time:       2026-10-22 20:45:19.368 +0800
+Launch Time:     2026-10-22 19:50:30.638 +0800
+OS Version:      macOS 27.0 (26A428)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+
+Physical footprint:         100.1M
+Physical footprint (peak):  606.7M
+Idle exit:                  untracked
+----
+
+Call graph:
+    183 Thread_3054615   DispatchQueue_1: com.apple.main-thread  (serial)
+    + 183 start  (in dyld) + 6688  [0x197223e80]
+    +   183 SafariMain  (in Safari) + 456  [0x1d2710e18]
+    +     183 NSApplicationMain  (in AppKit) + 880  [0x19bc3bc4c]
+    +       183 -[NSApplication run]  (in AppKit) + 396  [0x19bc6390c]
+    +         183 -[BrowserApplication nextEventMatchingMask:untilDate:inMode:dequeue:]  (in Safari) + 224  [0x1d2722c08]
+    +           183 -[NSApplication(NSEventRouting) nextEventMatchingMask:untilDate:inMode:dequeue:]  (in AppKit) + 292  [0x19c4e826c]
+    +             183 -[NSApplication(NSEventRouting) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]  (in AppKit) + 780  [0x19c4e8748]
+    +               183 _DPSNextEvent  (in AppKit) + 580  [0x19bc704fc]
+    +                 183 _DPSBlockUntilNextEventMatchingListInMode  (in AppKit) + 292  [0x19bfb329c]
+    +                   183 _BlockUntilNextEventMatchingListInMode  (in HIToolbox) + 48  [0x1a4c72380]
+    +                     183 ReceiveNextEventCommon  (in HIToolbox) + 492  [0x1a4aef91c]
+    +                       183 RunCurrentEventLoopInMode  (in HIToolbox) + 320  [0x1a4aec590]
+    +                         183 _CFRunLoopRunSpecificWithOptions  (in CoreFoundation) + 536  [0x19779382c]
+    +                           183 __CFRunLoopRun  (in CoreFoundation) + 1172  [0x1976b9334]
+    +                             183 __CFRunLoopServiceMachPort  (in CoreFoundation) + 160  [0x1976baaec]
+    +                               183 mach_msg  (in libsystem_kernel.dylib) + 24  [0x1975b4fac]
+    +                                 183 mach_msg_overwrite  (in libsystem_kernel.dylib) + 480  [0x1975bda28]
+    +                                   183 mach_msg2_internal  (in libsystem_kernel.dylib) + 76  [0x1975c78e0]
+    +                                     183 mach_msg2_trap  (in libsystem_kernel.dylib) + 8  [0x1975b4c20]
+    183 Thread_3054659: com.apple.NSEventThread
+    + 183 thread_start  (in libsystem_pthread.dylib) + 8  [0x1975f4cec]
+    +   183 _pthread_start  (in libsystem_pthread.dylib) + 136  [0x1975f9d00]
+    +     183 _NSEventThread  (in AppKit) + 184  [0x19bd94844]
+    +       183 _CFRunLoopRunSpecificWithOptions  (in CoreFoundation) + 536  [0x19779382c]
+    +         183 __CFRunLoopRun  (in CoreFoundation) + 1172  [0x1976b9334]
+    +           183 __CFRunLoopServiceMachPort  (in CoreFoundation) + 160  [0x1976baaec]
+    +             183 mach_msg  (in libsystem_kernel.dylib) + 24  [0x1975b4fac]
+    +               183 mach_msg_overwrite  (in libsystem_kernel.dylib) + 480  [0x1975bda28]

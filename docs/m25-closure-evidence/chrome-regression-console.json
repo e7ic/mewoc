@@ -1,0 +1,38 @@
+[
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T11:44:18.026Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "error",
+    "message": "[rsbuild] HMR update failed, performing full reload: Error: Aborted because ./tests/page-pagination-checks.jsx is not accepted\nUpdate propagation: ./tests/page-pagination-checks.jsx -> ./tests/BrowserVerification.jsx\n    at applyHandler (http://127.0.0.1:4190/static/js/tests/browser.js:21004:20)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:20447:10\n    at Array.map (<anonymous>)\n    at internalApply (http://127.0.0.1:4190/static/js/tests/browser.js:20446:43)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:20421:15\n    at waitForBlockingPromises (http://127.0.0.1:4190/static/js/tests/browser.js:20374:37)\n    at http://127.0.0.1:4190/static/js/tests/browser.js:20419:13",
+    "timestamp": "2026-10-22T11:57:09.374Z",
+    "url": "http://127.0.0.1:4190/static/js/vendors-node_modules_pnpm_rsbuild_core_1_7_6_node_modules_rsbuild_core_dist_client_overlay_js.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T11:57:58.702Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T12:00:49.105Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T12:01:39.409Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  },
+  {
+    "level": "warn",
+    "message": "[locatorjs]: ok",
+    "timestamp": "2026-10-22T12:02:28.423Z",
+    "url": "chrome-extension://npbfdllefekhdplbkdigpncggmojpefi/hook.bundle.js"
+  }
+]

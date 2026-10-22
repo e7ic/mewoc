@@ -1,0 +1,72 @@
+{
+  "complete": false,
+  "expectedTotal": 15,
+  "observedResults": 13,
+  "results": [
+    {
+      "name": "自动分页：短段落实测多页，正文不越上下边距，分页事务不制造修订",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":false,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":647.75,\"width\":642.53125,\"height\":2880,\"top\":647.75,\"right\":969.265625,\"bottom\":3527.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "分页装饰：每张纸面独立页眉页脚、水印及真实页码，布局与正文无关",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":false,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":856.75,\"width\":642.53125,\"height\":2880,\"top\":856.75,\"right\":969.265625,\"bottom\":3736.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "分页编辑：增加与删除内容改变页数，单次撤销恢复内容和页面，重排不占撤销历史",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":false,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1003.75,\"width\":642.53125,\"height\":2880,\"top\":1003.75,\"right\":969.265625,\"bottom\":3883.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "分页选区：跨页选择、复制和合成退格只操作原正文，查找位置仍正确",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":false,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1150.75,\"width\":642.53125,\"height\":2880,\"top\":1150.75,\"right\":969.265625,\"bottom\":4030.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "手动分页：首尾和连续分页符保留空页，自动边界不额外累加",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":false,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1297.75,\"width\":642.53125,\"height\":2880,\"top\":1297.75,\"right\":969.265625,\"bottom\":4177.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "手动分页编辑：合成删除选中分页符消除空页，撤销恢复原边界",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1444.75,\"width\":642.53125,\"height\":2880,\"top\":1444.75,\"right\":969.265625,\"bottom\":4324.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "纸张与缩放：A4/A5横竖、非对称边距实时重排，50%–150%和适宽不改变分页",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1591.75,\"width\":642.53125,\"height\":2880,\"top\":1591.75,\"right\":969.265625,\"bottom\":4471.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "排版重测：字号、行距和段前后间距改变页数，恢复格式后稳定返回",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1738.75,\"width\":642.53125,\"height\":2880,\"top\":1738.75,\"right\":969.265625,\"bottom\":4618.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "长文精度：400段小数段距和12.75pt字号逐页不漂移，末段不盖页脚",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":1885.75,\"width\":642.53125,\"height\":2880,\"top\":1885.75,\"right\":969.265625,\"bottom\":4765.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "同页约束：标题与下一段相邻，显式与下段同页生效，过长链有限退化",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":2032.75,\"width\":642.53125,\"height\":2880,\"top\":2032.75,\"right\":969.265625,\"bottom\":4912.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "长内容：普通长段按行延续，表格逐行分页，真实文字与数据行均不遮页脚",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":2179.75,\"width\":642.53125,\"height\":2880,\"top\":2179.75,\"right\":969.265625,\"bottom\":5059.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "图片与媒体：解码加载和尺寸变化触发重排，分页不重建正在播放的原生节点",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":2326.75,\"width\":642.53125,\"height\":2880,\"top\":2326.75,\"right\":969.265625,\"bottom\":5206.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    },
+    {
+      "name": "组合输入：合成composing期间延迟重排，结束后更新，正文只读仍保持分页",
+      "passed": false,
+      "error": "分页布局未收敛：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"enabled\":true,\"pending\":true,\"composing\":false,\"pages\":0,\"status\":\"disabled\",\"rect\":{\"x\":326.734375,\"y\":2473.75,\"width\":642.53125,\"height\":2880,\"top\":2473.75,\"right\":969.265625,\"bottom\":5353.75,\"left\":326.734375},\"width\":\"642.53125px\",\"runtimeErrors\":[]}"
+    }
+  ]
+}

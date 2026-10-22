@@ -1,0 +1,11 @@
+{
+  "generatedAt": "2026-10-22T14:58:19.990803+00:00",
+  "checkedFiles": 27,
+  "excludedDevelopmentMarkers": [
+    "原生混合长文",
+    "native-pagination-example",
+    "browser-visibility-probe",
+    "M25_SOAK_DOCUMENT_START"
+  ],
+  "hits": []
+}

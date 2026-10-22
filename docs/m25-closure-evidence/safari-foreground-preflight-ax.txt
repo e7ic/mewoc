@@ -1,0 +1,51 @@
+Window: "M25 混合长文持续验收", App: Safari浏览器.
+0 标准窗口 M25 混合长文持续验收, ID: SafariWindow?IsSecure=false&UUID=0591E158-C18E-4F7A-BA74-9A7047DE9422, Secondary Actions: Raise
+	1 分离组
+		2 分离器 (disabled, settable, float) -1
+		3 标签页组
+			4 滚动区
+				5 HTML内容 Description: M25 混合长文持续验收, URL: 127.0.0.1:4182/tests/pagination-soak.html
+					6 container
+						7 标题 M25 混合长文持续验收, Value: 1
+							8 文本 M25 混合长文持续验收
+						9 text 覆盖分页重排、跨页替换与撤销、详情收起展开、保存重开和资源释放。 15 分钟按实际运行时间结束；停止会完成当前轮并清理。仅使用专用 4182 / 4190 端口。
+						10 按钮 (disabled) 运行 6 轮混合长文验收
+						11 按钮 (disabled) 运行 15 分钟分页持续验收
+						12 按钮 (disabled) 停止并清理
+						13 按钮 导出验收结果
+						14 文本 验收结束
+						15 container 持续验收 JSON 结果
+							16 文本 [
+  {
+    "name": "启动持续验收",
+    "passed": false,
+    "error": "验收环境未就绪，尚未创建测试文档：{\"visibility\":\"hidden\",\"focused\":true,\"frames\":0,\"topLevel\":true,\"url\":\"http://127.0.0.1:4182/tests/pagination-soak.html\"}"
+  }
+]
+	17 工具栏
+		18 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			19 按钮 Description: 显示边栏, ID: SidebarButton
+			20 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		21 container BackForwardSegmentedControl
+			22 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			23 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		24 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			25 按钮 页面菜单, ID: AssistantButton
+			26 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			27 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:4182/tests/pagination-soak.html, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			28 按钮 重新加载此页面, ID: ReloadButton
+		29 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		30 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		31 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	32 关闭按钮
+	33 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	34 最小化按钮
+35 menu bar
+	36 Safari浏览器
+	37 文件
+	38 编辑
+	39 显示, ID: SafariViewMenu
+	40 历史记录
+	41 书签, ID: SafariBookmarksMenu
+	42 窗口, ID: SafariWindowMenu
+	43 帮助, ID: SafariHelpMenu
