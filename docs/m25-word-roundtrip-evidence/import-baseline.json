@@ -1,0 +1,86 @@
+{
+  "file": "docs/m25-native-evidence/browser-export.docx",
+  "passed": true,
+  "scope": "Production converter + record builder in Node/JSDOM; image dimensions read from file headers, not native image decode; does not prove browser UI",
+  "inputBytes": 17281,
+  "inputSha256": "aad0d66c61be08b7b0b75b664043caaab9e3fbdeffa58af9c55a30d32998b20a",
+  "nodeCounts": {
+    "doc": 1,
+    "image": 1,
+    "paragraph": 178,
+    "text": 267,
+    "table": 2,
+    "tableRow": 49,
+    "tableHeader": 2,
+    "tableCell": 95,
+    "orderedList": 1,
+    "listItem": 48,
+    "hardBreak": 89
+  },
+  "counts": {
+    "M25_SOAK_DOCUMENT_START": 1,
+    "M25_SOAK_DOCUMENT_END": 1,
+    "同一段中英文 Mixed text": 110,
+    "引用中的长段落持续跨页": 80,
+    "[x] ": 8,
+    "[ ] ": 16,
+    "持续验收表格": 96,
+    "const line": 90,
+    "嵌套容器开始": 1,
+    "嵌套容器结束": 1,
+    "native-check.wav": 1,
+    "native-check.txt": 1,
+    "M25_WORD_ROUNDTRIP_20261029": 0
+  },
+  "page": {
+    "size": "A5",
+    "orientation": "portrait",
+    "marginsMm": {
+      "top": 14.99,
+      "right": 14.99,
+      "bottom": 14.99,
+      "left": 14.99
+    },
+    "watermark": {
+      "text": "M25 原生验收",
+      "color": "#6554C0",
+      "opacity": 0.12,
+      "angle": -35
+    },
+    "header": {
+      "text": "M25 持续验收",
+      "alignment": "left",
+      "pageNumber": "page"
+    },
+    "footer": {
+      "text": "原始文档与资源",
+      "alignment": "center",
+      "pageNumber": "page-total"
+    }
+  },
+  "lists": [
+    {
+      "type": "orderedList",
+      "attrs": {
+        "start": 7,
+        "type": "a"
+      },
+      "items": 48
+    }
+  ],
+  "warnings": [
+    "按内容语义导入，字体、字号、颜色和段落间距使用编辑器默认值；原始分页不保证保留，请保留原 DOCX",
+    "表格保留内容和合并，列宽、边框、底色及跨页设置使用编辑器默认值",
+    "普通换行保留，原文的手动分页与页面布局不保证保留",
+    "图片保留原始字节，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留",
+    "表格保留内容和合并结构，列宽、行高、底色、边框与单元格设置使用编辑器默认值"
+  ],
+  "assets": [
+    {
+      "id": "9b08c76b-27db-4f17-8a6b-aaf256473213",
+      "mimeType": "image/png",
+      "bytes": 1100,
+      "sha256": "3000f55839a18c6dfd0eba68fa2912af63d525c33b1c402d4fdbef7ca1aa4c4b"
+    }
+  ]
+}

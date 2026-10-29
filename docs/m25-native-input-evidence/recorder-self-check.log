@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "scope": "JSDOM recorder scope, before/after capture, native provenance preservation, checkpoints, truncation and lifecycle; not real IME or hardware proof",
+  "refreshes": 0
+}

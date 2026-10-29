@@ -1,0 +1,267 @@
+{
+  "generatedAt": "2026-10-29T08:06:37.954331+00:00",
+  "source": "native-escape-final.json",
+  "sourceSha256": "7213707ed32f84521710f119d13218b0489063214ee9253278a28803cf9cc4d9",
+  "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+  "result": "passed_for_human_single_unconfirmed_shuangpin_candidate_escape_cancellation",
+  "nativeEscapeCancellationPassed": true,
+  "operatorFeedback": "User reported the candidate appeared and disappeared after Escape. This human visual feedback is distinct from the recorded event flags.",
+  "sequence": [
+    {
+      "sequence": 2125,
+      "type": "keydown",
+      "key": "a",
+      "code": "KeyA",
+      "data": null,
+      "trusted": true,
+      "afterEscapeMs": -829.2,
+      "textLength": 13295,
+      "originalMatches": true,
+      "composing": false
+    },
+    {
+      "sequence": 2127,
+      "type": "compositionstart",
+      "key": null,
+      "code": null,
+      "data": "",
+      "trusted": true,
+      "afterEscapeMs": -824,
+      "textLength": 13295,
+      "originalMatches": true,
+      "composing": false
+    },
+    {
+      "sequence": 2129,
+      "type": "compositionupdate",
+      "key": null,
+      "code": null,
+      "data": "a",
+      "trusted": true,
+      "afterEscapeMs": -821.1,
+      "textLength": 13295,
+      "originalMatches": true,
+      "composing": true
+    },
+    {
+      "sequence": 2134,
+      "type": "input",
+      "key": null,
+      "code": null,
+      "data": "a",
+      "trusted": true,
+      "afterEscapeMs": -794.9,
+      "textLength": 13296,
+      "originalMatches": false,
+      "composing": true
+    },
+    {
+      "sequence": 2137,
+      "type": "keydown",
+      "key": "Escape",
+      "code": "Escape",
+      "data": null,
+      "trusted": true,
+      "afterEscapeMs": 0,
+      "textLength": 13296,
+      "originalMatches": false,
+      "composing": true
+    },
+    {
+      "sequence": 2139,
+      "type": "compositionupdate",
+      "key": null,
+      "code": null,
+      "data": "",
+      "trusted": true,
+      "afterEscapeMs": 3.7,
+      "textLength": 13296,
+      "originalMatches": false,
+      "composing": true
+    },
+    {
+      "sequence": 2144,
+      "type": "input",
+      "key": null,
+      "code": null,
+      "data": null,
+      "trusted": true,
+      "afterEscapeMs": 20.2,
+      "textLength": 13295,
+      "originalMatches": true,
+      "composing": true
+    },
+    {
+      "sequence": 2146,
+      "type": "compositionend",
+      "key": null,
+      "code": null,
+      "data": "",
+      "trusted": false,
+      "afterEscapeMs": 21.3,
+      "textLength": 13295,
+      "originalMatches": true,
+      "composing": true
+    }
+  ],
+  "checks": {
+    "escapeWhileComposing": true,
+    "trustedKeyAAndEscape": true,
+    "candidateAddsOneCharacter": true,
+    "emptyCompositionUpdateAfterEscape": true,
+    "inputAfterEscapeRestoresBaseline": true,
+    "compositionEndIsEmpty": true,
+    "wholeSnapshotExactlyEqualsBaseline": true,
+    "resourceNodesExactlyEqualBaseline": true,
+    "paperSettingsEqualPreCancelClean": true,
+    "finalTextLength": 13295,
+    "finalPageCount": 27,
+    "finalPending": false,
+    "finalComposing": false
+  },
+  "postFrameGeometry": {
+    "renderGroup": 9,
+    "samples": 14,
+    "sequenceRange": [
+      2153,
+      2173
+    ],
+    "sampleAfterCompositionEndMs": [
+      63.9,
+      302.4
+    ],
+    "fixedModelSelection": true,
+    "fixedDomSelection": true,
+    "modelSelection": {
+      "from": 261,
+      "to": 261,
+      "anchor": 261,
+      "head": 261,
+      "empty": true
+    },
+    "caretViewportTopPx": {
+      "min": 570.90625,
+      "max": 570.90625,
+      "range": 0.0
+    },
+    "scrollOffsetsFixed": true,
+    "scrolling": [
+      {
+        "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+        "top": 318,
+        "left": 0
+      }
+    ],
+    "windowScroll": {
+      "x": 18,
+      "y": 688
+    },
+    "allSamplesSettledAndBaseline": true,
+    "limits": "Only post-RAF task snapshots are used. The first 63.9ms after compositionend have no post-RAF sample; this does not prove every physical screen frame."
+  },
+  "recordingIntegrity": {
+    "rawEventCount": 2000,
+    "rawSequenceRange": [
+      177,
+      2176
+    ],
+    "rawDroppedEvents": 176,
+    "sessionChanged": false,
+    "archives": [
+      {
+        "file": "physical-window-release.json",
+        "sha256": "b9d045876585b851f980cc9ec5767fe9de034378ed065d7c6eeeee45531d15f2",
+        "firstSequence": 1,
+        "lastSequence": 896,
+        "droppedEvents": 0,
+        "overlapWithPriorArchives": 0,
+        "overlapExactlyEqual": true
+      },
+      {
+        "file": "native-cancel-before-toolbar.json",
+        "sha256": "698cfa46517e0964470daf0cabcc81c7d10c228e457c7d77b814e5aaeff4beac",
+        "firstSequence": 77,
+        "lastSequence": 2076,
+        "droppedEvents": 76,
+        "overlapWithPriorArchives": 820,
+        "overlapExactlyEqual": true
+      },
+      {
+        "file": "native-toolbar-history.json",
+        "sha256": "33d0ef2b8352f971772becc9d0dfefb10653305f5e245080a9aa65b334d4b1a9",
+        "firstSequence": 108,
+        "lastSequence": 2107,
+        "droppedEvents": 107,
+        "overlapWithPriorArchives": 1969,
+        "overlapExactlyEqual": true
+      },
+      {
+        "file": "native-pre-cancel-clean.json",
+        "sha256": "6834ba1164cb2b7773f90e39b7ec9a6e3bdd6a065a27ceecf872cf320431fd24",
+        "firstSequence": 121,
+        "lastSequence": 2120,
+        "droppedEvents": 120,
+        "overlapWithPriorArchives": 1987,
+        "overlapExactlyEqual": true
+      },
+      {
+        "file": "native-escape-final.json",
+        "sha256": "7213707ed32f84521710f119d13218b0489063214ee9253278a28803cf9cc4d9",
+        "firstSequence": 177,
+        "lastSequence": 2176,
+        "droppedEvents": 176,
+        "overlapWithPriorArchives": 1944,
+        "overlapExactlyEqual": true
+      },
+      {
+        "file": "native-saved-final.json",
+        "sha256": "b7cd81b1c4d65f7c7f0bb7ba1e94a382b916eae4778f05e7863a50fa3f43ccc5",
+        "firstSequence": 178,
+        "lastSequence": 2177,
+        "droppedEvents": 177,
+        "overlapWithPriorArchives": 1999,
+        "overlapExactlyEqual": true
+      }
+    ],
+    "combinedSequenceRange": [
+      1,
+      2177
+    ],
+    "combinedContinuous": true,
+    "note": "Original archives retain their individual dropped-event counts; combining exact overlapping archives recovers the continuous sequence without rewriting raw files. Pointer movement throttling still applies."
+  },
+  "provenance": {
+    "keyACompositionStartUpdateInputAndEscapeTrusted": true,
+    "compositionEndTrusted": false,
+    "note": "The empty compositionend is trusted=false while the KeyA/Escape and composition/input events are trusted=true. Hardware source is supported by the human report, not isTrusted alone."
+  },
+  "completionScope": {
+    "humanShuangpinConfirmationUndoAndEscape": true,
+    "productionToolbarUndoRedoUndo": true,
+    "toolbarHistorySource": "Tool clicks after human text entry; no claim that a human Cmd+Shift+Z shortcut was tested.",
+    "physicalCrossPageAndCrossWindowReleaseReturnReselect": true,
+    "independentPointercancelValidated": false,
+    "remainingMilestoneAcceptance": [
+      "WPS native roundtrip"
+    ]
+  },
+  "saveAndCleanup": {
+    "savedRaw": "native-saved-final.json",
+    "savedSnapshotExactlyEqualsBaseline": true,
+    "saveAction": "Tool clicked production Save button; UI confirmed saved to this browser.",
+    "reloadSeparatelyVerified": false,
+    "finalState": "native-final-state.json",
+    "finalScreenshot": "native-final-body.jpg",
+    "cleanupFile": "cleanup.json",
+    "cleanup": {
+      "observedAt": "2026-10-29T08:05:59.543Z",
+      "status": [
+        "等待运行"
+      ],
+      "remainingFixturePanels": 0,
+      "scope": "Completed fixture 4fd753fa-a76d-490a-9b21-2fc0f5c2b848 ended via normal cleanup; no claim that the entire test database is empty."
+    },
+    "temporaryChromeTabsClosed": 2,
+    "cleanupScope": "Only completed fixture 4fd753fa-a76d-490a-9b21-2fc0f5c2b848; no claim the entire historical test database is empty."
+  }
+}

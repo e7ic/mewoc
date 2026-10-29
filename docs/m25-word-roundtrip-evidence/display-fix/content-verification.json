@@ -1,0 +1,201 @@
+{
+  "generatedAt": "2026-10-29T06:48:12.801Z",
+  "passed": true,
+  "scope": "Independent original OOXML and production conversion checks; browser backup originates from formal UI download. Node image dimensions are a header stub, not image decode or native layout proof.",
+  "files": {
+    "source": {
+      "path": "docs/m25-word-roundtrip-evidence/display-fix/browser-export.docx",
+      "bytes": 17604,
+      "sha256": "b2e07f970029f47343144dc8dca6c7ae9f39912a1b6faddf068395ebca3f1261"
+    },
+    "native": {
+      "path": "docs/m25-word-roundtrip-evidence/display-fix/word-resaved.docx",
+      "bytes": 27656,
+      "sha256": "cf1ce811cc900a654074c70dd8a2bd5c44498a4a33690648b22255aa6637cc73"
+    },
+    "browser": {
+      "path": "docs/m25-word-roundtrip-evidence/display-fix/browser-imported.mewoc.json",
+      "bytes": 109904,
+      "sha256": "999f3a00174964f1e13df2aeed7d1881b2e04b66a66a851c30b279414c716689"
+    }
+  },
+  "intentionalMarker": " M25_WORD_FINAL_20261029",
+  "checks": [
+    {
+      "name": "Native OOXML body adds only intentional marker",
+      "passed": true
+    },
+    {
+      "name": "Native OOXML paragraphs/tables/rows/cells/breaks unchanged",
+      "passed": true
+    },
+    {
+      "name": "Production converted body adds only intentional marker",
+      "passed": true
+    },
+    {
+      "name": "Node content type counts unchanged",
+      "passed": true
+    },
+    {
+      "name": "Table text/types/spans unchanged",
+      "passed": true
+    },
+    {
+      "name": "List type/start/every item unchanged",
+      "passed": true
+    },
+    {
+      "name": "Formal browser backup exact normalized content equals native production import",
+      "passed": true
+    },
+    {
+      "name": "Formal browser page settings equal native production import",
+      "passed": true
+    },
+    {
+      "name": "Native page preserves source allowing only hex case and 16.16 opacity quantization",
+      "passed": true
+    },
+    {
+      "name": "Original image bytes preserved across native and browser",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence M25_SOAK_DOCUMENT_START",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence M25_SOAK_DOCUMENT_END",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence 同一段中英文 Mixed text",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence 引用中的长段落持续跨页",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence const line",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence [x] ",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence [ ] ",
+      "passed": true
+    },
+    {
+      "name": "Exact content occurrence  M25_WORD_FINAL_20261029",
+      "passed": true
+    },
+    {
+      "name": "Historical sample untouched docs/m25-native-evidence/browser-export.docx",
+      "passed": true
+    },
+    {
+      "name": "Historical sample untouched docs/m25-word-roundtrip-evidence/word-resaved.docx",
+      "passed": true
+    },
+    {
+      "name": "Historical sample untouched docs/m25-word-roundtrip-evidence/word-fields-updated.docx",
+      "passed": true
+    },
+    {
+      "name": "source file unchanged by verification",
+      "passed": true
+    },
+    {
+      "name": "native file unchanged by verification",
+      "passed": true
+    },
+    {
+      "name": "browser file unchanged by verification",
+      "passed": true
+    }
+  ],
+  "page": {
+    "size": "A5",
+    "orientation": "portrait",
+    "marginsMm": {
+      "top": 14.99,
+      "right": 14.99,
+      "bottom": 14.99,
+      "left": 14.99
+    },
+    "watermark": {
+      "text": "M25 原生验收",
+      "color": "#6554c0",
+      "opacity": 0.1199951171875,
+      "angle": -35
+    },
+    "header": {
+      "text": "M25 持续验收",
+      "alignment": "left",
+      "pageNumber": "page"
+    },
+    "footer": {
+      "text": "原始文档与资源",
+      "alignment": "center",
+      "pageNumber": "page-total"
+    }
+  },
+  "wordBodyCounts": {
+    "p": 179,
+    "tbl": 2,
+    "tr": 49,
+    "tc": 97,
+    "br": 89
+  },
+  "nodeCounts": {
+    "doc": 1,
+    "image": 1,
+    "paragraph": 178,
+    "table": 2,
+    "tableRow": 49,
+    "tableHeader": 2,
+    "tableCell": 95,
+    "orderedList": 1,
+    "listItem": 48,
+    "hardBreak": 89
+  },
+  "assets": [
+    {
+      "mimeType": "image/png",
+      "bytes": 1100,
+      "sha256": "3000f55839a18c6dfd0eba68fa2912af63d525c33b1c402d4fdbef7ca1aa4c4b"
+    }
+  ],
+  "lists": [
+    {
+      "type": "orderedList",
+      "attrs": {
+        "start": 7,
+        "type": "a"
+      },
+      "itemCount": 48,
+      "itemsSha256": "2bc1fcf85f05e0fa969ac4169e78d42b738fd5d99916656630a21edbac31adda"
+    }
+  ],
+  "warnings": {
+    "source": [
+      "按内容语义导入，字体、字号、颜色和段落间距使用编辑器默认值；原始分页不保证保留，请保留原 DOCX",
+      "表格保留内容和合并，列宽、边框、底色及跨页设置使用编辑器默认值",
+      "普通换行保留，原文的手动分页与页面布局不保证保留",
+      "图片保留原始字节，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留",
+      "表格保留内容和合并结构，列宽、行高、底色、边框与单元格设置使用编辑器默认值"
+    ],
+    "native": [
+      "按内容语义导入，字体、字号、颜色和段落间距使用编辑器默认值；原始分页不保证保留，请保留原 DOCX",
+      "Word 表格的行级单元格边距使用编辑器默认值；正文、单元格及合并结构保留",
+      "表格保留内容和合并，列宽、边框、底色及跨页设置使用编辑器默认值",
+      "普通换行保留，原文的手动分页与页面布局不保证保留",
+      "图片保留原始字节，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留",
+      "表格保留内容和合并结构，列宽、行高、底色、边框与单元格设置使用编辑器默认值"
+    ]
+  }
+}

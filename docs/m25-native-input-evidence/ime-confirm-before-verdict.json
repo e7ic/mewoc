@@ -1,0 +1,198 @@
+{
+  "source": "docs/m25-native-input-evidence/shuangpin-before-fix.json",
+  "sourceSha256": "ff2c8bdd9f9bf0d3e040466f89dff3b04d9c7b00d543179bf193a77fccd68db8",
+  "scope": "Recorded geometry replay for Chinese IME confirmation. Does not generate OS input or prove physical provenance.",
+  "rule": "For the same model selection from compositionend through first settled pagination-update, any caret excursion more than 2px outside the initial-to-final envelope fails.",
+  "caseCount": 2,
+  "passed": false,
+  "cases": [
+    {
+      "endSequence": 231,
+      "settledSequence": 235,
+      "compositionEndTrusted": false,
+      "selection": [
+        265,
+        265
+      ],
+      "initialCaretTop": 797.90625,
+      "settledCaretTop": 797.90625,
+      "minimumCaretTop": 692.765625,
+      "maximumCaretTop": 797.90625,
+      "minimumSequence": 233,
+      "roundTripExcursionPx": 105.140625,
+      "tolerancePx": 2,
+      "firstMinimumAfterEndMs": 10.2,
+      "settledAfterEndMs": 53.2,
+      "minimumToSettledMs": 43.0,
+      "scrollOffsetsUnchanged": true,
+      "allComparedSelectionsMatch": true,
+      "window": [
+        {
+          "sequence": 231,
+          "type": "compositionend",
+          "elapsedMs": 557506.1999999881,
+          "caretTop": 797.90625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 25,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 232,
+          "type": "compositionend:after-dispatch",
+          "elapsedMs": 557506.599999994,
+          "caretTop": 797.90625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 25,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 233,
+          "type": "editor-transaction",
+          "elapsedMs": 557516.400000006,
+          "caretTop": 692.765625,
+          "docChanged": false,
+          "addToHistory": false,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 5,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 234,
+          "type": "selectionchange",
+          "elapsedMs": 557522.1999999881,
+          "caretTop": 692.765625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 5,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 235,
+          "type": "pagination-update",
+          "elapsedMs": 557559.400000006,
+          "caretTop": 797.90625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": false,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 0,
+            "breaksUnchanged": false
+          }
+        }
+      ],
+      "passed": false
+    },
+    {
+      "endSequence": 408,
+      "settledSequence": 412,
+      "compositionEndTrusted": false,
+      "selection": [
+        265,
+        265
+      ],
+      "initialCaretTop": 797.90625,
+      "settledCaretTop": 797.90625,
+      "minimumCaretTop": 692.765625,
+      "maximumCaretTop": 797.90625,
+      "minimumSequence": 410,
+      "roundTripExcursionPx": 105.140625,
+      "tolerancePx": 2,
+      "firstMinimumAfterEndMs": 12.7,
+      "settledAfterEndMs": 52.6,
+      "minimumToSettledMs": 39.9,
+      "scrollOffsetsUnchanged": true,
+      "allComparedSelectionsMatch": true,
+      "window": [
+        {
+          "sequence": 408,
+          "type": "compositionend",
+          "elapsedMs": 566014.099999994,
+          "caretTop": 797.90625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 25,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 409,
+          "type": "compositionend:after-dispatch",
+          "elapsedMs": 566014.5,
+          "caretTop": 797.90625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 25,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 410,
+          "type": "editor-transaction",
+          "elapsedMs": 566026.8000000119,
+          "caretTop": 692.765625,
+          "docChanged": false,
+          "addToHistory": false,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 5,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 411,
+          "type": "selectionchange",
+          "elapsedMs": 566033.1999999881,
+          "caretTop": 692.765625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": true,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 5,
+            "breaksUnchanged": true
+          }
+        },
+        {
+          "sequence": 412,
+          "type": "pagination-update",
+          "elapsedMs": 566066.6999999881,
+          "caretTop": 797.90625,
+          "docChanged": null,
+          "addToHistory": null,
+          "pending": false,
+          "compositionObservation": {
+            "initialGapCount": 26,
+            "connectedInitialGaps": 0,
+            "breaksUnchanged": false
+          }
+        }
+      ],
+      "passed": false
+    }
+  ]
+}

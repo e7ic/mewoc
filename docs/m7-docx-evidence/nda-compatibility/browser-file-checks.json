@@ -1,0 +1,216 @@
+{
+  "date": "2026-10-29",
+  "passed": true,
+  "scope": "Read-only local file comparison: formal browser portable download and DOCX download versus fresh production conversion. Asset identity is normalized to byte hash. Browser portable comparison allows exactly one appended empty top-level paragraph. Browser DOCX reimport allows exactly the three verified formatting changes listed below; all other content, paragraph order, numbering, table structure, page settings and image bytes must match. No hidden browser state and no contract text recorded.",
+  "files": {
+    "source": {
+      "name": "NDA_Agreement.docx",
+      "bytes": 293180,
+      "sha256": "bbbebbe2d0663fe5766a239fd5a6570a92cdf5f8af114d61ea8b94a083e6e519"
+    },
+    "browserPortable": {
+      "name": "NDA_Agreement.mewoc.json",
+      "bytes": 53437,
+      "sha256": "a2b17b62104aafb042ef6c19c38cb101e299542b910a25930453208e491a5a4e"
+    },
+    "browserDocx": {
+      "name": "NDA_Agreement (2).docx",
+      "bytes": 21616,
+      "sha256": "25e9f978ebfa255a6860232fdf22aa394c1e0564c30ceb201059b017281c66ea"
+    }
+  },
+  "checks": [
+    {
+      "name": "Original source unchanged since independent OOXML acceptance",
+      "passed": true
+    },
+    {
+      "name": "Browser portable full content equals fresh production conversion",
+      "passed": true,
+      "allowedTrailingEmptyParagraph": true
+    },
+    {
+      "name": "Browser portable page settings equal fresh production conversion",
+      "passed": true
+    },
+    {
+      "name": "Browser portable preserves source image bytes",
+      "passed": true
+    },
+    {
+      "name": "DOCX reimport has exactly the three observed formatting differences",
+      "passed": true
+    },
+    {
+      "name": "First heading receives only the standard bold mark on export/reimport",
+      "passed": true
+    },
+    {
+      "name": "Static child clause 1.1. retains text and only its paragraph indent resets",
+      "passed": true
+    },
+    {
+      "name": "Static child clause 1.2. retains text and only its paragraph indent resets",
+      "passed": true
+    },
+    {
+      "name": "All browser DOCX paragraph text and order are exact",
+      "passed": true
+    },
+    {
+      "name": "Browser DOCX full content matches after only the three explicit formatting differences",
+      "passed": true
+    },
+    {
+      "name": "Browser DOCX page settings equal browser portable",
+      "passed": true
+    },
+    {
+      "name": "Browser DOCX preserves original browser image bytes",
+      "passed": true
+    },
+    {
+      "name": "Input source unchanged after all read-only checks",
+      "passed": true
+    }
+  ],
+  "allowedDifferences": [
+    {
+      "comparison": "Browser portable full content equals fresh production conversion",
+      "kind": "one appended empty top-level paragraph",
+      "index": 60,
+      "attributes": {
+        "navigationId": null,
+        "bookmarkName": null,
+        "textAlign": null,
+        "lineHeight": null,
+        "spaceBefore": null,
+        "spaceAfter": null,
+        "keepWithNext": null,
+        "keepTogether": null,
+        "firstLineIndent": 0,
+        "leftIndent": 0
+      }
+    },
+    {
+      "comparison": "Browser DOCX reimport versus portable",
+      "kind": "three individually verified formatting properties",
+      "differences": [
+        {
+          "path": "content.content.0.content.0.marks",
+          "before": [],
+          "after": [
+            {
+              "type": "bold"
+            }
+          ],
+          "reason": "The DOCX heading export writes its standard bold formatting explicitly."
+        },
+        {
+          "path": "content.content.4.attrs.leftIndent",
+          "before": 1,
+          "after": 0,
+          "reason": "DOCX semantic import restores ordinary paragraphs with editor-default paragraph indentation; static clause text remains intact."
+        },
+        {
+          "path": "content.content.5.attrs.leftIndent",
+          "before": 1,
+          "after": 0,
+          "reason": "DOCX semantic import restores ordinary paragraphs with editor-default paragraph indentation; static clause text remains intact."
+        }
+      ]
+    }
+  ],
+  "docxContentDifferences": [
+    {
+      "path": "content.content.0.content.0.marks",
+      "expectedType": "undefined",
+      "actualType": "object",
+      "expectedHash": "eb045d78d273107348b0300c01d29b7552d622abbc6faf81b3ec55359aa9950c",
+      "actualHash": "361aecc68fda852e1c5021310b66e917511289662b5eede4fb9d0691ab197f98",
+      "expectedMarkTypes": [],
+      "actualMarkTypes": [
+        "bold"
+      ]
+    },
+    {
+      "path": "content.content.4.attrs.leftIndent",
+      "expectedType": "number",
+      "actualType": "number",
+      "expectedHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "actualHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "content.content.5.attrs.leftIndent",
+      "expectedType": "number",
+      "actualType": "number",
+      "expectedHash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+      "actualHash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    }
+  ],
+  "docxContentExactlyIdentical": false,
+  "nodeCounts": {
+    "doc": 1,
+    "heading": 22,
+    "text": 143,
+    "paragraph": 74,
+    "orderedList": 4,
+    "listItem": 18,
+    "hardBreak": 1,
+    "table": 3,
+    "tableRow": 7,
+    "tableCell": 25,
+    "image": 1
+  },
+  "tables": [
+    {
+      "rows": 5,
+      "cells": 20,
+      "merges": 0
+    },
+    {
+      "rows": 1,
+      "cells": 2,
+      "merges": 0
+    },
+    {
+      "rows": 1,
+      "cells": 3,
+      "merges": 0
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "bytes": 6764,
+      "sha256": "bd1bc641991f8bcbd0ff4172209e821f293b624ae01f0e4c13a137328768534a"
+    }
+  ],
+  "imageDimensions": [
+    {
+      "width": 400,
+      "height": 116
+    }
+  ],
+  "page": {
+    "size": "A4",
+    "orientation": "portrait",
+    "marginsMm": {
+      "top": 25.4,
+      "right": 25.4,
+      "bottom": 25.4,
+      "left": 25.4
+    }
+  },
+  "contentSha256": "1d9cb72117b023039b556c266386c96e3cec394c3a990311aa1c51024034634a",
+  "bodyTextSha256": "d3b217c1c6defda4162f9a828dd91bd6e5dd5c0804613fce1a2a0c70e50bebf4",
+  "placeholders": {
+    "page": 1,
+    "total": 1
+  },
+  "compositeLabels": [
+    "1.",
+    "1.1.",
+    "1.2."
+  ]
+}

@@ -1,0 +1,808 @@
+{
+  "generatedAt": "2026-10-29T07:59:59.486574+00:00",
+  "source": "physical-window-release.json",
+  "bytes": 9761523,
+  "sha256": "b9d045876585b851f980cc9ec5767fe9de034378ed065d7c6eeeee45531d15f2",
+  "scope": "真人鼠标从源 Chrome 编辑窗口跨到右侧诊断窗口释放、无按键返回以及重新点击和拖选；结合用户反馈、原生窗口准备信息和实际事件轨迹判定。",
+  "result": "passed_for_cross_window_release_return_and_reselection_with_human_confirmation",
+  "crossWindowReleasePassed": true,
+  "physicalCrossPageAndWindowReleaseEvidenceSufficient": true,
+  "explicitPointerCancellationValidated": false,
+  "provenance": {
+    "humanFeedbackFile": "human-physical-feedback.json",
+    "humanFeedback": {
+      "crossPage": "能选中两页文字，稳定无跳动",
+      "outsideWindowRelease": "松手后停止，返回和重新拖选都正常",
+      "recordedAt": "2026-10-29T07:55:59.737431+00:00"
+    },
+    "operatorContextReportedByParent": "源 Chrome 原生窗口在物理拖选前通过“移动与调整大小→左侧”调整；右侧为独立诊断窗口。用户确认按住跨到右侧中部松手，再无按键返回、停留并重新拖选正常；此后根没有调整源窗口尺寸。",
+    "geometryEvidence": {
+      "readyScreenshot": "physical-drag-ready.png",
+      "actualFileFormat": "JPEG despite .png extension",
+      "imagePixelWidth": 960,
+      "imagePixelHeight": 907,
+      "dimensionVerification": "sips -g pixelWidth -g pixelHeight -g format",
+      "parentObservedViewportWidth": 961,
+      "parentObservedViewportHeight": 907,
+      "conservativeClientXBoundaryUsed": 961,
+      "note": "图像像素宽度和根观察的视口宽度相差1；三个释放坐标均远大于961。JSON本身没有窗口边界字段，因此跨窗口归属使用准备截图、原生摆放观察及用户确认共同支持，不以insideEditor=false单独判断。"
+    },
+    "isTrustedAloneProvesPhysicalHardware": false,
+    "note": "trusted 标志仅辅助事件来源审计。硬件操作由用户明确确认；不是合成事件验收。",
+    "preCollectionObservedState": {
+      "file": "physical-release-observed-state.json",
+      "sha256": "509ca10d97c44230e865e29bd18df16161518f9b462147e7e11aec753ec3d509",
+      "inputEvents": 893,
+      "modelSelection": {
+        "from": 635,
+        "to": 1091,
+        "anchor": 1091,
+        "head": 635,
+        "empty": false
+      },
+      "domSelection": {
+        "anchor": 1091,
+        "focus": 635,
+        "collapsed": false
+      },
+      "paperScroll": [
+        {
+          "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+          "top": 909,
+          "left": 0
+        }
+      ],
+      "windowScroll": {
+        "x": 76,
+        "y": 648
+      },
+      "pending": false,
+      "originalMatches": true,
+      "note": "DOM status read before tool clicked checkpoint/export buttons; those later locator clicks can scroll the outer page to their controls."
+    },
+    "collectionBoundary": {
+      "lastHumanSequenceBeforeCollection": 893,
+      "collectionStartsAtSeq": 894,
+      "actionsReportedByParent": "Read existing DOM status first, then use Playwright locator clicks on checkpoint/export controls; locator scrolling brings top controls into view.",
+      "note": "seq894的trusted pointermove及windowScroll.y归0属于取证按钮操作边界，不用作真人返回证据，也不归因于拖选释放后失控。"
+    }
+  },
+  "eventIntegrity": {
+    "count": 896,
+    "firstSequence": 1,
+    "lastSequence": 896,
+    "sequenceContiguous": true,
+    "elapsedTimeNondecreasing": true,
+    "droppedEvents": 0,
+    "throttledMoves": 1234,
+    "movementSamplingIntervalMs": 80,
+    "sessionChanged": false,
+    "phaseEventCounts": {
+      "准备": 1,
+      "跨页拖选": 126,
+      "离窗释放": 769
+    },
+    "eventTypeCounts": {
+      "recording-start": 1,
+      "phase-change": 2,
+      "editor-transaction": 299,
+      "selectionchange": 326,
+      "checkpoint": 4,
+      "pointerdown": 8,
+      "pointermove": 224,
+      "pointerup": 8,
+      "pointerup:after-dispatch": 8,
+      "mouseup": 8,
+      "mouseup:after-dispatch": 8
+    },
+    "trustedCountsByEventType": {
+      "selectionchange": {
+        "true": 326
+      },
+      "pointerdown": {
+        "true": 8
+      },
+      "pointermove": {
+        "true": 224
+      },
+      "pointerup": {
+        "true": 8
+      },
+      "mouseup": {
+        "true": 8
+      }
+    },
+    "allCapturedNativeEventsTrusted": true,
+    "previousCrossPageTraceIsExactEventPrefix": true,
+    "note": "序号1–896连续且无日志溢出。1234个移动事件按80ms规则节流，不能称所有原始移动点均已记录；按下/释放边界事件未节流。"
+  },
+  "outsideReleases": [
+    {
+      "case": 1,
+      "down": {
+        "sequence": 195,
+        "at": "2026-10-29T07:53:17.617Z",
+        "elapsedMs": 265678,
+        "type": "pointerdown",
+        "trusted": true,
+        "insideEditor": true,
+        "buttons": 1,
+        "client": {
+          "x": 518.28515625,
+          "y": 609.0859375
+        },
+        "screen": {
+          "x": 518.28515625,
+          "y": 782.0859375
+        }
+      },
+      "release": {
+        "sequence": 220,
+        "at": "2026-10-29T07:53:19.520Z",
+        "elapsedMs": 267580.90000000596,
+        "type": "pointerup",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 1478.35546875,
+          "y": 579.703125
+        },
+        "screen": {
+          "x": 1478.35546875,
+          "y": 752.703125
+        }
+      },
+      "mouseup": {
+        "sequence": 222,
+        "at": "2026-10-29T07:53:19.523Z",
+        "elapsedMs": 267583.10000002384,
+        "type": "mouseup",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 1478,
+          "y": 579
+        },
+        "screen": {
+          "x": 1478,
+          "y": 752
+        }
+      },
+      "releaseAfterDispatchSeq": 221,
+      "mouseupAfterDispatchSeq": 223,
+      "durationHeldMs": 1902.9,
+      "firstRecordedMoveBeyondConservativeViewportRightEdge": {
+        "sequence": 211,
+        "at": "2026-10-29T07:53:17.903Z",
+        "elapsedMs": 265963.2000000179,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 1,
+        "client": {
+          "x": 1333.36328125,
+          "y": 602.015625
+        },
+        "screen": {
+          "x": 1333.36328125,
+          "y": 775.015625
+        }
+      },
+      "recordedHeldMoves": 12,
+      "recordedHeldMovesBeyondViewportRightEdge": 9,
+      "allHeldMovesButtonsOne": true,
+      "allPointerEventsTrusted": true,
+      "releaseClientXPastConservativeRightEdgePx": 517.3555,
+      "selectionAtRelease": {
+        "from": 261,
+        "to": 550,
+        "anchor": 550,
+        "head": 261,
+        "empty": false
+      },
+      "domSelectionAtRelease": {
+        "anchor": 550,
+        "focus": 261,
+        "collapsed": false
+      },
+      "scrollAtRelease": {
+        "paper": [
+          {
+            "top": 623,
+            "left": 0
+          }
+        ],
+        "window": {
+          "x": 76,
+          "y": 501
+        }
+      },
+      "heldRange": {
+        "startSeq": 195,
+        "endSeq": 220,
+        "recordedEvents": 26,
+        "elapsedMs": 1902.9,
+        "modelSelectionVariants": 7,
+        "domSelectionVariants": 7,
+        "paperScrollTopRange": [
+          623,
+          623
+        ],
+        "windowScrollXRange": [
+          0,
+          76
+        ],
+        "windowScrollYRange": [
+          501,
+          501
+        ],
+        "allOriginalMatches": true,
+        "allPendingFalse": true,
+        "layoutSignatureVariants": 1
+      },
+      "postReleaseObservedRange": {
+        "startSeq": 220,
+        "endSeq": 229,
+        "recordedEvents": 10,
+        "elapsedMs": 722.9,
+        "modelSelectionVariants": 1,
+        "domSelectionVariants": 1,
+        "paperScrollTopRange": [
+          623,
+          623
+        ],
+        "windowScrollXRange": [
+          76,
+          76
+        ],
+        "windowScrollYRange": [
+          501,
+          501
+        ],
+        "allOriginalMatches": true,
+        "allPendingFalse": true,
+        "layoutSignatureVariants": 1
+      },
+      "firstReturnWithinSourceViewportWithButtonsZero": {
+        "sequence": 224,
+        "at": "2026-10-29T07:53:19.812Z",
+        "elapsedMs": 267872.40000000596,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 893.6328125,
+          "y": 470.890625
+        },
+        "screen": {
+          "x": 893.6328125,
+          "y": 643.890625
+        }
+      },
+      "firstReturnWithinEditorWithButtonsZero": {
+        "sequence": 225,
+        "at": "2026-10-29T07:53:19.893Z",
+        "elapsedMs": 267953.3000000119,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": true,
+        "buttons": 0,
+        "client": {
+          "x": 320.05078125,
+          "y": 447.203125
+        },
+        "screen": {
+          "x": 320.05078125,
+          "y": 620.203125
+        }
+      },
+      "nextDownSeq": 230,
+      "releaseToNextDownMs": 827.4
+    },
+    {
+      "case": 2,
+      "down": {
+        "sequence": 249,
+        "at": "2026-10-29T07:53:21.743Z",
+        "elapsedMs": 269803.7000000179,
+        "type": "pointerdown",
+        "trusted": true,
+        "insideEditor": true,
+        "buttons": 1,
+        "client": {
+          "x": 238.96484375,
+          "y": 456.91015625
+        },
+        "screen": {
+          "x": 238.96484375,
+          "y": 629.91015625
+        }
+      },
+      "release": {
+        "sequence": 307,
+        "at": "2026-10-29T07:53:25.611Z",
+        "elapsedMs": 273671.60000002384,
+        "type": "pointerup",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 1704.03515625,
+          "y": 797.19140625
+        },
+        "screen": {
+          "x": 1704.03515625,
+          "y": 970.19140625
+        }
+      },
+      "mouseup": {
+        "sequence": 309,
+        "at": "2026-10-29T07:53:25.614Z",
+        "elapsedMs": 273674.2000000179,
+        "type": "mouseup",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 1704,
+          "y": 797
+        },
+        "screen": {
+          "x": 1704,
+          "y": 970
+        }
+      },
+      "releaseAfterDispatchSeq": 308,
+      "mouseupAfterDispatchSeq": 310,
+      "durationHeldMs": 3867.9,
+      "firstRecordedMoveBeyondConservativeViewportRightEdge": {
+        "sequence": 275,
+        "at": "2026-10-29T07:53:22.023Z",
+        "elapsedMs": 270083.3000000119,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 1,
+        "client": {
+          "x": 1068.83984375,
+          "y": 767.1171875
+        },
+        "screen": {
+          "x": 1068.83984375,
+          "y": 940.1171875
+        }
+      },
+      "recordedHeldMoves": 19,
+      "recordedHeldMovesBeyondViewportRightEdge": 16,
+      "allHeldMovesButtonsOne": true,
+      "allPointerEventsTrusted": true,
+      "releaseClientXPastConservativeRightEdgePx": 743.0352,
+      "selectionAtRelease": {
+        "from": 261,
+        "to": 452,
+        "anchor": 261,
+        "head": 452,
+        "empty": false
+      },
+      "domSelectionAtRelease": {
+        "anchor": 261,
+        "focus": 452,
+        "collapsed": false
+      },
+      "scrollAtRelease": {
+        "paper": [
+          {
+            "top": 623,
+            "left": 0
+          }
+        ],
+        "window": {
+          "x": 76,
+          "y": 501
+        }
+      },
+      "heldRange": {
+        "startSeq": 249,
+        "endSeq": 307,
+        "recordedEvents": 59,
+        "elapsedMs": 3867.9,
+        "modelSelectionVariants": 13,
+        "domSelectionVariants": 14,
+        "paperScrollTopRange": [
+          623,
+          623
+        ],
+        "windowScrollXRange": [
+          76,
+          76
+        ],
+        "windowScrollYRange": [
+          501,
+          501
+        ],
+        "allOriginalMatches": true,
+        "allPendingFalse": true,
+        "layoutSignatureVariants": 1
+      },
+      "postReleaseObservedRange": {
+        "startSeq": 307,
+        "endSeq": 312,
+        "recordedEvents": 6,
+        "elapsedMs": 511.6,
+        "modelSelectionVariants": 1,
+        "domSelectionVariants": 1,
+        "paperScrollTopRange": [
+          623,
+          623
+        ],
+        "windowScrollXRange": [
+          76,
+          76
+        ],
+        "windowScrollYRange": [
+          501,
+          501
+        ],
+        "allOriginalMatches": true,
+        "allPendingFalse": true,
+        "layoutSignatureVariants": 1
+      },
+      "firstReturnWithinSourceViewportWithButtonsZero": {
+        "sequence": 311,
+        "at": "2026-10-29T07:53:26.040Z",
+        "elapsedMs": 274100.8000000119,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 864.7265625,
+          "y": 651.2109375
+        },
+        "screen": {
+          "x": 864.7265625,
+          "y": 824.2109375
+        }
+      },
+      "firstReturnWithinEditorWithButtonsZero": {
+        "sequence": 312,
+        "at": "2026-10-29T07:53:26.123Z",
+        "elapsedMs": 274183.2000000179,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": true,
+        "buttons": 0,
+        "client": {
+          "x": 471.8046875,
+          "y": 587.10546875
+        },
+        "screen": {
+          "x": 471.8046875,
+          "y": 760.10546875
+        }
+      },
+      "nextDownSeq": 313,
+      "releaseToNextDownMs": 934.0
+    },
+    {
+      "case": 3,
+      "down": {
+        "sequence": 331,
+        "at": "2026-10-29T07:53:28.192Z",
+        "elapsedMs": 276252.8000000119,
+        "type": "pointerdown",
+        "trusted": true,
+        "insideEditor": true,
+        "buttons": 1,
+        "client": {
+          "x": 241.41015625,
+          "y": 463.5234375
+        },
+        "screen": {
+          "x": 241.41015625,
+          "y": 636.5234375
+        }
+      },
+      "release": {
+        "sequence": 890,
+        "at": "2026-10-29T07:53:38.123Z",
+        "elapsedMs": 286183.7000000179,
+        "type": "pointerup",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 1100.21875,
+          "y": 520.84765625
+        },
+        "screen": {
+          "x": 1100.21875,
+          "y": 693.84765625
+        }
+      },
+      "mouseup": {
+        "sequence": 892,
+        "at": "2026-10-29T07:53:38.125Z",
+        "elapsedMs": 286186.2000000179,
+        "type": "mouseup",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 1100,
+          "y": 520
+        },
+        "screen": {
+          "x": 1100,
+          "y": 693
+        }
+      },
+      "releaseAfterDispatchSeq": 891,
+      "mouseupAfterDispatchSeq": 893,
+      "durationHeldMs": 9930.9,
+      "firstRecordedMoveBeyondConservativeViewportRightEdge": {
+        "sequence": 426,
+        "at": "2026-10-29T07:53:29.413Z",
+        "elapsedMs": 277473.2000000179,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 1,
+        "client": {
+          "x": 982.4921875,
+          "y": 701.30078125
+        },
+        "screen": {
+          "x": 982.4921875,
+          "y": 874.30078125
+        }
+      },
+      "recordedHeldMoves": 89,
+      "recordedHeldMovesBeyondViewportRightEdge": 57,
+      "allHeldMovesButtonsOne": true,
+      "allPointerEventsTrusted": true,
+      "releaseClientXPastConservativeRightEdgePx": 139.2188,
+      "selectionAtRelease": {
+        "from": 635,
+        "to": 1091,
+        "anchor": 1091,
+        "head": 635,
+        "empty": false
+      },
+      "domSelectionAtRelease": {
+        "anchor": 1091,
+        "focus": 635,
+        "collapsed": false
+      },
+      "scrollAtRelease": {
+        "paper": [
+          {
+            "top": 909,
+            "left": 0
+          }
+        ],
+        "window": {
+          "x": 76,
+          "y": 648
+        }
+      },
+      "heldRange": {
+        "startSeq": 331,
+        "endSeq": 890,
+        "recordedEvents": 560,
+        "elapsedMs": 9930.9,
+        "modelSelectionVariants": 80,
+        "domSelectionVariants": 83,
+        "paperScrollTopRange": [
+          0,
+          909
+        ],
+        "windowScrollXRange": [
+          76,
+          76
+        ],
+        "windowScrollYRange": [
+          501,
+          648
+        ],
+        "allOriginalMatches": true,
+        "allPendingFalse": true,
+        "layoutSignatureVariants": 1
+      },
+      "postReleaseObservedRange": {
+        "startSeq": 890,
+        "endSeq": 896,
+        "recordedEvents": 7,
+        "elapsedMs": 15800.1,
+        "modelSelectionVariants": 1,
+        "domSelectionVariants": 1,
+        "paperScrollTopRange": [
+          909,
+          909
+        ],
+        "windowScrollXRange": [
+          76,
+          76
+        ],
+        "windowScrollYRange": [
+          0,
+          648
+        ],
+        "allOriginalMatches": true,
+        "allPendingFalse": true,
+        "layoutSignatureVariants": 1
+      },
+      "firstReturnWithinSourceViewportWithButtonsZero": {
+        "sequence": 894,
+        "at": "2026-10-29T07:53:53.846Z",
+        "elapsedMs": 301907.10000002384,
+        "type": "pointermove",
+        "trusted": true,
+        "insideEditor": false,
+        "buttons": 0,
+        "client": {
+          "x": 175.65625,
+          "y": 426.375
+        },
+        "screen": {
+          "x": 175.65625,
+          "y": 599.375
+        },
+        "provenance": "collection-control interaction; excluded from human return proof"
+      },
+      "firstReturnWithinEditorWithButtonsZero": null,
+      "nextDownSeq": null,
+      "releaseToNextDownMs": null,
+      "humanReturnDirectlyCapturedAfterThisRelease": false,
+      "humanPostReleaseObservedRange": {
+        "startSeq": 890,
+        "endSeq": 893,
+        "observedStateInputEvents": 893,
+        "modelAndDomSelectionUnchanged": true,
+        "paperScrollTop": 909,
+        "windowScroll": {
+          "x": 76,
+          "y": 648
+        },
+        "laterCollectionStateSelectionAndPaperScrollAlsoUnchanged": true
+      }
+    }
+  ],
+  "recovery": {
+    "afterFirstOutsideRelease": {
+      "returnSeqs": [
+        224,
+        225,
+        226,
+        227,
+        228,
+        229
+      ],
+      "returnButtons": 0,
+      "stableSelection": {
+        "from": 261,
+        "to": 550,
+        "anchor": 550,
+        "head": 261,
+        "empty": false
+      },
+      "nextClickDownSeq": 230,
+      "nextClickUpSeq": 231,
+      "selectionSettledSeq": 236,
+      "selectionAfterClick": {
+        "from": 419,
+        "to": 419,
+        "anchor": 419,
+        "head": 419,
+        "empty": true
+      },
+      "newDragDownSeq": 249,
+      "newDragReleaseSeq": 307,
+      "newDragSelection": {
+        "from": 261,
+        "to": 452,
+        "anchor": 261,
+        "head": 452,
+        "empty": false
+      }
+    },
+    "afterSecondOutsideRelease": {
+      "returnSeqs": [
+        311,
+        312
+      ],
+      "returnButtons": 0,
+      "stableSelection": {
+        "from": 261,
+        "to": 452,
+        "anchor": 261,
+        "head": 452,
+        "empty": false
+      },
+      "nextClickDownSeq": 313,
+      "selectionSettledSeq": 315,
+      "selectionAfterClick": {
+        "from": 512,
+        "to": 512,
+        "anchor": 512,
+        "head": 512,
+        "empty": true
+      },
+      "newDragDownSeq": 331,
+      "newDragReleaseSeq": 890,
+      "newDragSelection": {
+        "from": 635,
+        "to": 1091,
+        "anchor": 1091,
+        "head": 635,
+        "empty": false
+      }
+    },
+    "conclusion": "两次窗口外释放后，返回无按键移动未继续扩选；新的点击能够收拢选区，新的按住拖动能够产生不同选区。最后一次释放后检查点保留相同选区。"
+  },
+  "stability": {
+    "allOriginalMatches": true,
+    "allPendingFalse": true,
+    "pageCountValues": [
+      27
+    ],
+    "layoutSignatureVariants": 1,
+    "docChangingTransactions": 0,
+    "allRecordedWindowFocused": true,
+    "observedVisibilityValues": [
+      "visible"
+    ],
+    "notes": [
+      "释放后至下一次按下前，前两段的模型选区、DOM选区、纸面scrollTop=623、windowScroll=(76,501)均不变。记录覆盖释放后722.9ms与511.6ms；下一次按下分别在827.4ms与934ms后，因此不能从这些段声称连续3秒返回等待。",
+      "最后一次释放seq890至检查点seq896约15.80秒，所记录模型和DOM选区始终为anchor1091/head635、纸面scrollTop始终909。取证按钮操作前单独保存的physical-release-observed-state.json仍是inputEvents=893、windowScroll=(76,648)。seq894以后根通过Playwright locator点击顶部检查点/导出，自动滚动window.y到0；这一取证动作不归因于用户返回后失控，也不当作第三次真人返回证据。",
+      "最后一次按住拖选持续9.93秒，期间纸面scrollTop在0–909变化且窗口y在501–648变化，选区随拖动/滚动更新。它不属于释放后失控扩选证据；布局签名、页数、pending和正文仍保持。",
+      "无pointer-return-without-buttons并不代表未返回：三个场景已经正常收到pointerup/mouseup，记录器清除pressed状态。前两次以普通pointermove/buttons=0记录真人返回；第三次释放后的seq894为取证控制动作，明确排除硬件来源推断。",
+      "没有window-blur或window-focus事件；源windowFocused始终true。跨窗口拖动不必切换活动窗口，不能把这些事件缺席当作跨窗口未发生。",
+      "部分selectionchange先看到DOM选区更新，随后editor-transaction更新模型；释放后的选区一致性使用边界事件和处理后状态判定。"
+    ]
+  },
+  "finalState": {
+    "modelSelection": {
+      "from": 635,
+      "to": 1091,
+      "anchor": 1091,
+      "head": 635,
+      "empty": false
+    },
+    "domSelection": {
+      "anchor": 1091,
+      "focus": 635,
+      "collapsed": false
+    },
+    "pageCount": 27,
+    "pending": false,
+    "composing": false,
+    "originalMatches": true,
+    "snapshotContentExactlyEqualsBaseline": true,
+    "allCheckpointContentsExactlyEqualBaseline": true,
+    "scroll": {
+      "paper": [
+        {
+          "top": 909,
+          "left": 0
+        }
+      ],
+      "window": {
+        "x": 76,
+        "y": 0
+      }
+    },
+    "undoAvailable": false,
+    "redoAvailable": false
+  },
+  "limits": [
+    "用户报告支持真实硬件与停留观察；事件轨迹直接支持三次坐标越界和完整释放，前两次真人无按键返回、选区/纸面停止及重新点击拖选恢复。第三次释放后的seq894开始为取证控制动作。二者明确分开，不以isTrusted替代人工来源。",
+    "事件日志没有逐帧或连续3秒定时采样，不能独立证明每一帧视觉稳定；3秒停留的完成依赖人工确认。",
+    "本次没有pointercancel、lostpointercapture或原生Escape取消事件。通过范围是实际释放结束拖选及恢复，不扩展成独立操作系统取消路径通过。",
+    "未读取右侧诊断窗口的系统级鼠标事件；外部目标与窗口布局由准备观察和用户确认补足。",
+    "本分析不替代中文IME取消/redo验收，也不替代WPS原生往返。"
+  ]
+}

@@ -284,14 +284,14 @@ test("孤立 canonical 部件不会先被移除再绕过原文归属守卫", asy
   await assert.rejects(convertDocxImport(bytes), /未被正文引用|内容控件/)
 })
 
-test("孤立的空未知控件或缺缓存页码域仍按旧规则拒绝，不能以空白页部件略过", async () => {
+test("孤立的空未知控件或缺缓存页码域仍拒绝，不能以空白页部件略过归属检查", async () => {
   for (const xml of [
     `<w:ftr xmlns:w="${WORD_XML}"><w:sdt><w:sdtPr><w:tag w:val="UnknownEmptyControl"/></w:sdtPr><w:sdtContent/></w:sdt></w:ftr>`,
     `<w:ftr xmlns:w="${WORD_XML}"><w:p><w:fldSimple w:instr="PAGE"/></w:p></w:ftr>`
   ]) {
     const zip = await JSZip.loadAsync(await exportBytes(fixture({ header: null, footer: null })))
     zip.file("word/footer2.xml", xml)
-    await assert.rejects(convertDocxImport(await zip.generateAsync({ type: "uint8array" })), /内容控件|没有已保存的显示值/)
+    await assert.rejects(convertDocxImport(await zip.generateAsync({ type: "uint8array" })), /内容控件|未被正文引用/)
   }
 })
 

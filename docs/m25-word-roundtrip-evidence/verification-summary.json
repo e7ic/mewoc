@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-29",
+  "baselineCommit": "6426c1d",
+  "wordVersion": "16.100.2",
+  "nativeOpenEditSavePassed": true,
+  "nativePdfPages": 30,
+  "bodyAndImageStructurePreserved": true,
+  "mewocReimportPassed": false,
+  "m25AcceptanceComplete": false,
+  "finalBrowserError": "Mewoc 页眉、页脚或页码结构无法可靠恢复，请保留原 DOCX",
+  "findings": [
+    "Word 原生改写页眉页脚、页码域及水印后，现有严格结构匹配拒绝导回",
+    "Word 原生 PDF 的 30 页均未显示水印",
+    "Word 字母编号在 z 后显示 aa/bb/cc，与浏览器 aa/ab/ac 不同"
+  ],
+  "remaining": [
+    "修复并复验 Word 原生往返兼容",
+    "确认水印与字母编号显示",
+    "真实中文输入法跨页候选及撤销重做",
+    "物理指针跨页及跨窗口拖选"
+  ],
+  "cleanup": {
+    "agentBrowserTabClosed": true,
+    "wordSampleWindowClosed": true,
+    "validationServer4182Stopped": true,
+    "existingBrowserDocumentsDeleted": false
+  },
+  "sourceUnchanged": true
+}

@@ -1,0 +1,39 @@
+- main:
+  - heading "Mewoc 浏览器验收" [level=1]
+  - paragraph: 使用真实浏览器排版、React 17、编辑器与 IndexedDB。拖动事件为合成事件，不代替真实输入法或物理鼠标验收。
+  - paragraph: 请使用专用测试端口。点击运行后才创建测试文档；一次运行完成后刷新可重新测试。
+  - button "连续运行四组分页验收（75 项）"
+  - button "运行浏览器验收"
+  - button "打开混合长文原生补验"
+  - button "运行压力验收"
+  - button "运行资源重复保存验收"
+  - button "导出验收结果" [disabled]
+  - button "运行 Word 导出验收"
+  - button "运行 Word 导入验收"
+  - button "运行文档库验收"
+  - button "运行历史版本验收"
+  - button "运行批注验收"
+  - button "运行模板验收"
+  - button "运行图表精细设置验收"
+  - button "运行段落精细设置验收"
+  - button "运行编辑交互验收"
+  - button "运行工具栏验收"
+  - button "运行图片替换与格式标记验收"
+  - button "运行文本框与折叠详情验收"
+  - button "运行目录与书签导航验收"
+  - button "运行页面与水印验收"
+  - button "运行 Word 页面往返验收"
+  - button "打开 Word 页面预览示例"
+  - button "运行页眉页脚与页码验收"
+  - button "打开页眉页脚补验示例"
+  - button "运行音频与视频验收"
+  - button "打开媒体补验示例"
+  - button "运行自动分页验收"
+  - button "运行跨页表格验收"
+  - button "显示跨页表格示例"
+  - button "运行段内分页验收"
+  - button "显示段内分页示例"
+  - button "运行容器分页验收"
+  - button "显示容器分页示例"
+  - status: 等待运行
+  - list

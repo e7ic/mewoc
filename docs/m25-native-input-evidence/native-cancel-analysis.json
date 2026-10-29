@@ -1,0 +1,277 @@
+{
+  "generatedAt": "2026-10-29T08:00:09.034689+00:00",
+  "source": "docs/m25-native-input-evidence/native-cancel-before-toolbar.json",
+  "sourceSha256": "698cfa46517e0964470daf0cabcc81c7d10c228e457c7d77b814e5aaeff4beac",
+  "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+  "verdict": "Cancellation is not proven. The retained cancellation phase contains six nonempty confirmations totaling 42 characters, then two nonempty confirmations forming 重做验收. Each follows a trusted Space keydown. No Escape keydown or empty compositionend is recorded; OS interception and user intent cannot be inferred.",
+  "recordingIntegrity": {
+    "sourceEventCount": 2000,
+    "sourceSequenceRange": [
+      77,
+      2076
+    ],
+    "sourceDroppedEvents": 76,
+    "sourceThrottledMoves": 1332,
+    "sourceSessionChanged": false,
+    "phaseChangeSequence": 897,
+    "allCancellationPhaseEventsRetained": true,
+    "earlierArchive": "docs/m25-native-input-evidence/physical-window-release.json",
+    "earlierArchiveSha256": "b9d045876585b851f980cc9ec5767fe9de034378ed065d7c6eeeee45531d15f2",
+    "earlierSequenceRange": [
+      1,
+      896
+    ],
+    "earlierDroppedEvents": 0,
+    "sameSessionStart": true,
+    "sameBaseline": true,
+    "overlapCount": 820,
+    "overlapEventsExactlyEqual": true,
+    "combinedSequenceRange": [
+      1,
+      2076
+    ],
+    "combinedContinuous": true,
+    "note": "The new raw file remains truncated by 76 events. Earlier archive supplies sequences 1-76 and matching overlap; originals are not rewritten or presented as untruncated."
+  },
+  "phase": {
+    "name": "取消后恢复",
+    "baselineAtPhaseStart": true,
+    "firstCompositionStartSequence": 921,
+    "compositionCount": 8,
+    "commits": [
+      {
+        "startSequence": 921,
+        "endSequence": 1098,
+        "data": "阿森行爱囧蛋差三单卡",
+        "characters": 10,
+        "startSelection": 1250,
+        "endSelection": 1260,
+        "textLengthBefore": 13295,
+        "textLengthAfter": 13305,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1089,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 7.5
+      },
+      {
+        "startSequence": 1106,
+        "endSequence": 1301,
+        "data": "啊三矿难卡三娘看呐",
+        "characters": 9,
+        "startSelection": 1260,
+        "endSelection": 1269,
+        "textLengthBefore": 13305,
+        "textLengthAfter": 13314,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1292,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 7.3
+      },
+      {
+        "startSequence": 1311,
+        "endSequence": 1413,
+        "data": "看的那看",
+        "characters": 4,
+        "startSelection": 1269,
+        "endSelection": 1273,
+        "textLengthBefore": 13314,
+        "textLengthAfter": 13318,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1404,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 7.3
+      },
+      {
+        "startSequence": 1421,
+        "endSequence": 1523,
+        "data": "男框啊三年",
+        "characters": 5,
+        "startSelection": 1273,
+        "endSelection": 1278,
+        "textLengthBefore": 13318,
+        "textLengthAfter": 13323,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1514,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 7.2
+      },
+      {
+        "startSequence": 1531,
+        "endSequence": 1591,
+        "data": "卡顿",
+        "characters": 2,
+        "startSelection": 1278,
+        "endSelection": 1280,
+        "textLengthBefore": 13323,
+        "textLengthAfter": 13325,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1582,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 9.3
+      },
+      {
+        "startSequence": 1600,
+        "endSequence": 1832,
+        "data": "看阿宋阿丹卡三娘家卡农框",
+        "characters": 12,
+        "startSelection": 1280,
+        "endSelection": 1292,
+        "textLengthBefore": 13325,
+        "textLengthAfter": 13337,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1823,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 21.3
+      },
+      {
+        "startSequence": 1899,
+        "endSequence": 1958,
+        "data": "重做",
+        "characters": 2,
+        "startSelection": 1325,
+        "endSelection": 1327,
+        "textLengthBefore": 13337,
+        "textLengthAfter": 13339,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 1949,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 23.3
+      },
+      {
+        "startSequence": 1987,
+        "endSequence": 2042,
+        "data": "验收",
+        "characters": 2,
+        "startSelection": 1327,
+        "endSelection": 1329,
+        "textLengthBefore": 13339,
+        "textLengthAfter": 13341,
+        "compositionEndTrusted": false,
+        "precedingKey": {
+          "sequence": 2033,
+          "key": " ",
+          "code": "Space",
+          "trusted": true,
+          "modifiers": {
+            "meta": false,
+            "ctrl": false,
+            "alt": false,
+            "shift": false
+          }
+        },
+        "endAfterPrecedingKeyMs": 22.0
+      }
+    ],
+    "escapeKeySequences": [],
+    "emptyCompositionEndSequences": [],
+    "cancellationProven": false,
+    "osSwallowedEscapeProven": false
+  },
+  "exactDocumentDiff": {
+    "changedJsonPath": "content[4].content[0].text",
+    "onlyOneTextNodeChanged": true,
+    "insertions": [
+      {
+        "value": "阿森行爱囧蛋差三单卡啊三矿难卡三娘看呐看的那看男框啊三年卡顿看阿宋阿丹卡三娘家卡农框",
+        "characters": 42,
+        "snapshotTextCodePointOffset": 1146,
+        "snapshotTextUtf16Offset": 1221,
+        "snapshotProseMirrorPosition": 1250,
+        "context": "整，保存和撤销不能加入视阿森行爱囧蛋差三单卡啊三矿难卡三娘看呐看的那看男框啊三年卡顿看阿宋阿丹卡三娘家卡农框图空隙。同一段中英文 M"
+      },
+      {
+        "value": "重做验收",
+        "characters": 4,
+        "snapshotTextCodePointOffset": 1218,
+        "snapshotTextUtf16Offset": 1296,
+        "snapshotProseMirrorPosition": 1325,
+        "context": "ext 👩🏽‍💻 跨页后重做验收仍保持完整，保存和撤销不"
+      }
+    ],
+    "totalExtraCharacters": 46,
+    "baselineTextLength": 13295,
+    "snapshotTextLength": 13341,
+    "removingExactlyTheseTwoUniqueStringsRestoresEntireBaselineJson": true,
+    "resourceNodesUnchanged": true,
+    "rawSnapshotOriginalMatches": false,
+    "finalPages": 27,
+    "pending": false,
+    "composing": false,
+    "warning": "Undo/redo of the last four characters alone does not restore the original baseline while the earlier 42 characters remain. Do not infer history grouping or number of additional undos from composition count."
+  },
+  "evidenceLimits": [
+    "A trusted Space event and a nonempty compositionend establish the observed event sequence, not the operator intent.",
+    "No recorded Escape event cannot distinguish an unpressed key from interception outside the page.",
+    "All eight captured compositionend events have trusted=false, while the preceding Space events have trusted=true; no claim that the entire stream is hardware-trusted."
+  ]
+}

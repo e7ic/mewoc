@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-29",
+  "passed": true,
+  "scope": "File-only comparison of native Word DOCX, production Node converter/record builder, and the browser formally downloaded portable document. No hidden browser state used. Node image dimensions use an image-header stub; browser export supplies independent retained image-byte evidence.",
+  "contentSource": "Portable document.content and OOXML body; rendered DOM headers, footers, watermark layers and pagination decorations are not counted as document body.",
+  "files": {
+    "original": {
+      "path": "docs/m25-native-evidence/browser-export.docx",
+      "sha256": "aad0d66c61be08b7b0b75b664043caaab9e3fbdeffa58af9c55a30d32998b20a"
+    },
+    "wordInput": {
+      "path": "docs/m25-word-roundtrip-evidence/recheck/word-input.docx",
+      "sha256": "aad0d66c61be08b7b0b75b664043caaab9e3fbdeffa58af9c55a30d32998b20a"
+    },
+    "wordResaved": {
+      "path": "docs/m25-word-roundtrip-evidence/recheck/word-resaved.docx",
+      "bytes": 27115,
+      "sha256": "7012942741f34e65e52d343b94ce8872fc7eb8c8e08d19278275f75a9806e7c4"
+    },
+    "browserExport": {
+      "path": "docs/m25-word-roundtrip-evidence/recheck/browser-imported.mewoc.json",
+      "bytes": 109909,
+      "sha256": "5c06d86b5e1d0e54253f10a35d2bbdea17f2e88a0e94d166e6aa3dc31c5b03e4"
+    }
+  },
+  "intentionalAppendedMarker": " M25_WORD_RECHECK_20261029",
+  "checks": [
+    {
+      "name": "Word input is an unchanged copy of original browser export",
+      "passed": true
+    },
+    {
+      "name": "Original exported source hash unchanged",
+      "passed": true
+    },
+    {
+      "name": "Prior native fixture word-resaved.docx is unchanged",
+      "passed": true
+    },
+    {
+      "name": "Prior native fixture word-fields-updated.docx is unchanged",
+      "passed": true
+    },
+    {
+      "name": "Native OOXML body contains only the appended recheck marker",
+      "passed": true
+    },
+    {
+      "name": "Native OOXML paragraphs/tables/rows/cells/breaks unchanged",
+      "passed": true
+    },
+    {
+      "name": "Production import body contains only the appended recheck marker",
+      "passed": true
+    },
+    {
+      "name": "Browser saved content exactly equals production Node content excluding generated asset identity",
+      "passed": true
+    },
+    {
+      "name": "Archived Node document equals current production conversion excluding generated asset identity",
+      "passed": true
+    },
+    {
+      "name": "Browser and archived Node page settings equal current production conversion",
+      "passed": true
+    },
+    {
+      "name": "Original page settings retained within documented Word color/fixed-point normalization",
+      "passed": true
+    },
+    {
+      "name": "Node counts match baseline exactly",
+      "passed": true
+    },
+    {
+      "name": "Table text, cell types and all merge spans match baseline",
+      "passed": true
+    },
+    {
+      "name": "List start, type, order and every item match baseline",
+      "passed": true
+    },
+    {
+      "name": "Browser embedded image bytes match Node, original source and known image hash",
+      "passed": true
+    },
+    {
+      "name": "Content marker M25_SOAK_DOCUMENT_START",
+      "passed": true
+    },
+    {
+      "name": "Content marker M25_SOAK_DOCUMENT_END",
+      "passed": true
+    },
+    {
+      "name": "Content marker 同一段中英文 Mixed text",
+      "passed": true
+    },
+    {
+      "name": "Content marker 引用中的长段落持续跨页",
+      "passed": true
+    },
+    {
+      "name": "Content marker const line",
+      "passed": true
+    },
+    {
+      "name": "Content marker [x] ",
+      "passed": true
+    },
+    {
+      "name": "Content marker [ ] ",
+      "passed": true
+    },
+    {
+      "name": "Content marker M25_WORD_RECHECK_20261029",
+      "passed": true
+    }
+  ],
+  "wordBodyCounts": {
+    "p": 179,
+    "tbl": 2,
+    "tr": 49,
+    "tc": 97,
+    "br": 89
+  },
+  "nodeCounts": {
+    "doc": 1,
+    "image": 1,
+    "paragraph": 178,
+    "text": 267,
+    "table": 2,
+    "tableRow": 49,
+    "tableHeader": 2,
+    "tableCell": 95,
+    "orderedList": 1,
+    "listItem": 48,
+    "hardBreak": 89
+  },
+  "markerCounts": {
+    "M25_SOAK_DOCUMENT_START": 1,
+    "M25_SOAK_DOCUMENT_END": 1,
+    "同一段中英文 Mixed text": 110,
+    "引用中的长段落持续跨页": 80,
+    "const line": 90,
+    "[x] ": 8,
+    "[ ] ": 16,
+    "M25_WORD_RECHECK_20261029": 1
+  },
+  "page": {
+    "size": "A5",
+    "orientation": "portrait",
+    "marginsMm": {
+      "top": 14.99,
+      "right": 14.99,
+      "bottom": 14.99,
+      "left": 14.99
+    },
+    "watermark": {
+      "text": "M25 原生验收",
+      "color": "#6554c0",
+      "opacity": 0.1199951171875,
+      "angle": -35
+    },
+    "header": {
+      "text": "M25 持续验收",
+      "alignment": "left",
+      "pageNumber": "page"
+    },
+    "footer": {
+      "text": "原始文档与资源",
+      "alignment": "center",
+      "pageNumber": "page-total"
+    }
+  },
+  "tables": [
+    {
+      "rows": 48,
+      "cells": 96,
+      "mergedCells": [],
+      "contentAndSpansSha256": "ad52e9d2aabf4ab5a3a4d374c88616941d059e22562a0b78eb0f07239a950e59"
+    },
+    {
+      "rows": 1,
+      "cells": 1,
+      "mergedCells": [],
+      "contentAndSpansSha256": "120791ec0d5105a7ea7da8c9cb9554ac28891488c5d1e63106ccd9b9be4ac56c"
+    }
+  ],
+  "lists": [
+    {
+      "type": "orderedList",
+      "attrs": {
+        "start": 7,
+        "type": "a"
+      },
+      "itemCount": 48,
+      "itemsSha256": "2bc1fcf85f05e0fa969ac4169e78d42b738fd5d99916656630a21edbac31adda"
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "bytes": 1100,
+      "sha256": "3000f55839a18c6dfd0eba68fa2912af63d525c33b1c402d4fdbef7ca1aa4c4b"
+    }
+  ]
+}

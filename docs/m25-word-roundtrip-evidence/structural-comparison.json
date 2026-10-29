@@ -1,0 +1,673 @@
+{
+  "generatedDate": "2026-10-29",
+  "scope": "Read-only OOXML comparison of original browser export and actual Microsoft Word 16.100.2 native save. Does not prove visual pagination or successful Mewoc import.",
+  "overallRoundtripPassed": false,
+  "contentPreservation": {
+    "bodyTextEqualsOriginalPlusAppendedMarker": true,
+    "bodyTextExactAfterRemovingOneAppendedMarker": true,
+    "markerIsAtBodyEnd": true,
+    "textLengthBefore": 13035,
+    "textLengthAfter": 13063,
+    "counts": {
+      "M25_SOAK_DOCUMENT_START": {
+        "original": 1,
+        "wordResaved": 1
+      },
+      "M25_SOAK_DOCUMENT_END": {
+        "original": 1,
+        "wordResaved": 1
+      },
+      "同一段中英文 Mixed text": {
+        "original": 110,
+        "wordResaved": 110
+      },
+      "引用中的长段落持续跨页": {
+        "original": 80,
+        "wordResaved": 80
+      },
+      "[x] ": {
+        "original": 8,
+        "wordResaved": 8
+      },
+      "[ ] ": {
+        "original": 16,
+        "wordResaved": 16
+      },
+      "持续验收表格": {
+        "original": 96,
+        "wordResaved": 96
+      },
+      "const line": {
+        "original": 90,
+        "wordResaved": 90
+      },
+      "嵌套容器开始": {
+        "original": 1,
+        "wordResaved": 1
+      },
+      "嵌套容器结束": {
+        "original": 1,
+        "wordResaved": 1
+      },
+      "native-check.wav": {
+        "original": 1,
+        "wordResaved": 1
+      },
+      "native-check.txt": {
+        "original": 1,
+        "wordResaved": 1
+      },
+      "M25_WORD_ROUNDTRIP_20261029": {
+        "original": 0,
+        "wordResaved": 1
+      }
+    },
+    "tablesExactTextShapeAndOrder": true,
+    "numberingExactContentStartFormatAndOrder": true,
+    "numberedParagraphCount": 48,
+    "firstNumbering": {
+      "level": "0",
+      "start": {
+        "val": "7"
+      },
+      "format": {
+        "val": "lowerLetter"
+      },
+      "pattern": {
+        "val": "%1."
+      }
+    },
+    "imageByteHashesPreserved": true,
+    "imageDrawingCountPreserved": true,
+    "paperWidthHeightPreserved": true,
+    "paperMarginsPreserved": true
+  },
+  "firstObservedImportFailure": {
+    "message": "Mewoc 页眉、页脚或页码结构无法可靠恢复，请保留原 DOCX",
+    "file": "src/pages/editor/tools/docx-import-furniture.js",
+    "line": 165,
+    "originalSdtPrChildren": [
+      "tag"
+    ],
+    "wordResavedSdtPrChildren": [
+      "tag",
+      "id"
+    ],
+    "cause": "Word appended w:id to both tagged Mewoc header/footer content-control properties; readDecoration requires exactly one w:tag child."
+  },
+  "additionalActualXmlChangesConflictingWithCurrentGuards": [
+    {
+      "component": "page furniture",
+      "changes": [
+        "Paragraph metadata w14:paraId, w14:textId, w:rsidR and w:rsidRDefault added.",
+        "Header w:jc=left and w:spacing before=0 omitted as defaults.",
+        "Latin and Chinese text split across additional runs; required xml:space=preserve omitted where unnecessary.",
+        "Explicit ASCII/hAnsi Arial omitted from run fonts; inherited defaults replace duplicate attributes.",
+        "w:fldSimple PAGE/NUMPAGES converted to begin/instrText/separate/result/end runs."
+      ],
+      "guardLocations": [
+        "docx-import-furniture.js:169",
+        "docx-import-furniture.js:203",
+        "docx-import-furniture.js:216",
+        "docx-import-furniture.js:227"
+      ]
+    },
+    {
+      "component": "watermark",
+      "changes": [
+        "One pict containing shapetype+shape becomes two pict nodes, both with w14:anchorId.",
+        "Original MewocWatermarkType id becomes hidden standalone v:shape, while visible MewocWatermarkShape remains identifiable by id and text.",
+        "Visible shape rotation -35 becomes 325; width 361.50646251175664pt becomes 361.5pt and height 54.225969376763494pt becomes 54.25pt.",
+        "Opacity decimal 0.12 becomes fixed-point 7864f (7864/65536 = 0.1199951171875).",
+        "Fill color case changes to #6554c0; Word adds VML shape metadata and removes default properties."
+      ],
+      "guardLocations": [
+        "docx-import-watermark.js:140",
+        "docx-import-watermark.js:157",
+        "docx-import-watermark.js:177"
+      ]
+    }
+  ],
+  "original": {
+    "path": "docs/m25-word-roundtrip-evidence/word-input.docx",
+    "bytes": 17281,
+    "sha256": "aad0d66c61be08b7b0b75b664043caaab9e3fbdeffa58af9c55a30d32998b20a",
+    "bodyCounts": {
+      "paragraphs": 179,
+      "tables": 2,
+      "rows": 49,
+      "cells": 97,
+      "breaks": 89
+    },
+    "sections": [
+      {
+        "size": {
+          "w": "8391",
+          "h": "11906",
+          "orient": "portrait"
+        },
+        "margins": {
+          "top": "850",
+          "right": "850",
+          "bottom": "850",
+          "left": "850",
+          "header": "317",
+          "footer": "317",
+          "gutter": "0"
+        },
+        "pageNumber": {}
+      }
+    ],
+    "media": [
+      {
+        "path": "word/media/b686d57ef649852fc87e0b1d9f9a52325b457e2d.png",
+        "bytes": 1100,
+        "sha256": "3000f55839a18c6dfd0eba68fa2912af63d525c33b1c402d4fdbef7ca1aa4c4b"
+      }
+    ],
+    "furniture": {
+      "word/header1.xml": {
+        "tag": {
+          "val": "MewocPageHeader_v1"
+        },
+        "propertiesChildren": [
+          {
+            "name": "tag",
+            "attributes": {
+              "val": "MewocPageHeader_v1"
+            }
+          }
+        ],
+        "paragraphAttributes": {},
+        "paragraphProperties": [
+          {
+            "name": "spacing",
+            "attributes": {
+              "after": "0",
+              "before": "0",
+              "line": "216",
+              "lineRule": "exact"
+            }
+          },
+          {
+            "name": "jc",
+            "attributes": {
+              "val": "left"
+            }
+          }
+        ],
+        "text": "M25 持续验收 · 第 1 页",
+        "simpleFields": [
+          "PAGE"
+        ],
+        "complexFieldInstructions": [],
+        "complexFieldMarkers": [],
+        "runCount": 4,
+        "firstRunFonts": {
+          "ascii": "Arial",
+          "eastAsia": "PingFang SC",
+          "hAnsi": "Arial"
+        },
+        "pictures": [
+          {
+            "attributes": {},
+            "children": [
+              {
+                "name": "shapetype",
+                "attributes": {
+                  "id": "MewocWatermarkType_709c5d7ad36d4c519c35d57779763452",
+                  "coordsize": "21600,21600",
+                  "spt": "136",
+                  "path": "m0,10800l21600,10800e"
+                }
+              },
+              {
+                "name": "shape",
+                "attributes": {
+                  "id": "MewocWatermarkShape_709c5d7ad36d4c519c35d57779763452",
+                  "type": "#MewocWatermarkType_709c5d7ad36d4c519c35d57779763452",
+                  "style": "position:absolute;margin-left:0;margin-top:0;width:361.50646251175664pt;height:54.225969376763494pt;rotation:-35;z-index:-251654144;mso-wrap-edited:f;mso-position-horizontal:center;mso-position-horizontal-relative:page;mso-position-vertical:center;mso-position-vertical-relative:page;mso-wrap-style:none",
+                  "fillcolor": "#6554C0",
+                  "stroked": "f",
+                  "allowincell": "f",
+                  "allowoverlap": "t"
+                }
+              }
+            ]
+          }
+        ],
+        "watermarkShapes": [
+          {
+            "attributes": {
+              "id": "MewocWatermarkShape_709c5d7ad36d4c519c35d57779763452",
+              "type": "#MewocWatermarkType_709c5d7ad36d4c519c35d57779763452",
+              "style": "position:absolute;margin-left:0;margin-top:0;width:361.50646251175664pt;height:54.225969376763494pt;rotation:-35;z-index:-251654144;mso-wrap-edited:f;mso-position-horizontal:center;mso-position-horizontal-relative:page;mso-position-vertical:center;mso-position-vertical-relative:page;mso-wrap-style:none",
+              "fillcolor": "#6554C0",
+              "stroked": "f",
+              "allowincell": "f",
+              "allowoverlap": "t"
+            },
+            "fill": {
+              "opacity": "0.12"
+            },
+            "textpath": {
+              "on": "t",
+              "fitshape": "f",
+              "xscale": "f",
+              "style": "font-family:Arial;font-size:45.18830781396958pt;v-text-align:center",
+              "string": "M25 原生验收"
+            }
+          }
+        ]
+      },
+      "word/footer1.xml": {
+        "tag": {
+          "val": "MewocPageFooter_v1"
+        },
+        "propertiesChildren": [
+          {
+            "name": "tag",
+            "attributes": {
+              "val": "MewocPageFooter_v1"
+            }
+          }
+        ],
+        "paragraphAttributes": {},
+        "paragraphProperties": [
+          {
+            "name": "spacing",
+            "attributes": {
+              "after": "0",
+              "before": "0",
+              "line": "216",
+              "lineRule": "exact"
+            }
+          },
+          {
+            "name": "jc",
+            "attributes": {
+              "val": "center"
+            }
+          }
+        ],
+        "text": "原始文档与资源 · 第 1 / 1 页",
+        "simpleFields": [
+          "PAGE",
+          "NUMPAGES"
+        ],
+        "complexFieldInstructions": [],
+        "complexFieldMarkers": [],
+        "runCount": 5,
+        "firstRunFonts": {
+          "ascii": "Arial",
+          "eastAsia": "PingFang SC",
+          "hAnsi": "Arial"
+        }
+      }
+    },
+    "bodyImageReferences": [
+      {
+        "embed": "rId9",
+        "cstate": "none"
+      }
+    ]
+  },
+  "wordResaved": {
+    "path": "docs/m25-word-roundtrip-evidence/word-resaved.docx",
+    "bytes": 27434,
+    "sha256": "24f9a48d2dbe61198d134c0850965c53a85de9a45a925eb46edcde2e84ea69d2",
+    "bodyCounts": {
+      "paragraphs": 179,
+      "tables": 2,
+      "rows": 49,
+      "cells": 97,
+      "breaks": 89
+    },
+    "sections": [
+      {
+        "size": {
+          "w": "8391",
+          "h": "11906"
+        },
+        "margins": {
+          "top": "850",
+          "right": "850",
+          "bottom": "850",
+          "left": "850",
+          "header": "317",
+          "footer": "317",
+          "gutter": "0"
+        },
+        "pageNumber": null
+      }
+    ],
+    "media": [
+      {
+        "path": "word/media/image1.png",
+        "bytes": 1100,
+        "sha256": "3000f55839a18c6dfd0eba68fa2912af63d525c33b1c402d4fdbef7ca1aa4c4b"
+      }
+    ],
+    "furniture": {
+      "word/header1.xml": {
+        "tag": {
+          "val": "MewocPageHeader_v1"
+        },
+        "propertiesChildren": [
+          {
+            "name": "tag",
+            "attributes": {
+              "val": "MewocPageHeader_v1"
+            }
+          },
+          {
+            "name": "id",
+            "attributes": {
+              "val": "-1114667495"
+            }
+          }
+        ],
+        "paragraphAttributes": {
+          "paraId": "3123000F",
+          "textId": "77777777",
+          "rsidR": "00EA3BF7",
+          "rsidRDefault": "00000000"
+        },
+        "paragraphProperties": [
+          {
+            "name": "spacing",
+            "attributes": {
+              "after": "0",
+              "line": "216",
+              "lineRule": "exact"
+            }
+          }
+        ],
+        "text": "M25 持续验收 · 第 1 页",
+        "simpleFields": [],
+        "complexFieldInstructions": [
+          "PAGE"
+        ],
+        "complexFieldMarkers": [
+          {
+            "fldCharType": "begin"
+          },
+          {
+            "fldCharType": "separate"
+          },
+          {
+            "fldCharType": "end"
+          }
+        ],
+        "runCount": 12,
+        "firstRunFonts": {
+          "eastAsia": "PingFang SC"
+        },
+        "pictures": [
+          {
+            "attributes": {
+              "anchorId": "6030C256"
+            },
+            "children": [
+              {
+                "name": "shape",
+                "attributes": {
+                  "id": "MewocWatermarkType_709c5d7ad36d4c519c35d57779763452",
+                  "spid": "_x0000_s1026",
+                  "alt": "",
+                  "style": "position:absolute;margin-left:0;margin-top:0;width:50pt;height:50pt;z-index:251657216;visibility:hidden;mso-wrap-edited:f;mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;mso-height-percent:0",
+                  "coordsize": "21600,21600",
+                  "spt": "100",
+                  "adj": "0,,0",
+                  "path": "m,10800r21600,e"
+                }
+              }
+            ]
+          },
+          {
+            "attributes": {
+              "anchorId": "0A306456"
+            },
+            "children": [
+              {
+                "name": "shape",
+                "attributes": {
+                  "id": "MewocWatermarkShape_709c5d7ad36d4c519c35d57779763452",
+                  "spid": "_x0000_s1025",
+                  "alt": "",
+                  "style": "position:absolute;margin-left:0;margin-top:0;width:361.5pt;height:54.25pt;rotation:325;z-index:-251658240;visibility:visible;mso-wrap-style:none;mso-wrap-edited:f;mso-width-percent:0;mso-height-percent:0;mso-position-horizontal:center;mso-position-horizontal-relative:page;mso-position-vertical:center;mso-position-vertical-relative:page;mso-width-percent:0;mso-height-percent:0",
+                  "coordsize": "21600,21600",
+                  "spt": "100",
+                  "allowincell": "f",
+                  "adj": "0,,0",
+                  "path": "m,10800r21600,e",
+                  "fillcolor": "#6554c0",
+                  "stroked": "f"
+                }
+              }
+            ]
+          }
+        ],
+        "watermarkShapes": [
+          {
+            "attributes": {
+              "id": "MewocWatermarkType_709c5d7ad36d4c519c35d57779763452",
+              "spid": "_x0000_s1026",
+              "alt": "",
+              "style": "position:absolute;margin-left:0;margin-top:0;width:50pt;height:50pt;z-index:251657216;visibility:hidden;mso-wrap-edited:f;mso-width-percent:0;mso-height-percent:0;mso-width-percent:0;mso-height-percent:0",
+              "coordsize": "21600,21600",
+              "spt": "100",
+              "adj": "0,,0",
+              "path": "m,10800r21600,e"
+            },
+            "fill": null,
+            "textpath": {
+              "on": "t"
+            }
+          },
+          {
+            "attributes": {
+              "id": "MewocWatermarkShape_709c5d7ad36d4c519c35d57779763452",
+              "spid": "_x0000_s1025",
+              "alt": "",
+              "style": "position:absolute;margin-left:0;margin-top:0;width:361.5pt;height:54.25pt;rotation:325;z-index:-251658240;visibility:visible;mso-wrap-style:none;mso-wrap-edited:f;mso-width-percent:0;mso-height-percent:0;mso-position-horizontal:center;mso-position-horizontal-relative:page;mso-position-vertical:center;mso-position-vertical-relative:page;mso-width-percent:0;mso-height-percent:0",
+              "coordsize": "21600,21600",
+              "spt": "100",
+              "allowincell": "f",
+              "adj": "0,,0",
+              "path": "m,10800r21600,e",
+              "fillcolor": "#6554c0",
+              "stroked": "f"
+            },
+            "fill": {
+              "opacity": "7864f"
+            },
+            "textpath": {
+              "on": "t",
+              "style": "font-family:\"Arial\";font-size:45.1883087158203125pt",
+              "string": "M25 原生验收"
+            }
+          }
+        ]
+      },
+      "word/footer1.xml": {
+        "tag": {
+          "val": "MewocPageFooter_v1"
+        },
+        "propertiesChildren": [
+          {
+            "name": "tag",
+            "attributes": {
+              "val": "MewocPageFooter_v1"
+            }
+          },
+          {
+            "name": "id",
+            "attributes": {
+              "val": "-745726089"
+            }
+          }
+        ],
+        "paragraphAttributes": {
+          "paraId": "190CDA53",
+          "textId": "77777777",
+          "rsidR": "00EA3BF7",
+          "rsidRDefault": "00000000"
+        },
+        "paragraphProperties": [
+          {
+            "name": "spacing",
+            "attributes": {
+              "after": "0",
+              "line": "216",
+              "lineRule": "exact"
+            }
+          },
+          {
+            "name": "jc",
+            "attributes": {
+              "val": "center"
+            }
+          }
+        ],
+        "text": "原始文档与资源 · 第 1 / 1 页",
+        "simpleFields": [],
+        "complexFieldInstructions": [
+          "PAGE",
+          "NUMPAGES"
+        ],
+        "complexFieldMarkers": [
+          {
+            "fldCharType": "begin"
+          },
+          {
+            "fldCharType": "separate"
+          },
+          {
+            "fldCharType": "end"
+          },
+          {
+            "fldCharType": "begin"
+          },
+          {
+            "fldCharType": "separate"
+          },
+          {
+            "fldCharType": "end"
+          }
+        ],
+        "runCount": 17,
+        "firstRunFonts": {
+          "eastAsia": "PingFang SC"
+        }
+      }
+    },
+    "bodyImageReferences": [
+      {
+        "embed": "rId7"
+      }
+    ]
+  },
+  "interpretation": "Body text is exactly original text plus the one intentional marker; tables, numbering, image bytes and physical paper parameters are retained. Import is blocked by native Word normalization of tagged page furniture, with further watermark-shape compatibility differences visible in the actual file. Do not count this as a successful Word-Mewoc roundtrip.",
+  "secondNativeFileAfterFieldUpdate": {
+    "path": "docs/m25-word-roundtrip-evidence/word-fields-updated.docx",
+    "bytes": 27476,
+    "sha256": "5e0bfac24daa32a13526358c625a4abf34576567a95aa9595d0ef90c6e831742",
+    "bodyTextEqualsOriginalPlusAppendedMarker": true,
+    "bodyTextEqualsFirstWordResave": true,
+    "intentionalMarkerCount": 1,
+    "pageFurnitureFields": {
+      "word/header1.xml": {
+        "sdtPrChildren": [
+          "tag",
+          "id"
+        ],
+        "tag": "MewocPageHeader_v1",
+        "renderedText": "M25 持续验收 · 第 1 页",
+        "complexInstructions": [
+          "PAGE"
+        ],
+        "simpleInstructions": [],
+        "complexFields": [
+          {
+            "instruction": "PAGE",
+            "cachedValue": "1"
+          }
+        ]
+      },
+      "word/footer1.xml": {
+        "sdtPrChildren": [
+          "tag",
+          "id"
+        ],
+        "tag": "MewocPageFooter_v1",
+        "renderedText": "原始文档与资源 · 第 1 / 1 页",
+        "complexInstructions": [
+          "PAGE",
+          "NUMPAGES"
+        ],
+        "simpleInstructions": [],
+        "complexFields": [
+          {
+            "instruction": "PAGE",
+            "cachedValue": "1"
+          },
+          {
+            "instruction": "NUMPAGES",
+            "cachedValue": "1"
+          }
+        ]
+      }
+    },
+    "fieldUpdateComparedWithFirstResave": {
+      "word/header1.xml": {
+        "firstSave": [
+          {
+            "instruction": "PAGE",
+            "cachedValue": "1"
+          }
+        ],
+        "afterPrintAndSave": [
+          {
+            "instruction": "PAGE",
+            "cachedValue": "1"
+          }
+        ]
+      },
+      "word/footer1.xml": {
+        "firstSave": [
+          {
+            "instruction": "PAGE",
+            "cachedValue": "1"
+          },
+          {
+            "instruction": "NUMPAGES",
+            "cachedValue": "1"
+          }
+        ],
+        "afterPrintAndSave": [
+          {
+            "instruction": "PAGE",
+            "cachedValue": "1"
+          },
+          {
+            "instruction": "NUMPAGES",
+            "cachedValue": "1"
+          }
+        ]
+      }
+    },
+    "finalBrowserResult": {
+      "status": "rejected",
+      "message": "Mewoc 页眉、页脚或页码结构无法可靠恢复，请保留原 DOCX",
+      "evidence": [
+        "browser-fields-updated-import-failure.txt",
+        "browser-fields-updated-import-failure.png"
+      ],
+      "consistentWithNodeFailure": true
+    },
+    "interpretation": "The second native save after printing has unchanged body text and unchanged stored field caches: PAGE=1 and NUMPAGES=1 in the package, although the native PDF renders current page/total 30 correctly. Do not describe this sample as proof that Word persisted refreshed field values. Both tagged header/footer SDT property lists still contain tag plus id, so the same importer structural guard remains the blocker. Earlier browser missing-field-display-value message is retained as an initial observation, not the final root-cause attribution.",
+    "persistedFieldCachesChanged": false
+  },
+  "finalFailureAttribution": "Fresh browser import of word-fields-updated.docx agrees with Node: strict Mewoc header/footer/page-number structure guard rejects native Word normalization. The earlier browser field-display-value message is an initial observation only."
+}

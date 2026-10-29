@@ -105,7 +105,7 @@ export function appendDocxPageContent(parts, warnings) {
       const section = getWordChild(body, "sectPr") || null
       body.insertBefore(createWordParagraph(xml, `原文${kind === "header" ? "页眉" : "页脚"}（静态内容）`), section)
       copies.forEach(node => body.insertBefore(node, section))
-      warnings.add("原文各页眉、页脚的内容已各保留一次并附在正文末尾，不再按页重复；页码为原文件保存值")
+      warnings.add("原文各页眉、页脚的内容已各保留一次并附在正文末尾，不再按页重复；已保存的页码按原值保留，缺失值另行提示")
     }
   }
   // 包内有正文未引用但含内容的页部件时无法判断是有效内容还是旧残留，明确拒绝以免遗漏。

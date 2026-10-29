@@ -1,0 +1,5312 @@
+
+> mewoc@0.1.0 test /Volumes/DRIVE/Labs/mewoc
+> node --import ./tests/setup-node.js --test tests/*.test.js
+
+TAP version 13
+# Subtest: 附件读取期间选区随事务映射，读取完成不会跟随用户后来移动的光标
+ok 1 - 附件读取期间选区随事务映射，读取完成不会跟随用户后来移动的光标
+  ---
+  duration_ms: 117.517416
+  type: 'test'
+  ...
+# Subtest: 附件读取期间 readOnly 取消迟到结果，不发布资源或残留任务锁
+ok 2 - 附件读取期间 readOnly 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 38.406583
+  type: 'test'
+  ...
+# Subtest: 附件读取期间 switching 取消迟到结果，不发布资源或残留任务锁
+ok 3 - 附件读取期间 switching 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 32.136666
+  type: 'test'
+  ...
+# Subtest: 附件读取期间 deleted 取消迟到结果，不发布资源或残留任务锁
+ok 4 - 附件读取期间 deleted 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 50.839875
+  type: 'test'
+  ...
+# Subtest: 附件读取期间 unmounted 取消迟到结果，不发布资源或残留任务锁
+ok 5 - 附件读取期间 unmounted 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 52.576667
+  type: 'test'
+  ...
+# Subtest: 附件读取期间 destroyed 取消迟到结果，不发布资源或残留任务锁
+ok 6 - 附件读取期间 destroyed 取消迟到结果，不发布资源或残留任务锁
+  ---
+  duration_ms: 44.193375
+  type: 'test'
+  ...
+# Subtest: 附件读取防重复并复用图片任务锁，错误后恢复状态且允许重试
+ok 7 - 附件读取防重复并复用图片任务锁，错误后恢复状态且允许重试
+  ---
+  duration_ms: 272.38875
+  type: 'test'
+  ...
+# Subtest: 读取期间恢复其他资源后，提交前再次检查合计容量
+ok 8 - 读取期间恢复其他资源后，提交前再次检查合计容量
+  ---
+  duration_ms: 29.62675
+  type: 'test'
+  ...
+# Subtest: 附件正文与原始 Blob 可保存读取，删除回收磁盘资源后撤销可重新写回
+ok 9 - 附件正文与原始 Blob 可保存读取，删除回收磁盘资源后撤销可重新写回
+  ---
+  duration_ms: 36.8205
+  type: 'test'
+  ...
+# Subtest: 附件资源丢失或类型不符时中止保存，不产生不完整文档
+ok 10 - 附件资源丢失或类型不符时中止保存，不产生不完整文档
+  ---
+  duration_ms: 4.769333
+  type: 'test'
+  ...
+# Subtest: 附件版本冲突和配额异常不会删除已保存资源，重试仍可成功
+ok 11 - 附件版本冲突和配额异常不会删除已保存资源，重试仍可成功
+  ---
+  duration_ms: 16.703959
+  type: 'test'
+  ...
+# Subtest: 附件按不透明字节读取，缺少 MIME 时补二进制类型，空文件可以保存
+ok 12 - 附件按不透明字节读取，缺少 MIME 时补二进制类型，空文件可以保存
+  ---
+  duration_ms: 6.127125
+  type: 'test'
+  ...
+# Subtest: 附件校验拒绝超限文件、路径、控制字符及非法 MIME，读取失败不伪装成功
+ok 13 - 附件校验拒绝超限文件、路径、控制字符及非法 MIME，读取失败不伪装成功
+  ---
+  duration_ms: 2.368
+  type: 'test'
+  ...
+# Subtest: 旧图片格式仍可读，附件与图片必须引用匹配种类的资源
+ok 14 - 旧图片格式仍可读，附件与图片必须引用匹配种类的资源
+  ---
+  duration_ms: 1.5275
+  type: 'test'
+  ...
+# Subtest: 混合图片与附件的 Mewoc 往返保留字节、名称、类型与稳定 ID
+ok 15 - 混合图片与附件的 Mewoc 往返保留字节、名称、类型与稳定 ID
+  ---
+  duration_ms: 3.434166
+  type: 'test'
+  ...
+# Subtest: 缺失内容、伪造类型、长度或 base64 均拒绝导入，缺失 Blob 拒绝导出
+ok 16 - 缺失内容、伪造类型、长度或 base64 均拒绝导入，缺失 Blob 拒绝导出
+  ---
+  duration_ms: 1.990333
+  type: 'test'
+  ...
+# Subtest: 5 MiB 附件可以完整往返，未引用资源不会进入导出文件
+ok 17 - 5 MiB 附件可以完整往返，未引用资源不会进入导出文件
+  ---
+  duration_ms: 946.108666
+  type: 'test'
+  ...
+# Subtest: 容量按正文唯一资源引用计算，新增附件与图片共用 20 MiB 预算
+ok 18 - 容量按正文唯一资源引用计算，新增附件与图片共用 20 MiB 预算
+  ---
+  duration_ms: 0.473584
+  type: 'test'
+  ...
+# Subtest: 下载 URL 按二进制返回原字节，文件名进入 DOM 时不会执行 HTML
+ok 19 - 下载 URL 按二进制返回原字节，文件名进入 DOM 时不会执行 HTML
+  ---
+  duration_ms: 54.472916
+  type: 'test'
+  ...
+# Subtest: 附件插入、后续文字和删除各自可撤销，只读与代码块拒绝修改
+ok 20 - 附件插入、后续文字和删除各自可撤销，只读与代码块拒绝修改
+  ---
+  duration_ms: 134.665792
+  type: 'test'
+  ...
+# Subtest: 附件内部复制只恢复已有资源，外部引用降为文字且不接受下载链接
+ok 21 - 附件内部复制只恢复已有资源，外部引用降为文字且不接受下载链接
+  ---
+  duration_ms: 57.339833
+  type: 'test'
+  ...
+# Subtest: Markdown 输出保留附件名称和大小，给出内容转换说明而不生成虚假链接
+ok 22 - Markdown 输出保留附件名称和大小，给出内容转换说明而不生成虚假链接
+  ---
+  duration_ms: 169.152667
+  type: 'test'
+  ...
+# Subtest: Markdown 展开容器但完整保留标题、富文本、任务、代码、公式和资源说明，不改原稿
+ok 23 - Markdown 展开容器但完整保留标题、富文本、任务、代码、公式和资源说明，不改原稿
+  ---
+  duration_ms: 522.736459
+  type: 'test'
+  ...
+# Subtest: 纯文本保留详情属性标题、全部分段和任务状态；默认属性与未知节点边界继续有效
+ok 24 - 纯文本保留详情属性标题、全部分段和任务状态；默认属性与未知节点边界继续有效
+  ---
+  duration_ms: 7.008292
+  type: 'test'
+  ...
+# Subtest: 真实 HTML 序列化经清理后保留容器属性及内部六级标题、表格和任务清单
+ok 25 - 真实 HTML 序列化经清理后保留容器属性及内部六级标题、表格和任务清单
+  ---
+  duration_ms: 200.545625
+  type: 'test'
+  ...
+# Subtest: 内部容器重建白名单外观并展开详情，事件、URL、任意定位和隐藏样式不随粘贴恢复
+ok 26 - 内部容器重建白名单外观并展开详情，事件、URL、任意定位和隐藏样式不随粘贴恢复
+  ---
+  duration_ms: 37.015167
+  type: 'test'
+  ...
+# Subtest: 外部和畸形详情、非法文本框均展开保留所有标题和正文，不截取或静默丢弃额外内容
+ok 27 - 外部和畸形详情、非法文本框均展开保留所有标题和正文，不截取或静默丢弃额外内容
+  ---
+  duration_ms: 35.037417
+  type: 'test'
+  ...
+# Subtest: DOCX 文本框为保留外观的单格表格，完整富文本、内嵌表格、图片和附件说明进入最终文件
+ok 28 - DOCX 文本框为保留外观的单格表格，完整富文本、内嵌表格、图片和附件说明进入最终文件
+  ---
+  duration_ms: 233.161833
+  type: 'test'
+  ...
+# Subtest: DOCX 详情为独立加粗标题和完整正文，外部分页只应用一次并保留内部列表编号
+ok 29 - DOCX 详情为独立加粗标题和完整正文，外部分页只应用一次并保留内部列表编号
+  ---
+  duration_ms: 65.82025
+  type: 'test'
+  ...
+# Subtest: DOCX 兼容容器缺省属性与零边框，嵌入狭窄表格或列表时完整保留内容并约束宽度
+ok 30 - DOCX 兼容容器缺省属性与零边框，嵌入狭窄表格或列表时完整保留内容并约束宽度
+  ---
+  duration_ms: 18.480708
+  type: 'test'
+  ...
+# Subtest: 容器属性严格限定纯色、整数和单行摘要，文件显式 null 不能绕过契约
+ok 31 - 容器属性严格限定纯色、整数和单行摘要，文件显式 null 不能绕过契约
+  ---
+  duration_ms: 13.460125
+  type: 'test'
+  ...
+# Subtest: 容器支持普通富文本、表格及合法已有嵌套，默认空正文仍使用 paragraph
+ok 32 - 容器支持普通富文本、表格及合法已有嵌套，默认空正文仍使用 paragraph
+  ---
+  duration_ms: 153.646875
+  type: 'test'
+  ...
+# Subtest: 光标插入空容器保留段落两侧文字与格式，并进入容器正文
+ok 33 - 光标插入空容器保留段落两侧文字与格式，并进入容器正文
+  ---
+  duration_ms: 66.724333
+  type: 'test'
+  ...
+# Subtest: 完整正反向多段选区包裹原节点，不接受部分段落、结构跨选和已有容器
+ok 34 - 完整正反向多段选区包裹原节点，不接受部分段落、结构跨选和已有容器
+  ---
+  duration_ms: 236.415542
+  type: 'test'
+  ...
+# Subtest: 插入书签映射主事务和追加事务，移动当前光标不能重定向原目标
+ok 35 - 插入书签映射主事务和追加事务，移动当前光标不能重定向原目标
+  ---
+  duration_ms: 64.466333
+  type: 'test'
+  ...
+# Subtest: 同位置替换与删除使原插入目标永久失效，undo 不复活旧书签
+ok 36 - 同位置替换与删除使原插入目标永久失效，undo 不复活旧书签
+  ---
+  duration_ms: 32.008125
+  type: 'test'
+  ...
+# Subtest: 整段包裹跟踪全部原段落，中段属性或文字可修改，整段替换后永久失效
+ok 37 - 整段包裹跟踪全部原段落，中段属性或文字可修改，整段替换后永久失效
+  ---
+  duration_ms: 49.993417
+  type: 'test'
+  ...
+# Subtest: 设置目标跟随前方插入和属性修改，只合并草稿中实际变更字段
+ok 38 - 设置目标跟随前方插入和属性修改，只合并草稿中实际变更字段
+  ---
+  duration_ms: 7.859459
+  type: 'test'
+  ...
+# Subtest: 设置外壳同位置替换永久失效，原正文及新光标均不改变
+ok 39 - 设置外壳同位置替换永久失效，原正文及新光标均不改变
+  ---
+  duration_ms: 6.656042
+  type: 'test'
+  ...
+# Subtest: 移除外壳完整保留富文本子节点和详情标题，body 光标仍指向原文字
+ok 40 - 移除外壳完整保留富文本子节点和详情标题，body 光标仍指向原文字
+  ---
+  duration_ms: 31.151375
+  type: 'test'
+  ...
+# Subtest: 退出复用外部段落，新段落创建为一步撤销，快捷键优先退出整个代码容器
+ok 41 - 退出复用外部段落，新段落创建为一步撤销，快捷键优先退出整个代码容器
+  ---
+  duration_ms: 19.697125
+  type: 'test'
+  ...
+# Subtest: 插入、设置、移除各隔开前后输入，操作的撤销与重做独立
+ok 42 - 插入、设置、移除各隔开前后输入，操作的撤销与重做独立
+  ---
+  duration_ms: 106.176917
+  type: 'test'
+  ...
+# Subtest: 只读、切换、组合输入及销毁拒绝所有正文写入，结构 selector 可编辑恢复无需事务
+ok 43 - 只读、切换、组合输入及销毁拒绝所有正文写入，结构 selector 可编辑恢复无需事务
+  ---
+  duration_ms: 51.829166
+  type: 'test'
+  ...
+# Subtest: 详情折叠不改变 JSON、HTML、更新次数或历史，只读可操作且搜索选区自动展开
+ok 44 - 详情折叠不改变 JSON、HTML、更新次数或历史，只读可操作且搜索选区自动展开
+  ---
+  duration_ms: 54.852583
+  type: 'test'
+  ...
+# Subtest: 合法 HTML 保留容器属性和完整正文，非法标记只展平外壳而不删除正文
+ok 45 - 合法 HTML 保留容器属性和完整正文，非法标记只展平外壳而不删除正文
+  ---
+  duration_ms: 57.935041
+  type: 'test'
+  ...
+# Subtest: 组合输入不收起详情，嵌套折叠祖先随真实内部选区自动展开
+ok 46 - 组合输入不收起详情，嵌套折叠祖先随真实内部选区自动展开
+  ---
+  duration_ms: 11.330334
+  type: 'test'
+  ...
+# Subtest: 详情正文 DOM 编辑仍进入 ProseMirror，NodeView 只忽略自己的展示变更
+ok 47 - 详情正文 DOM 编辑仍进入 ProseMirror，NodeView 只忽略自己的展示变更
+  ---
+  duration_ms: 58.617583
+  type: 'test'
+  ...
+# Subtest: 详情原生纯文本复制完整节点含标题，局部正文只含所选字符，嵌套标题不重复
+ok 48 - 详情原生纯文本复制完整节点含标题，局部正文只含所选字符，嵌套标题不重复
+  ---
+  duration_ms: 28.239542
+  type: 'test'
+  ...
+# Subtest: 代码目标支持单块正反选区和节点选区，排除跨块及其他节点
+ok 49 - 代码目标支持单块正反选区和节点选区，排除跨块及其他节点
+  ---
+  duration_ms: 95.847459
+  type: 'test'
+  ...
+# Subtest: 转换整段保留源码并移除文字标记，拒绝含非文本节点或跨段选区
+ok 50 - 转换整段保留源码并移除文字标记，拒绝含非文本节点或跨段选区
+  ---
+  duration_ms: 28.517167
+  type: 'test'
+  ...
+# Subtest: 语言修改支持节点选区，同值不更新，历史与后续输入隔开
+ok 51 - 语言修改支持节点选区，同值不更新，历史与后续输入隔开
+  ---
+  duration_ms: 38.645583
+  type: 'test'
+  ...
+# Subtest: Tab 在光标插入两空格，缩进历史与前后输入独立
+ok 52 - Tab 在光标插入两空格，缩进历史与前后输入独立
+  ---
+  duration_ms: 15.945292
+  type: 'test'
+  ...
+# Subtest: 多行缩进按整行处理，下一行起点不扩选，正反向选区保持
+ok 53 - 多行缩进按整行处理，下一行起点不扩选，正反向选区保持
+  ---
+  duration_ms: 63.778625
+  type: 'test'
+  ...
+# Subtest: Shift-Tab 安全处理纯空白、Tab、无缩进及光标位于前导空白
+ok 54 - Shift-Tab 安全处理纯空白、Tab、无缩进及光标位于前导空白
+  ---
+  duration_ms: 15.028209
+  type: 'test'
+  ...
+# Subtest: 跨块 Tab 不吞并正文，节点选区不执行缩进或换行
+ok 55 - 跨块 Tab 不吞并正文，节点选区不执行缩进或换行
+  ---
+  duration_ms: 17.642125
+  type: 'test'
+  ...
+# Subtest: 换行继承已有缩进并替换选区，行首与空代码块保持安全
+ok 56 - 换行继承已有缩进并替换选区，行首与空代码块保持安全
+  ---
+  duration_ms: 16.149834
+  type: 'test'
+  ...
+# Subtest: 退出保留源码，进入既有正文或新建正文，并支持表格内代码块
+ok 57 - 退出保留源码，进入既有正文或新建正文，并支持表格内代码块
+  ---
+  duration_ms: 32.563667
+  type: 'test'
+  ...
+# Subtest: 只读、组合输入与销毁状态拒绝所有代码写操作
+ok 58 - 只读、组合输入与销毁状态拒绝所有代码写操作
+  ---
+  duration_ms: 7.86525
+  type: 'test'
+  ...
+# Subtest: 六种语法的高亮片段完整还原源码，别名使用对应语法
+ok 59 - 六种语法的高亮片段完整还原源码，别名使用对应语法
+  ---
+  duration_ms: 465.314916
+  type: 'test'
+  ...
+# Subtest: 未知语言、空源码与单块超预算回退纯文本并保留全部字符
+ok 60 - 未知语言、空源码与单块超预算回退纯文本并保留全部字符
+  ---
+  duration_ms: 0.505959
+  type: 'test'
+  ...
+# Subtest: HTML 高亮安全转义并保留语言与空白，内部粘贴恢复原始文档
+ok 61 - HTML 高亮安全转义并保留语言与空白，内部粘贴恢复原始文档
+  ---
+  duration_ms: 119.239833
+  type: 'test'
+  ...
+# Subtest: HTML 文档总高亮预算只限制显示，后续代码块源码保持
+ok 62 - HTML 文档总高亮预算只限制显示，后续代码块源码保持
+  ---
+  duration_ms: 48.717375
+  type: 'test'
+  ...
+# Subtest: 异步高亮只接收最新文档结果，不产生内容更新或撤销步骤
+ok 63 - 异步高亮只接收最新文档结果，不产生内容更新或撤销步骤
+  ---
+  duration_ms: 365.168084
+  type: 'test'
+  ...
+# Subtest: 销毁后返回的异步高亮不会分发事务或修改 DOM
+ok 64 - 销毁后返回的异步高亮不会分发事务或修改 DOM
+  ---
+  duration_ms: 177.571209
+  type: 'test'
+  ...
+# Subtest: 只读仍能显示高亮，超预算或渲染失败保留源码并给出状态
+ok 65 - 只读仍能显示高亮，超预算或渲染失败保留源码并给出状态
+  ---
+  duration_ms: 166.695917
+  type: 'test'
+  ...
+# Subtest: 组合输入期间延后高亮，结束事件后恢复
+ok 66 - 组合输入期间延后高亮，结束事件后恢复
+  ---
+  duration_ms: 365.155709
+  type: 'test'
+  ...
+# Subtest: VS Code 畸形元数据不抛错，合法粘贴保留源码、语言及独立撤销
+ok 67 - VS Code 畸形元数据不抛错，合法粘贴保留源码、语言及独立撤销
+  ---
+  duration_ms: 15.349625
+  type: 'test'
+  ...
+# Subtest: 块内粘贴保持纯文本，只读及组合输入拒绝粘贴写入
+ok 68 - 块内粘贴保持纯文本，只读及组合输入拒绝粘贴写入
+  ---
+  duration_ms: 9.082041
+  type: 'test'
+  ...
+# Subtest: 完整粘贴链优先处理 VS Code URL 源码，普通 URL 仍给选中文字加链接
+ok 69 - 完整粘贴链优先处理 VS Code URL 源码，普通 URL 仍给选中文字加链接
+  ---
+  duration_ms: 15.558334
+  type: 'test'
+  ...
+# Subtest: 代码粘贴优先级不改变 schema 自动填充的默认正文节点
+ok 70 - 代码粘贴优先级不改变 schema 自动填充的默认正文节点
+  ---
+  duration_ms: 3.987583
+  type: 'test'
+  ...
+# Subtest: PRE 内容区按原物理行测量，外壳 padding/border 与末尾空行不变
+ok 71 - PRE 内容区按原物理行测量，外壳 padding/border 与末尾空行不变
+  ---
+  duration_ms: 124.157542
+  type: 'test'
+  ...
+# Subtest: CRLF、CR、连续空行、空格/制表符和 Unicode 保留原 UTF-16 位置
+ok 72 - CRLF、CR、连续空行、空格/制表符和 Unicode 保留原 UTF-16 位置
+  ---
+  duration_ms: 42.767166
+  type: 'test'
+  ...
+# Subtest: 原始高亮 SPAN 与嵌套代码仍映射到唯一源码，不改 JSON/HTML/选区/历史
+ok 73 - 原始高亮 SPAN 与嵌套代码仍映射到唯一源码，不改 JSON/HTML/选区/历史
+  ---
+  duration_ms: 224.616917
+  type: 'test'
+  ...
+# Subtest: 0.5/1/1.5 缩放与前置/内部旧 block widget 还原相同自然行盒
+ok 74 - 0.5/1/1.5 缩放与前置/内部旧 block widget 还原相同自然行盒
+  ---
+  duration_ms: 25.700334
+  type: 'test'
+  ...
+# Subtest: 空代码与仅换行的代码保留完整行高且不引入末尾 widget 位置
+ok 75 - 空代码与仅换行的代码保留完整行高且不引入末尾 widget 位置
+  ---
+  duration_ms: 35.730583
+  type: 'test'
+  ...
+# Subtest: 未知样式、RTL、软换行、隐藏/裁切与不可靠参数均安全保留整块
+ok 76 - 未知样式、RTL、软换行、隐藏/裁切与不可靠参数均安全保留整块
+  ---
+  duration_ms: 87.416416
+  type: 'test'
+  ...
+# Subtest: 长源码每个逻辑组只读取所需高亮片段，查询量不随 code unit 逐字增长
+ok 77 - 长源码每个逻辑组只读取所需高亮片段，查询量不随 code unit 逐字增长
+  ---
+  duration_ms: 56.778125
+  type: 'test'
+  ...
+# Subtest: 真实原生 dragstart/drop 移动带批注文字，锚点随文字移动且撤销完整恢复
+ok 78 - 真实原生 dragstart/drop 移动带批注文字，锚点随文字移动且撤销完整恢复
+  ---
+  duration_ms: 188.4055
+  type: 'test'
+  ...
+# Subtest: 原生拖动复制剥离新副本锚点，保留原批注和文字格式
+ok 79 - 原生拖动复制剥离新副本锚点，保留原批注和文字格式
+  ---
+  duration_ms: 44.913792
+  type: 'test'
+  ...
+# Subtest: 最终复制状态决定锚点处理，修饰键可在拖动途中改变
+ok 80 - 最终复制状态决定锚点处理，修饰键可在拖动途中改变
+  ---
+  duration_ms: 129.476458
+  type: 'test'
+  ...
+# Subtest: 普通复制和粘贴仍剥离锚点，拖动状态不会污染后续剪贴板操作
+ok 81 - 普通复制和粘贴仍剥离锚点，拖动状态不会污染后续剪贴板操作
+  ---
+  duration_ms: 19.350375
+  type: 'test'
+  ...
+# Subtest: 跨编辑器外部 HTML 拖入只复制正文和格式，不复用来源批注
+ok 82 - 跨编辑器外部 HTML 拖入只复制正文和格式，不复用来源批注
+  ---
+  duration_ms: 43.24525
+  type: 'test'
+  ...
+# Subtest: 含批注段落的节点拖动复制使用原生节点选区，其余无批注拖动不受影响
+ok 83 - 含批注段落的节点拖动复制使用原生节点选区，其余无批注拖动不受影响
+  ---
+  duration_ms: 40.417333
+  type: 'test'
+  ...
+# Subtest: 只读、切换和输入法组合期间不允许带批注的拖动写入
+ok 84 - 只读、切换和输入法组合期间不允许带批注的拖动写入
+  ---
+  duration_ms: 99.264875
+  type: 'test'
+  ...
+# Subtest: 批注导出：原始与当前引用、解决状态及失去引用的批注均保留
+ok 85 - 批注导出：原始与当前引用、解决状态及失去引用的批注均保留
+  ---
+  duration_ms: 2.357167
+  type: 'test'
+  ...
+# Subtest: 批注 HTML：所有用户文字转义，附录为可阅读的语义列表
+ok 86 - 批注 HTML：所有用户文字转义，附录为可阅读的语义列表
+  ---
+  duration_ms: 74.210875
+  type: 'test'
+  ...
+# Subtest: 没有批注的导出不生成附录，也不改变纯文本
+ok 87 - 没有批注的导出不生成附录，也不改变纯文本
+  ---
+  duration_ms: 377.542417
+  type: 'test'
+  ...
+# Subtest: 批注 Markdown：导出正文与完整附录，用户 Markdown/HTML 语法仍是文字
+ok 88 - 批注 Markdown：导出正文与完整附录，用户 Markdown/HTML 语法仍是文字
+  ---
+  duration_ms: 19.004292
+  type: 'test'
+  ...
+# Subtest: 批注 Word：明确转换说明，附录保留多行内容与 XML 特殊字符
+ok 89 - 批注 Word：明确转换说明，附录保留多行内容与 XML 特殊字符
+  ---
+  duration_ms: 59.123583
+  type: 'test'
+  ...
+# Subtest: 批注文档严格校验锚点归属，同时兼容旧文档和原文已删除的批注
+ok 90 - 批注文档严格校验锚点归属，同时兼容旧文档和原文已删除的批注
+  ---
+  duration_ms: 98.899417
+  type: 'test'
+  ...
+# Subtest: 清除格式保留批注和正文，撤销恢复文字样式
+ok 91 - 清除格式保留批注和正文，撤销恢复文字样式
+  ---
+  duration_ms: 49.271125
+  type: 'test'
+  ...
+# Subtest: 格式刷不复制源批注或移除目标批注
+ok 92 - 格式刷不复制源批注或移除目标批注
+  ---
+  duration_ms: 70.33475
+  type: 'test'
+  ...
+# Subtest: 复制和外部 HTML 粘贴保留文字格式并移除批注 ID
+ok 93 - 复制和外部 HTML 粘贴保留文字格式并移除批注 ID
+  ---
+  duration_ms: 61.159167
+  type: 'test'
+  ...
+# Subtest: Mewoc 文件往返保留批注内容、状态与锚点，新 ID 不影响定位
+ok 94 - Mewoc 文件往返保留批注内容、状态与锚点，新 ID 不影响定位
+  ---
+  duration_ms: 24.025292
+  type: 'test'
+  ...
+# Subtest: 批注投影在上下标互换时保持可序列化，默认深比较不进入 schema 循环引用
+ok 95 - 批注投影在上下标互换时保持可序列化，默认深比较不进入 schema 循环引用
+  ---
+  duration_ms: 79.913291
+  type: 'test'
+  ...
+# Subtest: 批注投影复用同正文的 entries，选择移动、线程新增、引用编辑与只读状态仍正确更新
+ok 96 - 批注投影复用同正文的 entries，选择移动、线程新增、引用编辑与只读状态仍正确更新
+  ---
+  duration_ms: 60.998416
+  type: 'test'
+  ...
+# Subtest: 列表项首叶换页提升到真实 LI token，规划位置仍保留原段落身份
+ok 97 - 列表项首叶换页提升到真实 LI token，规划位置仍保留原段落身份
+  ---
+  duration_ms: 2.455541
+  type: 'test'
+  ...
+# Subtest: 文本框或详情首叶提升到外层容器，首部 padding/title 仅在初次进入时预算
+ok 98 - 文本框或详情首叶提升到外层容器，首部 padding/title 仅在初次进入时预算
+  ---
+  duration_ms: 0.369791
+  type: 'test'
+  ...
+# Subtest: 同一列表项的长段续行保留段内 SPAN 断点，不重新制造 LI 或编号
+ok 99 - 同一列表项的长段续行保留段内 SPAN 断点，不重新制造 LI 或编号
+  ---
+  duration_ms: 0.211958
+  type: 'test'
+  ...
+# Subtest: 续行内部边界优先于外层 boundary，不能把当前列表项的前文一起重新移动
+ok 100 - 续行内部边界优先于外层 boundary，不能把当前列表项的前文一起重新移动
+  ---
+  duration_ms: 0.45475
+  type: 'test'
+  ...
+# Subtest: 超高原子叶块在合法 DIV 边界独占展开页，后续外部段落回到标准纸型
+ok 101 - 超高原子叶块在合法 DIV 边界独占展开页，后续外部段落回到标准纸型
+  ---
+  duration_ms: 0.335625
+  type: 'test'
+  ...
+# Subtest: 嵌套外壳的首尾预算各分配一次，末尾 padding 不能被挤进页脚
+ok 102 - 嵌套外壳的首尾预算各分配一次，末尾 padding 不能被挤进页脚
+  ---
+  duration_ms: 0.2025
+  type: 'test'
+  ...
+# Subtest: 容器首叶的同下叶保护预算包含 prefix，换页后仍在同一标准页
+ok 103 - 容器首叶的同下叶保护预算包含 prefix，换页后仍在同一标准页
+  ---
+  duration_ms: 0.309583
+  type: 'test'
+  ...
+# Subtest: 不同层级的列表与块边界不串用 metadata，后续自然流空隙只计一次
+ok 104 - 不同层级的列表与块边界不串用 metadata，后续自然流空隙只计一次
+  ---
+  duration_ms: 0.17475
+  type: 'test'
+  ...
+# Subtest: 提升后的 boundary 位置用于小数装饰校准键，不能误用内部叶块 token
+ok 105 - 提升后的 boundary 位置用于小数装饰校准键，不能误用内部叶块 token
+  ---
+  duration_ms: 1.320458
+  type: 'test'
+  ...
+# Subtest: 容器中的表格首行可提升外层断点，续页仍使用原表内 TR 与重复表头
+ok 106 - 容器中的表格首行可提升外层断点，续页仍使用原表内 TR 与重复表头
+  ---
+  duration_ms: 0.763
+  type: 'test'
+  ...
+# Subtest: 代码首行仍在原 PRE 外换页，后续显式源码行使用字符位置与 code metadata
+ok 107 - 代码首行仍在原 PRE 外换页，后续显式源码行使用字符位置与 code metadata
+  ---
+  duration_ms: 0.3865
+  type: 'test'
+  ...
+# Subtest: 非法 boundary 位置和种类拒绝，不能在未知或位于叶块之后的父结构插装饰
+ok 108 - 非法 boundary 位置和种类拒绝，不能在未知或位于叶块之后的父结构插装饰
+  ---
+  duration_ms: 0.904833
+  type: 'test'
+  ...
+# Subtest: 源码行元数据严格验证且不能与段落或表格行组身份重叠
+ok 109 - 源码行元数据严格验证且不能与段落或表格行组身份重叠
+  ---
+  duration_ms: 0.514041
+  type: 'test'
+  ...
+# Subtest: OL/UL 间隙是合法空 LI 且不递增计数，原 start/type、真实项与 JSON/HTML 保持不变
+ok 110 - OL/UL 间隙是合法空 LI 且不递增计数，原 start/type、真实项与 JSON/HTML 保持不变
+  ---
+  duration_ms: 239.6415
+  type: 'test'
+  ...
+# Subtest: 嵌套列表只在命中层插空 LI，父项和子项的编号及内容都保留一份
+ok 111 - 嵌套列表只在命中层插空 LI，父项和子项的编号及内容都保留一份
+  ---
+  duration_ms: 11.009292
+  type: 'test'
+  ...
+# Subtest: 任务项跨页保留同一 checkbox/label 与 checked，勾选只产生一个真实正文撤销步骤
+ok 112 - 任务项跨页保留同一 checkbox/label 与 checked，勾选只产生一个真实正文撤销步骤
+  ---
+  duration_ms: 29.869833
+  type: 'test'
+  ...
+# Subtest: 列表项内部后段使用合法 DIV，当前项的原 marker/checkbox 不被复制成续项
+ok 113 - 列表项内部后段使用合法 DIV，当前项的原 marker/checkbox 不被复制成续项
+  ---
+  duration_ms: 22.084875
+  type: 'test'
+  ...
+# Subtest: 同一长列表项的段内分页保留合法 SPAN，直属 LI 数量和复制的列表项数量均不增加
+ok 114 - 同一长列表项的段内分页保留合法 SPAN，直属 LI 数量和复制的列表项数量均不增加
+  ---
+  duration_ms: 16.849208
+  type: 'test'
+  ...
+# Subtest: 彩色容器绘制按纸面裁剪，原外壳和子资源 DOM 不重建且列表 marker 不被裁剪
+ok 115 - 彩色容器绘制按纸面裁剪，原外壳和子资源 DOM 不重建且列表 marker 不被裁剪
+  ---
+  duration_ms: 32.67475
+  type: 'test'
+  ...
+# Subtest: 详情正文 DIV 间隙位于 contentDOM，折叠与重排保留原按钮、摘要和视图状态
+ok 116 - 详情正文 DIV 间隙位于 contentDOM，折叠与重排保留原按钮、摘要和视图状态
+  ---
+  duration_ms: 58.162916
+  type: 'test'
+  ...
+# Subtest: 容器内表格续页仍使用合法 TR，原 TableView、行格与重复表头只有一份持久内容
+ok 117 - 容器内表格续页仍使用合法 TR，原 TableView、行格与重复表头只有一份持久内容
+  ---
+  duration_ms: 78.553166
+  type: 'test'
+  ...
+# Subtest: 代码续行使用 CODE 内合法 SPAN，原 newline、高亮、完整复制和历史保持不变
+ok 118 - 代码续行使用 CODE 内合法 SPAN，原 newline、高亮、完整复制和历史保持不变
+  ---
+  duration_ms: 439.024167
+  type: 'test'
+  ...
+# Subtest: 媒体嵌套在跨页容器中仍保持播放器 identity/currentTime/src，视图重排不暂停或重载
+ok 119 - 媒体嵌套在跨页容器中仍保持播放器 identity/currentTime/src，视图重排不暂停或重载
+  ---
+  duration_ms: 25.211583
+  type: 'test'
+  ...
+# Subtest: 缩进和列表类型替换先移除旧递归断点，原列表结构变化后重新发布使用新父容器
+ok 120 - 缩进和列表类型替换先移除旧递归断点，原列表结构变化后重新发布使用新父容器
+  ---
+  duration_ms: 41.106833
+  type: 'test'
+  ...
+# Subtest: 递归断点在 IME 中只映射并保留 LI DOM，结束后恢复自然流再等待重测
+ok 121 - 递归断点在 IME 中只映射并保留 LI DOM，结束后恢复自然流再等待重测
+  ---
+  duration_ms: 24.090959
+  type: 'test'
+  ...
+# Subtest: 只读仍能显示递归分页，关闭与销毁清理间隙和裁剪，并释放测量资源
+ok 122 - 只读仍能显示递归分页，关闭与销毁清理间隙和裁剪，并释放测量资源
+  ---
+  duration_ms: 13.239667
+  type: 'test'
+  ...
+# Subtest: 普通/有序/任务列表保留原编号与勾选属性，叶子模型位置按真实 token 累加
+ok 123 - 普通/有序/任务列表保留原编号与勾选属性，叶子模型位置按真实 token 累加
+  ---
+  duration_ms: 3.627834
+  type: 'test'
+  ...
+# Subtest: 多层列表、引用和文本框按 outer→inner 保留全部祖先，不展平为新正文节点
+ok 124 - 多层列表、引用和文本框按 outer→inner 保留全部祖先，不展平为新正文节点
+  ---
+  duration_ms: 0.729583
+  type: 'test'
+  ...
+# Subtest: 展开详情可递归，闭合详情保留自身完整 leaf，状态由回调读取且默认保守闭合
+ok 125 - 展开详情可递归，闭合详情保留自身完整 leaf，状态由回调读取且默认保守闭合
+  ---
+  duration_ms: 0.369708
+  type: 'test'
+  ...
+# Subtest: 容器中的表格沿用安全 rowspan 行组，绝不递归拆分单元格里的列表或嵌套表
+ok 126 - 容器中的表格沿用安全 rowspan 行组，绝不递归拆分单元格里的列表或嵌套表
+  ---
+  duration_ms: 1.030917
+  type: 'test'
+  ...
+# Subtest: 原子、未知外壳、错误容器与非法 TableMap 都完整保留，不能悄悄丢掉不认识的正文
+ok 127 - 原子、未知外壳、错误容器与非法 TableMap 都完整保留，不能悄悄丢掉不认识的正文
+  ---
+  duration_ms: 0.1565
+  type: 'test'
+  ...
+# Subtest: 过深递归在安全层数收口为完整子树，不递归溢出或丢失最深正文
+ok 128 - 过深递归在安全层数收口为完整子树，不递归溢出或丢失最深正文
+  ---
+  duration_ms: 0.171208
+  type: 'test'
+  ...
+# Subtest: 代码行范围保持 LF/CRLF/CR 和 Unicode 原长度，尾空行并入前组
+ok 129 - 代码行范围保持 LF/CRLF/CR 和 Unicode 原长度，尾空行并入前组
+  ---
+  duration_ms: 0.235
+  type: 'test'
+  ...
+# Subtest: 结构与代码输入校验拒绝无效位置/非目标节点，分析不修改节点或共享输出数组
+ok 130 - 结构与代码输入校验拒绝无效位置/非目标节点，分析不修改节点或共享输出数组
+  ---
+  duration_ms: 0.343542
+  type: 'test'
+  ...
+# Subtest: 真实任务/详情 NodeView 只读挂载点保留原复选框与按钮实例，闭合状态不会写回 JSON
+ok 131 - 真实任务/详情 NodeView 只读挂载点保留原复选框与按钮实例，闭合状态不会写回 JSON
+  ---
+  duration_ms: 163.034708
+  type: 'test'
+  ...
+# Subtest: 静态 DETAILS/合法列表挂载点可读取，失配或多个正文包装不误取嵌套子树
+ok 132 - 静态 DETAILS/合法列表挂载点可读取，失配或多个正文包装不误取嵌套子树
+  ---
+  duration_ms: 3.418375
+  type: 'test'
+  ...
+# Subtest: 严格校验批注数组，兼容缺省，拒绝重复和非法字段
+ok 133 - 严格校验批注数组，兼容缺省，拒绝重复和非法字段
+  ---
+  duration_ms: 2.079
+  type: 'test'
+  ...
+# Subtest: 新增批注在一次文档事务中保存锚点与元数据，统一撤销和重做
+ok 134 - 新增批注在一次文档事务中保存锚点与元数据，统一撤销和重做
+  ---
+  duration_ms: 50.86575
+  type: 'test'
+  ...
+# Subtest: 新增批注与前后输入分别撤销，不吞掉相邻输入
+ok 135 - 新增批注与前后输入分别撤销，不吞掉相邻输入
+  ---
+  duration_ms: 41.378167
+  type: 'test'
+  ...
+# Subtest: 文本编辑自动映射锚点，边界输入不扩入批注，内部输入仍保留锚点
+ok 136 - 文本编辑自动映射锚点，边界输入不扩入批注，内部输入仍保留锚点
+  ---
+  duration_ms: 25.218958
+  type: 'test'
+  ...
+# Subtest: 删除全部锚点后保留批注为孤立项，撤销删除恢复定位
+ok 137 - 删除全部锚点后保留批注为孤立项，撤销删除恢复定位
+  ---
+  duration_ms: 27.147291
+  type: 'test'
+  ...
+# Subtest: 重叠选区拒绝，毗邻选区可建立独立批注
+ok 138 - 重叠选区拒绝，毗邻选区可建立独立批注
+  ---
+  duration_ms: 20.88
+  type: 'test'
+  ...
+# Subtest: 拒绝空选区、节点选区、旧文档选区及其他编辑器的选区
+ok 139 - 拒绝空选区、节点选区、旧文档选区及其他编辑器的选区
+  ---
+  duration_ms: 17.479416
+  type: 'test'
+  ...
+# Subtest: 跨段落、标题和列表文字可批注，格式分片仍合并相邻范围
+ok 140 - 跨段落、标题和列表文字可批注，格式分片仍合并相邻范围
+  ---
+  duration_ms: 14.53175
+  type: 'test'
+  ...
+# Subtest: 表格单元格的文字允许批注且 JSON 与实际位置一致
+ok 141 - 表格单元格的文字允许批注且 JSON 与实际位置一致
+  ---
+  duration_ms: 26.52525
+  type: 'test'
+  ...
+# Subtest: 代码块和选区内的非文本叶节点拒绝，但选区外的原子节点不影响
+ok 142 - 代码块和选区内的非文本叶节点拒绝，但选区外的原子节点不影响
+  ---
+  duration_ms: 74.34625
+  type: 'test'
+  ...
+# Subtest: 批注编辑、解决、重新打开和删除均支持独立撤销，删除同时清理锚点
+ok 143 - 批注编辑、解决、重新打开和删除均支持独立撤销，删除同时清理锚点
+  ---
+  duration_ms: 17.440625
+  type: 'test'
+  ...
+# Subtest: 同值修改无文档更新，校验字符串和操作目标，批注数量有上限
+ok 144 - 同值修改无文档更新，校验字符串和操作目标，批注数量有上限
+  ---
+  duration_ms: 6.7305
+  type: 'test'
+  ...
+# Subtest: 只读和输入法组合期间拒绝写入，定位只改选区不修改文档
+ok 145 - 只读和输入法组合期间拒绝写入，定位只改选区不修改文档
+  ---
+  duration_ms: 3.120541
+  type: 'test'
+  ...
+# Subtest: 元数据和锚点可 JSON 保存重开，返回副本，HTML 不泄露批注正文也不接纳锚点
+ok 146 - 元数据和锚点可 JSON 保存重开，返回副本，HTML 不泄露批注正文也不接纳锚点
+  ---
+  duration_ms: 21.013375
+  type: 'test'
+  ...
+# Subtest: 长选区截取引用但完整锚点保留，批注正文按纯文字保存
+ok 147 - 长选区截取引用但完整锚点保留，批注正文按纯文字保存
+  ---
+  duration_ms: 4.856208
+  type: 'test'
+  ...
+# Subtest: 选中文字包含非法控制字符时不生成无法持久化的批注
+ok 148 - 选中文字包含非法控制字符时不生成无法持久化的批注
+  ---
+  duration_ms: 3.965375
+  type: 'test'
+  ...
+# Subtest: 旧库无历史记录直接返回空列表，手动版本不升级 DB 或修改来源
+ok 149 - 旧库无历史记录直接返回空列表，手动版本不升级 DB 或修改来源
+  ---
+  duration_ms: 29.994458
+  type: 'test'
+  ...
+# Subtest: 版本列表时间倒序、只读取 metadata 前缀且不携带正文或资源 Blob
+ok 150 - 版本列表时间倒序、只读取 metadata 前缀且不携带正文或资源 Blob
+  ---
+  duration_ms: 28.353167
+  type: 'test'
+  ...
+# Subtest: 保存快照后删除 live 图片/附件仍能读取历史原始字节，普通保存不碰 history 键
+ok 151 - 保存快照后删除 live 图片/附件仍能读取历史原始字节，普通保存不碰 history 键
+  ---
+  duration_ms: 28.361708
+  type: 'test'
+  ...
+# Subtest: 恢复前自动保留当前标题正文纸张与新资源，同事务恢复旧版本并推进 live 锁
+ok 152 - 恢复前自动保留当前标题正文纸张与新资源，同事务恢复旧版本并推进 live 锁
+  ---
+  duration_ms: 60.905583
+  type: 'test'
+  ...
+# Subtest: 历史复制使用旧快照且保留后缀，来源/历史不变，live 资源隔离
+ok 153 - 历史复制使用旧快照且保留后缀，来源/历史不变，live 资源隔离
+  ---
+  duration_ms: 17.464167
+  type: 'test'
+  ...
+# Subtest: 空资源历史可创建读取恢复，不产生 Blob 行
+ok 154 - 空资源历史可创建读取恢复，不产生 Blob 行
+  ---
+  duration_ms: 5.104042
+  type: 'test'
+  ...
+# Subtest: 旧基础版本和缺省基础版本不能创建、恢复或复制，来源与历史均不变
+ok 155 - 旧基础版本和缺省基础版本不能创建、恢复或复制，来源与历史均不变
+  ---
+  duration_ms: 11.727625
+  type: 'test'
+  ...
+# Subtest: 回收后所有历史入口明确拒绝，不复活文档；恢复文档库后历史仍在
+ok 156 - 回收后所有历史入口明确拒绝，不复活文档；恢复文档库后历史仍在
+  ---
+  duration_ms: 9.256083
+  type: 'test'
+  ...
+# Subtest: 名称/缺失版本/跨文档版本检查失败不产生半份快照
+ok 157 - 名称/缺失版本/跨文档版本检查失败不产生半份快照
+  ---
+  duration_ms: 18.336667
+  type: 'test'
+  ...
+# Subtest: 缺失 live 资源时创建或恢复整体回滚，不生成历史备份
+ok 158 - 缺失 live 资源时创建或恢复整体回滚，不生成历史备份
+  ---
+  duration_ms: 25.747625
+  type: 'test'
+  ...
+# Subtest: 缺失历史资源时读取/恢复/复制失败，live 正文资源与版本不动
+ok 159 - 缺失历史资源时读取/恢复/复制失败，live 正文资源与版本不动
+  ---
+  duration_ms: 9.785125
+  type: 'test'
+  ...
+# Subtest: 历史 snapshot 经 schema 校验，损坏正文或资源类型不会恢复到 live
+ok 160 - 历史 snapshot 经 schema 校验，损坏正文或资源类型不会恢复到 live
+  ---
+  duration_ms: 14.059208
+  type: 'test'
+  ...
+# Subtest: 手动快照资源写入配额异常回滚 metadata 和已排队 Blob
+ok 161 - 手动快照资源写入配额异常回滚 metadata 和已排队 Blob
+  ---
+  duration_ms: 7.182959
+  type: 'test'
+  ...
+# Subtest: 恢复的最终文档写入异常回滚前备份、live 资源替换及存储版本
+ok 162 - 恢复的最终文档写入异常回滚前备份、live 资源替换及存储版本
+  ---
+  duration_ms: 14.056167
+  type: 'test'
+  ...
+# Subtest: 历史复制新记录异步写入失败回滚所有新资源，来源与快照不变
+ok 163 - 历史复制新记录异步写入失败回滚所有新资源，来源与快照不变
+  ---
+  duration_ms: 8.682958
+  type: 'test'
+  ...
+# Subtest: 并发恢复同基础版本只有一笔提交，失败者不增加自动备份
+ok 164 - 并发恢复同基础版本只有一笔提交，失败者不增加自动备份
+  ---
+  duration_ms: 7.711541
+  type: 'test'
+  ...
+# Subtest: 旧版 DB v1 无回收字段/版本的文档可读取、重命名，无需迁移
+ok 165 - 旧版 DB v1 无回收字段/版本的文档可读取、重命名，无需迁移
+  ---
+  duration_ms: 53.476708
+  type: 'test'
+  ...
+# Subtest: 重命名 trim 标题并拒绝空白/超长标题，失败不更改版本和正文资源
+ok 166 - 重命名 trim 标题并拒绝空白/超长标题，失败不更改版本和正文资源
+  ---
+  duration_ms: 10.788666
+  type: 'test'
+  ...
+# Subtest: 复制同时保留正文、图片和附件，来源记录不变且资源按文档键隔离
+ok 167 - 复制同时保留正文、图片和附件，来源记录不变且资源按文档键隔离
+  ---
+  duration_ms: 17.824417
+  type: 'test'
+  ...
+# Subtest: 100 字符原标题复制仍保留副本后缀，新副本时间独立
+ok 168 - 100 字符原标题复制仍保留副本后缀，新副本时间独立
+  ---
+  duration_ms: 1.73775
+  type: 'test'
+  ...
+# Subtest: 回收站按顶层 deletedAt 筛选，恢复不丢失图片附件且持续递增版本
+ok 169 - 回收站按顶层 deletedAt 筛选，恢复不丢失图片附件且持续递增版本
+  ---
+  duration_ms: 22.455
+  type: 'test'
+  ...
+# Subtest: 过期重命名/复制/回收/恢复均冲突，跨标签页不能覆盖管理操作
+ok 170 - 过期重命名/复制/回收/恢复均冲突，跨标签页不能覆盖管理操作
+  ---
+  duration_ms: 11.017084
+  type: 'test'
+  ...
+# Subtest: 已回收文档拒绝同版本普通保存、重命名和复制，旧会话也不能复活文档
+ok 171 - 已回收文档拒绝同版本普通保存、重命名和复制，旧会话也不能复活文档
+  ---
+  duration_ms: 21.428458
+  type: 'test'
+  ...
+# Subtest: 恢复只接受回收状态，丢失文档明确报错且不会新建记录
+ok 172 - 恢复只接受回收状态，丢失文档明确报错且不会新建记录
+  ---
+  duration_ms: 55.563417
+  type: 'test'
+  ...
+# Subtest: 缺失任一来源资源时复制整体回滚，无新增文档或半份资源
+ok 173 - 缺失任一来源资源时复制整体回滚，无新增文档或半份资源
+  ---
+  duration_ms: 5.846292
+  type: 'test'
+  ...
+# Subtest: 复制资源写入配额失败回滚新记录和已排队资源，来源保持完整
+ok 174 - 复制资源写入配额失败回滚新记录和已排队资源，来源保持完整
+  ---
+  duration_ms: 7.196792
+  type: 'test'
+  ...
+# Subtest: 并发同版本管理操作只有一项提交，另一项冲突后可读取最终状态
+ok 175 - 并发同版本管理操作只有一项提交，另一项冲突后可读取最终状态
+  ---
+  duration_ms: 4.338084
+  type: 'test'
+  ...
+# Subtest: 内部 URL 仅接受规范稳定 ID，外部协议保持原白名单
+ok 176 - 内部 URL 仅接受规范稳定 ID，外部协议保持原白名单
+  ---
+  duration_ms: 2.717334
+  type: 'test'
+  ...
+# Subtest: 书签与目录文件属性严格校验，重复 ID 拒绝但旧文档及悬空内部链接仍合法
+ok 177 - 书签与目录文件属性严格校验，重复 ID 拒绝但旧文档及悬空内部链接仍合法
+  ---
+  duration_ms: 29.257666
+  type: 'test'
+  ...
+# Subtest: 纯目标收集使用真实坐标并区分标题和同段书签，导出副本仅刷新既有 ID
+ok 178 - 纯目标收集使用真实坐标并区分标题和同段书签，导出副本仅刷新既有 ID
+  ---
+  duration_ms: 54.166375
+  type: 'test'
+  ...
+# Subtest: 目录插入为所有标题建立稳定 ID，保留光标两侧文字与格式，所有操作为一步撤销
+ok 179 - 目录插入为所有标题建立稳定 ID，保留光标两侧文字与格式，所有操作为一步撤销
+  ---
+  duration_ms: 55.292417
+  type: 'test'
+  ...
+# Subtest: 大量无ID标题批量分配只扫描正文常数次，全部身份唯一且目录快照遵守条目上限
+ok 180 - 大量无ID标题批量分配只扫描正文常数次，全部身份唯一且目录快照遵守条目上限
+  ---
+  duration_ms: 1073.951083
+  type: 'test'
+  ...
+# Subtest: 标题改名、级别、新增、重排、删除实时刷新所有目录并随原编辑一起撤销
+ok 181 - 标题改名、级别、新增、重排、删除实时刷新所有目录并随原编辑一起撤销
+  ---
+  duration_ms: 72.693458
+  type: 'test'
+  ...
+# Subtest: 重复副本插在原节点前也不抢原 ID，拆分段落只保留一个命名书签
+ok 182 - 重复副本插在原节点前也不抢原 ID，拆分段落只保留一个命名书签
+  ---
+  duration_ms: 55.817958
+  type: 'test'
+  ...
+# Subtest: 单段书签增改删保留内容和其他属性，标题删除书签后继续保留标题身份
+ok 183 - 单段书签增改删保留内容和其他属性，标题删除书签后继续保留标题身份
+  ---
+  duration_ms: 30.048834
+  type: 'test'
+  ...
+# Subtest: 原节点书签映射前方输入与属性变化，整段替换及身份清除后永久拒绝旧草稿
+ok 184 - 原节点书签映射前方输入与属性变化，整段替换及身份清除后永久拒绝旧草稿
+  ---
+  duration_ms: 30.385
+  type: 'test'
+  ...
+# Subtest: 目录目标允许自身快照刷新，但整节点替换后旧设置目标不能复活
+ok 185 - 目录目标允许自身快照刷新，但整节点替换后旧设置目标不能复活
+  ---
+  duration_ms: 10.837792
+  type: 'test'
+  ...
+# Subtest: 相邻目录删除首个后旧目标永久失效，不能把草稿套给后一个目录或 undo 恢复的目录
+ok 186 - 相邻目录删除首个后旧目标永久失效，不能把草稿套给后一个目录或 undo 恢复的目录
+  ---
+  duration_ms: 8.5325
+  type: 'test'
+  ...
+# Subtest: 目录插入与书签只接受明确普通段落，文字范围及跨结构选择不会吞并正文
+ok 187 - 目录插入与书签只接受明确普通段落，文字范围及跨结构选择不会吞并正文
+  ---
+  duration_ms: 36.243625
+  type: 'test'
+  ...
+# Subtest: 插入目录使用映射后的原光标，整段替换与 undo 后旧插入目标仍失效
+ok 188 - 插入目录使用映射后的原光标，整段替换与 undo 后旧插入目标仍失效
+  ---
+  duration_ms: 93.258958
+  type: 'test'
+  ...
+# Subtest: 内部链接创建同时建立标题 ID 与文字 mark，为同一次撤销且保留前后输入
+ok 189 - 内部链接创建同时建立标题 ID 与文字 mark，为同一次撤销且保留前后输入
+  ---
+  duration_ms: 68.164625
+  type: 'test'
+  ...
+# Subtest: 内部链接源删除后 undo 不复活旧选区，标题确保ID不改文字或已有ID
+ok 190 - 内部链接源删除后 undo 不复活旧选区，标题确保ID不改文字或已有ID
+  ---
+  duration_ms: 16.692833
+  type: 'test'
+  ...
+# Subtest: 定位只改变选区，展开折叠祖先；只读可跳转，编辑普通点击不会离开正文
+ok 191 - 定位只改变选区，展开折叠祖先；只读可跳转，编辑普通点击不会离开正文
+  ---
+  duration_ms: 38.566
+  type: 'test'
+  ...
+# Subtest: 纯选区与视图切换不刷新目录，IME延迟刷新随原输入撤销且销毁解除计时器
+ok 192 - 纯选区与视图切换不刷新目录，IME延迟刷新随原输入撤销且销毁解除计时器
+  ---
+  duration_ms: 110.422375
+  type: 'test'
+  ...
+# Subtest: 只读、切换与组合输入拒绝全部写命令，目录模型和原选区保持一致
+ok 193 - 只读、切换与组合输入拒绝全部写命令，目录模型和原选区保持一致
+  ---
+  duration_ms: 9.293958
+  type: 'test'
+  ...
+# Subtest: 目录HTML往返与纯文本复制保留完整快照，内部link目标_self且未知fragment不恢复
+ok 194 - 目录HTML往返与纯文本复制保留完整快照，内部link目标_self且未知fragment不恢复
+  ---
+  duration_ms: 20.010625
+  type: 'test'
+  ...
+# Subtest: 字符按码点及实际空白统计，段落覆盖标题、代码块、空段和表格内段落
+ok 195 - 字符按码点及实际空白统计，段落覆盖标题、代码块、空段和表格内段落
+  ---
+  duration_ms: 77.187458
+  type: 'test'
+  ...
+# Subtest: 部分文字选区精确截取，下一段内容起点不计入段落，光标不生成选区统计
+ok 196 - 部分文字选区精确截取，下一段内容起点不计入段落，光标不生成选区统计
+  ---
+  duration_ms: 54.78225
+  type: 'test'
+  ...
+# Subtest: 跨行的CellSelection仅统计所选单元格，不统计包围盒内其他单元格
+ok 197 - 跨行的CellSelection仅统计所选单元格，不统计包围盒内其他单元格
+  ---
+  duration_ms: 47.290917
+  type: 'test'
+  ...
+# Subtest: 只读全选仅改变选区，不改正文、不产生update和撤销记录
+ok 198 - 只读全选仅改变选区，不改正文、不产生update和撤销记录
+  ---
+  duration_ms: 26.08425
+  type: 'test'
+  ...
+# Subtest: 切换、输入法组合和销毁阻止全选，节点选区统计所选文本块
+ok 199 - 切换、输入法组合和销毁阻止全选，节点选区统计所选文本块
+  ---
+  duration_ms: 57.457708
+  type: 'test'
+  ...
+# Subtest: 旧数据库直接提供三份内置模板，保持 v1 与 documents/asset 契约
+ok 200 - 旧数据库直接提供三份内置模板，保持 v1 与 documents/asset 契约
+  ---
+  duration_ms: 7.337166
+  type: 'test'
+  ...
+# Subtest: 保存模板原子保留正文纸张资源，移除批注而不改来源及存储版本
+ok 201 - 保存模板原子保留正文纸张资源，移除批注而不改来源及存储版本
+  ---
+  duration_ms: 9.224875
+  type: 'test'
+  ...
+# Subtest: 模板列表只扫描 metadata 前缀，内置在前且自定义不包含正文或 Blob
+ok 202 - 模板列表只扫描 metadata 前缀，内置在前且自定义不包含正文或 Blob
+  ---
+  duration_ms: 21.426875
+  type: 'test'
+  ...
+# Subtest: 来源删除 live 资源或移入回收站后，独立模板仍可预览及创建实例
+ok 203 - 来源删除 live 资源或移入回收站后，独立模板仍可预览及创建实例
+  ---
+  duration_ms: 16.936625
+  type: 'test'
+  ...
+# Subtest: 模板删除只清理自身键，保留来源及已创建实例资源
+ok 204 - 模板删除只清理自身键，保留来源及已创建实例资源
+  ---
+  duration_ms: 10.8565
+  type: 'test'
+  ...
+# Subtest: 重命名推进模板版本且更新快照标题，新实例采用最新名称
+ok 205 - 重命名推进模板版本且更新快照标题，新实例采用最新名称
+  ---
+  duration_ms: 5.739375
+  type: 'test'
+  ...
+# Subtest: 内置模板不可改名删除，版本为0，创建独立文档不改内置定义
+ok 206 - 内置模板不可改名删除，版本为0，创建独立文档不改内置定义
+  ---
+  duration_ms: 2.231084
+  type: 'test'
+  ...
+# Subtest: 旧版本及非法版本不能改名删除创建模板实例，持久数据不变
+ok 207 - 旧版本及非法版本不能改名删除创建模板实例，持久数据不变
+  ---
+  duration_ms: 5.447459
+  type: 'test'
+  ...
+# Subtest: 来源版本冲突、未保存及回收状态阻止保存模板，不复活源文档
+ok 208 - 来源版本冲突、未保存及回收状态阻止保存模板，不复活源文档
+  ---
+  duration_ms: 3.990375
+  type: 'test'
+  ...
+# Subtest: 名称和ID非法时不进入写事务，空白与控制字符不能成为模板名称
+ok 209 - 名称和ID非法时不进入写事务，空白与控制字符不能成为模板名称
+  ---
+  duration_ms: 3.724709
+  type: 'test'
+  ...
+# Subtest: 缺失来源 Blob 阻止模板保存，元信息和先读取的资源不会留下半份模板
+ok 210 - 缺失来源 Blob 阻止模板保存，元信息和先读取的资源不会留下半份模板
+  ---
+  duration_ms: 3.599625
+  type: 'test'
+  ...
+# Subtest: 缺失或错类型模板资源阻止预览与实例创建，仍允许删除损坏模板
+ok 211 - 缺失或错类型模板资源阻止预览与实例创建，仍允许删除损坏模板
+  ---
+  duration_ms: 10.002333
+  type: 'test'
+  ...
+# Subtest: 坏模板元信息/正文/身份拒绝读取与所有写入，且不会操作其他键
+ok 212 - 坏模板元信息/正文/身份拒绝读取与所有写入，且不会操作其他键
+  ---
+  duration_ms: 23.296958
+  type: 'test'
+  ...
+# Subtest: 实例再次净化模板内遗留批注，不把审阅意见带到新文档
+ok 213 - 实例再次净化模板内遗留批注，不把审阅意见带到新文档
+  ---
+  duration_ms: 3.009208
+  type: 'test'
+  ...
+# Subtest: 保存模板资源写入配额错误回滚 metadata 与已排队 Blob
+ok 214 - 保存模板资源写入配额错误回滚 metadata 与已排队 Blob
+  ---
+  duration_ms: 3.859667
+  type: 'test'
+  ...
+# Subtest: 实例 documents.add 异步冲突回滚全部新资源，源模板保持完整
+ok 215 - 实例 documents.add 异步冲突回滚全部新资源，源模板保持完整
+  ---
+  duration_ms: 6.225417
+  type: 'test'
+  ...
+# Subtest: 重命名配额与删除最终请求失败均整体回滚，版本及资源保留
+ok 216 - 重命名配额与删除最终请求失败均整体回滚，版本及资源保留
+  ---
+  duration_ms: 8.975416
+  type: 'test'
+  ...
+# Subtest: 同基础版本并发重命名只有一笔提交，失败者不改变已提交名称
+ok 217 - 同基础版本并发重命名只有一笔提交，失败者不改变已提交名称
+  ---
+  duration_ms: 5.640542
+  type: 'test'
+  ...
+# Subtest: 版本达到安全整数上限时拒绝继续递增，原模板仍可读取与创建实例
+ok 218 - 版本达到安全整数上限时拒绝继续递增，原模板仍可读取与创建实例
+  ---
+  duration_ms: 8.077792
+  type: 'test'
+  ...
+# Subtest: 三份内置模板都有固定身份、合法可编辑结构和纯 metadata
+ok 219 - 三份内置模板都有固定身份、合法可编辑结构和纯 metadata
+  ---
+  duration_ms: 1.057917
+  type: 'test'
+  ...
+# Subtest: 内置读取交付独立克隆，修改正文/列表不会改变模板定义
+ok 220 - 内置读取交付独立克隆，修改正文/列表不会改变模板定义
+  ---
+  duration_ms: 0.520042
+  type: 'test'
+  ...
+# Subtest: 纯 JSON 去批注递归清除锚点与线程，保留文字、其他属性、格式及资源
+ok 221 - 纯 JSON 去批注递归清除锚点与线程，保留文字、其他属性、格式及资源
+  ---
+  duration_ms: 0.28125
+  type: 'test'
+  ...
+# Subtest: 无批注的文档内容及无 marks 节点完全保留，去批注不共享可变属性
+ok 222 - 无批注的文档内容及无 marks 节点完全保留，去批注不共享可变属性
+  ---
+  duration_ms: 0.177083
+  type: 'test'
+  ...
+# Subtest: 文档拒绝未知节点、未知属性与未来版本，保留原始内容
+ok 223 - 文档拒绝未知节点、未知属性与未来版本，保留原始内容
+  ---
+  duration_ms: 1.750792
+  type: 'test'
+  ...
+# Subtest: 链接与纸张在边界拒绝非法值
+ok 224 - 链接与纸张在边界拒绝非法值
+  ---
+  duration_ms: 0.158041
+  type: 'test'
+  ...
+# Subtest: 完整扩展组合：段落行距、表格和撤销后的 JSON 仍通过校验
+ok 225 - 完整扩展组合：段落行距、表格和撤销后的 JSON 仍通过校验
+  ---
+  duration_ms: 110.250375
+  type: 'test'
+  ...
+# Subtest: 文字样式 HTML 往返产生的空属性可保存，非法颜色仍被拒绝
+ok 226 - 文字样式 HTML 往返产生的空属性可保存，非法颜色仍被拒绝
+  ---
+  duration_ms: 27.588959
+  type: 'test'
+  ...
+# Subtest: 带图文件往返保留图片字节、尺寸与资源 ID，导入另建文档 ID
+ok 227 - 带图文件往返保留图片字节、尺寸与资源 ID，导入另建文档 ID
+  ---
+  duration_ms: 4.673208
+  type: 'test'
+  ...
+# Subtest: 声明图片但实际内容不匹配时拒绝导入
+ok 228 - 声明图片但实际内容不匹配时拒绝导入
+  ---
+  duration_ms: 3.846541
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：comments.docx（明确拒绝）
+ok 229 - 独立 DOCX：comments.docx（明确拒绝）
+  ---
+  duration_ms: 59.99825
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：embedded-style-map.docx（导入与再次导出）
+ok 230 - 独立 DOCX：embedded-style-map.docx（导入与再次导出）
+  ---
+  duration_ms: 211.006708
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：empty.docx（导入与再次导出）
+ok 231 - 独立 DOCX：empty.docx（导入与再次导出）
+  ---
+  duration_ms: 85.882333
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：endnotes.docx（明确拒绝）
+ok 232 - 独立 DOCX：endnotes.docx（明确拒绝）
+  ---
+  duration_ms: 8.395583
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：external-picture.docx（明确拒绝）
+ok 233 - 独立 DOCX：external-picture.docx（明确拒绝）
+  ---
+  duration_ms: 2.234541
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：footnote-hyperlink.docx（明确拒绝）
+ok 234 - 独立 DOCX：footnote-hyperlink.docx（明确拒绝）
+  ---
+  duration_ms: 2.407875
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：footnotes.docx（明确拒绝）
+ok 235 - 独立 DOCX：footnotes.docx（明确拒绝）
+  ---
+  duration_ms: 3.333292
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：simple-list.docx（导入与再次导出）
+ok 236 - 独立 DOCX：simple-list.docx（导入与再次导出）
+  ---
+  duration_ms: 184.181708
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：single-paragraph.docx（导入与再次导出）
+ok 237 - 独立 DOCX：single-paragraph.docx（导入与再次导出）
+  ---
+  duration_ms: 114.858208
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：strict-format.docx（明确拒绝）
+ok 238 - 独立 DOCX：strict-format.docx（明确拒绝）
+  ---
+  duration_ms: 21.825875
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：strikethrough.docx（导入与再次导出）
+ok 239 - 独立 DOCX：strikethrough.docx（导入与再次导出）
+  ---
+  duration_ms: 108.781584
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：tables.docx（导入与再次导出）
+ok 240 - 独立 DOCX：tables.docx（导入与再次导出）
+  ---
+  duration_ms: 116.58575
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：text-box.docx（导入与再次导出）
+ok 241 - 独立 DOCX：text-box.docx（导入与再次导出）
+  ---
+  duration_ms: 89.705125
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：tiny-picture-target-base-relative.docx（导入与再次导出）
+ok 242 - 独立 DOCX：tiny-picture-target-base-relative.docx（导入与再次导出）
+  ---
+  duration_ms: 131.813583
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：tiny-picture.docx（导入与再次导出）
+ok 243 - 独立 DOCX：tiny-picture.docx（导入与再次导出）
+  ---
+  duration_ms: 97.336917
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：underline.docx（导入与再次导出）
+ok 244 - 独立 DOCX：underline.docx（导入与再次导出）
+  ---
+  duration_ms: 126.069875
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：utf8-bom.docx（导入与再次导出）
+ok 245 - 独立 DOCX：utf8-bom.docx（导入与再次导出）
+  ---
+  duration_ms: 53.766667
+  type: 'test'
+  ...
+# Subtest: 独立 DOCX：tbl-cell-access.docx（导入与再次导出）
+ok 246 - 独立 DOCX：tbl-cell-access.docx（导入与再次导出）
+  ---
+  duration_ms: 132.996334
+  type: 'test'
+  ...
+# Subtest: 父子十进制组合实例整组静态化，保留层级、正文marks及源编号标点
+ok 247 - 父子十进制组合实例整组静态化，保留层级、正文marks及源编号标点
+  ---
+  duration_ms: 3.988375
+  type: 'test'
+  ...
+# Subtest: 组合编号跨普通段落和表格续编，不同num实例各自计数
+ok 248 - 组合编号跨普通段落和表格续编，不同num实例各自计数
+  ---
+  duration_ms: 6.595667
+  type: 'test'
+  ...
+# Subtest: startOverride覆盖lvlOverride起点和模板，重启继续使用覆盖起点且保留右括号
+ok 249 - startOverride覆盖lvlOverride起点和模板，重启继续使用覆盖起点且保留右括号
+  ---
+  duration_ms: 1.404792
+  type: 'test'
+  ...
+# Subtest: 组合lvlRestart=0永不随父项重启，显式更高祖先触发层级正确
+ok 250 - 组合lvlRestart=0永不随父项重启，显式更高祖先触发层级正确
+  ---
+  duration_ms: 5.723834
+  type: 'test'
+  ...
+# Subtest: 组合引用缺失或重置后未再次出现的祖先时拒绝，不能沿用旧current
+ok 251 - 组合引用缺失或重置后未再次出现的祖先时拒绝，不能沿用旧current
+  ---
+  duration_ms: 1.759542
+  type: 'test'
+  ...
+# Subtest: 未使用的组合层不改变简单列表，简单右括号和字母仍走动态路径
+ok 252 - 未使用的组合层不改变简单列表，简单右括号和字母仍走动态路径
+  ---
+  duration_ms: 0.4815
+  type: 'test'
+  ...
+# Subtest: 前向占位符、未知格式、重复定义及不能确定的编号语义明确拒绝
+ok 253 - 前向占位符、未知格式、重复定义及不能确定的编号语义明确拒绝
+  ---
+  duration_ms: 5.690292
+  type: 'test'
+  ...
+# Subtest: 静态组合支持零起点、缺省start及明确的编号后缀，文案不吞掉边界字符
+ok 254 - 静态组合支持零起点、缺省start及明确的编号后缀，文案不吞掉边界字符
+  ---
+  duration_ms: 2.219834
+  type: 'test'
+  ...
+# Subtest: 生产转换及再导出回导保留静态编号一次，不变成双重自动编号
+ok 255 - 生产转换及再导出回导保留静态编号一次，不变成双重自动编号
+  ---
+  duration_ms: 344.809875
+  type: 'test'
+  ...
+# Subtest: 同一 run 内的完整空 PAGE/NUMPAGES 以明确占位导入，保留正文与页脚上下文
+ok 256 - 同一 run 内的完整空 PAGE/NUMPAGES 以明确占位导入，保留正文与页脚上下文
+  ---
+  duration_ms: 316.146166
+  type: 'test'
+  ...
+# Subtest: 简单空域及跨 run 完整空域支持普通页眉页脚，空文本节点不伪装为缓存
+ok 257 - 简单空域及跨 run 完整空域支持普通页眉页脚，空文本节点不伪装为缓存
+  ---
+  duration_ms: 276.326959
+  type: 'test'
+  ...
+# Subtest: 正常缓存值仍按原样保留，不替换成占位或假定当前分页
+ok 258 - 正常缓存值仍按原样保留，不替换成占位或假定当前分页
+  ---
+  duration_ms: 47.126167
+  type: 'test'
+  ...
+# Subtest: 正文空域以及 TOC/PAGEREF/未知指令和未支持开关保持拒绝
+ok 259 - 正文空域以及 TOC/PAGEREF/未知指令和未支持开关保持拒绝
+  ---
+  duration_ms: 226.219584
+  type: 'test'
+  ...
+# Subtest: 残缺、重复、嵌套或混入未知内容的空域不能靠占位通过
+ok 260 - 残缺、重复、嵌套或混入未知内容的空域不能靠占位通过
+  ---
+  duration_ms: 295.651084
+  type: 'test'
+  ...
+# Subtest: Word：混合内容、嵌套列表、重启编号、超链接与源码不可变
+ok 261 - Word：混合内容、嵌套列表、重启编号、超链接与源码不可变
+  ---
+  duration_ms: 479.56375
+  type: 'test'
+  ...
+# Subtest: Word：横纵合并续行、同列宽度、复杂单元格与末尾段落
+ok 262 - Word：横纵合并续行、同列宽度、复杂单元格与末尾段落
+  ---
+  duration_ms: 90.928167
+  type: 'test'
+  ...
+# Subtest: Word：常用公式保持可编辑结构，矩阵和重音不丢符号
+ok 263 - Word：常用公式保持可编辑结构，矩阵和重音不丢符号
+  ---
+  duration_ms: 32.206667
+  type: 'test'
+  ...
+# Subtest: Word：不支持或不合法的公式整式保留源码，XML 字符安全转义
+ok 264 - Word：不支持或不合法的公式整式保留源码，XML 字符安全转义
+  ---
+  duration_ms: 16.215666
+  type: 'test'
+  ...
+# Subtest: Word：语法高亮不改变空行、中文和源码字符
+ok 265 - Word：语法高亮不改变空行、中文和源码字符
+  ---
+  duration_ms: 22.671417
+  type: 'test'
+  ...
+# Subtest: Word：大代码块超预算仍保留全文
+ok 266 - Word：大代码块超预算仍保留全文
+  ---
+  duration_ms: 19.129125
+  type: 'test'
+  ...
+# Subtest: Word：长表格重复表头并允许行跨页
+ok 267 - Word：长表格重复表头并允许行跨页
+  ---
+  duration_ms: 177.073
+  type: 'test'
+  ...
+# Subtest: Word：超宽表格按可用宽度收窄，横版纸张与页边距正确
+ok 268 - Word：超宽表格按可用宽度收窄，横版纸张与页边距正确
+  ---
+  duration_ms: 141.161833
+  type: 'test'
+  ...
+# Subtest: Word：无效表格网格明确拒绝，不自动修复后丢单元格
+ok 269 - Word：无效表格网格明确拒绝，不自动修复后丢单元格
+  ---
+  duration_ms: 3.575125
+  type: 'test'
+  ...
+# Subtest: Word：缺失资源、伪造 MIME 与未知 Schema 拒绝导出
+ok 270 - Word：缺失资源、伪造 MIME 与未知 Schema 拒绝导出
+  ---
+  duration_ms: 6.31625
+  type: 'test'
+  ...
+# Subtest: Word：分页只作用于后续列表首段，连续和末尾分页不被吞掉
+ok 271 - Word：分页只作用于后续列表首段，连续和末尾分页不被吞掉
+  ---
+  duration_ms: 14.352958
+  type: 'test'
+  ...
+# Subtest: Word：异步读取固定快照和资源，删除会话引用不改变导出结果
+ok 272 - Word：异步读取固定快照和资源，删除会话引用不改变导出结果
+  ---
+  duration_ms: 37.931083
+  type: 'test'
+  ...
+# Subtest: Word：取消发生在加载前、转换中或压缩期间时均不返回下载结果
+ok 273 - Word：取消发生在加载前、转换中或压缩期间时均不返回下载结果
+  ---
+  duration_ms: 18.840333
+  type: 'test'
+  ...
+# Subtest: 三份原生 Word 样本按已验证的文档默认值恢复页眉页脚
+ok 274 - 三份原生 Word 样本按已验证的文档默认值恢复页眉页脚
+  ---
+  duration_ms: 210.69075
+  type: 'test'
+  ...
+# Subtest: Word 完全省略 run 字体时必须能从默认值明确恢复三类字体，不从主题或缺失值猜测
+ok 275 - Word 完全省略 run 字体时必须能从默认值明确恢复三类字体，不从主题或缺失值猜测
+  ---
+  duration_ms: 436.697666
+  type: 'test'
+  ...
+# Subtest: 原生默认字体、粗体、对齐或段前距被覆盖时拒绝，保留原控件
+ok 276 - 原生默认字体、粗体、对齐或段前距被覆盖时拒绝，保留原控件
+  ---
+  duration_ms: 630.357375
+  type: 'test'
+  ...
+# Subtest: 默认样式和继承容器重复时拒绝，不能只读取首个
+ok 277 - 默认样式和继承容器重复时拒绝，不能只读取首个
+  ---
+  duration_ms: 651.463833
+  type: 'test'
+  ...
+# Subtest: 继承叶子中的未知属性、节点或文字不能作为无害默认值忽略
+ok 278 - 继承叶子中的未知属性、节点或文字不能作为无害默认值忽略
+  ---
+  duration_ms: 616.957833
+  type: 'test'
+  ...
+# Subtest: 原生字体继承跟随真实样式关系，不信固定路径的未引用副本
+ok 279 - 原生字体继承跟随真实样式关系，不信固定路径的未引用副本
+  ---
+  duration_ms: 168.384625
+  type: 'test'
+  ...
+# Subtest: 原生样式关系缺失、重复、错误目标或错根均拒绝，显式 canonical 格式不强加继承依赖
+ok 280 - 原生样式关系缺失、重复、错误目标或错根均拒绝，显式 canonical 格式不强加继承依赖
+  ---
+  duration_ms: 661.718583
+  type: 'test'
+  ...
+# Subtest: 正式 DOCX 同时恢复页眉、页脚、动态页码与 M22 水印，正文和原字节不污染
+ok 281 - 正式 DOCX 同时恢复页眉、页脚、动态页码与 M22 水印，正文和原字节不污染
+  ---
+  duration_ms: 291.137916
+  type: 'test'
+  ...
+# Subtest: 三个对齐及无页码、当前页、页数形式生成原生字段并分别往返
+ok 282 - 三个对齐及无页码、当前页、页数形式生成原生字段并分别往返
+  ---
+  duration_ms: 716.166333
+  type: 'test'
+  ...
+# Subtest: 无文字的纯页码有中文格式且恢复空文案，不把缓存 1 当作正文
+ok 283 - 无文字的纯页码有中文格式且恢复空文案，不把缓存 1 当作正文
+  ---
+  duration_ms: 104.531084
+  type: 'test'
+  ...
+# Subtest: 四种纸型横竖方向及非对称边距的装饰均由正式文件恢复
+ok 284 - 四种纸型横竖方向及非对称边距的装饰均由正式文件恢复
+  ---
+  duration_ms: 450.446166
+  type: 'test'
+  ...
+# Subtest: 80 Unicode 码点及 XML 转义文本安全往返，单行文案从不作为活动 OOXML
+ok 285 - 80 Unicode 码点及 XML 转义文本安全往返，单行文案从不作为活动 OOXML
+  ---
+  duration_ms: 81.809958
+  type: 'test'
+  ...
+# Subtest: Word 已更新的字段缓存数字可恢复字段格式，不使用缓存作为编辑器分页
+ok 286 - Word 已更新的字段缓存数字可恢复字段格式，不使用缓存作为编辑器分页
+  ---
+  duration_ms: 76.188792
+  type: 'test'
+  ...
+# Subtest: 激活页眉页脚的精确 12 mm 边界三次往返稳定，清楚提示整数单位量化
+ok 287 - 激活页眉页脚的精确 12 mm 边界三次往返稳定，清楚提示整数单位量化
+  ---
+  duration_ms: 199.54425
+  type: 'test'
+  ...
+# Subtest: 缺省、null 和空白无页码均不导出空白页内容，水印单独启用仍保持原契约
+ok 288 - 缺省、null 和空白无页码均不导出空白页内容，水印单独启用仍保持原契约
+  ---
+  duration_ms: 148.690917
+  type: 'test'
+  ...
+# Subtest: 普通第三方页眉页脚继续静态附加，未识别文案不冒充动态设置
+ok 289 - 普通第三方页眉页脚继续静态附加，未识别文案不冒充动态设置
+  ---
+  duration_ms: 72.281916
+  type: 'test'
+  ...
+# Subtest: 同一页眉附带的普通段落保留，移除仅限已验证的自有 SDT
+ok 290 - 同一页眉附带的普通段落保留，移除仅限已验证的自有 SDT
+  ---
+  duration_ms: 46.094416
+  type: 'test'
+  ...
+# Subtest: 无首节默认的首页或偶数页专用设置不会扩展到全局或污染正文
+ok 291 - 无首节默认的首页或偶数页专用设置不会扩展到全局或污染正文
+  ---
+  duration_ms: 208.844833
+  type: 'test'
+  ...
+# Subtest: 首页独立内容不同明确警告，首节默认设置仍为全局可表示的依据
+ok 292 - 首页独立内容不同明确警告，首节默认设置仍为全局可表示的依据
+  ---
+  duration_ms: 35.582208
+  type: 'test'
+  ...
+# Subtest: 多节相同且后节继承不制造装饰差异，真正不同的后节按首节默认并警告
+ok 293 - 多节相同且后节继承不制造装饰差异，真正不同的后节按首节默认并警告
+  ---
+  duration_ms: 210.759792
+  type: 'test'
+  ...
+# Subtest: 历史 sectPrChange 中旧自有页内容不当作当前正文，也不先被静态控件守卫误拒绝
+ok 294 - 历史 sectPrChange 中旧自有页内容不当作当前正文，也不先被静态控件守卫误拒绝
+  ---
+  duration_ms: 91.266958
+  type: 'test'
+  ...
+# Subtest: 页脚真实关系缺失、重复、错误类型、包外路径、错根或缺件均明确拒绝
+ok 295 - 页脚真实关系缺失、重复、错误类型、包外路径、错根或缺件均明确拒绝
+  ---
+  duration_ms: 739.145166
+  type: 'test'
+  ...
+# Subtest: 孤立 canonical 部件不会先被移除再绕过原文归属守卫
+ok 296 - 孤立 canonical 部件不会先被移除再绕过原文归属守卫
+  ---
+  duration_ms: 37.5485
+  type: 'test'
+  ...
+# Subtest: 孤立的空未知控件或缺缓存页码域仍拒绝，不能以空白页部件略过归属检查
+ok 297 - 孤立的空未知控件或缺缓存页码域仍拒绝，不能以空白页部件略过归属检查
+  ---
+  duration_ms: 24.124208
+  type: 'test'
+  ...
+# Subtest: marker 并不足以放行：损坏内容、格式、字段或嵌套控件绝不静默删掉正文
+ok 298 - marker 并不足以放行：损坏内容、格式、字段或嵌套控件绝不静默删掉正文
+  ---
+  duration_ms: 848.508917
+  type: 'test'
+  ...
+# Subtest: 当前未知 VML 不因自有页眉或水印支持被放行
+ok 299 - 当前未知 VML 不因自有页眉或水印支持被放行
+  ---
+  duration_ms: 37.018125
+  type: 'test'
+  ...
+# Subtest: Word 命名空间别名不改变恢复结果，识别依 URI 而非 w: 字符串
+ok 300 - Word 命名空间别名不改变恢复结果，识别依 URI 而非 w: 字符串
+  ---
+  duration_ms: 85.526916
+  type: 'test'
+  ...
+# Subtest: 正式导出的 A3/A4/A5/Letter 横竖纸张回到共享精确尺寸，非对称边距保留且 XML 不变
+ok 301 - 正式导出的 A3/A4/A5/Letter 横竖纸张回到共享精确尺寸，非对称边距保留且 XML 不变
+  ---
+  duration_ms: 345.501625
+  type: 'test'
+  ...
+# Subtest: 没有节元数据、空节与只有部分属性的旧文件使用独立兼容默认值
+ok 302 - 没有节元数据、空节与只有部分属性的旧文件使用独立兼容默认值
+  ---
+  duration_ms: 2.645708
+  type: 'test'
+  ...
+# Subtest: Word 常见 A4 的 1 twip 纸面差异归一到 A4，未知的邻近尺寸不被吞掉
+ok 303 - Word 常见 A4 的 1 twip 纸面差异归一到 A4，未知的邻近尺寸不被吞掉
+  ---
+  duration_ms: 0.472125
+  type: 'test'
+  ...
+# Subtest: 无方向标记时按实际宽高恢复横版，冲突的合法方向标记有明确提示
+ok 304 - 无方向标记时按实际宽高恢复横版，冲突的合法方向标记有明确提示
+  ---
+  duration_ms: 0.987958
+  type: 'test'
+  ...
+# Subtest: 相同有效多节保留全局配置，不把最后一节覆盖首节，也不把修订历史计作新节
+ok 305 - 相同有效多节保留全局配置，不把最后一节覆盖首节，也不把修订历史计作新节
+  ---
+  duration_ms: 0.395542
+  type: 'test'
+  ...
+# Subtest: 不同有效多节采用第一节并报告差异，后节缺省不从首节盲目继承
+ok 306 - 不同有效多节采用第一节并报告差异，后节缺省不从首节盲目继承
+  ---
+  duration_ms: 0.444167
+  type: 'test'
+  ...
+# Subtest: 同一受支持纸型的 1 twip 编码差异不伪造混合节提示，错误修订容器不能藏匿元数据
+ok 307 - 同一受支持纸型的 1 twip 编码差异不伪造混合节提示，错误修订容器不能藏匿元数据
+  ---
+  duration_ms: 0.547209
+  type: 'test'
+  ...
+# Subtest: 不同未知纸张都回退 A4 时仍报告原始节配置差异，合法横版未知纸张保留方向
+ok 308 - 不同未知纸张都回退 A4 时仍报告原始节配置差异，合法横版未知纸张保留方向
+  ---
+  duration_ms: 0.197625
+  type: 'test'
+  ...
+# Subtest: 合法负上下边距与超大边距回退到 20 mm，装订线有独立损失提示
+ok 309 - 合法负上下边距与超大边距回退到 20 mm，装订线有独立损失提示
+  ---
+  duration_ms: 0.54
+  type: 'test'
+  ...
+# Subtest: 正式导出的合法 40 mm 正文边界不会回退默认边距，重复往返保持稳定
+ok 310 - 正式导出的合法 40 mm 正文边界不会回退默认边距，重复往返保持稳定
+  ---
+  duration_ms: 131.14075
+  type: 'test'
+  ...
+# Subtest: 合法整数的空白、正号与零边距接受，0 不被错误替换成默认值
+ok 311 - 合法整数的空白、正号与零边距接受，0 不被错误替换成默认值
+  ---
+  duration_ms: 0.550292
+  type: 'test'
+  ...
+# Subtest: 纸张和页边距损坏数字、非法方向及非法负值整份拒绝，不由默认值掩盖
+ok 312 - 纸张和页边距损坏数字、非法方向及非法负值整份拒绝，不由默认值掩盖
+  ---
+  duration_ms: 2.551917
+  type: 'test'
+  ...
+# Subtest: 纸面关键元素重复、错位、异常内容和伪命名空间属性拒绝
+ok 313 - 纸面关键元素重复、错位、异常内容和伪命名空间属性拒绝
+  ---
+  duration_ms: 2.029083
+  type: 'test'
+  ...
+# Subtest: 命名空间前缀可替换，主文档缺失或重复 body 不会被当作旧文档接受
+ok 314 - 命名空间前缀可替换，主文档缺失或重复 body 不会被当作旧文档接受
+  ---
+  duration_ms: 0.711042
+  type: 'test'
+  ...
+# Subtest: DOCX 原型读取已有图文表格，独立记录且原 Buffer 不变
+ok 315 - DOCX 原型读取已有图文表格，独立记录且原 Buffer 不变
+  ---
+  duration_ms: 524.008875
+  type: 'test'
+  ...
+# Subtest: DOCX 复杂列表、合并与嵌套表格按语义转换并声明编号限制
+ok 316 - DOCX 复杂列表、合并与嵌套表格按语义转换并声明编号限制
+  ---
+  duration_ms: 261.894542
+  type: 'test'
+  ...
+# Subtest: DOCX 原生公式拒绝导入，避免转换器静默丢弃
+ok 317 - DOCX 原生公式拒绝导入，避免转换器静默丢弃
+  ---
+  duration_ms: 41.768458
+  type: 'test'
+  ...
+# Subtest: DOCX 导入后真实编辑器修改、便携保存重读、再次导出保持文字和图片
+ok 318 - DOCX 导入后真实编辑器修改、便携保存重读、再次导出保持文字和图片
+  ---
+  duration_ms: 264.126833
+  type: 'test'
+  ...
+# Subtest: DOCX 危险链接降为文字，转换 HTML 不注入页面
+ok 319 - DOCX 危险链接降为文字，转换 HTML 不注入页面
+  ---
+  duration_ms: 9.218292
+  type: 'test'
+  ...
+# Subtest: DOCX 外部图片关系不访问网络或本地文件
+ok 320 - DOCX 外部图片关系不访问网络或本地文件
+  ---
+  duration_ms: 103.930333
+  type: 'test'
+  ...
+# Subtest: DOCX 图片文件缺失和伪造签名均拒绝，不交付缺图结果
+ok 321 - DOCX 图片文件缺失和伪造签名均拒绝，不交付缺图结果
+  ---
+  duration_ms: 240.490833
+  type: 'test'
+  ...
+# Subtest: DOCX 坏包、必要部件缺失、路径穿越拒绝
+ok 322 - DOCX 坏包、必要部件缺失、路径穿越拒绝
+  ---
+  duration_ms: 300.537292
+  type: 'test'
+  ...
+# Subtest: DOCX 实体声明、超深 XML、宏、修订与非空页眉拒绝
+ok 323 - DOCX 实体声明、超深 XML、宏、修订与非空页眉拒绝
+  ---
+  duration_ms: 365.289833
+  type: 'test'
+  ...
+# Subtest: DOCX 按实际解压字节限额，高压缩比文件提前拒绝
+ok 324 - DOCX 按实际解压字节限额，高压缩比文件提前拒绝
+  ---
+  duration_ms: 548.973375
+  type: 'test'
+  ...
+# Subtest: DOCX 取消前和展开中均停止返回记录，后续重试正常
+ok 325 - DOCX 取消前和展开中均停止返回记录，后续重试正常
+  ---
+  duration_ms: 231.251292
+  type: 'test'
+  ...
+# Subtest: DOCX 表格缺格、合并越界与 HTML 过深拒绝
+ok 326 - DOCX 表格缺格、合并越界与 HTML 过深拒绝
+  ---
+  duration_ms: 12.796125
+  type: 'test'
+  ...
+# Subtest: DOCX 未识别正文元素明确拒绝，不把转换器丢弃警告当成功
+ok 327 - DOCX 未识别正文元素明确拒绝，不把转换器丢弃警告当成功
+  ---
+  duration_ms: 187.174833
+  type: 'test'
+  ...
+# Subtest: Word 回存的行级零边距例外不阻止导入，保留全部表格正文且明确提示布局降级
+ok 328 - Word 回存的行级零边距例外不阻止导入，保留全部表格正文且明确提示布局降级
+  ---
+  duration_ms: 120.653542
+  type: 'test'
+  ...
+# Subtest: 行级布局例外中的未知内容、属性、重复节点及错误归属均拒绝，不能吞掉正文
+ok 329 - 行级布局例外中的未知内容、属性、重复节点及错误归属均拒绝，不能吞掉正文
+  ---
+  duration_ms: 386.397083
+  type: 'test'
+  ...
+# Subtest: 其他未知元素仍触发 Mammoth 的整份拒绝，不因表格兼容而屏蔽警告
+ok 330 - 其他未知元素仍触发 Mammoth 的整份拒绝，不因表格兼容而屏蔽警告
+  ---
+  duration_ms: 46.356125
+  type: 'test'
+  ...
+# Subtest: 两份 Word 原生回存水印恢复设置并完整移除成对形状，原始压缩字节不变
+ok 331 - 两份 Word 原生回存水印恢复设置并完整移除成对形状，原始压缩字节不变
+  ---
+  duration_ms: 209.376125
+  type: 'test'
+  ...
+# Subtest: Word 成对水印缺失配对、额外内容、活动引用或改变几何时原样保留，不能只信 ID
+ok 332 - Word 成对水印缺失配对、额外内容、活动引用或改变几何时原样保留，不能只信 ID
+  ---
+  duration_ms: 673.056792
+  type: 'test'
+  ...
+# Subtest: Word 成对水印必须在同一直接段落且 ID 唯一，不能跨未知容器拼出有效水印
+ok 333 - Word 成对水印必须在同一直接段落且 ID 唯一，不能跨未知容器拼出有效水印
+  ---
+  duration_ms: 125.629542
+  type: 'test'
+  ...
+# Subtest: 移除 Word 水印只影响已验证 pict，同段普通文字和未知图形继续保留
+ok 334 - 移除 Word 水印只影响已验证 pict，同段普通文字和未知图形继续保留
+  ---
+  duration_ms: 61.779417
+  type: 'test'
+  ...
+# Subtest: Word 定点不透明度保留实际精度，只有 5% 下界允许消除一个单位的量化误差
+ok 335 - Word 定点不透明度保留实际精度，只有 5% 下界允许消除一个单位的量化误差
+  ---
+  duration_ms: 316.98575
+  type: 'test'
+  ...
+# Subtest: 混合原生与 canonical 水印按可见形状原文顺序选择首个，隐藏配对不提前占位
+ok 336 - 混合原生与 canonical 水印按可见形状原文顺序选择首个，隐藏配对不提前占位
+  ---
+  duration_ms: 258.082042
+  type: 'test'
+  ...
+# Subtest: 实际 Mewoc 水印恢复四项设置且不污染正文，清理仅作用内存 DOM、原压缩字节不变
+ok 337 - 实际 Mewoc 水印恢复四项设置且不污染正文，清理仅作用内存 DOM、原压缩字节不变
+  ---
+  duration_ms: 180.41475
+  type: 'test'
+  ...
+# Subtest: 所有纸型方向、80 个 Unicode 码点、5%/50% 和正负90度都从真实导出水印恢复
+ok 338 - 所有纸型方向、80 个 Unicode 码点、5%/50% 和正负90度都从真实导出水印恢复
+  ---
+  duration_ms: 273.29825
+  type: 'test'
+  ...
+# Subtest: 转义文字和命名空间别名安全恢复，XML 字符串没有被当作正文标记
+ok 339 - 转义文字和命名空间别名安全恢复，XML 字符串没有被当作正文标记
+  ---
+  duration_ms: 33.279583
+  type: 'test'
+  ...
+# Subtest: 同一水印段落的普通 run 和其它页眉正文按原附加链保留，没有水印空占位段落
+ok 340 - 同一水印段落的普通 run 和其它页眉正文按原附加链保留，没有水印空占位段落
+  ---
+  duration_ms: 37.720292
+  type: 'test'
+  ...
+# Subtest: 仅伪装 Mewoc ID 不放行：未知属性、活动引用、额外子节点、艺术字或拉伸几何保持旧链拒绝
+ok 341 - 仅伪装 Mewoc ID 不放行：未知属性、活动引用、额外子节点、艺术字或拉伸几何保持旧链拒绝
+  ---
+  duration_ms: 328.328833
+  type: 'test'
+  ...
+# Subtest: 水印属性超出共享契约时留 DOM 并拒绝，不能截断长文字或钳制透明度和角度
+ok 342 - 水印属性超出共享契约时留 DOM 并拒绝，不能截断长文字或钳制透明度和角度
+  ---
+  duration_ms: 306.566875
+  type: 'test'
+  ...
+# Subtest: marker、标准形状类型引用与形状 ID 唯一性必须成立，普通 Word 艺术字不按 Mewoc 水印吞掉
+ok 343 - marker、标准形状类型引用与形状 ID 唯一性必须成立，普通 Word 艺术字不按 Mewoc 水印吞掉
+  ---
+  duration_ms: 133.632666
+  type: 'test'
+  ...
+# Subtest: 真正的包内页眉关系支持绝对路径和路径规范化，但缺失、重复、外链和错误类型明确拒绝
+ok 344 - 真正的包内页眉关系支持绝对路径和路径规范化，但缺失、重复、外链和错误类型明确拒绝
+  ---
+  duration_ms: 171.365208
+  type: 'test'
+  ...
+# Subtest: 不同节未重新引用时沿用前节页眉，同一水印可合并且没有分节差异提示
+ok 345 - 不同节未重新引用时沿用前节页眉，同一水印可合并且没有分节差异提示
+  ---
+  duration_ms: 12.495459
+  type: 'test'
+  ...
+# Subtest: 首节 default 有水印，后节水印不同或明确空页眉时提示全局采用首节
+ok 346 - 首节 default 有水印，后节水印不同或明确空页眉时提示全局采用首节
+  ---
+  duration_ms: 55.555666
+  type: 'test'
+  ...
+# Subtest: 首节无水印、后续节专用水印不会扩展到全文，明确提示未保留
+ok 347 - 首节无水印、后续节专用水印不会扩展到全文，明确提示未保留
+  ---
+  duration_ms: 30.922208
+  type: 'test'
+  ...
+# Subtest: 只有 first/even 水印时不扩展到全文，首偶页差异不被无提示覆盖
+ok 348 - 只有 first/even 水印时不扩展到全文，首偶页差异不被无提示覆盖
+  ---
+  duration_ms: 62.987542
+  type: 'test'
+  ...
+# Subtest: 首偶页同水印可恢复；启用首偶但缺少对应水印时提示适用范围改变
+ok 349 - 首偶页同水印可恢复；启用首偶但缺少对应水印时提示适用范围改变
+  ---
+  duration_ms: 121.18925
+  type: 'test'
+  ...
+# Subtest: 同一页眉多个真正支持的相同水印合并为一层，清理各空段并提示重叠层次变化
+ok 350 - 同一页眉多个真正支持的相同水印合并为一层，清理各空段并提示重叠层次变化
+  ---
+  duration_ms: 69.624041
+  type: 'test'
+  ...
+# Subtest: 没有正文节引用的水印不提取，不让旧残留资源通过导入
+ok 351 - 没有正文节引用的水印不提取，不让旧残留资源通过导入
+  ---
+  duration_ms: 20.151166
+  type: 'test'
+  ...
+# Subtest: 旧式缺少 w:type 的页眉继续按 default 读取并提示页型不确定，不增加普通页眉导入拒绝
+ok 352 - 旧式缺少 w:type 的页眉继续按 default 读取并提示页型不确定，不增加普通页眉导入拒绝
+  ---
+  duration_ms: 13.541333
+  type: 'test'
+  ...
+# Subtest: 有效 watermark pict 与未知 VML 相邻时保留未知部分，旧图形失败不能被部分提取掩盖
+ok 353 - 有效 watermark pict 与未知 VML 相邻时保留未知部分，旧图形失败不能被部分提取掩盖
+  ---
+  duration_ms: 13.812458
+  type: 'test'
+  ...
+# Subtest: 有效节以外的 sectPrChange 快照不决定水印，未知空引用也必须拒绝而非略过
+ok 354 - 有效节以外的 sectPrChange 快照不决定水印，未知空引用也必须拒绝而非略过
+  ---
+  duration_ms: 79.101125
+  type: 'test'
+  ...
+# Subtest: Word 正式转换保留 3 起编号、独立 A 列表、多段项和混合嵌套
+ok 355 - Word 正式转换保留 3 起编号、独立 A 列表、多段项和混合嵌套
+  ---
+  duration_ms: 190.606042
+  type: 'test'
+  ...
+# Subtest: Word 分式、上下限和矩阵转为可编辑公式，再导出仍含 OMML
+ok 356 - Word 分式、上下限和矩阵转为可编辑公式，再导出仍含 OMML
+  ---
+  duration_ms: 305.398042
+  type: 'test'
+  ...
+# Subtest: 同一编号被正文打断后续编，不同实例重新开始
+ok 357 - 同一编号被正文打断后续编，不同实例重新开始
+  ---
+  duration_ms: 106.496292
+  type: 'test'
+  ...
+# Subtest: 继承样式的编号属性、起点覆盖和罗马数字保留
+ok 358 - 继承样式的编号属性、起点覆盖和罗马数字保留
+  ---
+  duration_ms: 42.811583
+  type: 'test'
+  ...
+# Subtest: 父级推进重置子级，lvlRestart=0 继续计数
+ok 359 - 父级推进重置子级，lvlRestart=0 继续计数
+  ---
+  duration_ms: 115.099542
+  type: 'test'
+  ...
+# Subtest: 复合编号、样式链接、负数起点和缺失定义明确拒绝
+ok 360 - 复合编号、样式链接、负数起点和缺失定义明确拒绝
+  ---
+  duration_ms: 68.724208
+  type: 'test'
+  ...
+# Subtest: Word 数学结构覆盖根式、组合上下标、大运算符、重音与括号
+ok 361 - Word 数学结构覆盖根式、组合上下标、大运算符、重音与括号
+  ---
+  duration_ms: 3.093958
+  type: 'test'
+  ...
+# Subtest: 未知或超限整式拒绝，不从 textContent 拼出错误公式
+ok 362 - 未知或超限整式拒绝，不从 textContent 拼出错误公式
+  ---
+  duration_ms: 1.033541
+  type: 'test'
+  ...
+# Subtest: 纵向合并续格只允许空占位，不静默丢掉其中正文
+ok 363 - 纵向合并续格只允许空占位，不静默丢掉其中正文
+  ---
+  duration_ms: 12.35675
+  type: 'test'
+  ...
+# Subtest: Word 图片去重、合并及真实解码接口清理，取消不返回记录
+ok 364 - Word 图片去重、合并及真实解码接口清理，取消不返回记录
+  ---
+  duration_ms: 49.922083
+  type: 'test'
+  ...
+# Subtest: DOCX 文件类型与大小先校验，不创建转换 Worker
+ok 365 - DOCX 文件类型与大小先校验，不创建转换 Worker
+  ---
+  duration_ms: 0.456459
+  type: 'test'
+  ...
+# Subtest: Worker 成功、错误、传输失败、取消均销毁且清理监听
+ok 366 - Worker 成功、错误、传输失败、取消均销毁且清理监听
+  ---
+  duration_ms: 0.317375
+  type: 'test'
+  ...
+# Subtest: Worker 超时和 postMessage 抛错也收口
+ok 367 - Worker 超时和 postMessage 抛错也收口
+  ---
+  duration_ms: 0.096791
+  type: 'test'
+  ...
+# Subtest: 同一段落的多个文本框保留源顺序，文字置于所属段落之后并提示布局变化
+ok 368 - 同一段落的多个文本框保留源顺序，文字置于所属段落之后并提示布局变化
+  ---
+  duration_ms: 131.762542
+  type: 'test'
+  ...
+# Subtest: 兼容分支只读取 Fallback 一次，嵌套兼容分支也不重复正文
+ok 369 - 兼容分支只读取 Fallback 一次，嵌套兼容分支也不重复正文
+  ---
+  duration_ms: 46.026125
+  type: 'test'
+  ...
+# Subtest: 文本框内表格、格式、公式、编号及嵌套文本框可导出后重新导入
+ok 370 - 文本框内表格、格式、公式、编号及嵌套文本框可导出后重新导入
+  ---
+  duration_ms: 301.41475
+  type: 'test'
+  ...
+# Subtest: 旧式内嵌图片保留字节、与文本框的先后顺序及去重，再导出不丢图片
+ok 371 - 旧式内嵌图片保留字节、与文本框的先后顺序及去重，再导出不丢图片
+  ---
+  duration_ms: 196.034125
+  type: 'test'
+  ...
+# Subtest: 纯矢量图形、艺术字和图片旁的未支持图形不能静默丢失
+ok 372 - 纯矢量图形、艺术字和图片旁的未支持图形不能静默丢失
+  ---
+  duration_ms: 91.571042
+  type: 'test'
+  ...
+# Subtest: 旧式图片缺失关系、引用不存在或外链时拒绝，不返回残缺记录
+ok 373 - 旧式图片缺失关系、引用不存在或外链时拒绝，不返回残缺记录
+  ---
+  duration_ms: 66.616042
+  type: 'test'
+  ...
+# Subtest: 没有兼容分支的对象、未识别文本框及不完整文本框明确拒绝
+ok 374 - 没有兼容分支的对象、未识别文本框及不完整文本框明确拒绝
+  ---
+  duration_ms: 51.797167
+  type: 'test'
+  ...
+# Subtest: 文本框中的修订和仅含旧式图片的页眉仍明确拒绝
+ok 375 - 文本框中的修订和仅含旧式图片的页眉仍明确拒绝
+  ---
+  duration_ms: 94.746209
+  type: 'test'
+  ...
+# Subtest: Word 字母列表跨 z、az、zz 后显示标签与浏览器相同，往返仍是原自动列表
+ok 376 - Word 字母列表跨 z、az、zz 后显示标签与浏览器相同，往返仍是原自动列表
+  ---
+  duration_ms: 821.922834
+  type: 'test'
+  ...
+# Subtest: 字母分段保留嵌套、多段项目、同级相邻列表身份和不同起点
+ok 377 - 字母分段保留嵌套、多段项目、同级相邻列表身份和不同起点
+  ---
+  duration_ms: 81.409041
+  type: 'test'
+  ...
+# Subtest: 未跨界的短字母列表和数字、罗马列表保持原生编号，不产生分段提示
+ok 378 - 未跨界的短字母列表和数字、罗马列表保持原生编号，不产生分段提示
+  ---
+  duration_ms: 159.541417
+  type: 'test'
+  ...
+# Subtest: 自有字母分段的前缀、计数、隐藏状态和重启语义损坏时拒绝，不能凭样式名猜恢复
+ok 379 - 自有字母分段的前缀、计数、隐藏状态和重启语义损坏时拒绝，不能凭样式名猜恢复
+  ---
+  duration_ms: 279.683167
+  type: 'test'
+  ...
+# Subtest: Word 16.100.2 原生另存的大小写分段保留标签，改写样式 ID 后仍恢复完整列表
+ok 380 - Word 16.100.2 原生另存的大小写分段保留标签，改写样式 ID 后仍恢复完整列表
+  ---
+  duration_ms: 144.383625
+  type: 'test'
+  ...
+# Subtest: 协议的空页脚页码和复合条款编号共同导入，正文与静态编号再次导出仍保持
+ok 381 - 协议的空页脚页码和复合条款编号共同导入，正文与静态编号再次导出仍保持
+  ---
+  duration_ms: 447.881958
+  type: 'test'
+  ...
+# Subtest: 正式 DOCX 往返保留四种纸型、横竖方向与非对称边距，源文档及压缩字节不变
+ok 382 - 正式 DOCX 往返保留四种纸型、横竖方向与非对称边距，源文档及压缩字节不变
+  ---
+  duration_ms: 1187.073625
+  type: 'test'
+  ...
+# Subtest: 本项目原生页眉水印保持转义文字、颜色、透明度和旋转，正文与预览均不混入装饰
+ok 383 - 本项目原生页眉水印保持转义文字、颜色、透明度和旋转，正文与预览均不混入装饰
+  ---
+  duration_ms: 149.132333
+  type: 'test'
+  ...
+# Subtest: 80 个 emoji 在正负 90 度水印中完整往返，Unicode 码点不按 UTF-16 半段截断
+ok 384 - 80 个 emoji 在正负 90 度水印中完整往返，Unicode 码点不按 UTF-16 半段截断
+  ---
+  duration_ms: 162.237291
+  type: 'test'
+  ...
+# Subtest: 连续三轮 DOCX 导出导入保持量化边距与水印，不积累静态页眉或正文副本
+ok 385 - 连续三轮 DOCX 导出导入保持量化边距与水印，不积累静态页眉或正文副本
+  ---
+  duration_ms: 186.345792
+  type: 'test'
+  ...
+# Subtest: 普通页眉仍按静态内容附加一次，与纸张恢复及不带水印的导入兼容
+ok 386 - 普通页眉仍按静态内容附加一次，与纸张恢复及不带水印的导入兼容
+  ---
+  duration_ms: 168.90225
+  type: 'test'
+  ...
+# Subtest: 水印与普通文字同处一个页眉时只提取水印，普通内容仍附加且不会重复
+ok 387 - 水印与普通文字同处一个页眉时只提取水印，普通内容仍附加且不会重复
+  ---
+  duration_ms: 152.6835
+  type: 'test'
+  ...
+# Subtest: 可识别水印不放宽未知旧式绘图守卫，混入未支持 VML 的整个文件仍拒绝
+ok 388 - 可识别水印不放宽未知旧式绘图守卫，混入未支持 VML 的整个文件仍拒绝
+  ---
+  duration_ms: 139.430209
+  type: 'test'
+  ...
+# Subtest: 导入记录和 Mewoc 文件保有独立的页面快照，后续转换数据修改不串入已完成记录
+ok 389 - 导入记录和 Mewoc 文件保有独立的页面快照，后续转换数据修改不串入已完成记录
+  ---
+  duration_ms: 29.988916
+  type: 'test'
+  ...
+# Subtest: 页面修订快照引用的旧水印不附加进正文，正式导入只恢复当前有效节
+ok 390 - 页面修订快照引用的旧水印不附加进正文，正式导入只恢复当前有效节
+  ---
+  duration_ms: 54.618542
+  type: 'test'
+  ...
+# Subtest: 跨段自动目录及嵌套 PAGEREF 保留缓存文字，导出后变为稳定正文
+ok 391 - 跨段自动目录及嵌套 PAGEREF 保留缓存文字，导出后变为稳定正文
+  ---
+  duration_ms: 623.150167
+  type: 'test'
+  ...
+# Subtest: 简单页码域和同一段落前后文字保留，不执行外部域
+ok 392 - 简单页码域和同一段落前后文字保留，不执行外部域
+  ---
+  duration_ms: 176.669041
+  type: 'test'
+  ...
+# Subtest: 不完整、重复分隔、无缓存或游离的域代码不能默默通过
+ok 393 - 不完整、重复分隔、无缓存或游离的域代码不能默默通过
+  ---
+  duration_ms: 70.766791
+  type: 'test'
+  ...
+# Subtest: 仅展开已识别目录和页码内容控件，数据绑定及其他控件仍拒绝
+ok 394 - 仅展开已识别目录和页码内容控件，数据绑定及其他控件仍拒绝
+  ---
+  duration_ms: 15.326583
+  type: 'test'
+  ...
+# Subtest: 页眉图片关系从其自身部件解析，正文同名关系不会串图，重复引用只附一次
+ok 395 - 页眉图片关系从其自身部件解析，正文同名关系不会串图，重复引用只附一次
+  ---
+  duration_ms: 219.472667
+  type: 'test'
+  ...
+# Subtest: 原生图表保留标题、分类、系列及数值，图表工作簿不执行且不进入转换 ZIP
+ok 396 - 原生图表保留标题、分类、系列及数值，图表工作簿不执行且不进入转换 ZIP
+  ---
+  duration_ms: 202.600417
+  type: 'test'
+  ...
+# Subtest: 缓存明确为零点的空图表保留系列说明，不杜撰数值
+ok 397 - 缓存明确为零点的空图表保留系列说明，不杜撰数值
+  ---
+  duration_ms: 59.81
+  type: 'test'
+  ...
+# Subtest: 图表缺少缓存、分类错位、重复点或非数值时明确拒绝
+ok 398 - 图表缺少缓存、分类错位、重复点或非数值时明确拒绝
+  ---
+  duration_ms: 148.682041
+  type: 'test'
+  ...
+# Subtest: 只允许已转换图表的内嵌 XLSX，其他附件及外部工作簿保持拒绝
+ok 399 - 只允许已转换图表的内嵌 XLSX，其他附件及外部工作簿保持拒绝
+  ---
+  duration_ms: 150.658208
+  type: 'test'
+  ...
+# Subtest: 旧式文本框的环绕和锚点锁定可降级，未知子内容不能随之丢弃
+ok 400 - 旧式文本框的环绕和锚点锁定可降级，未知子内容不能随之丢弃
+  ---
+  duration_ms: 150.58975
+  type: 'test'
+  ...
+# Subtest: 正式导出使用 Word 实测可见的标准 136 模板及原字号，不能退回不可见单线/自定义类型
+ok 401 - 正式导出使用 Word 实测可见的标准 136 模板及原字号，不能退回不可见单线/自定义类型
+  ---
+  duration_ms: 181.915625
+  type: 'test'
+  ...
+# Subtest: Word 原生可见 WordArt 回存恢复文字、颜色、旋转和固定点透明度，正文及压缩字节不变
+ok 402 - Word 原生可见 WordArt 回存恢复文字、颜色、旋转和固定点透明度，正文及压缩字节不变
+  ---
+  duration_ms: 149.021708
+  type: 'test'
+  ...
+# Subtest: 原生可见样本走正式转换、会话组装及再导出导入，不产生静态页眉或水印正文
+ok 403 - 原生可见样本走正式转换、会话组装及再导出导入，不产生静态页眉或水印正文
+  ---
+  duration_ms: 506.91025
+  type: 'test'
+  ...
+# Subtest: 标准类型 ID 的重复定义只有完全一致才安全，重复形状或未知同名类型不被移除
+ok 404 - 标准类型 ID 的重复定义只有完全一致才安全，重复形状或未知同名类型不被移除
+  ---
+  duration_ms: 72.493208
+  type: 'test'
+  ...
+# Subtest: 原生 WordArt 只有完整已确认模板和本项目形状可恢复，任意公式、额外内容及活动引用均拒绝
+ok 405 - 原生 WordArt 只有完整已确认模板和本项目形状可恢复，任意公式、额外内容及活动引用均拒绝
+  ---
+  duration_ms: 266.941792
+  type: 'test'
+  ...
+# Subtest: 真实 Word 回存 word-resaved.docx 恢复动态页面设置、全部正文及原图字节
+ok 406 - 真实 Word 回存 word-resaved.docx 恢复动态页面设置、全部正文及原图字节
+  ---
+  duration_ms: 2021.199084
+  type: 'test'
+  ...
+# Subtest: 真实 Word 回存 word-fields-updated.docx 恢复动态页面设置、全部正文及原图字节
+ok 407 - 真实 Word 回存 word-fields-updated.docx 恢复动态页面设置、全部正文及原图字节
+  ---
+  duration_ms: 1254.252833
+  type: 'test'
+  ...
+# Subtest: 真实 Word 回存 display-fix/word-resaved.docx 恢复动态页面设置、全部正文及原图字节
+ok 408 - 真实 Word 回存 display-fix/word-resaved.docx 恢复动态页面设置、全部正文及原图字节
+  ---
+  duration_ms: 1006.259458
+  type: 'test'
+  ...
+# Subtest: 原生 Word 样本的未知控件内容、复杂域指令或残缺字段仍拒绝，不能只凭 marker 吞掉
+ok 409 - 原生 Word 样本的未知控件内容、复杂域指令或残缺字段仍拒绝，不能只凭 marker 吞掉
+  ---
+  duration_ms: 1149.102125
+  type: 'test'
+  ...
+# Subtest: Markdown 混合普通/任务项按原顺序拆分，嵌套勾选状态经导出再次导入仍保留
+ok 410 - Markdown 混合普通/任务项按原顺序拆分，嵌套勾选状态经导出再次导入仍保留
+  ---
+  duration_ms: 245.460708
+  type: 'test'
+  ...
+# Subtest: Markdown 带编号的混合任务列表保留普通项的续编号，任务编号降级明确说明
+ok 411 - Markdown 带编号的混合任务列表保留普通项的续编号，任务编号降级明确说明
+  ---
+  duration_ms: 4.753292
+  type: 'test'
+  ...
+# Subtest: Markdown 待办多段、空项、普通子列表和字面复选框文字均不丢失或误解析
+ok 412 - Markdown 待办多段、空项、普通子列表和字面复选框文字均不丢失或误解析
+  ---
+  duration_ms: 31.613875
+  type: 'test'
+  ...
+# Subtest: Markdown 上下标只降级格式且保留兼容 marks，HTML 标签仍按源码保留
+ok 413 - Markdown 上下标只降级格式且保留兼容 marks，HTML 标签仍按源码保留
+  ---
+  duration_ms: 5.879458
+  type: 'test'
+  ...
+# Subtest: DOCX 用原生 vertAlign 输出文字上下标，正式导入保留粗体和超链接组合
+ok 414 - DOCX 用原生 vertAlign 输出文字上下标，正式导入保留粗体和超链接组合
+  ---
+  duration_ms: 270.283917
+  type: 'test'
+  ...
+# Subtest: DOCX 待办状态输出为可读静态标记，嵌套内容、续段和首项分页完整保留
+ok 415 - DOCX 待办状态输出为可读静态标记，嵌套内容、续段和首项分页完整保留
+  ---
+  duration_ms: 240.468291
+  type: 'test'
+  ...
+# Subtest: 纯文本在副本中保留待办状态，公式、附件、硬换行与正文顺序沿用原规则
+ok 416 - 纯文本在副本中保留待办状态，公式、附件、硬换行与正文顺序沿用原规则
+  ---
+  duration_ms: 1.496875
+  type: 'test'
+  ...
+# Subtest: 上下标互斥、保留其它文字格式，can 探测不修改文档，HTML 往返保留语义
+ok 417 - 上下标互斥、保留其它文字格式，can 探测不修改文档，HTML 往返保留语义
+  ---
+  duration_ms: 89.361916
+  type: 'test'
+  ...
+# Subtest: 最近列表层级回显和快捷键转换区分普通子列表与任务祖先
+ok 418 - 最近列表层级回显和快捷键转换区分普通子列表与任务祖先
+  ---
+  duration_ms: 33.477458
+  type: 'test'
+  ...
+# Subtest: 上下标跳过代码段、行内代码和非文字节点，混合选区只修改允许的文字
+ok 419 - 上下标跳过代码段、行内代码和非文字节点，混合选区只修改允许的文字
+  ---
+  duration_ms: 27.40775
+  type: 'test'
+  ...
+# Subtest: 文字格式修改独立撤销，空光标上下标作用于后续输入并可清除
+ok 420 - 文字格式修改独立撤销，空光标上下标作用于后续输入并可清除
+  ---
+  duration_ms: 42.279333
+  type: 'test'
+  ...
+# Subtest: 格式刷复制和清除上下标，不改变待办勾选状态
+ok 421 - 格式刷复制和清除上下标，不改变待办勾选状态
+  ---
+  duration_ms: 87.298667
+  type: 'test'
+  ...
+# Subtest: 已完成任务 Enter 拆分后的新事项未完成，空任务 Enter 退出列表
+ok 422 - 已完成任务 Enter 拆分后的新事项未完成，空任务 Enter 退出列表
+  ---
+  duration_ms: 29.77075
+  type: 'test'
+  ...
+# Subtest: 任务 Tab/Shift-Tab 保留勾选及文字，嵌套任务可独立退出
+ok 423 - 任务 Tab/Shift-Tab 保留勾选及文字，嵌套任务可独立退出
+  ---
+  duration_ms: 14.17125
+  type: 'test'
+  ...
+# Subtest: 三种列表转换保留多段和嵌套结构，普通列表转回任务重置直属勾选
+ok 424 - 三种列表转换保留多段和嵌套结构，普通列表转回任务重置直属勾选
+  ---
+  duration_ms: 30.469208
+  type: 'test'
+  ...
+# Subtest: 多段正文创建清单与全选单个列表切换保留段落，跨容器选区不展平
+ok 425 - 多段正文创建清单与全选单个列表切换保留段落，跨容器选区不展平
+  ---
+  duration_ms: 21.241125
+  type: 'test'
+  ...
+# Subtest: 列表支持查询与命令共用混合选区规则，结构结果不受只读切换影响
+ok 426 - 列表支持查询与命令共用混合选区规则，结构结果不受只读切换影响
+  ---
+  duration_ms: 10.140084
+  type: 'test'
+  ...
+# Subtest: 完整编辑器创建末尾待办及自动尾段共用一次撤销，勾选另占一次历史
+ok 427 - 完整编辑器创建末尾待办及自动尾段共用一次撤销，勾选另占一次历史
+  ---
+  duration_ms: 52.48725
+  type: 'test'
+  ...
+# Subtest: 上下标支持查询只计算文字结构，切换只读与相反标记不会缓存禁用结果
+ok 428 - 上下标支持查询只计算文字结构，切换只读与相反标记不会缓存禁用结果
+  ---
+  duration_ms: 5.762417
+  type: 'test'
+  ...
+# Subtest: 任务复选框真实 DOM 勾选可独立撤销，只读与组合输入不改数据也不残留视觉勾选
+ok 429 - 任务复选框真实 DOM 勾选可独立撤销，只读与组合输入不改数据也不残留视觉勾选
+  ---
+  duration_ms: 15.262333
+  type: 'test'
+  ...
+# Subtest: 只读拒绝任务及上下标命令，非法 checked 和互斥标记不能进入文件
+ok 430 - 只读拒绝任务及上下标命令，非法 checked 和互斥标记不能进入文件
+  ---
+  duration_ms: 14.740042
+  type: 'test'
+  ...
+# Subtest: 完整及嵌套待办通过 HTML/剪贴板保留勾选，静态复选框禁用而内部粘贴可继续编辑
+ok 431 - 完整及嵌套待办通过 HTML/剪贴板保留勾选，静态复选框禁用而内部粘贴可继续编辑
+  ---
+  duration_ms: 37.551292
+  type: 'test'
+  ...
+# Subtest: 剪贴板只恢复合法任务语义和上下标，不接受事件、交互表单或异常 checked
+ok 432 - 剪贴板只恢复合法任务语义和上下标，不接受事件、交互表单或异常 checked
+  ---
+  duration_ms: 19.141083
+  type: 'test'
+  ...
+# Subtest: 实际剪贴板清理保留合法编号起始号与样式，拒绝越界和任意类型
+ok 433 - 实际剪贴板清理保留合法编号起始号与样式，拒绝越界和任意类型
+  ---
+  duration_ms: 112.479791
+  type: 'test'
+  ...
+# Subtest: 正文 focus/blur 立即更新单段装饰，返回正文后恢复，不依赖额外事务或 listener
+ok 434 - 正文 focus/blur 立即更新单段装饰，返回正文后恢复，不依赖额外事务或 listener
+  ---
+  duration_ms: 71.274292
+  type: 'test'
+  ...
+# Subtest: 跨段正反文字选择只标记 anchor 所在段落，选区变化不涂满全选范围
+ok 435 - 跨段正反文字选择只标记 anchor 所在段落，选区变化不涂满全选范围
+  ---
+  duration_ms: 20.808792
+  type: 'test'
+  ...
+# Subtest: 列表、引用和表格内只装饰最近段落；祖先列表/单元格没有聚焦 class
+ok 436 - 列表、引用和表格内只装饰最近段落；祖先列表/单元格没有聚焦 class
+  ---
+  duration_ms: 43.676625
+  type: 'test'
+  ...
+# Subtest: H6 与已有标题共享聚焦装饰，标题级别及导出内容保留
+ok 437 - H6 与已有标题共享聚焦装饰，标题级别及导出内容保留
+  ---
+  duration_ms: 17.342583
+  type: 'test'
+  ...
+# Subtest: 只读即使仍有 DOM 焦点也不装饰，失焦状态不会被 isFocused 残值重新装饰
+ok 438 - 只读即使仍有 DOM 焦点也不装饰，失焦状态不会被 isFocused 残值重新装饰
+  ---
+  duration_ms: 19.391208
+  type: 'test'
+  ...
+# Subtest: NodeSelection、CellSelection、AllSelection 和代码选区不误标记相邻段落
+ok 439 - NodeSelection、CellSelection、AllSelection 和代码选区不误标记相邻段落
+  ---
+  duration_ms: 48.971875
+  type: 'test'
+  ...
+# Subtest: 聚焦装饰不进入文档 JSON/HTML，不触发保存 revision 或创建撤销步骤
+ok 440 - 聚焦装饰不进入文档 JSON/HTML，不触发保存 revision 或创建撤销步骤
+  ---
+  duration_ms: 21.838916
+  type: 'test'
+  ...
+# Subtest: 销毁后旧 DOM 的 focus/blur 不派发事件，新会话没有残留聚焦反馈
+ok 441 - 销毁后旧 DOM 的 focus/blur 不派发事件，新会话没有残留聚焦反馈
+  ---
+  duration_ms: 28.719708
+  type: 'test'
+  ...
+# Subtest: 六级标题：共享 Schema 与 HTML 保留 H1–H6，超出范围或非整数级别拒绝
+ok 442 - 六级标题：共享 Schema 与 HTML 保留 H1–H6，超出范围或非整数级别拒绝
+  ---
+  duration_ms: 57.643542
+  type: 'test'
+  ...
+# Subtest: 六级标题：H4–H6 命令保留原文与段落设置，逐次独立撤销
+ok 443 - 六级标题：H4–H6 命令保留原文与段落设置，逐次独立撤销
+  ---
+  duration_ms: 46.491041
+  type: 'test'
+  ...
+# Subtest: 六级标题：默认外观保持 H1–H3，新级别字号可回显并内部粘贴
+ok 444 - 六级标题：默认外观保持 H1–H3，新级别字号可回显并内部粘贴
+  ---
+  duration_ms: 151.896666
+  type: 'test'
+  ...
+# Subtest: 六级标题：H4 格式刷固化字号后可保存且可撤销
+ok 445 - 六级标题：H4 格式刷固化字号后可保存且可撤销
+  ---
+  duration_ms: 42.372458
+  type: 'test'
+  ...
+# Subtest: 六级标题：H5 格式刷固化字号后可保存且可撤销
+ok 446 - 六级标题：H5 格式刷固化字号后可保存且可撤销
+  ---
+  duration_ms: 56.299583
+  type: 'test'
+  ...
+# Subtest: 六级标题：H6 格式刷固化字号后可保存且可撤销
+ok 447 - 六级标题：H6 格式刷固化字号后可保存且可撤销
+  ---
+  duration_ms: 22.885083
+  type: 'test'
+  ...
+# Subtest: 六级标题：Mewoc 文件往返创建独立文档并保留全部级别
+ok 448 - 六级标题：Mewoc 文件往返创建独立文档并保留全部级别
+  ---
+  duration_ms: 1.290916
+  type: 'test'
+  ...
+# Subtest: 六级标题：Markdown 导入、导出与再导入均保留 1–6 级且不报压级说明
+ok 449 - 六级标题：Markdown 导入、导出与再导入均保留 1–6 级且不报压级说明
+  ---
+  duration_ms: 222.785791
+  type: 'test'
+  ...
+# Subtest: 六级标题：Word 输出样式、字号和大纲级别明确，实际转换往返不压至三级
+ok 450 - 六级标题：Word 输出样式、字号和大纲级别明确，实际转换往返不压至三级
+  ---
+  duration_ms: 206.749458
+  type: 'test'
+  ...
+# Subtest: 六级标题：Word 命名样式及继承大纲识别 H4–H6，H7–H9 仅降至 H6 并说明
+ok 451 - 六级标题：Word 命名样式及继承大纲识别 H4–H6，H7–H9 仅降至 H6 并说明
+  ---
+  duration_ms: 7.619292
+  type: 'test'
+  ...
+# Subtest: 六级标题：Word 转换 HTML 的 H4–H6 不依赖段落元信息也保留级别
+ok 452 - 六级标题：Word 转换 HTML 的 H4–H6 不依赖段落元信息也保留级别
+  ---
+  duration_ms: 1.392959
+  type: 'test'
+  ...
+# Subtest: 格式刷只复制文字与段落样式，保留链接、标题级别和内容，JSON 可保存
+ok 453 - 格式刷只复制文字与段落样式，保留链接、标题级别和内容，JSON 可保存
+  ---
+  duration_ms: 232.400917
+  type: 'test'
+  ...
+# Subtest: 格式应用独立于前后输入历史，一次撤销恢复全部样式
+ok 454 - 格式应用独立于前后输入历史，一次撤销恢复全部样式
+  ---
+  duration_ms: 85.029708
+  type: 'test'
+  ...
+# Subtest: 重复应用相同格式不制造空撤销步骤，也不触发重复保存
+ok 455 - 重复应用相同格式不制造空撤销步骤，也不触发重复保存
+  ---
+  duration_ms: 26.289542
+  type: 'test'
+  ...
+# Subtest: 连续模式跨目标保留，空光标、节点和代码选区不消耗，普通输入终止
+ok 456 - 连续模式跨目标保留，空光标、节点和代码选区不消耗，普通输入终止
+  ---
+  duration_ms: 29.009792
+  type: 'test'
+  ...
+# Subtest: 普通来源清除目标样式，全选跳过代码，快照不进入新会话
+ok 457 - 普通来源清除目标样式，全选跳过代码，快照不进入新会话
+  ---
+  duration_ms: 35.117542
+  type: 'test'
+  ...
+# Subtest: Esc 和组合输入开始取消模式，只读拒绝复制和应用
+ok 458 - Esc 和组合输入开始取消模式，只读拒绝复制和应用
+  ---
+  duration_ms: 36.363291
+  type: 'test'
+  ...
+# Subtest: 选择结束在下一帧应用，失焦、文档编辑与卸载取消待执行动作
+ok 459 - 选择结束在下一帧应用，失焦、文档编辑与卸载取消待执行动作
+  ---
+  duration_ms: 127.080334
+  type: 'test'
+  ...
+# Subtest: Shift 扩选等到松键再应用，启用和取消不触发正文保存
+ok 460 - Shift 扩选等到松键再应用，启用和取消不触发正文保存
+  ---
+  duration_ms: 79.784459
+  type: 'test'
+  ...
+# Subtest: 跨列表和表格刷文字，保留图片与表格尺寸并跳过行内代码
+ok 461 - 跨列表和表格刷文字，保留图片与表格尺寸并跳过行内代码
+  ---
+  duration_ms: 63.395459
+  type: 'test'
+  ...
+# Subtest: 格式标记偏好只接受严格布尔值，重新读取沿用上次选择
+ok 462 - 格式标记偏好只接受严格布尔值，重新读取沿用上次选择
+  ---
+  duration_ms: 0.397
+  type: 'test'
+  ...
+# Subtest: 隐私限制和配额失败不会阻止格式标记的本次视图选择
+ok 463 - 隐私限制和配额失败不会阻止格式标记的本次视图选择
+  ---
+  duration_ms: 0.092042
+  type: 'test'
+  ...
+# Subtest: 格式标记跨标签同步及清除偏好不改变正文保存序号，卸载解除监听
+ok 464 - 格式标记跨标签同步及清除偏好不改变正文保存序号，卸载解除监听
+  ---
+  duration_ms: 2.151291
+  type: 'test'
+  ...
+# Subtest: 工具按正文/标题、列表和单元格收集标记，空段与显式换行都有独立位置
+ok 465 - 工具按正文/标题、列表和单元格收集标记，空段与显式换行都有独立位置
+  ---
+  duration_ms: 107.692959
+  type: 'test'
+  ...
+# Subtest: 代码 mark 与带内部内容的 atom 不被装饰，同类空白不跨文字格式边界合并
+ok 466 - 代码 mark 与带内部内容的 atom 不被装饰，同类空白不跨文字格式边界合并
+  ---
+  duration_ms: 28.059667
+  type: 'test'
+  ...
+# Subtest: 开启关闭仅更新视图，JSON/HTML/文本/统计/选区/保存 revision 与撤销深度不变
+ok 467 - 开启关闭仅更新视图，JSON/HTML/文本/统计/选区/保存 revision 与撤销深度不变
+  ---
+  duration_ms: 70.576959
+  type: 'test'
+  ...
+# Subtest: 只读无事务切换立即隐藏，偏好保留且恢复编辑后显示，命令也可在只读同步偏好
+ok 468 - 只读无事务切换立即隐藏，偏好保留且恢复编辑后显示，命令也可在只读同步偏好
+  ---
+  duration_ms: 12.210875
+  type: 'test'
+  ...
+# Subtest: 选区或重复偏好同步复用缓存，长正文和空白串不会创建逐字符 span
+ok 469 - 选区或重复偏好同步复用缓存，长正文和空白串不会创建逐字符 span
+  ---
+  duration_ms: 72.789542
+  type: 'test'
+  ...
+# Subtest: 普通输入/换行和撤销重建正确标记，开关不占正文撤销或重做步骤
+ok 470 - 普通输入/换行和撤销重建正确标记，开关不占正文撤销或重做步骤
+  ---
+  duration_ms: 18.67775
+  type: 'test'
+  ...
+# Subtest: 组合输入期间只映射旧装饰，确认后安全刷新，偏好更改也等候选结束
+ok 471 - 组合输入期间只映射旧装饰，确认后安全刷新，偏好更改也等候选结束
+  ---
+  duration_ms: 137.823708
+  type: 'test'
+  ...
+# Subtest: 标记自身不可编辑/不可朗读，实际复制序列化只含原文和原始空白
+ok 472 - 标记自身不可编辑/不可朗读，实际复制序列化只含原文和原始空白
+  ---
+  duration_ms: 9.200792
+  type: 'test'
+  ...
+# Subtest: Markdown、Word 与 HTML 导出不受编辑标记偏好影响，不生成标记或附加字符
+ok 473 - Markdown、Word 与 HTML 导出不受编辑标记偏好影响，不生成标记或附加字符
+  ---
+  duration_ms: 378.826542
+  type: 'test'
+  ...
+# Subtest: 销毁清理候选结束监听/定时器，新会话默认关闭，错误参数不改偏好
+ok 474 - 销毁清理候选结束监听/定时器，新会话默认关闭，错误参数不改偏好
+  ---
+  duration_ms: 86.281042
+  type: 'test'
+  ...
+# Subtest: 行内插入保留两侧文字，编辑、删除各自撤销，无变化不产生更新
+ok 475 - 行内插入保留两侧文字，编辑、删除各自撤销，无变化不产生更新
+  ---
+  duration_ms: 83.913459
+  type: 'test'
+  ...
+# Subtest: 独立公式在段中插入分开两侧段落，后续输入单独撤销
+ok 476 - 独立公式在段中插入分开两侧段落，后续输入单独撤销
+  ---
+  duration_ms: 23.875792
+  type: 'test'
+  ...
+# Subtest: 只读、组合输入、代码块、过期选区和原公式不匹配均拒绝写入
+ok 477 - 只读、组合输入、代码块、过期选区和原公式不匹配均拒绝写入
+  ---
+  duration_ms: 21.060291
+  type: 'test'
+  ...
+# Subtest: MathML 支持分数矩阵，拒绝非法语法、外部资源、HTML 与宏循环
+ok 478 - MathML 支持分数矩阵，拒绝非法语法、外部资源、HTML 与宏循环
+  ---
+  duration_ms: 29.281375
+  type: 'test'
+  ...
+# Subtest: 文件保存还原公式源码，schema 拒绝缺失、非法与超预算属性
+ok 479 - 文件保存还原公式源码，schema 拒绝缺失、非法与超预算属性
+  ---
+  duration_ms: 5.361916
+  type: 'test'
+  ...
+# Subtest: 预渲染 HTML 无外链依赖，内部粘贴仅恢复源码，错误源码保留且转义
+ok 480 - 预渲染 HTML 无外链依赖，内部粘贴仅恢复源码，错误源码保留且转义
+  ---
+  duration_ms: 61.180209
+  type: 'test'
+  ...
+# Subtest: 节点异步渲染只保留最新源码，销毁后不再改 DOM
+ok 481 - 节点异步渲染只保留最新源码，销毁后不再改 DOM
+  ---
+  duration_ms: 23.261083
+  type: 'test'
+  ...
+# Subtest: 格式刷跨公式应用只修改文字，公式源码与原子结构保持
+ok 482 - 格式刷跨公式应用只修改文字，公式源码与原子结构保持
+  ---
+  duration_ms: 60.842
+  type: 'test'
+  ...
+# Subtest: 标题 1 的实际字号显示及格式刷保留 22.5pt、字重、颜色和行距
+ok 483 - 标题 1 的实际字号显示及格式刷保留 22.5pt、字重、颜色和行距
+  ---
+  duration_ms: 248.766583
+  type: 'test'
+  ...
+# Subtest: 标题 2 的实际字号显示及格式刷保留 15pt、字重、颜色和行距
+ok 484 - 标题 2 的实际字号显示及格式刷保留 15pt、字重、颜色和行距
+  ---
+  duration_ms: 60.5535
+  type: 'test'
+  ...
+# Subtest: 标题 3 的实际字号显示及格式刷保留 12.75pt、字重、颜色和行距
+ok 485 - 标题 3 的实际字号显示及格式刷保留 12.75pt、字重、颜色和行距
+  ---
+  duration_ms: 26.70825
+  type: 'test'
+  ...
+# Subtest: 标题显式字号优先，混合选区按实际字号判断，空标题及清除格式正确回显
+ok 486 - 标题显式字号优先，混合选区按实际字号判断，空标题及清除格式正确回显
+  ---
+  duration_ms: 30.215834
+  type: 'test'
+  ...
+# Subtest: 正文刷到标题保留标题级别，并覆盖标题默认字号、颜色、字重和行距
+ok 487 - 正文刷到标题保留标题级别，并覆盖标题默认字号、颜色、字重和行距
+  ---
+  duration_ms: 21.183834
+  type: 'test'
+  ...
+# Subtest: 标题格式可内部复制、文件往返，显式字重不遮住后续加粗与取消
+ok 488 - 标题格式可内部复制、文件往返，显式字重不遮住后续加粗与取消
+  ---
+  duration_ms: 59.361959
+  type: 'test'
+  ...
+# Subtest: 相同默认外观不制造撤销步骤，显式字重在只读期间不改变
+ok 489 - 相同默认外观不制造撤销步骤，显式字重在只读期间不改变
+  ---
+  duration_ms: 42.02925
+  type: 'test'
+  ...
+# Subtest: 换图保留当前全部排版字段与说明，NodeView 即时显示新 URL，独立一次撤销/重做
+ok 490 - 换图保留当前全部排版字段与说明，NodeView 即时显示新 URL，独立一次撤销/重做
+  ---
+  duration_ms: 86.088166
+  type: 'test'
+  ...
+# Subtest: 读取期间改选区和前方编辑仍替换原图，期间更新的图片说明/尺寸保留
+ok 491 - 读取期间改选区和前方编辑仍替换原图，期间更新的图片说明/尺寸保留
+  ---
+  duration_ms: 25.988
+  type: 'test'
+  ...
+# Subtest: 容量排除只由目标引用的旧图，共享图片引用仍计入额度，原资源始终保留
+ok 492 - 容量排除只由目标引用的旧图，共享图片引用仍计入额度，原资源始终保留
+  ---
+  duration_ms: 54.448167
+  type: 'test'
+  ...
+# Subtest: 读取期间新增资源使容量超限时不写原图，解码所得新 URL 被释放且不登记
+ok 493 - 读取期间新增资源使容量超限时不写原图，解码所得新 URL 被释放且不登记
+  ---
+  duration_ms: 11.659166
+  type: 'test'
+  ...
+# Subtest: 删除原图后同位置重插同资源也取消，换图再撤销恢复旧资源不能复活旧任务
+ok 494 - 删除原图后同位置重插同资源也取消，换图再撤销恢复旧资源不能复活旧任务
+  ---
+  duration_ms: 57.891541
+  type: 'test'
+  ...
+# Subtest: 读取期间表格修复的追加事务移动原图仍可提交，追加重插原图永久失效
+ok 495 - 读取期间表格修复的追加事务移动原图仍可提交，追加重插原图永久失效
+  ---
+  duration_ms: 66.111041
+  type: 'test'
+  ...
+# Subtest: 只读/切换中断后恢复、组合输入、销毁与会话关闭均取消读取所得图片
+ok 496 - 只读/切换中断后恢复、组合输入、销毁与会话关闭均取消读取所得图片
+  ---
+  duration_ms: 57.750334
+  type: 'test'
+  ...
+# Subtest: 失效目标、错误解码、缺失旧资源和不允许编辑均无正文或资源写入
+ok 497 - 失效目标、错误解码、缺失旧资源和不允许编辑均无正文或资源写入
+  ---
+  duration_ms: 6.579916
+  type: 'test'
+  ...
+# Subtest: 替换入口复用 PNG/JPEG/WebP 类型与内容校验，伪造图片和超限文件被拒绝
+ok 498 - 替换入口复用 PNG/JPEG/WebP 类型与内容校验，伪造图片和超限文件被拒绝
+  ---
+  duration_ms: 12.434208
+  type: 'test'
+  ...
+# Subtest: 图片草稿保留旧小数、省略属性默认值，锁定宽高双向计算且重新锁定当前比例
+ok 499 - 图片草稿保留旧小数、省略属性默认值，锁定宽高双向计算且重新锁定当前比例
+  ---
+  duration_ms: 0.6005
+  type: 'test'
+  ...
+# Subtest: 图片尺寸、对齐、比例状态与文本验证拒绝非法值，不把越界比例计算钳制成合法尺寸
+ok 500 - 图片尺寸、对齐、比例状态与文本验证拒绝非法值，不把越界比例计算钳制成合法尺寸
+  ---
+  duration_ms: 0.186667
+  type: 'test'
+  ...
+# Subtest: 恢复原始比例只采用已解码NodeView，保留当前宽度并避免额外资源读取
+ok 501 - 恢复原始比例只采用已解码NodeView，保留当前宽度并避免额外资源读取
+  ---
+  duration_ms: 33.506
+  type: 'test'
+  ...
+# Subtest: 图片设置保存一次事务且独立撤销，未改字段不覆盖期间更新，小数不被静默取整
+ok 502 - 图片设置保存一次事务且独立撤销，未改字段不覆盖期间更新，小数不被静默取整
+  ---
+  duration_ms: 42.475
+  type: 'test'
+  ...
+# Subtest: 没有改动的保存与取消释放书签不产生正文事务
+ok 503 - 没有改动的保存与取消释放书签不产生正文事务
+  ---
+  duration_ms: 42.00425
+  type: 'test'
+  ...
+# Subtest: 图片书签随前方插入映射，删除后同位置同资源重插也拒绝旧草稿
+ok 504 - 图片书签随前方插入映射，删除后同位置同资源重插也拒绝旧草稿
+  ---
+  duration_ms: 17.505084
+  type: 'test'
+  ...
+# Subtest: 图片前方表格自动修复的追加事务会移动书签，保存仍命中原图片
+ok 505 - 图片前方表格自动修复的追加事务会移动书签，保存仍命中原图片
+  ---
+  duration_ms: 51.499334
+  type: 'test'
+  ...
+# Subtest: 追加事务删除并在原位置重插同资源图片后，旧草稿永久失效
+ok 506 - 追加事务删除并在原位置重插同资源图片后，旧草稿永久失效
+  ---
+  duration_ms: 13.221333
+  type: 'test'
+  ...
+# Subtest: 图片设置核对assetId和当前文档，只读、切换、组合输入、销毁均拒绝写入
+ok 507 - 图片设置核对assetId和当前文档，只读、切换、组合输入、销毁均拒绝写入
+  ---
+  duration_ms: 8.335167
+  type: 'test'
+  ...
+# Subtest: 图片删除限定真实节点选区且一次撤销恢复完整设置
+ok 508 - 图片删除限定真实节点选区且一次撤销恢复完整设置
+  ---
+  duration_ms: 17.294708
+  type: 'test'
+  ...
+# Subtest: NodeView与静态HTML使用保存宽高、对齐及锁定，内部粘贴保留属性并拒绝外部资源
+ok 509 - NodeView与静态HTML使用保存宽高、对齐及锁定，内部粘贴保留属性并拒绝外部资源
+  ---
+  duration_ms: 79.325458
+  type: 'test'
+  ...
+# Subtest: 图片HTML尺寸越界和非法对齐安全回退，旧HTML省略字段仍默认锁定
+ok 510 - 图片HTML尺寸越界和非法对齐安全回退，旧HTML省略字段仍默认锁定
+  ---
+  duration_ms: 17.412167
+  type: 'test'
+  ...
+# Subtest: 锁定拖动在页面缩放下按原比例一次提交，解锁拖动和方向键保留高度
+ok 511 - 锁定拖动在页面缩放下按原比例一次提交，解锁拖动和方向键保留高度
+  ---
+  duration_ms: 84.637959
+  type: 'test'
+  ...
+# Subtest: 图片拖动取消恢复width/height/aspectRatio/objectFit，失焦、按钮释放、只读、正文改变和组合输入不提交
+ok 512 - 图片拖动取消恢复width/height/aspectRatio/objectFit，失焦、按钮释放、只读、正文改变和组合输入不提交
+  ---
+  duration_ms: 73.358125
+  type: 'test'
+  ...
+# Subtest: 右键、其他指针和零缩放无法提交，节点销毁撤销预览并清理外部监听
+ok 513 - 右键、其他指针和零缩放无法提交，节点销毁撤销预览并清理外部监听
+  ---
+  duration_ms: 7.307959
+  type: 'test'
+  ...
+# Subtest: 局域网 HTTP 缺少 randomUUID 时仍能新建文档、读取附件和导入文件
+ok 514 - 局域网 HTTP 缺少 randomUUID 时仍能新建文档、读取附件和导入文件
+  ---
+  duration_ms: 5.154625
+  type: 'test'
+  ...
+# Subtest: 编号设置规范缺省值，并支持五种编号与起始号边界
+ok 515 - 编号设置规范缺省值，并支持五种编号与起始号边界
+  ---
+  duration_ms: 119.4345
+  type: 'test'
+  ...
+# Subtest: 只有同一有序列表的文字范围可设置，列表外、跨列表和整节点选择不可用
+ok 516 - 只有同一有序列表的文字范围可设置，列表外、跨列表和整节点选择不可用
+  ---
+  duration_ms: 18.579916
+  type: 'test'
+  ...
+# Subtest: 嵌套列表只改最近层，跨层或横跨另一嵌套列表的选区不隐式修改外层
+ok 517 - 嵌套列表只改最近层，跨层或横跨另一嵌套列表的选区不隐式修改外层
+  ---
+  duration_ms: 15.401875
+  type: 'test'
+  ...
+# Subtest: 有序列表内的无序和待办子列表阻断祖先编号设置
+ok 518 - 有序列表内的无序和待办子列表阻断祖先编号设置
+  ---
+  duration_ms: 15.229167
+  type: 'test'
+  ...
+# Subtest: 前方插入和合法属性更新映射原列表，焦点切换不会改写后来选择的列表
+ok 519 - 前方插入和合法属性更新映射原列表，焦点切换不会改写后来选择的列表
+  ---
+  duration_ms: 15.316084
+  type: 'test'
+  ...
+# Subtest: 原列表中编辑文字时书签移动，并保留原光标的待输入格式
+ok 520 - 原列表中编辑文字时书签移动，并保留原光标的待输入格式
+  ---
+  duration_ms: 11.688167
+  type: 'test'
+  ...
+# Subtest: 原列表删除、同位置同内容替换或转换为无序列表都永久终止旧草稿
+ok 521 - 原列表删除、同位置同内容替换或转换为无序列表都永久终止旧草稿
+  ---
+  duration_ms: 58.773792
+  type: 'test'
+  ...
+# Subtest: 未映射的旧文档、其他编辑会话以及 setContent 切换均不能接收旧草稿
+ok 522 - 未映射的旧文档、其他编辑会话以及 setContent 切换均不能接收旧草稿
+  ---
+  duration_ms: 40.221792
+  type: 'test'
+  ...
+# Subtest: 插件追加事务也跟踪完整原目标，不会因列表整体后移而漏掉设置
+ok 523 - 插件追加事务也跟踪完整原目标，不会因列表整体后移而漏掉设置
+  ---
+  duration_ms: 15.378875
+  type: 'test'
+  ...
+# Subtest: 非法草稿、只读、切换阻塞、输入法和销毁均不修改正文或当前选区
+ok 524 - 非法草稿、只读、切换阻塞、输入法和销毁均不修改正文或当前选区
+  ---
+  duration_ms: 10.094792
+  type: 'test'
+  ...
+# Subtest: 同值不写 doc，一次修改两个字段与前后文字输入分开撤销并可重做
+ok 525 - 同值不写 doc，一次修改两个字段与前后文字输入分开撤销并可重做
+  ---
+  duration_ms: 28.06775
+  type: 'test'
+  ...
+# Subtest: Markdown 导出保留块结构、列表起点、代码源码及公式
+ok 526 - Markdown 导出保留块结构、列表起点、代码源码及公式
+  ---
+  duration_ms: 5.55
+  type: 'test'
+  ...
+# Subtest: 相邻文本标记合并为连续范围，保留内层不同标记和链接
+ok 527 - 相邻文本标记合并为连续范围，保留内层不同标记和链接
+  ---
+  duration_ms: 0.5185
+  type: 'test'
+  ...
+# Subtest: 普通矩形表格保留列对齐、公式和标记并报告布局差异
+ok 528 - 普通矩形表格保留列对齐、公式和标记并报告布局差异
+  ---
+  duration_ms: 0.377667
+  type: 'test'
+  ...
+# Subtest: 富表格降为逐格正文，保留多段、图片说明、公式与嵌套引用
+ok 529 - 富表格降为逐格正文，保留多段、图片说明、公式与嵌套引用
+  ---
+  duration_ms: 0.429833
+  type: 'test'
+  ...
+# Subtest: 无法表达的样式只报告一次，原始文字及危险围栏语言不作为语法注入
+ok 530 - 无法表达的样式只报告一次，原始文字及危险围栏语言不作为语法注入
+  ---
+  duration_ms: 0.182791
+  type: 'test'
+  ...
+# Subtest: 未知节点与文字标记显式失败，行内换行报告归一化
+ok 531 - 未知节点与文字标记显式失败，行内换行报告归一化
+  ---
+  duration_ms: 0.911833
+  type: 'test'
+  ...
+# Subtest: 图片使用替代文本或文件名说明，不导出内部资源 ID 和本地目录
+ok 532 - 图片使用替代文本或文件名说明，不导出内部资源 ID 和本地目录
+  ---
+  duration_ms: 4.015167
+  type: 'test'
+  ...
+# Subtest: 实际 Markdown 序列化往返保留交叉标记、字面符号与代码围栏
+ok 533 - 实际 Markdown 序列化往返保留交叉标记、字面符号与代码围栏
+  ---
+  duration_ms: 8.999792
+  type: 'test'
+  ...
+# Subtest: GFM 表格转义竖线与代码；无法表达的公式和换行降级后源码完整
+ok 534 - GFM 表格转义竖线与代码；无法表达的公式和换行降级后源码完整
+  ---
+  duration_ms: 43.427875
+  type: 'test'
+  ...
+# Subtest: 超出九位的起始编号从一重新编号并明确报告原始起点
+ok 535 - 超出九位的起始编号从一重新编号并明确报告原始起点
+  ---
+  duration_ms: 3.569875
+  type: 'test'
+  ...
+# Subtest: 空段落按 Markdown 规则折叠并报告，非空正文保持完整
+ok 536 - 空段落按 Markdown 规则折叠并报告，非空正文保持完整
+  ---
+  duration_ms: 0.431291
+  type: 'test'
+  ...
+# Subtest: 粗斜体边缘空白无损往返，删除线仅移出边缘空白并保留文字
+ok 537 - 粗斜体边缘空白无损往返，删除线仅移出边缘空白并保留文字
+  ---
+  duration_ms: 2.477958
+  type: 'test'
+  ...
+# Subtest: 应用入口往返把带标记的硬换行放在标记外，不泄漏字符实体或分隔符
+ok 538 - 应用入口往返把带标记的硬换行放在标记外，不泄漏字符实体或分隔符
+  ---
+  duration_ms: 44.763792
+  type: 'test'
+  ...
+# Subtest: 应用入口往返保留普通与带标记正文的连续换行，不拆段或泄漏分隔符
+ok 539 - 应用入口往返保留普通与带标记正文的连续换行，不拆段或泄漏分隔符
+  ---
+  duration_ms: 16.359458
+  type: 'test'
+  ...
+# Subtest: 段首和段中连续硬换行可保留，段尾硬换行明确移除且不产生反斜杠正文
+ok 540 - 段首和段中连续硬换行可保留，段尾硬换行明确移除且不产生反斜杠正文
+  ---
+  duration_ms: 18.802167
+  type: 'test'
+  ...
+# Subtest: 含换行标题降为正文并报告级别，行内代码连续换行明确转换为空格
+ok 541 - 含换行标题降为正文并报告级别，行内代码连续换行明确转换为空格
+  ---
+  duration_ms: 8.599667
+  type: 'test'
+  ...
+# Subtest: 仅含换行的文字或硬换行仍报告下划线与文字样式的降级
+ok 542 - 仅含换行的文字或硬换行仍报告下划线与文字样式的降级
+  ---
+  duration_ms: 1.399209
+  type: 'test'
+  ...
+# Subtest: Markdown 导入完整结构并通过既有 schema，创建独立文档
+ok 543 - Markdown 导入完整结构并通过既有 schema，创建独立文档
+  ---
+  duration_ms: 231.344834
+  type: 'test'
+  ...
+# Subtest: 六级标题和任务状态保留，脚注及图片按约定保留内容并说明
+ok 544 - 六级标题和任务状态保留，脚注及图片按约定保留内容并说明
+  ---
+  duration_ms: 6.361583
+  type: 'test'
+  ...
+# Subtest: 引用链接先解引用，危险和相对地址作为文字，HTML 不执行
+ok 545 - 引用链接先解引用，危险和相对地址作为文字，HTML 不执行
+  ---
+  duration_ms: 17.411667
+  type: 'test'
+  ...
+# Subtest: 代码附加参数与过长语言报告降级，源码中的公式和 HTML 保持原样
+ok 546 - 代码附加参数与过长语言报告降级，源码中的公式和 HTML 保持原样
+  ---
+  duration_ms: 11.392791
+  type: 'test'
+  ...
+# Subtest: 重复链接定义取首条，空引用可载入，不齐表格补齐且保留多余列
+ok 547 - 重复链接定义取首条，空引用可载入，不齐表格补齐且保留多余列
+  ---
+  duration_ms: 4.557041
+  type: 'test'
+  ...
+# Subtest: 空或超长公式保留原始文字，公式总量越界则拒绝新建
+ok 548 - 空或超长公式保留原始文字，公式总量越界则拒绝新建
+  ---
+  duration_ms: 10.941458
+  type: 'test'
+  ...
+# Subtest: UTF-8 文件与源码边界拒绝截断、二进制、空内容及超限
+ok 549 - UTF-8 文件与源码边界拒绝截断、二进制、空内容及超限
+  ---
+  duration_ms: 1.598417
+  type: 'test'
+  ...
+# Subtest: AST 深度、节点数与未知节点不被静默接受
+ok 550 - AST 深度、节点数与未知节点不被静默接受
+  ---
+  duration_ms: 20.943
+  type: 'test'
+  ...
+# Subtest: 空链接和空图片地址不产生 undefined，零起点编号明确报告
+ok 551 - 空链接和空图片地址不产生 undefined，零起点编号明确报告
+  ---
+  duration_ms: 5.937458
+  type: 'test'
+  ...
+# Subtest: 导入导出 Markdown 保留公式、嵌套标记和代码，原快照不变
+ok 552 - 导入导出 Markdown 保留公式、嵌套标记和代码，原快照不变
+  ---
+  duration_ms: 16.969666
+  type: 'test'
+  ...
+# Subtest: 媒体元数据限定四种 MIME、资源种类、严格名称及 5 MiB 正整数边界
+ok 553 - 媒体元数据限定四种 MIME、资源种类、严格名称及 5 MiB 正整数边界
+  ---
+  duration_ms: 1.0285
+  type: 'test'
+  ...
+# Subtest: 文件入口只归一化已知 WAV/MP3 别名与受控空 MIME，不放宽持久元数据 MIME
+ok 554 - 文件入口只归一化已知 WAV/MP3 别名与受控空 MIME，不放宽持久元数据 MIME
+  ---
+  duration_ms: 6.730042
+  type: 'test'
+  ...
+# Subtest: 四种容器头校验真实 Blob 字节，容器伪造、截断及 kind 冲突均拒绝
+ok 555 - 四种容器头校验真实 Blob 字节，容器伪造、截断及 kind 冲突均拒绝
+  ---
+  duration_ms: 3.6415
+  type: 'test'
+  ...
+# Subtest: 原生 metadata 成功后原字节/名称保持，临时播放器不自动播放且无残留监听
+ok 556 - 原生 metadata 成功后原字节/名称保持，临时播放器不自动播放且无残留监听
+  ---
+  duration_ms: 16.583625
+  type: 'test'
+  ...
+# Subtest: 原生不支持、解码错误、零/NaN 时长与无画面的视频拒绝且回收所有临时 URL
+ok 557 - 原生不支持、解码错误、零/NaN 时长与无画面的视频拒绝且回收所有临时 URL
+  ---
+  duration_ms: 3.392375
+  type: 'test'
+  ...
+# Subtest: 有限本地 WebM 未知时长 Infinity 可接纳，不制造总时长元数据
+ok 558 - 有限本地 WebM 未知时长 Infinity 可接纳，不制造总时长元数据
+  ---
+  duration_ms: 0.197292
+  type: 'test'
+  ...
+# Subtest: 播放元数据超时和读取中断都解除监听并回收一次 URL，已取消信号不开始读取
+ok 559 - 播放元数据超时和读取中断都解除监听并回收一次 URL，已取消信号不开始读取
+  ---
+  duration_ms: 9.19575
+  type: 'test'
+  ...
+# Subtest: 原始读取失败/声明长度变化/等待字节时取消均不创建播放 URL
+ok 560 - 原始读取失败/声明长度变化/等待字节时取消均不创建播放 URL
+  ---
+  duration_ms: 1.05475
+  type: 'test'
+  ...
+# Subtest: metadata 事件结束与资源返回之间取消仍回收已创建 URL
+ok 561 - metadata 事件结束与资源返回之间取消仍回收已创建 URL
+  ---
+  duration_ms: 0.657459
+  type: 'test'
+  ...
+# Subtest: 标准说明与安全下载名保留音视频种类、原名称及二进制体积
+ok 562 - 标准说明与安全下载名保留音视频种类、原名称及二进制体积
+  ---
+  duration_ms: 0.817542
+  type: 'test'
+  ...
+# Subtest: 媒体插入恢复文件框前选区，保留原字节和旧资源，与前后文字分别一次撤销
+ok 563 - 媒体插入恢复文件框前选区，保留原字节和旧资源，与前后文字分别一次撤销
+  ---
+  duration_ms: 117.532709
+  type: 'test'
+  ...
+# Subtest: 文件读取期间改选区/前方输入仍映射到原段落，选择文本仅在提交时替换
+ok 564 - 文件读取期间改选区/前方输入仍映射到原段落，选择文本仅在提交时替换
+  ---
+  duration_ms: 23.393
+  type: 'test'
+  ...
+# Subtest: 追加事务完整映射原目标，追加删除再重插相同段落不能复活目标
+ok 565 - 追加事务完整映射原目标，追加删除再重插相同段落不能复活目标
+  ---
+  duration_ms: 27.57725
+  type: 'test'
+  ...
+# Subtest: 捕获后文件框期间只读/切换再恢复已永久取消，不开始解码
+ok 566 - 捕获后文件框期间只读/切换再恢复已永久取消，不开始解码
+  ---
+  duration_ms: 11.273
+  type: 'test'
+  ...
+# Subtest: 等待解码时只读恢复、IME、目标删除恢复、销毁、会话关闭与 abort 都取消并回收
+ok 567 - 等待解码时只读恢复、IME、目标删除恢复、销毁、会话关闭与 abort 都取消并回收
+  ---
+  duration_ms: 50.674542
+  type: 'test'
+  ...
+# Subtest: 引用媒体与图片/附件共用 20 MiB，等待期间新增资源超限不登记迟到资源
+ok 568 - 引用媒体与图片/附件共用 20 MiB，等待期间新增资源超限不登记迟到资源
+  ---
+  duration_ms: 40.708667
+  type: 'test'
+  ...
+# Subtest: 容量按正文唯一媒体引用计费，删除保留 Blob/URL 且可一步撤销重做
+ok 569 - 容量按正文唯一媒体引用计费，删除保留 Blob/URL 且可一步撤销重做
+  ---
+  duration_ms: 22.078417
+  type: 'test'
+  ...
+# Subtest: 无效目标、标题/代码/跨段选区和只读/组合输入拒绝插入，来源错误不污染资源
+ok 570 - 无效目标、标题/代码/跨段选区和只读/组合输入拒绝插入，来源错误不污染资源
+  ---
+  duration_ms: 15.030375
+  type: 'test'
+  ...
+# Subtest: 迟到资源 ID 与既有资源冲突时保留原 Blob，回收未登记的新 URL
+ok 571 - 迟到资源 ID 与既有资源冲突时保留原 Blob，回收未登记的新 URL
+  ---
+  duration_ms: 42.355625
+  type: 'test'
+  ...
+# Subtest: 媒体 HTML：原始字节内嵌、原生控制、文件名安全且不自动播放
+ok 572 - 媒体 HTML：原始字节内嵌、原生控制、文件名安全且不自动播放
+  ---
+  duration_ms: 103.222541
+  type: 'test'
+  ...
+# Subtest: 媒体 Word：正文顺序和文件说明保留，不伪造嵌入媒体关系
+ok 573 - 媒体 Word：正文顺序和文件说明保留，不伪造嵌入媒体关系
+  ---
+  duration_ms: 114.502458
+  type: 'test'
+  ...
+# Subtest: 媒体 Markdown 和纯文本：说明与降级提示完整且不改变源文档
+ok 574 - 媒体 Markdown 和纯文本：说明与降级提示完整且不改变源文档
+  ---
+  duration_ms: 128.049959
+  type: 'test'
+  ...
+# Subtest: 媒体粘贴：仅已有且种类匹配的资源可恢复，外部播放地址全部移除
+ok 575 - 媒体粘贴：仅已有且种类匹配的资源可恢复，外部播放地址全部移除
+  ---
+  duration_ms: 121.256917
+  type: 'test'
+  ...
+# Subtest: 媒体 NodeView：相邻编辑保留播放器，删除和销毁停止并释放 src，撤销可恢复
+ok 576 - 媒体 NodeView：相邻编辑保留播放器，删除和销毁停止并释放 src，撤销可恢复
+  ---
+  duration_ms: 24.552875
+  type: 'test'
+  ...
+# Subtest: 媒体打印样式隐藏播放器与下载控件，保留文件说明
+ok 577 - 媒体打印样式隐藏播放器与下载控件，保留文件说明
+  ---
+  duration_ms: 4.304875
+  type: 'test'
+  ...
+# Subtest: 媒体 metadata 与节点允许四种容器，旧无 kind 图片文件继续可读
+ok 578 - 媒体 metadata 与节点允许四种容器，旧无 kind 图片文件继续可读
+  ---
+  duration_ms: 3.374792
+  type: 'test'
+  ...
+# Subtest: 媒体引用严格区分图片附件，媒体 metadata 不能伪装另一种 MIME
+ok 579 - 媒体引用严格区分图片附件，媒体 metadata 不能伪装另一种 MIME
+  ---
+  duration_ms: 2.572083
+  type: 'test'
+  ...
+# Subtest: 媒体资源拒绝零字节越限非法名称，节点不接受 URL 或播放器状态属性
+ok 580 - 媒体资源拒绝零字节越限非法名称，节点不接受 URL 或播放器状态属性
+  ---
+  duration_ms: 0.501041
+  type: 'test'
+  ...
+# Subtest: 媒体图片附件引用合并去重，共用原 20 MiB 总预算
+ok 581 - 媒体图片附件引用合并去重，共用原 20 MiB 总预算
+  ---
+  duration_ms: 0.296291
+  type: 'test'
+  ...
+# Subtest: Mewoc 混合音视频便携文件原样保留字节 MIME 及稳定内部 ID，只导出当前引用
+ok 582 - Mewoc 混合音视频便携文件原样保留字节 MIME 及稳定内部 ID，只导出当前引用
+  ---
+  duration_ms: 3.777834
+  type: 'test'
+  ...
+# Subtest: 媒体便携导入校验编码、实际长度、MIME 与容器头，失败不产生部分资源
+ok 583 - 媒体便携导入校验编码、实际长度、MIME 与容器头，失败不产生部分资源
+  ---
+  duration_ms: 9.970375
+  type: 'test'
+  ...
+# Subtest: 媒体便携导出拒绝丢失资源、伪造 MIME 及头部，32 MiB 文件限制不放宽
+ok 584 - 媒体便携导出拒绝丢失资源、伪造 MIME 及头部，32 MiB 文件限制不放宽
+  ---
+  duration_ms: 0.429584
+  type: 'test'
+  ...
+# Subtest: 正文与媒体各自合法但最终 UTF-8 备份超过 32 MiB 时拒绝导出，避免生成不可回读文件
+ok 585 - 正文与媒体各自合法但最终 UTF-8 备份超过 32 MiB 时拒绝导出，避免生成不可回读文件
+  ---
+  duration_ms: 258.259375
+  type: 'test'
+  ...
+# Subtest: 媒体会话 URL 保留真实播放 MIME，附件仍使用二进制下载 MIME
+ok 586 - 媒体会话 URL 保留真实播放 MIME，附件仍使用二进制下载 MIME
+  ---
+  duration_ms: 24.522625
+  type: 'test'
+  ...
+# Subtest: 媒体资源原子保存读取，正文删除回收持久资源后当前会话撤销可写回
+ok 587 - 媒体资源原子保存读取，正文删除回收持久资源后当前会话撤销可写回
+  ---
+  duration_ms: 52.869083
+  type: 'test'
+  ...
+# Subtest: 媒体保存缺资源或类型不匹配不会留下文档，冲突和配额失败回滚旧资源删除
+ok 588 - 媒体保存缺资源或类型不匹配不会留下文档，冲突和配额失败回滚旧资源删除
+  ---
+  duration_ms: 16.231833
+  type: 'test'
+  ...
+# Subtest: 复制媒体文档建立独立资源键，删除来源引用不影响副本字节
+ok 589 - 复制媒体文档建立独立资源键，删除来源引用不影响副本字节
+  ---
+  duration_ms: 18.016625
+  type: 'test'
+  ...
+# Subtest: 媒体历史独立保存资源，恢复前保留备份，历史另存副本不依赖 live 字节
+ok 590 - 媒体历史独立保存资源，恢复前保留备份，历史另存副本不依赖 live 字节
+  ---
+  duration_ms: 17.737334
+  type: 'test'
+  ...
+# Subtest: 媒体模板和实例独立保存原字节，来源与模板清理不影响后续实例
+ok 591 - 媒体模板和实例独立保存原字节，来源与模板清理不影响后续实例
+  ---
+  duration_ms: 31.636292
+  type: 'test'
+  ...
+# Subtest: 媒体模板与历史资源写入故障不会留下部分快照或改变来源
+ok 592 - 媒体模板与历史资源写入故障不会留下部分快照或改变来源
+  ---
+  duration_ms: 12.137833
+  type: 'test'
+  ...
+# Subtest: 导航 HTML 往返保留标题、段落书签、真实内部链接及只读目录属性
+ok 593 - 导航 HTML 往返保留标题、段落书签、真实内部链接及只读目录属性
+  ---
+  duration_ms: 210.934584
+  type: 'test'
+  ...
+# Subtest: 粘贴到同文档时副本及其内部链接重映射，现有目标和原书签名称保持不动
+ok 594 - 粘贴到同文档时副本及其内部链接重映射，现有目标和原书签名称保持不动
+  ---
+  duration_ms: 5.584291
+  type: 'test'
+  ...
+# Subtest: 重复源 ID 的粘贴目标分别获得唯一身份，歧义链接保留文字且不猜跳转位置
+ok 595 - 重复源 ID 的粘贴目标分别获得唯一身份，歧义链接保留文字且不猜跳转位置
+  ---
+  duration_ms: 47.524625
+  type: 'test'
+  ...
+# Subtest: 目录快照同复制标题一起重映射，显示文字从有效元数据重建且拒绝额外交互 HTML
+ok 596 - 目录快照同复制标题一起重映射，显示文字从有效元数据重建且拒绝额外交互 HTML
+  ---
+  duration_ms: 43.041375
+  type: 'test'
+  ...
+# Subtest: 非法目录展开为普通内容，非法ID、名称和危险href不恢复但文字不丢失
+ok 597 - 非法目录展开为普通内容，非法ID、名称和危险href不恢复但文字不丢失
+  ---
+  duration_ms: 79.140375
+  type: 'test'
+  ...
+# Subtest: 80字符书签副本仍符合长度边界，现有多次副本名称不会碰撞
+ok 598 - 80字符书签副本仍符合长度边界，现有多次副本名称不会碰撞
+  ---
+  duration_ms: 22.905167
+  type: 'test'
+  ...
+# Subtest: 导航导出副本按真实标题刷新多个目录，保留合法窗口内跳转，失效链接只去 mark 不改原稿
+ok 599 - 导航导出副本按真实标题刷新多个目录，保留合法窗口内跳转，失效链接只去 mark 不改原稿
+  ---
+  duration_ms: 13.140708
+  type: 'test'
+  ...
+# Subtest: 静态 HTML 目录和原文内部链接使用真实唯一 id，折叠/合并格/文本框内目标完整保留
+ok 600 - 静态 HTML 目录和原文内部链接使用真实唯一 id，折叠/合并格/文本框内目标完整保留
+  ---
+  duration_ms: 81.467167
+  type: 'test'
+  ...
+# Subtest: Markdown 导出实际目录快照及完整正文，内部跳转降为原标签，外部链接和其他格式仍可往返
+ok 601 - Markdown 导出实际目录快照及完整正文，内部跳转降为原标签，外部链接和其他格式仍可往返
+  ---
+  duration_ms: 188.936041
+  type: 'test'
+  ...
+# Subtest: Markdown 目录重新解析后仍是嵌套列表，跳级标题使用最近低级父项且不补虚构条目
+ok 602 - Markdown 目录重新解析后仍是嵌套列表，跳级标题使用最近低级父项且不补虚构条目
+  ---
+  duration_ms: 5.431792
+  type: 'test'
+  ...
+# Subtest: 纯文本保留目录标题、按层级缩进的条目及全部正文，不泄露书签名字、ID、旧快照或页码
+ok 603 - 纯文本保留目录标题、按层级缩进的条目及全部正文，不泄露书签名字、ID、旧快照或页码
+  ---
+  duration_ms: 3.662333
+  type: 'test'
+  ...
+# Subtest: DOCX 多个锚点生成唯一配对整数与稳定安全名称，目录及原链接均为原生 w:anchor
+ok 604 - DOCX 多个锚点生成唯一配对整数与稳定安全名称，目录及原链接均为原生 w:anchor
+  ---
+  duration_ms: 153.659917
+  type: 'test'
+  ...
+# Subtest: DOCX 合并单元格、折叠详情和文本框内书签位于目标原文段落，前方分页仅作用于目录标题
+ok 605 - DOCX 合并单元格、折叠详情和文本框内书签位于目标原文段落，前方分页仅作用于目录标题
+  ---
+  duration_ms: 36.247167
+  type: 'test'
+  ...
+# Subtest: 空目录、未命名普通段落锚点及空目标段均可导出，已有原文不被占位文案污染
+ok 606 - 空目录、未命名普通段落锚点及空目标段均可导出，已有原文不被占位文案污染
+  ---
+  duration_ms: 21.146333
+  type: 'test'
+  ...
+# Subtest: 空标题目录条目在各输出中有可读标签，标签仅属于目录，目标空标题和原稿保持空内容
+ok 607 - 空标题目录条目在各输出中有可读标签，标签仅属于目录，目标空标题和原稿保持空内容
+  ---
+  duration_ms: 35.498166
+  type: 'test'
+  ...
+# Subtest: 导航输出不会丢图片、公式、源码、附件及待办，仍保留未知内容与取消的拒绝边界
+ok 608 - 导航输出不会丢图片、公式、源码、附件及待办，仍保留未知内容与取消的拒绝边界
+  ---
+  duration_ms: 58.012542
+  type: 'test'
+  ...
+# Subtest: 真实 DOM 拖动复制目录和容器内目标，副本链接跟随副本，切片外链接与原目标不变
+ok 609 - 真实 DOM 拖动复制目录和容器内目标，副本链接跟随副本，切片外链接与原目标不变
+  ---
+  duration_ms: 135.012917
+  type: 'test'
+  ...
+# Subtest: 原生节点复制保留文字格式和节点选区，多次副本书签名称不冲突
+ok 610 - 原生节点复制保留文字格式和节点选区，多次副本书签名称不冲突
+  ---
+  duration_ms: 53.505375
+  type: 'test'
+  ...
+# Subtest: 只复制内部链接文字时仍指向原目标，部分标题切片不把宿主段落变成新书签
+ok 611 - 只复制内部链接文字时仍指向原目标，部分标题切片不把宿主段落变成新书签
+  ---
+  duration_ms: 41.215792
+  type: 'test'
+  ...
+# Subtest: 复制与移动按 drop 时修饰键决定，移动保留导航 ID、名称及原链接并可撤销
+ok 612 - 复制与移动按 drop 时修饰键决定，移动保留导航 ID、名称及原链接并可撤销
+  ---
+  duration_ms: 61.257375
+  type: 'test'
+  ...
+# Subtest: 同一不可变 Node 在切片中复用时副本身份逐出现分配，歧义链接去 mark 且保留原文字及格式
+ok 613 - 同一不可变 Node 在切片中复用时副本身份逐出现分配，歧义链接去 mark 且保留原文字及格式
+  ---
+  duration_ms: 17.461417
+  type: 'test'
+  ...
+# Subtest: 导航与批注共存时复制重映射书签并去除副本批注，原线程和原定位不变
+ok 614 - 导航与批注共存时复制重映射书签并去除副本批注，原线程和原定位不变
+  ---
+  duration_ms: 68.901375
+  type: 'test'
+  ...
+# Subtest: 只读、切换和输入法组合守卫阻止含导航的复制或移动，不改变正文、ID及目录
+ok 615 - 只读、切换和输入法组合守卫阻止含导航的复制或移动，不改变正文、ID及目录
+  ---
+  duration_ms: 124.22325
+  type: 'test'
+  ...
+# Subtest: A3/A4/A5/Letter 横竖纸张在真实 Word XML 与静态 HTML 使用相同毫米尺寸和四边边距
+ok 616 - A3/A4/A5/Letter 横竖纸张在真实 Word XML 与静态 HTML 使用相同毫米尺寸和四边边距
+  ---
+  duration_ms: 307.335375
+  type: 'test'
+  ...
+# Subtest: 每种纸张的超宽图片、表格与正文文本框按真实正文区域收窄，水印不改资源内容
+ok 617 - 每种纸张的超宽图片、表格与正文文本框按真实正文区域收窄，水印不改资源内容
+  ---
+  duration_ms: 198.653459
+  type: 'test'
+  ...
+# Subtest: Word 水印是唯一关联的原生页眉 VML：居中、旋转、颜色、透明度可读，书签与正文未污染
+ok 618 - Word 水印是唯一关联的原生页眉 VML：居中、旋转、颜色、透明度可读，书签与正文未污染
+  ---
+  duration_ms: 98.087042
+  type: 'test'
+  ...
+# Subtest: HTML 单层水印文字安全转义且不进入正文，打印复用同层 fixed 重复，非对称边距只扣一次
+ok 619 - HTML 单层水印文字安全转义且不进入正文，打印复用同层 fixed 重复，非对称边距只扣一次
+  ---
+  duration_ms: 9.316916
+  type: 'test'
+  ...
+# Subtest: 水印几何在长文字与±90度保持旋转包围盒完整，空配置不生成水印节点
+ok 620 - 水印几何在长文字与±90度保持旋转包围盒完整，空配置不生成水印节点
+  ---
+  duration_ms: 2.849583
+  type: 'test'
+  ...
+# Subtest: Markdown/TXT 明确提示页面外观降级，水印文字不进入正文或批注内容
+ok 621 - Markdown/TXT 明确提示页面外观降级，水印文字不进入正文或批注内容
+  ---
+  duration_ms: 169.667542
+  type: 'test'
+  ...
+# Subtest: HTML 异步输出固定页面与水印快照，调用后改变原页面不混入本轮结果
+ok 622 - HTML 异步输出固定页面与水印快照，调用后改变原页面不混入本轮结果
+  ---
+  duration_ms: 10.4815
+  type: 'test'
+  ...
+# Subtest: Word 门面与转换器固定完整页面快照，异步后修改方向、边距和水印不混合纸张设置
+ok 623 - Word 门面与转换器固定完整页面快照，异步后修改方向、边距和水印不混合纸张设置
+  ---
+  duration_ms: 37.525417
+  type: 'test'
+  ...
+# Subtest: 含水印的打印 HTML 原样进入唯一 iframe，资源就绪才打印，afterprint 幂等移除该层
+ok 624 - 含水印的打印 HTML 原样进入唯一 iframe，资源就绪才打印，afterprint 幂等移除该层
+  ---
+  duration_ms: 6.394459
+  type: 'test'
+  ...
+# Subtest: 离线 HTML 页眉页脚只作为装饰，打印使用 page/pages 原生计数且屏幕页码明确为示意
+ok 625 - 离线 HTML 页眉页脚只作为装饰，打印使用 page/pages 原生计数且屏幕页码明确为示意
+  ---
+  duration_ms: 83.237708
+  type: 'test'
+  ...
+# Subtest: 文字安全编码分别覆盖 CSS/HTML，style闭合、反斜杠、引号与Unicode不成为活动内容
+ok 626 - 文字安全编码分别覆盖 CSS/HTML，style闭合、反斜杠、引号与Unicode不成为活动内容
+  ---
+  duration_ms: 25.276541
+  type: 'test'
+  ...
+# Subtest: 未启用或空白设置不产生空页眉页脚、额外打印规则与兼容提示
+ok 627 - 未启用或空白设置不产生空页眉页脚、额外打印规则与兼容提示
+  ---
+  duration_ms: 11.504417
+  type: 'test'
+  ...
+# Subtest: Markdown与纯文本明确说明页眉页脚损失，装饰和假页码不混入正文
+ok 628 - Markdown与纯文本明确说明页眉页脚损失，装饰和假页码不混入正文
+  ---
+  duration_ms: 185.624459
+  type: 'test'
+  ...
+# Subtest: HTML导出固定页眉页脚快照，异步编码期间继续编辑不会混入已生成文件
+ok 629 - HTML导出固定页眉页脚快照，异步编码期间继续编辑不会混入已生成文件
+  ---
+  duration_ms: 16.314375
+  type: 'test'
+  ...
+# Subtest: 能力检测确认真实嵌套边距规则，空规则与解析失败不冒充支持
+ok 630 - 能力检测确认真实嵌套边距规则，空规则与解析失败不冒充支持
+  ---
+  duration_ms: 0.138958
+  type: 'test'
+  ...
+# Subtest: 缺省、null 与空白对象不激活页眉页脚，旧文档保持原有字段形状
+ok 631 - 缺省、null 与空白对象不激活页眉页脚，旧文档保持原有字段形状
+  ---
+  duration_ms: 6.723167
+  type: 'test'
+  ...
+# Subtest: 完整 JSON 契约拒绝未知字段、枚举、控制字符和非普通对象
+ok 632 - 完整 JSON 契约拒绝未知字段、枚举、控制字符和非普通对象
+  ---
+  duration_ms: 0.478833
+  type: 'test'
+  ...
+# Subtest: 80 个 Unicode 码点含代理对均允许，验证不修剪原值且页码占位不虚构总页数
+ok 633 - 80 个 Unicode 码点含代理对均允许，验证不修剪原值且页码占位不虚构总页数
+  ---
+  duration_ms: 0.305209
+  type: 'test'
+  ...
+# Subtest: 激活端至少保留对应 12mm 边距，未激活端和另一端不受误限制
+ok 634 - 激活端至少保留对应 12mm 边距，未激活端和另一端不受误限制
+  ---
+  duration_ms: 1.714375
+  type: 'test'
+  ...
+# Subtest: 按真正纸型方向和正文宽度估算 6–9pt，宽 ASCII 与最长页码同样预算且 Word 半磅一致
+ok 635 - 按真正纸型方向和正文宽度估算 6–9pt，宽 ASCII 与最长页码同样预算且 Word 半磅一致
+  ---
+  duration_ms: 3.134667
+  type: 'test'
+  ...
+# Subtest: 页面 store 深克隆页眉页脚，非法宽度修改不产生修订
+ok 636 - 页面 store 深克隆页眉页脚，非法宽度修改不产生修订
+  ---
+  duration_ms: 1.310125
+  type: 'test'
+  ...
+# Subtest: 便携导入、本地副本重新落盘保留页眉页脚，旧文件不补字段
+ok 637 - 便携导入、本地副本重新落盘保留页眉页脚，旧文件不补字段
+  ---
+  duration_ms: 58.516709
+  type: 'test'
+  ...
+# Subtest: 历史恢复与模板实例完整保存装饰元信息，预览描述只使用快照而不混入正文
+ok 638 - 历史恢复与模板实例完整保存装饰元信息，预览描述只使用快照而不混入正文
+  ---
+  duration_ms: 47.804042
+  type: 'test'
+  ...
+# Subtest: 纸面、边距与空隙校验拒绝非有限尺寸和零正文预算，不改输入
+ok 639 - 纸面、边距与空隙校验拒绝非有限尺寸和零正文预算，不改输入
+  ---
+  duration_ms: 2.099583
+  type: 'test'
+  ...
+# Subtest: 分页关闭不造纸面；空正文启用仍保留标准首张纸
+ok 640 - 分页关闭不造纸面；空正文启用仍保留标准首张纸
+  ---
+  duration_ms: 0.71725
+  type: 'test'
+  ...
+# Subtest: 实际块恰好装满正文页不提前换页，下一块空隙覆盖三段页面留白
+ok 641 - 实际块恰好装满正文页不提前换页，下一块空隙覆盖三段页面留白
+  ---
+  duration_ms: 0.773166
+  type: 'test'
+  ...
+# Subtest: CSS 实测的首项默认与后续块上下 margin 单独计入，无累积漂移
+ok 642 - CSS 实测的首项默认与后续块上下 margin 单独计入，无累积漂移
+  ---
+  duration_ms: 0.484084
+  type: 'test'
+  ...
+# Subtest: 首项显式段前距不可被首项默认样式规则吞掉
+ok 643 - 首项显式段前距不可被首项默认样式规则吞掉
+  ---
+  duration_ms: 0.441666
+  type: 'test'
+  ...
+# Subtest: 与下段同页完整链在可满足时整体移到新页
+ok 644 - 与下段同页完整链在可满足时整体移到新页
+  ---
+  duration_ms: 0.508167
+  type: 'test'
+  ...
+# Subtest: 超过标准页的 keepWithNext 链拆为逐块排版并报告未满足约束
+ok 645 - 超过标准页的 keepWithNext 链拆为逐块排版并报告未满足约束
+  ---
+  duration_ms: 0.126292
+  type: 'test'
+  ...
+# Subtest: 首项超高块独占展开页，下块恢复标准纸高和完整边距
+ok 646 - 首项超高块独占展开页，下块恢复标准纸高和完整边距
+  ---
+  duration_ms: 0.074667
+  type: 'test'
+  ...
+# Subtest: 普通块之后及连续超高块各自成页，既不切内容也不把下块挤进展开页
+ok 647 - 普通块之后及连续超高块各自成页，既不切内容也不把下块挤进展开页
+  ---
+  duration_ms: 1.766833
+  type: 'test'
+  ...
+# Subtest: 首尾及连续手动分页符保留空页和用户原边界
+ok 648 - 首尾及连续手动分页符保留空页和用户原边界
+  ---
+  duration_ms: 1.795458
+  type: 'test'
+  ...
+# Subtest: 展开页后的手动分页只推进一次，再连续手动分页仍保留空页
+ok 649 - 展开页后的手动分页只推进一次，再连续手动分页仍保留空页
+  ---
+  duration_ms: 0.614
+  type: 'test'
+  ...
+# Subtest: 无效块尺寸拒绝，不让负高或非法位置进入装饰
+ok 650 - 无效块尺寸拒绝，不让负高或非法位置进入装饰
+  ---
+  duration_ms: 0.168583
+  type: 'test'
+  ...
+# Subtest: 默认禁用，不改正文、HTML、选区或历史；命令仅设置视图几何
+ok 651 - 默认禁用，不改正文、HTML、选区或历史；命令仅设置视图几何
+  ---
+  duration_ms: 160.160583
+  type: 'test'
+  ...
+# Subtest: 真实 EditorView 的分页 widget 保持不可编辑、无正文字符，静态序列化不携带
+ok 652 - 真实 EditorView 的分页 widget 保持不可编辑、无正文字符，静态序列化不携带
+  ---
+  duration_ms: 130.727333
+  type: 'test'
+  ...
+# Subtest: 缩放除回未缩放块高，纸张边距变更重新分页但不进撤销
+ok 653 - 缩放除回未缩放块高，纸张边距变更重新分页但不进撤销
+  ---
+  duration_ms: 183.032875
+  type: 'test'
+  ...
+# Subtest: 组合输入期间冻结已有分页 DOM，结束后只重排最终度量，不改变插入/撤销
+ok 654 - 组合输入期间冻结已有分页 DOM，结束后只重排最终度量，不改变插入/撤销
+  ---
+  duration_ms: 279.820459
+  type: 'test'
+  ...
+# Subtest: 只读仍显示同一分页，关闭清理装饰并发送 disabled 事件
+ok 655 - 只读仍显示同一分页，关闭清理装饰并发送 disabled 事件
+  ---
+  duration_ms: 94.875791
+  type: 'test'
+  ...
+# Subtest: 资源加载高度重排保留正文与节点 DOM，卸载取消待执行测量
+ok 656 - 资源加载高度重排保留正文与节点 DOM，卸载取消待执行测量
+  ---
+  duration_ms: 267.50725
+  type: 'test'
+  ...
+# Subtest: 标题默认同下段，而显式 keepWithNext=false 优先，不产生内容事务
+ok 657 - 标题默认同下段，而显式 keepWithNext=false 优先，不产生内容事务
+  ---
+  duration_ms: 180.803125
+  type: 'test'
+  ...
+# Subtest: 400 段的小数声明与真实 used-margin 不同，缩放和空隙舍入也不会累计越界
+ok 658 - 400 段的小数声明与真实 used-margin 不同，缩放和空隙舍入也不会累计越界
+  ---
+  duration_ms: 25673.948458
+  type: 'test'
+  ...
+# Subtest: 四种纸型与两个方向统一使用毫米尺寸，正文尺寸保留非对称边距
+ok 659 - 四种纸型与两个方向统一使用毫米尺寸，正文尺寸保留非对称边距
+  ---
+  duration_ms: 2.60825
+  type: 'test'
+  ...
+# Subtest: 不同纸型横竖版都接受 40mm 正文边界，任一方向不足时拒绝
+ok 660 - 不同纸型横竖版都接受 40mm 正文边界，任一方向不足时拒绝
+  ---
+  duration_ms: 0.394625
+  type: 'test'
+  ...
+# Subtest: 纸型与方向必须是自有的严格枚举，未知字段和非 JSON 对象不能绕过校验
+ok 661 - 纸型与方向必须是自有的严格枚举，未知字段和非 JSON 对象不能绕过校验
+  ---
+  duration_ms: 0.159
+  type: 'test'
+  ...
+# Subtest: 边距只接受完整四边有限非负数，数字字符串、溢出和活动字段都拒绝
+ok 662 - 边距只接受完整四边有限非负数，数字字符串、溢出和活动字段都拒绝
+  ---
+  duration_ms: 0.116875
+  type: 'test'
+  ...
+# Subtest: 水印范围包含端点和小数，文字按 Unicode 码点检查且验证不修改首尾空白
+ok 663 - 水印范围包含端点和小数，文字按 Unicode 码点检查且验证不修改首尾空白
+  ---
+  duration_ms: 0.221
+  type: 'test'
+  ...
+# Subtest: 水印文字拒绝空白、多行和控制字符，不把普通文字解释成 HTML
+ok 664 - 水印文字拒绝空白、多行和控制字符，不把普通文字解释成 HTML
+  ---
+  duration_ms: 0.211833
+  type: 'test'
+  ...
+# Subtest: 水印只允许四个字段、六位颜色和有限透明度角度，非法值不会进入文档
+ok 665 - 水印只允许四个字段、六位颜色和有限透明度角度，非法值不会进入文档
+  ---
+  duration_ms: 0.31675
+  type: 'test'
+  ...
+# Subtest: 旧文档缺水印与显式 null 都合法，验证和新建互不补写共享默认值
+ok 666 - 旧文档缺水印与显式 null 都合法，验证和新建互不补写共享默认值
+  ---
+  duration_ms: 0.12075
+  type: 'test'
+  ...
+# Subtest: 边距预设只匹配完整同值四边，非对称或未知字段显示自定义
+ok 667 - 边距预设只匹配完整同值四边，非对称或未知字段显示自定义
+  ---
+  duration_ms: 0.275666
+  type: 'test'
+  ...
+# Subtest: 页面会话提交深克隆草稿与来源，验证失败保持页面、序号和保存状态不变
+ok 668 - 页面会话提交深克隆草稿与来源，验证失败保持页面、序号和保存状态不变
+  ---
+  duration_ms: 1.155333
+  type: 'test'
+  ...
+# Subtest: 修改页面不发送正文事务，随后 undo 只撤销文字且保留页面配置
+ok 669 - 修改页面不发送正文事务，随后 undo 只撤销文字且保留页面配置
+  ---
+  duration_ms: 131.975417
+  type: 'test'
+  ...
+# Subtest: 便携文件保留各纸型和完整水印，旧文件缺字段不迁移且恶意水印拒绝导入
+ok 670 - 便携文件保留各纸型和完整水印，旧文件缺字段不迁移且恶意水印拒绝导入
+  ---
+  duration_ms: 1.63175
+  type: 'test'
+  ...
+# Subtest: 本地保存与复制完整保留页面，读取或副本的嵌套修改不影响已落盘来源
+ok 671 - 本地保存与复制完整保留页面，读取或副本的嵌套修改不影响已落盘来源
+  ---
+  duration_ms: 11.982416
+  type: 'test'
+  ...
+# Subtest: 历史恢复、恢复前备份与历史副本保留各自纸型、边距、水印并隔离嵌套对象
+ok 672 - 历史恢复、恢复前备份与历史副本保留各自纸型、边距、水印并隔离嵌套对象
+  ---
+  duration_ms: 13.483916
+  type: 'test'
+  ...
+# Subtest: 恢复旧历史时仍缺 watermark，恢复前的新水印完整保留在自动备份
+ok 673 - 恢复旧历史时仍缺 watermark，恢复前的新水印完整保留在自动备份
+  ---
+  duration_ms: 3.271458
+  type: 'test'
+  ...
+# Subtest: 用户模板、实例和去批注副本完整深克隆页面，不改来源或模板快照
+ok 674 - 用户模板、实例和去批注副本完整深克隆页面，不改来源或模板快照
+  ---
+  duration_ms: 4.384833
+  type: 'test'
+  ...
+# Subtest: 光标、跨段选区与下一段起点边界只改变应选段落，一次撤销恢复
+ok 675 - 光标、跨段选区与下一段起点边界只改变应选段落，一次撤销恢复
+  ---
+  duration_ms: 92.792709
+  type: 'test'
+  ...
+# Subtest: 参数非法、只读、组合输入与节点选区均不写入
+ok 676 - 参数非法、只读、组合输入与节点选区均不写入
+  ---
+  duration_ms: 36.198166
+  type: 'test'
+  ...
+# Subtest: 段落切标题、Enter 分段继承缩进，列表层级命令仍可使用
+ok 677 - 段落切标题、Enter 分段继承缩进，列表层级命令仍可使用
+  ---
+  duration_ms: 59.923084
+  type: 'test'
+  ...
+# Subtest: 表格内文字可缩进，全选不改代码块和结构
+ok 678 - 表格内文字可缩进，全选不改代码块和结构
+  ---
+  duration_ms: 31.622416
+  type: 'test'
+  ...
+# Subtest: HTML 和清理后的内部粘贴保留缩进，非法 CSS 单位及越界值不带入
+ok 679 - HTML 和清理后的内部粘贴保留缩进，非法 CSS 单位及越界值不带入
+  ---
+  duration_ms: 37.190125
+  type: 'test'
+  ...
+# Subtest: 格式刷复制缩进，普通来源清除目标缩进
+ok 680 - 格式刷复制缩进，普通来源清除目标缩进
+  ---
+  duration_ms: 46.175459
+  type: 'test'
+  ...
+# Subtest: 旧文件补默认属性，新文件往返保存缩进，非法 JSON 拒绝
+ok 681 - 旧文件补默认属性，新文件往返保存缩进，非法 JSON 拒绝
+  ---
+  duration_ms: 14.132208
+  type: 'test'
+  ...
+# Subtest: 段落文件契约接受默认、零、半磅与布尔值，拒绝越界、CSS 和伪布尔
+ok 682 - 段落文件契约接受默认、零、半磅与布尔值，拒绝越界、CSS 和伪布尔
+  ---
+  duration_ms: 7.449458
+  type: 'test'
+  ...
+# Subtest: 段落内部 HTML 往返保留全部新属性与既有行距缩进，默认仍为空
+ok 683 - 段落内部 HTML 往返保留全部新属性与既有行距缩进，默认仍为空
+  ---
+  duration_ms: 99.173959
+  type: 'test'
+  ...
+# Subtest: 粘贴非法段距与分页 CSS 不进入正文，旧分页写法按允许值解析
+ok 684 - 粘贴非法段距与分页 CSS 不进入正文，旧分页写法按允许值解析
+  ---
+  duration_ms: 23.373209
+  type: 'test'
+  ...
+# Subtest: 格式刷复制段落精细设置且保留目标类型，一次撤销；来源默认恢复目标默认
+ok 685 - 格式刷复制段落精细设置且保留目标类型，一次撤销；来源默认恢复目标默认
+  ---
+  duration_ms: 89.52425
+  type: 'test'
+  ...
+# Subtest: Mewoc 往返完整保留段落设置与默认含义，导入创建独立 ID
+ok 686 - Mewoc 往返完整保留段落设置与默认含义，导入创建独立 ID
+  ---
+  duration_ms: 0.999333
+  type: 'test'
+  ...
+# Subtest: Word 使用 twip 输出显式间距，false 覆盖标题同页默认且默认正文不被更改
+ok 687 - Word 使用 twip 输出显式间距，false 覆盖标题同页默认且默认正文不被更改
+  ---
+  duration_ms: 130.862292
+  type: 'test'
+  ...
+# Subtest: Word 列表、引用、单元格内显式段距优先于上下文默认，文字和编号保留
+ok 688 - Word 列表、引用、单元格内显式段距优先于上下文默认，文字和编号保留
+  ---
+  duration_ms: 112.154042
+  type: 'test'
+  ...
+# Subtest: Markdown 保留所有正文并说明间距和分页设置损失，显式 false 也被报告
+ok 689 - Markdown 保留所有正文并说明间距和分页设置损失，显式 false 也被报告
+  ---
+  duration_ms: 136.25975
+  type: 'test'
+  ...
+# Subtest: 同一段的续行跨页保留原段身份，断点只在当前行字符位置
+ok 690 - 同一段的续行跨页保留原段身份，断点只在当前行字符位置
+  ---
+  duration_ms: 1.216625
+  type: 'test'
+  ...
+# Subtest: 段落首行放不下时在段前换页，使用顶层断点而非段内空隙
+ok 691 - 段落首行放不下时在段前换页，使用顶层断点而非段内空隙
+  ---
+  duration_ms: 0.192125
+  type: 'test'
+  ...
+# Subtest: 段前距只用于首行，段后距只用于末行，续页不能重复首行缩进预算
+ok 692 - 段前距只用于首行，段后距只用于末行，续页不能重复首行缩进预算
+  ---
+  duration_ms: 0.220667
+  type: 'test'
+  ...
+# Subtest: 末行段后距参与页底预算，不能把正文后的有效空白挤进页脚
+ok 693 - 末行段后距参与页底预算，不能把正文后的有效空白挤进页脚
+  ---
+  duration_ms: 0.126625
+  type: 'test'
+  ...
+# Subtest: 段后普通块继续使用自然起点，已有段内装饰高度只增加一次
+ok 694 - 段后普通块继续使用自然起点，已有段内装饰高度只增加一次
+  ---
+  duration_ms: 0.080333
+  type: 'test'
+  ...
+# Subtest: 超高单行或行内原子内容独占展开页，前后普通行恢复正常页高
+ok 695 - 超高单行或行内原子内容独占展开页，前后普通行恢复正常页高
+  ---
+  duration_ms: 2.627
+  type: 'test'
+  ...
+# Subtest: 首行超高时原段从首张纸完整展开，后续行仍能独立回到标准纸面
+ok 696 - 首行超高时原段从首张纸完整展开，后续行仍能独立回到标准纸面
+  ---
+  duration_ms: 0.805
+  type: 'test'
+  ...
+# Subtest: keepWithNext 只由末行连接下一段首行，不强迫长段全部进入一页
+ok 697 - keepWithNext 只由末行连接下一段首行，不强迫长段全部进入一页
+  ---
+  duration_ms: 0.362875
+  type: 'test'
+  ...
+# Subtest: 标题末行同下段的明确保护仍可跨段内断点，首行身份保持标题
+ok 698 - 标题末行同下段的明确保护仍可跨段内断点，首行身份保持标题
+  ---
+  duration_ms: 0.746834
+  type: 'test'
+  ...
+# Subtest: 无法满足的末行同页链有限退化，不凭保护约束生成空白页
+ok 699 - 无法满足的末行同页链有限退化，不凭保护约束生成空白页
+  ---
+  duration_ms: 0.754417
+  type: 'test'
+  ...
+# Subtest: 段内分页与手动页衔接不吞首尾空页，也不携带上一段的续行身份
+ok 700 - 段内分页与手动页衔接不吞首尾空页，也不携带上一段的续行身份
+  ---
+  duration_ms: 0.967834
+  type: 'test'
+  ...
+# Subtest: 首尾显式小数自然坐标优先，不把声明段距重新累加到续行
+ok 701 - 首尾显式小数自然坐标优先，不把声明段距重新累加到续行
+  ---
+  duration_ms: 0.252
+  type: 'test'
+  ...
+# Subtest: 段内间隙的真实小数高度保留校准，并在used-height一致后收敛
+ok 702 - 段内间隙的真实小数高度保留校准，并在used-height一致后收敛
+  ---
+  duration_ms: 0.383667
+  type: 'test'
+  ...
+# Subtest: 空文本行仍按实测行高占位，规划器不因没有字符内容吞掉空行
+ok 703 - 空文本行仍按实测行高占位，规划器不因没有字符内容吞掉空行
+  ---
+  duration_ms: 0.221458
+  type: 'test'
+  ...
+# Subtest: 小页间距为段内空行保留父级 strut 高度，续页额外留白可稳定收敛
+ok 704 - 小页间距为段内空行保留父级 strut 高度，续页额外留白可稳定收敛
+  ---
+  duration_ms: 0.176042
+  type: 'test'
+  ...
+# Subtest: minimumGap 必须为非负有限尺寸，首行顶层断点不受段内 strut 约束
+ok 705 - minimumGap 必须为非负有限尺寸，首行顶层断点不受段内 strut 约束
+  ---
+  duration_ms: 0.318167
+  type: 'test'
+  ...
+# Subtest: 段内最小 strut 的额外留白挤出续页预算时展开当前页，后续普通行恢复标准纸高
+ok 706 - 段内最小 strut 的额外留白挤出续页预算时展开当前页，后续普通行恢复标准纸高
+  ---
+  duration_ms: 0.087584
+  type: 'test'
+  ...
+# Subtest: 最小 strut 留白使原本可放下的 keepWithNext 链超预算时报告有限退化
+ok 707 - 最小 strut 留白使原本可放下的 keepWithNext 链超预算时报告有限退化
+  ---
+  duration_ms: 0.090458
+  type: 'test'
+  ...
+# Subtest: 损坏的段落身份、行索引与总行数拒绝，不能装饰未知正文位置
+ok 708 - 损坏的段落身份、行索引与总行数拒绝，不能装饰未知正文位置
+  ---
+  duration_ms: 0.178709
+  type: 'test'
+  ...
+# Subtest: 段内空隙使用合法 SPAN 且 marks 为空，原链接和正文 JSON/HTML/历史保持不变
+ok 709 - 段内空隙使用合法 SPAN 且 marks 为空，原链接和正文 JSON/HTML/历史保持不变
+  ---
+  duration_ms: 84.863708
+  type: 'test'
+  ...
+# Subtest: 跨续行 TextSelection 的复制只含真实文字与标记，不含空隙和焦点背景
+ok 710 - 跨续行 TextSelection 的复制只含真实文字与标记，不含空隙和焦点背景
+  ---
+  duration_ms: 22.36725
+  type: 'test'
+  ...
+# Subtest: 标题续行也使用 H1 内合法 SPAN，视图裁剪属性不进入原始标题节点
+ok 711 - 标题续行也使用 H1 内合法 SPAN，视图裁剪属性不进入原始标题节点
+  ---
+  duration_ms: 17.608625
+  type: 'test'
+  ...
+# Subtest: 断点前后及跨断点的选区不被视图事务改写，模型位置仍能从 DOM 往返
+ok 712 - 断点前后及跨断点的选区不被视图事务改写，模型位置仍能从 DOM 往返
+  ---
+  duration_ms: 14.30675
+  type: 'test'
+  ...
+# Subtest: 正文编辑形成唯一撤销记录，重新发布段内 layout 不添加历史且 undo 还原原文
+ok 713 - 正文编辑形成唯一撤销记录，重新发布段内 layout 不添加历史且 undo 还原原文
+  ---
+  duration_ms: 16.52875
+  type: 'test'
+  ...
+# Subtest: split 和 merge 改变真实段结构时清除旧续行及背景，重新发布使用当前段位置
+ok 714 - split 和 merge 改变真实段结构时清除旧续行及背景，重新发布使用当前段位置
+  ---
+  duration_ms: 39.456959
+  type: 'test'
+  ...
+# Subtest: 前置插入与纸面设置修改均撤掉旧续行，重新发布不沿用过时的位置
+ok 715 - 前置插入与纸面设置修改均撤掉旧续行，重新发布不沿用过时的位置
+  ---
+  duration_ms: 10.691667
+  type: 'test'
+  ...
+# Subtest: IME 期间已有续行仅映射且保持 DOM，compositionend 后先清除再等待真实测量
+ok 716 - IME 期间已有续行仅映射且保持 DOM，compositionend 后先清除再等待真实测量
+  ---
+  duration_ms: 55.150291
+  type: 'test'
+  ...
+# Subtest: 只读仍可展示段内分页，关闭和销毁清理 span、背景、测量帧及合成延时
+ok 717 - 只读仍可展示段内分页，关闭和销毁清理 span、背景、测量帧及合成延时
+  ---
+  duration_ms: 10.291125
+  type: 'test'
+  ...
+# Subtest: 完整 grapheme 边界保留代理对、组合音符、旗帜和 ZWJ 表情
+ok 718 - 完整 grapheme 边界保留代理对、组合音符、旗帜和 ZWJ 表情
+  ---
+  duration_ms: 18.733292
+  type: 'test'
+  ...
+# Subtest: Range glyph 高度转换为完整 CSS 行盒，段顶、尾部 leading 和绝对模型位置保持正确
+ok 719 - Range glyph 高度转换为完整 CSS 行盒，段顶、尾部 leading 和绝对模型位置保持正确
+  ---
+  duration_ms: 82.472833
+  type: 'test'
+  ...
+# Subtest: 粗体、斜体、链接与不同 glyph 高的 mark 片段合并成同一视觉行
+ok 720 - 粗体、斜体、链接与不同 glyph 高的 mark 片段合并成同一视觉行
+  ---
+  duration_ms: 22.805834
+  type: 'test'
+  ...
+# Subtest: 保留格式标记包裹的真实空格文字，独立 widget 不进入 Range 文本片段
+ok 721 - 保留格式标记包裹的真实空格文字，独立 widget 不进入 Range 文本片段
+  ---
+  duration_ms: 19.262542
+  type: 'test'
+  ...
+# Subtest: 折叠空格没有自身 Range 矩形时按前缀证据定位可见行，不添加或删除原空格
+ok 722 - 折叠空格没有自身 Range 矩形时按前缀证据定位可见行，不添加或删除原空格
+  ---
+  duration_ms: 8.334333
+  type: 'test'
+  ...
+# Subtest: 预格式空格、NBSP 和制表符使用原模型 UTF-16 位置，不按 trim 后字符串测量
+ok 723 - 预格式空格、NBSP 和制表符使用原模型 UTF-16 位置，不按 trim 后字符串测量
+  ---
+  duration_ms: 9.61925
+  type: 'test'
+  ...
+# Subtest: 连续硬换行保留中间空行，尾部空行并入前组避免在 contentEnd 插装饰
+ok 724 - 连续硬换行保留中间空行，尾部空行并入前组避免在 contentEnd 插装饰
+  ---
+  duration_ms: 5.336209
+  type: 'test'
+  ...
+# Subtest: 空段落与仅硬换行段落仍保留原始高度，不把 PM trailingBreak 当成正文
+ok 725 - 空段落与仅硬换行段落仍保留原始高度，不把 PM trailingBreak 当成正文
+  ---
+  duration_ms: 15.302375
+  type: 'test'
+  ...
+# Subtest: 0.5/1/1.5 缩放和旧内部 widget 高度都从每个原始文本片段扣除
+ok 726 - 0.5/1/1.5 缩放和旧内部 widget 高度都从每个原始文本片段扣除
+  ---
+  duration_ms: 14.126042
+  type: 'test'
+  ...
+# Subtest: 跨 mark 的组合字符和长 ZWJ 表情保持完整 grapheme 位置
+ok 727 - 跨 mark 的组合字符和长 ZWJ 表情保持完整 grapheme 位置
+  ---
+  duration_ms: 12.133667
+  type: 'test'
+  ...
+# Subtest: 长文本按每行二分定位，不逐个 code unit 查询 Range
+ok 728 - 长文本按每行二分定位，不逐个 code unit 查询 Range
+  ---
+  duration_ms: 72.13325
+  type: 'test'
+  ...
+# Subtest: keepTogether、内联原子、RTL、多列及非顶层布局安全回退整段
+ok 729 - keepTogether、内联原子、RTL、多列及非顶层布局安全回退整段
+  ---
+  duration_ms: 52.456959
+  type: 'test'
+  ...
+# Subtest: 标题使用相同只读测量，显式 keepTogether=false 允许按行分析
+ok 730 - 标题使用相同只读测量，显式 keepTogether=false 允许按行分析
+  ---
+  duration_ms: 22.236208
+  type: 'test'
+  ...
+# Subtest: 无效缩放、隐藏零尺寸、缺少 Range 几何和失配模型 DOM 均返回 null
+ok 731 - 无效缩放、隐藏零尺寸、缺少 Range 几何和失配模型 DOM 均返回 null
+  ---
+  duration_ms: 10.119625
+  type: 'test'
+  ...
+# Subtest: 段落布局属性默认 null，0/false 明确关闭，严格验证半磅范围
+ok 732 - 段落布局属性默认 null，0/false 明确关闭，严格验证半磅范围
+  ---
+  duration_ms: 2.069334
+  type: 'test'
+  ...
+# Subtest: HTML 往返保留磅数及分页 true/false，默认标题不写覆盖默认 CSS 的 inline style
+ok 733 - HTML 往返保留磅数及分页 true/false，默认标题不写覆盖默认 CSS 的 inline style
+  ---
+  duration_ms: 65.798583
+  type: 'test'
+  ...
+# Subtest: HTML 解析仅接收安全 pt 与 avoid/auto，兼容旧分页属性并拒绝未知 CSS
+ok 734 - HTML 解析仅接收安全 pt 与 avoid/auto，兼容旧分页属性并拒绝未知 CSS
+  ---
+  duration_ms: 6.933125
+  type: 'test'
+  ...
+# Subtest: 光标、跨段选区及全文选择收集段落/标题，排除代码块和结束起点的下一段
+ok 735 - 光标、跨段选区及全文选择收集段落/标题，排除代码块和结束起点的下一段
+  ---
+  duration_ms: 12.242792
+  type: 'test'
+  ...
+# Subtest: 多段混合值仅更新 patch 字段，未编辑的默认/0/false 和异样式保留
+ok 736 - 多段混合值仅更新 patch 字段，未编辑的默认/0/false 和异样式保留
+  ---
+  duration_ms: 9.683792
+  type: 'test'
+  ...
+# Subtest: 选区从空段或段末开始仍包含起始段，但结束仅触碰下一段起点时排除下一段
+ok 737 - 选区从空段或段末开始仍包含起始段，但结束仅触碰下一段起点时排除下一段
+  ---
+  duration_ms: 27.050917
+  type: 'test'
+  ...
+# Subtest: 整段和标题 NodeSelection 支持段落设置，代码节点选择没有适用目标
+ok 738 - 整段和标题 NodeSelection 支持段落设置，代码节点选择没有适用目标
+  ---
+  duration_ms: 7.389167
+  type: 'test'
+  ...
+# Subtest: CellSelection 只收集被选单元格里的段落，不扩大到中间未选的列
+ok 739 - CellSelection 只收集被选单元格里的段落，不扩大到中间未选的列
+  ---
+  duration_ms: 48.442791
+  type: 'test'
+  ...
+# Subtest: 列表和被选外层单元格内的嵌套表格段落都属于原选择内容
+ok 740 - 列表和被选外层单元格内的嵌套表格段落都属于原选择内容
+  ---
+  duration_ms: 14.147125
+  type: 'test'
+  ...
+# Subtest: 前方插段落、段首插字/删字/删全部内容都映射原节点，当前选区改变不重新指向
+ok 741 - 前方插段落、段首插字/删字/删全部内容都映射原节点，当前选区改变不重新指向
+  ---
+  duration_ms: 9.172625
+  type: 'test'
+  ...
+# Subtest: 合法 setNodeMarkup 和标题类型切换保留目标，同时多步事务完成节点映射
+ok 742 - 合法 setNodeMarkup 和标题类型切换保留目标，同时多步事务完成节点映射
+  ---
+  duration_ms: 11.212375
+  type: 'test'
+  ...
+# Subtest: 紧贴原段落前插入新段只移动原目标；split 后保留原段而不转向新增段落
+ok 743 - 紧贴原段落前插入新段只移动原目标；split 后保留原段而不转向新增段落
+  ---
+  duration_ms: 35.155083
+  type: 'test'
+  ...
+# Subtest: 原段落删除、同位替换、join 消失或转为代码块后拒绝整个草稿
+ok 744 - 原段落删除、同位替换、join 消失或转为代码块后拒绝整个草稿
+  ---
+  duration_ms: 54.891875
+  type: 'test'
+  ...
+# Subtest: 未映射的旧 doc 与任一选中段落丢失均拒绝保存，未受影响段落不被部分提交
+ok 745 - 未映射的旧 doc 与任一选中段落丢失均拒绝保存，未受影响段落不被部分提交
+  ---
+  duration_ms: 8.464791
+  type: 'test'
+  ...
+# Subtest: 一次保存只产生一个正文更新，并与前后文字输入分开撤销；同值 patch 不产生更新
+ok 746 - 一次保存只产生一个正文更新，并与前后文字输入分开撤销；同值 patch 不产生更新
+  ---
+  duration_ms: 12.203833
+  type: 'test'
+  ...
+# Subtest: patch 白名单、只读、切换、输入法和销毁守卫拒绝修改正文
+ok 747 - patch 白名单、只读、切换、输入法和销毁守卫拒绝修改正文
+  ---
+  duration_ms: 6.286625
+  type: 'test'
+  ...
+# Subtest: 正文与H1–H6转换保留文字marks及段落精细属性，不触碰未选段落
+ok 748 - 正文与H1–H6转换保留文字marks及段落精细属性，不触碰未选段落
+  ---
+  duration_ms: 288.509042
+  type: 'test'
+  ...
+# Subtest: 卡片应用保留原光标的待输入格式，标题改变之后输入仍使用显式字号
+ok 749 - 卡片应用保留原光标的待输入格式，标题改变之后输入仍使用显式字号
+  ---
+  duration_ms: 39.52475
+  type: 'test'
+  ...
+# Subtest: 混合样式无假选中，结束只触及下一段起点时不统一该段，代码块无适用目标
+ok 750 - 混合样式无假选中，结束只触及下一段起点时不统一该段，代码块无适用目标
+  ---
+  duration_ms: 56.467958
+  type: 'test'
+  ...
+# Subtest: 全选和段落NodeSelection支持样式，单次撤销不吞并之前输入
+ok 751 - 全选和段落NodeSelection支持样式，单次撤销不吞并之前输入
+  ---
+  duration_ms: 44.115333
+  type: 'test'
+  ...
+# Subtest: CellSelection仅改实际选中单元格段落，保留表格结构和选区
+ok 752 - CellSelection仅改实际选中单元格段落，保留表格结构和选区
+  ---
+  duration_ms: 110.839292
+  type: 'test'
+  ...
+# Subtest: 打开图库后移动光标仍应用原目标，普通和追加事务都映射原段落
+ok 753 - 打开图库后移动光标仍应用原目标，普通和追加事务都映射原段落
+  ---
+  duration_ms: 53.449584
+  type: 'test'
+  ...
+# Subtest: 整段同位置替换、删除再插入及追加事务替换均不能收到旧样式目标
+ok 754 - 整段同位置替换、删除再插入及追加事务替换均不能收到旧样式目标
+  ---
+  duration_ms: 77.944917
+  type: 'test'
+  ...
+# Subtest: 只读、切换、组合输入、销毁、非法级别与过期doc拒绝写入
+ok 755 - 只读、切换、组合输入、销毁、非法级别与过期doc拒绝写入
+  ---
+  duration_ms: 15.135917
+  type: 'test'
+  ...
+# Subtest: 相同样式不增加正文更新，仍恢复图库打开前的原选区
+ok 756 - 相同样式不增加正文更新，仍恢复图库打开前的原选区
+  ---
+  duration_ms: 8.165584
+  type: 'test'
+  ...
+# Subtest: 最后一段切标题后的自动末尾段追加事务保持原目标且跟本次样式一起撤销
+ok 757 - 最后一段切标题后的自动末尾段追加事务保持原目标且跟本次样式一起撤销
+  ---
+  duration_ms: 15.884458
+  type: 'test'
+  ...
+# Subtest: 列表首段不能换成标题时整批操作拒绝，重新选择正文后仍能应用新样式且保持列表
+ok 758 - 列表首段不能换成标题时整批操作拒绝，重新选择正文后仍能应用新样式且保持列表
+  ---
+  duration_ms: 17.76875
+  type: 'test'
+  ...
+# Subtest: 方向键能展开并遍历全部卡片，Home/End定位且上下按两行关系移动
+ok 759 - 方向键能展开并遍历全部卡片，Home/End定位且上下按两行关系移动
+  ---
+  duration_ms: 0.109375
+  type: 'test'
+  ...
+# Subtest: 内部图表 HTML 粘贴保留精细外观、跨行跨列合并、列宽及图片自由比例属性
+ok 760 - 内部图表 HTML 粘贴保留精细外观、跨行跨列合并、列宽及图片自由比例属性
+  ---
+  duration_ms: 92.555584
+  type: 'test'
+  ...
+# Subtest: 零内边距与零边框宽度经过清理后保持零，none 边框模式可独立保留
+ok 761 - 零内边距与零边框宽度经过清理后保持零，none 边框模式可独立保留
+  ---
+  duration_ms: 26.204208
+  type: 'test'
+  ...
+# Subtest: 表格行高合法边界和旧列宽占位零保留，非法高度、合并范围与列宽被过滤
+ok 762 - 表格行高合法边界和旧列宽占位零保留，非法高度、合并范围与列宽被过滤
+  ---
+  duration_ms: 15.238459
+  type: 'test'
+  ...
+# Subtest: 恶意 CSS、事件、外链源与非法精细属性被清理为安全默认，不影响正文
+ok 763 - 恶意 CSS、事件、外链源与非法精细属性被清理为安全默认，不影响正文
+  ---
+  duration_ms: 16.892417
+  type: 'test'
+  ...
+# Subtest: 图片各对齐模式、锁定真假和 1–20000 尺寸边界在内部粘贴中保留
+ok 764 - 图片各对齐模式、锁定真假和 1–20000 尺寸边界在内部粘贴中保留
+  ---
+  duration_ms: 81.362708
+  type: 'test'
+  ...
+# Subtest: 新增图表清理保留原有粗体、文字样式、段落缩进行距和安全链接
+ok 765 - 新增图表清理保留原有粗体、文字样式、段落缩进行距和安全链接
+  ---
+  duration_ms: 10.07725
+  type: 'test'
+  ...
+# Subtest: 精细设置 Word：列宽、最小行高、单元格颜色和垂直对齐、边框、内边距使用正确单位
+ok 766 - 精细设置 Word：列宽、最小行高、单元格颜色和垂直对齐、边框、内边距使用正确单位
+  ---
+  duration_ms: 261.539042
+  type: 'test'
+  ...
+# Subtest: 精细设置 Word：纵向合并续行继承外观，零粗细或无边框不产生可见线
+ok 767 - 精细设置 Word：纵向合并续行继承外观，零粗细或无边框不产生可见线
+  ---
+  duration_ms: 73.956583
+  type: 'test'
+  ...
+# Subtest: 精细设置 Word：窄列内边距只缩减到可用范围并报告，源设置仍完整
+ok 768 - 精细设置 Word：窄列内边距只缩减到可用范围并报告，源设置仍完整
+  ---
+  duration_ms: 63.324959
+  type: 'test'
+  ...
+# Subtest: 精细设置 Word：图片位置、自由拉伸尺寸和替代文本/说明完整输出
+ok 769 - 精细设置 Word：图片位置、自由拉伸尺寸和替代文本/说明完整输出
+  ---
+  duration_ms: 42.466625
+  type: 'test'
+  ...
+# Subtest: 精细设置 Markdown：文字保留，布局限制逐类提示且去重
+ok 770 - 精细设置 Markdown：文字保留，布局限制逐类提示且去重
+  ---
+  duration_ms: 127.413584
+  type: 'test'
+  ...
+# Subtest: 精细设置 Mewoc：全部属性、资源和小数图片尺寸原样传递，导入创建新 ID
+ok 771 - 精细设置 Mewoc：全部属性、资源和小数图片尺寸原样传递，导入创建新 ID
+  ---
+  duration_ms: 1.422042
+  type: 'test'
+  ...
+# Subtest: 精细设置契约：非法颜色、枚举、尺寸和 CSS 不能通过文件校验
+ok 772 - 精细设置契约：非法颜色、枚举、尺寸和 CSS 不能通过文件校验
+  ---
+  duration_ms: 0.782208
+  type: 'test'
+  ...
+# Subtest: 打印等待资源期间会话结束：立即释放 iframe，迟到资源不再触发打印
+ok 773 - 打印等待资源期间会话结束：立即释放 iframe，迟到资源不再触发打印
+  ---
+  duration_ms: 1.479416
+  type: 'test'
+  ...
+# Subtest: 打印只在资源就绪后调用，afterprint 释放 iframe
+ok 774 - 打印只在资源就绪后调用，afterprint 释放 iframe
+  ---
+  duration_ms: 0.454833
+  type: 'test'
+  ...
+# Subtest: 系统打印窗口停留超过一分钟仍保留输出，关闭后重复清理不访问失效窗口
+ok 775 - 系统打印窗口停留超过一分钟仍保留输出，关闭后重复清理不访问失效窗口
+  ---
+  duration_ms: 1.365708
+  type: 'test'
+  ...
+# Subtest: 浏览器未发送 afterprint 时由会话清理释放，清理可重复调用
+ok 776 - 浏览器未发送 afterprint 时由会话清理释放，清理可重复调用
+  ---
+  duration_ms: 0.167042
+  type: 'test'
+  ...
+# Subtest: 日期时间采用本机日历和补零，凌晨日期不被 UTC 截取移到前一天
+ok 777 - 日期时间采用本机日历和补零，凌晨日期不被 UTC 截取移到前一天
+  ---
+  duration_ms: 3.333583
+  type: 'test'
+  ...
+# Subtest: 字符替换打开时的文字范围，移动当前光标不改目标且前后输入分别撤销
+ok 778 - 字符替换打开时的文字范围，移动当前光标不改目标且前后输入分别撤销
+  ---
+  duration_ms: 233.851541
+  type: 'test'
+  ...
+# Subtest: 表情保留原光标待输入样式，HTML 外形文本不被解析成节点
+ok 779 - 表情保留原光标待输入样式，HTML 外形文本不被解析成节点
+  ---
+  duration_ms: 31.544
+  type: 'test'
+  ...
+# Subtest: 插件追加插入与合法段落转标题事务映射原目标，避免写入前置段落
+ok 780 - 插件追加插入与合法段落转标题事务映射原目标，避免写入前置段落
+  ---
+  duration_ms: 44.588916
+  type: 'test'
+  ...
+# Subtest: 同位置整段替换和删除原文字范围永久使书签失效，撤销不能复活旧草稿
+ok 781 - 同位置整段替换和删除原文字范围永久使书签失效，撤销不能复活旧草稿
+  ---
+  duration_ms: 53.930584
+  type: 'test'
+  ...
+# Subtest: 分段或合段不能让原光标重定向到另一个文字块，未跟踪事务也安全拒绝
+ok 782 - 分段或合段不能让原光标重定向到另一个文字块，未跟踪事务也安全拒绝
+  ---
+  duration_ms: 86.1845
+  type: 'test'
+  ...
+# Subtest: 代码块和单元格内文字仍插入普通文本，整表、多格和全选不隐式替换结构
+ok 783 - 代码块和单元格内文字仍插入普通文本，整表、多格和全选不隐式替换结构
+  ---
+  duration_ms: 79.614417
+  type: 'test'
+  ...
+# Subtest: 支持状态只依赖文字选区，可编辑恢复无需新事务；实时编辑和 IME 守卫阻止写入
+ok 784 - 支持状态只依赖文字选区，可编辑恢复无需新事务；实时编辑和 IME 守卫阻止写入
+  ---
+  duration_ms: 15.428
+  type: 'test'
+  ...
+# Subtest: 非法内容和控制字符不能写入正文，也不改变原选区
+ok 785 - 非法内容和控制字符不能写入正文，也不改变原选区
+  ---
+  duration_ms: 7.281375
+  type: 'test'
+  ...
+# Subtest: 双会话存储版本冲突不会覆盖已保存文档
+ok 786 - 双会话存储版本冲突不会覆盖已保存文档
+  ---
+  duration_ms: 32.304458
+  type: 'test'
+  ...
+# Subtest: 资源与文档原子保存，缺失资源时整笔写入中止
+ok 787 - 资源与文档原子保存，缺失资源时整笔写入中止
+  ---
+  duration_ms: 18.568708
+  type: 'test'
+  ...
+# Subtest: 不同文档的同名资源 ID 不会互相覆盖
+ok 788 - 不同文档的同名资源 ID 不会互相覆盖
+  ---
+  duration_ms: 34.406584
+  type: 'test'
+  ...
+# Subtest: 删除图片后保存清理磁盘资源，保留会话 Blob 可供撤销恢复
+ok 789 - 删除图片后保存清理磁盘资源，保留会话 Blob 可供撤销恢复
+  ---
+  duration_ms: 31.109042
+  type: 'test'
+  ...
+# Subtest: 配额写入异常回滚已排队的资源删除，版本不变且允许重试
+ok 790 - 配额写入异常回滚已排队的资源删除，版本不变且允许重试
+  ---
+  duration_ms: 75.935084
+  type: 'test'
+  ...
+# Subtest: 异步写入失败也回滚资源删除与文档版本
+ok 791 - 异步写入失败也回滚资源删除与文档版本
+  ---
+  duration_ms: 2.402458
+  type: 'test'
+  ...
+# Subtest: 字号按既有白名单上下步进，混合默认12pt，最小最大不能越界
+ok 792 - 字号按既有白名单上下步进，混合默认12pt，最小最大不能越界
+  ---
+  duration_ms: 0.51925
+  type: 'test'
+  ...
+# Subtest: 真实混合选区步进统一显式字号，单次undo保留前次输入，再次步进独立撤销
+ok 793 - 真实混合选区步进统一显式字号，单次undo保留前次输入，再次步进独立撤销
+  ---
+  duration_ms: 130.706834
+  type: 'test'
+  ...
+# Subtest: 空选区字号步进保留其他待输入mark，边界字号操作不写文档
+ok 794 - 空选区字号步进保留其他待输入mark，边界字号操作不写文档
+  ---
+  duration_ms: 30.092292
+  type: 'test'
+  ...
+# Subtest: 只读、切换、输入法组合中和销毁后，字号及弹层缩进均拒绝修改
+ok 795 - 只读、切换、输入法组合中和销毁后，字号及弹层缩进均拒绝修改
+  ---
+  duration_ms: 29.842625
+  type: 'test'
+  ...
+# Subtest: 缩进弹层遵循原选区映射，只改变dirty字段并独立undo，不随新光标改目标
+ok 796 - 缩进弹层遵循原选区映射，只改变dirty字段并独立undo，不随新光标改目标
+  ---
+  duration_ms: 20.590458
+  type: 'test'
+  ...
+# Subtest: 缩进弹层跟踪插件追加事务，插入前置段落后仍改原段而不触碰新段
+ok 797 - 缩进弹层跟踪插件追加事务，插入前置段落后仍改原段而不触碰新段
+  ---
+  duration_ms: 23.724916
+  type: 'test'
+  ...
+# Subtest: 原段落同位置整体替换后弹层失效，非法缩进不能写入
+ok 798 - 原段落同位置整体替换后弹层失效，非法缩进不能写入
+  ---
+  duration_ms: 35.456334
+  type: 'test'
+  ...
+# Subtest: 全选缩进不触碰代码块和表格结构，原节点选区不支持缩进弹层
+ok 799 - 全选缩进不触碰代码块和表格结构，原节点选区不支持缩进弹层
+  ---
+  duration_ms: 43.261333
+  type: 'test'
+  ...
+# Subtest: 保存期间继续输入时，旧响应不会确认新版本；后续写入串行
+ok 800 - 保存期间继续输入时，旧响应不会确认新版本；后续写入串行
+  ---
+  duration_ms: 3.856208
+  type: 'test'
+  ...
+# Subtest: 失败不显示已保存，重试使用原始存储版本
+ok 801 - 失败不显示已保存，重试使用原始存储版本
+  ---
+  duration_ms: 0.63875
+  type: 'test'
+  ...
+# Subtest: 会话结束后，迟到响应不再更新 UI
+ok 802 - 会话结束后，迟到响应不再更新 UI
+  ---
+  duration_ms: 1.3505
+  type: 'test'
+  ...
+# Subtest: HTML 长表格只保存一份真实表头和全部数据行，打印样式声明重复表头组
+ok 803 - HTML 长表格只保存一份真实表头和全部数据行，打印样式声明重复表头组
+  ---
+  duration_ms: 158.909583
+  type: 'test'
+  ...
+# Subtest: HTML 多行起始表头支持横向合并，列宽、行高、样式与富文本原样保留
+ok 804 - HTML 多行起始表头支持横向合并，列宽、行高、样式与富文本原样保留
+  ---
+  duration_ms: 19.868666
+  type: 'test'
+  ...
+# Subtest: HTML 混合起始格不成为重复表头，后续全表头行保留在正文组
+ok 805 - HTML 混合起始格不成为重复表头，后续全表头行保留在正文组
+  ---
+  duration_ms: 17.55425
+  type: 'test'
+  ...
+# Subtest: HTML 起始纵向合并表头保持 tbody 与原 rowspan，不能提取合并的部分行
+ok 806 - HTML 起始纵向合并表头保持 tbody 与原 rowspan，不能提取合并的部分行
+  ---
+  duration_ms: 12.400125
+  type: 'test'
+  ...
+# Subtest: HTML 连续表头前缀遇纵向合并即停止，只提取合并之前的合法原行
+ok 807 - HTML 连续表头前缀遇纵向合并即停止，只提取合并之前的合法原行
+  ---
+  duration_ms: 13.134125
+  type: 'test'
+  ...
+# Subtest: HTML 中部表头不会启动重复，末尾样式表头同样保持真实位置
+ok 808 - HTML 中部表头不会启动重复，末尾样式表头同样保持真实位置
+  ---
+  duration_ms: 12.47575
+  type: 'test'
+  ...
+# Subtest: HTML 嵌套表独立分组，嵌套普通格不影响外表头、嵌套表头不污染外正文
+ok 809 - HTML 嵌套表独立分组，嵌套普通格不影响外表头、嵌套表头不污染外正文
+  ---
+  duration_ms: 13.407125
+  type: 'test'
+  ...
+# Subtest: HTML 无表头与全部表头表格保持合法结构、原行次序和正文恰好一次
+ok 810 - HTML 无表头与全部表头表格保持合法结构、原行次序和正文恰好一次
+  ---
+  duration_ms: 15.003792
+  type: 'test'
+  ...
+# Subtest: HTML 表头分组以调用时快照为准，异步后切换表头类型不混入本轮导出
+ok 811 - HTML 表头分组以调用时快照为准，异步后切换表头类型不混入本轮导出
+  ---
+  duration_ms: 11.484042
+  type: 'test'
+  ...
+# Subtest: 表格尺寸校验限制整数和总单元格数，缺省使用表头行
+ok 812 - 表格尺寸校验限制整数和总单元格数，缺省使用表头行
+  ---
+  duration_ms: 1.924709
+  type: 'test'
+  ...
+# Subtest: 自定义行列数和表头按实际 schema 插入，光标落入第一格
+ok 813 - 自定义行列数和表头按实际 schema 插入，光标落入第一格
+  ---
+  duration_ms: 152.102792
+  type: 'test'
+  ...
+# Subtest: 原文字范围被表格替换，后来移动当前光标不会重定向插入
+ok 814 - 原文字范围被表格替换，后来移动当前光标不会重定向插入
+  ---
+  duration_ms: 58.592333
+  type: 'test'
+  ...
+# Subtest: 正文前方插入和插件追加事务映射目标，段落改标题仍允许插入
+ok 815 - 正文前方插入和插件追加事务映射目标，段落改标题仍允许插入
+  ---
+  duration_ms: 20.071042
+  type: 'test'
+  ...
+# Subtest: 删除目标和同位置整段替换会使草稿失效，撤销不能复活旧插入目标
+ok 816 - 删除目标和同位置整段替换会使草稿失效，撤销不能复活旧插入目标
+  ---
+  duration_ms: 19.238333
+  type: 'test'
+  ...
+# Subtest: 表格内文字目标在原表之后插入，保留原表内容并防止嵌套
+ok 817 - 表格内文字目标在原表之后插入，保留原表内容并防止嵌套
+  ---
+  duration_ms: 16.567958
+  type: 'test'
+  ...
+# Subtest: 表格属性修改不丢失目标，整表删除或同位置替换拒绝后插
+ok 818 - 表格属性修改不丢失目标，整表删除或同位置替换拒绝后插
+  ---
+  duration_ms: 21.561542
+  type: 'test'
+  ...
+# Subtest: 文末表格和导入的嵌套表格都在最外层表格之后插入
+ok 819 - 文末表格和导入的嵌套表格都在最外层表格之后插入
+  ---
+  duration_ms: 14.848584
+  type: 'test'
+  ...
+# Subtest: 多格、整表、全选及跨表格边界文字范围禁用插入
+ok 820 - 多格、整表、全选及跨表格边界文字范围禁用插入
+  ---
+  duration_ms: 5.838459
+  type: 'test'
+  ...
+# Subtest: 插入前后输入分别撤销，表格插入和重做各为一个独立步骤
+ok 821 - 插入前后输入分别撤销，表格插入和重做各为一个独立步骤
+  ---
+  duration_ms: 9.786917
+  type: 'test'
+  ...
+# Subtest: 非法尺寸、只读、切换中和 IME 都不改正文或选区，恢复编辑后可直接使用
+ok 822 - 非法尺寸、只读、切换中和 IME 都不改正文或选区，恢复编辑后可直接使用
+  ---
+  duration_ms: 7.685584
+  type: 'test'
+  ...
+# Subtest: 无表头的多行表格按完整行换页，表内断点保留逻辑列数和空表头合同
+ok 823 - 无表头的多行表格按完整行换页，表内断点保留逻辑列数和空表头合同
+  ---
+  duration_ms: 2.546584
+  type: 'test'
+  ...
+# Subtest: 首行装不下时整体表格在顶层换页，原始表头不重复
+ok 824 - 首行装不下时整体表格在顶层换页，原始表头不重复
+  ---
+  duration_ms: 0.4315
+  type: 'test'
+  ...
+# Subtest: 表内跨页重复连续表头，总空隙与正文行坐标均包含表头高度
+ok 825 - 表内跨页重复连续表头，总空隙与正文行坐标均包含表头高度
+  ---
+  duration_ms: 0.695958
+  type: 'test'
+  ...
+# Subtest: 多行表头整链及首条正文移到下一页时使用表格顶层断点，之后全部表头重复
+ok 826 - 多行表头整链及首条正文移到下一页时使用表格顶层断点，之后全部表头重复
+  ---
+  duration_ms: 0.576208
+  type: 'test'
+  ...
+# Subtest: 表头自身换页不能重复尚未完整排出的表头，完整正文续页才重复
+ok 827 - 表头自身换页不能重复尚未完整排出的表头，完整正文续页才重复
+  ---
+  duration_ms: 0.252875
+  type: 'test'
+  ...
+# Subtest: 正文行组能装下但加表头装不下时只省略本页重复表头，最后段后距也参与预算
+ok 828 - 正文行组能装下但加表头装不下时只省略本页重复表头，最后段后距也参与预算
+  ---
+  duration_ms: 0.14025
+  type: 'test'
+  ...
+# Subtest: 超高 rowspan 行组保持完整且独占展开页，不再堆叠重复头部
+ok 829 - 超高 rowspan 行组保持完整且独占展开页，不再堆叠重复头部
+  ---
+  duration_ms: 0.21775
+  type: 'test'
+  ...
+# Subtest: 整表首行超高时顶层断点不含表内元数据，随后普通段落恢复标准纸面
+ok 830 - 整表首行超高时顶层断点不含表内元数据，随后普通段落恢复标准纸面
+  ---
+  duration_ms: 0.092959
+  type: 'test'
+  ...
+# Subtest: 表后段落采用原自然流坐标，已有重复头部只计一次
+ok 831 - 表后段落采用原自然流坐标，已有重复头部只计一次
+  ---
+  duration_ms: 2.500791
+  type: 'test'
+  ...
+# Subtest: 手动分页连接跨页表格时不吞边界、不重复原始表头，也不携带旧表的续页元数据
+ok 832 - 手动分页连接跨页表格时不吞边界、不重复原始表头，也不携带旧表的续页元数据
+  ---
+  duration_ms: 0.952416
+  type: 'test'
+  ...
+# Subtest: 续表头装饰的小数实测高度保留校准，并在相同 used-height 下收敛
+ok 833 - 续表头装饰的小数实测高度保留校准，并在相同 used-height 下收敛
+  ---
+  duration_ms: 0.617458
+  type: 'test'
+  ...
+# Subtest: 非法表格行组合同拒绝，不让未知列数或损坏表头尺寸进入装饰
+ok 834 - 非法表格行组合同拒绝，不让未知列数或损坏表头尺寸进入装饰
+  ---
+  duration_ms: 0.610417
+  type: 'test'
+  ...
+# Subtest: 分页装饰是 tbody 内合法 TR，真实行格 DOM 与正文 JSON/HTML/历史保持不变
+ok 835 - 分页装饰是 tbody 内合法 TR，真实行格 DOM 与正文 JSON/HTML/历史保持不变
+  ---
+  duration_ms: 90.81725
+  type: 'test'
+  ...
+# Subtest: 重复表头清除交互与焦点标记，保留静态摘要、外观和缩放还原后的原行高
+ok 836 - 重复表头清除交互与焦点标记，保留静态摘要、外观和缩放还原后的原行高
+  ---
+  duration_ms: 32.48875
+  type: 'test'
+  ...
+# Subtest: 真实表头文字与外观修改后重新提交 layout，会刷新静态表头且不添加视图撤销记录
+ok 837 - 真实表头文字与外观修改后重新提交 layout，会刷新静态表头且不添加视图撤销记录
+  ---
+  duration_ms: 25.846667
+  type: 'test'
+  ...
+# Subtest: 跨页 CellSelection 的复制和序列化只含真实行，重复表头与空隙不进入剪贴板
+ok 838 - 跨页 CellSelection 的复制和序列化只含真实行，重复表头与空隙不进入剪贴板
+  ---
+  duration_ms: 20.022417
+  type: 'test'
+  ...
+# Subtest: 合并或增删行改变结构时立即撤下旧表内 TR，等待重新测量后再插入
+ok 839 - 合并或增删行改变结构时立即撤下旧表内 TR，等待重新测量后再插入
+  ---
+  duration_ms: 64.114875
+  type: 'test'
+  ...
+# Subtest: 前置文字连续映射表格位置后，续页合并或增删行仍清理旧装饰并按当前位置重建
+ok 840 - 前置文字连续映射表格位置后，续页合并或增删行仍清理旧装饰并按当前位置重建
+  ---
+  duration_ms: 89.683333
+  type: 'test'
+  ...
+# Subtest: 不重复表头时只插一条空隙行；关闭分页与销毁清理全部虚拟行和待执行测量
+ok 841 - 不重复表头时只插一条空隙行；关闭分页与销毁清理全部虚拟行和待执行测量
+  ---
+  duration_ms: 16.692541
+  type: 'test'
+  ...
+# Subtest: 虚拟表头和空隙格的边缘鼠标事件不启动列宽拖动或解析为真实单元格
+ok 842 - 虚拟表头和空隙格的边缘鼠标事件不启动列宽拖动或解析为真实单元格
+  ---
+  duration_ms: 11.582834
+  type: 'test'
+  ...
+# Subtest: 普通表格按独立行分页，逻辑列、行 token 位置和 nodeSize 都来自真实节点
+ok 843 - 普通表格按独立行分页，逻辑列、行 token 位置和 nodeSize 都来自真实节点
+  ---
+  duration_ms: 2.547875
+  type: 'test'
+  ...
+# Subtest: 横向合并按逻辑列计数，整行 colspan 表头仍可重复
+ok 844 - 横向合并按逻辑列计数，整行 colspan 表头仍可重复
+  ---
+  duration_ms: 0.542958
+  type: 'test'
+  ...
+# Subtest: 开头连续多行纯表头都重复，正文后出现的表头行不加入重复区
+ok 845 - 开头连续多行纯表头都重复，正文后出现的表头行不加入重复区
+  ---
+  duration_ms: 0.2805
+  type: 'test'
+  ...
+# Subtest: 混合表头终止连续表头识别，不将左侧表头列或后续纯表头重复
+ok 846 - 混合表头终止连续表头识别，不将左侧表头列或后续纯表头重复
+  ---
+  duration_ms: 0.400625
+  type: 'test'
+  ...
+# Subtest: 纵向合并表头不重复，被覆盖的纯表头行不能单独作为重复表头
+ok 847 - 纵向合并表头不重复，被覆盖的纯表头行不能单独作为重复表头
+  ---
+  duration_ms: 0.180333
+  type: 'test'
+  ...
+# Subtest: 普通纯表头之后的纵向合并终止表头区，保留前面已确认的表头
+ok 848 - 普通纯表头之后的纵向合并终止表头区，保留前面已确认的表头
+  ---
+  duration_ms: 0.155833
+  type: 'test'
+  ...
+# Subtest: rowspan 重叠和连锁合并为完整行组，后续无关行仍能独立分页
+ok 849 - rowspan 重叠和连锁合并为完整行组，后续无关行仍能独立分页
+  ---
+  duration_ms: 0.4045
+  type: 'test'
+  ...
+# Subtest: 互不重叠的相邻 rowspan 形成两个行组，完全被上行覆盖的空行仍包含在组内
+ok 850 - 互不重叠的相邻 rowspan 形成两个行组，完全被上行覆盖的空行仍包含在组内
+  ---
+  duration_ms: 0.17075
+  type: 'test'
+  ...
+# Subtest: 超出表格的 rowspan、缺格、覆盖碰撞与空表都回退整表展开
+ok 851 - 超出表格的 rowspan、缺格、覆盖碰撞与空表都回退整表展开
+  ---
+  duration_ms: 1.282791
+  type: 'test'
+  ...
+# Subtest: 列宽不一致的 TableMap 等待结构修复，不能静默拆成可分页行
+ok 852 - 列宽不一致的 TableMap 等待结构修复，不能静默拆成可分页行
+  ---
+  duration_ms: 1.434458
+  type: 'test'
+  ...
+# Subtest: 非法跨度和非表格或无效绝对位置不进入 TableMap，也不抛出到编辑视图
+ok 853 - 非法跨度和非表格或无效绝对位置不进入 TableMap，也不抛出到编辑视图
+  ---
+  duration_ms: 0.492875
+  type: 'test'
+  ...
+# Subtest: 单元格的长文本、多个段落和嵌套表格只影响 nodeSize，不影响外层行组或表头
+ok 854 - 单元格的长文本、多个段落和嵌套表格只影响 nodeSize，不影响外层行组或表头
+  ---
+  duration_ms: 0.252833
+  type: 'test'
+  ...
+# Subtest: 只读分析不修改节点属性或序列化内容，返回结果也不共享输入的属性数组
+ok 855 - 只读分析不修改节点属性或序列化内容，返回结果也不共享输入的属性数组
+  ---
+  duration_ms: 0.330959
+  type: 'test'
+  ...
+# Subtest: 表格外观默认值、HTML 样式与安全解析使用统一白名单
+ok 856 - 表格外观默认值、HTML 样式与安全解析使用统一白名单
+  ---
+  duration_ms: 73.211167
+  type: 'test'
+  ...
+# Subtest: 多单元格混合值只更新 dirty 字段，边框以整张表的范围读取和应用
+ok 857 - 多单元格混合值只更新 dirty 字段，边框以整张表的范围读取和应用
+  ---
+  duration_ms: 19.819584
+  type: 'test'
+  ...
+# Subtest: 合并单元格覆盖的逻辑列同步全表 colwidth，跨行对应实际行高
+ok 858 - 合并单元格覆盖的逻辑列同步全表 colwidth，跨行对应实际行高
+  ---
+  duration_ms: 18.837916
+  type: 'test'
+  ...
+# Subtest: 嵌套表格设置仅触及最近的内层表格
+ok 859 - 嵌套表格设置仅触及最近的内层表格
+  ---
+  duration_ms: 10.983292
+  type: 'test'
+  ...
+# Subtest: 书签跟随前方输入和外观事务，切换到别的表格仍修改打开时的目标
+ok 860 - 书签跟随前方输入和外观事务，切换到别的表格仍修改打开时的目标
+  ---
+  duration_ms: 14.80575
+  type: 'test'
+  ...
+# Subtest: 同位置替换整表或删除选中列使旧目标失效，保留正文不误写替代节点
+ok 861 - 同位置替换整表或删除选中列使旧目标失效，保留正文不误写替代节点
+  ---
+  duration_ms: 14.274959
+  type: 'test'
+  ...
+# Subtest: Tiptap 追加的列宽修复事务也映射书签，外观更新不会使目标失效
+ok 862 - Tiptap 追加的列宽修复事务也映射书签，外观更新不会使目标失效
+  ---
+  duration_ms: 11.940125
+  type: 'test'
+  ...
+# Subtest: 均分读取 DOM 布局宽度，不把缩放后的屏幕宽度写入列宽
+ok 863 - 均分读取 DOM 布局宽度，不把缩放后的屏幕宽度写入列宽
+  ---
+  duration_ms: 10.964083
+  type: 'test'
+  ...
+# Subtest: 保存在一个正文事务中完成，撤销与前后文字输入隔离，无改动不产生更新
+ok 864 - 保存在一个正文事务中完成，撤销与前后文字输入隔离，无改动不产生更新
+  ---
+  duration_ms: 13.507542
+  type: 'test'
+  ...
+# Subtest: 均分列宽按未缩放数据宽度安全计算，未知宽度拒绝，输入白名单和编辑守卫不修改正文
+ok 865 - 均分列宽按未缩放数据宽度安全计算，未知宽度拒绝，输入白名单和编辑守卫不修改正文
+  ---
+  duration_ms: 15.526209
+  type: 'test'
+  ...
+# Subtest: 12 种快捷对齐沿原多单元格书签应用，垂直和水平一次撤销且保留其余样式
+ok 866 - 12 种快捷对齐沿原多单元格书签应用，垂直和水平一次撤销且保留其余样式
+  ---
+  duration_ms: 126.307667
+  type: 'test'
+  ...
+# Subtest: 选中外层单元格对齐其列表、引用和标题段落，排除内嵌表格与代码块
+ok 867 - 选中外层单元格对齐其列表、引用和标题段落，排除内嵌表格与代码块
+  ---
+  duration_ms: 14.255333
+  type: 'test'
+  ...
+# Subtest: 水平对齐字段严格验证，缺少扩展或代码单元格拒绝整次组合应用
+ok 868 - 水平对齐字段严格验证，缺少扩展或代码单元格拒绝整次组合应用
+  ---
+  duration_ms: 15.233375
+  type: 'test'
+  ...
+# Subtest: 快捷底色保留光标输入格式；点击已有设置回原单元格而不写正文历史
+ok 869 - 快捷底色保留光标输入格式；点击已有设置回原单元格而不写正文历史
+  ---
+  duration_ms: 7.351125
+  type: 'test'
+  ...
+# Subtest: 首行首段属性变化和前方插行插列保留原 cell，整个 cell 同位替换永久失效
+ok 870 - 首行首段属性变化和前方插行插列保留原 cell，整个 cell 同位替换永久失效
+  ---
+  duration_ms: 15.746125
+  type: 'test'
+  ...
+# Subtest: 颜色输入只接受完整的不透明 HEX，未完成或无效草稿不产生可应用颜色
+ok 871 - 颜色输入只接受完整的不透明 HEX，未完成或无效草稿不产生可应用颜色
+  ---
+  duration_ms: 1.123792
+  type: 'test'
+  ...
+# Subtest: HSB 在黑色中记住色相，重新增加亮度得到预期蓝色且强制不透明
+ok 872 - HSB 在黑色中记住色相，重新增加亮度得到预期蓝色且强制不透明
+  ---
+  duration_ms: 1.914166
+  type: 'test'
+  ...
+# Subtest: 数值草稿拒绝越界、空值和小数，编辑一个通道保留其他通道的原始精度
+ok 873 - 数值草稿拒绝越界、空值和小数，编辑一个通道保留其他通道的原始精度
+  ---
+  duration_ms: 0.376417
+  type: 'test'
+  ...
+# Subtest: 无偏好和非法偏好跟随系统，合法选择保存并可重新读取
+ok 874 - 无偏好和非法偏好跟随系统，合法选择保存并可重新读取
+  ---
+  duration_ms: 1.087875
+  type: 'test'
+  ...
+# Subtest: 系统变化只影响跟随系统，返回跟随系统立即使用当前值
+ok 875 - 系统变化只影响跟随系统，返回跟随系统立即使用当前值
+  ---
+  duration_ms: 0.429375
+  type: 'test'
+  ...
+# Subtest: 跨页设置、删除和清空同步，其他键及 sessionStorage 不影响主题
+ok 876 - 跨页设置、删除和清空同步，其他键及 sessionStorage 不影响主题
+  ---
+  duration_ms: 0.243333
+  type: 'test'
+  ...
+# Subtest: 存储读写异常不阻断本页主题，重试成功清除错误
+ok 877 - 存储读写异常不阻断本页主题，重试成功清除错误
+  ---
+  duration_ms: 0.489667
+  type: 'test'
+  ...
+# Subtest: 卸载移除全部监听，重新挂载读取最新系统状态
+ok 878 - 卸载移除全部监听，重新挂载读取最新系统状态
+  ---
+  duration_ms: 0.390375
+  type: 'test'
+  ...
+# Subtest: 工具栏溢出按完整容器判断，箭头占位不会在窗口变宽后制造假溢出
+ok 879 - 工具栏溢出按完整容器判断，箭头占位不会在窗口变宽后制造假溢出
+  ---
+  duration_ms: 1.097292
+  type: 'test'
+  ...
+# Subtest: 滚动边界考虑小数误差、浏览器负值和内容缩小后过期的 scrollLeft
+ok 880 - 滚动边界考虑小数误差、浏览器负值和内容缩小后过期的 scrollLeft
+  ---
+  duration_ms: 0.244833
+  type: 'test'
+  ...
+# Subtest: 翻页使用当前可见宽度且限制在真实滚动范围，不依赖固定屏幕分辨率
+ok 881 - 翻页使用当前可见宽度且限制在真实滚动范围，不依赖固定屏幕分辨率
+  ---
+  duration_ms: 0.1125
+  type: 'test'
+  ...
+# Subtest: 工具栏偏好只接受已知模式，重开时恢复选择
+ok 882 - 工具栏偏好只接受已知模式，重开时恢复选择
+  ---
+  duration_ms: 0.706125
+  type: 'test'
+  ...
+# Subtest: 浏览器存储访问或写入受限时，工具栏初始化与模式切换不抛异常
+ok 883 - 浏览器存储访问或写入受限时，工具栏初始化与模式切换不抛异常
+  ---
+  duration_ms: 0.301042
+  type: 'test'
+  ...
+1..883
+# tests 883
+# suites 0
+# pass 883
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 42484.776667

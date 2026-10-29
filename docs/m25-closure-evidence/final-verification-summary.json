@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "milestone": "M25",
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "updatedAt": "2026-10-29T16:23:50.125032+08:00",
+  "status": "complete",
+  "m25Complete": true,
+  "scopeDecision": {
+    "source": "direct-user-instruction",
+    "quote": "WPS 不看了，M25 收尾",
+    "exclusions": [
+      {
+        "id": "wps-native-roundtrip",
+        "name": "WPS 原生打开、编辑保存和导回",
+        "status": "excluded-by-user",
+        "executed": false,
+        "validationResult": "not-validated",
+        "blocksClosure": false
+      }
+    ]
+  },
+  "remaining": [],
+  "evidenceBatches": {
+    "finalCodeRegression": {
+      "date": "2026-10-29",
+      "node": {
+        "passed": 883,
+        "total": 883
+      },
+      "pagination": {
+        "passed": 75,
+        "total": 75,
+        "surface": "Codex in-app browser"
+      },
+      "syntheticIme": {
+        "cases": 1,
+        "phases": 5,
+        "tolerancePx": 2,
+        "passed": true
+      },
+      "lintPassed": true,
+      "buildPassed": true,
+      "summary": "../m25-native-input-evidence/verification-summary.json"
+    },
+    "crossBrowser": {
+      "date": "2026-10-22",
+      "chrome": {
+        "passed": 75,
+        "total": 75
+      },
+      "safari": {
+        "passed": 75,
+        "total": 75
+      },
+      "summary": "verification-summary.json"
+    },
+    "sustainedUse": {
+      "date": "2026-10-22",
+      "chrome": {
+        "seconds": 902,
+        "rounds": 134,
+        "mounts": 268
+      },
+      "safari": {
+        "rounds": 6,
+        "mounts": 12
+      },
+      "observedResourcesZero": true,
+      "summary": "verification-summary.json"
+    },
+    "nativePrint": {
+      "date": "2026-10-22",
+      "pdfPages": 27,
+      "summary": "../m25-native-evidence/verification-summary.json"
+    },
+    "wordNativeRoundtrip": {
+      "date": "2026-10-29",
+      "pdfPages": 30,
+      "contentChecks": {
+        "passed": 24,
+        "total": 24
+      },
+      "pdfChecks": {
+        "passed": 16,
+        "total": 16
+      },
+      "formalImportSaveReload": true,
+      "summary": "../m25-word-roundtrip-evidence/display-fix/verification-summary.json"
+    },
+    "nativeInputAndPointer": {
+      "date": "2026-10-29",
+      "nativeImePassed": true,
+      "physicalPointerPassed": true,
+      "redoSource": "Tool clicks on production toolbar after human input",
+      "humanCmdShiftZValidated": false,
+      "independentPointercancelValidated": false,
+      "summary": "../m25-native-input-evidence/verification-summary.json"
+    }
+  },
+  "knownBoundaries": [
+    "WPS is excluded by direct user decision and remains unvalidated.",
+    "Each result belongs to its recorded batch. Closing the milestone does not rerun historical browser or sustained-use checks.",
+    "Word watermark remains behind body content and can be covered by opaque backgrounds.",
+    "Word insertion or deletion across 26-value alphabetic export segments requires exporting again from Mewoc.",
+    "Editor, browser print and Word pagination are independent; matching page counts is not required.",
+    "Native geometry, trusted-event provenance, pointermove throttling and cleanup scope retain their recorded limits."
+  ],
+  "cleanup": {
+    "currentFixtureEndedNormally": true,
+    "remainingFixturePanels": 0,
+    "temporaryChromeTabsClosed": 2,
+    "evidence": "../m25-native-input-evidence/cleanup.json"
+  },
+  "finalSourceSha256": {
+    "src/pages/editor/extensions/page-pagination.js": "1b82248282e756efecb5371c301d6076d2b8b89bb216ac0e21fcc7572bdf30ee",
+    "tests/ime-pagination-checks.jsx": "7c9bab050c1d6bf1056898b1d1999bd1e63d4927e7bf6fb30d9d8a765a426575",
+    "tests/native-input-recorder.js": "324055104dc43111368a1bd5cc3d8650f2fabaa15088377a458d89798d0a98a5",
+    "tests/native-pagination-example.jsx": "5b462bb98f393f890d933db84d14715b2895fbcb78b24b7554b79a1ad3ed2655"
+  },
+  "closureVerification": {
+    "type": "documentation-and-evidence-audit",
+    "productCodeChangedInClosureTurn": false,
+    "priorTestResultsReused": true,
+    "nativeSourceFingerprintsMatched": 4,
+    "wordArtifactsSha256Matched": 26,
+    "nativeSavedSnapshotEqualsBaseline": true,
+    "historicalResultFilesPreserved": true,
+    "codeFilesCheckedUnchanged": 31,
+    "localLinksChecked": 303,
+    "localLinksMissing": 0,
+    "headingFragmentsChecked": 13,
+    "diffCheckExitCode": 0
+  }
+}

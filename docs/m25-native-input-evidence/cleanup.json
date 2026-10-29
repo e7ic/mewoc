@@ -1,0 +1,8 @@
+{
+  "observedAt": "2026-10-29T08:05:59.543Z",
+  "status": [
+    "等待运行"
+  ],
+  "remainingFixturePanels": 0,
+  "scope": "Completed fixture 4fd753fa-a76d-490a-9b21-2fc0f5c2b848 ended via normal cleanup; no claim that the entire test database is empty."
+}

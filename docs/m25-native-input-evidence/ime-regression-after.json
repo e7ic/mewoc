@@ -1,0 +1,1209 @@
+[
+  {
+    "name": "IME 确认：已排版候选不会先跳回上一页再落下，确认和撤销保留正文",
+    "passed": true,
+    "metrics": {
+      "provenance": "Synthetic composition with production EditorProvider/Workspace/PagePagination; not native IME acceptance",
+      "sampling": "Geometry is read in a task after requestAnimationFrame callbacks, so a reset repaired in the same frame is not treated as a painted jump.",
+      "frames": [
+        {
+          "elapsedMs": 0.5999999940395355,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": true,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 8.299999982118607,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": true,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 18.19999998807907,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": true,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 28.19999998807907,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": true,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 51.29999998211861,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 59.29999998211861,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 59.29999998211861,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 68.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 79,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 88.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 98.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 108.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 118.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 128.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 138.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 148,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 158.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 168.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 178.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 188.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 198,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 208.5,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 220.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 228.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 238.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 248.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 258.2999999821186,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 268.09999999403954,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 278,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 288,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 298.19999998807907,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        },
+        {
+          "elapsedMs": 308.2999999821186,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4
+        }
+      ],
+      "transactions": [
+        {
+          "elapsedMs": 34.5,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": true,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 35.599999994039536,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": true,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 40.900000005960464,
+          "caretViewportTop": 1148.640625,
+          "caretDocumentTop": 733.6875,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 0,
+          "composing": false,
+          "pending": true,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 49.19999998807907,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 58.79999998211861,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 153.2999999821186,
+          "caretViewportTop": 1257.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 598.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 0
+          },
+          "selection": {
+            "from": 918,
+            "to": 918
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 414.19999998807907,
+          "caretViewportTop": 701.640625,
+          "caretDocumentTop": 733.6875,
+          "surfaceTop": 151.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 447
+          },
+          "selection": {
+            "from": 914,
+            "to": 914
+          },
+          "gapCount": 0,
+          "composing": false,
+          "pending": true,
+          "pages": 4,
+          "docChanged": true
+        },
+        {
+          "elapsedMs": 424.69999998807907,
+          "caretViewportTop": 810.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 151.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 447
+          },
+          "selection": {
+            "from": 914,
+            "to": 914
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4,
+          "docChanged": false
+        },
+        {
+          "elapsedMs": 434.19999998807907,
+          "caretViewportTop": 810.90625,
+          "caretDocumentTop": 879.375,
+          "surfaceTop": 151.375,
+          "scrolling": [
+            {
+              "top": 0,
+              "left": 0
+            }
+          ],
+          "windowScroll": {
+            "x": 0,
+            "y": 447
+          },
+          "selection": {
+            "from": 914,
+            "to": 914
+          },
+          "gapCount": 3,
+          "composing": false,
+          "pending": false,
+          "pages": 4,
+          "docChanged": false
+        }
+      ],
+      "baselineContent": {
+        "type": "doc",
+        "attrs": {
+          "commentThreads": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "navigationId": null,
+              "bookmarkName": null,
+              "textAlign": null,
+              "lineHeight": null,
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "keepWithNext": null,
+              "keepTogether": null,
+              "firstLineIndent": 0,
+              "leftIndent": 0
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。"
+              }
+            ]
+          }
+        ]
+      },
+      "candidateContent": {
+        "type": "doc",
+        "attrs": {
+          "commentThreads": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "navigationId": null,
+              "bookmarkName": null,
+              "textAlign": null,
+              "lineHeight": null,
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "keepWithNext": null,
+              "keepTogether": null,
+              "firstLineIndent": 0,
+              "leftIndent": 0
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保中文验收持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。"
+              }
+            ]
+          }
+        ]
+      },
+      "boundary": {
+        "pos": 914,
+        "height": 145.70138740157483,
+        "pageIndex": 1,
+        "reason": "automatic",
+        "paragraphPos": 0,
+        "paragraphLine": 24
+      },
+      "beforeConfirm": {
+        "elapsedMs": 0.29999998211860657,
+        "caretViewportTop": 1257.90625,
+        "caretDocumentTop": 879.375,
+        "surfaceTop": 598.375,
+        "scrolling": [
+          {
+            "top": 0,
+            "left": 0
+          }
+        ],
+        "windowScroll": {
+          "x": 0,
+          "y": 0
+        },
+        "selection": {
+          "from": 918,
+          "to": 918
+        },
+        "gapCount": 3,
+        "composing": true,
+        "pending": true,
+        "pages": 4
+      },
+      "afterConfirm": {
+        "elapsedMs": 402.09999999403954,
+        "caretViewportTop": 1257.90625,
+        "caretDocumentTop": 879.375,
+        "surfaceTop": 598.375,
+        "scrolling": [
+          {
+            "top": 0,
+            "left": 0
+          }
+        ],
+        "windowScroll": {
+          "x": 0,
+          "y": 0
+        },
+        "selection": {
+          "from": 918,
+          "to": 918
+        },
+        "gapCount": 3,
+        "composing": false,
+        "pending": false,
+        "pages": 4
+      },
+      "confirmedContent": {
+        "type": "doc",
+        "attrs": {
+          "commentThreads": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "navigationId": null,
+              "bookmarkName": null,
+              "textAlign": null,
+              "lineHeight": null,
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "keepWithNext": null,
+              "keepTogether": null,
+              "firstLineIndent": 0,
+              "leftIndent": 0
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保中文验收持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。"
+              }
+            ]
+          }
+        ]
+      },
+      "contentUnchangedByConfirmation": true,
+      "undoRestoresExactOriginal": true,
+      "undoneContent": {
+        "type": "doc",
+        "attrs": {
+          "commentThreads": null
+        },
+        "content": [
+          {
+            "type": "paragraph",
+            "attrs": {
+              "navigationId": null,
+              "bookmarkName": null,
+              "textAlign": null,
+              "lineHeight": null,
+              "spaceBefore": null,
+              "spaceAfter": null,
+              "keepWithNext": null,
+              "keepTogether": null,
+              "firstLineIndent": 0,
+              "leftIndent": 0
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。"
+              }
+            ]
+          }
+        ]
+      },
+      "afterUndo": {
+        "elapsedMs": 540,
+        "caretViewportTop": 810.90625,
+        "caretDocumentTop": 879.375,
+        "surfaceTop": 151.375,
+        "scrolling": [
+          {
+            "top": 0,
+            "left": 0
+          }
+        ],
+        "windowScroll": {
+          "x": 0,
+          "y": 447
+        },
+        "selection": {
+          "from": 914,
+          "to": 914
+        },
+        "gapCount": 3,
+        "composing": false,
+        "pending": false,
+        "pages": 4
+      },
+      "upwardExcursionPx": 0,
+      "downwardExcursionPx": 0,
+      "tolerancePx": 50.99548559055119,
+      "noPaintableJump": true
+    }
+  }
+]

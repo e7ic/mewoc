@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "scope": "JSDOM RAF/task sampling timing, 300ms window, reentrant grouping, end sequence linkage, post-RAF timer cancellation and nonmutation; not browser paint or native IME proof",
+  "groups": [
+    1,
+    2,
+    3
+  ],
+  "sampleCount": 21
+}

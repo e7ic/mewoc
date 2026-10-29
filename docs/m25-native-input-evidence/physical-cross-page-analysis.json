@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-10-29T07:54:47.340203+00:00",
+  "source": "physical-cross-page.json",
+  "bytes": 1719834,
+  "sha256": "bf04e3ef6e8215e6d19fc453a5a8dc75777d95797867cee368a06e9ebce9ccf8",
+  "scope": "同一浏览器窗口内真实鼠标跨页拖选；依据用户明确确认的物理操作及记录器证据。isTrusted 仅作事件来源辅助证据，不单独证明硬件来源。",
+  "result": "passed_within_observed_scope",
+  "eventIntegrity": {
+    "count": 127,
+    "firstSequence": 1,
+    "lastSequence": 127,
+    "sequenceContiguous": true,
+    "elapsedTimeNondecreasing": true,
+    "droppedEvents": 0,
+    "throttledMoves": 331,
+    "movementSamplingIntervalMs": 80,
+    "note": "331 个移动事件按已声明的80ms规则节流；按下/释放等边界未节流。没有环形日志溢出，不能据此称所有原始移动点均已保存。",
+    "nativeEventCounts": {
+      "pointerdown": 2,
+      "pointermove": 58,
+      "pointerup": 2,
+      "mouseup": 2,
+      "selectionchange": 23
+    },
+    "allRecordedNativeEventsTrusted": true
+  },
+  "drags": [
+    {
+      "drag": 1,
+      "downSeq": 13,
+      "upSeq": 76,
+      "mouseupAfterDispatchSeq": 79,
+      "durationMs": 2612.1,
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "recordedMovesWhilePressed": 27,
+      "allPhysicalEventTrustFlagsTrue": true,
+      "downButtons": 1,
+      "upButtons": 0,
+      "selectionAfterRelease": {
+        "from": 1125,
+        "to": 1200,
+        "anchor": 1125,
+        "head": 1200,
+        "empty": false
+      },
+      "domSelectionAfterRelease": {
+        "anchor": 1125,
+        "focus": 1200,
+        "collapsed": false
+      },
+      "strictlyCrossedBoundaryPositions": [
+        1159
+      ],
+      "scrollPositionsWhilePressed": [
+        [
+          1058,
+          0
+        ]
+      ],
+      "layoutSignatureUnchangedDuringDrag": true,
+      "modelAndDomAgreeAfterRelease": true,
+      "selectionUnchangedInRecordedPostReleaseEvents": true,
+      "postReleaseObservedMs": 3962.4,
+      "windowScrollWhilePressed": {
+        "x": 0,
+        "y": 647
+      }
+    },
+    {
+      "drag": 2,
+      "downSeq": 94,
+      "upSeq": 121,
+      "mouseupAfterDispatchSeq": 124,
+      "durationMs": 1589.3,
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "recordedMovesWhilePressed": 16,
+      "allPhysicalEventTrustFlagsTrue": true,
+      "downButtons": 1,
+      "upButtons": 0,
+      "selectionAfterRelease": {
+        "from": 220,
+        "to": 302,
+        "anchor": 220,
+        "head": 302,
+        "empty": false
+      },
+      "domSelectionAfterRelease": {
+        "anchor": 220,
+        "focus": 302,
+        "collapsed": false
+      },
+      "strictlyCrossedBoundaryPositions": [
+        261
+      ],
+      "scrollPositionsWhilePressed": [
+        [
+          190,
+          0
+        ]
+      ],
+      "layoutSignatureUnchangedDuringDrag": true,
+      "modelAndDomAgreeAfterRelease": true,
+      "selectionUnchangedInRecordedPostReleaseEvents": true,
+      "postReleaseObservedMs": 15491.2,
+      "windowScrollWhilePressed": {
+        "x": 0,
+        "y": 647
+      }
+    }
+  ],
+  "finalState": {
+    "modelSelection": {
+      "from": 220,
+      "to": 302,
+      "anchor": 220,
+      "head": 302,
+      "empty": false
+    },
+    "domSelection": {
+      "anchor": 220,
+      "focus": 302,
+      "collapsed": false,
+      "text": "视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中英文 Mixed text 👩🏽‍💻 跨页"
+    },
+    "boundary": 261,
+    "pageCount": 27,
+    "pending": false,
+    "originalMatches": true,
+    "snapshotContentExactlyEqualsBaseline": true,
+    "allCheckpointContentsExactlyEqualBaseline": true,
+    "undoAvailable": false,
+    "redoAvailable": false
+  },
+  "observations": [
+    "两次拖选均有完整的pointerdown→按住移动→pointerup→mouseup及事件处理后状态。第一段1125–1200跨1159；最终一段220–302跨261。",
+    "按住期间纸面scrollTop分别恒为1058和190，外层windowScroll均为(x=0,y=647)；27页、分页签名和pending=false保持，正文未修改。两段之间scrollTop改变，最终记录检查点时外层window.y回到0，不能将段外变化判为拖选抖动。",
+    "selectionchange捕获中DOM选区会先于模型更新；紧随的editor-transaction恢复一致，这是事件时序。第一段末尾随指针回移，选区head从1240回到1199再到1200；不把这种随指针变化误判为固定选区必须单调增加。",
+    "最终释放后约15.49秒范围内记录的无按键移动和检查点仍为220–302，未观察到释放后继续扩选。"
+  ],
+  "notValidated": [
+    "跨窗口离开与窗口外释放",
+    "取消后恢复",
+    "每个显示帧的几何稳定性或录屏；此阶段没有render-frame采样"
+  ],
+  "crossWindowReleasePassed": false
+}

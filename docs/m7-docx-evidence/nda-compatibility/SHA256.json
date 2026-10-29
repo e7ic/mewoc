@@ -1,0 +1,34 @@
+{
+  "browser-file-checks.json": {
+    "bytes": 6376,
+    "sha256": "c84e0dbd45ae7ad2c699686cd933bf2ae36d48bd174bd2aba1fec8584ed3ab12"
+  },
+  "browser-ui-checks.json": {
+    "bytes": 394,
+    "sha256": "0a677770e6e1d4310f8181f86a85c0b9564b790ca95bd642c55957a584fbd15a"
+  },
+  "build.log": {
+    "bytes": 1554,
+    "sha256": "9016ed778ef66355292fa6bd03745ca40f907272f27c2691f63846315c2bb643"
+  },
+  "lint.log": {
+    "bytes": 75,
+    "sha256": "586f65956182cae6c84de204a0c4718417f4fa2a9e377e79d57fa54f3aed6c15"
+  },
+  "node-tests.log": {
+    "bytes": 213975,
+    "sha256": "3057f73cc828db927b88ef4c778003e56383b8803ffe69c1e6dfb8a457bdaa12"
+  },
+  "source-checks.json": {
+    "bytes": 39624,
+    "sha256": "df8284f2f0576dc9c016ae0064018df478de6f2ac4ddc6735226442a22f05b22"
+  },
+  "targeted-tests.log": {
+    "bytes": 3956,
+    "sha256": "55aa074ed4d2004bfeb5eee999973dbe4f8f3d7f7083cbf19524008aead196f4"
+  },
+  "verification-summary.json": {
+    "bytes": 2012,
+    "sha256": "352fa59de5221e516b76f7f0af506e0f8383f323cf247dc96d9d5341d66d57dc"
+  }
+}

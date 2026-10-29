@@ -1,0 +1,7 @@
+Error: Mewoc 页眉、页脚或页码结构无法可靠恢复，请保留原 DOCX
+    at invalid (file:///Volumes/DRIVE/Labs/mewoc/src/pages/editor/tools/docx-import-furniture.js:15:23)
+    at readDecoration (file:///Volumes/DRIVE/Labs/mewoc/src/pages/editor/tools/docx-import-furniture.js:165:133)
+    at extractDocxPageFurniture (file:///Volumes/DRIVE/Labs/mewoc/src/pages/editor/tools/docx-import-furniture.js:22:65)
+    at readDocxImportArchive (file:///Volumes/DRIVE/Labs/mewoc/src/pages/editor/tools/docx-import-archive.js:114:23)
+    at async convertDocxImport (file:///Volumes/DRIVE/Labs/mewoc/src/pages/editor/tools/docx-import-converter.js:17:50)
+    at async file:///private/tmp/mewoc-docx-import-audit.mjs:13:73

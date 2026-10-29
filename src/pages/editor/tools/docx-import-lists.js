@@ -8,6 +8,15 @@ export function createDocxLists(groups, warnings) {
   const stack = []
   for (const { blocks, metadata = {} } of groups) {
     const numbering = metadata.numbering
+    if (numbering?.prefix !== undefined) {
+      stack.length = 0
+      const content = blocks.map(block => ["paragraph", "heading"].includes(block.type)
+        ? { ...block, attrs: { ...block.attrs, leftIndent: numbering.level } } : block)
+      if (!["paragraph", "heading"].includes(content[0]?.type)) content.unshift({ type: "paragraph", attrs: { leftIndent: numbering.level } })
+      content[0] = { ...content[0], content: [{ type: "text", text: numbering.prefix }, ...(content[0].content || [])] }
+      result.push(...content)
+      continue
+    }
     // 无编号但与当前列表正文对齐的普通段/图片可作为同项后续块，其余内容终止当前嵌套链。
     if (!numbering) {
       const active = stack.at(-1)

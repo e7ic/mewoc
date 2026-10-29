@@ -1,0 +1,443 @@
+{
+  "generatedDate": "2026-10-29",
+  "file": "docs/m25-word-roundtrip-evidence/word-native-layout.pdf",
+  "bytes": 167451,
+  "sha256": "62775fd18f59a59703ead5021171998ed8d95b9ac8beaf660f05993252ec8a59",
+  "metadata": {
+    "Title": "word-resaved",
+    "Producer": "macOS 版本27.0（版号26A428） Quartz PDFContext",
+    "Author": "Tsen Ming",
+    "Creator": "Word",
+    "CreationDate": "D:20261029032735Z00'00'",
+    "ModDate": "D:20261029032735Z00'00'"
+  },
+  "pages": 30,
+  "size": "A5 portrait, approximately 419.528 x 595.276 pt",
+  "textExtractionMethod": "pdfplumber; NFKC; whitespace removal; explicit PDF radical glyph mappings ⻚→页 and ⻓→长; remove verified per-page header/footer before body counts. Emoji ZWJ/skin-tone sequences may be represented as color images and are not compared by extracted scalar text.",
+  "contentCounts": {
+    "M25_SOAK_DOCUMENT_START": 1,
+    "M25_SOAK_DOCUMENT_END": 1,
+    "M25_WORD_ROUNDTRIP_20261029": 1,
+    "同一段中英文 Mixed text": 110,
+    "引用中的长段落持续跨页": 80,
+    "连续重排保留原始项目、编号和勾选状态。": 144,
+    "[x]": 8,
+    "[]": 16,
+    "native-check.wav": 1,
+    "native-check.txt": 1,
+    "嵌套容器开始": 1,
+    "嵌套容器结束": 1,
+    "持续收起与展开": 1
+  },
+  "table": {
+    "pages": [
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "headerOccurrencesPerColumn": {
+      "1": 5,
+      "2": 5
+    },
+    "bodyRows": 47,
+    "bodyCellsExactlyOnce": true,
+    "unexpectedRowOrColumn": []
+  },
+  "numbering": {
+    "count": 48,
+    "itemsCompleteAndInOrder": true,
+    "labels": [
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "aa",
+      "bb",
+      "cc",
+      "dd",
+      "ee",
+      "ff",
+      "gg",
+      "hh",
+      "ii",
+      "jj",
+      "kk",
+      "ll",
+      "mm",
+      "nn",
+      "oo",
+      "pp",
+      "qq",
+      "rr",
+      "ss",
+      "tt",
+      "uu",
+      "vv",
+      "ww",
+      "xx",
+      "yy",
+      "zz",
+      "aaa",
+      "bbb"
+    ],
+    "displayDifference": "Word displays g..z, aa,bb,cc..zz,aaa,bbb; browser CSS lower-alpha displays g..z,aa,ab..bb. Stored OOXML lowerLetter/start7 and item order remain unchanged; this is an observed label-rendering difference."
+  },
+  "code": {
+    "lineCount": 90,
+    "allLines0Through89InOrder": true,
+    "pages": [
+      26,
+      27,
+      28,
+      29
+    ]
+  },
+  "pageFurniture": {
+    "headers30Of30": true,
+    "footers30Of30": true,
+    "currentPageSequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "totalPagesValue": 30
+  },
+  "watermark": {
+    "visuallyPresent": false,
+    "extractedOccurrences": 0,
+    "scope": "No diagonal text watermark visible on any of the 30 rendered pages; the DOCX still contains the watermark text and shapes. This PDF does not demonstrate successful Word watermark rendering."
+  },
+  "visualReview": {
+    "renderer": "Poppler pdftoppm at 120 dpi",
+    "fullResolutionPages": "/private/tmp/mewoc-word-pdf-pages/page-01.png through page-30.png",
+    "allPagesReviewed": true,
+    "method": "All 30 pages inspected in eight four-page contact sheets; first, table/list boundary, and final page also inspected separately at full rendered size. Text extraction was evaluated independently.",
+    "observations": [
+      "All 30 pages have legible header/footer with consecutive current page and total 30.",
+      "First page shows the purple source image plus attachment and audio file descriptions; no player controls.",
+      "Long table spans pages 9–13 with a repeated two-cell header on all five pages; no visually missing row or clipped border.",
+      "Ordered list spans pages 13–19 and remains in order; actual alphabetic labels differ after z.",
+      "Converted single-cell text box with expanded detail, quote and task text spans pages 19–26; no visually clipped body or overlapping footer.",
+      "Code lines continue on pages 26–29; final page 30 contains the end marker and intentional Word edit marker after the manual page break.",
+      "No extra blank page observed; no visible diagonal watermark on any page."
+    ],
+    "passForAllOriginalFormatting": false
+  },
+  "perPage": [
+    {
+      "page": 1,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 387,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 2,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 554,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 3,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 555,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 4,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 552,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 5,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 552,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 6,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 555,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 7,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 555,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 8,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 554,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 9,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 339,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 10,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 234,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 11,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 238,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 12,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 238,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 13,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 266,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 14,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 354,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 15,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 368,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 16,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 374,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 17,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 376,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 18,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 376,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 19,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 345,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 20,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 408,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 21,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 408,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 22,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 408,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 23,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 399,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 24,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 375,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 25,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 395,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 26,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 367,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 27,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 446,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 28,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 448,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 29,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 238,
+      "watermarkTextCount": 0
+    },
+    {
+      "page": 30,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "bodyExtractedCharacterCount": 48,
+      "watermarkTextCount": 0
+    }
+  ]
+}

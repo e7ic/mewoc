@@ -1,0 +1,235 @@
+{
+  "provenance": "Tool clicked production toolbar buttons after human Shuangpin text entry; not human hardware shortcuts",
+  "before": {
+    "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+    "phase": "取消后恢复",
+    "pageCount": 27,
+    "pending": false,
+    "layoutSignature": "[{\"pos\":261,\"height\":140.20138740157483,\"pageIndex\":1,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":6},{\"pos\":1159,\"height\":145.70128740157475,\"pageIndex\":2,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":30},{\"pos\":2042,\"height\":145.70138740157472,\"pageIndex\":3,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":54},{\"pos\":2953,\"height\":145.70138740157518,\"pageIndex\":4,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":78},{\"pos\":3851,\"height\":145.70128740157543,\"pageIndex\":5,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":102},{\"pos\":4763,\"height\":145.70138740157472,\"pageIndex\":6,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":126},{\"pos\":5535,\"height\":205.2913037951585,\"pageIndex\":7,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":6025,\"height\":186.71423345851093,\"pageIndex\":8,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":6529,\"height\":186.71860847164942,\"pageIndex\":9,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":7033,\"height\":186.71423345851093,\"pageIndex\":10,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":7512,\"height\":165.41558740157416,\"pageIndex\":11,\"reason\":\"automatic\",\"paragraphPos\":7480,\"paragraphLine\":1},{\"pos\":8079,\"height\":148.9356874015739,\"pageIndex\":12,\"reason\":\"automatic\",\"paragraphPos\":8046,\"paragraphLine\":1},{\"pos\":8651,\"height\":148.935787401575,\"pageIndex\":13,\"reason\":\"automatic\",\"paragraphPos\":8618,\"paragraphLine\":1},{\"pos\":9223,\"height\":148.9356874015739,\"pageIndex\":14,\"reason\":\"automatic\",\"paragraphPos\":9190,\"paragraphLine\":1},{\"pos\":9667,\"height\":201.59492204109057,\"pageIndex\":15,\"reason\":\"automatic\",\"containerPagination\":true},{\"pos\":10080,\"height\":160.70128740157452,\"pageIndex\":16,\"reason\":\"automatic\",\"paragraphPos\":9669,\"paragraphLine\":20},{\"pos\":10560,\"height\":145.70138740157563,\"pageIndex\":17,\"reason\":\"automatic\",\"paragraphPos\":9669,\"paragraphLine\":44},{\"pos\":11040,\"height\":145.7012874015727,\"pageIndex\":18,\"reason\":\"automatic\",\"paragraphPos\":9669,\"paragraphLine\":68},{\"pos\":11467,\"height\":143.310787401575,\"pageIndex\":19,\"reason\":\"automatic\",\"paragraphPos\":11423,\"paragraphLine\":2},{\"pos\":11826,\"height\":163.32628740157634,\"pageIndex\":20,\"reason\":\"automatic\",\"listPagination\":true},{\"pos\":12236,\"height\":140.12328740157682,\"pageIndex\":21,\"reason\":\"automatic\",\"paragraphPos\":12191,\"paragraphLine\":2},{\"pos\":12531,\"height\":151.9200874015769,\"pageIndex\":22,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":1},{\"pos\":12945,\"height\":145.8129925701035,\"pageIndex\":23,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":25},{\"pos\":13377,\"height\":145.70138740157927,\"pageIndex\":24,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":49},{\"pos\":13809,\"height\":145.701387401572,\"pageIndex\":25,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":73},{\"pos\":14116,\"height\":309.7018874015739,\"pageIndex\":26,\"reason\":\"manual\"}]",
+    "selection": {
+      "from": 1329,
+      "to": 1329,
+      "anchor": 1329,
+      "head": 1329,
+      "empty": true
+    },
+    "domSelection": {
+      "anchor": 1329,
+      "focus": 1329,
+      "collapsed": true,
+      "text": ""
+    },
+    "caretRect": {
+      "left": 497.421875,
+      "right": 497.421875,
+      "top": 722.171875,
+      "bottom": 735.671875
+    },
+    "boundary": 261,
+    "composing": false,
+    "editorFocused": true,
+    "windowFocused": true,
+    "visibility": "visible",
+    "scrolling": [
+      {
+        "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+        "top": 1216,
+        "left": 0
+      }
+    ],
+    "windowScroll": {
+      "x": 76,
+      "y": 339
+    },
+    "originalMatches": false,
+    "textLength": 13341,
+    "textAroundCaret": "xed text 👩🏽‍💻 跨页后重做验收仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+    "inputEvents": 2000,
+    "droppedEvents": 74,
+    "throttledMoves": 1332,
+    "initialization": {
+      "reopenedFromSavedRecord": true,
+      "storageVersion": 1,
+      "undoDepth": 0,
+      "redoDepth": 0,
+      "originalMatches": true,
+      "assets": 3
+    },
+    "undoAvailable": true,
+    "redoAvailable": false
+  },
+  "undo": {
+    "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+    "phase": "取消后恢复",
+    "pageCount": 27,
+    "pending": false,
+    "layoutSignature": "[{\"pos\":261,\"height\":140.20138740157483,\"pageIndex\":1,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":6},{\"pos\":1159,\"height\":145.70128740157475,\"pageIndex\":2,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":30},{\"pos\":2049,\"height\":145.70138740157472,\"pageIndex\":3,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":54},{\"pos\":2955,\"height\":145.70138740157518,\"pageIndex\":4,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":78},{\"pos\":3857,\"height\":145.70128740157543,\"pageIndex\":5,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":102},{\"pos\":4765,\"height\":145.70138740157472,\"pageIndex\":6,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":126},{\"pos\":5531,\"height\":205.2913037951585,\"pageIndex\":7,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":6021,\"height\":186.71423345851093,\"pageIndex\":8,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":6525,\"height\":186.71860847164942,\"pageIndex\":9,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":7029,\"height\":186.71423345851093,\"pageIndex\":10,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":7508,\"height\":165.41558740157416,\"pageIndex\":11,\"reason\":\"automatic\",\"paragraphPos\":7476,\"paragraphLine\":1},{\"pos\":8075,\"height\":148.9356874015739,\"pageIndex\":12,\"reason\":\"automatic\",\"paragraphPos\":8042,\"paragraphLine\":1},{\"pos\":8647,\"height\":148.935787401575,\"pageIndex\":13,\"reason\":\"automatic\",\"paragraphPos\":8614,\"paragraphLine\":1},{\"pos\":9219,\"height\":148.9356874015739,\"pageIndex\":14,\"reason\":\"automatic\",\"paragraphPos\":9186,\"paragraphLine\":1},{\"pos\":9663,\"height\":201.59492204109057,\"pageIndex\":15,\"reason\":\"automatic\",\"containerPagination\":true},{\"pos\":10076,\"height\":160.70128740157452,\"pageIndex\":16,\"reason\":\"automatic\",\"paragraphPos\":9665,\"paragraphLine\":20},{\"pos\":10556,\"height\":145.70138740157563,\"pageIndex\":17,\"reason\":\"automatic\",\"paragraphPos\":9665,\"paragraphLine\":44},{\"pos\":11036,\"height\":145.7012874015727,\"pageIndex\":18,\"reason\":\"automatic\",\"paragraphPos\":9665,\"paragraphLine\":68},{\"pos\":11463,\"height\":143.310787401575,\"pageIndex\":19,\"reason\":\"automatic\",\"paragraphPos\":11419,\"paragraphLine\":2},{\"pos\":11822,\"height\":163.32628740157634,\"pageIndex\":20,\"reason\":\"automatic\",\"listPagination\":true},{\"pos\":12232,\"height\":140.12328740157682,\"pageIndex\":21,\"reason\":\"automatic\",\"paragraphPos\":12187,\"paragraphLine\":2},{\"pos\":12527,\"height\":151.9200874015769,\"pageIndex\":22,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":1},{\"pos\":12941,\"height\":145.8129925701035,\"pageIndex\":23,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":25},{\"pos\":13373,\"height\":145.70138740157927,\"pageIndex\":24,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":49},{\"pos\":13805,\"height\":145.701387401572,\"pageIndex\":25,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":73},{\"pos\":14112,\"height\":309.7018874015739,\"pageIndex\":26,\"reason\":\"manual\"}]",
+    "selection": {
+      "from": 1325,
+      "to": 1325,
+      "anchor": 1325,
+      "head": 1325,
+      "empty": true
+    },
+    "domSelection": {
+      "anchor": 1325,
+      "focus": 1325,
+      "collapsed": true,
+      "text": ""
+    },
+    "caretRect": {
+      "left": 507.421875,
+      "right": 507.421875,
+      "top": 727.171875,
+      "bottom": 740.671875
+    },
+    "boundary": 261,
+    "composing": false,
+    "editorFocused": true,
+    "windowFocused": true,
+    "visibility": "visible",
+    "scrolling": [
+      {
+        "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+        "top": 1210,
+        "left": 0
+      }
+    ],
+    "windowScroll": {
+      "x": 18,
+      "y": 337
+    },
+    "originalMatches": false,
+    "textLength": 13337,
+    "textAroundCaret": "文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+    "inputEvents": 2000,
+    "droppedEvents": 87,
+    "throttledMoves": 1332,
+    "initialization": {
+      "reopenedFromSavedRecord": true,
+      "storageVersion": 1,
+      "undoDepth": 0,
+      "redoDepth": 0,
+      "originalMatches": true,
+      "assets": 3
+    },
+    "undoAvailable": true,
+    "redoAvailable": true
+  },
+  "redo": {
+    "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+    "phase": "取消后恢复",
+    "pageCount": 27,
+    "pending": false,
+    "layoutSignature": "[{\"pos\":261,\"height\":140.20138740157483,\"pageIndex\":1,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":6},{\"pos\":1159,\"height\":145.70128740157475,\"pageIndex\":2,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":30},{\"pos\":2042,\"height\":145.70138740157472,\"pageIndex\":3,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":54},{\"pos\":2953,\"height\":145.70138740157518,\"pageIndex\":4,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":78},{\"pos\":3851,\"height\":145.70128740157543,\"pageIndex\":5,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":102},{\"pos\":4763,\"height\":145.70138740157472,\"pageIndex\":6,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":126},{\"pos\":5535,\"height\":205.2913037951585,\"pageIndex\":7,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":6025,\"height\":186.71423345851093,\"pageIndex\":8,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":6529,\"height\":186.71860847164942,\"pageIndex\":9,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":7033,\"height\":186.71423345851093,\"pageIndex\":10,\"reason\":\"automatic\",\"tablePos\":5466,\"columns\":2,\"headerRows\":[5467],\"headerHeight\":45},{\"pos\":7512,\"height\":165.41558740157416,\"pageIndex\":11,\"reason\":\"automatic\",\"paragraphPos\":7480,\"paragraphLine\":1},{\"pos\":8079,\"height\":148.9356874015739,\"pageIndex\":12,\"reason\":\"automatic\",\"paragraphPos\":8046,\"paragraphLine\":1},{\"pos\":8651,\"height\":148.935787401575,\"pageIndex\":13,\"reason\":\"automatic\",\"paragraphPos\":8618,\"paragraphLine\":1},{\"pos\":9223,\"height\":148.9356874015739,\"pageIndex\":14,\"reason\":\"automatic\",\"paragraphPos\":9190,\"paragraphLine\":1},{\"pos\":9667,\"height\":201.59492204109057,\"pageIndex\":15,\"reason\":\"automatic\",\"containerPagination\":true},{\"pos\":10080,\"height\":160.70128740157452,\"pageIndex\":16,\"reason\":\"automatic\",\"paragraphPos\":9669,\"paragraphLine\":20},{\"pos\":10560,\"height\":145.70138740157563,\"pageIndex\":17,\"reason\":\"automatic\",\"paragraphPos\":9669,\"paragraphLine\":44},{\"pos\":11040,\"height\":145.7012874015727,\"pageIndex\":18,\"reason\":\"automatic\",\"paragraphPos\":9669,\"paragraphLine\":68},{\"pos\":11467,\"height\":143.310787401575,\"pageIndex\":19,\"reason\":\"automatic\",\"paragraphPos\":11423,\"paragraphLine\":2},{\"pos\":11826,\"height\":163.32628740157634,\"pageIndex\":20,\"reason\":\"automatic\",\"listPagination\":true},{\"pos\":12236,\"height\":140.12328740157682,\"pageIndex\":21,\"reason\":\"automatic\",\"paragraphPos\":12191,\"paragraphLine\":2},{\"pos\":12531,\"height\":151.9200874015769,\"pageIndex\":22,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":1},{\"pos\":12945,\"height\":145.8129925701035,\"pageIndex\":23,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":25},{\"pos\":13377,\"height\":145.70138740157927,\"pageIndex\":24,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":49},{\"pos\":13809,\"height\":145.701387401572,\"pageIndex\":25,\"reason\":\"automatic\",\"codePos\":12514,\"codeLine\":73},{\"pos\":14116,\"height\":309.7018874015739,\"pageIndex\":26,\"reason\":\"manual\"}]",
+    "selection": {
+      "from": 1329,
+      "to": 1329,
+      "anchor": 1329,
+      "head": 1329,
+      "empty": true
+    },
+    "domSelection": {
+      "anchor": 1329,
+      "focus": 1329,
+      "collapsed": true,
+      "text": ""
+    },
+    "caretRect": {
+      "left": 555.421875,
+      "right": 555.421875,
+      "top": 727.171875,
+      "bottom": 740.671875
+    },
+    "boundary": 261,
+    "composing": false,
+    "editorFocused": true,
+    "windowFocused": true,
+    "visibility": "visible",
+    "scrolling": [
+      {
+        "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+        "top": 1210,
+        "left": 0
+      }
+    ],
+    "windowScroll": {
+      "x": 18,
+      "y": 337
+    },
+    "originalMatches": false,
+    "textLength": 13341,
+    "textAroundCaret": "xed text 👩🏽‍💻 跨页后重做验收仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+    "inputEvents": 2000,
+    "droppedEvents": 93,
+    "throttledMoves": 1332,
+    "initialization": {
+      "reopenedFromSavedRecord": true,
+      "storageVersion": 1,
+      "undoDepth": 0,
+      "redoDepth": 0,
+      "originalMatches": true,
+      "assets": 3
+    },
+    "undoAvailable": true,
+    "redoAvailable": false
+  },
+  "undoAgain": {
+    "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+    "phase": "取消后恢复",
+    "pageCount": 27,
+    "pending": false,
+    "layoutSignature": "[{\"pos\":261,\"height\":140.20138740157483,\"pageIndex\":1,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":6},{\"pos\":1159,\"height\":145.70128740157475,\"pageIndex\":2,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":30},{\"pos\":2049,\"height\":145.70138740157472,\"pageIndex\":3,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":54},{\"pos\":2955,\"height\":145.70138740157518,\"pageIndex\":4,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":78},{\"pos\":3857,\"height\":145.70128740157543,\"pageIndex\":5,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":102},{\"pos\":4765,\"height\":145.70138740157472,\"pageIndex\":6,\"reason\":\"automatic\",\"paragraphPos\":28,\"paragraphLine\":126},{\"pos\":5531,\"height\":205.2913037951585,\"pageIndex\":7,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":6021,\"height\":186.71423345851093,\"pageIndex\":8,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":6525,\"height\":186.71860847164942,\"pageIndex\":9,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":7029,\"height\":186.71423345851093,\"pageIndex\":10,\"reason\":\"automatic\",\"tablePos\":5462,\"columns\":2,\"headerRows\":[5463],\"headerHeight\":45},{\"pos\":7508,\"height\":165.41558740157416,\"pageIndex\":11,\"reason\":\"automatic\",\"paragraphPos\":7476,\"paragraphLine\":1},{\"pos\":8075,\"height\":148.9356874015739,\"pageIndex\":12,\"reason\":\"automatic\",\"paragraphPos\":8042,\"paragraphLine\":1},{\"pos\":8647,\"height\":148.935787401575,\"pageIndex\":13,\"reason\":\"automatic\",\"paragraphPos\":8614,\"paragraphLine\":1},{\"pos\":9219,\"height\":148.9356874015739,\"pageIndex\":14,\"reason\":\"automatic\",\"paragraphPos\":9186,\"paragraphLine\":1},{\"pos\":9663,\"height\":201.59492204109057,\"pageIndex\":15,\"reason\":\"automatic\",\"containerPagination\":true},{\"pos\":10076,\"height\":160.70128740157452,\"pageIndex\":16,\"reason\":\"automatic\",\"paragraphPos\":9665,\"paragraphLine\":20},{\"pos\":10556,\"height\":145.70138740157563,\"pageIndex\":17,\"reason\":\"automatic\",\"paragraphPos\":9665,\"paragraphLine\":44},{\"pos\":11036,\"height\":145.7012874015727,\"pageIndex\":18,\"reason\":\"automatic\",\"paragraphPos\":9665,\"paragraphLine\":68},{\"pos\":11463,\"height\":143.310787401575,\"pageIndex\":19,\"reason\":\"automatic\",\"paragraphPos\":11419,\"paragraphLine\":2},{\"pos\":11822,\"height\":163.32628740157634,\"pageIndex\":20,\"reason\":\"automatic\",\"listPagination\":true},{\"pos\":12232,\"height\":140.12328740157682,\"pageIndex\":21,\"reason\":\"automatic\",\"paragraphPos\":12187,\"paragraphLine\":2},{\"pos\":12527,\"height\":151.9200874015769,\"pageIndex\":22,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":1},{\"pos\":12941,\"height\":145.8129925701035,\"pageIndex\":23,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":25},{\"pos\":13373,\"height\":145.70138740157927,\"pageIndex\":24,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":49},{\"pos\":13805,\"height\":145.701387401572,\"pageIndex\":25,\"reason\":\"automatic\",\"codePos\":12510,\"codeLine\":73},{\"pos\":14112,\"height\":309.7018874015739,\"pageIndex\":26,\"reason\":\"manual\"}]",
+    "selection": {
+      "from": 1325,
+      "to": 1325,
+      "anchor": 1325,
+      "head": 1325,
+      "empty": true
+    },
+    "domSelection": {
+      "anchor": 1325,
+      "focus": 1325,
+      "collapsed": true,
+      "text": ""
+    },
+    "caretRect": {
+      "left": 507.421875,
+      "right": 507.421875,
+      "top": 1064.171875,
+      "bottom": 1077.671875
+    },
+    "boundary": 261,
+    "composing": false,
+    "editorFocused": false,
+    "windowFocused": true,
+    "visibility": "visible",
+    "scrolling": [
+      {
+        "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+        "top": 1210,
+        "left": 0
+      }
+    ],
+    "windowScroll": {
+      "x": 18,
+      "y": 0
+    },
+    "originalMatches": false,
+    "textLength": 13337,
+    "textAroundCaret": "文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+    "inputEvents": 2000,
+    "droppedEvents": 107,
+    "throttledMoves": 1332,
+    "initialization": {
+      "reopenedFromSavedRecord": true,
+      "storageVersion": 1,
+      "undoDepth": 0,
+      "redoDepth": 0,
+      "originalMatches": true,
+      "assets": 3
+    },
+    "undoAvailable": true,
+    "redoAvailable": true
+  }
+}

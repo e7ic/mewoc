@@ -1,0 +1,1175 @@
+{
+  "date": "2026-10-29",
+  "passed": true,
+  "scope": "Independent source OOXML numbering interpreter plus production converter/record builder and Mewoc DOCX export/reimport. No product numbering metadata used as expected values. No contract text persisted. Node image decoding is a header-size stub.",
+  "source": {
+    "fileName": "NDA_Agreement.docx",
+    "bytes": 293180,
+    "sha256": "bbbebbe2d0663fe5766a239fd5a6570a92cdf5f8af114d61ea8b94a083e6e519",
+    "bodyParagraphs": 90,
+    "bodyTextSha256": "aa8d50734d1eb44324e2240f86ccdd7ebbe950a029669d1b5b3215a679cd7ebf",
+    "tables": [
+      {
+        "rows": 5,
+        "cells": 20,
+        "mergedCells": 0
+      }
+    ],
+    "mediaFiles": 1,
+    "pageParts": [
+      {
+        "kind": "header",
+        "path": "word/header1.xml",
+        "paragraphs": 2,
+        "tables": 1,
+        "images": 1
+      },
+      {
+        "kind": "footer",
+        "path": "word/footer1.xml",
+        "paragraphs": 3,
+        "tables": 1,
+        "images": 0
+      }
+    ]
+  },
+  "expectedNumbering": [
+    {
+      "paragraphIndex": 3,
+      "numId": "2",
+      "level": 0,
+      "label": "1."
+    },
+    {
+      "paragraphIndex": 4,
+      "numId": "2",
+      "level": 1,
+      "label": "1.1."
+    },
+    {
+      "paragraphIndex": 5,
+      "numId": "2",
+      "level": 1,
+      "label": "1.2."
+    },
+    {
+      "paragraphIndex": 7,
+      "numId": "3",
+      "level": 0,
+      "label": "1)"
+    },
+    {
+      "paragraphIndex": 8,
+      "numId": "3",
+      "level": 0,
+      "label": "2)"
+    },
+    {
+      "paragraphIndex": 9,
+      "numId": "3",
+      "level": 1,
+      "label": "a)"
+    },
+    {
+      "paragraphIndex": 10,
+      "numId": "3",
+      "level": 1,
+      "label": "b)"
+    },
+    {
+      "paragraphIndex": 11,
+      "numId": "3",
+      "level": 1,
+      "label": "c)"
+    },
+    {
+      "paragraphIndex": 12,
+      "numId": "3",
+      "level": 1,
+      "label": "d)"
+    },
+    {
+      "paragraphIndex": 13,
+      "numId": "3",
+      "level": 1,
+      "label": "e)"
+    },
+    {
+      "paragraphIndex": 14,
+      "numId": "3",
+      "level": 1,
+      "label": "f)"
+    },
+    {
+      "paragraphIndex": 15,
+      "numId": "3",
+      "level": 1,
+      "label": "g)"
+    },
+    {
+      "paragraphIndex": 16,
+      "numId": "3",
+      "level": 0,
+      "label": "3)"
+    },
+    {
+      "paragraphIndex": 19,
+      "numId": "4",
+      "level": 0,
+      "label": "1)"
+    },
+    {
+      "paragraphIndex": 20,
+      "numId": "4",
+      "level": 0,
+      "label": "2)"
+    },
+    {
+      "paragraphIndex": 21,
+      "numId": "4",
+      "level": 0,
+      "label": "3)"
+    },
+    {
+      "paragraphIndex": 22,
+      "numId": "4",
+      "level": 0,
+      "label": "4)"
+    },
+    {
+      "paragraphIndex": 27,
+      "numId": "5",
+      "level": 0,
+      "label": "1)"
+    },
+    {
+      "paragraphIndex": 28,
+      "numId": "5",
+      "level": 0,
+      "label": "2)"
+    },
+    {
+      "paragraphIndex": 29,
+      "numId": "5",
+      "level": 0,
+      "label": "3)"
+    },
+    {
+      "paragraphIndex": 30,
+      "numId": "5",
+      "level": 0,
+      "label": "4)"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Source table has no vertical merges requiring independent grid expansion",
+      "passed": true
+    },
+    {
+      "name": "All original paragraphs have matching output positions",
+      "passed": true,
+      "expected": 90,
+      "actual": 96
+    },
+    {
+      "name": "Paragraph text/order preserved at 0",
+      "passed": true,
+      "expectedSha256": "dd0c226b9c4776e79b1f5a6deb254ffce514529733d0f399108be6ac7a49b39b",
+      "actualSha256": "dd0c226b9c4776e79b1f5a6deb254ffce514529733d0f399108be6ac7a49b39b",
+      "expectedLength": 24,
+      "actualLength": 24
+    },
+    {
+      "name": "Paragraph text/order preserved at 1",
+      "passed": true,
+      "expectedSha256": "99fd394f8a33edb85714c2d977a1ac07d160ac98f29c79583af1243b1296e458",
+      "actualSha256": "99fd394f8a33edb85714c2d977a1ac07d160ac98f29c79583af1243b1296e458",
+      "expectedLength": 537,
+      "actualLength": 537
+    },
+    {
+      "name": "Paragraph text/order preserved at 2",
+      "passed": true,
+      "expectedSha256": "91426c22c0c15512236baa0b28c1d7514a56d21505889bd855c29a9b6d7f5b06",
+      "actualSha256": "91426c22c0c15512236baa0b28c1d7514a56d21505889bd855c29a9b6d7f5b06",
+      "expectedLength": 10,
+      "actualLength": 10
+    },
+    {
+      "name": "Clause label at paragraph 3",
+      "passed": true,
+      "expectedLabel": "1.",
+      "actualLabel": "1."
+    },
+    {
+      "name": "Paragraph text/order preserved at 3",
+      "passed": true,
+      "expectedSha256": "078c8083b5c48066d4e8f3f97297dd6dbe41d41dbdb671a806f84008c8cd6f91",
+      "actualSha256": "078c8083b5c48066d4e8f3f97297dd6dbe41d41dbdb671a806f84008c8cd6f91",
+      "expectedLength": 137,
+      "actualLength": 137
+    },
+    {
+      "name": "Clause label at paragraph 4",
+      "passed": true,
+      "expectedLabel": "1.1.",
+      "actualLabel": "1.1."
+    },
+    {
+      "name": "Paragraph text/order preserved at 4",
+      "passed": true,
+      "expectedSha256": "1d258bc7e4f832f47954678343ffa989f61ba9a35cef4acf79446d9b1ea30df2",
+      "actualSha256": "1d258bc7e4f832f47954678343ffa989f61ba9a35cef4acf79446d9b1ea30df2",
+      "expectedLength": 122,
+      "actualLength": 122
+    },
+    {
+      "name": "Clause label at paragraph 5",
+      "passed": true,
+      "expectedLabel": "1.2.",
+      "actualLabel": "1.2."
+    },
+    {
+      "name": "Paragraph text/order preserved at 5",
+      "passed": true,
+      "expectedSha256": "8b8697e5e37c9ca41cedb7724b0e4d138708e2bd1ab5445a7af7b2b42214c525",
+      "actualSha256": "8b8697e5e37c9ca41cedb7724b0e4d138708e2bd1ab5445a7af7b2b42214c525",
+      "expectedLength": 124,
+      "actualLength": 124
+    },
+    {
+      "name": "Paragraph text/order preserved at 6",
+      "passed": true,
+      "expectedSha256": "ed68e024de248aaaf99624c4e38d5aba70501574cfee38e69c5fbeb62b873cdc",
+      "actualSha256": "ed68e024de248aaaf99624c4e38d5aba70501574cfee38e69c5fbeb62b873cdc",
+      "expectedLength": 41,
+      "actualLength": 41
+    },
+    {
+      "name": "Clause label at paragraph 7",
+      "passed": true,
+      "expectedLabel": "1)",
+      "actualLabel": "1."
+    },
+    {
+      "name": "Paragraph text/order preserved at 7",
+      "passed": true,
+      "expectedSha256": "fc405f5c43b58c2b27b2abe4d98f3a8610ec63dc4b4ad527fd40d6034f204d09",
+      "actualSha256": "fc405f5c43b58c2b27b2abe4d98f3a8610ec63dc4b4ad527fd40d6034f204d09",
+      "expectedLength": 211,
+      "actualLength": 211
+    },
+    {
+      "name": "Clause label at paragraph 8",
+      "passed": true,
+      "expectedLabel": "2)",
+      "actualLabel": "2."
+    },
+    {
+      "name": "Paragraph text/order preserved at 8",
+      "passed": true,
+      "expectedSha256": "2a40db910c4e1e2d60a3e3233b722f93e56250d771e3d055cefee357369985d9",
+      "actualSha256": "2a40db910c4e1e2d60a3e3233b722f93e56250d771e3d055cefee357369985d9",
+      "expectedLength": 54,
+      "actualLength": 54
+    },
+    {
+      "name": "Clause label at paragraph 9",
+      "passed": true,
+      "expectedLabel": "a)",
+      "actualLabel": "a."
+    },
+    {
+      "name": "Paragraph text/order preserved at 9",
+      "passed": true,
+      "expectedSha256": "268054332a0ec126ca523c147020db30c936714350563f93134d82966ab9997c",
+      "actualSha256": "268054332a0ec126ca523c147020db30c936714350563f93134d82966ab9997c",
+      "expectedLength": 15,
+      "actualLength": 15
+    },
+    {
+      "name": "Clause label at paragraph 10",
+      "passed": true,
+      "expectedLabel": "b)",
+      "actualLabel": "b."
+    },
+    {
+      "name": "Paragraph text/order preserved at 10",
+      "passed": true,
+      "expectedSha256": "929889dc16d99780c709fd2f30955fed2a8552a702e709d3abde3f6408f58d58",
+      "actualSha256": "929889dc16d99780c709fd2f30955fed2a8552a702e709d3abde3f6408f58d58",
+      "expectedLength": 42,
+      "actualLength": 42
+    },
+    {
+      "name": "Clause label at paragraph 11",
+      "passed": true,
+      "expectedLabel": "c)",
+      "actualLabel": "c."
+    },
+    {
+      "name": "Paragraph text/order preserved at 11",
+      "passed": true,
+      "expectedSha256": "116d7c3987d757666a594eb884703fbaad238f6bed4d01afdf8f85a2d00e288f",
+      "actualSha256": "116d7c3987d757666a594eb884703fbaad238f6bed4d01afdf8f85a2d00e288f",
+      "expectedLength": 42,
+      "actualLength": 42
+    },
+    {
+      "name": "Clause label at paragraph 12",
+      "passed": true,
+      "expectedLabel": "d)",
+      "actualLabel": "d."
+    },
+    {
+      "name": "Paragraph text/order preserved at 12",
+      "passed": true,
+      "expectedSha256": "11561add64a146650949db766ebe11a30a80769a477290be05007cce135555a2",
+      "actualSha256": "11561add64a146650949db766ebe11a30a80769a477290be05007cce135555a2",
+      "expectedLength": 42,
+      "actualLength": 42
+    },
+    {
+      "name": "Clause label at paragraph 13",
+      "passed": true,
+      "expectedLabel": "e)",
+      "actualLabel": "e."
+    },
+    {
+      "name": "Paragraph text/order preserved at 13",
+      "passed": true,
+      "expectedSha256": "9b41f75a89a5ce4de76854388c09768a943ec9bbc3746111ab0562501c3a9fff",
+      "actualSha256": "9b41f75a89a5ce4de76854388c09768a943ec9bbc3746111ab0562501c3a9fff",
+      "expectedLength": 49,
+      "actualLength": 49
+    },
+    {
+      "name": "Clause label at paragraph 14",
+      "passed": true,
+      "expectedLabel": "f)",
+      "actualLabel": "f."
+    },
+    {
+      "name": "Paragraph text/order preserved at 14",
+      "passed": true,
+      "expectedSha256": "86a7e5633e0b1e8ea100b429a63f4055444cbcbad4ed316d422445de5fc0ed27",
+      "actualSha256": "86a7e5633e0b1e8ea100b429a63f4055444cbcbad4ed316d422445de5fc0ed27",
+      "expectedLength": 47,
+      "actualLength": 47
+    },
+    {
+      "name": "Clause label at paragraph 15",
+      "passed": true,
+      "expectedLabel": "g)",
+      "actualLabel": "g."
+    },
+    {
+      "name": "Paragraph text/order preserved at 15",
+      "passed": true,
+      "expectedSha256": "c8e852c8fbda9ca9bfa2137d0f3758c188e84fb645423fa8c742e7c2ebb823a1",
+      "actualSha256": "c8e852c8fbda9ca9bfa2137d0f3758c188e84fb645423fa8c742e7c2ebb823a1",
+      "expectedLength": 145,
+      "actualLength": 145
+    },
+    {
+      "name": "Clause label at paragraph 16",
+      "passed": true,
+      "expectedLabel": "3)",
+      "actualLabel": "3."
+    },
+    {
+      "name": "Paragraph text/order preserved at 16",
+      "passed": true,
+      "expectedSha256": "700bafd217488cc5ca78c010a5c61b5363778b8593b9c2e14a76acc36a38b25e",
+      "actualSha256": "700bafd217488cc5ca78c010a5c61b5363778b8593b9c2e14a76acc36a38b25e",
+      "expectedLength": 128,
+      "actualLength": 128
+    },
+    {
+      "name": "Paragraph text/order preserved at 17",
+      "passed": true,
+      "expectedSha256": "3f724bb1e5a5fe099d8dc3ee17aff368c5e61dd97cbd83c7a0a1323bc372a09d",
+      "actualSha256": "3f724bb1e5a5fe099d8dc3ee17aff368c5e61dd97cbd83c7a0a1323bc372a09d",
+      "expectedLength": 33,
+      "actualLength": 33
+    },
+    {
+      "name": "Paragraph text/order preserved at 18",
+      "passed": true,
+      "expectedSha256": "c92eca546f8f55c65c984310156fcb3e44fc10d445c1bf8f9a59a07db5c10067",
+      "actualSha256": "c92eca546f8f55c65c984310156fcb3e44fc10d445c1bf8f9a59a07db5c10067",
+      "expectedLength": 22,
+      "actualLength": 22
+    },
+    {
+      "name": "Clause label at paragraph 19",
+      "passed": true,
+      "expectedLabel": "1)",
+      "actualLabel": "1."
+    },
+    {
+      "name": "Paragraph text/order preserved at 19",
+      "passed": true,
+      "expectedSha256": "3b4909a7c9f087cf45326636fe6a30c0f046c5bae75017a38b7b36ced39bd8fd",
+      "actualSha256": "3b4909a7c9f087cf45326636fe6a30c0f046c5bae75017a38b7b36ced39bd8fd",
+      "expectedLength": 243,
+      "actualLength": 243
+    },
+    {
+      "name": "Clause label at paragraph 20",
+      "passed": true,
+      "expectedLabel": "2)",
+      "actualLabel": "2."
+    },
+    {
+      "name": "Paragraph text/order preserved at 20",
+      "passed": true,
+      "expectedSha256": "06823d2709d96fea37b69cbf20ae75ddb284061356f526579b4e9fa20363e60b",
+      "actualSha256": "06823d2709d96fea37b69cbf20ae75ddb284061356f526579b4e9fa20363e60b",
+      "expectedLength": 92,
+      "actualLength": 92
+    },
+    {
+      "name": "Clause label at paragraph 21",
+      "passed": true,
+      "expectedLabel": "3)",
+      "actualLabel": "3."
+    },
+    {
+      "name": "Paragraph text/order preserved at 21",
+      "passed": true,
+      "expectedSha256": "4cdd2fa1ad25cdc3d15ffc0271b1901fde9661f4cb1a9669d3dd2f0239f48501",
+      "actualSha256": "4cdd2fa1ad25cdc3d15ffc0271b1901fde9661f4cb1a9669d3dd2f0239f48501",
+      "expectedLength": 116,
+      "actualLength": 116
+    },
+    {
+      "name": "Clause label at paragraph 22",
+      "passed": true,
+      "expectedLabel": "4)",
+      "actualLabel": "4."
+    },
+    {
+      "name": "Paragraph text/order preserved at 22",
+      "passed": true,
+      "expectedSha256": "5b353105ab217e0d96b0c171c81ae30a52964c5e59de5b10b2552b5d54405416",
+      "actualSha256": "5b353105ab217e0d96b0c171c81ae30a52964c5e59de5b10b2552b5d54405416",
+      "expectedLength": 335,
+      "actualLength": 335
+    },
+    {
+      "name": "Paragraph text/order preserved at 23",
+      "passed": true,
+      "expectedSha256": "1e710bb6d4fc571b844c65292aa88023c4f67b7326df10f7599ad93f6197248c",
+      "actualSha256": "1e710bb6d4fc571b844c65292aa88023c4f67b7326df10f7599ad93f6197248c",
+      "expectedLength": 93,
+      "actualLength": 93
+    },
+    {
+      "name": "Paragraph text/order preserved at 24",
+      "passed": true,
+      "expectedSha256": "6edb41c502e0e1e12e361cd19ac02bd6ce91467e4f785ca7eb95f02721b931d4",
+      "actualSha256": "6edb41c502e0e1e12e361cd19ac02bd6ce91467e4f785ca7eb95f02721b931d4",
+      "expectedLength": 239,
+      "actualLength": 239
+    },
+    {
+      "name": "Paragraph text/order preserved at 25",
+      "passed": true,
+      "expectedSha256": "27d4915fc561745b9ac62764221fb2b339fa7b0b28e19e35f95140a3fe5dafe3",
+      "actualSha256": "27d4915fc561745b9ac62764221fb2b339fa7b0b28e19e35f95140a3fe5dafe3",
+      "expectedLength": 43,
+      "actualLength": 43
+    },
+    {
+      "name": "Paragraph text/order preserved at 26",
+      "passed": true,
+      "expectedSha256": "f92daca972f450e27b6d7b4753b3d7314ff0d5af3221f67d24336e947a862ef9",
+      "actualSha256": "f92daca972f450e27b6d7b4753b3d7314ff0d5af3221f67d24336e947a862ef9",
+      "expectedLength": 122,
+      "actualLength": 122
+    },
+    {
+      "name": "Clause label at paragraph 27",
+      "passed": true,
+      "expectedLabel": "1)",
+      "actualLabel": "1."
+    },
+    {
+      "name": "Paragraph text/order preserved at 27",
+      "passed": true,
+      "expectedSha256": "23952fec8767397eb9696104dd51afddb8f5538a5c4a3d808a5a83d031d565ae",
+      "actualSha256": "23952fec8767397eb9696104dd51afddb8f5538a5c4a3d808a5a83d031d565ae",
+      "expectedLength": 116,
+      "actualLength": 116
+    },
+    {
+      "name": "Clause label at paragraph 28",
+      "passed": true,
+      "expectedLabel": "2)",
+      "actualLabel": "2."
+    },
+    {
+      "name": "Paragraph text/order preserved at 28",
+      "passed": true,
+      "expectedSha256": "1090cb01bd7f652642343c51b5ce0c4d77b62ecf29306687f4d50700446d833e",
+      "actualSha256": "1090cb01bd7f652642343c51b5ce0c4d77b62ecf29306687f4d50700446d833e",
+      "expectedLength": 69,
+      "actualLength": 69
+    },
+    {
+      "name": "Clause label at paragraph 29",
+      "passed": true,
+      "expectedLabel": "3)",
+      "actualLabel": "3."
+    },
+    {
+      "name": "Paragraph text/order preserved at 29",
+      "passed": true,
+      "expectedSha256": "7150c58937092fe91a8fc06d2e2aed24ef739db32051a05902ed834d325d7286",
+      "actualSha256": "7150c58937092fe91a8fc06d2e2aed24ef739db32051a05902ed834d325d7286",
+      "expectedLength": 63,
+      "actualLength": 63
+    },
+    {
+      "name": "Clause label at paragraph 30",
+      "passed": true,
+      "expectedLabel": "4)",
+      "actualLabel": "4."
+    },
+    {
+      "name": "Paragraph text/order preserved at 30",
+      "passed": true,
+      "expectedSha256": "defb17f1ddc8085381aabaeb624e077365dab65dae99d6ccc5c1904bced3f239",
+      "actualSha256": "defb17f1ddc8085381aabaeb624e077365dab65dae99d6ccc5c1904bced3f239",
+      "expectedLength": 122,
+      "actualLength": 122
+    },
+    {
+      "name": "Paragraph text/order preserved at 31",
+      "passed": true,
+      "expectedSha256": "c6c7f2ce6559b05aecc715c2bdefdade289d6c7a8c7dff5fcbd352c4ee2b4cad",
+      "actualSha256": "c6c7f2ce6559b05aecc715c2bdefdade289d6c7a8c7dff5fcbd352c4ee2b4cad",
+      "expectedLength": 165,
+      "actualLength": 165
+    },
+    {
+      "name": "Paragraph text/order preserved at 32",
+      "passed": true,
+      "expectedSha256": "8933fa27cc47a366f9ddd5a299e488cdbdfab72beda5b141eecb0b10e13194e2",
+      "actualSha256": "8933fa27cc47a366f9ddd5a299e488cdbdfab72beda5b141eecb0b10e13194e2",
+      "expectedLength": 31,
+      "actualLength": 31
+    },
+    {
+      "name": "Paragraph text/order preserved at 33",
+      "passed": true,
+      "expectedSha256": "62a5682d11264373d7cbfc970cc96faedbe448e1bfe8d6c452b0b34d6c843d5d",
+      "actualSha256": "62a5682d11264373d7cbfc970cc96faedbe448e1bfe8d6c452b0b34d6c843d5d",
+      "expectedLength": 366,
+      "actualLength": 366
+    },
+    {
+      "name": "Paragraph text/order preserved at 34",
+      "passed": true,
+      "expectedSha256": "e6ea5e33b9f5b1f6703d4814e01923a2309354220f90e13112bb7d2d8cb6ab5a",
+      "actualSha256": "e6ea5e33b9f5b1f6703d4814e01923a2309354220f90e13112bb7d2d8cb6ab5a",
+      "expectedLength": 154,
+      "actualLength": 154
+    },
+    {
+      "name": "Paragraph text/order preserved at 35",
+      "passed": true,
+      "expectedSha256": "107336e19bec6d776f915cfef58437c31d6c8fadc2a59a0863952e976c01a9fc",
+      "actualSha256": "107336e19bec6d776f915cfef58437c31d6c8fadc2a59a0863952e976c01a9fc",
+      "expectedLength": 17,
+      "actualLength": 17
+    },
+    {
+      "name": "Paragraph text/order preserved at 36",
+      "passed": true,
+      "expectedSha256": "47055ba4699b366c13cf5237c051d47a4b5a9dd018a043811d186b40b96012a8",
+      "actualSha256": "47055ba4699b366c13cf5237c051d47a4b5a9dd018a043811d186b40b96012a8",
+      "expectedLength": 201,
+      "actualLength": 201
+    },
+    {
+      "name": "Paragraph text/order preserved at 37",
+      "passed": true,
+      "expectedSha256": "f4b2063287b7f0799d7c34769bf30033faf53b752d7841419e752f224830a18b",
+      "actualSha256": "f4b2063287b7f0799d7c34769bf30033faf53b752d7841419e752f224830a18b",
+      "expectedLength": 294,
+      "actualLength": 294
+    },
+    {
+      "name": "Paragraph text/order preserved at 38",
+      "passed": true,
+      "expectedSha256": "a9f7f861bfaf53db5dc53fc843d2388534ac1571909c1a8c382286a0becb509c",
+      "actualSha256": "a9f7f861bfaf53db5dc53fc843d2388534ac1571909c1a8c382286a0becb509c",
+      "expectedLength": 52,
+      "actualLength": 52
+    },
+    {
+      "name": "Paragraph text/order preserved at 39",
+      "passed": true,
+      "expectedSha256": "9de9f4e23fa98e024537b5d488fd8aea8306dba410b6724bf0de095983b5671b",
+      "actualSha256": "9de9f4e23fa98e024537b5d488fd8aea8306dba410b6724bf0de095983b5671b",
+      "expectedLength": 225,
+      "actualLength": 225
+    },
+    {
+      "name": "Paragraph text/order preserved at 40",
+      "passed": true,
+      "expectedSha256": "19d449a7fefc2880ff100a2c2bc4ef33212aa7f78768e87de61d0743b434b7f6",
+      "actualSha256": "19d449a7fefc2880ff100a2c2bc4ef33212aa7f78768e87de61d0743b434b7f6",
+      "expectedLength": 148,
+      "actualLength": 148
+    },
+    {
+      "name": "Paragraph text/order preserved at 41",
+      "passed": true,
+      "expectedSha256": "5f1d829a488b438e9f9b756f15916891ef13b3f4563cccb4746fae50d8ee41ee",
+      "actualSha256": "5f1d829a488b438e9f9b756f15916891ef13b3f4563cccb4746fae50d8ee41ee",
+      "expectedLength": 171,
+      "actualLength": 171
+    },
+    {
+      "name": "Paragraph text/order preserved at 42",
+      "passed": true,
+      "expectedSha256": "4cb0215bfd1d99a2a196f538765b63215aeddcf4591694d1804c5be8163bec53",
+      "actualSha256": "4cb0215bfd1d99a2a196f538765b63215aeddcf4591694d1804c5be8163bec53",
+      "expectedLength": 24,
+      "actualLength": 24
+    },
+    {
+      "name": "Paragraph text/order preserved at 43",
+      "passed": true,
+      "expectedSha256": "df3fb4225aa535319e381bf7c5e2646710e2dab98144c3ba00609ecd59b9ef8d",
+      "actualSha256": "df3fb4225aa535319e381bf7c5e2646710e2dab98144c3ba00609ecd59b9ef8d",
+      "expectedLength": 302,
+      "actualLength": 302
+    },
+    {
+      "name": "Paragraph text/order preserved at 44",
+      "passed": true,
+      "expectedSha256": "1ff99287132aab306ef9002472c9641b3439c5c45bed4b3da11adaf9d773627a",
+      "actualSha256": "1ff99287132aab306ef9002472c9641b3439c5c45bed4b3da11adaf9d773627a",
+      "expectedLength": 27,
+      "actualLength": 27
+    },
+    {
+      "name": "Paragraph text/order preserved at 45",
+      "passed": true,
+      "expectedSha256": "68d2332f76d9ac57a7fefd3bce111dcee136b0ead655a1af45362e0b6b6221cc",
+      "actualSha256": "68d2332f76d9ac57a7fefd3bce111dcee136b0ead655a1af45362e0b6b6221cc",
+      "expectedLength": 228,
+      "actualLength": 228
+    },
+    {
+      "name": "Paragraph text/order preserved at 46",
+      "passed": true,
+      "expectedSha256": "dc81294b6a93fa26d4aeadf3610d1c53a2bee50f6984eb2caec6491f9c0165a1",
+      "actualSha256": "dc81294b6a93fa26d4aeadf3610d1c53a2bee50f6984eb2caec6491f9c0165a1",
+      "expectedLength": 12,
+      "actualLength": 12
+    },
+    {
+      "name": "Paragraph text/order preserved at 47",
+      "passed": true,
+      "expectedSha256": "74e85c67a713390ec6ba6a71bc050cad4994f73225c8a457a35b70ef1befe4eb",
+      "actualSha256": "74e85c67a713390ec6ba6a71bc050cad4994f73225c8a457a35b70ef1befe4eb",
+      "expectedLength": 391,
+      "actualLength": 391
+    },
+    {
+      "name": "Paragraph text/order preserved at 48",
+      "passed": true,
+      "expectedSha256": "35ad6d13da645ef4135eee59c9fabd7e7b6ee08e8d71b55dfe9f400d04f321ee",
+      "actualSha256": "35ad6d13da645ef4135eee59c9fabd7e7b6ee08e8d71b55dfe9f400d04f321ee",
+      "expectedLength": 28,
+      "actualLength": 28
+    },
+    {
+      "name": "Paragraph text/order preserved at 49",
+      "passed": true,
+      "expectedSha256": "53b3ddaccf58280049b1cf0ccc2d8c7d95157dc9f90ae9b48a029286df4bb24f",
+      "actualSha256": "53b3ddaccf58280049b1cf0ccc2d8c7d95157dc9f90ae9b48a029286df4bb24f",
+      "expectedLength": 222,
+      "actualLength": 222
+    },
+    {
+      "name": "Paragraph text/order preserved at 50",
+      "passed": true,
+      "expectedSha256": "726713c1b4f243235ea815dabc1a01d0ecc5450b3a6488215483bebb44943e3b",
+      "actualSha256": "726713c1b4f243235ea815dabc1a01d0ecc5450b3a6488215483bebb44943e3b",
+      "expectedLength": 27,
+      "actualLength": 27
+    },
+    {
+      "name": "Paragraph text/order preserved at 51",
+      "passed": true,
+      "expectedSha256": "db4c8cbe43369fb980383dd7db47b11a51fa3ecd1e7c0c59812446ba446dd187",
+      "actualSha256": "db4c8cbe43369fb980383dd7db47b11a51fa3ecd1e7c0c59812446ba446dd187",
+      "expectedLength": 278,
+      "actualLength": 278
+    },
+    {
+      "name": "Paragraph text/order preserved at 52",
+      "passed": true,
+      "expectedSha256": "922ce54973a6c132255c6020fb396f2ebb0ffb26804961fa740b85a40b63a1dd",
+      "actualSha256": "922ce54973a6c132255c6020fb396f2ebb0ffb26804961fa740b85a40b63a1dd",
+      "expectedLength": 17,
+      "actualLength": 17
+    },
+    {
+      "name": "Paragraph text/order preserved at 53",
+      "passed": true,
+      "expectedSha256": "6ae3c78fca01a88f4861b03c7eaf0d420d18fb576c71d367bd50392eb0e7aee8",
+      "actualSha256": "6ae3c78fca01a88f4861b03c7eaf0d420d18fb576c71d367bd50392eb0e7aee8",
+      "expectedLength": 21,
+      "actualLength": 21
+    },
+    {
+      "name": "Paragraph text/order preserved at 54",
+      "passed": true,
+      "expectedSha256": "4ebcb0304e27eb39c30a781e83989e36678ea8f32e784fe2bce2abca9d72a3a1",
+      "actualSha256": "4ebcb0304e27eb39c30a781e83989e36678ea8f32e784fe2bce2abca9d72a3a1",
+      "expectedLength": 191,
+      "actualLength": 191
+    },
+    {
+      "name": "Paragraph text/order preserved at 55",
+      "passed": true,
+      "expectedSha256": "60d732bb118c8a6592978d96d954e5808265171059aaa11936a877016b8e3175",
+      "actualSha256": "60d732bb118c8a6592978d96d954e5808265171059aaa11936a877016b8e3175",
+      "expectedLength": 15,
+      "actualLength": 15
+    },
+    {
+      "name": "Paragraph text/order preserved at 56",
+      "passed": true,
+      "expectedSha256": "659b8a5cec84159098d436eb700248a14e4f38000c017634b6f9f6da7c6ebec7",
+      "actualSha256": "659b8a5cec84159098d436eb700248a14e4f38000c017634b6f9f6da7c6ebec7",
+      "expectedLength": 137,
+      "actualLength": 137
+    },
+    {
+      "name": "Paragraph text/order preserved at 57",
+      "passed": true,
+      "expectedSha256": "fff016286d2f2d547ea72bf61a836eaacec3cc79a462a85811736fb5cc9267f1",
+      "actualSha256": "fff016286d2f2d547ea72bf61a836eaacec3cc79a462a85811736fb5cc9267f1",
+      "expectedLength": 17,
+      "actualLength": 17
+    },
+    {
+      "name": "Paragraph text/order preserved at 58",
+      "passed": true,
+      "expectedSha256": "7472af20459a529d735234405dd5a534b8727b858ff5a1190307c27149fc10bc",
+      "actualSha256": "7472af20459a529d735234405dd5a534b8727b858ff5a1190307c27149fc10bc",
+      "expectedLength": 122,
+      "actualLength": 122
+    },
+    {
+      "name": "Paragraph text/order preserved at 59",
+      "passed": true,
+      "expectedSha256": "bf95d198b71a17130a67301e31c1b06855b23c6a2a6a0103a4fdd54ceab34646",
+      "actualSha256": "bf95d198b71a17130a67301e31c1b06855b23c6a2a6a0103a4fdd54ceab34646",
+      "expectedLength": 15,
+      "actualLength": 15
+    },
+    {
+      "name": "Paragraph text/order preserved at 60",
+      "passed": true,
+      "expectedSha256": "63bc924d0346d6fe5a59897a9b3a10a968a4c164272385a0e4ab6cee5da5725c",
+      "actualSha256": "63bc924d0346d6fe5a59897a9b3a10a968a4c164272385a0e4ab6cee5da5725c",
+      "expectedLength": 273,
+      "actualLength": 273
+    },
+    {
+      "name": "Paragraph text/order preserved at 61",
+      "passed": true,
+      "expectedSha256": "e759bf5e3a9fa7defc404c27d6a7a97b8c6e59142f53e8b1c43fa577cf10f333",
+      "actualSha256": "e759bf5e3a9fa7defc404c27d6a7a97b8c6e59142f53e8b1c43fa577cf10f333",
+      "expectedLength": 32,
+      "actualLength": 32
+    },
+    {
+      "name": "Paragraph text/order preserved at 62",
+      "passed": true,
+      "expectedSha256": "32b5da3183a10bfe51beb3a2160e56f4b9df7de3aff9fdec9a0e9a051c9fb434",
+      "actualSha256": "32b5da3183a10bfe51beb3a2160e56f4b9df7de3aff9fdec9a0e9a051c9fb434",
+      "expectedLength": 284,
+      "actualLength": 284
+    },
+    {
+      "name": "Paragraph text/order preserved at 63",
+      "passed": true,
+      "expectedSha256": "f9a4939a7bad0c0bd0bd1a6c2533f275a4338339b691babf4d1e7598c8e22aec",
+      "actualSha256": "f9a4939a7bad0c0bd0bd1a6c2533f275a4338339b691babf4d1e7598c8e22aec",
+      "expectedLength": 12,
+      "actualLength": 12
+    },
+    {
+      "name": "Paragraph text/order preserved at 64",
+      "passed": true,
+      "expectedSha256": "153c2bc187139d512d4d8740204f4e9cbfb06759fe159dc437468e0047b7df63",
+      "actualSha256": "153c2bc187139d512d4d8740204f4e9cbfb06759fe159dc437468e0047b7df63",
+      "expectedLength": 232,
+      "actualLength": 232
+    },
+    {
+      "name": "Paragraph text/order preserved at 65",
+      "passed": true,
+      "expectedSha256": "1e387d56586456b030e1dd0bb7a487cfa885cae588c39763c2298b162adb8b11",
+      "actualSha256": "1e387d56586456b030e1dd0bb7a487cfa885cae588c39763c2298b162adb8b11",
+      "expectedLength": 11,
+      "actualLength": 11
+    },
+    {
+      "name": "Paragraph text/order preserved at 66",
+      "passed": true,
+      "expectedSha256": "b0f39ee2b3abc54ad7b0d56b56beab221f55cca25a6eec7959e85cf4ba5cc0ad",
+      "actualSha256": "b0f39ee2b3abc54ad7b0d56b56beab221f55cca25a6eec7959e85cf4ba5cc0ad",
+      "expectedLength": 109,
+      "actualLength": 109
+    },
+    {
+      "name": "Paragraph text/order preserved at 67",
+      "passed": true,
+      "expectedSha256": "d758d11009ee0920bf4c27b0d824cc41c4bafed8d97ee374ab9db8250ca31501",
+      "actualSha256": "d758d11009ee0920bf4c27b0d824cc41c4bafed8d97ee374ab9db8250ca31501",
+      "expectedLength": 39,
+      "actualLength": 39
+    },
+    {
+      "name": "Paragraph text/order preserved at 68",
+      "passed": true,
+      "expectedSha256": "19c5059e28d55759b9cf27bc06b19a3bde91a8af733ee9158fea6b19b77303e6",
+      "actualSha256": "19c5059e28d55759b9cf27bc06b19a3bde91a8af733ee9158fea6b19b77303e6",
+      "expectedLength": 315,
+      "actualLength": 315
+    },
+    {
+      "name": "Paragraph text/order preserved at 69",
+      "passed": true,
+      "expectedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "actualSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedLength": 0,
+      "actualLength": 0
+    },
+    {
+      "name": "Paragraph text/order preserved at 70",
+      "passed": true,
+      "expectedSha256": "dcd1d5223f73b3a965c07e3ff5dbee3eedcfedb806686a05b9b3868a2c3d6d50",
+      "actualSha256": "dcd1d5223f73b3a965c07e3ff5dbee3eedcfedb806686a05b9b3868a2c3d6d50",
+      "expectedLength": 4,
+      "actualLength": 4
+    },
+    {
+      "name": "Paragraph text/order preserved at 71",
+      "passed": true,
+      "expectedSha256": "14736a2eb9f4159f4b6b86f192c3c222243fd9659aadf2ecc0139e3d72bed85c",
+      "actualSha256": "14736a2eb9f4159f4b6b86f192c3c222243fd9659aadf2ecc0139e3d72bed85c",
+      "expectedLength": 4,
+      "actualLength": 4
+    },
+    {
+      "name": "Paragraph text/order preserved at 72",
+      "passed": true,
+      "expectedSha256": "5304ab98e5815a35d33c39ddd9557ecf39e7902f29f1c132da4e69c265e9b9bf",
+      "actualSha256": "5304ab98e5815a35d33c39ddd9557ecf39e7902f29f1c132da4e69c265e9b9bf",
+      "expectedLength": 10,
+      "actualLength": 10
+    },
+    {
+      "name": "Paragraph text/order preserved at 73",
+      "passed": true,
+      "expectedSha256": "15b61974b2707a7b3d4201385e0f01f4ff5eb1f17c5639d98788ee5add2025cd",
+      "actualSha256": "15b61974b2707a7b3d4201385e0f01f4ff5eb1f17c5639d98788ee5add2025cd",
+      "expectedLength": 8,
+      "actualLength": 8
+    },
+    {
+      "name": "Paragraph text/order preserved at 74",
+      "passed": true,
+      "expectedSha256": "4fa8c1cdf83eb36e391f810620bfe090be6d41177e9d5dafcdde9de957fd3460",
+      "actualSha256": "4fa8c1cdf83eb36e391f810620bfe090be6d41177e9d5dafcdde9de957fd3460",
+      "expectedLength": 13,
+      "actualLength": 13
+    },
+    {
+      "name": "Paragraph text/order preserved at 75",
+      "passed": true,
+      "expectedSha256": "80547534751404fcdb0d25e398219f655e0af4ad85478bc4f1f20eb1a7741657",
+      "actualSha256": "80547534751404fcdb0d25e398219f655e0af4ad85478bc4f1f20eb1a7741657",
+      "expectedLength": 16,
+      "actualLength": 16
+    },
+    {
+      "name": "Paragraph text/order preserved at 76",
+      "passed": true,
+      "expectedSha256": "729bb48d0f86a9e240a9839bf8c50f62f7ed973338514432666cf53c5d30c9ca",
+      "actualSha256": "729bb48d0f86a9e240a9839bf8c50f62f7ed973338514432666cf53c5d30c9ca",
+      "expectedLength": 11,
+      "actualLength": 11
+    },
+    {
+      "name": "Paragraph text/order preserved at 77",
+      "passed": true,
+      "expectedSha256": "5aa34886f7f3741de8460690b636f4c8b7c2044df88e2e8adbb4f7e6f8534931",
+      "actualSha256": "5aa34886f7f3741de8460690b636f4c8b7c2044df88e2e8adbb4f7e6f8534931",
+      "expectedLength": 13,
+      "actualLength": 13
+    },
+    {
+      "name": "Paragraph text/order preserved at 78",
+      "passed": true,
+      "expectedSha256": "7e3d89811312ed290e4d1e50b7edbeea816a31d0b586c5e85c16c9c4c6d22ebe",
+      "actualSha256": "7e3d89811312ed290e4d1e50b7edbeea816a31d0b586c5e85c16c9c4c6d22ebe",
+      "expectedLength": 9,
+      "actualLength": 9
+    },
+    {
+      "name": "Paragraph text/order preserved at 79",
+      "passed": true,
+      "expectedSha256": "3ae4491e46eb7215ec5e45aadd0aa2ffd767fd43197a76cf87e1e756dd165015",
+      "actualSha256": "3ae4491e46eb7215ec5e45aadd0aa2ffd767fd43197a76cf87e1e756dd165015",
+      "expectedLength": 15,
+      "actualLength": 15
+    },
+    {
+      "name": "Paragraph text/order preserved at 80",
+      "passed": true,
+      "expectedSha256": "fb9ef894175c327470f768d95ca7bee65e19853a0eaace3805f8a7b8a12270da",
+      "actualSha256": "fb9ef894175c327470f768d95ca7bee65e19853a0eaace3805f8a7b8a12270da",
+      "expectedLength": 7,
+      "actualLength": 7
+    },
+    {
+      "name": "Paragraph text/order preserved at 81",
+      "passed": true,
+      "expectedSha256": "815eca977c7d75f72bd23bccc91bc6f9931a42fbf03451eb0d7db8d2a704d94f",
+      "actualSha256": "815eca977c7d75f72bd23bccc91bc6f9931a42fbf03451eb0d7db8d2a704d94f",
+      "expectedLength": 8,
+      "actualLength": 8
+    },
+    {
+      "name": "Paragraph text/order preserved at 82",
+      "passed": true,
+      "expectedSha256": "2bba1d047eb0226670fc59b93d997ead92f70095b96c1c40ab00ae3b642a3cde",
+      "actualSha256": "2bba1d047eb0226670fc59b93d997ead92f70095b96c1c40ab00ae3b642a3cde",
+      "expectedLength": 11,
+      "actualLength": 11
+    },
+    {
+      "name": "Paragraph text/order preserved at 83",
+      "passed": true,
+      "expectedSha256": "9c615ebbe618507096d7accfbad7b367889faa80148e508720fc1ed969898b56",
+      "actualSha256": "9c615ebbe618507096d7accfbad7b367889faa80148e508720fc1ed969898b56",
+      "expectedLength": 11,
+      "actualLength": 11
+    },
+    {
+      "name": "Paragraph text/order preserved at 84",
+      "passed": true,
+      "expectedSha256": "0072e6b934945d5ba08f9729e00847391922f2f6026a435e704634fb93bf4502",
+      "actualSha256": "0072e6b934945d5ba08f9729e00847391922f2f6026a435e704634fb93bf4502",
+      "expectedLength": 6,
+      "actualLength": 6
+    },
+    {
+      "name": "Paragraph text/order preserved at 85",
+      "passed": true,
+      "expectedSha256": "ecc0e7dc084f141b29479058967d0bc07dee25d9690a98ee4e6fdad5168274d7",
+      "actualSha256": "ecc0e7dc084f141b29479058967d0bc07dee25d9690a98ee4e6fdad5168274d7",
+      "expectedLength": 6,
+      "actualLength": 6
+    },
+    {
+      "name": "Paragraph text/order preserved at 86",
+      "passed": true,
+      "expectedSha256": "eeb32cad9a48551625c3ebeb00f9507ffd7b8b1aa185ddc29c0d397bbcbb625a",
+      "actualSha256": "eeb32cad9a48551625c3ebeb00f9507ffd7b8b1aa185ddc29c0d397bbcbb625a",
+      "expectedLength": 10,
+      "actualLength": 10
+    },
+    {
+      "name": "Paragraph text/order preserved at 87",
+      "passed": true,
+      "expectedSha256": "f7ffdd206e7ee16b70acb2f0f00fbfd5d4f000766c9d02d286ca9e8dfa0f0486",
+      "actualSha256": "f7ffdd206e7ee16b70acb2f0f00fbfd5d4f000766c9d02d286ca9e8dfa0f0486",
+      "expectedLength": 12,
+      "actualLength": 12
+    },
+    {
+      "name": "Paragraph text/order preserved at 88",
+      "passed": true,
+      "expectedSha256": "94c116ee118a72998db6cd10b586a9ef112a1891ff8ced8c7b2944ff62453b5f",
+      "actualSha256": "94c116ee118a72998db6cd10b586a9ef112a1891ff8ced8c7b2944ff62453b5f",
+      "expectedLength": 9,
+      "actualLength": 9
+    },
+    {
+      "name": "Paragraph text/order preserved at 89",
+      "passed": true,
+      "expectedSha256": "ffa98e02f7ce33fc935f02b3b668f6ad57661814dade5f41453fbee2b70cdd95",
+      "actualSha256": "ffa98e02f7ce33fc935f02b3b668f6ad57661814dade5f41453fbee2b70cdd95",
+      "expectedLength": 6,
+      "actualLength": 6
+    },
+    {
+      "name": "Appended page-part headings, all page-part text and missing-page placeholders match independent source",
+      "passed": true,
+      "extraParagraphCount": 6,
+      "extraTextSha256": "96b9cee922c1f9e8779fdf28b7678b5c8957f4386136175c369e7e0be4c5d3d9"
+    },
+    {
+      "name": "All table rows, cells, spans and cell text match independent source",
+      "passed": true
+    },
+    {
+      "name": "Every original media byte sequence preserved",
+      "passed": true
+    },
+    {
+      "name": "DOCX export/reimport retains all paragraph text, numbering labels and order",
+      "passed": true
+    },
+    {
+      "name": "DOCX export/reimport preserves semantic structure and table spans",
+      "passed": true
+    },
+    {
+      "name": "DOCX export/reimport preserves image bytes",
+      "passed": true
+    },
+    {
+      "name": "User original input remains unchanged",
+      "passed": true
+    }
+  ],
+  "actualNumbering": [
+    {
+      "paragraphIndex": 3,
+      "label": "1."
+    },
+    {
+      "paragraphIndex": 4,
+      "label": "1.1."
+    },
+    {
+      "paragraphIndex": 5,
+      "label": "1.2."
+    },
+    {
+      "paragraphIndex": 7,
+      "label": "1."
+    },
+    {
+      "paragraphIndex": 8,
+      "label": "2."
+    },
+    {
+      "paragraphIndex": 9,
+      "label": "a."
+    },
+    {
+      "paragraphIndex": 10,
+      "label": "b."
+    },
+    {
+      "paragraphIndex": 11,
+      "label": "c."
+    },
+    {
+      "paragraphIndex": 12,
+      "label": "d."
+    },
+    {
+      "paragraphIndex": 13,
+      "label": "e."
+    },
+    {
+      "paragraphIndex": 14,
+      "label": "f."
+    },
+    {
+      "paragraphIndex": 15,
+      "label": "g."
+    },
+    {
+      "paragraphIndex": 16,
+      "label": "3."
+    },
+    {
+      "paragraphIndex": 19,
+      "label": "1."
+    },
+    {
+      "paragraphIndex": 20,
+      "label": "2."
+    },
+    {
+      "paragraphIndex": 21,
+      "label": "3."
+    },
+    {
+      "paragraphIndex": 22,
+      "label": "4."
+    },
+    {
+      "paragraphIndex": 27,
+      "label": "1."
+    },
+    {
+      "paragraphIndex": 28,
+      "label": "2."
+    },
+    {
+      "paragraphIndex": 29,
+      "label": "3."
+    },
+    {
+      "paragraphIndex": 30,
+      "label": "4."
+    }
+  ],
+  "imported": {
+    "paragraphs": 96,
+    "nodeCounts": {
+      "doc": 1,
+      "heading": 22,
+      "text": 143,
+      "paragraph": 74,
+      "orderedList": 4,
+      "listItem": 18,
+      "hardBreak": 1,
+      "table": 3,
+      "tableRow": 7,
+      "tableCell": 25,
+      "image": 1
+    },
+    "bodyTextExcludingStaticLabelsSha256": "aa8d50734d1eb44324e2240f86ccdd7ebbe950a029669d1b5b3215a679cd7ebf",
+    "images": [
+      {
+        "mimeType": "image/png",
+        "bytes": 6764,
+        "sha256": "bd1bc641991f8bcbd0ff4172209e821f293b624ae01f0e4c13a137328768534a"
+      }
+    ],
+    "warnings": [
+      "按内容语义导入，字体、字号、颜色和段落间距使用编辑器默认值；原始分页不保证保留，请保留原 DOCX",
+      "原文页眉、页脚的页码域未保存实际数字，已用 [页码] / [总页数] 占位并转为普通文字；不会随编辑或分页自动更新，请保留原 DOCX",
+      "有已保存显示值的目录、页码及页码引用按原值转为普通文字；不会随编辑或分页自动更新，原页码可能不适用于当前文档",
+      "原文各页眉、页脚的内容已各保留一次并附在正文末尾，不再按页重复；已保存的页码按原值保留，缺失值另行提示",
+      "组合编号整组已转换为静态编号文字，不会自动续编；保留层级缩进，原制表间隔改为单个空格，请保留原 DOCX",
+      "列表编号后的右括号已转换为句点",
+      "表格保留内容和合并，列宽、边框、底色及跨页设置使用编辑器默认值",
+      "普通换行保留，原文的手动分页与页面布局不保证保留",
+      "图片保留原始字节，显示宽度不超过 520px；浮动、裁剪和原排版尺寸不保留",
+      "表格保留内容和合并结构，列宽、行高、底色、边框与单元格设置使用编辑器默认值"
+    ]
+  },
+  "repeatPassed": true
+}

@@ -123,7 +123,7 @@ test("仅伪装 Mewoc ID 不放行：未知属性、活动引用、额外子节�
     xml => xml.replace("<w:pict>", "<w:pict onclick=\"alert(1)\">"),
     xml => xml.replace("<v:shape id=", "<v:shape href=\"https://example.invalid/\" id="),
     xml => xml.replace("<v:fill opacity=", "<v:fill type=\"gradient\" opacity="),
-    xml => xml.replace("<v:textpath on=\"t\"/>", "<v:textpath on=\"t\" string=\"额外艺术字\"/>"),
+    xml => xml.replace("<v:textpath on=\"t\" fitshape=\"t\"/>", "<v:textpath on=\"t\" fitshape=\"t\" string=\"额外艺术字\"/>"),
     xml => xml.replace("</v:shape>", "<v:imagedata r:id=\"hidden\"/></v:shape>"),
     xml => xml.replace("</v:shape>", "<v:textbox><w:txbxContent><w:p><w:r><w:t>不能丢失</w:t></w:r></w:p></w:txbxContent></v:textbox></v:shape>"),
     xml => xml.replace("</v:shape>", "<v:textpath on=\"t\" string=\"不能丢失\"/></v:shape>"),
@@ -164,11 +164,11 @@ test("水印属性超出共享契约时留 DOM 并拒绝，不能截断长文字
   }
 })
 
-test("marker、形状类型配对与 ID 唯一性必须成立，标准 Word 艺术字不按 Mewoc 水印吞掉", async () => {
+test("marker、标准形状类型引用与形状 ID 唯一性必须成立，普通 Word 艺术字不按 Mewoc 水印吞掉", async () => {
   for (const mutation of [
     xml => xml.replaceAll("MewocWatermark", "WordWatermark"),
-    xml => xml.replace(/type="#MewocWatermarkType_[a-f\d]+"/, "type=\"#missing\""),
-    xml => xml.replace(/(<v:shape id=")[^"]+/, "$1MewocWatermarkShape_11111111111111111111111111111111"),
+    xml => xml.replace("type=\"#_x0000_t136\"", "type=\"#missing\""),
+    xml => xml.replace(/(<v:shape id=")[^"]+/, "$1MewocWatermarkShape_invalid"),
     xml => xml.replace("coordsize=\"21600,21600\"", "coordsize=\"2000,2000\"")
   ]) {
     const value = await fixture()

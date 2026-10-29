@@ -11,6 +11,7 @@ import { runStressChecks } from "./stress-checks.js"
 import { exportVerification } from "./verification-export.js"
 import { requireVisibleBrowser } from "./browser-visibility.js"
 import { showNativePaginationExample } from "./native-pagination-example.jsx"
+import { runImePaginationChecks } from "./ime-pagination-checks.jsx"
 import { runAssetPersistenceChecks } from "./asset-persistence-checks.js"
 import { runDocxImportChecks } from "./docx-import-checks.jsx"
 import { runDocxChecks } from "./docx-checks.jsx"
@@ -118,6 +119,11 @@ function BrowserVerification() {
         catch (error) { setResults(items => [...items, { name: "原生分页补验入口", passed: false, error: error.message }]) }
         finally { setRunning(false) }
       }}>打开混合长文原生补验</button>
+      <button type="button" disabled={running || !!results.length} onClick={async () => {
+        setRunning(true)
+        try { await runImePaginationChecks(result => setResults(items => [...items, result])) }
+        finally { setRunning(false) }
+      }}>运行输入法确认分页回归</button>
       <button type="button" disabled={running || !!results.length} onClick={() => handleRun(true)}>运行压力验收</button>
       <button type="button" disabled={running || !!results.length} onClick={async () => {
         setRunning(true)

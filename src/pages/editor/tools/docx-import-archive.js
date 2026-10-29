@@ -14,6 +14,7 @@ import { appendDocxPageContent, createDocxChartReader } from "./docx-import-repo
 import { readDocxPageSettings } from "./docx-import-page.js"
 import { extractDocxWatermark } from "./docx-import-watermark.js"
 import { extractDocxPageFurniture, normalizeDocxCurrentPageFields } from "./docx-import-furniture.js"
+import { normalizeDocxTableExceptions } from "./docx-import-table.js"
 
 // 这些元素具有当前编辑器无法完整表示的独立语义，不能当作普通样式略过。
 const UNSUPPORTED = {
@@ -118,6 +119,7 @@ export async function readDocxImportArchive(source, warnings, signal) {
   appendDocxPageContent(parts, warnings)
   const charts = createDocxChartReader(parts, warnings, embeddedFiles)
   normalizeDocxLegacyContent(xml, warnings, charts.read)
+  normalizeDocxTableExceptions(xml, warnings)
   // 只有成功读取缓存的图表所引用的 XLSX 可作为不执行的附属数据被略过。
   // 其他嵌入文件仍拒绝，不能因放开图表而把任意 OLE 对象静默丢弃。
   if ([...embeddedFiles].some(name => !charts.allowedEmbeddings.has(name))) throw new Error("暂不支持独立的嵌入文件，仅支持读取图表已有缓存，请保留原 DOCX")

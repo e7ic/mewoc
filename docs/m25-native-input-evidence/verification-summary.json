@@ -1,0 +1,333 @@
+{
+  "recordedAt": "2026-10-29T07:42:10.158989+00:00",
+  "status": "m25-complete-wps-excluded-by-user",
+  "nativeImePassed": true,
+  "physicalPointerPassed": true,
+  "humanReport": {
+    "inputMethod": "双拼",
+    "candidateNormal": true,
+    "confirmation": "确认后会出现抖动，瞬间从上一页抖动下来"
+  },
+  "beforeNativeTrace": {
+    "events": 698,
+    "dropped": 0,
+    "confirmationCases": 2,
+    "caretExcursionPx": 105.140625,
+    "file": "shuangpin-before-fix.json",
+    "provenance": "Human Shuangpin report; mixed trusted flags, including untrusted compositionend; not all events claimed as hardware evidence."
+  },
+  "fix": "Clear old gaps, measure natural lines and refill pagination within the same animation frame. Pending layouts use planned geometry until the populated DOM can be measured.",
+  "checks": {
+    "node": {
+      "passed": 883,
+      "total": 883
+    },
+    "lint": true,
+    "build": true,
+    "productionContainsNativeRecorder": false,
+    "browserPagination": {
+      "passed": 75,
+      "total": 75,
+      "surface": "Codex in-app browser"
+    },
+    "imeRegression": {
+      "passed": true,
+      "cases": 1,
+      "synthetic": true,
+      "tolerancePx": 2,
+      "phases": [
+        {
+          "name": "confirm",
+          "upwardExcursionPx": 0,
+          "downwardExcursionPx": 0,
+          "noPaintableJump": true,
+          "frames": 32
+        },
+        {
+          "name": "undo",
+          "upwardExcursionPx": 0,
+          "downwardExcursionPx": 0,
+          "noPaintableJump": true,
+          "frames": 32
+        },
+        {
+          "name": "redo",
+          "upwardExcursionPx": 0,
+          "downwardExcursionPx": 0,
+          "noPaintableJump": true,
+          "frames": 32
+        },
+        {
+          "name": "undo-again",
+          "upwardExcursionPx": 0,
+          "downwardExcursionPx": 0,
+          "noPaintableJump": true,
+          "frames": 32
+        },
+        {
+          "name": "cancel",
+          "upwardExcursionPx": 0,
+          "downwardExcursionPx": 0,
+          "noPaintableJump": true,
+          "frames": 32
+        }
+      ]
+    }
+  },
+  "retest": {
+    "documentId": "cd049fbf-b6be-443f-8dc9-a0f5202f7fad",
+    "pageCount": 27,
+    "pending": false,
+    "originalMatches": true,
+    "initialization": {
+      "reopenedFromSavedRecord": true,
+      "storageVersion": 1,
+      "undoDepth": 0,
+      "redoDepth": 0,
+      "originalMatches": true,
+      "assets": 3
+    },
+    "question": "Use Shuangpin to enter 中文验收, pause candidate then confirm; report visual jump before further undo operations."
+  },
+  "remaining": [],
+  "sourceSha256": {
+    "src/pages/editor/extensions/page-pagination.js": "1b82248282e756efecb5371c301d6076d2b8b89bb216ac0e21fcc7572bdf30ee",
+    "tests/ime-pagination-checks.jsx": "7c9bab050c1d6bf1056898b1d1999bd1e63d4927e7bf6fb30d9d8a765a426575",
+    "tests/native-input-recorder.js": "324055104dc43111368a1bd5cc3d8650f2fabaa15088377a458d89798d0a98a5",
+    "tests/native-pagination-example.jsx": "5b462bb98f393f890d933db84d14715b2895fbcb78b24b7554b79a1ad3ed2655"
+  },
+  "humanRetestReport": {
+    "recordedAt": "2026-10-29T07:44:38.874319+00:00",
+    "inputMethod": "双拼",
+    "candidateNormal": true,
+    "confirmationVisualJump": false,
+    "answer": "不再抖动，候选正常",
+    "eventTraceAvailable": false,
+    "limitation": "On readback the fixture panel was absent and the browser showed waiting-to-run before evidence export; exact cause not established. Human visual confirmation retained, remaining history/cancel sequence to be collected in a new fixture."
+  },
+  "updatedAt": "2026-10-29T16:23:50.125032+08:00",
+  "afterNativeTrace": {
+    "file": "shuangpin-after-fix.json",
+    "analysisFile": "shuangpin-after-analysis.json",
+    "sourceSha256": "bf5a8cf03404a061027d564009f07c2d630108d0653376aa98b2b13ae6a9c9c3",
+    "documentId": "abb3bf03-721d-4fef-b6d1-a23f25258f2e",
+    "events": 1382,
+    "dropped": 0,
+    "sessionChanged": false,
+    "humanAnswer": "都正常，最后恢复原文",
+    "confirmationCases": 3,
+    "committedTextLengths": [
+      4,
+      19,
+      46
+    ],
+    "undoCount": 3,
+    "undoSequences": [
+      129,
+      525,
+      1370
+    ],
+    "eachUndoRestoresBaseline": true,
+    "redoObserved": false,
+    "escapeObserved": false,
+    "exactRequestedSequenceProven": false,
+    "postFrameGeometry": {
+      "groups": [
+        {
+          "renderGroup": 1,
+          "postFrameCount": 14,
+          "firstPostFrameAfterEndMs": 102.3,
+          "lastPostFrameAfterEndMs": 302.1,
+          "postFrameCaretRangePx": 0.0,
+          "fixedModelSelection": true,
+          "fixedDomSelection": true,
+          "scrollOffsetsUnchangedWithinPostFrames": true
+        },
+        {
+          "renderGroup": 2,
+          "postFrameCount": 17,
+          "firstPostFrameAfterEndMs": 98.5,
+          "lastPostFrameAfterEndMs": 307.8,
+          "postFrameCaretRangePx": 0.0,
+          "fixedModelSelection": true,
+          "fixedDomSelection": true,
+          "scrollOffsetsUnchangedWithinPostFrames": true
+        },
+        {
+          "renderGroup": 3,
+          "postFrameCount": 17,
+          "firstPostFrameAfterEndMs": 58.4,
+          "lastPostFrameAfterEndMs": 302.5,
+          "postFrameCaretRangePx": 0.0,
+          "fixedModelSelection": true,
+          "fixedDomSelection": true,
+          "scrollOffsetsUnchangedWithinPostFrames": true
+        }
+      ],
+      "samples": 48,
+      "maximumWithinGroupCaretRangePx": 0,
+      "units": "viewport CSS pixels",
+      "onlyPostRafSamplesUsed": true,
+      "limitation": "The first 58.4-102.3ms after each confirmation are not covered by post-RAF samples. These snapshots do not prove every physical screen frame; human visual feedback is separate evidence. No post-frame groups cover undo actions."
+    },
+    "finalContent": {
+      "snapshotExactlyEqualsBaseline": true,
+      "paperSettingsEqualAcrossCheckpointsAndSnapshot": true,
+      "resourceNodesExactlyEqualBaseline": true,
+      "manifestIdsExactlyMatchBaselineResourceReferences": true,
+      "resourceManifestCount": 3,
+      "finalPageCount": 27,
+      "pending": false,
+      "composing": false,
+      "assetByteEqualityReverified": false
+    },
+    "provenance": {
+      "trustedCountsByEventType": {
+        "compositionstart": {
+          "true": 3
+        },
+        "compositionupdate": {
+          "true": 124
+        },
+        "compositionend": {
+          "false": 3
+        },
+        "beforeinput": {
+          "true": 124
+        },
+        "input": {
+          "true": 124
+        },
+        "keydown": {
+          "true": 130
+        }
+      },
+      "note": "Human Shuangpin report with mixed trusted flags. isTrusted is not proof of physical hardware provenance; every captured compositionend is false."
+    }
+  },
+  "physicalDragRetest": {
+    "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+    "phase": "跨页拖选",
+    "status": "passed-for-cross-page-and-cross-window-release-return-reselection",
+    "readyStateFile": "physical-drag-ready-state.json",
+    "readyScreenshotFile": "physical-drag-ready.png",
+    "originalMatches": true,
+    "pageCount": 27,
+    "pending": false,
+    "initialization": {
+      "reopenedFromSavedRecord": true,
+      "storageVersion": 1,
+      "undoDepth": 0,
+      "redoDepth": 0,
+      "originalMatches": true,
+      "assets": 3
+    },
+    "crossWindowReleaseObserved": true
+  },
+  "physicalOperatorReports": {
+    "crossPage": "能选中两页文字，稳定无跳动",
+    "outsideWindowRelease": "松手后停止，返回和重新拖选都正常",
+    "recordedAt": "2026-10-29T07:55:59.737431+00:00"
+  },
+  "physicalObserved": {
+    "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+    "crossPageSelection": {
+      "from": 220,
+      "to": 302,
+      "boundary": 261
+    },
+    "finalOriginalMatches": true,
+    "finalPending": false,
+    "raw": "physical-window-release.json",
+    "analysisStatus": "passed-for-cross-page-and-cross-window-release-return-reselection",
+    "analysis": "physical-window-release-analysis.json",
+    "limits": [
+      "isTrusted is not used alone as hardware proof",
+      "pointermove recording is throttled",
+      "No independent pointercancel path claimed",
+      "The reported 3-second hold is not backed by continuous timer sampling"
+    ]
+  },
+  "historyRecovery": {
+    "method": "Tool clicks on production toolbar after human Shuangpin input",
+    "undoRedoUndoFourCharactersPassed": true,
+    "analysis": "toolbar-history-analysis.json",
+    "subsequentUndoRestoredWholeBaseline": true,
+    "baselineProof": "native-pre-cancel-clean.json"
+  },
+  "nativeImeScope": {
+    "humanShuangpinCandidateConfirmationUndoEscapePassed": true,
+    "redoSource": "Tool clicks on production toolbar after human input",
+    "humanCmdShiftZValidated": false,
+    "confirmationGeometryBoundary": "48 post-RAF samples, first samples 58.4-102.3ms after confirmation; human visual feedback independently reported no jump.",
+    "independentPointercancelValidated": false
+  },
+  "nativeEscape": {
+    "raw": "native-escape-final.json",
+    "analysis": "native-escape-analysis.json",
+    "passed": true,
+    "humanFeedback": "User reported the candidate appeared and disappeared after Escape. This human visual feedback is distinct from the recorded event flags.",
+    "keyASequence": 2125,
+    "escapeSequence": 2137,
+    "emptyCompositionEndSequence": 2146,
+    "snapshotExactlyEqualsBaseline": true,
+    "postFrameSamples": 14,
+    "caretRangePx": 0.0,
+    "firstPostFrameAfterEndMs": 63.9,
+    "rawDroppedEvents": 176,
+    "combinedSequenceRange": [
+      1,
+      2177
+    ],
+    "combinedContinuous": true
+  },
+  "saveAndCleanup": {
+    "savedRaw": "native-saved-final.json",
+    "savedSnapshotExactlyEqualsBaseline": true,
+    "saveAction": "Tool clicked production Save button; UI confirmed saved to this browser.",
+    "reloadSeparatelyVerified": false,
+    "finalState": "native-final-state.json",
+    "finalScreenshot": "native-final-body.jpg",
+    "cleanupFile": "cleanup.json",
+    "cleanup": {
+      "observedAt": "2026-10-29T08:05:59.543Z",
+      "status": [
+        "等待运行"
+      ],
+      "remainingFixturePanels": 0,
+      "scope": "Completed fixture 4fd753fa-a76d-490a-9b21-2fc0f5c2b848 ended via normal cleanup; no claim that the entire test database is empty."
+    },
+    "temporaryChromeTabsClosed": 2,
+    "cleanupScope": "Only completed fixture 4fd753fa-a76d-490a-9b21-2fc0f5c2b848; no claim the entire historical test database is empty."
+  },
+  "currentUserTaskComplete": true,
+  "m25Complete": true,
+  "wpsAvailability": {
+    "checkedDirectories": [
+      "/Applications",
+      "/Users/e7ic/Applications"
+    ],
+    "appNamePatterns": [
+      "wps",
+      "kingsoft"
+    ],
+    "matchingAppFound": false,
+    "scope": "Read-only check of these two common application directories; not a whole-machine absence claim.",
+    "installationStarted": false
+  },
+  "milestoneClosure": {
+    "date": "2026-10-29",
+    "userInstruction": "WPS 不看了，M25 收尾",
+    "scopeExclusions": [
+      {
+        "id": "wps-native-roundtrip",
+        "name": "WPS 原生打开、编辑保存和导回",
+        "status": "excluded-by-user",
+        "executed": false,
+        "validationResult": "not-validated",
+        "blocksClosure": false
+      }
+    ],
+    "summary": "../m25-closure-evidence/final-verification-summary.json"
+  }
+}

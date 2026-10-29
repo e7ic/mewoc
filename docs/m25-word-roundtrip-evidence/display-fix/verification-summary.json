@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2026-10-29T06:50:16.054327+00:00",
+  "codeBase": "6426c1d plus existing uncommitted work and this focused repair",
+  "environment": {
+    "word": "16.100.2",
+    "nativePdfCreator": "Word",
+    "nativePdfProducer": "macOS 27.0 Quartz PDFContext",
+    "localAcceptanceUrl": "http://127.0.0.1:4182/"
+  },
+  "result": "Word watermark generation and base26 alphabetic label repairs verified; full M25 remains open",
+  "checks": {
+    "node": {
+      "passed": 883,
+      "failed": 0
+    },
+    "lintExitCode": 0,
+    "buildExitCode": 0,
+    "diffCheckExitCode": 0,
+    "content": {
+      "passed": 24,
+      "failed": 0
+    },
+    "pdfContent": {
+      "passed": 16,
+      "failed": 0
+    },
+    "nativePdfPagesVisuallyReviewed": 30,
+    "formalBrowserImportSaveReload": true,
+    "browserDecodedImage": [
+      240,
+      120
+    ],
+    "list": {
+      "type": "a",
+      "start": 7,
+      "items": 48,
+      "labels": "g through bb"
+    },
+    "ndaOriginalSha256Unchanged": "bbbebbe2d0663fe5766a239fd5a6570a92cdf5f8af114d61ea8b94a083e6e519"
+  },
+  "watermark": {
+    "fullyVisiblePages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      30
+    ],
+    "partiallyVisiblePages": [
+      29
+    ],
+    "occludedPages": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "boundary": "Watermark stays behind body content. Opaque quote/details/code backgrounds cover it on pages 20–28 and partly on page 29. This is not a claim of watermark visibility on every page."
+  },
+  "numberingBoundary": "Export segments alphabetic lists every 26 values. Cross-segment insertion/deletion in Word requires exporting again from Mewoc; this is disclosed in the export UI. Unknown or inconsistent segment metadata is rejected.",
+  "workflow": [
+    "Formal browser export to DOCX",
+    "Open temporary copy in Word, append unique M25_WORD_FINAL_20261029 marker and save with Cmd+S",
+    "Copy native saved bytes unchanged into evidence",
+    "Word Print PDF: open in Preview, then save native PDF into evidence",
+    "Formal Import Word chooser, create new document, save and reload",
+    "Download Mewoc JSON backup through toolbar and run independent content comparisons"
+  ],
+  "pdfMetadataNote": "PDF Title retains m25-letter-tagged-resaved from Word document metadata. Identity is established by SHA256, actual 30-page content and the final unique marker, not this stale title.",
+  "cleanup": {
+    "temporaryFixtureId": "91f37117-bf3e-4edb-97bc-1d7d2aba9827",
+    "fixtureEndedThroughProductButton": true,
+    "fixtureTabClosed": true,
+    "formalImportDocumentRetained": "M25 Word 水印与编号复验",
+    "formalImportReloadedAfterCleanup": true,
+    "wordAppInventoryReportedRunning": false,
+    "previewRetainedWithSavedPdf": true,
+    "acceptanceServer4182Retained": true
+  },
+  "m25Remaining": [
+    "Real system Chinese IME across page boundaries",
+    "Physical pointer cross-window selection and cancellation",
+    "WPS native roundtrip"
+  ]
+}

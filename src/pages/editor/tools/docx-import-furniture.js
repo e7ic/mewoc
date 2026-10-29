@@ -6,6 +6,7 @@ import { getXmlChildren, getWordChild, WORD_XML } from "./docx-import-xml.js"
 import { normalizeDocxFields } from "./docx-import-fields.js"
 import { getPageFurnitureFontPt, validatePageFurniture } from "./page-furniture.js"
 import { validatePageSettings } from "./page-settings.js"
+import { normalizeNativeFurniture } from "./docx-import-furniture-native.js"
 
 const REL_XML = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 const PACKAGE_XML = "http://schemas.openxmlformats.org/package/2006/relationships"
@@ -19,7 +20,7 @@ const invalidReference = () => new Error("页眉、页脚的节引用或资源�
 export function extractDocxPageFurniture(parts, page, warnings) {
   const scope = collectPageScope(parts, warnings)
   const decorations = new Map()
-  for (const [path, kind] of scope.parts) decorations.set(path, readDecoration(parts.get(path), page, kind))
+  for (const [path, kind] of scope.parts) decorations.set(path, readDecoration(parts.get(path), page, kind, parts))
   const patch = {}
   for (const kind of ["header", "footer"]) {
     const values = [...decorations.values()].filter(value => value?.kind === kind)
@@ -154,14 +155,33 @@ function onOff(node) {
   throw invalidReference()
 }
 
-function readDecoration(part, page, kind) {
+/** 原生省略格式只能继承文档关系实际引用的样式，固定路径的孤立副本不能作为依据。 */
+function readNativeStyles(parts) {
+  const root = parts.get("word/_rels/document.xml.rels")?.documentElement
+  if (root?.namespaceURI !== PACKAGE_XML || root.localName !== "Relationships") throw invalidReference()
+  const relations = getXmlChildren(root).filter(node => node.namespaceURI === PACKAGE_XML && node.localName === "Relationship")
+  const styles = relations.filter(node => node.getAttribute("Type") === `${REL_XML}/styles`)
+  if (styles.length !== 1) throw invalidReference()
+  const relation = styles[0]
+  const id = relation.getAttribute("Id")
+  if (!id || relations.filter(node => node.getAttribute("Id") === id).length !== 1 ||
+    !attributes(relation, ["|Id", "|Type", "|Target", ...(relation.hasAttribute("TargetMode") ? ["|TargetMode"] : [])]) ||
+    !children(relation, [])) throw invalidReference()
+  const stylesPart = parts.get(partTarget(relation))
+  if (!isWord(stylesPart?.documentElement, "styles")) throw invalidReference()
+  return stylesPart
+}
+
+function readDecoration(part, page, kind, parts) {
   const marked = Array.from(part.getElementsByTagNameNS(WORD_XML, "sdt")).filter(control =>
     Object.values(TAGS).includes(getWordChild(getWordChild(control, "sdtPr"), "tag")?.getAttributeNS(WORD_XML, "val")))
   if (!marked.length) return undefined
   if (marked.length !== 1) throw invalid()
   const control = marked[0]
   if (control.parentNode !== part.documentElement || !attributes(control, []) || !children(control, ["sdtPr", "sdtContent"])) throw invalid()
-  const [properties, content] = getXmlChildren(control)
+  // canonical 导出已明示格式，不额外要求默认样式；只有 Word 原生控件进入继承路径。
+  const styles = getWordChild(getWordChild(control, "sdtPr"), "id") ? readNativeStyles(parts) : undefined
+  const [properties, content] = getXmlChildren(normalizeNativeFurniture(control, styles))
   if (!attributes(properties, []) || !children(properties, ["tag"]) || !attributes(content, []) || !children(content, ["p"])) throw invalid()
   const tag = getXmlChildren(properties)[0]
   if (!leaf(tag, { val: TAGS[kind] })) throw invalid()
@@ -170,19 +190,23 @@ function readDecoration(part, page, kind) {
   const nodes = getXmlChildren(paragraph)
   if (!isWord(nodes[0], "pPr") || nodes.length < 2 || !noStructuralText(paragraph)) throw invalid()
   const formatting = readParagraphFormat(nodes[0])
-  const runs = nodes.slice(1).map(node => readRunOrField(node, formatting.size))
+  const runs = []
+  for (const node of nodes.slice(1)) {
+    const run = readRunOrField(node, formatting.size)
+    if (run.type === "text" && runs[runs.length - 1]?.type === "text") runs[runs.length - 1].text += run.text
+    else runs.push(run)
+  }
   let furniture
   if (runs.every(run => run.type === "text")) {
     if (runs.length !== 1) throw invalid()
     furniture = { text: runs[0].text, alignment: formatting.alignment, pageNumber: "none" }
   } else {
-    const fieldAt = runs.findIndex(run => run.type === "field")
-    if (fieldAt !== 1 && fieldAt !== 3) throw invalid()
-    const text = fieldAt === 3 ? runs[0].text : ""
-    if (fieldAt === 3 && (runs[0].type !== "text" || !sameText(runs[1], " · "))) throw invalid()
-    const offset = fieldAt - 1
-    if (!sameText(runs[offset], "第 ") || !sameField(runs[offset + 1], "PAGE")) throw invalid()
-    const numbered = runs.slice(offset)
+    if (runs[0]?.type !== "text" || !sameField(runs[1], "PAGE")) throw invalid()
+    const prefix = runs[0].text
+    if (prefix !== "第 " && !prefix.endsWith(" · 第 ")) throw invalid()
+    const text = prefix === "第 " ? "" : prefix.slice(0, -5)
+    if (prefix !== "第 " && !text) throw invalid()
+    const numbered = runs
     if (numbered.length === 3 && sameText(numbered[2], " 页")) furniture = { text, alignment: formatting.alignment, pageNumber: "page" }
     else if (numbered.length === 5 && sameText(numbered[2], " / ") && sameField(numbered[3], "NUMPAGES") && sameText(numbered[4], " 页")) {
       furniture = { text, alignment: formatting.alignment, pageNumber: "page-total" }

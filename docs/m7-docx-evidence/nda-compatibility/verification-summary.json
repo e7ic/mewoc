@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-29",
+  "baseCommit": "6426c1d",
+  "result": "NDA import compatibility passed",
+  "originalUnchanged": true,
+  "privateContractCopiedIntoRepository": false,
+  "regressionFixtures": "Synthetic only; no user contract text",
+  "checks": {
+    "allNode": {
+      "passed": 872,
+      "failed": 0
+    },
+    "newSyntheticCases": 15,
+    "afterWarningCopyUpdate": {
+      "passed": 16,
+      "failed": 0
+    },
+    "independentOriginalFile": {
+      "passed": 120,
+      "failed": 0
+    },
+    "browserDownloadedFiles": {
+      "passed": 13,
+      "failed": 0
+    },
+    "lint": "passed",
+    "productionBuild": "passed",
+    "gitDiffCheck": "passed"
+  },
+  "behavior": {
+    "emptyHeaderFooterPageFields": "Complete independent PAGE/NUMPAGES become explicit [页码]/[总页数] text with warning; no guessed numbers",
+    "compositeNumbering": "Supported decimal numbering instances become exact static labels; no automatic continuation",
+    "unknownOrIncompleteStructures": "Still rejected"
+  },
+  "browser": {
+    "origin": "http://127.0.0.1:4182/",
+    "engine": "Codex in-app browser",
+    "formalFileChooser": true,
+    "previewConfirmed": true,
+    "saved": true,
+    "reloaded": true,
+    "title": "NDA_Agreement",
+    "tables": 3,
+    "imageDecoded": [
+      400,
+      116
+    ],
+    "docxDownloaded": true,
+    "portableDownloaded": true,
+    "longToolFileChooserDelay": "Observed; not counted as application conversion time"
+  },
+  "boundedExportDifferences": [
+    "Browser appends exactly one empty top-level paragraph",
+    "DOCX reimport adds bold to first heading",
+    "DOCX semantic reimport resets two static child-clause paragraph indents from 1 to 0; clause numbers/text preserved"
+  ],
+  "handoff": {
+    "importedBrowserDocumentRetained": true,
+    "validationServer4182Running": true,
+    "downloadedFilesRetained": true
+  },
+  "scope": "Content import, saved browser restoration and downloaded-file roundtrip; no Word/WPS native layout claim and M25 not fully closed"
+}

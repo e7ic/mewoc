@@ -1,0 +1,1151 @@
+{
+  "generatedAt": "2026-10-29T06:45:42.915954+00:00",
+  "passed": true,
+  "file": "docs/m25-word-roundtrip-evidence/display-fix/m25-display-native-layout.pdf",
+  "bytes": 445039,
+  "sha256": "bf99e4d9bf14840edcf4368a12001aaff18fbd9cddf20451e0c37fed361fe577",
+  "pages": 30,
+  "metadata": {
+    "Producer": "macOS 版本27.0（版号26A428） Quartz PDFContext",
+    "CreationDate": "D:20261029063600Z00'00'",
+    "ModDate": "D:20261029063600Z00'00'",
+    "Creator": "Word",
+    "Author": "Tsen Ming",
+    "Title": "m25-letter-tagged-resaved"
+  },
+  "checks": [
+    {
+      "name": "A5 portrait page dimensions",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Each page has its correct dynamic header",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Each page has its correct current/total footer",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "Content occurrences M25_SOAK_DOCUMENT_START",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Content occurrences M25_SOAK_DOCUMENT_END",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Content occurrences M25_WORD_FINAL_20261029",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Content occurrences 同一段中英文 Mixed text",
+      "passed": true,
+      "actual": 110,
+      "expected": 110
+    },
+    {
+      "name": "Content occurrences 引用中的长段落持续跨页",
+      "passed": true,
+      "actual": 80,
+      "expected": 80
+    },
+    {
+      "name": "Content occurrences [x]",
+      "passed": true,
+      "actual": 8,
+      "expected": 8
+    },
+    {
+      "name": "Content occurrences []",
+      "passed": true,
+      "actual": 16,
+      "expected": 16
+    },
+    {
+      "name": "Content occurrences native-check.wav",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "Content occurrences native-check.txt",
+      "passed": true,
+      "actual": 1,
+      "expected": 1
+    },
+    {
+      "name": "All 47 body rows with two cells occur once",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "48 list items occur in order",
+      "passed": true,
+      "actual": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "expected": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ]
+    },
+    {
+      "name": "Word labels exactly match browser alpha sequence from g through bb",
+      "passed": true,
+      "actual": [
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ah",
+        "ai",
+        "aj",
+        "ak",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "ap",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "av",
+        "aw",
+        "ax",
+        "ay",
+        "az",
+        "ba",
+        "bb"
+      ],
+      "expected": [
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "aa",
+        "ab",
+        "ac",
+        "ad",
+        "ae",
+        "af",
+        "ag",
+        "ah",
+        "ai",
+        "aj",
+        "ak",
+        "al",
+        "am",
+        "an",
+        "ao",
+        "ap",
+        "aq",
+        "ar",
+        "as",
+        "at",
+        "au",
+        "av",
+        "aw",
+        "ax",
+        "ay",
+        "az",
+        "ba",
+        "bb"
+      ]
+    },
+    {
+      "name": "All 90 code lines occur in order",
+      "passed": true,
+      "actual": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ]
+    }
+  ],
+  "numbering": [
+    {
+      "page": 13,
+      "label": "g",
+      "item": 1
+    },
+    {
+      "page": 13,
+      "label": "h",
+      "item": 2
+    },
+    {
+      "page": 14,
+      "label": "i",
+      "item": 3
+    },
+    {
+      "page": 14,
+      "label": "j",
+      "item": 4
+    },
+    {
+      "page": 14,
+      "label": "k",
+      "item": 5
+    },
+    {
+      "page": 14,
+      "label": "l",
+      "item": 6
+    },
+    {
+      "page": 14,
+      "label": "m",
+      "item": 7
+    },
+    {
+      "page": 14,
+      "label": "n",
+      "item": 8
+    },
+    {
+      "page": 14,
+      "label": "o",
+      "item": 9
+    },
+    {
+      "page": 14,
+      "label": "p",
+      "item": 10
+    },
+    {
+      "page": 15,
+      "label": "q",
+      "item": 11
+    },
+    {
+      "page": 15,
+      "label": "r",
+      "item": 12
+    },
+    {
+      "page": 15,
+      "label": "s",
+      "item": 13
+    },
+    {
+      "page": 15,
+      "label": "t",
+      "item": 14
+    },
+    {
+      "page": 15,
+      "label": "u",
+      "item": 15
+    },
+    {
+      "page": 15,
+      "label": "v",
+      "item": 16
+    },
+    {
+      "page": 15,
+      "label": "w",
+      "item": 17
+    },
+    {
+      "page": 15,
+      "label": "x",
+      "item": 18
+    },
+    {
+      "page": 16,
+      "label": "y",
+      "item": 19
+    },
+    {
+      "page": 16,
+      "label": "z",
+      "item": 20
+    },
+    {
+      "page": 16,
+      "label": "aa",
+      "item": 21
+    },
+    {
+      "page": 16,
+      "label": "ab",
+      "item": 22
+    },
+    {
+      "page": 16,
+      "label": "ac",
+      "item": 23
+    },
+    {
+      "page": 16,
+      "label": "ad",
+      "item": 24
+    },
+    {
+      "page": 16,
+      "label": "ae",
+      "item": 25
+    },
+    {
+      "page": 16,
+      "label": "af",
+      "item": 26
+    },
+    {
+      "page": 17,
+      "label": "ag",
+      "item": 27
+    },
+    {
+      "page": 17,
+      "label": "ah",
+      "item": 28
+    },
+    {
+      "page": 17,
+      "label": "ai",
+      "item": 29
+    },
+    {
+      "page": 17,
+      "label": "aj",
+      "item": 30
+    },
+    {
+      "page": 17,
+      "label": "ak",
+      "item": 31
+    },
+    {
+      "page": 17,
+      "label": "al",
+      "item": 32
+    },
+    {
+      "page": 17,
+      "label": "am",
+      "item": 33
+    },
+    {
+      "page": 17,
+      "label": "an",
+      "item": 34
+    },
+    {
+      "page": 18,
+      "label": "ao",
+      "item": 35
+    },
+    {
+      "page": 18,
+      "label": "ap",
+      "item": 36
+    },
+    {
+      "page": 18,
+      "label": "aq",
+      "item": 37
+    },
+    {
+      "page": 18,
+      "label": "ar",
+      "item": 38
+    },
+    {
+      "page": 18,
+      "label": "as",
+      "item": 39
+    },
+    {
+      "page": 18,
+      "label": "at",
+      "item": 40
+    },
+    {
+      "page": 18,
+      "label": "au",
+      "item": 41
+    },
+    {
+      "page": 18,
+      "label": "av",
+      "item": 42
+    },
+    {
+      "page": 19,
+      "label": "aw",
+      "item": 43
+    },
+    {
+      "page": 19,
+      "label": "ax",
+      "item": 44
+    },
+    {
+      "page": 19,
+      "label": "ay",
+      "item": 45
+    },
+    {
+      "page": 19,
+      "label": "az",
+      "item": 46
+    },
+    {
+      "page": 19,
+      "label": "ba",
+      "item": 47
+    },
+    {
+      "page": 19,
+      "label": "bb",
+      "item": 48
+    }
+  ],
+  "table": {
+    "bodyRows": 47,
+    "headerCountPerColumn": {
+      "1": 5,
+      "2": 5
+    }
+  },
+  "perPage": [
+    {
+      "page": 1,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 424,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 2,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 603,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 3,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 604,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 4,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 600,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 5,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 599,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 6,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 604,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 7,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 604,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 8,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 603,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 9,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 418,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 10,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 339,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 11,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 343,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 12,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 343,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 13,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 359,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 14,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 411,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 15,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 424,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 16,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 431,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 17,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 433,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 18,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 433,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    },
+    {
+      "page": 19,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 342,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 48
+      }
+    },
+    {
+      "page": 20,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 9,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 408
+      }
+    },
+    {
+      "page": 21,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 9,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 408
+      }
+    },
+    {
+      "page": 22,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 9,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 408
+      }
+    },
+    {
+      "page": 23,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 19,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 402
+      }
+    },
+    {
+      "page": 24,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 50,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 388
+      }
+    },
+    {
+      "page": 25,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 53,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 408
+      }
+    },
+    {
+      "page": 26,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 132,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4745098, 0.4392157, 0.5294118)": 264,
+        "(0.4117647, 0.2588235, 0.6392157)": 45,
+        "(0.5490196, 0.3058824, 0.08627451)": 9
+      }
+    },
+    {
+      "page": 27,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 360,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4117647, 0.2588235, 0.6392157)": 160,
+        "(0.5490196, 0.3058824, 0.08627451)": 63
+      }
+    },
+    {
+      "page": 28,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 361,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4117647, 0.2588235, 0.6392157)": 160,
+        "(0.5490196, 0.3058824, 0.08627451)": 64
+      }
+    },
+    {
+      "page": 29,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 196,
+        "(0.3843137, 0.4039216, 0.4666667)": 32,
+        "(0.4117647, 0.2588235, 0.6392157)": 85,
+        "(0.5490196, 0.3058824, 0.08627451)": 34
+      }
+    },
+    {
+      "page": 30,
+      "widthPt": 419.5276,
+      "heightPt": 595.2756,
+      "headerExactOnce": true,
+      "footerExactOnce": true,
+      "diagonalCharacterCount": 0,
+      "diagonalTextInDrawingOrder": "",
+      "characterColors": {
+        "(0.145098, 0.1568628, 0.2156863)": 55,
+        "(0.3843137, 0.4039216, 0.4666667)": 32
+      }
+    }
+  ],
+  "watermarkVisualReview": "Completed separately: visual-review.json. Watermark renders as vectors and is not reliably represented by diagonal character counts; opaque body backgrounds obscure it on pages 20–28 and part of 29.",
+  "extraction": "pdfplumber horizontal text only, NFKC, whitespace removal and explicit PDF radical glyph mappings. Watermark diagonal characters separately retained in drawing order."
+}

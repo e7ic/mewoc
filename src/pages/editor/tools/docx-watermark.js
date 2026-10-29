@@ -2,6 +2,7 @@
 import * as sdk from "docx"
 import { createId } from "./create-id.js"
 import { getWatermarkGeometry } from "./page-watermark.js"
+import { WORD_ART_TYPE_ID, WORD_ART_PATH, WORD_ART_FORMULAS } from "./docx-watermark-wordart.js"
 
 // SDK BuilderElement 使用自己的 XML 序列化器转义属性；文案不拼接进原始 XML。
 const element = (name, attributes = {}, children = []) => new sdk.BuilderElement({
@@ -21,14 +22,19 @@ export function createDocxWatermarkParagraph(page) {
   const points = millimeters => millimeters * 72 / 25.4
   // 与将来的正文形状、其他节页眉区分；SDK 为 Header 分配文档级唯一关系 ID，无需手写 r:id。
   const suffix = createId().replace(/-/g, "")
-  const typeId = `MewocWatermarkType_${suffix}`
+  const typeId = WORD_ART_TYPE_ID
   const shapeId = `MewocWatermarkShape_${suffix}`
   // TextPath、Fill opacity 与 Shape style 是 OOXML 的原生 VML 契约，Office 2007 起可表示：
   // https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.vml.textpath
   // https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.vml.fill.opacity
-  // 直线文字路径不需要导入外部 Word 模板中的公式表；page-relative center 避免受页眉边距影响。
-  const shapeType = element("v:shapetype", { id: typeId, coordsize: "21600,21600", "o:spt": "136", path: "m0,10800l21600,10800e" }, [
-    element("v:path", { textpathok: "t" }), element("v:textpath", { on: "t" })
+  // Word 16.100.2 实测需标准 ID 与完整 136 模板；自定义 ID 或简化成单线/双线会成为不可见普通形状。
+  // 原生单变量对照见 M25；模板使用标准几何，实例字号和页面居中仍来自共享页面设置。
+  const shapeType = element("v:shapetype", { id: typeId, coordsize: "21600,21600", "o:spt": "136", adj: "10800", path: WORD_ART_PATH }, [
+    element("v:formulas", {}, WORD_ART_FORMULAS.map(eqn => element("v:f", { eqn }))),
+    element("v:path", { textpathok: "t", "o:connecttype": "custom", "o:connectlocs": "@9,0;@10,10800;@11,21600;@12,10800", "o:connectangles": "270,180,90,0" }),
+    element("v:textpath", { on: "t", fitshape: "t" }),
+    element("v:handles", {}, [element("v:h", { position: "#0,bottomRight", xrange: "6629,14971" })]),
+    element("o:lock", { "v:ext": "edit", text: "t", shapetype: "t" })
   ])
   const style = ["position:absolute", "margin-left:0", "margin-top:0", `width:${points(geometry.textWidthMm)}pt`,
     `height:${points(geometry.textHeightMm)}pt`, `rotation:${angle}`, "z-index:-251654144", "mso-wrap-edited:f",

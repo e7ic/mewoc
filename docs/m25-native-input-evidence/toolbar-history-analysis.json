@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-29T08:00:56.608344+00:00",
+  "documentId": "4fd753fa-a76d-490a-9b21-2fc0f5c2b848",
+  "provenance": "Tool clicked production toolbar buttons after human Shuangpin text entry; not human hardware shortcuts",
+  "sources": [
+    {
+      "file": "toolbar-history-observation.json",
+      "sha256": "ad265cc471cc4d20fa3c1c43de627bfd323e2347caa92ad67f88938d6cac1f51"
+    },
+    {
+      "file": "native-cancel-before-toolbar.json",
+      "sha256": "698cfa46517e0964470daf0cabcc81c7d10c228e457c7d77b814e5aaeff4beac"
+    },
+    {
+      "file": "native-toolbar-history.json",
+      "sha256": "33d0ef2b8352f971772becc9d0dfefb10653305f5e245080a9aa65b334d4b1a9"
+    }
+  ],
+  "verdict": "Production toolbar Undo -> Redo -> Undo restores/removes the exact four-character probe 重做验收 at the observed location. These were tool clicks, not human hardware shortcuts. The earlier 42 committed characters still remain after this sequence.",
+  "states": {
+    "before": {
+      "textLength": 13341,
+      "textAroundCaret": "xed text 👩🏽‍💻 跨页后重做验收仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+      "selection": {
+        "from": 1329,
+        "to": 1329,
+        "anchor": 1329,
+        "head": 1329,
+        "empty": true
+      },
+      "undoAvailable": true,
+      "redoAvailable": false,
+      "originalMatches": false,
+      "pageCount": 27,
+      "pending": false,
+      "composing": false
+    },
+    "undo": {
+      "textLength": 13337,
+      "textAroundCaret": "文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+      "selection": {
+        "from": 1325,
+        "to": 1325,
+        "anchor": 1325,
+        "head": 1325,
+        "empty": true
+      },
+      "undoAvailable": true,
+      "redoAvailable": true,
+      "originalMatches": false,
+      "pageCount": 27,
+      "pending": false,
+      "composing": false
+    },
+    "redo": {
+      "textLength": 13341,
+      "textAroundCaret": "xed text 👩🏽‍💻 跨页后重做验收仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+      "selection": {
+        "from": 1329,
+        "to": 1329,
+        "anchor": 1329,
+        "head": 1329,
+        "empty": true
+      },
+      "undoAvailable": true,
+      "redoAvailable": false,
+      "originalMatches": false,
+      "pageCount": 27,
+      "pending": false,
+      "composing": false
+    },
+    "undoAgain": {
+      "textLength": 13337,
+      "textAroundCaret": "文 Mixed text 👩🏽‍💻 跨页后仍保持完整，保存和撤销不能加入视图空隙。同一段中",
+      "selection": {
+        "from": 1325,
+        "to": 1325,
+        "anchor": 1325,
+        "head": 1325,
+        "empty": true
+      },
+      "undoAvailable": true,
+      "redoAvailable": true,
+      "originalMatches": false,
+      "pageCount": 27,
+      "pending": false,
+      "composing": false
+    }
+  },
+  "docChangedSequences": [
+    {
+      "action": "undo",
+      "sequence": 2077,
+      "textLength": 13337
+    },
+    {
+      "action": "redo",
+      "sequence": 2088,
+      "textLength": 13341
+    },
+    {
+      "action": "undoAgain",
+      "sequence": 2097,
+      "textLength": 13337
+    }
+  ],
+  "checks": {
+    "textLengthSequence": [
+      13341,
+      13337,
+      13341,
+      13337
+    ],
+    "redoMatchesBeforeExactProbeContextLengthAndSelection": true,
+    "undoAgainMatchesFirstUndoContextLengthAndSelection": true,
+    "allObservedStatesSettled": true,
+    "finalFullSnapshotEqualsBeforeRemovingOnlyProbe": true,
+    "finalResourceNodesUnchanged": true,
+    "finalMatchesOriginalBaseline": false,
+    "remainingExtraText": "阿森行爱囧蛋差三单卡啊三矿难卡三娘看呐看的那看男框啊三年卡顿看阿宋阿丹卡三娘家卡农框",
+    "remainingExtraCharacters": 42,
+    "redoWholeDocumentJsonEqualityIndependentlyVerified": false,
+    "redoEvidenceBoundary": "Intermediate redo was archived as UI/recorder state (exact local text context, length, selection, pagination), not a full document JSON snapshot. Full snapshot equality is verified before versus final undo, not claimed for the intermediate redo."
+  },
+  "recordingIntegrity": {
+    "eventCount": 2000,
+    "sequenceRange": [
+      108,
+      2107
+    ],
+    "droppedEvents": 107,
+    "sessionChanged": false,
+    "overlapWithBeforeCount": 1969,
+    "overlapExactlyEqual": true,
+    "note": "Toolbar actions 2077-2097 are retained. Earlier raw files preserve preceding events; this file itself is truncated."
+  },
+  "limitations": [
+    "No human redo keyboard shortcut is asserted.",
+    "No post-RAF sampling group covers these toolbar actions, so this analysis does not independently prove their rendered frame stability.",
+    "Remaining 42 characters are prior explicit nonempty confirmations; their cleanup is a separate action."
+  ]
+}

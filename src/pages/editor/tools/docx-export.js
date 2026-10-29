@@ -17,6 +17,7 @@ import { PAGE_SIZES, getPageContentDimensions } from "./page-settings.js"
 import { createDocxPageFurniture, getDocxFurnitureDistances } from "./docx-page-furniture.js"
 import { isPageFurnitureActive } from "./page-furniture.js"
 import { getMediaText } from "./media-assets.js"
+import { createDocxLetterStyle, getDocxLetterSegment, DOCX_LETTER_NUMBERING_WARNING } from "./docx-letter-numbering.js"
 
 // 语法着色类到 Word 色值的固定映射，OOXML 使用不含 # 的十六进制 RGB。
 const CODE_COLORS = [
@@ -49,12 +50,13 @@ export async function createDocumentDocx(document, assets, signal) {
   const contentSize = getPageContentDimensions(document.page)
   const warnings = new Set(navigation.warnings)
   const numbering = []
+  const letterStyles = []
   // Word 名称限定为以字母开头的 ASCII 字母/数字/下划线且不超过 40 字符。
   // nav-UUIDv4 映射为 nav_UUID，名字稳定；每份文件另分配唯一整数，配对 start/end，避免 SDK 每实例重置编号。
   const wordNavigation = new Map([...navigation.targets.keys()].map((id, index) => [id, { name: id.replace(/-/g, "_"), numericId: index + 1 }]))
   // 可用尺寸按纸张、方向与边距统一计算为 px；子列表和单元格继续收窄宽度，共享资源与总预算。
   const context = {
-    assets, signal, warnings, numbering, wordNavigation, imageBytes: new Map(),
+    assets, signal, warnings, numbering, letterStyles, wordNavigation, imageBytes: new Map(),
     budget: { nodes: 0, code: 0 }, indent: 0, listDepth: 0,
     widthPx: contentSize.widthMm * 96 / 25.4,
     heightPx: contentSize.heightMm * 96 / 25.4
@@ -77,7 +79,7 @@ export async function createDocumentDocx(document, assets, signal) {
     creator: "Mewoc", title: document.title,
     // 原生页码缓存只供未排版查看器显示；请 Office 打开时重算，不能缓存编辑连续纸面的假总页数。
     ...([document.page.header, document.page.footer].some(value => isPageFurnitureActive(value) && value.pageNumber !== "none") && { features: { updateFields: true } }),
-    styles: { default: { ...EXTENDED_HEADING_STYLES, document: {
+    styles: { paragraphStyles: letterStyles, default: { ...EXTENDED_HEADING_STYLES, document: {
       run: { font: { ascii: "Arial", hAnsi: "Arial", eastAsia: "PingFang SC" }, size: 24, color: "252837" },
       paragraph: { spacing: { after: 240, line: 420 }, widowControl: true }
     } } },
@@ -212,7 +214,7 @@ async function createTextBox(node, context) {
  * 将段落/标题的行内节点与段落属性映射为 SDK Paragraph，可附加列表编号配置。
  * 默认样式取标题/表格/引用上下文，显式属性优先，缩进使用基础字号而非每个文字片段的字号。
  */
-async function createParagraph(node, context, numbering, taskPrefix) {
+async function createParagraph(node, context, numbering, taskPrefix, numberingStyle) {
   const attrs = node.attrs || {}
   const level = node.type === "heading" ? attrs.level : 0
   const size = level ? HEADING_POINTS[level] : 12
@@ -240,6 +242,7 @@ async function createParagraph(node, context, numbering, taskPrefix) {
     ...(typeof attrs.keepWithNext === "boolean" && { keepNext: attrs.keepWithNext }),
     ...(typeof attrs.keepTogether === "boolean" && { keepLines: attrs.keepTogether }),
     ...(numbering && { numbering }),
+    ...(numberingStyle && { style: numberingStyle }),
     alignment: attrs.textAlign || "left", indent,
     // 行距 auto 以 240 为单倍；缩进是 em 倍数，先乘基础字号，再以每磅 20 twip 转换。
     spacing: {
@@ -295,26 +298,46 @@ async function createList(node, context) {
   if (task) context.warnings.add("待办清单以 [x] / [ ] 文字标记保留勾选状态，不生成 Word 交互式复选框")
   const level = Math.min(context.listDepth, 8)
   if (!task && context.listDepth > 8) context.warnings.add("超过九层的列表保留缩进，Word 编号层级按第九层输出")
-  const reference = `mewoc-list-${context.numbering.length + 1}`
   const ordered = node.type === "orderedList"
   const indent = context.indent + 480
+  const type = node.attrs?.type || "1"
+  const start = ordered ? node.attrs?.start || 1 : 1
+  const segmented = ordered && ["a", "A"].includes(type) && start + node.content.length - 1 > 26
+  let numberingStyle
+  if (segmented) {
+    const style = createDocxLetterStyle(context.letterStyles.length + 1)
+    context.letterStyles.push(style)
+    numberingStyle = style.id
+    context.warnings.add(DOCX_LETTER_NUMBERING_WARNING)
+  }
   // reference 在整个文档中唯一，避免不同列表意外续编；项目符号随真实嵌套深度轮换。
-  if (!task) context.numbering.push({ reference, levels: [{
-    level, format: ordered ? NUMBER_FORMATS[node.attrs?.type || "1"] : "bullet",
-    text: ordered ? `%${level + 1}.` : ["•", "◦", "▪"][context.listDepth % 3],
-    start: ordered ? node.attrs?.start || 1 : 1, alignment: "left",
-    style: { paragraph: { indent: { left: indent, hanging: 240 } }, run: { font: "Arial", size: 24 } }
-  }] })
+  const createNumbering = (prefix, value) => {
+    const reference = `mewoc-list-${context.numbering.length + 1}`
+    context.numbering.push({ reference, levels: [{
+      level, format: ordered ? NUMBER_FORMATS[type] : "bullet",
+      text: ordered ? `${prefix}%${level + 1}.` : ["•", "◦", "▪"][context.listDepth % 3],
+      start: value, alignment: "left",
+      style: { paragraph: { indent: { left: indent, hanging: 240 } }, run: { font: "Arial", size: 24 } }
+    }] })
+    return reference
+  }
+  let reference = !task && !segmented ? createNumbering("", start) : undefined
+  let prefix
   const children = []
   const itemContext = { ...context, indent, listDepth: context.listDepth + 1 }
-  for (const item of node.content) {
+  for (const [index, item] of node.content.entries()) {
     context.signal?.throwIfAborted()
     context.budget.nodes += 1
     if (context.budget.nodes % 64 === 0) {
       await new Promise(resolve => setTimeout(resolve, 0))
       context.signal?.throwIfAborted()
     }
-    children.push(await createParagraph(item.content[0], itemContext, task ? null : { reference, level }, task ? item.attrs?.checked ? "[x] " : "[ ] " : null))
+    if (segmented) {
+      const segment = getDocxLetterSegment(start + index, type)
+      if (segment.prefix !== prefix) reference = createNumbering(segment.prefix, segment.start)
+      prefix = segment.prefix
+    }
+    children.push(await createParagraph(item.content[0], itemContext, task ? null : { reference, level }, task ? item.attrs?.checked ? "[x] " : "[ ] " : null, numberingStyle))
     // 继承的分页仅作用于列表第一项首段，后续同项块和下一项不能重复制造分页。
     itemContext.pageBreakBefore = false
     children.push(...await createBlocks(item.content.slice(1), itemContext))

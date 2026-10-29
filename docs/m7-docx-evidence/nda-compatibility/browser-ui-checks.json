@@ -1,0 +1,23 @@
+{
+  "compositeLabels": [
+    "1.",
+    "1.1.",
+    "1.2."
+  ],
+  "images": [
+    {
+      "complete": true,
+      "height": 116,
+      "width": 400
+    }
+  ],
+  "pagePlaceholderCount": 1,
+  "tables": 3,
+  "totalPlaceholderCount": 1,
+  "title": "NDA_Agreement",
+  "saved": [
+    "已保存到此浏览器"
+  ],
+  "backupPath": "NDA_Agreement.mewoc.json",
+  "docxPath": "NDA_Agreement (2).docx"
+}

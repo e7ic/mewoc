@@ -324,7 +324,7 @@ export const PagePagination = Extension.create({
         const measure = () => {
           frame = 0
           if (destroyed || view.isDestroyed || view.composing) return
-          const current = PAGE_PAGINATION_KEY.getState(view.state)
+          let current = PAGE_PAGINATION_KEY.getState(view.state)
           if (!current.settings.enabled) return
           const width = parseFloat(win.getComputedStyle(view.dom).width)
           const visibleState = [...view.dom.querySelectorAll("[data-details-view]")].map(dom => dom.dataset.expanded).join(",")
@@ -335,8 +335,8 @@ export const PagePagination = Extension.create({
             fontsChanged = false
             measuredWidth = width
             view.dispatch(view.state.tr.setMeta(PAGE_PAGINATION_KEY, { resetParagraphs: true }).setMeta("addToHistory", false))
-            schedule()
-            return
+            // 清旧空隙、读取自然行和回填新分页必须在同一帧完成，不能绘制出无分页的中间态。
+            current = PAGE_PAGINATION_KEY.getState(view.state)
           }
           fontsChanged = false
           measuredWidth = width
@@ -345,7 +345,7 @@ export const PagePagination = Extension.create({
           if (!view.dom.getBoundingClientRect().width) return
           const layout = planPagePagination(blocks, current.settings, renderedBreaks)
           const plannedBreaks = JSON.stringify(layout.breaks)
-          const sameBreaks = plannedBreaks === JSON.stringify(current.layout.breaks)
+          const sameBreaks = !current.pending && plannedBreaks === JSON.stringify(current.layout.breaks)
           // 收敛后直接采用真实 DOM 浮点矩形。CSS 声明高度不等于 used-height，不能累加声明值再裁容器。
           layout.containers = containers.map(({ renderedTop, renderedHeight, ...container }) => ({ ...container,
             top: current.settings.marginTopPx + (sameBreaks ? renderedTop : container.start + layout.breaks.filter(gap => gap.pos <= container.pos).reduce((sum, gap) => sum + gap.height, 0)),

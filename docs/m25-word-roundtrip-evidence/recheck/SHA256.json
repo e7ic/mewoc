@@ -1,0 +1,66 @@
+{
+  "browser-import-preview.png": {
+    "bytes": 83928,
+    "sha256": "f5fbc6058eb320872bfdb4b7ba678bfae4352f4e7c9f3ac1bafd154dc4a6757f"
+  },
+  "browser-import-success.png": {
+    "bytes": 99505,
+    "sha256": "d8ddba8f55d8e8bf5decde30364c5dbd8cfa3e13053c70d80af5fe4bb6f2b9f4"
+  },
+  "browser-imported.mewoc.json": {
+    "bytes": 109909,
+    "sha256": "5c06d86b5e1d0e54253f10a35d2bbdea17f2e88a0e94d166e6aa3dc31c5b03e4"
+  },
+  "browser-ui-verification.json": {
+    "bytes": 340,
+    "sha256": "dfa415b15107caec674383203536a566d2c6a578da2e7e9e149e16ec27f13547"
+  },
+  "build.log": {
+    "bytes": 1554,
+    "sha256": "617f48f2e675d025ebb200bf2364a424ddebba3435e77874d9d2eb16e52776c6"
+  },
+  "content-verification.json": {
+    "bytes": 5727,
+    "sha256": "29e9b8826220484955153ce4d07e04702770db873c0993975ae03da096bfc69e"
+  },
+  "lint.log": {
+    "bytes": 75,
+    "sha256": "586f65956182cae6c84de204a0c4718417f4fa2a9e377e79d57fa54f3aed6c15"
+  },
+  "node-import.document.json": {
+    "bytes": 238564,
+    "sha256": "cb15f7d7b1593d49edb933a371b593970316b91e493735772222cd268131bc4f"
+  },
+  "node-import.json": {
+    "bytes": 2588,
+    "sha256": "a3f64ab74bf502da3e99b2be607f6d37a416d47d071fc7329a34499ac5e7d2af"
+  },
+  "node-import.preview.txt": {
+    "bytes": 31516,
+    "sha256": "8146acee46e116d846befe441d16a55b65223c4b481d974676f62d8d2b6f041a"
+  },
+  "node-test.log": {
+    "bytes": 210289,
+    "sha256": "e505ff91bf9ee11b2e7bdf5b09e29b9302e44d8aaad975fc582cf875c1288ee2"
+  },
+  "verification-summary.json": {
+    "bytes": 2512,
+    "sha256": "6ef0fdc6c939cb8cdb32dac588a4c40a964402f6186ff26ff96989c5e57d481a"
+  },
+  "word-edit.png": {
+    "bytes": 83627,
+    "sha256": "2972d06d6fbabda0e78c55566de5b7fe7cf1bcf712c8bede69d2a9678f3cbd75"
+  },
+  "word-input.docx": {
+    "bytes": 17281,
+    "sha256": "aad0d66c61be08b7b0b75b664043caaab9e3fbdeffa58af9c55a30d32998b20a"
+  },
+  "word-resaved.docx": {
+    "bytes": 27115,
+    "sha256": "7012942741f34e65e52d343b94ce8872fc7eb8c8e08d19278275f75a9806e7c4"
+  },
+  "word-resaved.png": {
+    "bytes": 86013,
+    "sha256": "b4b3971935a5b28c1bef3f17d024b1875d9804b8a7f6047a56821721acadb6ac"
+  }
+}

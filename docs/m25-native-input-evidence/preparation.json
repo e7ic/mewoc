@@ -1,0 +1,36 @@
+{
+  "preparedAt": "2026-10-29T07:18:08.964463+00:00",
+  "status": "awaiting-human-ime-sequence",
+  "nativeImePassed": false,
+  "physicalPointerPassed": false,
+  "reason": "No physical input or system Chinese composition evidence has been collected for this batch yet.",
+  "urls": {
+    "source": "http://127.0.0.1:4182/tests/browser.html",
+    "readOnlyPeer": "http://127.0.0.1:4182/tests/browser-visibility.html"
+  },
+  "recorderSources": {
+    "tests/native-input-recorder.js": "94be9f638b1b2d093c4af16e2b66965e70cf3b4b67f60193d6637ece18f5f946",
+    "tests/native-pagination-example.jsx": "dd2b7cefd51e365168503d609b5f86e1d914287777ce8f708e09bab235f5c5f9"
+  },
+  "preparationChecks": {
+    "productionBuildPassed": true,
+    "recorderExcludedFromProduction": true,
+    "targetLintPassed": true,
+    "recorderSelfCheckPassed": true,
+    "selfCheckIsNativeAcceptance": false
+  },
+  "requiredEvidence": [
+    "System Chinese IME composition sequence and visible candidate observation",
+    "Confirm, undo, redo and final exact baseline restoration",
+    "Physical pointer selection across a page gap",
+    "Physical drag outside the source window, release, return with no button held and stable selection/scroll",
+    "Cancellation and normal click/selection recovery",
+    "Settled checkpoints with pagination pending false",
+    "Formal downloaded event JSON and final saved-content comparison"
+  ],
+  "operatorRequest": "In the fixture: undo 已定位, type 中文验收 through system Chinese IME and pause at candidate then confirm; undo/redo/undo; type zhongwen and Escape; reply in chat with input method and result.",
+  "remaining": "Both native interaction checks still pending; no existing product checks are relabelled as hardware proof.",
+  "fixtureDocumentId": "75f28a83-9251-4d22-bb5d-36da68e9b9d5",
+  "currentPhase": "中文候选确认撤销",
+  "observations": "A first user entry 已定位 is present at boundary 261. Baseline restoration and formal IME sequence still require completion."
+}

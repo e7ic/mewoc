@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "alt": "M25-soak.png",
+      "complete": true,
+      "height": 120,
+      "width": 240
+    }
+  ],
+  "list": [
+    {
+      "contentItems": 48,
+      "cssNumbering": "lower-alpha",
+      "decorationItems": 5,
+      "start": "7",
+      "type": "a"
+    }
+  ],
+  "marker": true,
+  "status": "已保存到此浏览器",
+  "tables": 2,
+  "title": "M25 Word 水印与编号复验",
+  "watermarkPresent": true
+}

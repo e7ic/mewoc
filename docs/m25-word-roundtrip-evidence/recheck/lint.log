@@ -1,0 +1,4 @@
+
+> mewoc@0.1.0 lint /Volumes/DRIVE/Labs/mewoc
+> eslint . --max-warnings 0
+

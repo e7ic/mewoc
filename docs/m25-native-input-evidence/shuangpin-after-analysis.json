@@ -1,0 +1,305 @@
+{
+  "generatedAt": "2026-10-29T07:47:57.814867+00:00",
+  "source": "docs/m25-native-input-evidence/shuangpin-after-fix.json",
+  "sourceSha256": "bf5a8cf03404a061027d564009f07c2d630108d0653376aa98b2b13ae6a9c9c3",
+  "documentId": "abb3bf03-721d-4fef-b6d1-a23f25258f2e",
+  "operatorReport": "都正常，最后恢复原文",
+  "verdict": "Confirmation and undo content recovery are evidenced; exact requested undo/redo/undo/Escape sequence is not present. All recorded post-frame confirmation samples are stable. Full native IME sequence remains incomplete.",
+  "eventCount": 1382,
+  "droppedEvents": 0,
+  "throttledMoves": 0,
+  "sessionChanged": false,
+  "eventSequencesContiguous": true,
+  "sequenceEvidence": {
+    "nonemptyCompositionEndSequences": [
+      98,
+      491,
+      1336
+    ],
+    "undoKeySequences": [
+      129,
+      525,
+      1370
+    ],
+    "redoEvents": [],
+    "escapeKeySequences": [],
+    "emptyCompositionEndSequences": [],
+    "requestedUndoRedoUndoEscapeSequenceProven": false,
+    "description": "The recorded sequence is confirm(4 chars), undo, new composition confirm(19 chars), undo, new composition confirm(46 chars), undo. No Shift modifier, redo, or Escape event is recorded.",
+    "compositionTextInterpretation": {
+      "first": "中文验收",
+      "second": "中文验收撒娇爱看法老大开饭龙框架概况三",
+      "third": "到访龙丹峰开三道冷囧到了翻开苏丹分开囧到了翻开苏丹发牢骚但凡老三了樊笼但凡老三发老囧带饭三代",
+      "matchesChatFeedback": false,
+      "boundary": "These are recorded committed strings. They do not contain 都正常/最后恢复原文; no intent or reason for the additional text is inferred."
+    }
+  },
+  "postFrameGeometry": {
+    "scope": "Only render-frame events with geometryTiming=animation-frame-then-task are used for displacement judgments. Synchronous transaction intermediate positions are excluded.",
+    "tolerancePx": 2,
+    "units": "viewport CSS pixels",
+    "groups": [
+      {
+        "renderGroup": 1,
+        "compositionEndSequence": 98,
+        "committedText": "中文验收",
+        "committedTextLength": 4,
+        "compositionDurationMs": 4470.3,
+        "compositionEndTrusted": false,
+        "postFrameCount": 14,
+        "postFrameSequenceRange": [
+          107,
+          125
+        ],
+        "firstPostFrameAfterEndMs": 102.3,
+        "lastPostFrameAfterEndMs": 302.1,
+        "firstPostFrameAfterGroupStartMs": 101.7,
+        "lastPostFrameAfterGroupStartMs": 301.5,
+        "samplingCompleted": true,
+        "fixedModelSelection": true,
+        "modelSelection": [
+          265,
+          265
+        ],
+        "fixedDomSelection": true,
+        "caretViewportTopMinPx": 658.90625,
+        "caretViewportTopMaxPx": 658.90625,
+        "postFrameCaretRangePx": 0.0,
+        "maximumDeltaFromFirstPostFramePx": 0.0,
+        "allPostFramesSettled": true,
+        "scrollOffsetsUnchangedWithinPostFrames": true,
+        "editorScrollOffsets": [
+          {
+            "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+            "top": 274,
+            "left": 0
+          }
+        ],
+        "windowScroll": {
+          "x": 0,
+          "y": 572
+        },
+        "observedPostFrameGeometryPass": true
+      },
+      {
+        "renderGroup": 2,
+        "compositionEndSequence": 491,
+        "committedText": "中文验收撒娇爱看法老大开饭龙框架概况三",
+        "committedTextLength": 19,
+        "compositionDurationMs": 4660.5,
+        "compositionEndTrusted": false,
+        "postFrameCount": 17,
+        "postFrameSequenceRange": [
+          500,
+          521
+        ],
+        "firstPostFrameAfterEndMs": 98.5,
+        "lastPostFrameAfterEndMs": 307.8,
+        "firstPostFrameAfterGroupStartMs": 98,
+        "lastPostFrameAfterGroupStartMs": 307.3,
+        "samplingCompleted": true,
+        "fixedModelSelection": true,
+        "modelSelection": [
+          280,
+          280
+        ],
+        "fixedDomSelection": true,
+        "caretViewportTopMinPx": 658.90625,
+        "caretViewportTopMaxPx": 658.90625,
+        "postFrameCaretRangePx": 0.0,
+        "maximumDeltaFromFirstPostFramePx": 0.0,
+        "allPostFramesSettled": true,
+        "scrollOffsetsUnchangedWithinPostFrames": true,
+        "editorScrollOffsets": [
+          {
+            "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+            "top": 274,
+            "left": 0
+          }
+        ],
+        "windowScroll": {
+          "x": 0,
+          "y": 572
+        },
+        "observedPostFrameGeometryPass": true
+      },
+      {
+        "renderGroup": 3,
+        "compositionEndSequence": 1336,
+        "committedText": "到访龙丹峰开三道冷囧到了翻开苏丹分开囧到了翻开苏丹发牢骚但凡老三了樊笼但凡老三发老囧带饭三代",
+        "committedTextLength": 46,
+        "compositionDurationMs": 3577.2,
+        "compositionEndTrusted": false,
+        "postFrameCount": 17,
+        "postFrameSequenceRange": [
+          1343,
+          1366
+        ],
+        "firstPostFrameAfterEndMs": 58.4,
+        "lastPostFrameAfterEndMs": 302.5,
+        "firstPostFrameAfterGroupStartMs": 57.8,
+        "lastPostFrameAfterGroupStartMs": 301.8,
+        "samplingCompleted": true,
+        "fixedModelSelection": true,
+        "modelSelection": [
+          307,
+          307
+        ],
+        "fixedDomSelection": true,
+        "caretViewportTopMinPx": 679.90625,
+        "caretViewportTopMaxPx": 679.90625,
+        "postFrameCaretRangePx": 0.0,
+        "maximumDeltaFromFirstPostFramePx": 0.0,
+        "allPostFramesSettled": true,
+        "scrollOffsetsUnchangedWithinPostFrames": true,
+        "editorScrollOffsets": [
+          {
+            "className": "src-pages-editor-sass-paper-module__container-w46Hqx",
+            "top": 274,
+            "left": 0
+          }
+        ],
+        "windowScroll": {
+          "x": 0,
+          "y": 572
+        },
+        "observedPostFrameGeometryPass": true
+      }
+    ],
+    "totalSamples": 48,
+    "allObservedGroupsStable": true,
+    "limits": [
+      "First samples occur 102.3ms, 98.5ms and 58.4ms after compositionend; the earlier intervals are not directly covered by post-frame samples.",
+      "These post-RAF task snapshots alone do not prove every physical screen frame. Human visual feedback is independent evidence.",
+      "No post-frame group covers the three undo actions; content recovery is observed, but native undo frame stability is not independently proven by this trace."
+    ]
+  },
+  "undoRecovery": [
+    {
+      "keydownSequence": 129,
+      "trusted": true,
+      "key": "z",
+      "modifiers": {
+        "meta": true,
+        "ctrl": false,
+        "alt": false,
+        "shift": false
+      },
+      "changedTransactionSequence": 131,
+      "transactionRestoresExactBaseline": true,
+      "firstSettledPaginationSequence": 132,
+      "settledAfterKeyMs": 65.0,
+      "settledOriginalMatches": true,
+      "settledTextLength": 13295,
+      "postFrameSamplesBeforeNextAction": 0
+    },
+    {
+      "keydownSequence": 525,
+      "trusted": true,
+      "key": "z",
+      "modifiers": {
+        "meta": true,
+        "ctrl": false,
+        "alt": false,
+        "shift": false
+      },
+      "changedTransactionSequence": 527,
+      "transactionRestoresExactBaseline": true,
+      "firstSettledPaginationSequence": 528,
+      "settledAfterKeyMs": 63.8,
+      "settledOriginalMatches": true,
+      "settledTextLength": 13295,
+      "postFrameSamplesBeforeNextAction": 0
+    },
+    {
+      "keydownSequence": 1370,
+      "trusted": true,
+      "key": "z",
+      "modifiers": {
+        "meta": true,
+        "ctrl": false,
+        "alt": false,
+        "shift": false
+      },
+      "changedTransactionSequence": 1372,
+      "transactionRestoresExactBaseline": true,
+      "firstSettledPaginationSequence": 1373,
+      "settledAfterKeyMs": 70.8,
+      "settledOriginalMatches": true,
+      "settledTextLength": 13295,
+      "postFrameSamplesBeforeNextAction": 0
+    }
+  ],
+  "finalContent": {
+    "snapshotExactlyEqualsBaseline": true,
+    "bothCheckpointsExactlyEqualBaseline": true,
+    "paperSettingsEqualAcrossCheckpointsAndSnapshot": true,
+    "finalOriginalMatches": true,
+    "finalTextLength": 13295,
+    "finalPageCount": 27,
+    "pending": false,
+    "composing": false,
+    "resourceNodesExactlyEqualBaseline": true,
+    "resourceNodeTypes": [
+      "image",
+      "attachment",
+      "media"
+    ],
+    "resourceManifestCount": 3,
+    "manifestIdsExactlyMatchBaselineResourceReferences": true,
+    "resourceManifest": [
+      {
+        "id": "38165eaa-e061-4e99-bbba-5fb25dee1211",
+        "fileName": "M25-soak.png",
+        "mimeType": "image/png",
+        "byteLength": 1100
+      },
+      {
+        "id": "95461a77-373a-499c-8eec-eed8a5f11974",
+        "kind": "attachment",
+        "fileName": "native-check.txt",
+        "mimeType": "text/plain",
+        "byteLength": 22
+      },
+      {
+        "id": "f129daeb-8296-4203-ae36-6b91b58f6738",
+        "kind": "audio",
+        "fileName": "native-check.wav",
+        "mimeType": "audio/wav",
+        "byteLength": 64044
+      }
+    ],
+    "assetByteEqualityReverified": false,
+    "assetVerificationBoundary": "This trace stores document nodes and resource metadata, not original asset bytes. All baseline resource nodes and referenced IDs are retained; byte-for-byte asset payload equality was not re-read by this analysis."
+  },
+  "provenance": {
+    "trustedCountsByEventType": {
+      "compositionstart": {
+        "true": 3
+      },
+      "compositionupdate": {
+        "true": 124
+      },
+      "compositionend": {
+        "false": 3
+      },
+      "beforeinput": {
+        "true": 124
+      },
+      "input": {
+        "true": 124
+      },
+      "keydown": {
+        "true": 130
+      }
+    },
+    "note": "Human Shuangpin report with mixed trusted flags. isTrusted is not proof of physical hardware provenance; every captured compositionend is false."
+  },
+  "remaining": [
+    "Explicit native redo and subsequent undo sequence",
+    "Native Escape cancellation and empty compositionend evidence",
+    "Post-frame sampling of native history actions if geometry proof is required",
+    "Physical pointer cross-page/cross-window acceptance",
+    "WPS native roundtrip"
+  ]
+}

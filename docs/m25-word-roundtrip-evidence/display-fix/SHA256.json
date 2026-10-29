@@ -1,0 +1,132 @@
+[
+  {
+    "file": "browser-dom-verification.json",
+    "bytes": 431,
+    "sha256": "880b8ed16386f637ed198f17fb71c71078b8baa8c87c48f127de870edee8c73b"
+  },
+  {
+    "file": "browser-export.docx",
+    "bytes": 17604,
+    "sha256": "b2e07f970029f47343144dc8dca6c7ae9f39912a1b6faddf068395ebca3f1261"
+  },
+  {
+    "file": "browser-import-success.png",
+    "bytes": 59966,
+    "sha256": "074105446aa737136f82b0126a09209fedf13456d94d0c75910649d3043afee9"
+  },
+  {
+    "file": "browser-imported.mewoc.json",
+    "bytes": 109904,
+    "sha256": "999f3a00174964f1e13df2aeed7d1881b2e04b66a66a851c30b279414c716689"
+  },
+  {
+    "file": "build.log",
+    "bytes": 1627,
+    "sha256": "ae7de3aa4f25a6288ed08892f61ee11dc01428ca36182a16e05d81f932752522"
+  },
+  {
+    "file": "cleanup-ax.txt",
+    "bytes": 1720,
+    "sha256": "c94fb9ff297fdf43813b65e3814406aa74d038f5eadd7d733223300222cb5f57"
+  },
+  {
+    "file": "content-verification.json",
+    "bytes": 6039,
+    "sha256": "74e422da08516fd9eee13e89cb90da78a053034c7c11c7984c4bc174b55646fc"
+  },
+  {
+    "file": "letter-candidate-review.json",
+    "bytes": 6465,
+    "sha256": "3d35f8fdd8a658360d97f7b6bf39a6ff0c56e36bfe65d3fe41848a7143b27370"
+  },
+  {
+    "file": "letter-candidates-native.pdf",
+    "bytes": 72419,
+    "sha256": "10b2aff78bf312383c520bc43b1fc011f63b34855281c0afc68a7f6394dfd643"
+  },
+  {
+    "file": "letter-candidates-word-resaved.docx",
+    "bytes": 16926,
+    "sha256": "06a6e95d15636b9a3f42d01d4cdaa7e7a290d09427717df374886d0296ab7588"
+  },
+  {
+    "file": "lint.log",
+    "bytes": 75,
+    "sha256": "586f65956182cae6c84de204a0c4718417f4fa2a9e377e79d57fa54f3aed6c15"
+  },
+  {
+    "file": "m25-display-native-layout.pdf",
+    "bytes": 445039,
+    "sha256": "bf99e4d9bf14840edcf4368a12001aaff18fbd9cddf20451e0c37fed361fe577"
+  },
+  {
+    "file": "node-test.log",
+    "bytes": 217024,
+    "sha256": "40be1422fff34227520fc7b78e35239d3323c78f9d24c2f23db9b603580b6fab"
+  },
+  {
+    "file": "pdf-verification.json",
+    "bytes": 22586,
+    "sha256": "443232e3370001f9b1375588a6291c213130353fe8ef48ecb97046378079e4bb"
+  },
+  {
+    "file": "source-browser-state.json",
+    "bytes": 263,
+    "sha256": "72c619e06c6e10af88905b1c6f7f841acaca7ac48e8bacb4a59c5cbdba40afcb"
+  },
+  {
+    "file": "verification-summary.json",
+    "bytes": 3154,
+    "sha256": "c36eb58c7af974e65a92c616e7b1b251b8c509fe29b9e1b3d1ff9b5f48a16cfa"
+  },
+  {
+    "file": "visual-review.json",
+    "bytes": 19614,
+    "sha256": "57ba92a0b6a289b0f88c157eb0ad6cbff67693405799fb219b453256ee97714f"
+  },
+  {
+    "file": "watermark-probe-word-resaved.docx",
+    "bytes": 17455,
+    "sha256": "89c1b13de58127ad6c842a58a8d63a519ca310591c6b895853ab95baf0d6d15a"
+  },
+  {
+    "file": "word-first-page.png",
+    "bytes": 166894,
+    "sha256": "85222d3f0111a4818612779a1d3cc13c041484c34aa9ec943b4562a3e5e160f1"
+  },
+  {
+    "file": "word-page-16.png",
+    "bytes": 307265,
+    "sha256": "8a5ddcd8f99979aa9ea5c1699c881167817d7529785f7e27d64c60df891ac45d"
+  },
+  {
+    "file": "word-page-30.png",
+    "bytes": 63394,
+    "sha256": "b4dbee8d65e94e131d1c2a527ce3f7938b4d7327aa608cce2fa5bf7ddf2aa4f1"
+  },
+  {
+    "file": "word-pages-01-10.png",
+    "bytes": 705117,
+    "sha256": "4b6fac4468122c77b36a86d8ade1c4857ac308a5c2adbcfb35e02609e6a56409"
+  },
+  {
+    "file": "word-pages-11-20.png",
+    "bytes": 360677,
+    "sha256": "4b719665df941884aca0a8aca0052d542ea234611c76323760b4381e0eea02c5"
+  },
+  {
+    "file": "word-pages-21-30.png",
+    "bytes": 442060,
+    "sha256": "9ae95461b8312c7bc91fe9e3880f78032ae66e7ad9509a4d788590664578c0cc"
+  },
+  {
+    "file": "word-resaved.docx",
+    "bytes": 27656,
+    "sha256": "cf1ce811cc900a654074c70dd8a2bd5c44498a4a33690648b22255aa6637cc73"
+  },
+  {
+    "file": "word-resaved.png",
+    "bytes": 91944,
+    "sha256": "a5a814342f46d6f5ff4ce899f1c7d19e0dc34637b20d5e838ec3ba37dea9047d"
+  }
+]

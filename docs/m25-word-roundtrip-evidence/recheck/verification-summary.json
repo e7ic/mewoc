@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-29",
+  "baseCommit": "6426c1d",
+  "result": "native-resave-data-roundtrip-passed",
+  "m25Closed": false,
+  "implementation": [
+    "validated native Word SDT/run/default-style and PAGE/NUMPAGES field normalization",
+    "paired native VML watermark recovery and document-order selection",
+    "strict tblPrEx zero cell-margin compatibility with conversion warning"
+  ],
+  "fixtures": {
+    "word-resaved.docx": "passed; original SHA-256 unchanged",
+    "word-fields-updated.docx": "passed; original SHA-256 unchanged",
+    "newNativeResave": "recheck/word-resaved.docx"
+  },
+  "tests": {
+    "command": "pnpm test",
+    "passed": 857,
+    "failed": 0,
+    "log": "node-test.log",
+    "lint": "passed",
+    "productionBuild": "passed",
+    "gitDiffCheck": "passed",
+    "contentAssertions": 23
+  },
+  "nativeWord": {
+    "version": "16.100.2",
+    "openedOriginalCopy": true,
+    "appendedText": " M25_WORD_RECHECK_20261029",
+    "savedThroughNativeUI": true,
+    "copyToArchive": "byte-identical",
+    "displayedPageCount": 40,
+    "newPdfSaved": false
+  },
+  "browser": {
+    "engine": "Codex in-app browser",
+    "origin": "http://127.0.0.1:4182/",
+    "formalFileChooserAndImport": true,
+    "savedAndReloaded": true,
+    "finalTitle": "M25 Word 原生回存修复复验（最终）",
+    "actualImageDecode": [
+      240,
+      120
+    ],
+    "portableBackup": "browser-imported.mewoc.json",
+    "contentComparison": "content-verification.json",
+    "finalUiEvidence": "browser-ui-verification.json",
+    "screenshot": "browser-import-success.png",
+    "note": "Portable backup was downloaded before the final relationship/watermark-order edge fixes; current production conversion independently matches it. Final code was reloaded, formally reimported, saved and reloaded again for the final UI evidence."
+  },
+  "remaining": [
+    "Native Word watermark display failure from first-run screen/PDF",
+    "Word and browser lower-letter display rules after z differ",
+    "Native Chinese IME acceptance",
+    "Physical pointer drag across windows",
+    "WPS not exercised"
+  ],
+  "cleanup": {
+    "wordSampleWindowClosed": true,
+    "agentChromeTabClosed": true,
+    "agentIabTabClosed": true,
+    "validationServer4182Stopped": true,
+    "browserSavedAcceptanceDocumentsRetained": true
+  },
+  "scope": "Pass is limited to native resave data compatibility. First-run failures and 30-page PDF remain unchanged historical evidence; this run does not claim native visual layout acceptance."
+}
